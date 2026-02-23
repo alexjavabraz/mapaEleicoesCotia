@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mapa Eleitoral — Cotia 2024</title>
+
+  <!-- Leaflet CSS -->
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    crossorigin=""
+  />
+
+  <!-- App CSS -->
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <!-- ==============================
+       HEADER
+       ============================== -->
+  <header id="header">
+    <h1>
+      Mapa Eleitoral de Cotia
+      <span class="badge">2024</span>
+    </h1>
+
+    <div id="controls">
+      <span style="font-size:0.72rem;color:var(--text-muted)">
+        Eleições Municipais 2024 — Cotia/SP
+      </span>
+    </div>
+  </header>
+
+  <!-- ==============================
+       ÁREA PRINCIPAL
+       ============================== -->
+  <div id="main">
+    <!-- MAPA -->
+    <div id="map-container">
+      <div id="map"></div>
+
+      <!-- Banner de aviso (sem dados / erro) -->
+      <div id="no-data-banner"></div>
+    </div>
+
+    <!-- SIDEBAR com dados eleitorais -->
+    <aside id="sidebar">
+      <div id="sidebar-header">
+        <h2>Selecione um bairro</h2>
+      </div>
+      <div id="sidebar-content">
+        <div class="placeholder">
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none"
+               stroke="currentColor" stroke-width="1.5">
+            <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/>
+            <circle cx="12" cy="9" r="2.5"/>
+          </svg>
+          <p>Clique em um bairro no mapa para ver os resultados eleitorais por zona eleitoral.</p>
+        </div>
+      </div>
+    </aside>
+  </div>
+
+  <!-- ==============================
+       LOADING OVERLAY
+       ============================== -->
+  <div id="loading">
+    <div class="spinner"></div>
+    <p>Carregando dados...</p>
+    <span id="loading-status">Inicializando...</span>
+  </div>
+
+  <!-- ==============================
+       SCRIPTS
+       ============================== -->
+
+  <!-- Leaflet JS -->
+  <script
+    src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+    crossorigin=""
+  ></script>
+
+  <!-- osmtogeojson: converte resposta Overpass OSM → GeoJSON -->
+  <script src="https://unpkg.com/osmtogeojson@3.0.0-beta.4/osmtogeojson.js"></script>
+
+  <!-- turf.js: computação de polígonos Voronoi para bairros -->
+  <script src="https://cdn.jsdelivr.net/npm/@turf/turf@6.5.0/turf.min.js"></script>
+
+  <!-- Módulos da aplicação -->
+  <script src="js/tse.js"></script>
+  <script src="js/map.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
