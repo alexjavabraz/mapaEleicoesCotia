@@ -1,436 +1,569 @@
 {
-  "1015": {
-    "nr": "1015",
+  "227_1015": {
+    "nr": "227_1015",
     "nome": "E.E. BATISTA CEPELOS",
     "bairro": "CENTRO",
     "zona": "227",
-    "votos_prefeito": 8911
+    "votos_prefeito": 5319
   },
-  "1023": {
-    "nr": "1023",
-    "nome": "EE. ROQUE CELESTINO PIRES",
-    "bairro": "CENTRO (CAUCAIA DO ALTO)",
-    "zona": "286",
-    "votos_prefeito": 7363
+  "227_1023": {
+    "nr": "227_1023",
+    "nome": "E.E. ZACARIAS ANTONIO DA SILVA",
+    "bairro": "VILA SÃO FRANCISCO",
+    "zona": "227",
+    "votos_prefeito": 2857
   },
-  "1031": {
-    "nr": "1031",
-    "nome": "EE. PROFA. EROTIDES APARECIDA DE OLIVEIRA SILVA",
-    "bairro": "AGUASSAÍ",
-    "zona": "286",
-    "votos_prefeito": 4933
+  "227_1031": {
+    "nr": "227_1031",
+    "nome": "E.E. IDOMINEU ANTUNES CALDEIRA",
+    "bairro": "VILA SANTO ANTÔNIO DO PORTÃO",
+    "zona": "227",
+    "votos_prefeito": 3021
   },
-  "1040": {
-    "nr": "1040",
-    "nome": "EE. DEPUTADO DAGOBERTO SALES FILHO",
-    "bairro": "CENTRO (CAUCAIA DO ALTO)",
-    "zona": "286",
-    "votos_prefeito": 5952
+  "227_1040": {
+    "nr": "227_1040",
+    "nome": "E.E. PEDRO CASEMIRO LEITE",
+    "bairro": "PORTÃO",
+    "zona": "227",
+    "votos_prefeito": 4151
   },
-  "1058": {
-    "nr": "1058",
+  "227_1058": {
+    "nr": "227_1058",
     "nome": "E.E. DEPUTADA CONCEIÇÃO DA COSTA NEVES",
     "bairro": "JARDIM RIO DAS PEDRAS",
     "zona": "227",
-    "votos_prefeito": 4432
+    "votos_prefeito": 3036
   },
-  "1066": {
-    "nr": "1066",
-    "nome": "EE. TENENTE ERNESTO CAETANO DE SOUZA",
-    "bairro": "JARDIM ARARUAMA",
-    "zona": "286",
-    "votos_prefeito": 6552
+  "227_1066": {
+    "nr": "227_1066",
+    "nome": "E.E. PROFESSORA ANTONIETA DI LASCIO OZEKI",
+    "bairro": "RIO COTIA",
+    "zona": "227",
+    "votos_prefeito": 3286
   },
-  "1074": {
-    "nr": "1074",
-    "nome": "EE. SIDRÔNIA NUNES PIRES",
-    "bairro": "CENTRO (CAUCAIA DO ALTO)",
-    "zona": "286",
-    "votos_prefeito": 3845
+  "227_1082": {
+    "nr": "227_1082",
+    "nome": "E.E. VINÍCIUS DE MORAES",
+    "bairro": "GRANJA VIANA",
+    "zona": "227",
+    "votos_prefeito": 2944
   },
-  "1082": {
-    "nr": "1082",
-    "nome": "EM. MAÍSA APARECIDA RIBEIRO",
-    "bairro": "CENTRO (CAUCAIA DO ALTO)",
-    "zona": "286",
-    "votos_prefeito": 4919
+  "227_1090": {
+    "nr": "227_1090",
+    "nome": "E.M. JOAQUIM PEREIRA DA SILVA",
+    "bairro": "VILA SÃO JOAQUIM",
+    "zona": "227",
+    "votos_prefeito": 1827
   },
-  "1090": {
-    "nr": "1090",
-    "nome": "EE. ROQUE SAVIÓLI (CACHOEIRA)",
-    "bairro": "CACHOEIRA",
-    "zona": "286",
-    "votos_prefeito": 3306
+  "227_1104": {
+    "nr": "227_1104",
+    "nome": "E.E. KENKITI SIMOMOTO",
+    "bairro": "JARDIM PANORAMA",
+    "zona": "227",
+    "votos_prefeito": 3230
   },
-  "1104": {
-    "nr": "1104",
-    "nome": "CE. VITÓRIA RÉGIA",
-    "bairro": "CENTRO (CAUCAIA DO ALTO)",
-    "zona": "286",
-    "votos_prefeito": 5134
-  },
-  "1112": {
-    "nr": "1112",
-    "nome": "EM. ERNESTO BENEDITO DE CAMARGO",
-    "bairro": "JARDIM ELIAS",
-    "zona": "286",
-    "votos_prefeito": 504
-  },
-  "1120": {
-    "nr": "1120",
-    "nome": "EM. GASPAR DE GODOI MOREIRA",
-    "bairro": "JARDIM JAPÃO (CAUCAIA DO ALTO)",
-    "zona": "286",
-    "votos_prefeito": 1458
-  },
-  "1139": {
-    "nr": "1139",
-    "nome": "EE. REPÚBLICA DA COSTA RICA",
-    "bairro": "ÁGUA ESPRAIADA (CAUCAIA DO ALTO)",
-    "zona": "286",
-    "votos_prefeito": 1922
-  },
-  "1147": {
-    "nr": "1147",
-    "nome": "EM. ROSA AUGUSTA DE MORAES",
-    "bairro": "PARQUE MIRANTE DA MATA",
-    "zona": "286",
-    "votos_prefeito": 2779
-  },
-  "1155": {
-    "nr": "1155",
+  "227_1155": {
+    "nr": "227_1155",
     "nome": "E.E. JARDIM SANTA ANGELA",
     "bairro": "JARDIM SANTA IZABEL",
     "zona": "227",
-    "votos_prefeito": 3099
+    "votos_prefeito": 1957
   },
-  "1163": {
-    "nr": "1163",
-    "nome": "CE. DO ATALAIA",
-    "bairro": "JD. LAVAPÉ",
-    "zona": "286",
-    "votos_prefeito": 4903
+  "227_1163": {
+    "nr": "227_1163",
+    "nome": "E.E. PROFESSOR CARLOS FERREIRA DE MORAES",
+    "bairro": "JARDIM TORINO",
+    "zona": "227",
+    "votos_prefeito": 1758
   },
-  "1171": {
-    "nr": "1171",
-    "nome": "EM. ANDRESSA SOARES GOMES",
-    "bairro": "AGUA ESPRAIADA",
-    "zona": "286",
-    "votos_prefeito": 1671
-  },
-  "1198": {
-    "nr": "1198",
+  "227_1198": {
+    "nr": "227_1198",
     "nome": "E.M. BAIRRO DA CAPUTERA",
     "bairro": "CAPUTERA",
     "zona": "227",
-    "votos_prefeito": 4449
+    "votos_prefeito": 1973
   },
-  "1228": {
-    "nr": "1228",
-    "nome": "ESCOLA MUNICIPAL MARIA APARECIDA DE OLIVEIRA PEDROSO, (SANDRA)",
-    "bairro": "JARDIM SANDRA",
-    "zona": "286",
-    "votos_prefeito": 2888
-  },
-  "1244": {
-    "nr": "1244",
+  "227_1244": {
+    "nr": "227_1244",
     "nome": "E.M. JORNALISTA MARIA DO CARMO DE ALMEIDA",
     "bairro": "JARDIM ESTELA MARIS",
     "zona": "227",
     "votos_prefeito": 2946
   },
-  "1252": {
-    "nr": "1252",
-    "nome": "EM. PROF. OSNY FLEURY DA SILVEIRA",
-    "bairro": "ATALAIA",
-    "zona": "286",
-    "votos_prefeito": 7621
+  "227_1252": {
+    "nr": "227_1252",
+    "nome": "E.E. VILA SÃO JOAQUIM II",
+    "bairro": "JARDIM LEONOR",
+    "zona": "227",
+    "votos_prefeito": 3641
   },
-  "1260": {
-    "nr": "1260",
-    "nome": "EM. ASSIS JOSÉ DE OLIVEIRA",
-    "bairro": "APACHE",
-    "zona": "286",
-    "votos_prefeito": 1028
-  },
-  "1279": {
-    "nr": "1279",
-    "nome": "EM. CÂNDIDO PINTO",
-    "bairro": "CANDIDO PINTO",
-    "zona": "286",
-    "votos_prefeito": 643
-  },
-  "1287": {
-    "nr": "1287",
+  "227_1287": {
+    "nr": "227_1287",
     "nome": "E.E. FERNÃO DIAS PAES LEME",
     "bairro": "JARDIM PETROPOLIS",
     "zona": "227",
-    "votos_prefeito": 2144
+    "votos_prefeito": 1634
   },
-  "1295": {
-    "nr": "1295",
-    "nome": "E.M. VITOR GONÇALVES DE SOUSA (MONTE VERDE)",
-    "bairro": "JARDIM MONTE VERDE (CAUCAIA DO ALTO)",
-    "zona": "286",
-    "votos_prefeito": 1196
-  },
-  "1309": {
-    "nr": "1309",
+  "227_1309": {
+    "nr": "227_1309",
     "nome": "E.M. PROFESSORA OTILIA FREIRE DOS SANTOS SHIMADA",
     "bairro": "JARDIM SABIÁ",
     "zona": "227",
-    "votos_prefeito": 3039
+    "votos_prefeito": 1944
   },
-  "1317": {
-    "nr": "1317",
+  "227_1317": {
+    "nr": "227_1317",
     "nome": "E.E. PROFESSOR CARLOS DIAS DE SANT'ANNA",
     "bairro": "JARDIM DOS IPÊS",
     "zona": "227",
-    "votos_prefeito": 2456
+    "votos_prefeito": 2045
   },
-  "1325": {
-    "nr": "1325",
-    "nome": "E.M. JARDIM ISIS",
-    "bairro": "JARDIM ÍSIS",
-    "zona": "286",
-    "votos_prefeito": 2418
+  "227_1325": {
+    "nr": "227_1325",
+    "nome": "E.M. TERESA BENVINDA HERVEY COSTA MAIA",
+    "bairro": "PARQUE SÃO GEORGE",
+    "zona": "227",
+    "votos_prefeito": 1509
   },
-  "1333": {
-    "nr": "1333",
+  "227_1333": {
+    "nr": "227_1333",
     "nome": "E.M. JOSÉ ROBERTO BARAÚNA FILHO",
     "bairro": "JARDIM TORINO",
     "zona": "227",
     "votos_prefeito": 1746
   },
-  "1341": {
-    "nr": "1341",
+  "227_1341": {
+    "nr": "227_1341",
     "nome": "E.E. PROFESSOR ARY BOUZAN",
     "bairro": "GRANJA VIANA",
     "zona": "227",
     "votos_prefeito": 1327
   },
-  "1350": {
-    "nr": "1350",
+  "227_1350": {
+    "nr": "227_1350",
     "nome": "COLÉGIO VIA SAPIENS",
     "bairro": "GRANJA VIANA II",
     "zona": "227",
-    "votos_prefeito": 2876
+    "votos_prefeito": 2721
   },
-  "1368": {
-    "nr": "1368",
+  "227_1368": {
+    "nr": "227_1368",
     "nome": "E.M. FRANCISCA MANOEL DE OLIVEIRA",
     "bairro": "PORTÃO",
     "zona": "227",
-    "votos_prefeito": 2268
+    "votos_prefeito": 2034
   },
-  "1384": {
-    "nr": "1384",
+  "227_1384": {
+    "nr": "227_1384",
     "nome": "E.E. FERNANDO NOBRE",
     "bairro": "JARDIM GUERREIRO",
     "zona": "227",
     "votos_prefeito": 1848
   },
-  "1392": {
-    "nr": "1392",
+  "227_1392": {
+    "nr": "227_1392",
     "nome": "E.E. JORNALISTA ROBERTO CORTE REAL",
     "bairro": "JARDIM CLÁUDIO",
     "zona": "227",
     "votos_prefeito": 1346
   },
-  "1406": {
-    "nr": "1406",
+  "227_1406": {
+    "nr": "227_1406",
     "nome": "C.E. PROFESSORA YVETH NADER CAVALCANTE",
     "bairro": "JARDIM MARANHÃO",
     "zona": "227",
     "votos_prefeito": 918
   },
-  "1449": {
-    "nr": "1449",
+  "227_1449": {
+    "nr": "227_1449",
     "nome": "E.M. CRIANÇAS DE COTIA I",
     "bairro": "PARQUE MIGUEL MIRIZOLA",
     "zona": "227",
     "votos_prefeito": 3359
   },
-  "1457": {
-    "nr": "1457",
+  "227_1457": {
+    "nr": "227_1457",
     "nome": "E.M. FRANCISCO NUNES DE OLIVEIRA",
     "bairro": "VILA MONTE SERRAT",
     "zona": "227",
     "votos_prefeito": 1046
   },
-  "1473": {
-    "nr": "1473",
+  "227_1473": {
+    "nr": "227_1473",
     "nome": "E.M. JARDIM DO ENGENHO",
     "bairro": "JARDIM DO ENGENHO",
     "zona": "227",
     "votos_prefeito": 1957
   },
-  "1481": {
-    "nr": "1481",
+  "227_1481": {
+    "nr": "227_1481",
     "nome": "E.M. FRANCISCO AMBROSIO DE AZEVEDO (MONTE SANTO)",
     "bairro": "JARDIM MONTE SANTO",
     "zona": "227",
     "votos_prefeito": 468
   },
-  "1503": {
-    "nr": "1503",
+  "227_1503": {
+    "nr": "227_1503",
     "nome": "E.M. JARDIM PANORAMA",
     "bairro": "JARDIM PANORAMA",
     "zona": "227",
     "votos_prefeito": 2415
   },
-  "1520": {
-    "nr": "1520",
+  "227_1520": {
+    "nr": "227_1520",
     "nome": "E.M. PROFESSOR ROBERTO JORGE HADDOCK LOBO NETO",
     "bairro": "JARDIM NOVA COIMBRA",
     "zona": "227",
     "votos_prefeito": 1571
   },
-  "1570": {
-    "nr": "1570",
+  "227_1570": {
+    "nr": "227_1570",
     "nome": "E.M. MALVINA DE CASTRO",
     "bairro": "JARDIM ROSEMARY",
     "zona": "227",
     "votos_prefeito": 1587
   },
-  "1589": {
-    "nr": "1589",
+  "227_1589": {
+    "nr": "227_1589",
     "nome": "E.M. PAULO ZINGG",
     "bairro": "JARDIM SÃO MIGUEL",
     "zona": "227",
     "votos_prefeito": 1875
   },
-  "1597": {
-    "nr": "1597",
+  "227_1597": {
+    "nr": "227_1597",
     "nome": "E.M. JOCINÉIA DE MELO",
     "bairro": "JARDIM PETROPOLIS",
     "zona": "227",
     "votos_prefeito": 1657
   },
-  "1619": {
-    "nr": "1619",
+  "227_1619": {
+    "nr": "227_1619",
     "nome": "E.M. CLODOALDO JESUS DOMINGUES",
     "bairro": "PARQUE MIGUEL MIRIZOLA",
     "zona": "227",
     "votos_prefeito": 1223
   },
-  "1635": {
-    "nr": "1635",
+  "227_1635": {
+    "nr": "227_1635",
     "nome": "E.E. REPÚBLICA DO PERU",
     "bairro": "JARDIM NOVA COIMBRA",
     "zona": "227",
     "votos_prefeito": 2315
   },
-  "1643": {
-    "nr": "1643",
+  "227_1643": {
+    "nr": "227_1643",
     "nome": "E.M. SIDRONIA NUNES PIRES",
     "bairro": "JARDIM LEONOR",
     "zona": "227",
     "votos_prefeito": 1268
   },
-  "1660": {
-    "nr": "1660",
+  "227_1660": {
+    "nr": "227_1660",
     "nome": "C.E.U.C. EDUCAÇÃO ESPECIAL DIEGO CRISTIAN BAZILIO CAMARGO",
     "bairro": "JARDIM NOMURA",
     "zona": "227",
     "votos_prefeito": 822
   },
-  "1678": {
-    "nr": "1678",
+  "227_1678": {
+    "nr": "227_1678",
     "nome": "E.M. VICENTE MACIEL",
     "bairro": "JARDIM CLÁUDIO",
     "zona": "227",
     "votos_prefeito": 972
   },
-  "1686": {
-    "nr": "1686",
+  "227_1686": {
+    "nr": "227_1686",
     "nome": "E.M. FRANCISCO CAMILO",
     "bairro": "JARDIM SANTA ANGELA",
     "zona": "227",
     "votos_prefeito": 281
   },
-  "1694": {
-    "nr": "1694",
+  "227_1694": {
+    "nr": "227_1694",
     "nome": "E.M. JARDIM ROSALINA",
     "bairro": "JARDIM ROSALINA",
     "zona": "227",
     "votos_prefeito": 2127
   },
-  "1732": {
-    "nr": "1732",
+  "227_1732": {
+    "nr": "227_1732",
     "nome": "E.M. HONORIO DE SYLOS",
     "bairro": "PARQUE ALEXANDRE",
     "zona": "227",
     "votos_prefeito": 762
   },
-  "1864": {
-    "nr": "1864",
+  "227_1864": {
+    "nr": "227_1864",
     "nome": "COLÉGIO RIO BRANCO",
     "bairro": "GRANJA VIANA",
     "zona": "227",
     "votos_prefeito": 5096
   },
-  "1872": {
-    "nr": "1872",
+  "227_1872": {
+    "nr": "227_1872",
     "nome": "E.M. CHÁCARA CANTAGALO",
     "bairro": "CHÁCARA CANTA GALO",
     "zona": "227",
     "votos_prefeito": 660
   },
-  "1880": {
-    "nr": "1880",
+  "227_1880": {
+    "nr": "227_1880",
     "nome": "E.M. SILVIO PEDROSO",
     "bairro": "CHÁCARA VISTA ALEGRE",
     "zona": "227",
     "votos_prefeito": 1163
   },
-  "1899": {
-    "nr": "1899",
+  "227_1899": {
+    "nr": "227_1899",
     "nome": "E.M. JOAQUIM DE MORAES VICTOR",
     "bairro": "RECANTO DOS VICTOR'S",
     "zona": "227",
     "votos_prefeito": 302
   },
-  "1902": {
-    "nr": "1902",
+  "227_1902": {
+    "nr": "227_1902",
     "nome": "E.M. AGUINALDO SOUZA ESTRELA",
     "bairro": "JARDIM BARRO BRANCO",
     "zona": "227",
     "votos_prefeito": 385
   },
-  "1910": {
-    "nr": "1910",
+  "227_1910": {
+    "nr": "227_1910",
     "nome": "E.M. JOSÉ GROTOLI",
     "bairro": "QUINTA DOS ANGICOS",
     "zona": "227",
     "votos_prefeito": 402
   },
-  "1929": {
-    "nr": "1929",
+  "227_1929": {
+    "nr": "227_1929",
     "nome": "E.M. PROFESSORA ANA MARIA PEREIRA",
     "bairro": "NAKAMURA PARK",
     "zona": "227",
     "votos_prefeito": 382
   },
-  "1937": {
-    "nr": "1937",
+  "227_1937": {
+    "nr": "227_1937",
     "nome": "C.E. JARDIM NOMURA",
     "bairro": "JARDIM NOMURA",
     "zona": "227",
     "votos_prefeito": 370
   },
-  "1945": {
-    "nr": "1945",
+  "227_1945": {
+    "nr": "227_1945",
     "nome": "E.M BAIRRO DO SÃO MIGUEL",
     "bairro": "JARDIM SÃO MIGUEL",
     "zona": "227",
     "votos_prefeito": 656
   },
-  "1970": {
-    "nr": "1970",
+  "227_1970": {
+    "nr": "227_1970",
     "nome": "C.E. ANTÔNIO MANSUR",
     "bairro": "PARQUE MIGUEL MIRIZOLA",
     "zona": "227",
     "votos_prefeito": 358
+  },
+  "286_1015": {
+    "nr": "286_1015",
+    "nome": "EE. PROF. ODAIR PACHECO PEDROSO",
+    "bairro": "ATALAIA",
+    "zona": "286",
+    "votos_prefeito": 3592
+  },
+  "286_1023": {
+    "nr": "286_1023",
+    "nome": "EE. ROQUE CELESTINO PIRES",
+    "bairro": "CENTRO (CAUCAIA DO ALTO)",
+    "zona": "286",
+    "votos_prefeito": 4506
+  },
+  "286_1031": {
+    "nr": "286_1031",
+    "nome": "EE. PROFA. EROTIDES APARECIDA DE OLIVEIRA SILVA",
+    "bairro": "AGUASSAÍ",
+    "zona": "286",
+    "votos_prefeito": 1912
+  },
+  "286_1040": {
+    "nr": "286_1040",
+    "nome": "EE. DEPUTADO DAGOBERTO SALES FILHO",
+    "bairro": "CENTRO (CAUCAIA DO ALTO)",
+    "zona": "286",
+    "votos_prefeito": 1801
+  },
+  "286_1058": {
+    "nr": "286_1058",
+    "nome": "EE. PROF. JOSÉ BARRETO",
+    "bairro": "MORRO GRANDE",
+    "zona": "286",
+    "votos_prefeito": 1396
+  },
+  "286_1066": {
+    "nr": "286_1066",
+    "nome": "EE. TENENTE ERNESTO CAETANO DE SOUZA",
+    "bairro": "JARDIM ARARUAMA",
+    "zona": "286",
+    "votos_prefeito": 3266
+  },
+  "286_1074": {
+    "nr": "286_1074",
+    "nome": "EE. SIDRÔNIA NUNES PIRES",
+    "bairro": "CENTRO (CAUCAIA DO ALTO)",
+    "zona": "286",
+    "votos_prefeito": 3845
+  },
+  "286_1082": {
+    "nr": "286_1082",
+    "nome": "EM. MAÍSA APARECIDA RIBEIRO",
+    "bairro": "CENTRO (CAUCAIA DO ALTO)",
+    "zona": "286",
+    "votos_prefeito": 1975
+  },
+  "286_1090": {
+    "nr": "286_1090",
+    "nome": "EE. ROQUE SAVIÓLI (CACHOEIRA)",
+    "bairro": "CACHOEIRA",
+    "zona": "286",
+    "votos_prefeito": 1479
+  },
+  "286_1104": {
+    "nr": "286_1104",
+    "nome": "CE. VITÓRIA RÉGIA",
+    "bairro": "CENTRO (CAUCAIA DO ALTO)",
+    "zona": "286",
+    "votos_prefeito": 1904
+  },
+  "286_1112": {
+    "nr": "286_1112",
+    "nome": "EM. ERNESTO BENEDITO DE CAMARGO",
+    "bairro": "JARDIM ELIAS",
+    "zona": "286",
+    "votos_prefeito": 504
+  },
+  "286_1120": {
+    "nr": "286_1120",
+    "nome": "EM. GASPAR DE GODOI MOREIRA",
+    "bairro": "JARDIM JAPÃO (CAUCAIA DO ALTO)",
+    "zona": "286",
+    "votos_prefeito": 1458
+  },
+  "286_1139": {
+    "nr": "286_1139",
+    "nome": "EE. REPÚBLICA DA COSTA RICA",
+    "bairro": "ÁGUA ESPRAIADA (CAUCAIA DO ALTO)",
+    "zona": "286",
+    "votos_prefeito": 1922
+  },
+  "286_1147": {
+    "nr": "286_1147",
+    "nome": "EM. ROSA AUGUSTA DE MORAES",
+    "bairro": "PARQUE MIRANTE DA MATA",
+    "zona": "286",
+    "votos_prefeito": 2779
+  },
+  "286_1155": {
+    "nr": "286_1155",
+    "nome": "EM. BENEDICTA VAZ PEDROSA DE ALBUQUERQUE",
+    "bairro": "BAIRRO DOS PEREIRAS",
+    "zona": "286",
+    "votos_prefeito": 1142
+  },
+  "286_1163": {
+    "nr": "286_1163",
+    "nome": "CE. DO ATALAIA",
+    "bairro": "JD. LAVAPÉ",
+    "zona": "286",
+    "votos_prefeito": 3145
+  },
+  "286_1171": {
+    "nr": "286_1171",
+    "nome": "EM. ANDRESSA SOARES GOMES",
+    "bairro": "AGUA ESPRAIADA",
+    "zona": "286",
+    "votos_prefeito": 1671
+  },
+  "286_1198": {
+    "nr": "286_1198",
+    "nome": "EM. PROF. SAMUEL DA SILVA FILHO (MIRANTE II)",
+    "bairro": "PARQUE MIRANTE DA MATA",
+    "zona": "286",
+    "votos_prefeito": 2476
+  },
+  "286_1228": {
+    "nr": "286_1228",
+    "nome": "ESCOLA MUNICIPAL MARIA APARECIDA DE OLIVEIRA PEDROSO, (SANDRA)",
+    "bairro": "JARDIM SANDRA",
+    "zona": "286",
+    "votos_prefeito": 2888
+  },
+  "286_1252": {
+    "nr": "286_1252",
+    "nome": "EM. PROF. OSNY FLEURY DA SILVEIRA",
+    "bairro": "ATALAIA",
+    "zona": "286",
+    "votos_prefeito": 3980
+  },
+  "286_1260": {
+    "nr": "286_1260",
+    "nome": "EM. ASSIS JOSÉ DE OLIVEIRA",
+    "bairro": "APACHE",
+    "zona": "286",
+    "votos_prefeito": 1028
+  },
+  "286_1279": {
+    "nr": "286_1279",
+    "nome": "EM. CÂNDIDO PINTO",
+    "bairro": "CANDIDO PINTO",
+    "zona": "286",
+    "votos_prefeito": 643
+  },
+  "286_1287": {
+    "nr": "286_1287",
+    "nome": "E.M. PROFº JOÃO LUIZ MONTANHEIRO (JARDIM DAS OLIVEIRAS)",
+    "bairro": "JARDIM DAS OLIVEIRAS (CAUCAIA DO ALTO)",
+    "zona": "286",
+    "votos_prefeito": 510
+  },
+  "286_1295": {
+    "nr": "286_1295",
+    "nome": "E.M. VITOR GONÇALVES DE SOUSA (MONTE VERDE)",
+    "bairro": "JARDIM MONTE VERDE (CAUCAIA DO ALTO)",
+    "zona": "286",
+    "votos_prefeito": 1196
+  },
+  "286_1309": {
+    "nr": "286_1309",
+    "nome": "C.E MOISES DIAS CORVELO",
+    "bairro": "JARDIM DAS OLIVEIRAS (CAUCAIA DO ALTO)",
+    "zona": "286",
+    "votos_prefeito": 1095
+  },
+  "286_1317": {
+    "nr": "286_1317",
+    "nome": "C.E. DANIELLI ALBUQUERQUE MATHIAS",
+    "bairro": "ALTOS DE CAUCAIA (CAUCAIA DO ALTO)",
+    "zona": "286",
+    "votos_prefeito": 411
+  },
+  "286_1325": {
+    "nr": "286_1325",
+    "nome": "E.M. JARDIM ISIS",
+    "bairro": "JARDIM ÍSIS",
+    "zona": "286",
+    "votos_prefeito": 909
+  },
+  "286_1350": {
+    "nr": "286_1350",
+    "nome": "CE ODARIA MENDONÇA DA FONSECA",
+    "bairro": "JARDIM SANDRA",
+    "zona": "286",
+    "votos_prefeito": 155
+  },
+  "286_1368": {
+    "nr": "286_1368",
+    "nome": "CE JOSE ROBERTO MACENO",
+    "bairro": "PARQUE MIRANTE DA MATA",
+    "zona": "286",
+    "votos_prefeito": 234
   }
 }

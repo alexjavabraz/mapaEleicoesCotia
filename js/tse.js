@@ -70,10 +70,13 @@ async function loadLocaisVotacao() {
       }))
       .filter(l => !isNaN(l.lat) && !isNaN(l.lng));
 
-    // Agrega por local de votação (NR_LOCAL_VOTACAO) para exibir escolas no mapa
+    // Agrega por local de votação usando chave composta zona_nr (NR_LOCAL_VOTACAO
+    // não é único globalmente — é local por zona)
     const escolaMap = {};
     for (const l of raw) {
-      const k = l.NR_LOCAL_VOTACAO;
+      const zona = String(l.NR_ZONA || "").trim();
+      const nr   = String(l.NR_LOCAL_VOTACAO || "").trim();
+      const k    = zona && nr ? `${zona}_${nr}` : null;
       if (!k || !l.NR_LATITUDE || !l.NR_LONGITUDE) continue;
       if (!escolaMap[k]) {
         escolaMap[k] = {

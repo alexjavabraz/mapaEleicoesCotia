@@ -70,7 +70,7 @@ def build_maps():
 
     secao_bairro = {}
     secao_escola = {}
-    escola_meta  = {}   # nr_local -> {nome, bairro, zona}
+    escola_meta  = {}   # "zona_nr" -> {nr, nome, bairro, zona}
 
     for local in locais:
         zona   = str(local.get("NR_ZONA",  "")).strip()
@@ -79,12 +79,15 @@ def build_maps():
         nr     = str(local.get("NR_LOCAL_VOTACAO", "")).strip()
         nome   = (local.get("NM_LOCAL_VOTACAO", "") or "").strip()
 
+        # Chave composta garante unicidade entre zonas diferentes
+        comp = f"{zona}_{nr}" if (zona and nr) else None
+
         if zona and secao and bairro:
             secao_bairro[(zona, secao)] = bairro
-        if zona and secao and nr:
-            secao_escola[(zona, secao)] = nr
-        if nr and nr not in escola_meta:
-            escola_meta[nr] = {"nr": nr, "nome": nome, "bairro": bairro, "zona": zona}
+        if zona and secao and comp:
+            secao_escola[(zona, secao)] = comp
+        if comp and comp not in escola_meta:
+            escola_meta[comp] = {"nr": nr, "nome": nome, "bairro": bairro, "zona": zona}
 
     print(f"Mapeamento: {len(secao_bairro)} seções → bairros, "
           f"{len(secao_escola)} seções → escolas ({len(escola_meta)} escolas únicas).")
