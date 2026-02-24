@@ -27,6 +27,7 @@ let neighborhoodLayer = null;
 let municipioLayer = null;
 let escolasLayer = null;
 let rankingControl = null;
+let userLocationMarker = null;
 
 /**
  * Adiciona controle de zoom customizado (estilizado para o tema escuro).
@@ -728,4 +729,64 @@ function renderEscolas(escolas, onEscolaClick) {
 
   escolasLayer.addTo(map);
   return escolasLayer;
+}
+
+/**
+ * Solicita a geolocalização do usuário e, se ele estiver dentro do município
+ * de Cotia, adiciona um marcador pulsante "Você está aqui" no mapa.
+ * Se o usuário estiver fora de Cotia, recusar a permissão ou ocorrer erro,
+ * não faz nada.
+ *
+ * @param {Object} municipioGeoJSON - FeatureCollection do contorno de Cotia
+ */
+function localizarUsuario(municipioGeoJSON) {
+  if (!navigator.geolocation || !municipioGeoJSON) return;
+
+  navigator.geolocation.getCurrentPosition(
+    (position) => {
+      const lat = position.coords.latitude;
+      const lng = position.coords.longitude;
+
+      // Verifica se o ponto está dentro do polígono do município
+      const ponto = turf.point([lng, lat]);
+      let dentroDeCotia = false;
+      for (const feature of municipioGeoJSON.features) {
+        const t = feature.geometry?.type;
+        if (t === "Polygon" || t === "MultiPolygon") {
+          try {
+            if (turf.booleanPointInPolygon(ponto, feature)) {
+              dentroDeCotia = true;
+              break;
+            }
+          } catch (_) {}
+        }
+      }
+
+      if (!dentroDeCotia) return;
+
+      // Remove marcador anterior, se houver
+      if (userLocationMarker) {
+        map.removeLayer(userLocationMarker);
+        userLocationMarker = null;
+      }
+
+      const icon = L.divIcon({
+        className: "user-location-icon",
+        html: `<div class="user-location-dot"><div class="user-location-pulse"></div></div>`,
+        iconSize:   [24, 24],
+        iconAnchor: [12, 12],
+      });
+
+      userLocationMarker = L.marker([lat, lng], { icon, zIndexOffset: 1000 })
+        .bindTooltip("Você está aqui", {
+          permanent: false,
+          className: "map-tooltip",
+          direction: "top",
+          offset: [0, -14],
+        })
+        .addTo(map);
+    },
+    () => {}, // permissão negada ou erro — silencioso
+    { timeout: 10000, maximumAge: 300000 }
+  );
 }

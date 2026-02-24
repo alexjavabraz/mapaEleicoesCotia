@@ -929,6 +929,53 @@ html, body {
   vertical-align: middle;
 }
 
+/* ---- LOCALIZAÇÃO DO USUÁRIO ---- */
+.user-location-icon {
+  background: transparent !important;
+  border: none !important;
+}
+
+.user-location-dot {
+  position: relative;
+  width: 24px;
+  height: 24px;
+}
+
+/* Ponto central azul */
+.user-location-dot::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 13px;
+  height: 13px;
+  background: #2196f3;
+  border: 2.5px solid #fff;
+  border-radius: 50%;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.45);
+  z-index: 2;
+}
+
+/* Anel pulsante ao redor */
+.user-location-pulse {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  background: rgba(33, 150, 243, 0.35);
+  animation: user-loc-pulse 2.2s ease-out infinite;
+  z-index: 1;
+}
+
+@keyframes user-loc-pulse {
+  0%   { transform: translate(-50%, -50%) scale(1);   opacity: 0.75; }
+  100% { transform: translate(-50%, -50%) scale(4);   opacity: 0; }
+}
+
 /* ---- LEAFLET OVERRIDES ---- */
 .leaflet-container {
   background: #ffffff !important;

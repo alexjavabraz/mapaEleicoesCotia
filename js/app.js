@@ -705,6 +705,7 @@ async function init() {
   if (municipioGeoJSON) {
     renderMascaraExterna(municipioGeoJSON);  // máscara branca externa (abaixo)
     renderMunicipio(municipioGeoJSON);       // borda do município (acima)
+    localizarUsuario(municipioGeoJSON);      // marcador "Você está aqui" se dentro de Cotia
   }
 
   // 4. Busca bairros via OSM; se não retornar polígonos, usa Voronoi dos locais de votação
