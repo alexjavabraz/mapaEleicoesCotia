@@ -271,17 +271,16 @@ function resetBairrosStyle() {
 }
 
 /**
- * Estilo padrão para polígonos de bairros — cor por zona eleitoral, borda vermelha.
+ * Estilo padrão para polígonos de bairros — sem preenchimento, borda vermelha.
  */
 function getFeatureStyle(feature, zona) {
-  const fillColor = zona ? (zoneColorMap[zona] || "#0f2a4a") : "#0f2a4a";
   return {
-    fillColor: fillColor,
-    fillOpacity: 0.55,
+    fillColor: "transparent",
+    fillOpacity: 0,
     color: "#e94560",
-    weight: 2,
-    opacity: 0.9,
-    dashArray: "6 4",
+    weight: 1.5,
+    opacity: 0.7,
+    dashArray: "5 4",
   };
 }
 
@@ -460,10 +459,11 @@ function renderMunicipio(geojson) {
   municipioLayer = L.geoJSON(geojson, {
     style: {
       fillColor: "transparent",
+      fillOpacity: 0,
       color: "#e94560",
-      weight: 2.5,
-      opacity: 0.7,
-      dashArray: "6 4",
+      weight: 5,
+      opacity: 1,
+      dashArray: null,
     },
     onEachFeature: (feature, layer) => {
       if (feature.properties && feature.properties.name) {
