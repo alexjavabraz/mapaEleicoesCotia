@@ -564,7 +564,8 @@ async function init() {
   setLoadingStatus("Carregando dados eleitorais...");
   const tseResult = await loadTSEData();
 
-  // 2b. Carrega votos por bairro e locais de votação (paralelo, silencioso se ausentes)
+  // 2b. Carrega dados auxiliares em paralelo
+  // loadLocaisVotacao deve completar antes de loadVotosPorEscola (que mescla no escolasSummary)
   const [bairroResult, locaisResult] = await Promise.all([
     loadVotosPorBairro(),
     loadLocaisVotacao(),
@@ -573,6 +574,11 @@ async function init() {
   else console.log("Votos por bairro não disponíveis:", bairroResult.error);
   if (locaisResult.ok) console.log(`Locais de votação: ${locaisResult.count} seções, ${locaisResult.escolas} escolas`);
   else console.log("Locais de votação não disponíveis:", locaisResult.error);
+
+  // Carrega votos por escola APÓS locais (mescla no escolasSummary)
+  const escolaResult = await loadVotosPorEscola();
+  if (escolaResult.ok) console.log(`Votos por escola: ${escolaResult.count} escolas, ${escolaResult.total?.toLocaleString("pt-BR")} votos`);
+  else console.log("Votos por escola não disponíveis:", escolaResult.error);
 
   if (tseResult.error) {
     let banner = "";

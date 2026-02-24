@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """
-Script para baixar dados de votação por seção e agregá-los por bairro para Cotia/SP.
+Script para baixar dados de votação por seção e agregá-los por bairro e por
+local de votação (escola) para Cotia/SP.
 
 Fonte: https://dadosabertos.tse.jus.br/dataset/resultados-2024
 Arquivo: votacao_secao_2024_SP.zip (~475 MB)
@@ -9,7 +10,9 @@ Uso:
     pip install -r requirements.txt
     python download_secoes.py
 
-Saída: ../data/cotia_votos_por_bairro.json
+Saída:
+  ../data/cotia_votos_por_bairro.json   — votos por bairro (prefeito + vereadores)
+  ../data/cotia_votos_por_escola.json   — votos totais de prefeito por escola
 """
 
 import csv
@@ -43,14 +46,20 @@ CARGOS = {
     "13": "vereadores", # Vereador
 }
 
-SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
-DATA_DIR   = os.path.join(SCRIPT_DIR, "..", "data")
-LOCAIS_FILE = os.path.join(DATA_DIR, "cotia_locais_votacao.json")
-OUTPUT_FILE = os.path.join(DATA_DIR, "cotia_votos_por_bairro.json")
+SCRIPT_DIR   = os.path.dirname(os.path.abspath(__file__))
+DATA_DIR     = os.path.join(SCRIPT_DIR, "..", "data")
+LOCAIS_FILE  = os.path.join(DATA_DIR, "cotia_locais_votacao.json")
+OUTPUT_BAIRRO = os.path.join(DATA_DIR, "cotia_votos_por_bairro.json")
+OUTPUT_ESCOLA = os.path.join(DATA_DIR, "cotia_votos_por_escola.json")
 
 
-def build_secao_bairro_map():
-    """Constrói mapeamento (zona, secao) -> bairro a partir dos locais de votação."""
+def build_maps():
+    """
+    Constrói dois mapeamentos a partir de cotia_locais_votacao.json:
+      secao_bairro: (zona, secao) -> nome do bairro
+      secao_escola: (zona, secao) -> nr_local_votacao
+    Também retorna metadados das escolas (nome, bairro, zona).
+    """
     if not os.path.exists(LOCAIS_FILE):
         print(f"ERRO: Arquivo de locais não encontrado: {LOCAIS_FILE}")
         print("Execute primeiro: python download_tse.py")
@@ -59,16 +68,27 @@ def build_secao_bairro_map():
     with open(LOCAIS_FILE, encoding="utf-8") as f:
         locais = json.load(f)
 
-    mapa = {}
-    for local in locais:
-        zona  = str(local.get("NR_ZONA") or local.get("zona") or "").strip()
-        secao = str(local.get("NR_SECAO") or local.get("secao") or "").strip()
-        bairro = (local.get("NM_BAIRRO") or local.get("bairro") or "").strip().upper()
-        if zona and secao and bairro:
-            mapa[(zona, secao)] = bairro
+    secao_bairro = {}
+    secao_escola = {}
+    escola_meta  = {}   # nr_local -> {nome, bairro, zona}
 
-    print(f"Mapeamento: {len(mapa)} seções → bairros carregados.")
-    return mapa
+    for local in locais:
+        zona   = str(local.get("NR_ZONA",  "")).strip()
+        secao  = str(local.get("NR_SECAO", "")).strip()
+        bairro = (local.get("NM_BAIRRO", "") or "").strip().upper()
+        nr     = str(local.get("NR_LOCAL_VOTACAO", "")).strip()
+        nome   = (local.get("NM_LOCAL_VOTACAO", "") or "").strip()
+
+        if zona and secao and bairro:
+            secao_bairro[(zona, secao)] = bairro
+        if zona and secao and nr:
+            secao_escola[(zona, secao)] = nr
+        if nr and nr not in escola_meta:
+            escola_meta[nr] = {"nr": nr, "nome": nome, "bairro": bairro, "zona": zona}
+
+    print(f"Mapeamento: {len(secao_bairro)} seções → bairros, "
+          f"{len(secao_escola)} seções → escolas ({len(escola_meta)} escolas únicas).")
+    return secao_bairro, secao_escola, escola_meta
 
 
 def download_zip(url, dest_path):
@@ -93,33 +113,38 @@ def download_zip(url, dest_path):
     print(f"Download concluído: {os.path.getsize(dest_path) / 1e6:.1f} MB")
 
 
-def process_zip(zip_path, secao_bairro):
-    """Lê o CSV dentro do ZIP e agrega votos por (bairro, cargo, candidato)."""
-    # Estrutura: { bairro: { "vereadores": {nome: votos}, "prefeito": {nome: votos} } }
-    agregado = defaultdict(lambda: {"prefeito": defaultdict(int), "vereadores": defaultdict(int)})
+def process_zip(zip_path, secao_bairro, secao_escola):
+    """
+    Lê o CSV dentro do ZIP e agrega votos:
+      - por bairro (prefeito + vereadores)
+      - por escola — total de votos válidos ao prefeito (CD_CARGO=11)
+    """
+    # { bairro: { cargo: { nome: votos } } }
+    agr_bairro = defaultdict(lambda: {
+        "prefeito":   defaultdict(int),
+        "vereadores": defaultdict(int),
+    })
+    # { nr_local: total_votos_prefeito }
+    agr_escola = defaultdict(int)
 
     with zipfile.ZipFile(zip_path, "r") as zf:
-        # Processa apenas o arquivo _SP.csv (evita duplicar com _BRASIL.csv)
         csv_names = [n for n in zf.namelist() if n.endswith("_SP.csv") or n.lower().endswith(".csv")]
-        # Preferir arquivo específico do SP
-        sp_files = [n for n in csv_names if "_SP" in n.upper()]
-        target_files = sp_files if sp_files else csv_names
+        sp_files  = [n for n in csv_names if "_SP" in n.upper()]
+        target    = sp_files if sp_files else csv_names
 
-        for csv_name in target_files:
+        for csv_name in target:
             print(f"Processando: {csv_name}")
             with zf.open(csv_name) as raw:
                 reader = csv.DictReader(
                     io.TextIOWrapper(raw, encoding="latin-1"),
                     delimiter=";",
                 )
-                rows_processed = 0
-                rows_cotia = 0
+                n_total = n_cotia = 0
                 for row in reader:
-                    rows_processed += 1
-                    if rows_processed % 500_000 == 0:
-                        print(f"  Lidas {rows_processed:,} linhas, {rows_cotia:,} de Cotia...")
+                    n_total += 1
+                    if n_total % 500_000 == 0:
+                        print(f"  Lidas {n_total:,} linhas, {n_cotia:,} de Cotia...")
 
-                    # Filtra por município de Cotia
                     if row.get("CD_MUNICIPIO", "").strip() != CD_MUNICIPIO_COTIA:
                         continue
 
@@ -127,37 +152,40 @@ def process_zip(zip_path, secao_bairro):
                     if cd_cargo not in CARGOS:
                         continue
 
-                    cargo_key = CARGOS[cd_cargo]
-
                     zona  = row.get("NR_ZONA",  "").strip()
                     secao = row.get("NR_SECAO", "").strip()
-                    bairro = secao_bairro.get((zona, secao))
-                    if not bairro:
-                        continue
 
-                    nome_cand = row.get("NM_VOTAVEL", "").strip().upper()
                     votos_str = row.get("QT_VOTOS", "0").strip().replace(",", "")
                     try:
                         votos = int(votos_str)
                     except ValueError:
                         votos = 0
 
-                    if nome_cand and votos > 0:
-                        agregado[bairro][cargo_key][nome_cand] += votos
-                        rows_cotia += 1
+                    nome_cand = row.get("NM_VOTAVEL", "").strip().upper()
 
-                print(f"  Total: {rows_processed:,} linhas, {rows_cotia:,} votos de Cotia registrados.")
+                    # Agrega por bairro
+                    bairro = secao_bairro.get((zona, secao))
+                    if bairro and nome_cand and votos > 0:
+                        agr_bairro[bairro][CARGOS[cd_cargo]][nome_cand] += votos
+                        n_cotia += 1
 
-    return agregado
+                    # Agrega total de votos de prefeito por escola
+                    if cd_cargo == "11" and votos > 0:
+                        nr = secao_escola.get((zona, secao))
+                        if nr:
+                            agr_escola[nr] += votos
+
+                print(f"  Total: {n_total:,} linhas, {n_cotia:,} votos de Cotia registrados.")
+
+    return agr_bairro, agr_escola
 
 
-def build_output(agregado):
-    """Converte estrutura interna para o formato de saída JSON."""
+def build_bairro_output(agr_bairro):
+    """Converte agregado de bairros para o formato de saída JSON."""
     resultado = {}
-    for bairro, cargos in sorted(agregado.items()):
+    for bairro, cargos in sorted(agr_bairro.items()):
         resultado[bairro] = {}
         for cargo_key, candidatos in cargos.items():
-            # Ordena por votos decrescente
             lista = sorted(
                 [{"nome": nome, "votos": v} for nome, v in candidatos.items()],
                 key=lambda x: -x["votos"],
@@ -166,11 +194,29 @@ def build_output(agregado):
     return resultado
 
 
+def build_escola_output(agr_escola, escola_meta):
+    """
+    Constrói o JSON de votos por escola:
+      { nr_local: { nr, nome, bairro, zona, votos_prefeito } }
+    """
+    resultado = {}
+    for nr, total in sorted(agr_escola.items(), key=lambda x: x[0]):
+        meta = escola_meta.get(nr, {})
+        resultado[nr] = {
+            "nr":             nr,
+            "nome":           meta.get("nome", ""),
+            "bairro":         meta.get("bairro", ""),
+            "zona":           meta.get("zona", ""),
+            "votos_prefeito": total,
+        }
+    return resultado
+
+
 def main():
     os.makedirs(DATA_DIR, exist_ok=True)
 
-    # 1. Constrói mapeamento seção → bairro
-    secao_bairro = build_secao_bairro_map()
+    # 1. Constrói mapeamentos seção → bairro e seção → escola
+    secao_bairro, secao_escola, escola_meta = build_maps()
     if not secao_bairro:
         print("Nenhum mapeamento de seções encontrado. Abortando.")
         sys.exit(1)
@@ -182,29 +228,31 @@ def main():
     try:
         download_zip(URL_SECAO, tmp_path)
 
-        # 3. Processa CSV dentro do ZIP
+        # 3. Processa CSV
         print("Processando dados de votação por seção...")
-        agregado = process_zip(tmp_path, secao_bairro)
+        agr_bairro, agr_escola = process_zip(tmp_path, secao_bairro, secao_escola)
 
     finally:
         if os.path.exists(tmp_path):
             os.unlink(tmp_path)
 
-    if not agregado:
+    if not agr_bairro:
         print("AVISO: Nenhum dado encontrado para Cotia. Verifique o CD_MUNICIPIO.")
         sys.exit(1)
 
-    # 4. Salva resultado
-    resultado = build_output(agregado)
-    with open(OUTPUT_FILE, "w", encoding="utf-8") as f:
-        json.dump(resultado, f, ensure_ascii=False, indent=2)
+    # 4. Salva cotia_votos_por_bairro.json
+    res_bairro = build_bairro_output(agr_bairro)
+    with open(OUTPUT_BAIRRO, "w", encoding="utf-8") as f:
+        json.dump(res_bairro, f, ensure_ascii=False, indent=2)
+    print(f"\nSalvo: {OUTPUT_BAIRRO}  ({len(res_bairro)} bairros)")
 
-    print(f"\nSalvo: {OUTPUT_FILE}")
-    print(f"  {len(resultado)} bairros")
-    total_cand = sum(
-        len(c.get("vereadores", [])) for c in resultado.values()
-    )
-    print(f"  ~{total_cand} registros de vereadores (total)")
+    # 5. Salva cotia_votos_por_escola.json
+    res_escola = build_escola_output(agr_escola, escola_meta)
+    total_votos_escolas = sum(e["votos_prefeito"] for e in res_escola.values())
+    with open(OUTPUT_ESCOLA, "w", encoding="utf-8") as f:
+        json.dump(res_escola, f, ensure_ascii=False, indent=2)
+    print(f"Salvo: {OUTPUT_ESCOLA}  ({len(res_escola)} escolas, "
+          f"{total_votos_escolas:,} votos prefeito)")
 
 
 if __name__ == "__main__":

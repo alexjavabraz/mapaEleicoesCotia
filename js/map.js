@@ -638,18 +638,23 @@ function renderEscolas(escolas, onEscolaClick) {
       pane: "markerPane",
     });
 
-    const eleitoresLine = escola.eleitores > 0
+    const votosLine = escola.votos_prefeito > 0
       ? `<div class="tooltip-escola-stat">
-           <span>${escola.eleitores.toLocaleString("pt-BR")} eleitores</span>
+           <span>${escola.votos_prefeito.toLocaleString("pt-BR")} votos (prefeito)</span>
            <span>${escola.secoes} seção${escola.secoes !== 1 ? "ões" : ""}</span>
          </div>`
-      : "";
+      : escola.eleitores > 0
+        ? `<div class="tooltip-escola-stat">
+             <span>${escola.eleitores.toLocaleString("pt-BR")} eleitores registrados</span>
+             <span>${escola.secoes} seção${escola.secoes !== 1 ? "ões" : ""}</span>
+           </div>`
+        : "";
 
     circle.bindTooltip(
       `<div class="tooltip-name">${escola.nome}</div>
        <div class="tooltip-zona">${escola.endereco}</div>
        <div class="tooltip-zona">${escola.bairro} · Zona ${escola.zona}</div>
-       ${eleitoresLine}`,
+       ${votosLine}`,
       {
         sticky: true,
         className: "map-tooltip",

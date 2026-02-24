@@ -9,6 +9,7 @@ let tseData = null;
 let votosPorBairro = null;  // dados de ./data/cotia_votos_por_bairro.json
 let locaisVotacao = null;   // dados de ./data/cotia_locais_votacao.json (por seção)
 let escolasSummary = null;  // dados agregados por local de votação (62 escolas)
+let votosPorEscola = null;  // dados de ./data/cotia_votos_por_escola.json
 
 /**
  * Carrega o arquivo JSON gerado pelo script download_tse.py
@@ -105,6 +106,30 @@ function getLocaisVotacao() {
 
 function getEscolasSummary() {
   return escolasSummary || [];
+}
+
+/**
+ * Carrega cotia_votos_por_escola.json e mescla votos reais no escolasSummary.
+ * Deve ser chamado APÓS loadLocaisVotacao().
+ */
+async function loadVotosPorEscola() {
+  try {
+    const r = await fetch("./data/cotia_votos_por_escola.json");
+    if (!r.ok) return { error: r.status === 404 ? "not_found" : `http_${r.status}` };
+    votosPorEscola = await r.json();
+
+    // Mescla votos reais nas entradas do escolasSummary
+    if (escolasSummary) {
+      for (const escola of escolasSummary) {
+        const dados = votosPorEscola[escola.nr];
+        escola.votos_prefeito = dados ? dados.votos_prefeito : 0;
+      }
+    }
+    const total = Object.values(votosPorEscola).reduce((s, e) => s + e.votos_prefeito, 0);
+    return { ok: true, count: Object.keys(votosPorEscola).length, total };
+  } catch (e) {
+    return { error: e.message };
+  }
 }
 
 /**
