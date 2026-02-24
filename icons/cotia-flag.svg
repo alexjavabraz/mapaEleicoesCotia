@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <!-- Dark background matching app theme -->
+  <rect width="512" height="512" rx="96" fill="#16213e"/>
+
+  <!-- Shield: white border -->
+  <path d="M 100,78 L 412,78 L 412,318 Q 256,422 100,318 Z"
+        fill="white" stroke="#bbbbbb" stroke-width="3"/>
+
+  <!-- Blue upper half of shield -->
+  <rect x="100" y="78" width="312" height="145" fill="#003087"/>
+
+  <!-- Green lower half: clipped by shield path -->
+  <clipPath id="shield-clip">
+    <path d="M 100,78 L 412,78 L 412,318 Q 256,422 100,318 Z"/>
+  </clipPath>
+  <path d="M 100,223 L 412,223 L 412,318 Q 256,422 100,318 Z"
+        fill="#1b7a2e" clip-path="url(#shield-clip)"/>
+
+  <!-- White wavy river stripe (Cotia river) -->
+  <path d="M 100,224 Q 165,205 228,224 Q 292,243 356,224 Q 385,214 412,224"
+        fill="none" stroke="white" stroke-width="18"
+        stroke-linecap="round" clip-path="url(#shield-clip)"/>
+
+  <!-- Mountain silhouette in blue area -->
+  <polygon points="256,90 336,210 176,210" fill="white" opacity="0.80"
+           clip-path="url(#shield-clip)"/>
+
+  <!-- Gold 5-pointed star in mountain -->
+  <polygon points="256,110 264,135 291,135 269,151 278,176 256,160 234,176 243,151 221,135 248,135"
+           fill="#FFD700" clip-path="url(#shield-clip)"/>
+
+  <!-- Gold crown above shield -->
+  <path d="M 172,60 L 192,82 L 220,66 L 256,86 L 292,66 L 320,82 L 340,60 L 336,56 L 176,56 Z"
+        fill="#FFD700" stroke="#cc9000" stroke-width="1.5"/>
+
+  <!-- COTIA text below shield -->
+  <text x="256" y="470"
+        text-anchor="middle"
+        font-family="Georgia, 'Times New Roman', serif"
+        font-size="52" font-weight="bold"
+        fill="white" letter-spacing="12">COTIA</text>
+</svg>
