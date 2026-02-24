@@ -642,6 +642,50 @@ html, body {
   transform: scale(0.93);
 }
 
+/* ---- LAYER SWITCHER ---- */
+.layer-switcher {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  margin: 0 10px 10px;
+}
+
+.layer-btn {
+  width: 56px;
+  height: 28px;
+  background: var(--secondary);
+  border: 1px solid rgba(255,255,255,0.14);
+  border-radius: 8px;
+  color: var(--text-muted);
+  font-size: 0.68rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.15s, border-color 0.15s, color 0.15s, transform 0.1s;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.35);
+  font-family: inherit;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+}
+
+.layer-btn:hover {
+  background: var(--accent);
+  border-color: rgba(255,255,255,0.3);
+  color: var(--text);
+}
+
+.layer-btn.active {
+  background: var(--highlight);
+  border-color: var(--highlight);
+  color: #fff;
+}
+
+.layer-btn:active {
+  transform: scale(0.93);
+}
+
 /* ---- CARGO TABS (Prefeito / Vereadores) ---- */
 .cargo-tabs {
   display: flex;

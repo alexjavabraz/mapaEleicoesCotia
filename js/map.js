@@ -6,6 +6,54 @@
 const COTIA_CENTER = [-23.6037, -46.8997];
 const COTIA_ZOOM = 12;
 
+// ---- CONFIGURAÇÕES DE CAMADAS DE TILES ----
+const TILE_CONFIGS = {
+  dark: {
+    label: "Escuro",
+    base: "https://{s}.basemaps.cartocdn.com/dark_matter_nolabels/{z}/{x}/{y}{r}.png",
+    baseOpts: {
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/">CARTO</a>',
+      subdomains: "abcd", maxZoom: 19,
+    },
+    labels: "https://{s}.basemaps.cartocdn.com/dark_matter_only_labels/{z}/{x}/{y}{r}.png",
+    labelsOpts: { attribution: "", subdomains: "abcd", maxZoom: 19, pane: "shadowPane" },
+  },
+  osm: {
+    label: "OSM",
+    base: "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+    baseOpts: {
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+      maxZoom: 19,
+    },
+    labels: null,
+    labelsOpts: null,
+  },
+  light: {
+    label: "Claro",
+    base: "https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}{r}.png",
+    baseOpts: {
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/">CARTO</a>',
+      subdomains: "abcd", maxZoom: 19,
+    },
+    labels: "https://{s}.basemaps.cartocdn.com/light_only_labels/{z}/{x}/{y}{r}.png",
+    labelsOpts: { attribution: "", subdomains: "abcd", maxZoom: 19, pane: "shadowPane" },
+  },
+  satellite: {
+    label: "Satélite",
+    base: "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",
+    baseOpts: {
+      attribution: '&copy; <a href="https://www.esri.com/">Esri</a>, Maxar, Earthstar Geographics',
+      maxZoom: 18,
+    },
+    labels: "https://{s}.basemaps.cartocdn.com/dark_matter_only_labels/{z}/{x}/{y}{r}.png",
+    labelsOpts: { attribution: "", subdomains: "abcd", maxZoom: 18, pane: "shadowPane" },
+  },
+};
+
+let currentBaseLayer   = null;
+let currentLabelsLayer = null;
+let currentTileKey     = "dark";
+
 // Cores para cada zona eleitoral (atribuídas dinamicamente)
 const ZONE_COLORS = [
   "#4fc3f7", // azul claro
@@ -49,6 +97,50 @@ function addCustomZoomControl() {
 }
 
 /**
+ * Troca a camada de tiles para a configuração indicada pela chave.
+ * Remove os layers anteriores e adiciona os novos.
+ */
+function setTileLayer(key) {
+  const cfg = TILE_CONFIGS[key];
+  if (!cfg || key === currentTileKey) return;
+
+  if (currentBaseLayer)   { map.removeLayer(currentBaseLayer);   currentBaseLayer   = null; }
+  if (currentLabelsLayer) { map.removeLayer(currentLabelsLayer); currentLabelsLayer = null; }
+
+  currentBaseLayer = L.tileLayer(cfg.base, cfg.baseOpts).addTo(map);
+  if (cfg.labels) {
+    currentLabelsLayer = L.tileLayer(cfg.labels, cfg.labelsOpts).addTo(map);
+  }
+  currentTileKey = key;
+
+  // Atualiza botões do switcher
+  document.querySelectorAll(".layer-btn").forEach(btn => {
+    btn.classList.toggle("active", btn.dataset.layer === key);
+  });
+}
+
+/**
+ * Adiciona controle de seleção de camada de tiles (topright, abaixo do zoom).
+ */
+function addLayerSwitcher() {
+  const ctrl = L.control({ position: "topright" });
+  ctrl.onAdd = function () {
+    const div = L.DomUtil.create("div", "layer-switcher");
+    L.DomEvent.disableClickPropagation(div);
+    L.DomEvent.disableScrollPropagation(div);
+    div.innerHTML = Object.entries(TILE_CONFIGS).map(([key, cfg]) =>
+      `<button class="layer-btn${key === currentTileKey ? " active" : ""}"
+               data-layer="${key}" title="${cfg.label}">${cfg.label}</button>`
+    ).join("");
+    div.querySelectorAll(".layer-btn").forEach(btn => {
+      L.DomEvent.on(btn, "click", () => setTileLayer(btn.dataset.layer));
+    });
+    return div;
+  };
+  ctrl.addTo(map);
+}
+
+/**
  * Inicializa o mapa Leaflet.
  */
 function initMap() {
@@ -59,29 +151,13 @@ function initMap() {
     attributionControl: true,
   });
 
-  // Tile layer: CartoDB Dark Matter (combina com o tema escuro)
-  L.tileLayer(
-    "https://{s}.basemaps.cartocdn.com/dark_matter_nolabels/{z}/{x}/{y}{r}.png",
-    {
-      attribution:
-        '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/">CARTO</a>',
-      subdomains: "abcd",
-      maxZoom: 19,
-    }
-  ).addTo(map);
-
-  // Labels por cima (sem camada de tiles duplicada)
-  L.tileLayer(
-    "https://{s}.basemaps.cartocdn.com/dark_matter_only_labels/{z}/{x}/{y}{r}.png",
-    {
-      attribution: "",
-      subdomains: "abcd",
-      maxZoom: 19,
-      pane: "shadowPane",
-    }
-  ).addTo(map);
+  // Camada inicial: Dark Matter
+  const cfg = TILE_CONFIGS.dark;
+  currentBaseLayer   = L.tileLayer(cfg.base,   cfg.baseOpts).addTo(map);
+  currentLabelsLayer = L.tileLayer(cfg.labels, cfg.labelsOpts).addTo(map);
 
   addCustomZoomControl();
+  addLayerSwitcher();
 
   return map;
 }
