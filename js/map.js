@@ -705,32 +705,6 @@ function renderEscolas(escolas, onEscolaClick) {
     }
 
     escolasLayer.addLayer(circle);
-
-    // ── Label permanente acima do marcador (DivIcon não-interativo) ─
-    if (temDados) {
-      const labelIcon = L.divIcon({
-        html: `<div class="escola-label-perm">
-                 <span class="elp-row elp-eleit">
-                   <span class="elp-key">Eleit. Reg.</span>
-                   <span class="elp-val">${escola.eleitores.toLocaleString("pt-BR")}</span>
-                 </span>
-                 <span class="elp-row elp-abs">
-                   <span class="elp-key">Abstenção</span>
-                   <span class="elp-val" style="color:${cor}">${abstNum}%</span>
-                 </span>
-               </div>`,
-        className:  "escola-label-icon",
-        iconSize:   [0, 0],
-        iconAnchor: [0, 0],
-      });
-      const labelMarker = L.marker([escola.lat, escola.lng], {
-        icon:         labelIcon,
-        interactive: false,
-        keyboard:    false,
-        zIndexOffset: -200,
-      });
-      escolasLayer.addLayer(labelMarker);
-    }
   }
 
   escolasLayer.addTo(map);

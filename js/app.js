@@ -251,17 +251,22 @@ function highlightVereadorOnMap(nomeVereador) {
     neighborhoodLayer.eachLayer((layer) => {
       if (!layer.feature) return;
       const bairroNome = layer.feature.properties.name || layer.feature.properties.nome || "";
+      const zona = layer.feature.properties._zona;
       const votos = getVotosVereadorBairro(bairroNome, nomeVereador) || 0;
-      const intensity = maxVotos > 0 ? votos / maxVotos : 0;
 
-      layer.setStyle({
-        fillColor:   votos > 0 ? "#e94560" : "#444",
-        fillOpacity: votos > 0 ? 0.25 + intensity * 0.55 : 0.15,
-        color:       votos > 0 ? "#ffffff" : "#666",
-        weight:      votos > 0 ? 2 : 1,
-        opacity:     votos > 0 ? 0.9 : 0.4,
-        dashArray:   votos > 0 ? null : "4 4",
-      });
+      if (votos > 0) {
+        const intensity = maxVotos > 0 ? votos / maxVotos : 0;
+        layer.setStyle({
+          fillColor:   "#29b6f6",
+          fillOpacity: 0.3 + intensity * 0.55,
+          color:       "#81d4fa",
+          weight:      2,
+          opacity:     1,
+          dashArray:   null,
+        });
+      } else {
+        layer.setStyle(getFeatureStyle(layer.feature, zona));
+      }
     });
     return;
   }
@@ -282,16 +287,20 @@ function highlightVereadorOnMap(nomeVereador) {
     if (!layer.feature) return;
     const zona = layer.feature.properties._zona;
     const votos = zona ? (votosPorZona[zona] || 0) : 0;
-    const intensity = maxVotos > 0 ? votos / maxVotos : 0;
 
-    layer.setStyle({
-      fillColor:   votos > 0 ? "#e94560" : "#444",
-      fillOpacity: votos > 0 ? 0.25 + intensity * 0.55 : 0.15,
-      color:       votos > 0 ? "#ffffff" : "#666",
-      weight:      votos > 0 ? 2 : 1,
-      opacity:     votos > 0 ? 0.9 : 0.4,
-      dashArray:   votos > 0 ? null : "4 4",
-    });
+    if (votos > 0) {
+      const intensity = maxVotos > 0 ? votos / maxVotos : 0;
+      layer.setStyle({
+        fillColor:   "#29b6f6",
+        fillOpacity: 0.3 + intensity * 0.55,
+        color:       "#81d4fa",
+        weight:      2,
+        opacity:     1,
+        dashArray:   null,
+      });
+    } else {
+      layer.setStyle(getFeatureStyle(layer.feature, zona));
+    }
   });
 }
 
@@ -521,6 +530,52 @@ function displayZonaData(bairroName, zonaNum) {
   displayBairroData(bairroName, bairroName, zonaNum);
 }
 
+/** Exibe dados de uma escola (local de votação) no sidebar ao clicar no marcador. */
+function displayEscolaData(escola) {
+  currentBairroNome    = null;
+  currentBairroDisplay = null;
+  currentZona          = null;
+
+  const temDados = escola.votos_prefeito > 0 && escola.eleitores > 0;
+  const abstNum  = temDados
+    ? Math.round((escola.eleitores - escola.votos_prefeito) / escola.eleitores * 100)
+    : null;
+  const cor = abstNum !== null ? corAbstencao(abstNum) : "#ffd54f";
+
+  const zonaColor = zoneColorMap[escola.zona] || "#888";
+  document.getElementById("sidebar-header").innerHTML = `
+    <h2>${escola.nome}</h2>
+    <span class="zona-badge" style="background:${zonaColor}20;color:${zonaColor};border:1px solid ${zonaColor}50">
+      Zona ${escola.zona}
+    </span>`;
+
+  let html = `<div class="zona-info">`;
+  html += `<div class="zona-info-row"><span>Bairro</span><strong>${escola.bairro}</strong></div>`;
+  if (escola.endereco) {
+    html += `<div class="zona-info-row"><span>Endereço</span><strong style="font-size:0.78rem">${escola.endereco}</strong></div>`;
+  }
+  html += `<div class="zona-info-row"><span>Seções</span><strong>${escola.secoes}</strong></div>`;
+  html += `</div>`;
+
+  if (temDados) {
+    html += `<div class="zona-info" style="margin-top:8px">
+      <div class="zona-info-row"><span>Eleitores registrados</span><strong>${escola.eleitores.toLocaleString("pt-BR")}</strong></div>
+      <div class="zona-info-row"><span>Votos (prefeito)</span><strong>${escola.votos_prefeito.toLocaleString("pt-BR")}</strong></div>
+      <div class="zona-info-row">
+        <span>Abstenção</span>
+        <strong style="color:${cor}">${abstNum}%</strong>
+      </div>
+    </div>`;
+  } else if (escola.eleitores > 0) {
+    html += `<div class="zona-info" style="margin-top:8px">
+      <div class="zona-info-row"><span>Eleitores registrados</span><strong>${escola.eleitores.toLocaleString("pt-BR")}</strong></div>
+    </div>`;
+  }
+
+  html += fonteInfo();
+  document.getElementById("sidebar-content").innerHTML = html;
+}
+
 function displayTotaisGerais() {
   document.getElementById("sidebar-header").innerHTML = `
     <h2>Cotia — Total Geral</h2>
@@ -662,7 +717,7 @@ async function init() {
   const escolas = getEscolasSummary();
   if (escolas.length > 0) {
     setLoadingStatus("Renderizando locais de votação...");
-    renderEscolas(escolas, null);
+    renderEscolas(escolas, displayEscolaData);
     console.log(`${escolas.length} locais de votação renderizados.`);
   }
 
