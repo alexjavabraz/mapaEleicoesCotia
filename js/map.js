@@ -25,7 +25,6 @@ let zoneColorMap = {};
 let map = null;
 let neighborhoodLayer = null;
 let municipioLayer = null;
-let selectedLayer = null;
 let rankingControl = null;
 
 /**
@@ -209,31 +208,33 @@ function getFeatureStyle(feature, zona) {
 }
 
 /**
- * Estilo para hover — pinta o bairro de vermelho.
+ * Estilo para hover — apenas realça a borda, sem alterar a cor de preenchimento.
+ * Salva o estilo atual no layer para restaurar no mouseout.
  */
-function getHoverStyle(feature, zona) {
-  return {
-    fillColor: "#e94560",
-    fillOpacity: 0.75,
-    color: "#e94560",
-    weight: 2.5,
+function applyHoverStyle(layer) {
+  layer._preHoverStyle = {
+    fillColor:   layer.options.fillColor,
+    fillOpacity: layer.options.fillOpacity,
+    color:       layer.options.color,
+    weight:      layer.options.weight,
+    opacity:     layer.options.opacity,
+    dashArray:   layer.options.dashArray || null,
+  };
+  layer.setStyle({
+    color:   "#ffffff",
+    weight:  3,
     opacity: 1,
     dashArray: null,
-  };
+  });
 }
 
-/**
- * Estilo para feature selecionada — vermelho sólido mais intenso.
- */
-function getSelectedStyle(zona) {
-  return {
-    fillColor: "#e94560",
-    fillOpacity: 0.85,
-    color: "#ffffff",
-    weight: 2.5,
-    opacity: 1,
-    dashArray: null,
-  };
+function restoreHoverStyle(layer, feature, zona) {
+  if (layer._preHoverStyle) {
+    layer.setStyle(layer._preHoverStyle);
+    layer._preHoverStyle = null;
+  } else {
+    layer.setStyle(getFeatureStyle(feature, zona));
+  }
 }
 
 /**
@@ -444,25 +445,13 @@ function renderBairros(geojson, bairroZonaMap, onBairroClick, onBairroHover, onG
       // Eventos de mouse
       layer.on({
         mouseover: (e) => {
-          if (layer !== selectedLayer) {
-            layer.setStyle(getHoverStyle(feature, zona));
-          }
+          applyHoverStyle(layer);
           if (onBairroHover) onBairroHover(feature, zona, layer);
         },
         mouseout: (e) => {
-          if (layer !== selectedLayer) {
-            layer.setStyle(getFeatureStyle(feature, zona));
-          }
+          restoreHoverStyle(layer, feature, zona);
         },
         click: (e) => {
-          // Desseleciona o anterior
-          if (selectedLayer && selectedLayer !== layer) {
-            const prevFeature = selectedLayer.feature;
-            const prevZona = prevFeature.properties._zona;
-            selectedLayer.setStyle(getFeatureStyle(prevFeature, prevZona));
-          }
-          selectedLayer = layer;
-          layer.setStyle(getSelectedStyle(zona));
           L.DomEvent.stopPropagation(e);
           if (onBairroClick) onBairroClick(feature, zona);
         },

@@ -563,11 +563,15 @@ async function init() {
   setLoadingStatus("Carregando dados eleitorais...");
   const tseResult = await loadTSEData();
 
-  // 2b. Carrega votos por bairro (silencioso se arquivo não existir)
-  loadVotosPorBairro().then(r => {
-    if (r.ok) console.log(`Votos por bairro carregados: ${r.count} bairros`);
-    else console.log("Votos por bairro não disponíveis:", r.error);
-  });
+  // 2b. Carrega votos por bairro e locais de votação (paralelo, silencioso se ausentes)
+  const [bairroResult, locaisResult] = await Promise.all([
+    loadVotosPorBairro(),
+    loadLocaisVotacao(),
+  ]);
+  if (bairroResult.ok) console.log(`Votos por bairro: ${bairroResult.count} bairros`);
+  else console.log("Votos por bairro não disponíveis:", bairroResult.error);
+  if (locaisResult.ok) console.log(`Locais de votação: ${locaisResult.count} locais`);
+  else console.log("Locais de votação não disponíveis:", locaisResult.error);
 
   if (tseResult.error) {
     let banner = "";
@@ -619,9 +623,10 @@ async function init() {
     return t === "Polygon" || t === "MultiPolygon";
   }) || [];
 
-  if (osmPolygons.length < 5 && municipioGeoJSON && tseData?.locais_votacao?.length) {
+  const locais = getLocaisVotacao();
+  if (osmPolygons.length < 5 && municipioGeoJSON && locais.length) {
     setLoadingStatus("Gerando bairros por proximidade (Voronoi)...");
-    bairrosGeoJSON = computeVoronoiBairros(tseData.locais_votacao, municipioGeoJSON);
+    bairrosGeoJSON = computeVoronoiBairros(locais, municipioGeoJSON);
     if (bairrosGeoJSON) {
       console.log(`Voronoi: ${bairrosGeoJSON.features.length} bairros gerados.`);
     }
@@ -644,19 +649,6 @@ async function init() {
     console.log(`${bairrosGeoJSON.features.length} bairros renderizados.`);
   } else {
     console.warn("Nenhum bairro encontrado. Exibindo apenas locais de votação.");
-  }
-
-  // 5. Renderiza locais de votação como marcadores (independente dos bairros)
-  if (tseData && tseData.locais_votacao && tseData.locais_votacao.length > 0) {
-    setLoadingStatus("Renderizando locais de votação...");
-    renderLocaisVotacao(
-      tseData.locais_votacao,
-      // onClick em marcador de local de votação
-      (local) => {
-        displayZonaData(`${local.nome} (${local.bairro})`, local.zona);
-      }
-    );
-    console.log(`${tseData.locais_votacao.length} locais de votação renderizados.`);
   }
 
   showLoading(false);

@@ -7,6 +7,7 @@
 
 let tseData = null;
 let votosPorBairro = null;  // dados de ./data/cotia_votos_por_bairro.json
+let locaisVotacao = null;   // dados de ./data/cotia_locais_votacao.json
 
 /**
  * Carrega o arquivo JSON gerado pelo script download_tse.py
@@ -42,6 +43,36 @@ async function loadVotosPorBairro() {
   } catch (e) {
     return { error: e.message };
   }
+}
+
+/**
+ * Carrega os locais de votação (cotia_locais_votacao.json — formato TSE bruto).
+ * Transforma para o formato { bairro, lat, lng, zona, nome, endereco }.
+ */
+async function loadLocaisVotacao() {
+  try {
+    const r = await fetch("./data/cotia_locais_votacao.json");
+    if (!r.ok) return { error: r.status === 404 ? "not_found" : `http_${r.status}` };
+    const raw = await r.json();
+    locaisVotacao = raw
+      .filter(l => l.NR_LATITUDE && l.NR_LONGITUDE && l.NM_BAIRRO)
+      .map(l => ({
+        bairro:   l.NM_BAIRRO || "",
+        lat:      parseFloat(l.NR_LATITUDE),
+        lng:      parseFloat(l.NR_LONGITUDE),
+        zona:     String(l.NR_ZONA || ""),
+        nome:     l.NM_LOCAL_VOTACAO || "",
+        endereco: l.DS_ENDERECO || "",
+      }))
+      .filter(l => !isNaN(l.lat) && !isNaN(l.lng));
+    return { ok: true, count: locaisVotacao.length };
+  } catch (e) {
+    return { error: e.message };
+  }
+}
+
+function getLocaisVotacao() {
+  return locaisVotacao || [];
 }
 
 /**
