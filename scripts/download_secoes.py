@@ -165,11 +165,13 @@ def process_zip(zip_path, secao_bairro, secao_escola):
                         votos = 0
 
                     nome_cand = row.get("NM_VOTAVEL", "").strip().upper()
+                    nr_cand   = row.get("NR_VOTAVEL", "").strip()
 
                     # Agrega por bairro
                     bairro = secao_bairro.get((zona, secao))
                     if bairro and nome_cand and votos > 0:
-                        agr_bairro[bairro][CARGOS[cd_cargo]][nome_cand] += votos
+                        key = (nome_cand, nr_cand)
+                        agr_bairro[bairro][CARGOS[cd_cargo]][key] += votos
                         n_cotia += 1
 
                     # Agrega total de votos de prefeito por escola
@@ -184,13 +186,16 @@ def process_zip(zip_path, secao_bairro, secao_escola):
 
 
 def build_bairro_output(agr_bairro):
-    """Converte agregado de bairros para o formato de saída JSON."""
+    """Converte agregado de bairros para o formato de saída JSON.
+    Inclui campo 'numero' (NR_VOTAVEL) para permitir match exato no frontend.
+    """
     resultado = {}
     for bairro, cargos in sorted(agr_bairro.items()):
         resultado[bairro] = {}
         for cargo_key, candidatos in cargos.items():
             lista = sorted(
-                [{"nome": nome, "votos": v} for nome, v in candidatos.items()],
+                [{"nome": nome, "numero": nr, "votos": v}
+                 for (nome, nr), v in candidatos.items()],
                 key=lambda x: -x["votos"],
             )
             resultado[bairro][cargo_key] = lista

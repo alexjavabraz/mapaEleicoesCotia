@@ -104,6 +104,7 @@ let currentTab = "prefeito";   // "prefeito" | "vereadores"
 let currentTurno = "1";
 let bairroZonaMap = { ...BAIRRO_ZONA_MAP_DEFAULT };
 let currentVereadorFiltro = ""; // "" = todos
+let currentVereadorOrdem = "votos"; // "votos" | "nome"
 
 // ---- UTILITÁRIOS ----
 
@@ -242,10 +243,11 @@ function highlightVereadorOnMap(nomeVereador) {
   // --- Tenta usar dados por bairro ---
   if (votosPorBairro && Object.keys(votosPorBairro).length > 0) {
     // Calcula o máximo de votos em qualquer bairro para normalizar intensidade
+    // Usa getVotosVereadorBairro que resolve urna→nome-completo automaticamente
     let maxVotos = 1;
-    for (const data of Object.values(votosPorBairro)) {
-      const c = (data.vereadores || []).find(v => v.nome === nomeVereador);
-      if (c && c.votos > maxVotos) maxVotos = c.votos;
+    for (const bairroKey of Object.keys(votosPorBairro)) {
+      const v = getVotosVereadorBairro(bairroKey, nomeVereador) || 0;
+      if (v > maxVotos) maxVotos = v;
     }
 
     neighborhoodLayer.eachLayer((layer) => {
@@ -312,15 +314,30 @@ function filtrarVereador(nome) {
   switchTab("vereadores");
 }
 
-/** Renderiza aba Vereadores: combobox de busca + eleitos em destaque + não eleitos colapsáveis */
+/** Alterna a ordenação da lista de vereadores. */
+function setVereadorOrdem(ordem) {
+  currentVereadorOrdem = ordem;
+  switchTab(currentTab);
+}
+
+/** Renderiza aba Vereadores: toggle de ordem + combobox + lista */
 function renderAbaVereadores(verData, uid) {
   const verT1 = verData?.["1"] || [];
   if (!verT1.length) return `<p style="color:var(--text-muted);padding:12px 0;font-size:.8rem">Nenhum dado de vereadores.</p>`;
 
-  const eleitos    = verT1.filter(c => isEleito(c));
-  const naoEleitos = verT1.filter(c => !isEleito(c));
-  const maxVotos   = verT1[0]?.votos || 1;
-  const extraId    = `${uid}-nao-eleitos`;
+  // Usa o maior valor de votos da lista original (não ordenada) para as barras
+  const maxVotos = Math.max(...verT1.map(c => c.votos), 1);
+  const extraId  = `${uid}-nao-eleitos`;
+
+  // Ordena cópia conforme preferência do usuário
+  const sorted = [...verT1].sort((a, b) =>
+    currentVereadorOrdem === "nome"
+      ? a.nome.localeCompare(b.nome, "pt-BR")
+      : b.votos - a.votos
+  );
+
+  const eleitos    = sorted.filter(c => isEleito(c));
+  const naoEleitos = sorted.filter(c => !isEleito(c));
 
   // Stats
   let html = `
@@ -339,10 +356,20 @@ function renderAbaVereadores(verData, uid) {
       </div>
     </div>`;
 
-  // Combobox — usa sempre a lista completa de candidatos dos totais gerais
+  // Toggle de ordenação
+  html += `
+    <div class="ver-sort-row">
+      <span class="ver-sort-label">Ordenar:</span>
+      <button class="ver-sort-btn${currentVereadorOrdem === "votos" ? " active" : ""}"
+              onclick="setVereadorOrdem('votos')">Votos ▼</button>
+      <button class="ver-sort-btn${currentVereadorOrdem === "nome" ? " active" : ""}"
+              onclick="setVereadorOrdem('nome')">A–Z</button>
+    </div>`;
+
+  // Combobox — usa sempre a lista completa dos totais gerais, ordenada por A-Z
   const allVerT1 = getTotais()?.vereadores?.["1"] || verT1;
-  const sortedNames = [...allVerT1].sort((a, b) => a.nome.localeCompare(b.nome, "pt-BR"));
-  const options = sortedNames.map(c =>
+  const comboSorted = [...allVerT1].sort((a, b) => a.nome.localeCompare(b.nome, "pt-BR"));
+  const options = comboSorted.map(c =>
     `<option value="${c.nome}" ${currentVereadorFiltro === c.nome ? "selected" : ""}>${c.nome} (${c.partido || "?"})</option>`
   ).join("");
   html += `
@@ -356,7 +383,7 @@ function renderAbaVereadores(verData, uid) {
 
   // Filtro ativo: exibe apenas o candidato selecionado
   if (currentVereadorFiltro) {
-    const candidato = verT1.find(c => c.nome === currentVereadorFiltro);
+    const candidato = sorted.find(c => c.nome === currentVereadorFiltro);
     if (candidato) {
       const dotColor = isEleito(candidato) ? "#4caf50" : "#607d8b";
       const label    = isEleito(candidato) ? "Eleito" : "Não Eleito";
@@ -371,7 +398,7 @@ function renderAbaVereadores(verData, uid) {
     return html;
   }
 
-  // Todos: eleitos em destaque, não eleitos colapsáveis
+  // Lista completa: eleitos em destaque, não eleitos colapsáveis
   if (eleitos.length) {
     html += `<div class="election-section">
       <div class="section-title"><div class="dot" style="background:#4caf50"></div>Eleitos (${eleitos.length})</div>
@@ -625,8 +652,12 @@ async function init() {
     loadVotosPorBairro(),
     loadLocaisVotacao(),
   ]);
-  if (bairroResult.ok) console.log(`Votos por bairro: ${bairroResult.count} bairros`);
-  else console.log("Votos por bairro não disponíveis:", bairroResult.error);
+  if (bairroResult.ok) {
+    console.log(`Votos por bairro: ${bairroResult.count} bairros`);
+    buildNomeMapping(); // constrói mapeamento urna→nome-completo
+  } else {
+    console.log("Votos por bairro não disponíveis:", bairroResult.error);
+  }
   if (locaisResult.ok) console.log(`Locais de votação: ${locaisResult.count} seções, ${locaisResult.escolas} escolas`);
   else console.log("Locais de votação não disponíveis:", locaisResult.error);
 

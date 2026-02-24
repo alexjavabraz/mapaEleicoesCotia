@@ -11,6 +11,72 @@ let locaisVotacao = null;   // dados de ./data/cotia_locais_votacao.json (por se
 let escolasSummary = null;  // dados agregados por local de votação (62 escolas)
 let votosPorEscola = null;  // dados de ./data/cotia_votos_por_escola.json
 
+// Mapeamento: nome de urna (tse_cotia_2024) <-> nome completo (cotia_votos_por_bairro)
+// Necessário porque os dois datasets usam campos diferentes do TSE.
+let _urnaToFull = {};  // "JOHNY SANTOS" -> "JOHNY DA SILVA SANTOS"
+let _fullToUrna = {};  // "JOHNY DA SILVA SANTOS" -> "JOHNY SANTOS"
+
+/**
+ * Constrói o mapeamento urna↔nome-completo após ambos os arquivos serem carregados.
+ * Estratégia: soma votos por nome-completo em todos os bairros, depois associa ao
+ * candidato dos totais com o mesmo total de votos. Quando há empate de total usa
+ * interseção de palavras para desambiguar.
+ */
+function buildNomeMapping() {
+  if (!votosPorBairro || !tseData) return;
+  _urnaToFull = {};
+  _fullToUrna = {};
+
+  const totais = tseData.totais?.vereadores?.["1"] || [];
+
+  // Soma votos por nome completo em todos os bairros
+  const somaFull = {};
+  for (const data of Object.values(votosPorBairro)) {
+    for (const v of data.vereadores || []) {
+      somaFull[v.nome] = (somaFull[v.nome] || 0) + v.votos;
+    }
+  }
+
+  // Agrupa nomes completos por total de votos
+  const byTotal = {};
+  for (const [nome, total] of Object.entries(somaFull)) {
+    if (!byTotal[total]) byTotal[total] = [];
+    byTotal[total].push(nome);
+  }
+
+  const wordSet = (s) => new Set(normalizeName(s).split(/\s+/).filter(Boolean));
+
+  for (const c of totais) {
+    const grupo = byTotal[c.votos] || [];
+    if (!grupo.length) continue;
+
+    let match = null;
+    if (grupo.length === 1) {
+      match = grupo[0];
+    } else {
+      // Desambiguação por palavras em comum
+      const urnaWords = wordSet(c.nome);
+      let bestScore = 0;
+      for (const fullName of grupo) {
+        const score = [...wordSet(fullName)].filter(w => urnaWords.has(w)).length;
+        if (score > bestScore) { bestScore = score; match = fullName; }
+      }
+      if (bestScore < 1) match = null;
+    }
+
+    if (match) {
+      _urnaToFull[c.nome] = match;
+      _fullToUrna[match] = c.nome;
+    }
+  }
+  console.log(`buildNomeMapping: ${Object.keys(_urnaToFull).length}/${totais.length} candidatos mapeados.`);
+}
+
+/** Dado um nome de urna, retorna o nome completo usado em votosPorBairro (ou o próprio nome). */
+function resolveNomeFull(urnaName) {
+  return _urnaToFull[urnaName] || urnaName;
+}
+
 /**
  * Carrega o arquivo JSON gerado pelo script download_tse.py
  */
@@ -158,8 +224,14 @@ function getVotosVereadorBairro(bairroNome, vereadorNome) {
   if (!votosPorBairro || !bairroNome || !vereadorNome) return null;
   const data = votosPorBairro[bairroNome] || votosPorBairro[bairroNome.toUpperCase()];
   if (!data) return null;
-  const normalizedNome = normalizeName(vereadorNome);
-  const c = (data.vereadores || []).find(v => normalizeName(v.nome) === normalizedNome);
+  // Tenta nome de urna direto; se não achar, tenta o nome completo via mapeamento
+  const fullNome = resolveNomeFull(vereadorNome);
+  const normalFull = normalizeName(fullNome);
+  const normalUrna = normalizeName(vereadorNome);
+  const c = (data.vereadores || []).find(v => {
+    const n = normalizeName(v.nome);
+    return n === normalFull || n === normalUrna;
+  });
   return c ? c.votos : 0;
 }
 

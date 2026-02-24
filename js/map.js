@@ -542,11 +542,17 @@ function renderRankingBox(vereadorNome, dadosBairro) {
     }
 
     // Coleta e ordena votos por bairro para o vereador
+    // Usa resolveNomeFull() para converter nome-de-urna em nome-completo (datasets distintos)
     const normalizeN = s => (s || "").normalize("NFD").replace(/[\u0300-\u036f]/g, "").toUpperCase().trim();
-    const normalizedVereador = normalizeN(vereadorNome);
+    const fullNome = (typeof resolveNomeFull === "function") ? resolveNomeFull(vereadorNome) : vereadorNome;
+    const normalizedFull = normalizeN(fullNome);
+    const normalizedUrna = normalizeN(vereadorNome);
     const itens = [];
     for (const [bairro, data] of Object.entries(dadosBairro)) {
-      const c = (data.vereadores || []).find(v => normalizeN(v.nome) === normalizedVereador);
+      const c = (data.vereadores || []).find(v => {
+        const n = normalizeN(v.nome);
+        return n === normalizedFull || n === normalizedUrna;
+      });
       if (c && c.votos > 0) {
         itens.push({ bairro, votos: c.votos });
       }
@@ -560,17 +566,30 @@ function renderRankingBox(vereadorNome, dadosBairro) {
       return div;
     }
 
-    const rows = itens.map(item =>
-      `<div class="ranking-row">
-        <span class="ranking-bairro">${item.bairro}</span>
-        <span class="ranking-votos">${item.votos.toLocaleString("pt-BR")}</span>
-      </div>`
+    const totalVotos = itens.reduce((s, i) => s + i.votos, 0);
+    const rows = itens.map((item, idx) =>
+      `<tr class="ranking-tr">
+        <td class="ranking-rank">${idx + 1}</td>
+        <td class="ranking-bairro">${item.bairro}</td>
+        <td class="ranking-votos">${item.votos.toLocaleString("pt-BR")}</td>
+      </tr>`
     ).join("");
 
     div.innerHTML = `
       <div class="ranking-title">${vereadorNome}</div>
-      <div class="ranking-total">Total: ${itens.reduce((s, i) => s + i.votos, 0).toLocaleString("pt-BR")} votos em ${itens.length} bairro${itens.length !== 1 ? "s" : ""}</div>
-      <div class="ranking-list">${rows}</div>`;
+      <div class="ranking-total">${totalVotos.toLocaleString("pt-BR")} votos em ${itens.length} bairro${itens.length !== 1 ? "s" : ""}</div>
+      <div class="ranking-list">
+        <table class="ranking-table">
+          <thead>
+            <tr>
+              <th class="ranking-th ranking-th-num">#</th>
+              <th class="ranking-th">Bairro</th>
+              <th class="ranking-th ranking-th-votos">Votos</th>
+            </tr>
+          </thead>
+          <tbody>${rows}</tbody>
+        </table>
+      </div>`;
     return div;
   };
   rankingControl.addTo(map);
