@@ -608,12 +608,28 @@ function updateLegend(zonasList) {
 }
 
 /**
- * Renderiza os locais de votação (escolas) como marcadores amarelos no mapa.
- * Cada marcador representa um local único (NR_LOCAL_VOTACAO), com tooltip
- * mostrando nome, endereço, bairro, zona e total de eleitores registrados.
+ * Retorna a cor do marcador/label de acordo com a % de abstenção.
+ *   < 18% → verde   (abaixo da média)
+ *  18-24% → âmbar  (na média)
+ *   > 24% → vermelho (acima da média)
+ */
+function corAbstencao(pct) {
+  if (pct < 18) return "#4caf50";
+  if (pct < 24) return "#ffb74d";
+  return "#ef5350";
+}
+
+/**
+ * Renderiza os locais de votação (escolas) no mapa.
  *
- * @param {Array}    escolas       - Array de objetos { nr, nome, endereco, bairro, zona, lat, lng, eleitores, secoes }
- * @param {Function} onEscolaClick - Callback opcional chamado com o objeto escola ao clicar
+ * Cada escola recebe:
+ *  - Um circleMarker colorido pela abstenção (verde/âmbar/vermelho).
+ *  - Um label permanente acima do marcador com "Eleitores Registrados" e
+ *    "% de Abstenção" (via DivIcon não-interativo).
+ *  - Um tooltip de hover com todos os detalhes.
+ *
+ * @param {Array}    escolas       - Array de objetos (ver tse.js · getEscolasSummary)
+ * @param {Function} onEscolaClick - Callback opcional ao clicar numa escola
  */
 function renderEscolas(escolas, onEscolaClick) {
   if (!escolas || !escolas.length) return null;
@@ -628,24 +644,47 @@ function renderEscolas(escolas, onEscolaClick) {
   for (const escola of escolas) {
     if (isNaN(escola.lat) || isNaN(escola.lng)) continue;
 
+    const temDados  = escola.votos_prefeito > 0 && escola.eleitores > 0;
+    const abstNum   = temDados
+      ? Math.round((escola.eleitores - escola.votos_prefeito) / escola.eleitores * 100)
+      : null;
+    const cor       = abstNum !== null ? corAbstencao(abstNum) : "#ffd54f";
+    const corHover  = abstNum !== null ? corAbstencao(abstNum - 2) : "#fff176"; // ligeiramente mais claro
+
+    // ── Marcador circular colorido pela abstenção ──────────────────
     const circle = L.circleMarker([escola.lat, escola.lng], {
-      radius: 5,
-      fillColor: "#ffd54f",
-      color: "#1a1a2e",
-      weight: 1.5,
-      opacity: 1,
-      fillOpacity: 0.9,
-      pane: "markerPane",
+      radius:      6,
+      fillColor:   cor,
+      color:       "#1a1a2e",
+      weight:      1.5,
+      opacity:     1,
+      fillOpacity: 0.92,
+      pane:        "markerPane",
     });
 
-    const votosLine = escola.votos_prefeito > 0
-      ? `<div class="tooltip-escola-stat">
-           <span>${escola.votos_prefeito.toLocaleString("pt-BR")} votos (prefeito)</span>
-           <span>${escola.secoes} seção${escola.secoes !== 1 ? "ões" : ""}</span>
+    // ── Tooltip de hover com todos os detalhes ──────────────────────
+    const statsHtml = temDados
+      ? `<div class="tooltip-escola-detalhe">
+           <div class="ted-row">
+             <span class="ted-label">Eleitores registrados</span>
+             <span class="ted-val">${escola.eleitores.toLocaleString("pt-BR")}</span>
+           </div>
+           <div class="ted-row">
+             <span class="ted-label">Votos (prefeito)</span>
+             <span class="ted-val">${escola.votos_prefeito.toLocaleString("pt-BR")}</span>
+           </div>
+           <div class="ted-row">
+             <span class="ted-label">% de Abstenção</span>
+             <span class="ted-val" style="color:${cor};font-weight:700">${abstNum}%</span>
+           </div>
+           <div class="ted-row">
+             <span class="ted-label">Seções</span>
+             <span class="ted-val">${escola.secoes}</span>
+           </div>
          </div>`
       : escola.eleitores > 0
         ? `<div class="tooltip-escola-stat">
-             <span>${escola.eleitores.toLocaleString("pt-BR")} eleitores registrados</span>
+             <span>${escola.eleitores.toLocaleString("pt-BR")} eleitores</span>
              <span>${escola.secoes} seção${escola.secoes !== 1 ? "ões" : ""}</span>
            </div>`
         : "";
@@ -653,31 +692,45 @@ function renderEscolas(escolas, onEscolaClick) {
     circle.bindTooltip(
       `<div class="tooltip-name">${escola.nome}</div>
        <div class="tooltip-zona">${escola.endereco}</div>
-       <div class="tooltip-zona">${escola.bairro} · Zona ${escola.zona}</div>
-       ${votosLine}`,
-      {
-        sticky: true,
-        className: "map-tooltip",
-        direction: "top",
-        offset:    [0, -8],
-      }
+       <div class="tooltip-zona" style="margin-bottom:4px">${escola.bairro} · Zona ${escola.zona}</div>
+       ${statsHtml}`,
+      { sticky: true, className: "map-tooltip", direction: "top", offset: [0, -10] }
     );
 
-    circle.on("mouseover", () => {
-      circle.setStyle({ fillColor: "#fff176", radius: 7, weight: 2 });
-    });
-    circle.on("mouseout", () => {
-      circle.setStyle({ fillColor: "#ffd54f", radius: 5, weight: 1.5 });
-    });
+    circle.on("mouseover", () => circle.setStyle({ radius: 8, weight: 2, fillOpacity: 1 }));
+    circle.on("mouseout",  () => circle.setStyle({ radius: 6, weight: 1.5, fillOpacity: 0.92 }));
 
     if (onEscolaClick) {
-      circle.on("click", e => {
-        L.DomEvent.stopPropagation(e);
-        onEscolaClick(escola);
-      });
+      circle.on("click", e => { L.DomEvent.stopPropagation(e); onEscolaClick(escola); });
     }
 
     escolasLayer.addLayer(circle);
+
+    // ── Label permanente acima do marcador (DivIcon não-interativo) ─
+    if (temDados) {
+      const labelIcon = L.divIcon({
+        html: `<div class="escola-label-perm">
+                 <span class="elp-row elp-eleit">
+                   <span class="elp-key">Eleit. Reg.</span>
+                   <span class="elp-val">${escola.eleitores.toLocaleString("pt-BR")}</span>
+                 </span>
+                 <span class="elp-row elp-abs">
+                   <span class="elp-key">Abstenção</span>
+                   <span class="elp-val" style="color:${cor}">${abstNum}%</span>
+                 </span>
+               </div>`,
+        className:  "escola-label-icon",
+        iconSize:   [0, 0],
+        iconAnchor: [0, 0],
+      });
+      const labelMarker = L.marker([escola.lat, escola.lng], {
+        icon:         labelIcon,
+        interactive: false,
+        keyboard:    false,
+        zIndexOffset: -200,
+      });
+      escolasLayer.addLayer(labelMarker);
+    }
   }
 
   escolasLayer.addTo(map);

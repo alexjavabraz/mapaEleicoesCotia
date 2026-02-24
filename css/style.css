@@ -471,6 +471,78 @@ html, body {
   border-top: 1px solid rgba(255,255,255,0.12);
 }
 
+/* ---- DETALHE DO TOOLTIP DE ESCOLA ---- */
+.tooltip-escola-detalhe {
+  margin-top: 5px;
+  padding-top: 5px;
+  border-top: 1px solid rgba(255,255,255,0.12);
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.ted-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 14px;
+}
+
+.ted-label {
+  font-size: 0.68rem;
+  color: var(--text-muted);
+}
+
+.ted-val {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--text);
+  white-space: nowrap;
+}
+
+/* ---- LABEL PERMANENTE DAS ESCOLAS ---- */
+.escola-label-icon {
+  background: transparent !important;
+  border: none !important;
+  overflow: visible !important;
+}
+
+.escola-label-perm {
+  position: absolute;
+  /* ancora a borda inferior ao centro do marcador; afasta 12px para cima (raio 6 + gap 6) */
+  transform: translate(-50%, calc(-100% - 12px));
+  background: rgba(12, 12, 30, 0.88);
+  border: 1px solid rgba(255, 255, 255, 0.13);
+  border-radius: 4px;
+  padding: 2px 6px 3px;
+  white-space: nowrap;
+  pointer-events: none;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.elp-row {
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+  line-height: 1.35;
+}
+
+.elp-key {
+  font-size: 0.56rem;
+  color: rgba(160, 160, 180, 0.8);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  flex-shrink: 0;
+}
+
+.elp-val {
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: #eaeaea;
+}
+
 /* ---- LOADING ---- */
 #loading {
   position: fixed;
