@@ -450,6 +450,27 @@ html, body {
   margin-top: 2px;
 }
 
+.tooltip-votos {
+  font-size: 0.75rem;
+  color: var(--text);
+  font-weight: 600;
+  margin-top: 5px;
+  padding-top: 4px;
+  border-top: 1px solid rgba(255,255,255,0.12);
+}
+
+.tooltip-escola-stat {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: #ffd54f;
+  margin-top: 5px;
+  padding-top: 4px;
+  border-top: 1px solid rgba(255,255,255,0.12);
+}
+
 /* ---- LOADING ---- */
 #loading {
   position: fixed;

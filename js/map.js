@@ -25,6 +25,7 @@ let zoneColorMap = {};
 let map = null;
 let neighborhoodLayer = null;
 let municipioLayer = null;
+let escolasLayer = null;
 let rankingControl = null;
 
 /**
@@ -604,4 +605,76 @@ function updateLegend(zonasList) {
     return div;
   };
   legend.addTo(map);
+}
+
+/**
+ * Renderiza os locais de votação (escolas) como marcadores amarelos no mapa.
+ * Cada marcador representa um local único (NR_LOCAL_VOTACAO), com tooltip
+ * mostrando nome, endereço, bairro, zona e total de eleitores registrados.
+ *
+ * @param {Array}    escolas       - Array de objetos { nr, nome, endereco, bairro, zona, lat, lng, eleitores, secoes }
+ * @param {Function} onEscolaClick - Callback opcional chamado com o objeto escola ao clicar
+ */
+function renderEscolas(escolas, onEscolaClick) {
+  if (!escolas || !escolas.length) return null;
+
+  if (escolasLayer) {
+    map.removeLayer(escolasLayer);
+    escolasLayer = null;
+  }
+
+  escolasLayer = L.layerGroup();
+
+  for (const escola of escolas) {
+    if (isNaN(escola.lat) || isNaN(escola.lng)) continue;
+
+    const circle = L.circleMarker([escola.lat, escola.lng], {
+      radius: 5,
+      fillColor: "#ffd54f",
+      color: "#1a1a2e",
+      weight: 1.5,
+      opacity: 1,
+      fillOpacity: 0.9,
+      pane: "markerPane",
+    });
+
+    const eleitoresLine = escola.eleitores > 0
+      ? `<div class="tooltip-escola-stat">
+           <span>${escola.eleitores.toLocaleString("pt-BR")} eleitores</span>
+           <span>${escola.secoes} seção${escola.secoes !== 1 ? "ões" : ""}</span>
+         </div>`
+      : "";
+
+    circle.bindTooltip(
+      `<div class="tooltip-name">${escola.nome}</div>
+       <div class="tooltip-zona">${escola.endereco}</div>
+       <div class="tooltip-zona">${escola.bairro} · Zona ${escola.zona}</div>
+       ${eleitoresLine}`,
+      {
+        sticky: true,
+        className: "map-tooltip",
+        direction: "top",
+        offset:    [0, -8],
+      }
+    );
+
+    circle.on("mouseover", () => {
+      circle.setStyle({ fillColor: "#fff176", radius: 7, weight: 2 });
+    });
+    circle.on("mouseout", () => {
+      circle.setStyle({ fillColor: "#ffd54f", radius: 5, weight: 1.5 });
+    });
+
+    if (onEscolaClick) {
+      circle.on("click", e => {
+        L.DomEvent.stopPropagation(e);
+        onEscolaClick(escola);
+      });
+    }
+
+    escolasLayer.addLayer(circle);
+  }
+
+  escolasLayer.addTo(map);
+  return escolasLayer;
 }

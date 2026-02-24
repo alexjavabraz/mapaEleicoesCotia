@@ -467,26 +467,27 @@ function renderConteudoSidebarTotais() {
  * Usa dados por bairro (votosPorBairro). Reavaliado a cada abertura do tooltip.
  */
 function getTooltipContent(feature, zona) {
-  const name       = feature.properties.name || feature.properties.nome || "Bairro";
-  const bairroNome = name;
-  const total      = getTotalVotosBairro(bairroNome);
+  const name = feature.properties.name || feature.properties.nome || "Bairro";
 
+  // Tenta nome exato e fallback em maiúsculas (normalização defensiva)
+  const total = getTotalVotosBairro(name) ?? getTotalVotosBairro(name.toUpperCase());
+
+  const zonaColor = zona && zoneColorMap[zona] ? zoneColorMap[zona] : "#888";
   let html = `<div class="tooltip-name">${name}</div>`;
+  html += `<div class="tooltip-zona" style="color:${zonaColor}">Zona ${zona || "—"}</div>`;
 
   if (total !== null && total > 0) {
-    html += `<div class="tooltip-zona" style="margin-top:3px">${formatVotos(total)} votos no bairro</div>`;
+    html += `<div class="tooltip-votos">${formatVotos(total)} votos (prefeito)</div>`;
   }
 
   if (currentVereadorFiltro) {
-    const votos = getVotosVereadorBairro(bairroNome, currentVereadorFiltro);
+    const votos = getVotosVereadorBairro(name, currentVereadorFiltro)
+               ?? getVotosVereadorBairro(name.toUpperCase(), currentVereadorFiltro);
     if (votos !== null) {
       const label = votos > 0
         ? `<strong style="color:#ffd54f">${formatVotos(votos)}</strong> votos`
         : `Sem votos`;
-      html += `
-        <div class="tooltip-zona" style="color:#ffd54f;margin-top:5px;padding-top:4px;border-top:1px solid rgba(255,255,255,0.15)">
-          ${currentVereadorFiltro.split(" ")[0]}: ${label}
-        </div>`;
+      html += `<div class="tooltip-zona" style="color:#ffd54f;margin-top:5px;padding-top:4px;border-top:1px solid rgba(255,255,255,0.15)">${currentVereadorFiltro.split(" ")[0]}: ${label}</div>`;
     }
   }
 
@@ -570,7 +571,7 @@ async function init() {
   ]);
   if (bairroResult.ok) console.log(`Votos por bairro: ${bairroResult.count} bairros`);
   else console.log("Votos por bairro não disponíveis:", bairroResult.error);
-  if (locaisResult.ok) console.log(`Locais de votação: ${locaisResult.count} locais`);
+  if (locaisResult.ok) console.log(`Locais de votação: ${locaisResult.count} seções, ${locaisResult.escolas} escolas`);
   else console.log("Locais de votação não disponíveis:", locaisResult.error);
 
   if (tseResult.error) {
@@ -648,7 +649,15 @@ async function init() {
     );
     console.log(`${bairrosGeoJSON.features.length} bairros renderizados.`);
   } else {
-    console.warn("Nenhum bairro encontrado. Exibindo apenas locais de votação.");
+    console.warn("Nenhum bairro encontrado.");
+  }
+
+  // 5. Renderiza escolas (locais de votação) como marcadores amarelos
+  const escolas = getEscolasSummary();
+  if (escolas.length > 0) {
+    setLoadingStatus("Renderizando locais de votação...");
+    renderEscolas(escolas, null);
+    console.log(`${escolas.length} locais de votação renderizados.`);
   }
 
   showLoading(false);

@@ -7,7 +7,8 @@
 
 let tseData = null;
 let votosPorBairro = null;  // dados de ./data/cotia_votos_por_bairro.json
-let locaisVotacao = null;   // dados de ./data/cotia_locais_votacao.json
+let locaisVotacao = null;   // dados de ./data/cotia_locais_votacao.json (por seção)
+let escolasSummary = null;  // dados agregados por local de votação (62 escolas)
 
 /**
  * Carrega o arquivo JSON gerado pelo script download_tse.py
@@ -54,6 +55,8 @@ async function loadLocaisVotacao() {
     const r = await fetch("./data/cotia_locais_votacao.json");
     if (!r.ok) return { error: r.status === 404 ? "not_found" : `http_${r.status}` };
     const raw = await r.json();
+
+    // Registros individuais por seção — usados para Voronoi de bairros
     locaisVotacao = raw
       .filter(l => l.NR_LATITUDE && l.NR_LONGITUDE && l.NM_BAIRRO)
       .map(l => ({
@@ -65,7 +68,32 @@ async function loadLocaisVotacao() {
         endereco: l.DS_ENDERECO || "",
       }))
       .filter(l => !isNaN(l.lat) && !isNaN(l.lng));
-    return { ok: true, count: locaisVotacao.length };
+
+    // Agrega por local de votação (NR_LOCAL_VOTACAO) para exibir escolas no mapa
+    const escolaMap = {};
+    for (const l of raw) {
+      const k = l.NR_LOCAL_VOTACAO;
+      if (!k || !l.NR_LATITUDE || !l.NR_LONGITUDE) continue;
+      if (!escolaMap[k]) {
+        escolaMap[k] = {
+          nr:       k,
+          nome:     l.NM_LOCAL_VOTACAO || "",
+          endereco: l.DS_ENDERECO || "",
+          bairro:   l.NM_BAIRRO || "",
+          zona:     String(l.NR_ZONA || ""),
+          lat:      parseFloat(l.NR_LATITUDE),
+          lng:      parseFloat(l.NR_LONGITUDE),
+          eleitores: 0,
+          secoes:    0,
+        };
+      }
+      escolaMap[k].secoes++;
+      escolaMap[k].eleitores += parseInt(l.QT_ELEITOR_ELEICAO_MUNICIPAL || 0);
+    }
+    escolasSummary = Object.values(escolaMap)
+      .filter(e => !isNaN(e.lat) && !isNaN(e.lng));
+
+    return { ok: true, count: locaisVotacao.length, escolas: escolasSummary.length };
   } catch (e) {
     return { error: e.message };
   }
@@ -73,6 +101,10 @@ async function loadLocaisVotacao() {
 
 function getLocaisVotacao() {
   return locaisVotacao || [];
+}
+
+function getEscolasSummary() {
+  return escolasSummary || [];
 }
 
 /**
