@@ -194,9 +194,14 @@ function getZonaForFeature(feature, bairroZonaMap) {
  * Gera polígonos Voronoi por bairro a partir dos locais de votação,
  * recortados pelo contorno do município de Cotia.
  * Usado como fallback quando o OSM não tem dados de bairros.
+ *
+ * municipioGeoJSON é opcional: quando a Overpass API está fora do ar, nem o
+ * contorno do município chega a ser buscado. Nesse caso, recorta pelo hull
+ * convexo dos próprios locais de votação (com uma margem), em vez de não
+ * renderizar bairro nenhum.
  */
 function computeVoronoiBairros(locais, municipioGeoJSON) {
-  if (!locais || !locais.length || !municipioGeoJSON) return null;
+  if (!locais || !locais.length) return null;
   if (typeof turf === "undefined") return null;
 
   // Agrupa locais por bairro e calcula centróide
@@ -220,11 +225,22 @@ function computeVoronoiBairros(locais, municipioGeoJSON) {
 
   if (points.length < 3) return null;
 
-  // Encontra o polígono do município para recorte
+  // Encontra o polígono de recorte: contorno real do município (OSM) quando
+  // disponível; caso contrário, hull convexo dos locais de votação + margem.
   let municipioPoly = null;
-  for (const f of municipioGeoJSON.features) {
-    const t = f.geometry && f.geometry.type;
-    if (t === "Polygon" || t === "MultiPolygon") { municipioPoly = f; break; }
+  if (municipioGeoJSON) {
+    for (const f of municipioGeoJSON.features) {
+      const t = f.geometry && f.geometry.type;
+      if (t === "Polygon" || t === "MultiPolygon") { municipioPoly = f; break; }
+    }
+  }
+  if (!municipioPoly) {
+    try {
+      const hull = turf.convex(turf.featureCollection(points));
+      municipioPoly = hull ? turf.buffer(hull, 1, { units: "kilometers" }) : null;
+    } catch (e) {
+      municipioPoly = null;
+    }
   }
   if (!municipioPoly) return null;
 
