@@ -5,24 +5,17 @@
  * Permite instalação como PWA e uso básico offline (shell da app).
  */
 
-// IMPORTANTE: bump CACHE_NAME/DATA_CACHE a cada deploy que altera o shell
-// (app.js, map.js, css) ou o schema dos dados. O navegador só roda o evento
-// "install" de novo quando este arquivo muda byte a byte — sem o bump, quem
-// já tem o SW instalado fica preso na versão antiga em cache (cache-first).
-const CACHE_NAME   = "cotia-mapa-v4";
-const DATA_CACHE   = "cotia-data-v4";
+const CACHE_NAME   = "cotia-mapa-v1";
+const DATA_CACHE   = "cotia-data-v1";
 
 // Assets estáticos que formam o "shell" da aplicação
 const SHELL_ASSETS = [
   "./",
   "./index.html",
-  "./eleicao-geral.html",
   "./css/style.css",
   "./js/tse.js",
   "./js/map.js",
   "./js/app.js",
-  "./js/geral-config.js",
-  "./js/geral.js",
   "./manifest.json",
   "./icons/cotia-flag.svg",
   "./icons/icon-192.png",

@@ -718,7 +718,7 @@ async function init() {
   }) || [];
 
   const locais = getLocaisVotacao();
-  if (osmPolygons.length < 5 && locais.length) {
+  if (osmPolygons.length < 5 && municipioGeoJSON && locais.length) {
     setLoadingStatus("Gerando bairros por proximidade (Voronoi)...");
     bairrosGeoJSON = computeVoronoiBairros(locais, municipioGeoJSON);
     if (bairrosGeoJSON) {
