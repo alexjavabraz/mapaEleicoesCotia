@@ -7,16 +7,21 @@ const COTIA_CENTER = [-23.6037, -46.8997];
 const COTIA_ZOOM = 12;
 
 // ---- CONFIGURAÇÕES DE CAMADAS DE TILES ----
+// NOTA: CARTO (basemaps.cartocdn.com) passou a exigir API key para os estilos
+// dark_matter/light (ver carto.com/basemaps/apikey) — tiles sem key voltam
+// com um watermark "API KEY REQUIRED" em vez do mapa. Substituído pelos
+// basemaps "Canvas" da Esri (server.arcgisonline.com), que continuam
+// públicos e sem necessidade de conta, no mesmo padrão já usado pro Satélite.
 const TILE_CONFIGS = {
   dark: {
     label: "Escuro",
-    base: "https://{s}.basemaps.cartocdn.com/dark_matter_nolabels/{z}/{x}/{y}{r}.png",
+    base: "https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}",
     baseOpts: {
-      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/">CARTO</a>',
-      subdomains: "abcd", maxZoom: 19,
+      attribution: '&copy; <a href="https://www.esri.com/">Esri</a>',
+      maxZoom: 16,
     },
-    labels: "https://{s}.basemaps.cartocdn.com/dark_matter_only_labels/{z}/{x}/{y}{r}.png",
-    labelsOpts: { attribution: "", subdomains: "abcd", maxZoom: 19, pane: "shadowPane" },
+    labels: "https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Reference/MapServer/tile/{z}/{y}/{x}",
+    labelsOpts: { attribution: "", maxZoom: 16, pane: "shadowPane" },
   },
   osm: {
     label: "OSM",
@@ -30,13 +35,13 @@ const TILE_CONFIGS = {
   },
   light: {
     label: "Claro",
-    base: "https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}{r}.png",
+    base: "https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}",
     baseOpts: {
-      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/">CARTO</a>',
-      subdomains: "abcd", maxZoom: 19,
+      attribution: '&copy; <a href="https://www.esri.com/">Esri</a>',
+      maxZoom: 16,
     },
-    labels: "https://{s}.basemaps.cartocdn.com/light_only_labels/{z}/{x}/{y}{r}.png",
-    labelsOpts: { attribution: "", subdomains: "abcd", maxZoom: 19, pane: "shadowPane" },
+    labels: "https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Reference/MapServer/tile/{z}/{y}/{x}",
+    labelsOpts: { attribution: "", maxZoom: 16, pane: "shadowPane" },
   },
   satellite: {
     label: "Satélite",
@@ -45,8 +50,8 @@ const TILE_CONFIGS = {
       attribution: '&copy; <a href="https://www.esri.com/">Esri</a>, Maxar, Earthstar Geographics',
       maxZoom: 18,
     },
-    labels: "https://{s}.basemaps.cartocdn.com/dark_matter_only_labels/{z}/{x}/{y}{r}.png",
-    labelsOpts: { attribution: "", subdomains: "abcd", maxZoom: 18, pane: "shadowPane" },
+    labels: "https://server.arcgisonline.com/ArcGIS/rest/services/Reference/World_Boundaries_and_Places/MapServer/tile/{z}/{y}/{x}",
+    labelsOpts: { attribution: "", maxZoom: 18, pane: "shadowPane" },
   },
 };
 
