@@ -116,6 +116,15 @@
   <!-- Service Worker (PWA) -->
   <script>
     if ("serviceWorker" in navigator) {
+      // Recarrega automaticamente quando um novo SW assume o controle —
+      // sem isso, quem já tem o app instalado fica preso na versão antiga
+      // até fechar e reabrir o navegador várias vezes.
+      let swRefreshing = false;
+      navigator.serviceWorker.addEventListener("controllerchange", () => {
+        if (swRefreshing) return;
+        swRefreshing = true;
+        window.location.reload();
+      });
       window.addEventListener("load", () => {
         navigator.serviceWorker.register("./sw.js")
           .catch((err) => console.warn("SW registro falhou:", err));
