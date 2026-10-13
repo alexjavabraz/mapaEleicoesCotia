@@ -102,6 +102,17 @@ let votosPorBairroGeral = null;  // dados de cotia_votos_por_bairro_<ano>.json
 // Candidato atualmente destacado no mapa (highlight por clique no ícone)
 let candidatoDestaque = null;  // { nome, cor } ou null
 
+// Candidato selecionado no combobox "ver votos por bairro" (todos os cargos).
+// Mutuamente exclusivo com candidatoDestaque — selecionar um limpa o outro.
+let currentCandidatoFiltro = "";
+
+// Mapeamento nome-de-urna (tse_cotia_<ano>.json, ex: "LULA") <-> nome completo
+// (cotia_votos_por_bairro_<ano>.json, ex: "LUIZ INÁCIO LULA DA SILVA") por cargo.
+// Os dois datasets usam campos diferentes do TSE — sem isso, o combobox (que
+// lista nomes de urna) nunca encontraria os votos por bairro (nomes completos).
+let _urnaToFullGeral = {};  // { cargoKey: { "LULA": "LUIZ INÁCIO LULA DA SILVA" } }
+let _fullToUrnaGeral = {};
+
 // Cores pré-definidas por nome de urna (maiúsculas) — usadas pelo seletor de cor
 // Ordem: PT vermelho, PL azul, outros cores distintas
 const CORES_CANDIDATO_PADRAO = {
@@ -211,11 +222,17 @@ function getBairroCandidatosGeral(bairroKey, cargoKey) {
   const lista = dadosBairro[cargoKey];
   if (!lista || !lista.length) return null;
 
-  // Enriquece com partido e situação vindos dos totais do tseData (por zona)
+  // Enriquece com partido e situação vindos dos totais do tseData (por zona).
+  // totais usa nome de urna ("LULA"); a lista por bairro usa nome completo
+  // ("LUIZ INÁCIO LULA DA SILVA") — resolve via buildNomeMappingGeral() antes
+  // de indexar, senão a busca falha e o card mostra partido "??".
   const metaMap = {};
   if (tseData) {
     const totais = tseData.totais?.[cargoKey]?.["1"] || [];
-    for (const c of totais) metaMap[normBairro(c.nome)] = c;
+    for (const c of totais) {
+      metaMap[normBairro(resolveNomeFullGeral(cargoKey, c.nome))] = c;
+      metaMap[normBairro(c.nome)] = c; // mantém o nome de urna como chave também
+    }
   }
 
   return lista.map(c => {
@@ -227,6 +244,85 @@ function getBairroCandidatosGeral(bairroKey, cargoKey) {
       situacao: meta.situacao || "",
     };
   });
+}
+
+/**
+ * Constrói, para cada cargo, o mapeamento nome-de-urna ↔ nome-completo após
+ * tseData e votosPorBairroGeral estarem carregados. Mesma estratégia de
+ * tse.js:buildNomeMapping() — soma votos por nome completo em todos os
+ * bairros, associa ao candidato dos totais (urna) com o mesmo total de votos,
+ * desempatando por interseção de palavras quando há mais de um candidato com
+ * o mesmo total.
+ */
+function buildNomeMappingGeral() {
+  _urnaToFullGeral = {};
+  _fullToUrnaGeral = {};
+  if (!votosPorBairroGeral || !tseData) return;
+
+  const wordSet = (s) => new Set(normBairro(s).split(/\s+/).filter(Boolean));
+
+  // Entre os candidatos ainda sem par, retorna o de maior interseção de
+  // palavras com o nome de urna (ex: "GUTO SCHIAVETTO" ~ "RICARDO AUGUSTO
+  // MANGUE SCHIAVETTO" via "SCHIAVETTO"). null se nenhum tiver palavra em comum.
+  function bestWordMatch(urnaNome, candidatos) {
+    const urnaWords = wordSet(urnaNome);
+    let best = null, bestScore = 0;
+    for (const fullName of candidatos) {
+      const score = [...wordSet(fullName)].filter(w => urnaWords.has(w)).length;
+      if (score > bestScore) { bestScore = score; best = fullName; }
+    }
+    return bestScore >= 1 ? best : null;
+  }
+
+  for (const { key: cargoKey } of CARGOS_GERAL) {
+    // Processa do mais votado para o menos votado: os candidatos mais
+    // relevantes (os que o usuário mais provavelmente vai filtrar) resolvem
+    // primeiro e não disputam nome com candidatos menores/homônimos.
+    const totaisUrna = [...(tseData.totais?.[cargoKey]?.["1"] || [])].sort((a, b) => b.votos - a.votos);
+    if (!totaisUrna.length) continue;
+
+    // Soma votos por nome completo em todos os bairros para este cargo.
+    // A cobertura seção→bairro é de ~99%, então a soma pode não bater
+    // exatamente com o total oficial — por isso o match por total exato é só
+    // a primeira tentativa, com fallback por interseção de palavras.
+    const somaFull = {};
+    const fullNamesSet = new Set();
+    for (const dadosBairro of Object.values(votosPorBairroGeral.bairros)) {
+      for (const c of dadosBairro[cargoKey] || []) {
+        somaFull[c.nome] = (somaFull[c.nome] || 0) + c.votos;
+        fullNamesSet.add(c.nome);
+      }
+    }
+    const byTotal = {};
+    for (const [nome, total] of Object.entries(somaFull)) {
+      (byTotal[total] = byTotal[total] || []).push(nome);
+    }
+
+    const urnaMap = {};
+    const fullMap = {};
+    const usados = new Set();
+    for (const c of totaisUrna) {
+      const grupoExato = (byTotal[c.votos] || []).filter(n => !usados.has(n));
+      let match = grupoExato.length === 1 ? grupoExato[0] : null;
+      if (!match && grupoExato.length > 1) match = bestWordMatch(c.nome, grupoExato);
+      if (!match) {
+        const disponiveis = [...fullNamesSet].filter(n => !usados.has(n));
+        match = bestWordMatch(c.nome, disponiveis);
+      }
+      if (match) {
+        urnaMap[c.nome] = match;
+        fullMap[match] = c.nome;
+        usados.add(match);
+      }
+    }
+    _urnaToFullGeral[cargoKey] = urnaMap;
+    _fullToUrnaGeral[cargoKey] = fullMap;
+  }
+}
+
+/** Dado um nome de urna e um cargo, retorna o nome completo usado em votosPorBairroGeral (ou o próprio nome). */
+function resolveNomeFullGeral(cargoKey, urnaNome) {
+  return _urnaToFullGeral[cargoKey]?.[urnaNome] || urnaNome;
 }
 
 /**
@@ -289,6 +385,8 @@ function switchCargo(key) {
   currentCargo = key;
   currentTurno = "1";
   candidatoDestaque = null; // limpa destaque ao trocar de cargo
+  currentCandidatoFiltro = "";
+  renderRankingBoxGeral("");
   renderSidebar();
   if (!currentZona && !currentBairroGeral) colorirMapaPartidoVencedor();
 }
@@ -296,6 +394,8 @@ function switchCargo(key) {
 function switchTurno(turno) {
   currentTurno = turno;
   candidatoDestaque = null;
+  currentCandidatoFiltro = "";
+  renderRankingBoxGeral("");
   renderSidebar();
   if (!currentZona && !currentBairroGeral) colorirMapaPartidoVencedor();
 }
@@ -334,13 +434,147 @@ function toggleHighlightCandidat(nomeUrna, cor) {
   // Toggle: se já está ativo para este candidato, desativa
   if (candidatoDestaque && candidatoDestaque.nome === nomeUrna) {
     candidatoDestaque = null;
-    colorirMapaPartidoVencedor(); // volta para coloração por partido vencedor
+    colorirMapaPartidoVencedor(); // volta para a coloração padrão (top-3 do cargo)
     renderSidebar();              // re-renderiza para atualizar o ícone ativo
     return;
   }
   candidatoDestaque = { nome: nomeUrna, cor };
+  currentCandidatoFiltro = ""; // mutuamente exclusivo com o combobox "votos por bairro"
+  renderRankingBoxGeral("");
+  limparLegendaTop3(); // a legenda do top-3 não se aplica a essa coloração
   aplicarHighlightCandidato();
   renderSidebar();
+}
+
+/**
+ * Escapa texto para uso seguro dentro de atributos HTML (value="...").
+ */
+function escapeHtmlAttr(s) {
+  return (s || "").replace(/&/g, "&amp;").replace(/"/g, "&quot;")
+                  .replace(/</g, "&lt;").replace(/>/g, "&gt;");
+}
+
+/**
+ * Gera o combobox "ver votos por bairro de um candidato", disponível para
+ * todos os cargos (Presidente, Governador, Senador, Dep. Federal, Dep. Estadual)
+ * na visão geral do município. Ao selecionar um candidato, colore o mapa por
+ * intensidade de votos em cada bairro e mostra o ranking de bairros.
+ * @param {Array} lista - candidatos do cargo no 1º turno (sempre a lista completa)
+ */
+function renderCandidatoSelect(lista) {
+  if (!lista || !lista.length) return "";
+  const sorted = [...lista].sort((a, b) => a.nome.localeCompare(b.nome, "pt-BR"));
+  const options = sorted.map(c =>
+    `<option value="${escapeHtmlAttr(c.nome)}" ${currentCandidatoFiltro === c.nome ? "selected" : ""}>${c.nome}${c.partido ? ` (${c.partido})` : ""}</option>`
+  ).join("");
+  return `
+    <div class="ver-select-wrapper">
+      <label class="ver-select-label">Ver votos por bairro de um candidato</label>
+      <select class="ver-select" onchange="filtrarCandidatoGeral(this.value)">
+        <option value="">— Nenhum —</option>
+        ${options}
+      </select>
+    </div>`;
+}
+
+/** Seleciona/limpa o filtro de candidato do combobox e re-renderiza. */
+function filtrarCandidatoGeral(nome) {
+  currentCandidatoFiltro = nome;
+  if (nome) {
+    candidatoDestaque = null; // mutuamente exclusivo com o destaque por ícone
+    limparLegendaTop3();      // o ranking (mesmo canto, bottomleft) substitui a legenda
+    highlightCandidatoGeralOnMap(nome);
+  } else {
+    colorirMapaPartidoVencedor();
+  }
+  renderRankingBoxGeral(nome);
+  renderSidebar();
+}
+
+/**
+ * Pinta os bairros por intensidade de votos do candidato selecionado no
+ * combobox. Usa dados reais por bairro quando disponíveis; cai para os
+ * dados agregados por zona eleitoral quando o bairro não está mapeado.
+ */
+function highlightCandidatoGeralOnMap(nome) {
+  if (!neighborhoodLayer) return;
+  if (!nome) { colorirMapaPartidoVencedor(); return; }
+
+  // Dados por bairro usam nome completo do candidato; tseData/totais usam o
+  // nome de urna (combobox). Resolve antes de comparar — ver buildNomeMappingGeral().
+  const normAlvoFull = normBairro(resolveNomeFullGeral(currentCargo, nome));
+  const normAlvoUrna = normBairro(nome);
+
+  let maxVotos = 1;
+  neighborhoodLayer.eachLayer((layer) => {
+    if (!layer.feature) return;
+    const bairroFeat = layer.feature.properties.name || layer.feature.properties.nome || "";
+    const zona = layer.feature.properties._zona;
+    let votos = 0;
+
+    if (votosPorBairroGeral) {
+      const bairroKey = resolveBairroKey(bairroFeat);
+      if (bairroKey) {
+        const lista = votosPorBairroGeral.bairros[bairroKey]?.[currentCargo] || [];
+        const c = lista.find(x => {
+          const n = normBairro(x.nome);
+          return n === normAlvoFull || n === normAlvoUrna;
+        });
+        votos = c?.votos || 0;
+      }
+    }
+    if (!votos && tseData && zona) {
+      const candidatos = tseData.zonas[zona]?.[currentCargo]?.["1"] || [];
+      const c = candidatos.find(x => normBairro(x.nome) === normAlvoUrna);
+      votos = c?.votos || 0;
+    }
+
+    layer._candVotos = votos;
+    if (votos > maxVotos) maxVotos = votos;
+  });
+
+  neighborhoodLayer.eachLayer((layer) => {
+    if (!layer.feature) return;
+    const zona = layer.feature.properties._zona;
+    const votos = layer._candVotos || 0;
+    if (votos > 0) {
+      const intensity = votos / maxVotos;
+      layer.setStyle({
+        fillColor:   "#29b6f6",
+        fillOpacity: 0.3 + intensity * 0.55,
+        color:       "#81d4fa",
+        weight:      2,
+        opacity:     1,
+        dashArray:   null,
+      });
+    } else {
+      layer.setStyle(getFeatureStyle(layer.feature, zona));
+    }
+  });
+}
+
+/** Ranking de bairros por votos do candidato selecionado no combobox. */
+function renderRankingBoxGeral(nome) {
+  if (typeof renderRankingBoxItens !== "function") return; // guard: map.js ainda não carregou
+  if (!nome) { renderRankingBoxItens(null, null); return; }
+
+  if (!votosPorBairroGeral) {
+    renderRankingBoxItens(nome, null, `Dados por bairro não disponíveis para ${currentYear}.`);
+    return;
+  }
+
+  const normAlvoFull = normBairro(resolveNomeFullGeral(currentCargo, nome));
+  const normAlvoUrna = normBairro(nome);
+  const itens = [];
+  for (const [bairroKey, cargos] of Object.entries(votosPorBairroGeral.bairros)) {
+    const lista = cargos[currentCargo] || [];
+    const c = lista.find(x => {
+      const n = normBairro(x.nome);
+      return n === normAlvoFull || n === normAlvoUrna;
+    });
+    if (c && c.votos > 0) itens.push({ bairro: bairroKey, votos: c.votos });
+  }
+  renderRankingBoxItens(nome, itens);
 }
 
 /**
@@ -462,8 +696,22 @@ function renderCargoSectionGeral(cargoData, label) {
   const maxVotos = candidatos[0]?.votos || 1;
   const comIcone = currentCargo === "presidente" || currentCargo === "governador";
 
+  // Combobox "ver votos por bairro" — só faz sentido na visão geral do
+  // município (compara um candidato contra todos os bairros de Cotia).
+  const visaoGeral = !currentBairroGeral && !currentZona;
+  if (visaoGeral) html += renderCandidatoSelect(t1);
+
   let cardsHtml;
-  if (comIcone && !currentBairroGeral) {
+  if (visaoGeral && currentCandidatoFiltro) {
+    // Filtro de candidato ativo: mostra só o card dele + botão de limpar
+    const candidato = t1.find(c => c.nome === currentCandidatoFiltro);
+    cardsHtml = candidato
+      ? renderCandidateCard(candidato, Math.max(...t1.map(c => c.votos), 1))
+      : `<p style="color:var(--text-muted);padding:12px 0;font-size:.8rem">Candidato sem dados neste cargo.</p>`;
+    cardsHtml += `<button class="limpar-destaque-btn" onclick="filtrarCandidatoGeral('')">
+      ✕ Limpar filtro
+    </button>`;
+  } else if (comIcone && visaoGeral) {
     // Renderiza cada card com o ícone de mapa injetado
     cardsHtml = candidatos.map(c =>
       renderCandidateCard(c, maxVotos, renderIconeMapaCandidato(c))
@@ -498,7 +746,7 @@ function renderSidebarForZona(zonaNum) {
   if (!zonaData) {
     html += `<p style="color:var(--text-muted);padding:12px 0;font-size:.8rem">Sem dados para esta zona.</p>`;
   } else {
-    html += renderCargoSection(zonaData[currentCargo], `${cfg.label} — Zona ${zonaNum}`);
+    html += renderCargoSectionGeral(zonaData[currentCargo], `${cfg.label} — Zona ${zonaNum}`);
   }
   html += fonteInfo();
   document.getElementById("sidebar-content").innerHTML = html;
@@ -523,7 +771,7 @@ function renderSidebarBairro(displayName, bairroKey, zonaNum) {
     // Dados reais por bairro — adapta para o formato esperado por renderCargoSection
     // que recebe { "1": [...] }  (estrutura de turno)
     const cargoDataFake = { "1": candidatos };
-    html += renderCargoSection(cargoDataFake, `${cfg.label} — ${displayName}`);
+    html += renderCargoSectionGeral(cargoDataFake, `${cfg.label} — ${displayName}`);
     html += `<div class="fonte-info" style="margin-top:6px">
       <span style="color:var(--text-muted);font-size:0.68rem">Dados reais por bairro · </span>
       <a href="${yearCfg?.datasetUrl || '#'}" target="_blank">TSE — Dados Abertos</a>
@@ -537,7 +785,7 @@ function renderSidebarBairro(displayName, bairroKey, zonaNum) {
       html += `<div style="font-size:0.72rem;color:var(--text-muted);margin-bottom:8px">
         (Sem dados específicos para este bairro — exibindo Zona ${zonaNum})
       </div>`;
-      html += renderCargoSection(zonaData[currentCargo], `${cfg.label} — Zona ${zonaNum}`);
+      html += renderCargoSectionGeral(zonaData[currentCargo], `${cfg.label} — Zona ${zonaNum}`);
     }
     html += fonteInfo();
   }
@@ -620,8 +868,10 @@ function displayTotaisGerais() {
       Todas as Zonas
     </span>`;
   renderSidebarTotais();
-  // Aplica destaque ativo ou coloração por partido
-  if (candidatoDestaque) {
+  // Aplica filtro de candidato (combobox), destaque por ícone, ou coloração por partido
+  if (currentCandidatoFiltro) {
+    highlightCandidatoGeralOnMap(currentCandidatoFiltro);
+  } else if (candidatoDestaque) {
     aplicarHighlightCandidato();
   } else {
     colorirMapaPartidoVencedor();
@@ -645,9 +895,9 @@ function getTooltipContentGeral(feature, zona) {
     if (bairroKey) {
       const lista = votosPorBairroGeral.bairros[bairroKey]?.[currentCargo];
       if (lista && lista.length) {
-        const nomeVenc = lista[0].nome;
+        const nomeVenc = normBairro(lista[0].nome);
         const totais = tseData?.totais?.[currentCargo]?.["1"] || [];
-        const meta = totais.find(c => normBairro(c.nome) === normBairro(nomeVenc));
+        const meta = totais.find(c => normBairro(resolveNomeFullGeral(currentCargo, c.nome)) === nomeVenc || normBairro(c.nome) === nomeVenc);
         top = { nome: lista[0].nome, votos: lista[0].votos, partido: meta?.partido || "" };
         fonte = "bairro";
       }
@@ -676,53 +926,77 @@ function getTooltipContentGeral(feature, zona) {
   return html;
 }
 
-// ---- COLORAÇÃO DO MAPA POR PARTIDO VENCEDOR ----
+// ---- COLORAÇÃO DO MAPA POR TOP-3 CANDIDATOS DO CARGO ----
+// Antes colorido por partido vencedor (PT/PL/outro) — com só 2 cores nomeadas
+// e todo o resto caindo em "outro partido" cinza, ficava difícil diferenciar
+// bairros. Agora colore pelos 3 candidatos mais votados do cargo (no
+// município inteiro): cada bairro recebe a cor de quem, ENTRE ESSES TRÊS,
+// teve mais votos ali — não necessariamente o vencedor absoluto do bairro.
 
-/**
- * Retorna a cor de preenchimento para um bairro/zona.
- * Prioridade: dados reais do bairro > dados da zona.
- * PT → vermelho, PL → azul, outros → cinza.
- */
-function getCorVencedorBairro(bairroNomeFeature, zona) {
-  const CORES = { PT: { fill: "#c62828", opacity: 0.5 }, PL: { fill: "#1565c0", opacity: 0.5 } };
-  const COR_OUTRO = { fill: "#607d8b", opacity: 0.30 };
+const CORES_TOP3 = ["#e53935", "#1e88e5", "#f9a825"]; // 1º vermelho, 2º azul, 3º âmbar
 
-  // --- Tenta dados reais por bairro ---
+/** Os até-3 candidatos mais votados do cargo/turno atual (município inteiro). */
+function getTop3CandidatosCargo() {
+  const cargoData = getTotais()?.[currentCargo];
+  const cfg = cargoCfg(currentCargo);
+  const t1 = cargoData?.["1"] || [];
+  const t2 = cargoData?.["2"] || [];
+  const hasTurno2 = cfg?.turnos && t2.length > 0;
+  const lista = (hasTurno2 ? cargoData[currentTurno] : t1) || [];
+  return lista.slice(0, 3);
+}
+
+/** Votos de um candidato (nome de urna) em um bairro (ou zona, como fallback). */
+function getVotosCandidatoLocal(urnaNome, bairroNomeFeature, zona) {
   if (votosPorBairroGeral) {
     const bairroKey = resolveBairroKey(bairroNomeFeature);
     if (bairroKey) {
-      const lista = votosPorBairroGeral.bairros[bairroKey]?.[currentCargo];
-      if (lista && lista.length) {
-        const nomeVencedor = lista[0].nome;
-        // Encontra partido nos metadados do tseData (totais)
-        const totais = tseData?.totais?.[currentCargo]?.["1"] || [];
-        const meta = totais.find(c => normBairro(c.nome) === normBairro(nomeVencedor));
-        const partido = (meta?.partido || "").toUpperCase();
-        return CORES[partido] || COR_OUTRO;
-      }
+      const lista = votosPorBairroGeral.bairros[bairroKey]?.[currentCargo] || [];
+      const normFull = normBairro(resolveNomeFullGeral(currentCargo, urnaNome));
+      const normUrna = normBairro(urnaNome);
+      const c = lista.find(x => {
+        const n = normBairro(x.nome);
+        return n === normFull || n === normUrna;
+      });
+      if (c) return c.votos;
     }
   }
-
-  // --- Fallback: dados da zona ---
-  if (!tseData || !zona) return null;
-  const zonaData = tseData.zonas[zona];
-  if (!zonaData) return null;
-  const candidatos = zonaData[currentCargo]?.["1"] || [];
-  if (!candidatos.length) return null;
-  const partido = (candidatos[0].partido || "").toUpperCase();
-  return CORES[partido] || COR_OUTRO;
+  if (tseData && zona) {
+    const candidatos = tseData.zonas[zona]?.[currentCargo]?.["1"] || [];
+    const c = candidatos.find(x => normBairro(x.nome) === normBairro(urnaNome));
+    if (c) return c.votos;
+  }
+  return 0;
 }
 
 /**
- * Pinta os polígonos do mapa com a cor do partido vencedor por bairro (ou zona).
+ * Retorna a cor do bairro: a de quem, entre os 3 primeiros colocados do
+ * cargo, teve mais votos ali. null se nenhum dos três teve voto registrado
+ * (bairro sem dado específico nem na zona).
+ */
+function getCorVencedorBairro(bairroNomeFeature, zona, top3) {
+  let melhorIdx = -1;
+  let melhorVotos = 0;
+  top3.forEach((c, idx) => {
+    const votos = getVotosCandidatoLocal(c.nome, bairroNomeFeature, zona);
+    if (votos > melhorVotos) { melhorVotos = votos; melhorIdx = idx; }
+  });
+  if (melhorIdx < 0) return null;
+  return { fill: CORES_TOP3[melhorIdx], opacity: 0.55 };
+}
+
+/**
+ * Pinta os polígonos do mapa com a cor de quem, entre os 3 primeiros
+ * colocados do cargo, teve mais votos em cada bairro (ou zona, como fallback).
  */
 function colorirMapaPartidoVencedor() {
   if (!neighborhoodLayer) return;
+  const top3 = getTop3CandidatosCargo();
   neighborhoodLayer.eachLayer((layer) => {
     if (!layer.feature) return;
     const zona = layer.feature.properties._zona;
     const nome = layer.feature.properties.name || layer.feature.properties.nome || "";
-    const cor = getCorVencedorBairro(nome, zona);
+    const cor = top3.length ? getCorVencedorBairro(nome, zona, top3) : null;
     if (cor) {
       layer.setStyle({
         fillColor:   cor.fill,
@@ -736,70 +1010,40 @@ function colorirMapaPartidoVencedor() {
       layer.setStyle(getFeatureStyle(layer.feature, zona));
     }
   });
-  atualizarLegendaPartidos();
+  atualizarLegendaPartidos(top3);
 }
 
-/** Cria/atualiza a legenda de partidos no mapa (bottomright). */
+/**
+ * Cria/atualiza a legenda do top-3 no mapa (bottomleft — mesmo lugar onde
+ * antes ficava a legenda de zonas eleitorais, que não se aplica a esta página).
+ */
 let _legendaPartidosCtrl = null;
-function atualizarLegendaPartidos() {
+function limparLegendaTop3() {
   if (_legendaPartidosCtrl) {
     _legendaPartidosCtrl.remove();
     _legendaPartidosCtrl = null;
   }
+}
+function atualizarLegendaPartidos(top3) {
+  limparLegendaTop3();
+  if (!tseData || !top3 || !top3.length) return;
 
-  if (!tseData) return;
+  const cargo = cargoCfg(currentCargo)?.label || currentCargo;
+  const fonte = votosPorBairroGeral ? "por bairro" : "por zona";
 
-  // Descobre quais partidos aparecem como vencedores
-  const partidos = new Set();
-  if (votosPorBairroGeral) {
-    // Usa dados por bairro
-    const totais = tseData.totais?.[currentCargo]?.["1"] || [];
-    const metaMap = {};
-    for (const c of totais) metaMap[normBairro(c.nome)] = c;
-
-    for (const [bairro, cargos] of Object.entries(votosPorBairroGeral.bairros)) {
-      const lista = cargos[currentCargo];
-      if (lista && lista.length) {
-        const meta = metaMap[normBairro(lista[0].nome)];
-        if (meta?.partido) partidos.add(meta.partido.toUpperCase());
-      }
-    }
-  } else {
-    // Fallback: usa dados por zona
-    for (const zona of getZonas()) {
-      const candidatos = tseData.zonas[zona]?.[currentCargo]?.["1"] || [];
-      if (candidatos.length) partidos.add((candidatos[0].partido || "").toUpperCase());
-    }
-  }
-
-  const CORES_PARTIDO = { PT: "#c62828", PL: "#1565c0" };
-  const itens = [...partidos].sort().map(p => ({
-    partido: p,
-    cor: CORES_PARTIDO[p] || "#607d8b",
-    label: p,
-  }));
-
-  if (!itens.length) return;
-
-  _legendaPartidosCtrl = L.control({ position: "bottomright" });
+  _legendaPartidosCtrl = L.control({ position: "bottomleft" });
   _legendaPartidosCtrl.onAdd = () => {
     const div = L.DomUtil.create("div", "");
     div.id = "map-legend-partidos";
-    const cargo = cargoCfg(currentCargo)?.label || currentCargo;
-    const fonte = votosPorBairroGeral ? "por bairro" : "por zona";
     div.innerHTML = `
-      <h4>${cargo} — vencedor</h4>
-      ${itens.map(i => `
+      <h4>${cargo} — 3 primeiros</h4>
+      ${top3.map((c, idx) => `
         <div class="legend-item">
-          <div class="legend-color" style="background:${i.cor};opacity:0.85"></div>
-          <span>${i.label}</span>
+          <div class="legend-color" style="background:${CORES_TOP3[idx]};opacity:0.85"></div>
+          <span>${c.nome}${c.partido ? ` (${c.partido})` : ""}</span>
         </div>`).join("")}
-      <div class="legend-item" style="margin-top:4px">
-        <div class="legend-color" style="background:#607d8b;opacity:0.7"></div>
-        <span>Outro partido</span>
-      </div>
       <div style="font-size:0.62rem;color:var(--text-muted);margin-top:6px;border-top:1px solid rgba(255,255,255,0.1);padding-top:4px">
-        Dados ${fonte}
+        Dados ${fonte} · cor = quem dos 3 venceu ali
       </div>
     `;
     return div;
@@ -815,6 +1059,8 @@ async function changeYear(year) {
   currentBairroGeral = null;
   currentTurno = "1";
   candidatoDestaque = null;
+  currentCandidatoFiltro = "";
+  renderRankingBoxItens(null, null);
   showLoading(true);
   setLoadingStatus(`Carregando dados de ${year}...`);
 
@@ -828,10 +1074,10 @@ async function changeYear(year) {
     showDataErrorBanner(year, result.error);
   } else {
     hideNoBanner();
+    buildNomeMappingGeral();
     buildZoneColors(getZonas());
-    updateLegend(getZonas());
     displayTotaisGerais();
-    colorirMapaPartidoVencedor();
+    colorirMapaPartidoVencedor(); // recria a legenda do top-3 (bottomleft)
   }
   showLoading(false);
 }
@@ -854,7 +1100,10 @@ async function init() {
     loadYearData(currentYear),
     loadVotosPorBairroGeral(currentYear),
   ]);
-  if (result.ok) buildZoneColors(getZonas());
+  if (result.ok) {
+    buildNomeMappingGeral();
+    buildZoneColors(getZonas());
+  }
 
   setLoadingStatus("Buscando contorno de Cotia (OpenStreetMap)...");
   const municipioGeoJSON = await fetchCotiaMunicipio(setLoadingStatus);
@@ -894,9 +1143,8 @@ async function init() {
   if (result.error) {
     showDataErrorBanner(currentYear, result.error);
   } else {
-    if (getZonas().length) updateLegend(getZonas());
     displayTotaisGerais();
-    colorirMapaPartidoVencedor();
+    colorirMapaPartidoVencedor(); // cria a legenda do top-3 (bottomleft)
   }
 
   showLoading(false);

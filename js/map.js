@@ -437,7 +437,12 @@ out skel qt;
 }
 
 /**
- * Carrega o contorno do município de Cotia.
+ * Carrega o contorno do município de Cotia (Overpass API).
+ * A Overpass API (overpass-api.de) é instável — às vezes retorna erro ou timeout
+ * sem motivo aparente. Sem um fallback, isso deixa a máscara externa (fundo
+ * branco fora de Cotia) sem renderizar, mostrando a região metropolitana inteira.
+ * Por isso cai para data/cotia_municipio.geojson (contorno salvo localmente)
+ * sempre que a API externa falhar ou retornar vazio.
  */
 async function fetchCotiaMunicipio(onStatus) {
   const query = `
@@ -460,9 +465,26 @@ out skel qt;
     if (!response.ok) throw new Error(`Overpass API: ${response.status}`);
     const data = await response.json();
     const geojson = osmtogeojson(data);
+    if (!geojson?.features?.length) throw new Error("Overpass retornou contorno vazio");
     return geojson;
   } catch (err) {
-    console.error("Erro ao buscar município:", err);
+    console.warn("Overpass indisponível para contorno do município, usando fallback local:", err);
+    return fetchCotiaMunicipioFallback(onStatus);
+  }
+}
+
+/**
+ * Fallback: contorno de Cotia salvo em data/cotia_municipio.geojson
+ * (relation/298252, admin_level=8 — mesmo filtro da query Overpass acima).
+ */
+async function fetchCotiaMunicipioFallback(onStatus) {
+  if (onStatus) onStatus("Overpass indisponível — usando contorno local de Cotia...");
+  try {
+    const r = await fetch("./data/cotia_municipio.geojson");
+    if (!r.ok) return null;
+    return await r.json();
+  } catch (err) {
+    console.error("Fallback do contorno de Cotia também falhou:", err);
     return null;
   }
 }
@@ -610,12 +632,15 @@ function renderLocaisVotacao(locais, onLocaisClick) {
 }
 
 /**
- * Cria/atualiza a caixa de ranking de votos por bairro para o vereador selecionado.
- * @param {string} vereadorNome  - Nome do vereador (ou "" para limpar)
- * @param {Object} dadosBairro   - Objeto { BAIRRO: { vereadores: [{nome, votos}] } }
+ * Cria/atualiza a caixa de ranking de votos por bairro a partir de uma lista
+ * de itens ja resolvida ({ bairro, votos }). Compartilhada entre a pagina
+ * municipal (vereador) e a de eleicoes gerais (qualquer cargo), que resolvem
+ * os itens de formas diferentes mas renderizam a mesma caixa.
+ * @param {string} titulo     - Nome do candidato (ou "" / null para limpar)
+ * @param {Array}  itens      - [{ bairro, votos }], ou null se dados indisponiveis
+ * @param {string} [emptyMsg] - Mensagem quando itens e null
  */
-function renderRankingBox(vereadorNome, dadosBairro) {
-  // Remove caixa anterior
+function renderRankingBoxItens(titulo, itens, emptyMsg) {
   if (rankingControl) {
     rankingControl.remove();
     rankingControl = null;
@@ -627,45 +652,29 @@ function renderRankingBox(vereadorNome, dadosBairro) {
     L.DomEvent.disableScrollPropagation(div);
     L.DomEvent.disableClickPropagation(div);
 
-    if (!vereadorNome) {
-      div.innerHTML = `<div class="ranking-title">Votos por Bairro</div><div class="ranking-empty">Nenhum vereador selecionado</div>`;
+    if (!titulo) {
+      div.innerHTML = `<div class="ranking-title">Votos por Bairro</div><div class="ranking-empty">Nenhum candidato selecionado</div>`;
       return div;
     }
 
-    if (!dadosBairro) {
+    if (!itens) {
       div.innerHTML = `
-        <div class="ranking-title">${vereadorNome}</div>
-        <div class="ranking-empty">Dados por bairro não disponíveis.<br>Execute:<br><code>python scripts/download_secoes.py</code></div>`;
+        <div class="ranking-title">${titulo}</div>
+        <div class="ranking-empty">${emptyMsg || "Dados por bairro nao disponiveis."}</div>`;
       return div;
     }
 
-    // Coleta e ordena votos por bairro para o vereador
-    // Usa resolveNomeFull() para converter nome-de-urna em nome-completo (datasets distintos)
-    const normalizeN = s => (s || "").normalize("NFD").replace(/[\u0300-\u036f]/g, "").toUpperCase().trim();
-    const fullNome = (typeof resolveNomeFull === "function") ? resolveNomeFull(vereadorNome) : vereadorNome;
-    const normalizedFull = normalizeN(fullNome);
-    const normalizedUrna = normalizeN(vereadorNome);
-    const itens = [];
-    for (const [bairro, data] of Object.entries(dadosBairro)) {
-      const c = (data.vereadores || []).find(v => {
-        const n = normalizeN(v.nome);
-        return n === normalizedFull || n === normalizedUrna;
-      });
-      if (c && c.votos > 0) {
-        itens.push({ bairro, votos: c.votos });
-      }
-    }
-    itens.sort((a, b) => b.votos - a.votos);
+    const sorted = [...itens].sort((a, b) => b.votos - a.votos);
 
-    if (!itens.length) {
+    if (!sorted.length) {
       div.innerHTML = `
-        <div class="ranking-title">${vereadorNome}</div>
-        <div class="ranking-empty">Sem votos por bairro disponíveis</div>`;
+        <div class="ranking-title">${titulo}</div>
+        <div class="ranking-empty">Sem votos por bairro disponiveis</div>`;
       return div;
     }
 
-    const totalVotos = itens.reduce((s, i) => s + i.votos, 0);
-    const rows = itens.map((item, idx) =>
+    const totalVotos = sorted.reduce((s, i) => s + i.votos, 0);
+    const rows = sorted.map((item, idx) =>
       `<tr class="ranking-tr">
         <td class="ranking-rank">${idx + 1}</td>
         <td class="ranking-bairro">${item.bairro}</td>
@@ -674,8 +683,8 @@ function renderRankingBox(vereadorNome, dadosBairro) {
     ).join("");
 
     div.innerHTML = `
-      <div class="ranking-title">${vereadorNome}</div>
-      <div class="ranking-total">${totalVotos.toLocaleString("pt-BR")} votos em ${itens.length} bairro${itens.length !== 1 ? "s" : ""}</div>
+      <div class="ranking-title">${titulo}</div>
+      <div class="ranking-total">${totalVotos.toLocaleString("pt-BR")} votos em ${sorted.length} bairro${sorted.length !== 1 ? "s" : ""}</div>
       <div class="ranking-list">
         <table class="ranking-table">
           <thead>
@@ -691,6 +700,38 @@ function renderRankingBox(vereadorNome, dadosBairro) {
     return div;
   };
   rankingControl.addTo(map);
+}
+
+/**
+ * Cria/atualiza a caixa de ranking de votos por bairro para o vereador selecionado.
+ * @param {string} vereadorNome  - Nome do vereador (ou "" para limpar)
+ * @param {Object} dadosBairro   - Objeto { BAIRRO: { vereadores: [{nome, votos}] } }
+ */
+function renderRankingBox(vereadorNome, dadosBairro) {
+  if (!vereadorNome) { renderRankingBoxItens(null, null); return; }
+
+  if (!dadosBairro) {
+    renderRankingBoxItens(vereadorNome, null,
+      `Dados por bairro nao disponiveis.<br>Execute:<br><code>python scripts/download_secoes.py</code>`);
+    return;
+  }
+
+  const normalizeN = s => (s || "").normalize("NFD").replace(/[\u0300-\u036f]/g, "").toUpperCase().trim();
+  const fullNome = (typeof resolveNomeFull === "function") ? resolveNomeFull(vereadorNome) : vereadorNome;
+  const normalizedFull = normalizeN(fullNome);
+  const normalizedUrna = normalizeN(vereadorNome);
+  const itens = [];
+  for (const [bairro, data] of Object.entries(dadosBairro)) {
+    const c = (data.vereadores || []).find(v => {
+      const n = normalizeN(v.nome);
+      return n === normalizedFull || n === normalizedUrna;
+    });
+    if (c && c.votos > 0) {
+      itens.push({ bairro, votos: c.votos });
+    }
+  }
+
+  renderRankingBoxItens(vereadorNome, itens);
 }
 
 /**

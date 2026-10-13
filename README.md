@@ -20,7 +20,7 @@ Aplicação web interativa com os resultados eleitorais de Cotia/SP, visualizado
 ### Mapa
 - Polígonos interativos dos bairros de Cotia (via [Overpass API / OpenStreetMap](https://overpass-api.de))
 - Fallback automático para diagrama de Voronoi gerado a partir dos locais de votação do TSE quando o OSM não retorna polígonos suficientes
-- Máscara externa que destaca apenas o território de Cotia
+- Máscara externa que destaca apenas o território de Cotia — contorno buscado via Overpass API, com fallback para `data/cotia_municipio.geojson` (salvo localmente) quando a API está fora do ar ou instável
 - Troca de basemap: Escuro (padrão), Claro, OSM, Satélite (tiles Esri)
 - Geolocalização do usuário com marcador pulsante "Você está aqui"
 
@@ -38,8 +38,11 @@ Aplicação web interativa com os resultados eleitorais de Cotia/SP, visualizado
 - 5 abas de cargo: Presidente · Governador · Senador · Dep. Federal · Dep. Estadual
 - Clique no bairro exibe os dados reais **daquele bairro** (badge verde "dados por bairro")
 - Fallback automático para dados da zona quando o bairro não está mapeado
-- Coloração do mapa pelo partido vencedor **por bairro individual**: 🔵 PL · 🔴 PT · ⚫ outros
-- A cor muda ao trocar de cargo — cada cargo pode ter um vencedor diferente por bairro
+- Coloração do mapa pelos **3 candidatos mais votados do cargo** (município inteiro): cada bairro fica com a cor de quem, entre os 3, teve mais votos ali — 🔴 1º colocado · 🔵 2º colocado · 🟡 3º colocado
+- Legenda com os 3 nomes e cores no canto inferior esquerdo (mesmo lugar onde antes ficava a legenda de zonas eleitorais)
+- A cor muda ao trocar de cargo — cada cargo tem seus próprios 3 primeiros colocados e vencedores por bairro
+- Combobox "Ver votos por bairro de um candidato" (qualquer cargo, qualquer candidato) — colore o mapa por intensidade de votos e mostra ranking de bairros, igual ao filtro de vereador da página municipal
+- Destaque de candidato por ícone no mapa (🔵 Presidente/Governador) — mostra onde aquele candidato venceu, bairro a bairro
 - Botão "Ver dados gerais" no header do sidebar para voltar à visão de Cotia inteira
 - Tooltip com candidato vencedor, partido e total de votos
 
@@ -132,7 +135,8 @@ mapaEleicoesCotia/
 │   ├── cotia_votos_por_bairro.json   # Votos municipais por bairro (780KB)
 │   ├── cotia_votos_por_bairro_2026.json  # Votos gerais 2026 por bairro (2.4MB)
 │   ├── cotia_votos_por_escola.json   # Abstenção por local de votação (16KB)
-│   └── cotia_nome_map.json           # Mapeamento nome urna ↔ nome completo (13KB)
+│   ├── cotia_nome_map.json           # Mapeamento nome urna ↔ nome completo (13KB)
+│   └── cotia_municipio.geojson       # Contorno de Cotia (fallback do Overpass, 40KB)
 │
 ├── scripts/
 │   ├── download_tse.py               # Baixa dados municipais 2024 por zona
