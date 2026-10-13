@@ -99,6 +99,44 @@ let currentZona  = null;
 let currentBairroGeral = null;   // nome do bairro selecionado (chave em votosPorBairroGeral)
 let votosPorBairroGeral = null;  // dados de cotia_votos_por_bairro_<ano>.json
 
+// Candidato atualmente destacado no mapa (highlight por clique no ícone)
+let candidatoDestaque = null;  // { nome, cor } ou null
+
+// Cores pré-definidas por nome de urna (maiúsculas) — usadas pelo seletor de cor
+// Ordem: PT vermelho, PL azul, outros cores distintas
+const CORES_CANDIDATO_PADRAO = {
+  // 2026 — Presidente
+  "LULA":                      "#e53935", // vermelho PT
+  "FLAVIO BOLSONARO":          "#1e88e5", // azul PL
+  "ESCRITOR AUGUSTO CURY":     "#f9a825", // âmbar
+  "RENAN SANTOS":              "#7b1fa2", // roxo
+  "RONALDO CAIADO":            "#00897b", // teal
+  "ZEMA":                      "#43a047", // verde
+  // 2026 — Governador
+  "TARCÍSIO":                  "#1565c0", // azul escuro
+  "FERNANDO HADDAD":           "#c62828", // vermelho
+  "VERA LÚCIA":                "#6a1b9a", // roxo escuro
+  // 2022 — Presidente
+  "JAIR BOLSONARO":            "#1e88e5", // azul PL
+  // 2022 — Governador
+  "TARCISIO GOMES DE FREITAS": "#1565c0",
+  "RODRIGO GARCIA":            "#fb8c00", // laranja
+};
+
+// Paleta de cores disponíveis no seletor (nome → hex)
+const PALETA_CORES = [
+  { label: "Vermelho",     value: "#e53935" },
+  { label: "Azul",         value: "#1e88e5" },
+  { label: "Azul escuro",  value: "#1565c0" },
+  { label: "Verde",        value: "#43a047" },
+  { label: "Âmbar",        value: "#f9a825" },
+  { label: "Laranja",      value: "#fb8c00" },
+  { label: "Roxo",         value: "#7b1fa2" },
+  { label: "Teal",         value: "#00897b" },
+  { label: "Rosa",         value: "#e91e63" },
+  { label: "Cinza",        value: "#607d8b" },
+];
+
 function cargoCfg(key) {
   return CARGOS_GERAL.find((c) => c.key === key);
 }
@@ -250,14 +288,16 @@ function renderCargoTabs() {
 function switchCargo(key) {
   currentCargo = key;
   currentTurno = "1";
+  candidatoDestaque = null; // limpa destaque ao trocar de cargo
   renderSidebar();
-  // Recolorir mapa somente quando estamos em visão geral (sem zona selecionada)
-  if (!currentZona) colorirMapaPartidoVencedor();
+  if (!currentZona && !currentBairroGeral) colorirMapaPartidoVencedor();
 }
 
 function switchTurno(turno) {
   currentTurno = turno;
+  candidatoDestaque = null;
   renderSidebar();
+  if (!currentZona && !currentBairroGeral) colorirMapaPartidoVencedor();
 }
 
 function fonteInfo() {
@@ -268,7 +308,140 @@ function fonteInfo() {
   </div>`;
 }
 
-function renderCargoSection(cargoData, label) {
+// ---- HIGHLIGHT DE CANDIDATO NO MAPA ----
+
+/**
+ * Retorna a cor pré-definida de um candidato (pelo nome de urna normalizado).
+ * Percorre CORES_CANDIDATO_PADRAO com correspondência parcial por palavra-chave.
+ */
+function getCorPadraoCandidat(nomeUrna) {
+  const norm = normBairro(nomeUrna);
+  for (const [key, cor] of Object.entries(CORES_CANDIDATO_PADRAO)) {
+    if (normBairro(key) === norm) return cor;
+    // Correspondência por palavra principal (ex: "TARCÍSIO" dentro de "TARCISIO GOMES DE FREITAS")
+    const words = normBairro(key).split(" ").filter(w => w.length > 3);
+    if (words.length && words.every(w => norm.includes(w))) return cor;
+    if (norm.split(" ").filter(w => w.length > 3).every(w => normBairro(key).includes(w))) return cor;
+  }
+  return PALETA_CORES[Math.floor(Math.random() * PALETA_CORES.length)].value;
+}
+
+/**
+ * Ativa/desativa o highlight de um candidato no mapa.
+ * Chamado pelo clique no ícone de mapa do card de candidato.
+ */
+function toggleHighlightCandidat(nomeUrna, cor) {
+  // Toggle: se já está ativo para este candidato, desativa
+  if (candidatoDestaque && candidatoDestaque.nome === nomeUrna) {
+    candidatoDestaque = null;
+    colorirMapaPartidoVencedor(); // volta para coloração por partido vencedor
+    renderSidebar();              // re-renderiza para atualizar o ícone ativo
+    return;
+  }
+  candidatoDestaque = { nome: nomeUrna, cor };
+  aplicarHighlightCandidato();
+  renderSidebar();
+}
+
+/**
+ * Pinta os bairros onde o candidatoDestaque venceu com a cor escolhida;
+ * os demais ficam esmaecidos (transparente + borda fraca).
+ */
+function aplicarHighlightCandidato() {
+  if (!neighborhoodLayer || !candidatoDestaque) return;
+
+  const { nome, cor } = candidatoDestaque;
+  const normNome = normBairro(nome);
+
+  neighborhoodLayer.eachLayer((layer) => {
+    if (!layer.feature) return;
+    const nomeFeat = layer.feature.properties.name || layer.feature.properties.nome || "";
+    const zona = layer.feature.properties._zona;
+
+    // Descobre quem venceu neste bairro para o cargo atual
+    let vencedor = null;
+    if (votosPorBairroGeral) {
+      const bairroKey = resolveBairroKey(nomeFeat);
+      if (bairroKey) {
+        const lista = votosPorBairroGeral.bairros[bairroKey]?.[currentCargo];
+        if (lista && lista.length) vencedor = normBairro(lista[0].nome);
+      }
+    }
+    if (!vencedor && tseData && zona) {
+      const lista = tseData.zonas[zona]?.[currentCargo]?.["1"] || [];
+      if (lista.length) vencedor = normBairro(lista[0].nome);
+    }
+
+    const ganhou = vencedor && (vencedor === normNome ||
+      normNome.split(" ").filter(w => w.length > 3).some(w => vencedor.includes(w)));
+
+    if (ganhou) {
+      layer.setStyle({
+        fillColor:   cor,
+        fillOpacity: 0.65,
+        color:       cor,
+        weight:      2.5,
+        opacity:     1,
+        dashArray:   null,
+      });
+    } else {
+      layer.setStyle({
+        fillColor:   "#000",
+        fillOpacity: 0.08,
+        color:       "rgba(255,255,255,0.15)",
+        weight:      1,
+        opacity:     0.5,
+        dashArray:   "4 4",
+      });
+    }
+  });
+}
+
+/**
+ * Gera o HTML do ícone de mapa + seletor de cor para um candidato.
+ * Só aparece para presidente e governador na visão geral (sem bairro selecionado).
+ */
+function renderIconeMapaCandidato(candidato) {
+  if (currentBairroGeral) return ""; // não mostra no detalhe de bairro
+  if (currentCargo !== "presidente" && currentCargo !== "governador") return "";
+
+  const isAtivo = candidatoDestaque?.nome === candidato.nome;
+  const corAtual = isAtivo
+    ? candidatoDestaque.cor
+    : getCorPadraoCandidat(candidato.nome);
+
+  // ID único baseado no índice do nome (sem caracteres especiais)
+  const id = "csel_" + normBairro(candidato.nome).replace(/\s+/g, "_").slice(0, 20);
+  const nomeEsc = candidato.nome.replace(/'/g, "\\'").replace(/"/g, "&quot;");
+
+  const opcoes = PALETA_CORES.map(p =>
+    `<option value="${p.value}" ${p.value === corAtual ? "selected" : ""}>${p.label}</option>`
+  ).join("");
+
+  return `
+    <div class="cand-map-ctrl${isAtivo ? " ativo" : ""}">
+      <select id="${id}" class="cand-cor-select" title="Cor do destaque"
+              onclick="event.stopPropagation()"
+              onchange="if(candidatoDestaque&&candidatoDestaque.nome==='${nomeEsc}'){candidatoDestaque.cor=this.value;aplicarHighlightCandidato();}">
+        ${opcoes}
+      </select>
+      <button class="cand-map-btn${isAtivo ? " ativo" : ""}"
+              title="${isAtivo ? "Desativar destaque" : "Destacar bairros no mapa"}"
+              onclick="toggleHighlightCandidat('${nomeEsc}', document.getElementById('${id}').value)">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+             stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z"/>
+          <circle cx="12" cy="10" r="3"/>
+        </svg>
+      </button>
+    </div>`;
+}
+
+/**
+ * Versão da renderCargoSection para eleições gerais que injeta ícones de mapa
+ * nos candidatos de Presidente e Governador na visão geral (totais).
+ */
+function renderCargoSectionGeral(cargoData, label) {
   const cfg = cargoCfg(currentCargo);
   const t1 = cargoData?.["1"] || [];
   const t2 = cargoData?.["2"] || [];
@@ -286,11 +459,28 @@ function renderCargoSection(cargoData, label) {
   }
 
   const candidatos = (hasTurno2 ? cargoData[currentTurno] : t1) || [];
-  const uid = `g_${currentCargo}`;
-  // renderVereadores já cuida de listas longas (10 visíveis + "ver mais");
-  // renderPrefeito mostra tudo direto — útil pra Presidente/Governador (poucos candidatos).
-  const renderFn = candidatos.length > 15 ? renderVereadores : renderPrefeito;
-  html += `<div class="candidate-list">${renderFn(candidatos, currentTurno, uid)}</div></div>`;
+  const maxVotos = candidatos[0]?.votos || 1;
+  const comIcone = currentCargo === "presidente" || currentCargo === "governador";
+
+  let cardsHtml;
+  if (comIcone && !currentBairroGeral) {
+    // Renderiza cada card com o ícone de mapa injetado
+    cardsHtml = candidatos.map(c =>
+      renderCandidateCard(c, maxVotos, renderIconeMapaCandidato(c))
+    ).join("");
+    // Nota: se tiver destaque ativo, mostra botão para limpar
+    if (candidatoDestaque) {
+      cardsHtml += `<button class="limpar-destaque-btn" onclick="toggleHighlightCandidat('${candidatoDestaque.nome.replace(/'/g,"\\'")}', '')">
+        ✕ Limpar destaque do mapa
+      </button>`;
+    }
+  } else {
+    const uid = `g_${currentCargo}`;
+    const renderFn = candidatos.length > 15 ? renderVereadores : renderPrefeito;
+    cardsHtml = renderFn(candidatos, currentTurno, uid);
+  }
+
+  html += `<div class="candidate-list">${cardsHtml}</div></div>`;
   return html;
 }
 
@@ -368,7 +558,7 @@ function renderSidebarTotais() {
   if (!totais) {
     html += `<p style="color:var(--text-muted);padding:12px 0;font-size:.8rem">Dados ainda não disponíveis.</p>`;
   } else {
-    html += renderCargoSection(totais[currentCargo], `${cfg.label} — Total Geral`);
+    html += renderCargoSectionGeral(totais[currentCargo], `${cfg.label} — Total Geral`);
   }
   html += fonteInfo();
   document.getElementById("sidebar-content").innerHTML = html;
@@ -430,7 +620,12 @@ function displayTotaisGerais() {
       Todas as Zonas
     </span>`;
   renderSidebarTotais();
-  colorirMapaPartidoVencedor();
+  // Aplica destaque ativo ou coloração por partido
+  if (candidatoDestaque) {
+    aplicarHighlightCandidato();
+  } else {
+    colorirMapaPartidoVencedor();
+  }
 }
 
 /** Tooltip de bairro: candidato vencedor (por bairro se disponível, senão por zona). */
@@ -619,6 +814,7 @@ async function changeYear(year) {
   currentZona = null;
   currentBairroGeral = null;
   currentTurno = "1";
+  candidatoDestaque = null;
   showLoading(true);
   setLoadingStatus(`Carregando dados de ${year}...`);
 

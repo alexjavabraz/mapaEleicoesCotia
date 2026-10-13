@@ -291,8 +291,11 @@ function getSituacaoBadgeClass(situacao) {
 
 /**
  * Gera HTML do card de um candidato.
+ * @param {Object} candidato
+ * @param {number} maxVotos  - usado para calcular a largura da barra
+ * @param {string} [extraHtml] - HTML extra injetado no header (ex: ícone de mapa)
  */
-function renderCandidateCard(candidato, maxVotos) {
+function renderCandidateCard(candidato, maxVotos, extraHtml) {
   const pct = maxVotos > 0 ? (candidato.votos / maxVotos) * 100 : 0;
   const situacaoClass = getSituacaoClass(candidato.situacao);
   const badgeClass = getSituacaoBadgeClass(candidato.situacao);
@@ -307,11 +310,14 @@ function renderCandidateCard(candidato, maxVotos) {
   return `
     <div class="candidate-card ${situacaoClass}">
       <div class="candidate-header">
-        <div>
+        <div style="flex:1;min-width:0">
           <div class="candidate-name">${candidato.nome}</div>
           ${situacaoLabel}
         </div>
-        <span class="candidate-partido">${candidato.partido || "??"}</span>
+        <div class="candidate-header-right">
+          <span class="candidate-partido">${candidato.partido || "??"}</span>
+          ${extraHtml || ""}
+        </div>
       </div>
       <div class="vote-bar-wrapper">
         <div class="vote-bar">

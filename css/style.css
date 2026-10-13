@@ -329,6 +329,92 @@ html, body {
   margin-bottom: 6px;
 }
 
+/* Lado direito do header: partido + ícone de mapa */
+.candidate-header-right {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  flex-shrink: 0;
+}
+
+/* Container do controle de mapa por candidato */
+.cand-map-ctrl {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+/* Select de cor do destaque */
+.cand-cor-select {
+  background: rgba(255,255,255,0.07);
+  color: var(--text-muted);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 4px;
+  font-size: 0.62rem;
+  padding: 2px 3px;
+  cursor: pointer;
+  width: 76px;
+  outline: none;
+  transition: border-color 0.15s;
+}
+.cand-cor-select:hover,
+.cand-cor-select:focus {
+  border-color: rgba(255,255,255,0.3);
+  color: var(--text);
+}
+.cand-map-ctrl.ativo .cand-cor-select {
+  border-color: rgba(255,255,255,0.35);
+  color: var(--text);
+}
+
+/* Botão ícone de mapa */
+.cand-map-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  background: rgba(255,255,255,0.07);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 4px;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+  flex-shrink: 0;
+}
+.cand-map-btn:hover {
+  background: rgba(255,255,255,0.15);
+  color: var(--text);
+  border-color: rgba(255,255,255,0.3);
+}
+.cand-map-btn.ativo {
+  background: rgba(233,69,96,0.2);
+  color: #e94560;
+  border-color: rgba(233,69,96,0.5);
+}
+.cand-map-btn.ativo:hover {
+  background: rgba(233,69,96,0.35);
+}
+
+/* Botão limpar destaque */
+.limpar-destaque-btn {
+  display: block;
+  width: 100%;
+  margin-top: 8px;
+  padding: 5px 10px;
+  background: rgba(233,69,96,0.1);
+  color: #e94560;
+  border: 1px solid rgba(233,69,96,0.25);
+  border-radius: 5px;
+  font-size: 0.72rem;
+  cursor: pointer;
+  text-align: center;
+  transition: background 0.15s;
+}
+.limpar-destaque-btn:hover {
+  background: rgba(233,69,96,0.22);
+}
+
 .candidate-name {
   font-size: 0.85rem;
   font-weight: 600;
