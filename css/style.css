@@ -157,6 +157,45 @@ html, body {
   color: white;
 }
 
+/* Linha flex para header com botão "Ver dados gerais" */
+.sidebar-header-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.ver-geral-btn {
+  flex-shrink: 0;
+  background: rgba(233,69,96,0.15);
+  color: #e94560;
+  border: 1px solid rgba(233,69,96,0.35);
+  border-radius: 6px;
+  padding: 5px 10px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.15s;
+  margin-top: 2px;
+}
+
+.ver-geral-btn:hover {
+  background: rgba(233,69,96,0.3);
+}
+
+/* Aviso de dados parciais (1º turno, etc.) */
+.turno-aviso {
+  background: rgba(255,183,77,0.12);
+  border: 1px solid rgba(255,183,77,0.3);
+  border-radius: 6px;
+  padding: 7px 10px;
+  font-size: 0.72rem;
+  color: #ffb74d;
+  margin-bottom: 10px;
+  line-height: 1.4;
+}
+
 #sidebar-content {
   flex: 1;
   overflow-y: auto;
@@ -400,6 +439,26 @@ html, body {
 }
 
 #map-legend h4 {
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 0.65rem;
+  margin-bottom: 6px;
+}
+
+/* Legenda de partidos (eleicao-geral.html) */
+#map-legend-partidos {
+  background: rgba(18, 18, 42, 0.92);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 8px;
+  padding: 10px 14px;
+  z-index: 800;
+  font-size: 0.75rem;
+  backdrop-filter: blur(4px);
+  max-width: 190px;
+}
+
+#map-legend-partidos h4 {
   color: var(--text-muted);
   text-transform: uppercase;
   letter-spacing: 0.08em;
