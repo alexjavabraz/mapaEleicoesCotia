@@ -416,8 +416,18 @@ function fonteInfo() {
  * correspondência parcial por palavra-chave (ex: "TARCÍSIO" dentro de
  * "TARCISIO GOMES DE FREITAS").
  */
+// Cores fixas (hardcoded) para os dois candidatos à Presidência mais citados —
+// checadas por igualdade exata antes de qualquer lógica de palavra-chave, para
+// nunca depender de matching aproximado: Lula sempre vermelho, Flávio Bolsonaro
+// sempre azul, não importa a posição no ranking de votos.
+const CORES_HARDCODED = {
+  "LULA": "#e53935",
+  "FLAVIO BOLSONARO": "#1e88e5",
+};
+
 function getCorCandidatoConhecido(nomeUrna) {
   const norm = normBairro(nomeUrna);
+  if (CORES_HARDCODED[norm]) return CORES_HARDCODED[norm];
   for (const [key, cor] of Object.entries(CORES_CANDIDATO_PADRAO)) {
     const keyNorm = normBairro(key);
     if (keyNorm === norm) return cor;
