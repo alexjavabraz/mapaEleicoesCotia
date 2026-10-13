@@ -411,19 +411,26 @@ function fonteInfo() {
 // ---- HIGHLIGHT DE CANDIDATO NO MAPA ----
 
 /**
- * Retorna a cor pré-definida de um candidato (pelo nome de urna normalizado).
- * Percorre CORES_CANDIDATO_PADRAO com correspondência parcial por palavra-chave.
+ * Retorna a cor pré-definida de um candidato (pelo nome de urna normalizado),
+ * ou null se não houver uma em CORES_CANDIDATO_PADRAO. Percorre com
+ * correspondência parcial por palavra-chave (ex: "TARCÍSIO" dentro de
+ * "TARCISIO GOMES DE FREITAS").
  */
-function getCorPadraoCandidat(nomeUrna) {
+function getCorCandidatoConhecido(nomeUrna) {
   const norm = normBairro(nomeUrna);
   for (const [key, cor] of Object.entries(CORES_CANDIDATO_PADRAO)) {
-    if (normBairro(key) === norm) return cor;
-    // Correspondência por palavra principal (ex: "TARCÍSIO" dentro de "TARCISIO GOMES DE FREITAS")
-    const words = normBairro(key).split(" ").filter(w => w.length > 3);
+    const keyNorm = normBairro(key);
+    if (keyNorm === norm) return cor;
+    const words = keyNorm.split(" ").filter(w => w.length > 3);
     if (words.length && words.every(w => norm.includes(w))) return cor;
-    if (norm.split(" ").filter(w => w.length > 3).every(w => normBairro(key).includes(w))) return cor;
+    if (norm.split(" ").filter(w => w.length > 3).every(w => keyNorm.includes(w))) return cor;
   }
-  return PALETA_CORES[Math.floor(Math.random() * PALETA_CORES.length)].value;
+  return null;
+}
+
+/** Como getCorCandidatoConhecido(), mas sorteia uma cor da paleta quando não há uma pré-definida. */
+function getCorPadraoCandidat(nomeUrna) {
+  return getCorCandidatoConhecido(nomeUrna) || PALETA_CORES[Math.floor(Math.random() * PALETA_CORES.length)].value;
 }
 
 /**
@@ -933,7 +940,9 @@ function getTooltipContentGeral(feature, zona) {
 // município inteiro): cada bairro recebe a cor de quem, ENTRE ESSES TRÊS,
 // teve mais votos ali — não necessariamente o vencedor absoluto do bairro.
 
-const CORES_TOP3 = ["#e53935", "#1e88e5", "#f9a825"]; // 1º vermelho, 2º azul, 3º âmbar
+// Fallback determinístico por posição, usado só quando o candidato não tem
+// cor conhecida em CORES_CANDIDATO_PADRAO (ex: Senador, Dep. Federal/Estadual).
+const CORES_TOP3_FALLBACK = ["#e53935", "#1e88e5", "#f9a825"]; // 1º vermelho, 2º azul, 3º âmbar
 
 /** Os até-3 candidatos mais votados do cargo/turno atual (município inteiro). */
 function getTop3CandidatosCargo() {
@@ -944,6 +953,39 @@ function getTop3CandidatosCargo() {
   const hasTurno2 = cfg?.turnos && t2.length > 0;
   const lista = (hasTurno2 ? cargoData[currentTurno] : t1) || [];
   return lista.slice(0, 3);
+}
+
+/**
+ * Cores dos 3 primeiros colocados, alinhadas por índice com getTop3CandidatosCargo().
+ * Prioridade: cor de identidade do candidato (Lula vermelho, Flávio azul, ...,
+ * de CORES_CANDIDATO_PADRAO) — assim a cor de cada um não muda conforme a
+ * posição no ranking. Quem não tem cor conhecida (ex: candidatos a Senador/
+ * Deputado) recebe a próxima cor disponível do fallback por posição, sem
+ * repetir uma cor já usada por outro dos três.
+ */
+function getCoresTop3(top3) {
+  const cores = new Array(top3.length).fill(null);
+  const usadas = new Set();
+
+  top3.forEach((c, idx) => {
+    const cor = getCorCandidatoConhecido(c.nome);
+    if (cor && !usadas.has(cor)) {
+      cores[idx] = cor;
+      usadas.add(cor);
+    }
+  });
+
+  let fallbackIdx = 0;
+  cores.forEach((cor, idx) => {
+    if (cor) return;
+    while (usadas.has(CORES_TOP3_FALLBACK[fallbackIdx % CORES_TOP3_FALLBACK.length])) fallbackIdx++;
+    const corFallback = CORES_TOP3_FALLBACK[fallbackIdx % CORES_TOP3_FALLBACK.length];
+    cores[idx] = corFallback;
+    usadas.add(corFallback);
+    fallbackIdx++;
+  });
+
+  return cores;
 }
 
 /** Votos de um candidato (nome de urna) em um bairro (ou zona, como fallback). */
@@ -974,7 +1016,7 @@ function getVotosCandidatoLocal(urnaNome, bairroNomeFeature, zona) {
  * cargo, teve mais votos ali. null se nenhum dos três teve voto registrado
  * (bairro sem dado específico nem na zona).
  */
-function getCorVencedorBairro(bairroNomeFeature, zona, top3) {
+function getCorVencedorBairro(bairroNomeFeature, zona, top3, cores) {
   let melhorIdx = -1;
   let melhorVotos = 0;
   top3.forEach((c, idx) => {
@@ -982,7 +1024,7 @@ function getCorVencedorBairro(bairroNomeFeature, zona, top3) {
     if (votos > melhorVotos) { melhorVotos = votos; melhorIdx = idx; }
   });
   if (melhorIdx < 0) return null;
-  return { fill: CORES_TOP3[melhorIdx], opacity: 0.55 };
+  return { fill: cores[melhorIdx], opacity: 0.55 };
 }
 
 /**
@@ -992,11 +1034,12 @@ function getCorVencedorBairro(bairroNomeFeature, zona, top3) {
 function colorirMapaPartidoVencedor() {
   if (!neighborhoodLayer) return;
   const top3 = getTop3CandidatosCargo();
+  const cores = getCoresTop3(top3);
   neighborhoodLayer.eachLayer((layer) => {
     if (!layer.feature) return;
     const zona = layer.feature.properties._zona;
     const nome = layer.feature.properties.name || layer.feature.properties.nome || "";
-    const cor = top3.length ? getCorVencedorBairro(nome, zona, top3) : null;
+    const cor = top3.length ? getCorVencedorBairro(nome, zona, top3, cores) : null;
     if (cor) {
       layer.setStyle({
         fillColor:   cor.fill,
@@ -1010,7 +1053,7 @@ function colorirMapaPartidoVencedor() {
       layer.setStyle(getFeatureStyle(layer.feature, zona));
     }
   });
-  atualizarLegendaPartidos(top3);
+  atualizarLegendaPartidos(top3, cores);
 }
 
 /**
@@ -1024,7 +1067,7 @@ function limparLegendaTop3() {
     _legendaPartidosCtrl = null;
   }
 }
-function atualizarLegendaPartidos(top3) {
+function atualizarLegendaPartidos(top3, cores) {
   limparLegendaTop3();
   if (!tseData || !top3 || !top3.length) return;
 
@@ -1039,7 +1082,7 @@ function atualizarLegendaPartidos(top3) {
       <h4>${cargo} — 3 primeiros</h4>
       ${top3.map((c, idx) => `
         <div class="legend-item">
-          <div class="legend-color" style="background:${CORES_TOP3[idx]};opacity:0.85"></div>
+          <div class="legend-color" style="background:${cores[idx]};opacity:0.85"></div>
           <span>${c.nome}${c.partido ? ` (${c.partido})` : ""}</span>
         </div>`).join("")}
       <div style="font-size:0.62rem;color:var(--text-muted);margin-top:6px;border-top:1px solid rgba(255,255,255,0.1);padding-top:4px">
