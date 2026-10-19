@@ -210,7 +210,8 @@ body.contas-page {
 #t-viag-pivo tfoot td { font-weight: 600; border-top: 1px solid rgba(255,255,255,0.15); }
 #viag-detalhe { margin-top: 14px; }
 #viag-detalhe .motivo { color: var(--text-muted); font-size: 0.75rem; }
-#viag-detalhe a { color: var(--text-muted); }
+#viag-detalhe a,
+#viag-nota a { color: var(--text-muted); }
 
 /* ---- Fornecedor selecionado ---- */
 #fornecedor-sel { border-color: var(--highlight); }

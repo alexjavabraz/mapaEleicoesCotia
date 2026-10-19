@@ -28,6 +28,7 @@ import shutil
 import subprocess
 import sys
 import tempfile
+import time
 import unicodedata
 from collections import defaultdict
 from datetime import datetime, timezone
@@ -212,11 +213,16 @@ def main():
 
     viagens, nao_lidos, ocr = [], [], 0
     for href, rotulo in links:
-        try:
-            arq = baixar(sess, href)
-        except requests.RequestException as e:
-            print("  erro", href, e)
-            arq = None
+        arq = None
+        for tentativa in range(3):  # o Drive às vezes recusa downloads em sequência
+            try:
+                arq = baixar(sess, href)
+            except requests.RequestException as e:
+                print("  erro", href, e)
+            if arq or "open?id=0B" in href:  # links antigos "0B…" são privados
+                break
+            time.sleep(5 * (tentativa + 1))
+        time.sleep(0.5)
         if arq is None:
             nao_lidos.append({"rotulo": rotulo, "url": href, "motivo": "arquivo privado ou indisponível"})
             continue
