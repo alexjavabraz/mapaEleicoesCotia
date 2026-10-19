@@ -1,0 +1,41 @@
+name: Atualiza contas do município (TCE-SP)
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 9 10 * *"   # dia 10 de cada mês, 06:00 BRT
+  push:
+    branches: [claude/contas-municipio-cak3b6]
+    paths:
+      - scripts/download_contas.py
+      - .github/workflows/contas.yml
+
+permissions:
+  contents: write
+
+concurrency:
+  group: contas-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  atualizar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install requests
+      - run: python scripts/download_contas.py
+      - name: Commit do JSON atualizado
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/contas_cotia.json
+          if git diff --cached --quiet; then
+            echo "Sem mudanças."
+          else
+            git commit -m "dados: atualiza contas do município (TCE-SP)"
+            git push
+          fi
