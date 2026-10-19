@@ -36,6 +36,10 @@
     "Relatório": "Report",
     "PDF": "PDF",
     "lido por OCR, conferir no PDF": "read by OCR, check the PDF",
+    "não lido": "not read",
+    "custo parcial": "partial cost",
+    "{n} viagens com custo parcial: o adiantamento gasto não pôde ser lido do relatório e não entra no total.":
+      "{n} trips with partial cost: the advance spent could not be read from the report and is not included in the total.",
     "Viagens de {nome}": "Trips by {nome}",
     "dividida entre {n} pessoas": "split among {n} people",
     "Nenhuma viagem no período.": "No trips in this period.",
@@ -119,9 +123,13 @@
     $("t-viag-pivo").addEventListener("click", (e) => {
       const tr_ = e.target.closest("tr[data-k]");
       if (!tr_) return;
-      st.pessoa = st.pessoa === tr_.dataset.k ? null : tr_.dataset.k;
+      const k = tr_.dataset.k;
+      st.pessoa = st.pessoa === k ? null : k;
       renderPivo();
       renderDetalhe();
+      // a tabela é redesenhada: devolve o foco ao botão para quem usa teclado
+      const btn = [...$("t-viag-pivo").querySelectorAll("tr[data-k]")].find((r) => r.dataset.k === k);
+      if (btn) btn.querySelector("button").focus();
     });
 
     const m = D.meta;
@@ -151,6 +159,10 @@
     $("vk-pessoas").textContent = inteiro.format(pessoas.length);
     $("vk-pessoas-lbl").textContent = tr(st.tipo === "vereador" ? "Vereadores que viajaram" : "Pessoas que viajaram");
     $("vk-media").textContent = lista.length ? brl.format(total / lista.length) : "—";
+    const parciais = lista.filter((v) => !v.adiantamento_lido).length;
+    $("viag-parcial").textContent = parciais
+      ? tr("{n} viagens com custo parcial: o adiantamento gasto não pôde ser lido do relatório e não entra no total.", { n: parciais })
+      : "";
     renderGraficoAno();
     renderGraficoPessoa(pessoas);
     renderPivo();
@@ -250,7 +262,7 @@
         <th class="num">${esc(tr("Total"))}</th><th class="num">${esc(tr("Viagens"))}</th></tr></thead>
       <tbody>${pessoas.map((p) => `
         <tr data-k="${esc(p.k)}" class="${p.k === st.pessoa ? "ativa" : ""}">
-          <td>${esc(nome(p.k))}</td>${as.map((a) => cel(p.anos[a] || 0, a)).join("")}
+          <td><button type="button" class="link-btn" aria-expanded="${p.k === st.pessoa}">${esc(nome(p.k))}</button></td>${as.map((a) => cel(p.anos[a] || 0, a)).join("")}
           <td class="num"><b>${brl0.format(p.total)}</b></td><td class="num">${p.n}</td>
         </tr>`).join("")}</tbody>
       <tfoot><tr><td>${esc(tr("Total"))}</td>${as.map((a) => cel(totAno[a], a)).join("")}
@@ -275,8 +287,8 @@
             <td>${esc(v.ato)}</td><td>${esc(v.periodo)}</td>
             <td>${esc(v.destino)}<div class="motivo">${esc(v.motivo)}</div></td>
             <td class="num">${brl.format(v.passagens / n)}</td><td class="num">${brl.format(v.hospedagem / n)}</td>
-            <td class="num">${brl.format(v.adiantamento_usado / n)}</td>
-            <td class="num"><b>${brl.format(v.total / n)}</b>${div}</td>
+            <td class="num">${v.adiantamento_lido ? brl.format(v.adiantamento_usado / n) : esc(tr("não lido"))}</td>
+            <td class="num"><b>${brl.format(v.total / n)}</b>${v.adiantamento_lido ? "" : `<div class="motivo">${esc(tr("custo parcial"))}</div>`}${div}</td>
             <td><a href="${esc(v.url)}" target="_blank" rel="noopener">${esc(tr("PDF"))}</a>${v.ocr
               ? `<div class="motivo">${esc(tr("lido por OCR, conferir no PDF"))}</div>` : ""}</td>
           </tr>`;

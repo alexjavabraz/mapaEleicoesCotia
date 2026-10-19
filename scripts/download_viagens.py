@@ -142,6 +142,10 @@ def extrai_campos(texto):
     saida = []
     for b in blocos:
         achados = list(re.finditer(rf"(?:^|\n)\s*(?:{alternancia})", b, flags=re.I))
+        # Só a primeira ocorrência de cada rótulo delimita campo: uma linha da
+        # Observação que começa com "Vereador ..." não pode cortar o texto.
+        vistos = set()
+        achados = [m for m in achados if not (m.lastgroup in vistos or vistos.add(m.lastgroup))]
         if not achados:
             continue
         campos = {}

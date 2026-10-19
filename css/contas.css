@@ -209,6 +209,18 @@ body.contas-page {
 #t-viag-pivo td.ativo { background: rgba(233,69,96,0.08); }
 #t-viag-pivo tfoot td { font-weight: 600; border-top: 1px solid rgba(255,255,255,0.15); }
 #viag-detalhe { margin-top: 14px; }
+#viagens .link-btn {
+  background: none;
+  border: 0;
+  padding: 0;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+#viagens .link-btn:hover { text-decoration: underline; }
+#viagens .link-btn:focus-visible { outline: 2px solid var(--highlight); outline-offset: 2px; }
+#viag-parcial:empty { display: none; }
 #viag-detalhe .motivo { color: var(--text-muted); font-size: 0.75rem; }
 #viag-detalhe a,
 #viag-nota a { color: var(--text-muted); }
