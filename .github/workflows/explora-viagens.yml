@@ -1,0 +1,23 @@
+name: Explora relatórios de viagens (temporário)
+
+on:
+  push:
+    branches: [claude/contas-municipio-cak3b6]
+    paths: [.github/workflows/explora-viagens.yml, scripts/explora_viagens.py]
+
+permissions:
+  contents: write
+
+jobs:
+  explorar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - run: sudo apt-get install -y poppler-utils >/dev/null && pip install requests
+      - run: python scripts/explora_viagens.py tmp_viagens
+      - run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -f tmp_viagens
+          git commit -m "tmp: exploração dos relatórios de viagens" && git push || true
