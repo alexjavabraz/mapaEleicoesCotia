@@ -60,6 +60,23 @@
       <div class="kpi"><span id="k-ultimo">—</span><small>Último mês publicado</small></div>
     </section>
 
+    <!-- Evolução anual dos pagamentos + top 10 de cada ano -->
+    <section class="cartao" id="evolucao">
+      <div class="evo-head">
+        <h3>Evolução dos pagamentos por ano</h3>
+        <label>Órgão
+          <select id="evo-orgao"></select>
+        </label>
+      </div>
+      <div class="evo-resumo" id="evo-resumo"></div>
+      <div class="canvas-box alto"><canvas id="g-evolucao"></canvas></div>
+      <p class="nota" id="evo-nota"></p>
+
+      <h3 class="evo-top-titulo">Top 10 pagamentos do ano</h3>
+      <div class="anos-pills" id="evo-anos" role="tablist"></div>
+      <div class="tabela-wrap"><table id="evo-top"></table></div>
+    </section>
+
     <!-- Gráficos -->
     <section class="graficos">
       <div class="cartao">
