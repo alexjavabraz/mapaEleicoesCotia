@@ -38,7 +38,7 @@ OUT = os.path.join(os.path.dirname(__file__), "..", "data", "contas_cotia.json")
 
 # Quantos lançamentos individuais guardar: no ranking geral e por fornecedor
 TOP_GERAL = 50  # por evento e por ano
-TOP_POR_FORNECEDOR = 10  # por evento
+TOP_POR_FORNECEDOR = 5  # por evento
 
 
 def parse_valor(s):
@@ -86,6 +86,18 @@ def baixar_mes(sess, ano, mes):
     raise RuntimeError(f"Falha ao baixar {url}")
 
 
+# A API devolve "Empenhado", "Valor Liquidado", "Valor Pago", "Anulação",
+# "Reforço"; a página usa os nomes curtos.
+EVENTOS = {"valor pago": "Pago", "valor liquidado": "Liquidado"}
+# Só guardamos os maiores lançamentos individuais destes eventos
+EVENTOS_COM_TOP = {"Pago", "Liquidado", "Empenhado"}
+
+
+def normaliza_evento(s):
+    s = re.sub(r"\s+", " ", (s or "").strip()).capitalize() or "Outro"
+    return EVENTOS.get(s.lower(), s)
+
+
 def r2(v):
     return round(v, 2)
 
@@ -119,7 +131,7 @@ def main():
             chave_mes = f"{ano}-{mes:02d}"
             meses_com_dado.append(chave_mes)
             for r in regs:
-                ev = (r.get("evento") or "").strip().capitalize() or "Outro"
+                ev = normaliza_evento(r.get("evento"))
                 vl = parse_valor(r.get("vl_despesa"))
                 orgao = (r.get("orgao") or "").strip()
                 fid, tipo, doc, nome = parse_fornecedor(r.get("id_fornecedor"), r.get("nm_fornecedor"))
@@ -144,12 +156,13 @@ def main():
                 # [data, valor, evento, orgao, empenho, fornecedor_id]
                 lanc = [parse_data(r.get("dt_emissao_despesa")) or chave_mes,
                         r2(vl), ev, orgao, (r.get("nr_empenho") or "").strip(), fid]
-                tops = f["top"][ev]
-                tops.append(lanc)
-                if len(tops) > TOP_POR_FORNECEDOR * 4:
-                    tops.sort(key=lambda x: -x[1])
-                    del tops[TOP_POR_FORNECEDOR:]
-                lancamentos.append(lanc)
+                if ev in EVENTOS_COM_TOP:
+                    tops = f["top"][ev]
+                    tops.append(lanc)
+                    if len(tops) > TOP_POR_FORNECEDOR * 4:
+                        tops.sort(key=lambda x: -x[1])
+                        del tops[TOP_POR_FORNECEDOR:]
+                    lancamentos.append(lanc)
             if len(lancamentos) > 50000:
                 lancamentos.sort(key=lambda x: -x[1])
                 lancamentos = _top_por_evento(lancamentos)
