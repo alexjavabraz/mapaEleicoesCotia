@@ -1,3 +1,41 @@
+# Sessão — 2026-10-19 · Contas do Município
+
+**Status:** iniciada 2026-10-19 16:56 UTC · finalizada 2026-10-19 17:15 UTC.
+PR #1 (rascunho, label `agentic`), branch `claude/contas-municipio-cak3b6`.
+
+## Pedido
+
+Nova aba com as despesas de Cotia da API do TCE-SP
+(`transparencia.tce.sp.gov.br/api/json/despesas/cotia/{ano}/{mes}`), de 2020
+até o último mês publicado: filtro por fornecedor, botão "Top 10 valores
+pagos", gráficos por ano e agrupamento por recebedor.
+
+## O que foi feito
+
+- `contas.html` + `js/contas.js` + `css/contas.css`: busca por fornecedor
+  (nome/CNPJ, autocomplete), filtros de evento e ano, KPIs, gráficos (por
+  ano, por mês, maiores recebedores, por órgão) com Chart.js 4.4.1 (cdnjs),
+  tabela agrupada por recebedor (ordenável, paginada) e modal Top 10
+  (maiores pagamentos individuais / maiores recebedores). Links no header
+  de `index.html` e `eleicao-geral.html`.
+- `scripts/download_contas.py`: baixa mês a mês e grava só o agregado em
+  `data/contas_cotia.json` (~239 mil registros → ~2,2 MB). CPF de pessoa
+  física não é publicado.
+- `.github/workflows/contas.yml`: roda o script no GitHub Actions (dia 10 de
+  cada mês, manual, e a cada push do script na branch) e commita o JSON.
+- `sw.js` → v9, com os novos assets.
+
+## Armadilhas
+
+- A sessão cloud do Claude não alcança `transparencia.tce.sp.gov.br` nem as
+  CDNs (proxy bloqueia) — por isso o download roda no Actions.
+- A API devolve eventos "Empenhado", "Valor Liquidado", "Valor Pago",
+  "Anulação", "Reforço"; o script renomeia para Pago/Liquidado.
+- O TCE publica com ~6 semanas de atraso (em 19/10/2026 o último mês era
+  ago/2026); mês sem dado volta `[]`.
+
+---
+
 # Sessão — 2026-10-13
 
 Resumo das tarefas realizadas nesta sessão, para referência futura.
