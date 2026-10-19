@@ -116,6 +116,7 @@ const SECAO_EN = {
   "Resultado na escola — Prefeito": "Result at this school — Mayor",
   "Votos por candidato desta escola ainda não disponíveis.": "Per-candidate votes for this school are not available yet.",
   "Sem votos de {nome} aqui.": "No votes for {nome} here.",
+  "Brancos, nulos e legenda": "Blank, null and party-only votes",
   "Fonte: {fonte}": "Source: {fonte}",
   "Votação por Seção Eleitoral, somada por local de votação": "Votes by electoral section, summed by polling place",
 };
@@ -421,7 +422,9 @@ function renderAbaVereadores(verData, uid) {
 
   // Filtro ativo: exibe apenas o candidato selecionado
   if (currentVereadorFiltro) {
-    const candidato = sorted.find(c => c.nome === currentVereadorFiltro);
+    // Dados por bairro usam o nome completo; os totais e as escolas, o nome de urna
+    const alvo = [currentVereadorFiltro, resolveNomeFull(currentVereadorFiltro)].map(normalizeName);
+    const candidato = sorted.find(c => alvo.includes(normalizeName(c.nome)));
     if (candidato) {
       const dotColor = isEleito(candidato) ? "#4caf50" : "#607d8b";
       const label    = isEleito(candidato) ? "Eleito" : "Não Eleito";
@@ -651,7 +654,16 @@ function renderConteudoSidebarEscola(escola) {
     if (currentTab === "prefeito") {
       html += renderAbaPrefeito({ "1": prefList }, _t("Resultado na escola — Prefeito"));
     } else {
-      html += renderAbaVereadores({ "1": verList || [] }, `e_${escola.nr}`);
+      // Brancos (95), nulos (96) e legenda (nº do partido) ficam fora da lista de candidatos
+      const ehCandidato = c => c.numero.length > 2;
+      html += renderAbaVereadores({ "1": (verList || []).filter(ehCandidato) }, `e_${escola.nr}`);
+      const outros = (verList || []).filter(c => !ehCandidato(c));
+      if (outros.length && !currentVereadorFiltro) {
+        html += `<div class="zona-info" style="margin-top:8px">
+          <div class="zona-info-row"><span><strong>${_t("Brancos, nulos e legenda")}</strong></span><strong>${_fmt(outros.reduce((s, c) => s + c.votos, 0))}</strong></div>
+          ${outros.map(c => `<div class="zona-info-row"><span>${c.nome}</span><strong>${_fmt(c.votos)}</strong></div>`).join("")}
+        </div>`;
+      }
     }
   }
 
@@ -728,7 +740,9 @@ function limparMapa() {
     rankingControl.remove();
     rankingControl = null;
   }
-  map.setView(COTIA_CENTER, COTIA_ZOOM);
+  // Mesma vista do carregamento: o contorno do município, se já desenhado
+  if (municipioLayer) map.fitBounds(municipioLayer.getBounds(), { padding: [20, 20] });
+  else map.setView(COTIA_CENTER, COTIA_ZOOM);
 
   showPlaceholder();
   if (getTotais()) displayTotaisGerais();
