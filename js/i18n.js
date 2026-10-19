@@ -11,6 +11,9 @@
  */
 
 const LANG = (() => {
+  // ?lang=en|pt vale mesmo sem localStorage (ver setLang)
+  const url = new URLSearchParams(window.location.search).get("lang");
+  if (url === "pt" || url === "en") return url;
   try {
     const salvo = localStorage.getItem("lang");
     if (salvo === "pt" || salvo === "en") return salvo;
@@ -299,8 +302,15 @@ function applyI18n(root = document) {
 }
 
 function setLang(lang) {
-  try { localStorage.setItem("lang", lang); } catch (e) { /* sem storage: vale só nesta página */ }
-  window.location.reload();
+  const url = new URL(window.location.href);
+  try {
+    localStorage.setItem("lang", lang);
+    url.searchParams.delete("lang");
+  } catch (e) {
+    // Storage bloqueado: leva a escolha na URL para o recarregamento respeitá-la
+    url.searchParams.set("lang", lang);
+  }
+  window.location.href = url.toString();
 }
 
 /** Botão PT/EN no header: mostra o idioma para o qual troca. Fica fora de
