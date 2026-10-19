@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contas do Município — Cotia</title>
+
+  <!-- PWA -->
+  <link rel="manifest" href="./manifest.json" />
+  <meta name="theme-color" content="#16213e" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="Cotia Contas" />
+  <link rel="apple-touch-icon" href="./icons/apple-touch-icon.png" />
+  <link rel="icon" type="image/svg+xml" href="./icons/cotia-flag.svg" />
+  <link rel="icon" type="image/png" sizes="32x32" href="./icons/favicon-32.png" />
+
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/contas.css" />
+</head>
+<body class="contas-page">
+  <header id="header">
+    <h1>
+      Cotia
+      <span class="badge">Contas do Município</span>
+    </h1>
+    <nav id="controls">
+      <a href="./index.html">Eleição Municipal 2024</a>
+      <a href="./eleicao-geral.html">Eleição Geral</a>
+    </nav>
+  </header>
+
+  <main id="contas">
+    <!-- Filtros -->
+    <section class="filtros">
+      <label>Evento
+        <select id="f-evento"></select>
+      </label>
+      <label>Ano
+        <select id="f-ano"></select>
+      </label>
+      <label class="busca">Fornecedor / recebedor
+        <input id="f-busca" type="search" list="lista-fornecedores"
+               placeholder="Digite o nome ou CNPJ…" autocomplete="off" />
+        <datalist id="lista-fornecedores"></datalist>
+      </label>
+      <button id="btn-limpar" type="button" class="btn sec">Limpar</button>
+      <button id="btn-top10" type="button" class="btn">Top 10 valores pagos</button>
+    </section>
+
+    <!-- Fornecedor selecionado -->
+    <section id="fornecedor-sel" class="cartao" hidden></section>
+
+    <!-- Indicadores -->
+    <section class="kpis">
+      <div class="kpi"><span id="k-total">—</span><small id="k-total-lbl">Total</small></div>
+      <div class="kpi"><span id="k-receb">—</span><small>Recebedores</small></div>
+      <div class="kpi"><span id="k-lanc">—</span><small>Lançamentos</small></div>
+      <div class="kpi"><span id="k-ultimo">—</span><small>Último mês publicado</small></div>
+    </section>
+
+    <!-- Gráficos -->
+    <section class="graficos">
+      <div class="cartao">
+        <h3 id="g-ano-titulo">Por ano</h3>
+        <div class="canvas-box"><canvas id="g-ano"></canvas></div>
+      </div>
+      <div class="cartao">
+        <h3 id="g-mes-titulo">Por mês</h3>
+        <div class="canvas-box"><canvas id="g-mes"></canvas></div>
+      </div>
+      <div class="cartao">
+        <h3>Maiores recebedores</h3>
+        <div class="canvas-box alto"><canvas id="g-top"></canvas></div>
+      </div>
+      <div class="cartao">
+        <h3>Por órgão</h3>
+        <div class="canvas-box"><canvas id="g-orgao"></canvas></div>
+      </div>
+    </section>
+
+    <!-- Agrupamento por recebedor -->
+    <section class="cartao">
+      <h3>Agrupado por recebedor</h3>
+      <div class="tabela-wrap">
+        <table id="t-receb">
+          <thead>
+            <tr>
+              <th data-sort="nome">Recebedor</th>
+              <th data-sort="doc">CNPJ</th>
+              <th data-sort="n" class="num">Lançamentos</th>
+              <th data-sort="valor" class="num">Valor</th>
+              <th class="num">% do total</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+      <div class="paginacao">
+        <button id="p-ant" type="button" class="btn sec">‹ Anterior</button>
+        <span id="p-info"></span>
+        <button id="p-prox" type="button" class="btn sec">Próxima ›</button>
+      </div>
+    </section>
+
+    <p class="fonte" id="fonte"></p>
+  </main>
+
+  <!-- Modal Top 10 -->
+  <dialog id="modal-top10">
+    <div class="modal-head">
+      <h3 id="m-titulo">Top 10</h3>
+      <div class="abas">
+        <button type="button" class="aba ativa" data-aba="lanc">Maiores pagamentos</button>
+        <button type="button" class="aba" data-aba="receb">Maiores recebedores</button>
+      </div>
+      <button type="button" class="fechar" aria-label="Fechar">×</button>
+    </div>
+    <div class="tabela-wrap"><table id="m-tabela"></table></div>
+  </dialog>
+
+  <div id="loading">
+    <div class="spinner"></div>
+    <p>Carregando contas…</p>
+    <span id="loading-status"></span>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+  <script src="js/contas.js"></script>
+
+  <script>
+    if ("serviceWorker" in navigator) {
+      let swRefreshing = false;
+      navigator.serviceWorker.addEventListener("controllerchange", () => {
+        if (swRefreshing) return;
+        swRefreshing = true;
+        window.location.reload();
+      });
+      window.addEventListener("load", () => {
+        navigator.serviceWorker.register("./sw.js")
+          .catch((err) => console.warn("SW registro falhou:", err));
+      });
+    }
+  </script>
+</body>
+</html>

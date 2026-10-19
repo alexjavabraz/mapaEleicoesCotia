@@ -1,0 +1,238 @@
+/* =============================================
+   Contas do Município (contas.html)
+   Reaproveita variáveis e header de style.css.
+   ============================================= */
+
+html:has(body.contas-page),
+body.contas-page {
+  overflow: auto;
+  height: auto;
+  min-height: 100%;
+}
+
+.contas-page #controls a {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+.contas-page #controls a:hover { color: var(--text); }
+
+#contas {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: calc(var(--header-height) + 16px) 16px 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.cartao {
+  background: var(--sidebar-bg);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 10px;
+  padding: 14px 16px;
+  min-width: 0;
+}
+.cartao h3 {
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-bottom: 10px;
+  color: var(--text);
+}
+
+/* ---- Filtros ---- */
+.filtros {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 14px;
+  align-items: flex-end;
+}
+.filtros label {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 0.72rem;
+  color: var(--text-muted);
+}
+.filtros label.busca { flex: 1 1 280px; }
+.filtros select,
+.filtros input {
+  background: var(--accent);
+  color: var(--text);
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 6px;
+  padding: 7px 10px;
+  font-size: 0.85rem;
+  font-family: inherit;
+}
+.filtros input { width: 100%; }
+
+.btn {
+  background: var(--highlight);
+  color: #fff;
+  border: 0;
+  border-radius: 6px;
+  padding: 8px 14px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: inherit;
+}
+.btn.sec {
+  background: rgba(255,255,255,0.08);
+  font-weight: 400;
+}
+.btn:hover { filter: brightness(1.12); }
+.btn:disabled { opacity: 0.4; cursor: default; filter: none; }
+
+/* ---- KPIs ---- */
+.kpis {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 12px;
+}
+.kpi {
+  background: var(--sidebar-bg);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 10px;
+  padding: 12px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.kpi span {
+  font-size: 1.35rem;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+.kpi small { font-size: 0.75rem; color: var(--text-muted); }
+
+/* ---- Gráficos ---- */
+.graficos {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+@media (max-width: 860px) {
+  .graficos { grid-template-columns: minmax(0, 1fr); }
+}
+.canvas-box { position: relative; height: 260px; }
+.canvas-box.alto { height: 340px; }
+
+/* ---- Fornecedor selecionado ---- */
+#fornecedor-sel { border-color: var(--highlight); }
+#fornecedor-sel .sel-head {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+#fornecedor-sel .sel-head h3 { margin: 0; }
+#fornecedor-sel .sel-meta { font-size: 0.78rem; color: var(--text-muted); }
+
+/* ---- Tabelas ---- */
+.tabela-wrap { overflow-x: auto; }
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.82rem;
+}
+th, td {
+  padding: 7px 8px;
+  text-align: left;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+th {
+  color: var(--text-muted);
+  font-weight: 500;
+  white-space: nowrap;
+}
+th[data-sort] { cursor: pointer; user-select: none; }
+th[data-sort]:hover { color: var(--text); }
+th.ordenado::after { content: " ▾"; }
+th.ordenado.asc::after { content: " ▴"; }
+td.num, th.num {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+#t-receb tbody tr { cursor: pointer; }
+#t-receb tbody tr:hover,
+#m-tabela tbody tr:hover { background: rgba(255,255,255,0.04); }
+td .barra {
+  display: inline-block;
+  height: 6px;
+  border-radius: 3px;
+  background: var(--highlight);
+  vertical-align: middle;
+  margin-right: 6px;
+}
+
+.paginacao {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  margin-top: 10px;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.vazio {
+  color: var(--text-muted);
+  font-size: 0.82rem;
+  padding: 12px 0;
+}
+
+.fonte { font-size: 0.72rem; color: var(--text-muted); }
+.fonte a { color: var(--text-muted); }
+
+/* ---- Modal Top 10 ---- */
+#modal-top10 {
+  background: var(--secondary);
+  color: var(--text);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 12px;
+  width: min(900px, calc(100vw - 32px));
+  max-height: calc(100vh - 64px);
+  padding: 16px;
+  margin: auto;
+}
+#modal-top10::backdrop { background: rgba(0,0,0,0.6); }
+.modal-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px 16px;
+  margin-bottom: 12px;
+}
+.modal-head h3 { font-size: 1rem; flex: 1 1 auto; }
+.abas { display: flex; gap: 6px; }
+.aba {
+  background: rgba(255,255,255,0.06);
+  color: var(--text-muted);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 6px;
+  padding: 6px 10px;
+  font-size: 0.8rem;
+  cursor: pointer;
+  font-family: inherit;
+}
+.aba.ativa { background: var(--accent); color: var(--text); border-color: rgba(255,255,255,0.3); }
+.fechar {
+  background: none;
+  border: 0;
+  color: var(--text-muted);
+  font-size: 1.5rem;
+  line-height: 1;
+  cursor: pointer;
+}
+.fechar:hover { color: var(--text); }
+
+@media (max-width: 600px) {
+  .contas-page #header h1 { font-size: 0.95rem; }
+  .contas-page #controls { gap: 8px; }
+  .contas-page #controls a { font-size: 0.7rem; }
+  .kpi span { font-size: 1.1rem; }
+}
