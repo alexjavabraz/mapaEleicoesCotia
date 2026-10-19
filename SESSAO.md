@@ -22,7 +22,8 @@ português.
   (ELEITO → ELECTED, 2º TURNO → RUNOFF…), VOTO NULO/BRANCO e os eventos da
   despesa (Pago → Paid, Liquidado → Accrued, Empenhado → Committed).
   Nomes de candidatos, bairros, fornecedores e órgãos ficam como estão.
-- Botão PT/EN no canto do header (recarrega a página). `sw.js` → v11.
+- Botão PT/EN no canto do header (recarrega a página; se o localStorage
+  estiver bloqueado, a escolha vai na URL como `?lang=en`). `sw.js` → v11.
 
 ## Armadilhas
 
