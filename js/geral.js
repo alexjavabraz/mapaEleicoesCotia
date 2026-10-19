@@ -136,16 +136,16 @@ const CORES_CANDIDATO_PADRAO = {
 
 // Paleta de cores disponíveis no seletor (nome → hex)
 const PALETA_CORES = [
-  { label: "Vermelho",     value: "#e53935" },
-  { label: "Azul",         value: "#1e88e5" },
-  { label: "Azul escuro",  value: "#1565c0" },
-  { label: "Verde",        value: "#43a047" },
-  { label: "Âmbar",        value: "#f9a825" },
-  { label: "Laranja",      value: "#fb8c00" },
-  { label: "Roxo",         value: "#7b1fa2" },
-  { label: "Teal",         value: "#00897b" },
-  { label: "Rosa",         value: "#e91e63" },
-  { label: "Cinza",        value: "#607d8b" },
+  { label: t("Vermelho"),     value: "#e53935" },
+  { label: t("Azul"),         value: "#1e88e5" },
+  { label: t("Azul escuro"),  value: "#1565c0" },
+  { label: t("Verde"),        value: "#43a047" },
+  { label: t("Âmbar"),        value: "#f9a825" },
+  { label: t("Laranja"),      value: "#fb8c00" },
+  { label: t("Roxo"),         value: "#7b1fa2" },
+  { label: t("Teal"),         value: "#00897b" },
+  { label: t("Rosa"),         value: "#e91e63" },
+  { label: t("Cinza"),        value: "#607d8b" },
 ];
 
 function cargoCfg(key) {
@@ -357,14 +357,13 @@ function showDataErrorBanner(year, error) {
   const cfg = ELECTION_YEARS[year];
   const banner =
     error === "not_found" || error === "cors_or_network"
-      ? `⚠️ O TSE ainda não publicou os dados de votação de ${year}
-         (só saem depois que a apuração termina).
+      ? `⚠️ ${t("O TSE ainda não publicou os dados de votação de {ano} (só saem depois que a apuração termina).", { ano: year })}
          Dataset: <a href="${cfg.datasetUrl}" target="_blank">dadosabertos.tse.jus.br</a>`
-      : `⚠️ Erro ao carregar dados de ${year}: ${error}`;
+      : `⚠️ ${t("Erro ao carregar dados de {ano}:", { ano: year })} ${error}`;
   showNoBanner(banner);
   document.getElementById("sidebar-content").innerHTML =
-    `<div class="placeholder"><p>Sem dados eleitorais de ${year} ainda.</p></div>`;
-  document.getElementById("sidebar-header").innerHTML = `<h2>Selecione um bairro</h2>`;
+    `<div class="placeholder"><p>${t("Sem dados eleitorais de {ano} ainda.", { ano: year })}</p></div>`;
+  document.getElementById("sidebar-header").innerHTML = `<h2>${t("Selecione um bairro")}</h2>`;
 }
 
 // ---- RENDERIZAÇÃO DO SIDEBAR ----
@@ -403,8 +402,8 @@ function switchTurno(turno) {
 function fonteInfo() {
   const cfg = ELECTION_YEARS[currentYear];
   return `<div class="fonte-info">
-    Fonte: <a href="${cfg.datasetUrl}" target="_blank">TSE — Dados Abertos — Eleições ${currentYear}</a><br>
-    Votação Nominal por Município e Zona
+    ${t("Fonte")}: <a href="${cfg.datasetUrl}" target="_blank">${t("TSE — Dados Abertos — Eleições {ano}", { ano: currentYear })}</a><br>
+    ${t("Votação Nominal por Município e Zona")}
   </div>`;
 }
 
@@ -486,9 +485,9 @@ function renderCandidatoSelect(lista) {
   ).join("");
   return `
     <div class="ver-select-wrapper">
-      <label class="ver-select-label">Ver votos por bairro de um candidato</label>
+      <label class="ver-select-label">${t("Ver votos por bairro de um candidato")}</label>
       <select class="ver-select" onchange="filtrarCandidatoGeral(this.value)">
-        <option value="">— Nenhum —</option>
+        <option value="">${t("— Nenhum —")}</option>
         ${options}
       </select>
     </div>`;
@@ -576,7 +575,7 @@ function renderRankingBoxGeral(nome) {
   if (!nome) { renderRankingBoxItens(null, null); return; }
 
   if (!votosPorBairroGeral) {
-    renderRankingBoxItens(nome, null, `Dados por bairro não disponíveis para ${currentYear}.`);
+    renderRankingBoxItens(nome, null, t("Dados por bairro não disponíveis para {ano}.", { ano: currentYear }));
     return;
   }
 
@@ -671,13 +670,13 @@ function renderIconeMapaCandidato(candidato) {
 
   return `
     <div class="cand-map-ctrl${isAtivo ? " ativo" : ""}">
-      <select id="${id}" class="cand-cor-select" title="Cor do destaque"
+      <select id="${id}" class="cand-cor-select" title="${t("Cor do destaque")}"
               onclick="event.stopPropagation()"
               onchange="if(candidatoDestaque&&candidatoDestaque.nome==='${nomeEsc}'){candidatoDestaque.cor=this.value;aplicarHighlightCandidato();}">
         ${opcoes}
       </select>
       <button class="cand-map-btn${isAtivo ? " ativo" : ""}"
-              title="${isAtivo ? "Desativar destaque" : "Destacar bairros no mapa"}"
+              title="${isAtivo ? t("Desativar destaque") : t("Destacar bairros no mapa")}"
               onclick="toggleHighlightCandidat('${nomeEsc}', document.getElementById('${id}').value)">
         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor"
              stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
@@ -702,11 +701,11 @@ function renderCargoSectionGeral(cargoData, label) {
   html += `<div class="section-title"><div class="dot" style="background:#e94560"></div>${label}</div>`;
   if (hasTurno2) {
     html += `<div class="turno-tabs">
-      <button class="turno-tab ${currentTurno === "1" ? "active" : ""}" onclick="switchTurno('1')">1º Turno</button>
-      <button class="turno-tab ${currentTurno === "2" ? "active" : ""}" onclick="switchTurno('2')">2º Turno</button>
+      <button class="turno-tab ${currentTurno === "1" ? "active" : ""}" onclick="switchTurno('1')">${t("1º Turno")}</button>
+      <button class="turno-tab ${currentTurno === "2" ? "active" : ""}" onclick="switchTurno('2')">${t("2º Turno")}</button>
     </div>`;
   } else if (t1.length) {
-    html += `<div class="turno-tabs"><button class="turno-tab active">1º Turno</button></div>`;
+    html += `<div class="turno-tabs"><button class="turno-tab active">${t("1º Turno")}</button></div>`;
   }
 
   const candidatos = (hasTurno2 ? cargoData[currentTurno] : t1) || [];
@@ -724,9 +723,9 @@ function renderCargoSectionGeral(cargoData, label) {
     const candidato = t1.find(c => c.nome === currentCandidatoFiltro);
     cardsHtml = candidato
       ? renderCandidateCard(candidato, Math.max(...t1.map(c => c.votos), 1))
-      : `<p style="color:var(--text-muted);padding:12px 0;font-size:.8rem">Candidato sem dados neste cargo.</p>`;
+      : `<p style="color:var(--text-muted);padding:12px 0;font-size:.8rem">${t("Candidato sem dados neste cargo.")}</p>`;
     cardsHtml += `<button class="limpar-destaque-btn" onclick="filtrarCandidatoGeral('')">
-      ✕ Limpar filtro
+      ✕ ${t("Limpar filtro")}
     </button>`;
   } else if (comIcone && visaoGeral) {
     // Renderiza cada card com o ícone de mapa injetado
@@ -736,7 +735,7 @@ function renderCargoSectionGeral(cargoData, label) {
     // Nota: se tiver destaque ativo, mostra botão para limpar
     if (candidatoDestaque) {
       cardsHtml += `<button class="limpar-destaque-btn" onclick="toggleHighlightCandidat('${candidatoDestaque.nome.replace(/'/g,"\\'")}', '')">
-        ✕ Limpar destaque do mapa
+        ✕ ${t("Limpar destaque do mapa")}
       </button>`;
     }
   } else {
@@ -761,9 +760,9 @@ function renderSidebarForZona(zonaNum) {
   }
 
   if (!zonaData) {
-    html += `<p style="color:var(--text-muted);padding:12px 0;font-size:.8rem">Sem dados para esta zona.</p>`;
+    html += `<p style="color:var(--text-muted);padding:12px 0;font-size:.8rem">${t("Sem dados para esta zona.")}</p>`;
   } else {
-    html += renderCargoSectionGeral(zonaData[currentCargo], `${cfg.label} — Zona ${zonaNum}`);
+    html += renderCargoSectionGeral(zonaData[currentCargo], `${cfg.label} — ${t("Zona {z}", { z: zonaNum })}`);
   }
   html += fonteInfo();
   document.getElementById("sidebar-content").innerHTML = html;
@@ -790,19 +789,19 @@ function renderSidebarBairro(displayName, bairroKey, zonaNum) {
     const cargoDataFake = { "1": candidatos };
     html += renderCargoSectionGeral(cargoDataFake, `${cfg.label} — ${displayName}`);
     html += `<div class="fonte-info" style="margin-top:6px">
-      <span style="color:var(--text-muted);font-size:0.68rem">Dados reais por bairro · </span>
-      <a href="${yearCfg?.datasetUrl || '#'}" target="_blank">TSE — Dados Abertos</a>
+      <span style="color:var(--text-muted);font-size:0.68rem">${t("Dados reais por bairro")} · </span>
+      <a href="${yearCfg?.datasetUrl || '#'}" target="_blank">${t("TSE — Dados Abertos")}</a>
     </div>`;
   } else {
     // Fallback para zona
     const zonaData = getZonaData(zonaNum);
     if (!zonaData) {
-      html += `<p style="color:var(--text-muted);padding:12px 0;font-size:.8rem">Sem dados para este bairro.</p>`;
+      html += `<p style="color:var(--text-muted);padding:12px 0;font-size:.8rem">${t("Sem dados para este bairro.")}</p>`;
     } else {
       html += `<div style="font-size:0.72rem;color:var(--text-muted);margin-bottom:8px">
-        (Sem dados específicos para este bairro — exibindo Zona ${zonaNum})
+        (${t("Sem dados específicos para este bairro — exibindo Zona {z}", { z: zonaNum })})
       </div>`;
-      html += renderCargoSectionGeral(zonaData[currentCargo], `${cfg.label} — Zona ${zonaNum}`);
+      html += renderCargoSectionGeral(zonaData[currentCargo], `${cfg.label} — ${t("Zona {z}", { z: zonaNum })}`);
     }
     html += fonteInfo();
   }
@@ -821,9 +820,9 @@ function renderSidebarTotais() {
   }
 
   if (!totais) {
-    html += `<p style="color:var(--text-muted);padding:12px 0;font-size:.8rem">Dados ainda não disponíveis.</p>`;
+    html += `<p style="color:var(--text-muted);padding:12px 0;font-size:.8rem">${t("Dados ainda não disponíveis.")}</p>`;
   } else {
-    html += renderCargoSectionGeral(totais[currentCargo], `${cfg.label} — Total Geral`);
+    html += renderCargoSectionGeral(totais[currentCargo], `${cfg.label} — ${t("Total Geral")}`);
   }
   html += fonteInfo();
   document.getElementById("sidebar-content").innerHTML = html;
@@ -852,10 +851,10 @@ function displayZona(displayName, zonaNum) {
   // Badge: mostra "bairro" se tiver dados por bairro, senão "zona"
   const badgeHtml = temBairro
     ? `<span class="zona-badge" style="background:rgba(76,175,80,0.15);color:#81c784;border:1px solid rgba(76,175,80,0.3)">
-         dados por bairro
+         ${t("dados por bairro")}
        </span>`
     : `<span class="zona-badge" style="background:${zonaColor}20;color:${zonaColor};border:1px solid ${zonaColor}50">
-         Zona ${zonaNum}
+         ${t("Zona {z}", { z: zonaNum })}
        </span>`;
 
   document.getElementById("sidebar-header").innerHTML = `
@@ -864,8 +863,8 @@ function displayZona(displayName, zonaNum) {
         <h2>${displayName}</h2>
         ${badgeHtml}
       </div>
-      <button class="ver-geral-btn" onclick="displayTotaisGerais()" title="Ver resultado geral de Cotia">
-        Ver dados gerais
+      <button class="ver-geral-btn" onclick="displayTotaisGerais()" title="${t("Ver resultado geral de Cotia")}">
+        ${t("Ver dados gerais")}
       </button>
     </div>`;
 
@@ -880,9 +879,9 @@ function displayTotaisGerais() {
   currentZona = null;
   currentBairroGeral = null;
   document.getElementById("sidebar-header").innerHTML = `
-    <h2>Cotia — Total Geral</h2>
+    <h2>${t("Cotia — Total Geral")}</h2>
     <span class="zona-badge" style="background:rgba(233,69,96,0.15);color:#e94560;border:1px solid rgba(233,69,96,0.3)">
-      Todas as Zonas
+      ${t("Todas as Zonas")}
     </span>`;
   renderSidebarTotais();
   // Aplica filtro de candidato (combobox), destaque por ícone, ou coloração por partido
@@ -897,10 +896,10 @@ function displayTotaisGerais() {
 
 /** Tooltip de bairro: candidato vencedor (por bairro se disponível, senão por zona). */
 function getTooltipContentGeral(feature, zona) {
-  const name = feature.properties.name || feature.properties.nome || "Bairro";
+  const name = feature.properties.name || feature.properties.nome || t("Bairro");
   const zonaColor = zona && zoneColorMap[zona] ? zoneColorMap[zona] : "#888";
   let html = `<div class="tooltip-name">${name}</div>
-              <div class="tooltip-zona" style="color:${zonaColor}">Zona ${zona || "—"}</div>`;
+              <div class="tooltip-zona" style="color:${zonaColor}">${t("Zona {z}", { z: zona || "—" })}</div>`;
 
   const cargo = cargoCfg(currentCargo)?.label || currentCargo;
   let top = null;
@@ -937,7 +936,7 @@ function getTooltipContentGeral(feature, zona) {
       <span style="font-size:0.7rem;color:#aaa">${cargo}: </span>
       <strong style="color:#fff;font-size:0.8rem">${top.nome}</strong>
       ${top.partido ? `<span style="background:${corBadge};color:#fff;font-size:0.62rem;padding:1px 5px;border-radius:3px;margin-left:4px">${top.partido}</span>` : ""}
-      <div style="font-size:0.7rem;color:#ccc;margin-top:2px">${formatVotos(top.votos)} votos${fonte === "bairro" ? " <span style='color:#81c784'>✓ por bairro</span>" : ""}</div>
+      <div style="font-size:0.7rem;color:#ccc;margin-top:2px">${t("{n} votos", { n: formatVotos(top.votos) })}${fonte === "bairro" ? ` <span style='color:#81c784'>✓ ${t("por bairro")}</span>` : ""}</div>
     </div>`;
   }
   return html;
@@ -1082,21 +1081,21 @@ function atualizarLegendaPartidos(top3, cores) {
   if (!tseData || !top3 || !top3.length) return;
 
   const cargo = cargoCfg(currentCargo)?.label || currentCargo;
-  const fonte = votosPorBairroGeral ? "por bairro" : "por zona";
+  const fonte = votosPorBairroGeral ? t("Dados por bairro") : t("Dados por zona");
 
   _legendaPartidosCtrl = L.control({ position: "bottomleft" });
   _legendaPartidosCtrl.onAdd = () => {
     const div = L.DomUtil.create("div", "");
     div.id = "map-legend-partidos";
     div.innerHTML = `
-      <h4>${cargo} — 3 primeiros</h4>
+      <h4>${cargo} — ${t("3 primeiros")}</h4>
       ${top3.map((c, idx) => `
         <div class="legend-item">
           <div class="legend-color" style="background:${cores[idx]};opacity:0.85"></div>
           <span>${c.nome}${c.partido ? ` (${c.partido})` : ""}</span>
         </div>`).join("")}
       <div style="font-size:0.62rem;color:var(--text-muted);margin-top:6px;border-top:1px solid rgba(255,255,255,0.1);padding-top:4px">
-        Dados ${fonte} · cor = quem dos 3 venceu ali
+        ${fonte} · ${t("cor = quem dos 3 venceu ali")}
       </div>
     `;
     return div;
@@ -1115,7 +1114,7 @@ async function changeYear(year) {
   currentCandidatoFiltro = "";
   renderRankingBoxItens(null, null);
   showLoading(true);
-  setLoadingStatus(`Carregando dados de ${year}...`);
+  setLoadingStatus(t("Carregando dados de {ano}...", { ano: year }));
 
   const [result] = await Promise.all([
     loadYearData(year),
@@ -1139,16 +1138,16 @@ async function changeYear(year) {
 
 async function init() {
   showLoading(true);
-  setLoadingStatus("Inicializando mapa...");
+  setLoadingStatus(t("Inicializando mapa..."));
   initMap();
 
   const yearSelect = document.getElementById("year-select");
   if (yearSelect) yearSelect.value = currentYear;
 
-  setLoadingStatus("Carregando locais de votação...");
+  setLoadingStatus(t("Carregando locais de votação..."));
   await loadLocaisVotacao(); // dado geográfico (geometria), reaproveitado de 2024 — serve de base pra Voronoi
 
-  setLoadingStatus(`Carregando dados eleitorais de ${currentYear}...`);
+  setLoadingStatus(t("Carregando dados eleitorais de {ano}...", { ano: currentYear }));
   const [result] = await Promise.all([
     loadYearData(currentYear),
     loadVotosPorBairroGeral(currentYear),
@@ -1158,7 +1157,7 @@ async function init() {
     buildZoneColors(getZonas());
   }
 
-  setLoadingStatus("Buscando contorno de Cotia (OpenStreetMap)...");
+  setLoadingStatus(t("Buscando contorno de Cotia (OpenStreetMap)..."));
   const municipioGeoJSON = await fetchCotiaMunicipio(setLoadingStatus);
   if (municipioGeoJSON) {
     renderMascaraExterna(municipioGeoJSON);
@@ -1166,7 +1165,7 @@ async function init() {
     localizarUsuario(municipioGeoJSON);
   }
 
-  setLoadingStatus("Buscando bairros (Overpass API)...");
+  setLoadingStatus(t("Buscando bairros (Overpass API)..."));
   let bairrosGeoJSON = await fetchCotiaBairros(setLoadingStatus);
   const osmPolygons =
     bairrosGeoJSON?.features?.filter((f) => {
@@ -1176,7 +1175,7 @@ async function init() {
 
   const locais = getLocaisVotacao();
   if (osmPolygons.length < 5 && locais.length) {
-    setLoadingStatus("Gerando bairros por proximidade (Voronoi)...");
+    setLoadingStatus(t("Gerando bairros por proximidade (Voronoi)..."));
     bairrosGeoJSON = computeVoronoiBairros(locais, municipioGeoJSON);
   }
 
@@ -1185,7 +1184,7 @@ async function init() {
       bairrosGeoJSON,
       BAIRRO_ZONA_MAP,
       (feature, zona) => {
-        const name = feature.properties.name || feature.properties.nome || "Bairro";
+        const name = feature.properties.name || feature.properties.nome || t("Bairro");
         displayZona(name, zona);
       },
       null,

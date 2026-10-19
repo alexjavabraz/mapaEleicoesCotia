@@ -1,3 +1,37 @@
+# Sessão — 2026-10-19 (3) · Versão em inglês (i18n)
+
+**Status:** iniciada 2026-10-19 18:10 UTC · finalizada 2026-10-19 18:50 UTC
+(branch `claude/i18n-english-tm8c3p`, label `agentic`).
+
+## Pedido
+
+Apresentar o mapa em inglês quando o navegador do usuário não estiver em
+português.
+
+## O que foi feito
+
+- `js/i18n.js` (carregado no `<head>` das 3 páginas): idioma = escolha salva
+  no botão PT/EN (`localStorage["lang"]`) ou, sem escolha, inglês quando
+  `navigator.languages[0]` não começa com `pt`. `t("texto PT", {vars})`
+  traduz pelo próprio texto em português (dicionário `I18N_EN`); HTML
+  estático usa `data-i18n` / `data-i18n-placeholder` / `data-i18n-aria-label`.
+- Todos os textos de `app.js`, `map.js`, `tse.js`, `geral.js`,
+  `geral-config.js` e `contas.js` passam por `t()`. Números/moeda usam
+  `LOCALE` (en-US no inglês: R$1,234.56); datas em mm/dd/aaaa no inglês.
+- Traduzidos também rótulos que vêm dos dados mas são categorias: situação
+  (ELEITO → ELECTED, 2º TURNO → RUNOFF…), VOTO NULO/BRANCO e os eventos da
+  despesa (Pago → Paid, Liquidado → Accrued, Empenhado → Committed).
+  Nomes de candidatos, bairros, fornecedores e órgãos ficam como estão.
+- Botão PT/EN no canto do header (recarrega a página). `sw.js` → v11.
+
+## Armadilhas
+
+- Texto novo na interface: escreva `t("…")` e adicione a chave em `I18N_EN`,
+  senão aparece em português no modo inglês.
+- Para testar o inglês no navegador em PT: clique em "EN" no header.
+
+---
+
 # Sessão — 2026-10-19 (2) · Evolução anual dos pagamentos
 
 **Status:** iniciada 2026-10-19 17:22 UTC · finalizada 2026-10-19 17:35 UTC (PR #2, label `agentic`).
