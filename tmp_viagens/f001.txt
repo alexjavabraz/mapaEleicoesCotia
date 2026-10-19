@@ -1,0 +1,993 @@
+
+<!DOCTYPE html>
+<html lang="pt-br" xml:lang="pt-br" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1" />
+    
+    <link rel="shortcut icon" type="image/png" href="/Arquivos/favicon.ico" />
+
+    
+    <meta property="og:url" content="https%3A%2F%2Fcotia.siscam.com.br%2Findex%2F80%2F8" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Câmara Municipal de Cotia - Proposituras" />
+    <meta property="og:description" content="Consulta" />
+    <meta property="description" content="Consulta" />
+    <meta property="og:site_name" content="Consulta" />
+    <meta property="og:image" />
+
+    <title>Câmara Municipal de Cotia - Proposituras</title>
+
+    <link href="/bundles/styles?v=G_PSBKIytKl898f_bl3UL2z3r6nwBxQSNr5bTkxZqms1" rel="stylesheet"/>
+
+
+    <script>
+        window.application = "/";
+    </script>
+
+
+
+    <!--[if lte IE 8]>
+        <script src="/bundles/xscripts?v=dHRwwcbNT0siA7Hqu-96BBRSPEk7_CTsALd6OnJoiM41"></script>
+
+    <![endif]-->
+    <script src="/bundles/scripts?v=V2LP8TEBlSBeH7PrnhkcIz4RfHMycmoqPQ5yZ-TT_Bo1"></script>
+
+    <!--[if (IE 8)|(IE 9)]><script src="/Scripts/jquery.transport.xdr.min.js"></script><![endif]-->
+</head>
+
+<body >
+    <header class="bg-primary">
+        <nav class="navbar navbar-inverse navbar-static-top acessibility hidden-print visible-md visible-sm visible-lg">
+            <div class="container">
+                    <ul class="nav navbar-nav">
+                        <li>
+                            <a accesskey="1" title="Menu principal" href="#menu">Menu <span class="access-key">1</span></a>
+                        </li>
+                        <li>
+                            <a accesskey="2" title="Conteúdo da página" href="#content">Conteúdo <span class="access-key">2</span></a>
+                        </li>
+                        <li>
+                            <a accesskey="3" title="Rodapé da página" href="#rodape">Rodapé <span class="access-key">3</span></a>
+                        </li>
+                        <li class="visible-lg">
+                            <a accesskey="4" title="Aumenta o tamanho da fonte" href="/Home/AumentarFonte?tipo=0">Aumentar fonte <span class="access-key">4</span></a>
+                        </li>
+                        <li class="visible-lg">
+                            <a accesskey="5" title="Diminui o tamanho da fonte" href="/Home/DiminuirFonte?tipo=1">Reduzir fonte <span class="access-key">5</span></a>
+                        </li>
+                        <li>
+                            <a accesskey="6" title="Altera o contraste das cores" href="/Home/MudarContraste">Alto contraste <span class="access-key">6</span></a>
+                        </li>
+                        <li>
+                            <a accesskey="7" title="Página de acessibilidade" href="/Home/Acessibilidade">Acessibilidade <span class="access-key">7</span></a>
+                        </li>
+                    </ul>
+            </div>
+        </nav>
+        <nav class="navbar navbar-inverse navbar-static-top acessibility hidden-print visible-xs">
+            <div class="container">
+                    <ul class="nav navbar-nav text-center">
+                        <li>
+                            <a title="Altera a versão da página" href="/Home/MudarVersao"> Versão Desktop</a>
+                        </li>
+                    </ul>
+            </div>
+        </nav>
+        <div class="container">
+            <div class="row">
+                <div class="brasao col-sm-3 col-md-2 col-xs-4"><img src="/Arquivos/Brasao.png" alt="Brasão" /></div>
+                <div class="col-md-8 col-xs-8">
+                    <h1>C&#226;mara Municipal de Cotia</h1>
+                    <h2>Consulta</h2>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <nav class="navbar navbar-default navbar-static-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+            <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav" id="menu">
+                        
+                        <li><a href="/" tabindex="1"><span class="fa fa-home" title="Acesso à página inicial, e à consulta global de documentos"></span> <span>Início</span></a></li>
+
+                            <li>
+                                <a href="/index/79/8" tabindex="1" title="Documentos Administrativos">
+                                    <span aria-hidden="true" class="fa fa-search"></span> Documentos Administrativos
+
+                                </a>
+                            </li>
+                            <li class="active">
+                                <a href="/index/80/8" tabindex="1" title="Proposituras">
+                                    <span aria-hidden="true" class="fa fa-search"></span> Proposituras
+
+                                </a>
+                            </li>
+                            <li class="hidden-lg hidden-sm hidden-md">
+                                <a href="/index/87/8" tabindex="1" title="Sub-documentos">
+                                    <span aria-hidden="true" class="fa fa-search"></span> Sub-documentos
+
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/index/81/8" tabindex="1" title="Legisla&#231;&#227;o">
+                                    <span aria-hidden="true" class="fa fa-search"></span> Legisla&#231;&#227;o
+
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/vereadores" tabindex="1" title="Vereadores">
+                                    <span aria-hidden="true" class="fa fa-user"></span> Vereadores
+
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/sessoes" tabindex="1" title="Sess&#245;es">
+                                    <span aria-hidden="true" class="fa fa-calendar"></span> Sess&#245;es
+
+                                </a>
+                            </li>
+                            <li class="hidden-lg hidden-sm hidden-md">
+                                <a href="/documentos/autenticar" tabindex="1" title="Validar Documento Digital">
+                                    <span aria-hidden="true" class="fa fa-key"></span> Validar Documento Digital
+
+                                </a>
+                            </li>
+                        <li class="dropdown hidden-xs">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <span aria-hidden="true" class="fa fa-bars"></span> Mais <span aria-hidden="true" class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                    <li>
+                                        <a href="/index/87/8" tabindex="1" title="Sub-documentos">
+                                            <span aria-hidden="true" class="fa fa-search"></span> Sub-documentos
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="/documentos/autenticar" tabindex="1" title="Validar Documento Digital">
+                                            <span aria-hidden="true" class="fa fa-key"></span> Validar Documento Digital
+                                        </a>
+                                    </li>
+
+                                <li>
+                                    <a href="/Documentos/AcessoControlado" tabindex="1" title="Acesso Controlado aos Documentos">
+                                        <span aria-hidden="true" class="fa fa-lock"></span> Acesso Controlado aos Documentos
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a href="/Content/Manual.pdf" tabindex="1" title="Manual" target="_blank">
+                                        <span aria-hidden="true" class="fa fa-book"></span> Manual
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                    </ul>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <div class="container">
+            <div  id="content">
+                
+
+
+<h3 class="page-header">Proposituras</h3>
+
+
+
+<div class="hidden-print">
+        <ul class="nav nav-tabs">
+            <li ><a data-toggle="tab" href="#pesquisa-simples">Pesquisa simples</a></li>
+            <li ><a data-toggle="tab" href="#pesquisa-textual">Pesquisa textual</a></li>
+            <li class="active"><a data-toggle="tab" href="#pesquisa-avancada">Pesquisa avançada</a></li>
+            <li role="presentation" class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                    Outras opções <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a href="/Documentos/IndiceCronologico/80/8">Índice cronológico</a></li>
+                        <li><a href="/Documentos/IndicePorSituacao/80/8">Índice por situação</a></li>
+                                    </ul>
+            </li>
+        </ul>
+
+    <div class="tab-content">
+            <input type="hidden" id="pesquisa-menu" value="80" />
+            <div id="pesquisa-simples" class="tab-pane fade in">
+                <form action="/Documentos/Pesquisa" method="get">
+                    <input type="hidden" name="Pesquisa" value="Simples" />
+                    <input type="hidden" name="id" value="80" />
+                    <input type="hidden" name="pagina" value="1" />
+                    <input id="SimplesModulo" name="Modulo" type="hidden" value="8" />
+
+                    <div class="row">
+                            <div class="form-group form-group-lg col-md-4">
+                                <label for="SimplesDocumento">Documento</label>
+                                <select class="form-control" data-val="true" data-val-number="O campo Documento deve ser um número." data-val-required="The Documento field is required." id="SimplesDocumento" name="Documento"><option selected="selected" value="0">Todos</option>
+<option value="139">Indica&#231;&#245;es</option>
+<option value="140">Mo&#231;&#245;es</option>
+<option value="135">Projetos de Decreto Legislativo</option>
+<option value="137">Projetos de Emenda &#224; Lei Org&#226;nica</option>
+<option value="133">Projetos de Lei</option>
+<option value="134">Projetos de Lei Complementar</option>
+<option value="136">Projetos de Resolu&#231;&#227;o</option>
+<option value="138">Requerimentos</option>
+</select>
+                            </div>
+
+
+                            <div class="form-group form-group-lg col-md-2">
+                                <label for="SimplesNumeracao">Numera&#231;&#227;o</label>
+                                <select class="form-control" data-minimum-results-for-search="Infinity" data-val="true" data-val-required="The Numeração field is required." id="SimplesNumeracao" name="Numeracao"><option value="Documento">Documento</option>
+<option value="Processo">Processo</option>
+<option value="Protocolo">Protocolo</option>
+</select>
+                            </div>
+
+                        <div class="form-group form-group-lg col-md-2">
+                            <label for="SimplesNumeroInicial">N&#250;mero inicial</label>
+                            <input class="upper campo-numero-complemento form-control" id="SimplesNumeroInicial" name="NumeroInicial" title="Consulte pelo número. Dica: Para um número específico, não é necessário informar o número final." type="text" value="" />
+                        </div>
+
+                        <div class="form-group form-group-lg col-md-2">
+                            <label for="SimplesAnoInicial">Ano inicial</label>
+                            <input class="upper campo-numero form-control" data-val="true" data-val-number="O campo Ano inicial deve ser um número." id="SimplesAnoInicial" name="AnoInicial" title="Consulte pelo ano. Dica: Para um ano específico, não é necessário informar o ano final." type="text" value="" />
+                        </div>
+
+                        <div class="form-group form-group-lg col-md-2 btn-label-space">
+                            <button type="submit" class="form-control btn btn-primary">
+                                <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                                <span class="visible-md-inline visible-lg-inline"></span> Pesquisar
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div id="pesquisa-textual" class="tab-pane fade in">
+                <form action="/Documentos/Pesquisa" method="get">
+                    <input type="hidden" name="Pesquisa" value="Textual" />
+                    <input type="hidden" name="id" value="80" />
+                    <input type="hidden" name="pagina" value="1" />
+                    <input id="TextualModulo" name="Modulo" type="hidden" value="8" />
+
+                    <div class="row">
+                            <div class="form-group form-group-lg col-md-4">
+                                <label for="TextualDocumento">Documento</label>
+                                <select class="form-control" id="TextualDocumento" name="Documento"><option selected="selected" value="0">Todos</option>
+<option value="139">Indica&#231;&#245;es</option>
+<option value="140">Mo&#231;&#245;es</option>
+<option value="135">Projetos de Decreto Legislativo</option>
+<option value="137">Projetos de Emenda &#224; Lei Org&#226;nica</option>
+<option value="133">Projetos de Lei</option>
+<option value="134">Projetos de Lei Complementar</option>
+<option value="136">Projetos de Resolu&#231;&#227;o</option>
+<option value="138">Requerimentos</option>
+</select>
+                            </div>
+
+                        <div class="form-group form-group-lg col-md-6">
+                            <input type="hidden" name="NoTexto" value="True"/>
+<label for="TextualAssunto">Texto</label><input class="form-control" id="TextualAssunto" name="Assunto" title="Consulte palavras no plural ou singular, com ou sem acentuação. Para uma consulta mais avançada, utilize aspas duplas e conectores como E, OU, NÃO, +, - Ex.: tapa + buraco; alteração - parcial; &quot;caixa d&#39;agua&quot; OU &quot;caixa de água&quot;; NÃO pesar; etc." type="text" value="" />                        </div>
+
+                        <div class="form-group form-group-lg col-md-2 btn-label-space">
+                            <button type="submit" class="form-control btn btn-primary">
+                                <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                                <span class="visible-md-inline visible-lg-inline"></span> Pesquisar
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        <div id="pesquisa-avancada" class="tab-pane fade in active">
+            <form action="/Documentos/Pesquisa" method="get">
+                <input type="hidden" name="Pesquisa" value="Avancada" />
+                <input type="hidden" name="id" value="80" />
+                <input type="hidden" name="pagina" value="1" />
+                <input id="AvancadaModulo" name="Modulo" type="hidden" value="8" />
+
+                <div class="row">
+                        <div class="form-group form-group-lg col-md-4">
+                            <label for="Documento">Documento</label>
+                            <select id="Documento" name="Documento" class="form-control" data-formgroup-situacao="col-md-12" data-formgroup-classificacao="col-md-6" data-formgroup-subtipo-situacao="col-md-6" data-formgroup-subtipo-classificacao="col-md-4" autocomplete="off">
+                                        <option data-temsubtipo="False" value="0" selected="selected">Todos</option>
+                                        <option data-temsubtipo="False" value="139">Indica&#231;&#245;es</option>
+                                        <option data-temsubtipo="False" value="140">Mo&#231;&#245;es</option>
+                                        <option data-temsubtipo="True" value="135">Projetos de Decreto Legislativo</option>
+                                        <option data-temsubtipo="True" value="137">Projetos de Emenda &#224; Lei Org&#226;nica</option>
+                                        <option data-temsubtipo="True" value="133">Projetos de Lei</option>
+                                        <option data-temsubtipo="True" value="134">Projetos de Lei Complementar</option>
+                                        <option data-temsubtipo="True" value="136">Projetos de Resolu&#231;&#227;o</option>
+                                        <option data-temsubtipo="False" value="138">Requerimentos</option>
+                            </select>
+                        </div>
+
+
+                        <div class="form-group form-group-lg col-md-2">
+                            <label for="Numeracao">Numera&#231;&#227;o</label>
+                            <select class="form-control" data-minimum-results-for-search="Infinity" id="Numeracao" name="Numeracao"><option value="Documento">Documento</option>
+<option value="Processo">Processo</option>
+<option value="Protocolo">Protocolo</option>
+</select>
+                        </div>
+
+                    <div class="form-group form-group-lg col-md-2">
+                        <label for="NumeroInicial">N&#250;mero inicial</label>
+                        <input class="upper campo-numero-complemento form-control" id="NumeroInicial" name="NumeroInicial" title="Consulte pelo número. Dica: Para um número específico, não é necessário informar o número final." type="text" value="" />
+                    </div>
+
+                    <div class="form-group form-group-lg col-md-2">
+                        <label for="AnoInicial">Ano inicial</label>
+                        <input class="upper campo-numero form-control" id="AnoInicial" name="AnoInicial" title="Consulte pelo ano. Dica: Para um ano específico, não é necessário informar o ano final." type="text" value="" />
+                    </div>
+
+                    <div class="form-group form-group-lg col-md-2">
+                        <label for="DataInicial">Data inicial</label>
+                        <div class="input-group">
+                            <input class="campo-data form-control" data-val="true" data-val-date="O campo Data inicial deve ser uma data." id="DataInicial" name="DataInicial" title="Data do documento. Dica: Para uma data específica, não é necessário informar o período final." type="text" value="" />
+                            <span class="input-group-addon">
+                                <span class="glyphicon glyphicon-calendar"></span>
+                            </span>
+                        </div>
+                    </div>
+
+                </div>
+
+                    <div class="row collapse" id="collapse-intervalo">
+                        <div class="col-md-6" aria-hidden="true"></div>
+                        <div class="form-group form-group-lg col-md-2">
+                            <label for="NumeroFinal">N&#250;mero final</label>
+                            <input class="upper campo-numero-complemento form-control" id="NumeroFinal" name="NumeroFinal" title="Consulte pelo número." type="text" value="" />
+                        </div>
+                        <div class="form-group form-group-lg col-md-2">
+                            <label for="AnoFinal">Ano final</label>
+                            <input class="upper campo-numero form-control" data-val="true" data-val-number="O campo Ano final deve ser um número." id="AnoFinal" name="AnoFinal" title="Consulte pelo ano." type="text" value="" />
+                        </div>
+                        <div class="form-group form-group-lg col-md-2">
+                            <label for="DataFinal">Data final</label>
+                            <div class="input-group">
+                                <input class="campo-data form-control" data-val="true" data-val-date="O campo Data final deve ser uma data." id="DataFinal" name="DataFinal" title="Data do documento." type="text" value="" />
+                                <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-calendar"></span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="text-right">
+                            <div class="pull-right col-md-6">
+                                <a data-toggle="collapse" href="#collapse-intervalo" title="Abre campos para pesquisa por intervalos">Pesquisa por intervalos</a>
+                            </div>
+                        </div>
+                    </div>
+
+                <div class="row">
+                    <div class="form-group form-group-lg display-none col-md-12">
+                        <label for="SubDocumentoId">Documentos Relacionados</label>
+                        <span class="text-right pull-right" title="Exibir Detalhes dos Documentos Relacionados">
+                            <label for="DocumentosRelacionadosDetalhes">Exibir Detalhes dos Documentos Relacionados</label>
+                            <input data-val="true" data-val-required="The Exibir Detalhes dos Documentos Relacionados field is required." id="DocumentosRelacionadosDetalhes" name="DocumentosRelacionadosDetalhes" type="checkbox" value="true" /><input name="DocumentosRelacionadosDetalhes" type="hidden" value="false" />
+                        </span>
+                        <select class="form-control" data-val="true" data-val-number="O campo Documentos Relacionados deve ser um número." data-val-required="The Documentos Relacionados field is required." id="SubDocumentoId" name="SubDocumentoId"></select>
+                    </div>
+                </div>
+
+                <div class="row">
+                        <div class="form-group form-group-lg display-none col-md-6">
+                            <label for="SubTipoId">Tipo</label>
+                            <select class="form-control" data-val="true" data-val-number="O campo Tipo deve ser um número." data-val-required="The Tipo field is required." id="SubTipoId" name="SubTipoId"></select>
+                        </div>
+
+
+                        <div class="form-group form-group-lg col-md-12">
+                            <label for="Situacao">Situa&#231;&#227;o</label>
+                            <select class="form-control" data-val="true" data-val-number="O campo Situação deve ser um número." data-val-required="The Situação field is required." id="Situacao" name="Situacao"><option selected="selected" value="0">Todas</option>
+<option value="430">
+Arquivado</option>
+<option value="438">Apresentado Substitutivo</option>
+<option value="17">Aprovada</option>
+<option value="429">Aprovado</option>
+<option value="500">Aprovado em 1&#186; Turno</option>
+<option value="492">Aprovado/Veto parcial mantido</option>
+<option value="375">Arquivado</option>
+<option value="499">Cancelado</option>
+<option value="434">Devolvido</option>
+<option value="19">Em tramita&#231;&#227;o</option>
+<option value="458">Entregue</option>
+<option value="268">Leitura</option>
+<option value="485">Lida</option>
+<option value="447">Lido</option>
+<option value="277">N&#227;o Consta Revoga&#231;&#227;o Expressa</option>
+<option value="284">N&#227;o Espec&#237;ficado</option>
+<option value="297">Nao ha Revogacao</option>
+<option value="552">Obsoleto</option>
+<option value="433">Prejudicado</option>
+<option value="393">Proposi&#231;&#227;o Retirada</option>
+<option value="503">Recebida</option>
+<option value="18">Rejeitada</option>
+<option value="432">Rejeitado</option>
+<option value="431">Retirado</option>
+<option value="373">Retirado pelo Autor</option>
+<option value="583">Sem Efeito</option>
+<option value="439">Substitu&#237;do</option>
+<option value="546">Tramita&#231;&#227;o Suspensa</option>
+<option value="269">Veto Mantido</option>
+<option value="579">Vista Vereador</option>
+</select>
+                        </div>
+
+
+
+                </div>
+
+                    <div class="row">
+                        <div class="form-group form-group-lg col-md-3">
+                            <label id="Autoria">Autoria</label>
+                            <select aria-label="Tipo" aria-labelledby="Autoria" class="form-control" data-minimum-results-for-search="Infinity" data-val="true" data-val-required="The Autoria field is required." id="autoria-tipo-lista" name="TipoAutor" title="Tipo"><option selected="selected" value="Todos">Todos</option>
+<option value="Vereador">Vereadores</option>
+<option value="Prefeito">Prefeitos</option>
+<option value="ComissaoPermanente">Comiss&#245;es Permanentes</option>
+<option value="ComissaoTemporaria">Comiss&#245;es Tempor&#225;rias</option>
+<option value="Mesa">Mesas Diretoras</option>
+</select>
+                        </div>
+
+                        <div class="form-group form-group-lg col-md-7 btn-label-space">
+                            <select name="AutoriaId" id="autoriaid" title="Autor" class="form-control" aria-label="Autor" aria-labelledby="Autoria">
+                                <option value="0">Todos</option>
+                                    <optgroup label="Vereadores atuais">
+                                            <option value="251" >Alexandre Frota de Andrade - Alexandre Frota</option>
+                                            <option value="152" >Alexsandre Santos Ramos - Sandrinho Santos</option>
+                                            <option value="12" >Almir Rodrigues da Rocha - Almir Rodrigues</option>
+                                            <option value="20" >Dr. Diomeneis Andrade Silva - Dr. Castor Andrade</option>
+                                            <option value="155" >Eduardo Nascimento</option>
+                                            <option value="214" >Felipe Augusto Araujo - Felipe Variedade</option>
+                                            <option value="216" >Genilton Santos da Silva - Peka Santos</option>
+                                            <option value="252" >Hernane da Silva Machado - Hernane</option>
+                                            <option value="215" >Johny da Silva Santos - Johny Santos</option>
+                                            <option value="253" >Luis Henrique da Silva Tinoco - Luis&#227;oTinoco</option>
+                                            <option value="254" >Marcelo Pereira Cordeiro - Marcelinho Lenha</option>
+                                            <option value="157" >Marcio da Silva Prates - Marcinho Prates</option>
+                                            <option value="158" >Osmar Danilo da Silva - Professor Osmar</option>
+                                            <option value="255" >Rafael Fernandes Dantas - Rafael Dantas</option>
+                                            <option value="222" >Sergio Luiz de Freitas - Serginho Luiz</option>
+                                            <option value="256" >Silvio Roberto Bueno Cabral de Medeiros Filho - Dr. Silvio Cabral</option>
+                                            <option value="257" >Yago Bezerra Neres - Yago Bezerra</option>
+                                    </optgroup>
+                                    <optgroup label="Vereadores anteriores">
+                                            <option value="99" >AILTON FERREIRA</option>
+                                            <option value="19" >Alcides Neres dos Santos - Alcides Esquisito</option>
+                                            <option value="287" >Alexandre Frota de Andrade</option>
+                                            <option value="159" >Angela Maria Maluf - Angela Maluf</option>
+                                            <option value="100" >ANT&#212;NIO CARLOS DE CAMARGO</option>
+                                            <option value="101" >ANT&#212;NIO CARLOS DE MELO S&#193;</option>
+                                            <option value="199" >Arildo Gomes</option>
+                                            <option value="102" >ARNALDO GON&#199;ALVES DE SOUZA</option>
+                                            <option value="298" >Caio de Toledo Reis dos Santos</option>
+                                            <option value="103" >CARMELINO PIRES DE OLIVEIRA</option>
+                                            <option value="104" >CL&#193;UDIO DOMINGUES SALGADO OLORES</option>
+                                            <option value="105" >CL&#193;UDIO SARAIVA SANTOS</option>
+                                            <option value="167" >DEJAILSON GOMES DA SILVA</option>
+                                            <option value="153" >Dr. Celso Tadashi Ichigi - Celso  Itiki</option>
+                                            <option value="154" >Edson da Silva - Edson Silva</option>
+                                            <option value="107" >EMILIO GUERRA</option>
+                                            <option value="281" >F&#225;bio Ribeiro Ferreira</option>
+                                            <option value="276" >Fabio Ribeiro Ferreira - Pr. F&#225;bio Ribeiro</option>
+                                            <option value="17" >Fernando Libman Nascimento</option>
+                                            <option value="156" >Francimar Macena Dantas - Pedinha Dantas</option>
+                                            <option value="108" >GILBERTO MARCELINO</option>
+                                            <option value="39" >Givaldo da Costa - Cabo Givaldo</option>
+                                            <option value="217" >Iran Soares Lucas - Iran Soares</option>
+                                            <option value="109" >IVAIR JOS&#201; BOCHETTI</option>
+                                            <option value="110" >IVO M&#193;RIO ISAAC PIRES</option>
+                                            <option value="111" >JOAQUM HOR&#193;CIO PEDROSO NETO</option>
+                                            <option value="112" >JOS&#201; CABOCLO NETO</option>
+                                            <option value="169" >JOS&#201; CARLOS MURARO</option>
+                                            <option value="113" >JOS&#201; COELHO PAMPLONA NETO</option>
+                                            <option value="170" >JOSE DE SOUSA VILARIM</option>
+                                            <option value="35" >Jos&#233; Genival dos Santos - Genival</option>
+                                            <option value="115" >JOS&#201; J&#218;LIO TIB&#218;RCIO REZENDE - TAGARELA</option>
+                                            <option value="24" >Jos&#233; Lino Gomes - Lino da Sa&#250;de</option>
+                                            <option value="280" >Jos&#233; Marcos da Silva</option>
+                                            <option value="23" >Jos&#233; Marcos da Silva - Marcos Nena</option>
+                                            <option value="116" >JOS&#201; PEREIRA DOMINGUES</option>
+                                            <option value="22" >Jovino Ribeiro de Freitas Neto - Tim</option>
+                                            <option value="117" >KENJI KIRA</option>
+                                            <option value="21" >Luis Gustavo Mendes Napolitano - Luis Gustavo Napolitano</option>
+                                            <option value="25" >Luis Roberto Garcia Rodovalho - Beto Rodovalho</option>
+                                            <option value="119" >M&#192;RIO DIAS RIBEIRO</option>
+                                            <option value="121" >MARIO MACIEL</option>
+                                            <option value="122" >M&#193;RIO SILVA</option>
+                                            <option value="120" >MAURO ISAAC PIRES</option>
+                                            <option value="123" >MESA DA C&#194;MARA</option>
+                                            <option value="124" >MESA DIRETORA</option>
+                                            <option value="125" >MOIS&#201;S CABRERA CORVELO</option>
+                                            <option value="127" >NELSON JOAQUIM DA SILVA</option>
+                                            <option value="128" >OSWALDO SAMARTINO</option>
+                                            <option value="129" >PAULINO DE OLIVEIRA NASCIMENTO FILHO</option>
+                                            <option value="16" >Paulo Benedito Vieira - Paulinho Lenha</option>
+                                            <option value="202" >Pel&#233;</option>
+                                            <option value="132" >RAIMUNDO OLIVIO DE OLIVEIRA</option>
+                                            <option value="171" >RODRIGO SANTOS</option>
+                                            <option value="18" >Rog&#233;rio Cardoso Franco</option>
+                                            <option value="273" >Rui Celio Gomes Folha - Rui Gomes</option>
+                                            <option value="168" >SANTO SIQUEIRA</option>
+                                            <option value="134" >SAULO HEREDIA CARRARO</option>
+                                            <option value="135" >SERAFIM PEREIRA MONTEIRO</option>
+                                            <option value="15" >S&#233;rgio Folha</option>
+                                            <option value="294" >Sergio Henrique Clementino Folha - Sergio Folha</option>
+                                            <option value="229" >S&#233;rgio Henrique Clementino Folha - S&#233;rgio Folha</option>
+                                            <option value="41" >Sidinei Pereira da Fonseca - Bispo Sidinei</option>
+                                            <option value="172" >TODOS</option>
+                                            <option value="137" >VEREADORES</option>
+                                            <option value="138" >VICENTE FONTANA NETO</option>
+                                            <option value="139" >WALDEMAR ALBANO</option>
+                                            <option value="140" >WALTER JARBAS PEDROSO</option>
+                                    </optgroup>
+                                    <optgroup label="Prefeitos atuais">
+                                            <option value="258" >Welington Aparecido Alfredo</option>
+                                    </optgroup>
+                                    <optgroup label="Prefeitos anteriores">
+                                            <option value="45" >AILTON FERREIRA</option>
+                                            <option value="13" >Antonio Carlos de Camargo</option>
+                                            <option value="46" >CARMELINO PIRES DE OLIVEIRA</option>
+                                            <option value="47" >EMILIO GUERRA</option>
+                                            <option value="48" >IVO M&#193;RIO ISAAC PIRES</option>
+                                            <option value="49" >JOAQUIM HOR&#193;CIO PEDROSO NETO</option>
+                                            <option value="50" >JOSE CARLOS BARRETO</option>
+                                            <option value="51" >KENJI KIRA</option>
+                                            <option value="52" >M&#193;RIO DIAS RIBEIRO</option>
+                                            <option value="53" >NELSON JOAQUIM DA SILVA</option>
+                                            <option value="54" >PODER LEGISLATIVO</option>
+                                            <option value="144" >PREFEITO</option>
+                                            <option value="151" >Rog&#233;rio Cardoso Franco</option>
+                                            <option value="55" >WALDEMAR ALBANO</option>
+                                    </optgroup>
+                                    <optgroup label="Comiss&#245;es Permanentes atuais">
+                                            <option value="275" >Comiss&#227;o de Defesa do Consumidor</option>
+                                            <option value="266" >Comiss&#227;o de Defesa do Direito do Idoso</option>
+                                            <option value="267" >Comiss&#227;o de Defesa dos Direitos da Pessoa com Defici&#234;ncia</option>
+                                            <option value="265" >Comiss&#227;o de Educa&#231;&#227;o, Sa&#250;de e Assist&#234;ncia Social</option>
+                                            <option value="262" >Comiss&#227;o de Finan&#231;as e Or&#231;amento</option>
+                                            <option value="261" >Comiss&#227;o de Justi&#231;a e Reda&#231;&#227;o</option>
+                                            <option value="264" >Comiss&#227;o de Meio Ambiente</option>
+                                            <option value="263" >Comiss&#227;o de Obras e Servi&#231;os P&#250;blicos</option>
+                                    </optgroup>
+                                    <optgroup label="Comiss&#245;es Permanentes anteriores">
+                                            <option value="142" >CFO</option>
+                                            <option value="165" >Comiss&#227;o de Educa&#231;&#227;o, Sa&#250;de e Assistencia Social</option>
+                                            <option value="30" >Comiss&#227;o de Educa&#231;&#227;o, Sa&#250;de e Assist&#234;ncia Social</option>
+                                            <option value="198" >COMISS&#195;O DE EDUCA&#199;&#195;O, SA&#218;DE E ASSIST&#202;NCIA SOCIAL</option>
+                                            <option value="162" >Comiss&#227;o de Finan&#231;as e Or&#231;amento</option>
+                                            <option value="27" >Comiss&#227;o de Finan&#231;as e Or&#231;amento</option>
+                                            <option value="195" >COMISS&#195;O DE FINAN&#199;AS E OR&#199;AMENTO</option>
+                                            <option value="26" >Comiss&#227;o de Justi&#231;a e Reda&#231;&#227;o</option>
+                                            <option value="161" >Comiss&#227;o de Justi&#231;a e Reda&#231;&#227;o</option>
+                                            <option value="194" >COMISS&#195;O DE JUSTI&#199;A E REDA&#199;&#195;O</option>
+                                            <option value="29" >Comiss&#227;o de Meio Ambiente</option>
+                                            <option value="197" >COMISS&#195;O DE MEIO AMBIENTE</option>
+                                            <option value="28" >Comiss&#227;o de Obras e Servi&#231;os P&#250;blicos</option>
+                                            <option value="163" >Comiss&#227;o de Obras e Servi&#231;os P&#250;blicos</option>
+                                            <option value="196" >COMISS&#195;O DE OBRAS E SERVI&#199;OS P&#218;BLICOS</option>
+                                            <option value="164" >Comiss&#227;o do meio Ambiente</option>
+                                    </optgroup>
+                                    <optgroup label="Comiss&#245;es Tempor&#225;rias atuais">
+                                            <option value="269" >Comiss&#227;o de Assuntos Relevantes - Bem-Estar Animal no Munic&#237;pio de Cotia</option>
+                                            <option value="270" >FRENTE PARLAMENTAR DE INTEGRA&#199;&#195;O SOCIAL - INTEGRAVIDA</option>
+                                            <option value="279" >Frente Parlamentar em defesa da moradia digna, regulariza&#231;&#227;o fundi&#225;ria e  planejamento urbano</option>
+                                            <option value="37" >Frente Parlamentar em Defesa da Rodovia Raposo Tavares (SP - 270)</option>
+                                            <option value="277" >Frente Parlamentar em prote&#231;&#227;o &#224;s pessoas neurodivergentes e raras</option>
+                                    </optgroup>
+                                    <optgroup label="Comiss&#245;es Tempor&#225;rias anteriores">
+                                            <option value="31" >Frente Parlamentar Crist&#227;</option>
+                                            <option value="40" >Frente Parlamentar da Sa&#250;de</option>
+                                            <option value="32" >Frente Parlamentar de Combate &#224; Polui&#231;&#227;o Sonora</option>
+                                            <option value="38" >Frente Parlamentar em Combate &#224; Falta de Energia El&#233;trica no Munic&#237;pio de Cotia</option>
+                                            <option value="33" >Frente Parlamentar em Combate &#224; Viol&#234;ncia contra os Animais Dom&#233;sticos do Munic&#237;pio de Cotia</option>
+                                            <option value="34" >Frente Parlamentar em Defesa do Esporte</option>
+                                            <option value="36" >Frente Parlamentar em Defesa e Duplica&#231;&#227;o da Estrada Vicinal Municipal Ivo M&#225;rio Isaac Pires - Estrada de Caucaia do Alto</option>
+                                    </optgroup>
+                                    <optgroup label="Mesas Diretoras atuais">
+                                            <option value="42" >Mesa Diretora 2013/2014</option>
+                                            <option value="43" >Mesa Diretora 2015/2016</option>
+                                            <option value="187" >Mesa Diretora 2019/2020</option>
+                                            <option value="219" >Mesa Diretora 2021/2022</option>
+                                            <option value="232" >Mesa Diretora 2023/2024</option>
+                                            <option value="259" >Mesa Diretora 2025/2026</option>
+                                    </optgroup>
+                                    <optgroup label="Mesas Diretoras anteriores">
+                                            <option value="143" >MESA</option>
+                                            <option value="160" >Mesa Diretora 2017/2018</option>
+                                    </optgroup>
+                            </select>
+                        </div>
+
+                            <div class="form-group form-group-lg col-md-2">
+                                <label for="Iniciativa">Iniciativa</label>
+                                <select class="form-control" data-val="true" data-val-required="The Iniciativa field is required." id="Iniciativa" name="Iniciativa"><option selected="selected" value="Nenhum">Todas</option>
+<option value="Autor">Autor</option>
+<option value="CoAutor">Coautor</option>
+</select>
+                            </div>
+                    </div>
+
+                <div class="row">
+                        <div class="form-group form-group-lg col-md-6">
+                            <div class="pull-right text-nowrap">
+                                <label for="NoTexto">Pesquisa no texto</label>
+                                <input data-val="true" data-val-required="The Pesquisa no texto field is required." id="NoTexto" name="NoTexto" type="checkbox" value="true" /><input name="NoTexto" type="hidden" value="false" />
+                            </div>
+                            <label for="Assunto">Assunto</label>
+                            <input class="form-control" id="Assunto" name="Assunto" title="Consulte palavras no plural ou singular, com ou sem acentuação. Para uma consulta mais avançada, utilize aspas duplas e conectores como E, OU, NÃO, +, - Ex.: tapa + buraco; alteração - parcial; &quot;caixa d&#39;agua&quot; OU &quot;caixa de água&quot;; NÃO pesar; etc." type="text" value="" />
+                        </div>
+                            <div class="form-group form-group-lg col-md-4">
+                                <label for="AvancadaObservacoes">Observa&#231;&#245;es</label>
+                                <input class="form-control" id="AvancadaObservacoes" name="Observacoes" title="Consulte palavras no plural ou singular, com ou sem acentuação. Para uma consulta mais avançada, utilize aspas duplas e conectores como E, OU, NÃO, +, - Ex.: tapa + buraco; alteração - parcial; &quot;caixa d&#39;agua&quot; OU &quot;caixa de água&quot;; NÃO pesar; etc." type="text" value="" />
+                            </div>
+
+                    <div class="form-group form-group-lg col-md-2 btn-label-space">
+                        <button id="resultado-pesquisa" type="submit" class="form-control btn btn-primary">
+                            <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                            <span class="visible-md-inline visible-lg-inline"></span> Pesquisar
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div id="inicio-conteudo">
+
+        <div class="table-responsive">
+            <table class="table table-striped table-hover">
+                <caption><h3>Recentes</h3></caption>
+                <tr>
+                    <th>
+                        <div class="col-md-3">
+                            Documento
+                        </div>
+                        <div class="col-md-1">
+                            Data
+                        </div>
+                        <div class="col-md-8">
+                            Assunto
+                        </div>
+                    </th>
+                </tr>
+
+                <tbody>
+                        <tr>
+                            <td>
+                                <div class="row">
+                                    <p class="col-md-3">
+<a href="/Documentos/Documento/40062" target="_self" title="Requerimento Nº 31/2026">Requerimento Nº 31/2026</a>                                    </p>
+                                    <p class="col-md-1">
+                                        13/10/2026
+                                    </p>
+                                    <div class="col-md-8">
+                                        <p class="col-md-12">
+                                            Requer dispensa das formalidades regimentais, para aprecia&#231;&#227;o na presente Sess&#227;o, em regime de urg&#234;ncia especial, das seguintes mat&#233;rias: PROJETO DE LEI COMPLEMENTAR N&#186; 11/2026 E PROJETOS DE LEI N&#186; 145 E 148/2026
+                                        </p>
+
+
+                                    </div>
+                                </div>
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="row">
+                                    <p class="col-md-3">
+<a href="/Documentos/Documento/40060" target="_self" title="Projeto de Lei Nº 148/2026">Projeto de Lei Nº 148/2026</a>                                    </p>
+                                    <p class="col-md-1">
+                                        08/10/2026
+                                    </p>
+                                    <div class="col-md-8">
+                                        <p class="col-md-12">
+                                            “Inclui no calend&#225;rio oficial de eventos e programa&#231;&#245;es do Munic&#237;pio de Cotia o ‘RACH&#195;O MDP – OUTUBRO ROSA’.”
+                                        </p>
+
+
+                                    </div>
+                                </div>
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="row">
+                                    <p class="col-md-3">
+<a href="/Documentos/Documento/40059" target="_self" title="Projeto de Lei Nº 147/2026">Projeto de Lei Nº 147/2026</a>                                    </p>
+                                    <p class="col-md-1">
+                                        06/10/2026
+                                    </p>
+                                    <div class="col-md-8">
+                                        <p class="col-md-12">
+                                            Altera a Lei n&#186; 2.527, de 3 de agosto de 2026, que institui o Selo “Igreja Solid&#225;ria”, para alterar sua denomina&#231;&#227;o para Selo “Institui&#231;&#227;o Solid&#225;ria, no Munic&#237;pio de Cotia.
+                                        </p>
+
+
+                                    </div>
+                                </div>
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="row">
+                                    <p class="col-md-3">
+<a href="/Documentos/Documento/40058" target="_self" title="Projeto de Lei Nº 146/2026">Projeto de Lei Nº 146/2026</a>                                    </p>
+                                    <p class="col-md-1">
+                                        06/10/2026
+                                    </p>
+                                    <div class="col-md-8">
+                                        <p class="col-md-12">
+                                            Institui o Programa “Conhecendo Cotia”, destinado &#224; realiza&#231;&#227;o de visitas monitoradas de estudantes da Rede Municipal de Ensino aos &#243;rg&#227;os p&#250;blicos municipais e d&#225; outras provid&#234;ncias.
+                                        </p>
+
+
+                                    </div>
+                                </div>
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="row">
+                                    <p class="col-md-3">
+<a href="/Documentos/Documento/40018" target="_self" title="Requerimento Nº 30/2026">Requerimento Nº 30/2026</a>                                    </p>
+                                    <p class="col-md-1">
+                                        06/10/2026
+                                    </p>
+                                    <div class="col-md-8">
+                                        <p class="col-md-12">
+                                            Requer dispensa das formalidades regimentais, para aprecia&#231;&#227;o na presente Sess&#227;o, em regime de urg&#234;ncia especial, das seguintes mat&#233;rias: PROJETOS DE LEI N&#186; 131, 132, 133, 136, 137, 138, 142 E 143/2026 E PROJETOS DE DECRETOS LEGISLATIVO N&#186; 45 E 47/2026.
+                                        </p>
+
+
+                                    </div>
+                                </div>
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="row">
+                                    <p class="col-md-3">
+<a href="/Documentos/Documento/40019" target="_self" title="Moção Nº 30/2026">Moção Nº 30/2026</a>                                    </p>
+                                    <p class="col-md-1">
+                                        06/10/2026
+                                    </p>
+                                    <div class="col-md-8">
+                                        <p class="col-md-12">
+                                            “De pesar pelo falecimento do Sr. Jos&#233; Roberto da Silva – Fenem&#234;.”
+                                        </p>
+
+
+                                    </div>
+                                </div>
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="row">
+                                    <p class="col-md-3">
+<a href="/Documentos/Documento/40057" target="_self" title="Projeto de Lei Nº 145/2026">Projeto de Lei Nº 145/2026</a>                                    </p>
+                                    <p class="col-md-1">
+                                        05/10/2026
+                                    </p>
+                                    <div class="col-md-8">
+                                        <p class="col-md-12">
+                                            Autoriza o Poder Executivo a alienar, mediante doa&#231;&#227;o, im&#243;veis p&#250;blicos de propriedade do Munic&#237;pio de Cotia &#224; Fazenda do Estado de S&#227;o Paulo, destinados &#224; regulariza&#231;&#227;o e amplia&#231;&#227;o do F&#243;rum da Comarca de Cotia, e d&#225; outras provid&#234;ncias correlatas.
+                                        </p>
+
+
+                                    </div>
+                                </div>
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="row">
+                                    <p class="col-md-3">
+<a href="/Documentos/Documento/40056" target="_self" title="Projeto de Lei Complementar Nº 11/2026">Projeto de Lei Complementar Nº 11/2026</a>                                    </p>
+                                    <p class="col-md-1">
+                                        05/10/2026
+                                    </p>
+                                    <div class="col-md-8">
+                                        <p class="col-md-12">
+                                            Institui o PREFIS-26 – Programa de Recupera&#231;&#227;o Fiscal 2026 do Munic&#237;pio de Cotia, autoriza a transa&#231;&#227;o tribut&#225;ria por ades&#227;o e disciplina a regulamenta&#231;&#227;o de cr&#233;ditos inscritos em d&#237;vida ativa.
+                                        </p>
+
+
+                                    </div>
+                                </div>
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="row">
+                                    <p class="col-md-3">
+<a href="/Documentos/Documento/40014" target="_self" title="Projeto de Decreto Legislativo Nº 47/2026">Projeto de Decreto Legislativo Nº 47/2026</a>                                    </p>
+                                    <p class="col-md-1">
+                                        01/10/2026
+                                    </p>
+                                    <div class="col-md-8">
+                                        <p class="col-md-12">
+                                            “Concede o T&#237;tulo de Cidad&#227;o Cotiano ao Senhor Nelson Mitsuhide Shinzato”.
+                                        </p>
+
+
+                                    </div>
+                                </div>
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="row">
+                                    <p class="col-md-3">
+<a href="/Documentos/Documento/39999" target="_self" title="Projeto de Lei Nº 144/2026">Projeto de Lei Nº 144/2026</a>                                    </p>
+                                    <p class="col-md-1">
+                                        30/09/2026
+                                    </p>
+                                    <div class="col-md-8">
+                                        <p class="col-md-12">
+                                            Estima a receita e fixa a despesa do Munic&#237;pio para o exerc&#237;cio de 2027.
+                                        </p>
+
+
+                                    </div>
+                                </div>
+                            </td>
+
+                        </tr>
+                </tbody>
+            </table>
+        </div>
+</div>
+
+            </div>
+
+            <noscript>
+                <p>Your browser does not support JavaScript!</p>
+            </noscript>
+
+            <div class="visible-md visible-sm visible-lg hidden-print">
+                <a class="btn btn-lg btn-primary" href="#" id="back-to-top" title="Volta para o topo da página"><span class="fa fa-chevron-up" aria-hidden="true"></span> <span>Topo</span></a>
+            </div>
+        </div>
+
+    </main>
+
+    <footer class="navbar-inverse hidden-print">
+        <div class="container">
+            <ul class="list-inline pull-left" id="rodape">
+                
+                <li><a href="https://jigsaw.w3.org/css-validator/check/referer"><img src="https://jigsaw.w3.org/css-validator/images/vcss-blue" alt="CSS válido!" /></a></li>
+                <li>&copy; 2026 - <a href="http://www.sinoinformatica.com.br" title="SINO Inform&#225;tica">SINO Inform&#225;tica</a> - Versão 8.8.1.82</li>
+            </ul>
+            <div aria-hidden="true" class="clearfix"></div>
+        </div>
+    </footer>
+
+    <div class="modal fade hidden-print" id="notificacao-documento-classificacao" tabindex="-1" role="dialog" aria-labelledby="notificacao-documento-label">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="notificacao-documento-label">Notificações por e-mail</h4>
+                </div>
+                <form action="/Home/CadastrarNovidade" method="post">
+                    <div class="modal-body">
+                        <input name="__RequestVerificationToken" type="hidden" value="31-ItOoopItQCejsb9w6dwmLsB8PkFuWqkq51ZW7pO4T8Kw53quLvo5m491LkVNLlnxI0uSLU_ovAndpZpOyuDkw4LDbc7u9QFOuT8QMHvaE16MKc-l7MlbfXwUPyGE05qh9eeikJksNlV5-Mxb1VZrJPW0R2gIXqq8jurryUZo1" />
+                        <input type="hidden" name="DocumentoId" id="NotificacaoDocumentoId" value="0" />
+                        <input type="hidden" name="ClassificacaoId" id="NotificacaoClassificacaoId" value="0" />
+
+                        <div class="form-group">
+                            <label for="NotificacaoNome">Nome</label>
+                            <input type="text" name="Nome" id="NotificacaoNome" class="form-control" />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="NotificacaoEmail">E-mail</label>
+                            <input type="text" name="Email" id="NotificacaoEmail" class="form-control" />
+                        </div>
+
+                        <div class="form-group">
+                            <input type="hidden" id="hCaptchaToken" name="token" value="">
+
+                            <div class="h-captcha"
+                                 data-sitekey="44e67408-276c-4a48-8af2-0fb8df40a38a"
+                                 data-theme="light"
+                                 data-error-callback="onHcaptchaError"
+                                 data-callback="onHcaptchaSubmit">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                        <button type="submit" class="btn btn-primary">Cadastrar-se</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade hidden-print" id="enviar-link" tabindex="-1" role="dialog" aria-labelledby="enviar-link-label">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="enviar-link-label">Enviar link por e-mail</h4>
+                </div>
+                <form action="/Home/EnviarEmail" method="post" id="MailLink">
+                    <div class="modal-body">
+                        <input name="__RequestVerificationToken" type="hidden" value="xxP7ew9Ggb3s6u6ADk-jThGCAf9n3R4mpYvRFy-CfE1QqfEmQJ5irNULIE4Q4BTZWU7vBZUcWOeYH87DksQfjfz7OWcLzI3BX3wiZiYimiavKNPXX3MykLA4x_qJ5GLqhQaAq84gk78souO3tayXjuLe9m4N7X1S_k7WqFR8N3Q1" />
+                        <input type="hidden" name="Link" id="EnviarEmailLink" />
+
+                        <div class="form-group">
+                            <label for="EnviarEmailNome">Nome</label>
+                            <input type="text" name="Nome" id="EnviarEmailNome" class="form-control" />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="EnviarEmailDestinatario">Email Destinatário</label>
+                            <input type="text" name="Destinatario" id="EnviarEmailDestinatario" class="form-control" />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="EnviarEmailComentario">Comentário</label>
+                            <textarea rows="5" name="Comentario" id="EnviarEmailComentario" class="form-control"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                        <button type="submit" class="btn btn-primary">Enviar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.write("<div vw class=\"enabled\"><div vw-access-button class=\"active\"></div><div vw-plugin-wrapper><div class=\"vw-plugin-top-wrapper\"></div></div></div><script async src=\"https://vlibras.gov.br/app/vlibras-plugin.js\" onload=\"new window.VLibras.Widget('https://vlibras.gov.br/app')\"><\/script>");
+    </script>
+
+    <script src="/bundles/myscripts?v=mdsdlDwX9D3yCQvsWai79S7Um4GjSbZ_9th7SOqh-C41"></script>
+
+
+
+
+
+    <script src="https://hcaptcha.com/1/api.js" async defer></script>
+
+    <script>
+        //Atribui ao input hidden o valor do token
+        function onHcaptchaSubmit(response) {
+            document.getElementById("hCaptchaToken").value = response;
+        }
+
+        function onHcaptchaError() {
+            console.log("Ocorreu um erro ao verificar o Hcaptcha.");
+        }
+    </script>
+</body>
+</html>
