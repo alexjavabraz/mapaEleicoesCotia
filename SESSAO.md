@@ -1,3 +1,15 @@
+# Sessão — 2026-10-19 (3) · Votos por escola no mapa 2024
+
+**Status:** iniciada 2026-10-19 19:05 UTC · em andamento.
+
+## Pedido
+
+No mapa de votos de 2024: botão "Limpar", botão "Votos por seção" e, ao
+clicar numa escola (local de votação), os votos totalizados daquela escola,
+para prefeito e para vereador.
+
+---
+
 # Sessão — 2026-10-19 (2) · Evolução anual dos pagamentos
 
 **Status:** iniciada 2026-10-19 17:22 UTC · finalizada 2026-10-19 17:35 UTC (PR #2, label `agentic`).

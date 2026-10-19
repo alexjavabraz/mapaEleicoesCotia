@@ -79,6 +79,8 @@ let map = null;
 let neighborhoodLayer = null;
 let municipioLayer = null;
 let escolasLayer = null;
+let escolasLabelsLayer = null; // rótulos de votos por escola ("Votos por seção")
+let escolaSelecionada = null;  // nr ("zona_nr") da escola clicada
 let rankingControl = null;
 let userLocationMarker = null;
 
@@ -855,8 +857,11 @@ function renderEscolas(escolas, onEscolaClick) {
       { sticky: true, className: "map-tooltip", direction: "top", offset: [0, -10] }
     );
 
+    circle._escola = escola;
+    circle._cor    = cor;
+
     circle.on("mouseover", () => circle.setStyle({ radius: 8, weight: 2, fillOpacity: 1 }));
-    circle.on("mouseout",  () => circle.setStyle({ radius: 6, weight: 1.5, fillOpacity: 0.92 }));
+    circle.on("mouseout",  () => circle.setStyle(estiloEscola(escola)));
 
     if (onEscolaClick) {
       circle.on("click", e => { L.DomEvent.stopPropagation(e); onEscolaClick(escola); });
@@ -867,6 +872,81 @@ function renderEscolas(escolas, onEscolaClick) {
 
   escolasLayer.addTo(map);
   return escolasLayer;
+}
+
+/** Estilo de repouso do marcador da escola (a selecionada fica maior, com borda branca). */
+function estiloEscola(escola) {
+  return escola.nr === escolaSelecionada
+    ? { radius: 9, weight: 3, color: "#ffffff", fillOpacity: 1 }
+    : { radius: 6, weight: 1.5, color: "#1a1a2e", fillOpacity: 0.92 };
+}
+
+/** Destaca a escola clicada no mapa (null tira o destaque). */
+function marcarEscolaSelecionada(nr) {
+  escolaSelecionada = nr;
+  if (!escolasLayer) return;
+  escolasLayer.eachLayer(circle => {
+    if (!circle._escola) return;
+    circle.setStyle(estiloEscola(circle._escola));
+    if (circle._escola.nr === nr) circle.bringToFront();
+  });
+}
+
+/**
+ * Liga/desliga o modo "Votos por seção": cada escola ganha um rótulo com os
+ * votos e a cor do marcador passa a ser a de getInfo(escola).cor.
+ * @param {Function|null} getInfo - escola → { cor, label } (ou null para pular);
+ *                                  null desliga o modo e volta às cores de abstenção.
+ */
+function setEscolasVotos(getInfo) {
+  if (escolasLabelsLayer) {
+    map.removeLayer(escolasLabelsLayer);
+    escolasLabelsLayer = null;
+  }
+  if (!escolasLayer) return;
+
+  if (getInfo) escolasLabelsLayer = L.layerGroup();
+  escolasLayer.eachLayer(circle => {
+    const escola = circle._escola;
+    if (!escola) return;
+    const info = getInfo ? getInfo(escola) : null;
+    circle.setStyle({ fillColor: info?.cor || circle._cor });
+    if (!info?.label) return;
+    escolasLabelsLayer.addLayer(L.marker([escola.lat, escola.lng], {
+      interactive: false,
+      keyboard:    false,
+      icon: L.divIcon({
+        className:  "escola-votos-label",
+        html:       `<span style="border-color:${info.cor}">${info.label}</span>`,
+        iconSize:   null,
+        iconAnchor: [0, 22],
+      }),
+    }));
+  });
+  if (escolasLabelsLayer) escolasLabelsLayer.addTo(map);
+}
+
+/**
+ * Botões "Votos por seção" e "Limpar" no canto superior esquerdo do mapa.
+ * @param {Object} opts - { labelSecao, labelLimpar, titleSecao, titleLimpar, onSecao, onLimpar }
+ */
+function addMapActions(opts) {
+  const ctrl = L.control({ position: "topleft" });
+  ctrl.onAdd = function () {
+    const div = L.DomUtil.create("div", "map-actions");
+    L.DomEvent.disableClickPropagation(div);
+    L.DomEvent.disableScrollPropagation(div);
+    div.innerHTML = `
+      <button type="button" class="map-action-btn" id="btn-votos-secao"
+              aria-pressed="false" title="${opts.titleSecao}">${opts.labelSecao}</button>
+      <button type="button" class="map-action-btn" id="btn-limpar"
+              title="${opts.titleLimpar}">${opts.labelLimpar}</button>
+      <div id="secao-legenda" class="secao-legenda" hidden></div>`;
+    div.querySelector("#btn-votos-secao").addEventListener("click", opts.onSecao);
+    div.querySelector("#btn-limpar").addEventListener("click", opts.onLimpar);
+    return div;
+  };
+  ctrl.addTo(map);
 }
 
 /**

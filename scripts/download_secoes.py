@@ -13,6 +13,8 @@ Uso:
 Saída:
   ../data/cotia_votos_por_bairro.json   — votos por bairro (prefeito + vereadores)
   ../data/cotia_votos_por_escola.json   — votos totais de prefeito por escola
+  ../data/cotia_votos_por_escola_detalhe.json — votos por candidato (prefeito e
+      vereador, com brancos/nulos/legenda), aptos e comparecimento por escola
 """
 
 import csv
@@ -51,6 +53,7 @@ DATA_DIR     = os.path.join(SCRIPT_DIR, "..", "data")
 LOCAIS_FILE  = os.path.join(DATA_DIR, "cotia_locais_votacao.json")
 OUTPUT_BAIRRO = os.path.join(DATA_DIR, "cotia_votos_por_bairro.json")
 OUTPUT_ESCOLA = os.path.join(DATA_DIR, "cotia_votos_por_escola.json")
+OUTPUT_DETALHE = os.path.join(DATA_DIR, "cotia_votos_por_escola_detalhe.json")
 
 
 def build_maps():
@@ -129,6 +132,12 @@ def process_zip(zip_path, secao_bairro, secao_escola):
     })
     # { nr_local: total_votos_prefeito }
     agr_escola = defaultdict(int)
+    # { nr_local: { cargo: { nr_votavel: votos } } } e { cargo: { nr_votavel: nome } }
+    agr_escola_cand = defaultdict(lambda: {"prefeito": defaultdict(int),
+                                           "vereadores": defaultdict(int)})
+    nomes = {"prefeito": {}, "vereadores": {}}
+    # { (zona, secao): (aptos, comparecimento) } — repetidos em cada linha da seção
+    secao_stats = {}
 
     with zipfile.ZipFile(zip_path, "r") as zf:
         csv_names = [n for n in zf.namelist() if n.endswith("_SP.csv") or n.lower().endswith(".csv")]
@@ -167,6 +176,10 @@ def process_zip(zip_path, secao_bairro, secao_escola):
                     nome_cand = row.get("NM_VOTAVEL", "").strip().upper()
                     nr_cand   = row.get("NR_VOTAVEL", "").strip()
 
+                    # Só o 1º turno (Cotia não teve 2º turno em 2024)
+                    if row.get("NR_TURNO", "1").strip() not in ("", "1"):
+                        continue
+
                     # Agrega por bairro
                     bairro = secao_bairro.get((zona, secao))
                     if bairro and nome_cand and votos > 0:
@@ -175,14 +188,28 @@ def process_zip(zip_path, secao_bairro, secao_escola):
                         n_cotia += 1
 
                     # Agrega total de votos de prefeito por escola
-                    if cd_cargo == "11" and votos > 0:
-                        nr = secao_escola.get((zona, secao))
-                        if nr:
-                            agr_escola[nr] += votos
+                    nr = secao_escola.get((zona, secao))
+                    if cd_cargo == "11" and votos > 0 and nr:
+                        agr_escola[nr] += votos
+
+                    # Votos por candidato em cada escola (prefeito e vereador)
+                    if nr and nr_cand and votos > 0:
+                        cargo = CARGOS[cd_cargo]
+                        agr_escola_cand[nr][cargo][nr_cand] += votos
+                        nomes[cargo].setdefault(nr_cand, nome_cand)
+
+                    if cd_cargo == "11" and nr:
+                        try:
+                            secao_stats[(zona, secao)] = (
+                                int(row.get("QT_APTOS", "0") or 0),
+                                int(row.get("QT_COMPARECIMENTO", "0") or 0),
+                            )
+                        except ValueError:
+                            pass
 
                 print(f"  Total: {n_total:,} linhas, {n_cotia:,} votos de Cotia registrados.")
 
-    return agr_bairro, agr_escola
+    return agr_bairro, agr_escola, agr_escola_cand, nomes, secao_stats
 
 
 def build_bairro_output(agr_bairro):
@@ -220,6 +247,39 @@ def build_escola_output(agr_escola, escola_meta):
     return resultado
 
 
+def build_detalhe_output(agr_escola_cand, nomes, secao_stats, secao_escola):
+    """
+    JSON compacto com os votos por candidato em cada escola:
+      { candidatos: { prefeito: {nr: nome}, vereadores: {nr: nome} },
+        escolas: { "zona_nr": { aptos, comparecimento, secoes,
+                                prefeito: {nr: votos}, vereadores: {nr: votos} } } }
+    NR_VOTAVEL 95 = branco, 96 = nulo; números de 2 dígitos em vereador são
+    votos de legenda (nome = partido).
+    """
+    stats = defaultdict(lambda: {"aptos": 0, "comparecimento": 0, "secoes": 0})
+    for key, (aptos, comp) in secao_stats.items():
+        nr = secao_escola.get(key)
+        if nr:
+            stats[nr]["aptos"] += aptos
+            stats[nr]["comparecimento"] += comp
+            stats[nr]["secoes"] += 1
+
+    escolas = {}
+    for nr in sorted(agr_escola_cand):
+        cargos = agr_escola_cand[nr]
+        escolas[nr] = {
+            **stats[nr],
+            **{cargo: dict(sorted(c.items(), key=lambda x: -x[1]))
+               for cargo, c in cargos.items()},
+        }
+    return {
+        "fonte": URL_SECAO,
+        "turno": 1,
+        "candidatos": {cargo: dict(sorted(n.items())) for cargo, n in nomes.items()},
+        "escolas": escolas,
+    }
+
+
 def main():
     os.makedirs(DATA_DIR, exist_ok=True)
 
@@ -238,7 +298,8 @@ def main():
 
         # 3. Processa CSV
         print("Processando dados de votação por seção...")
-        agr_bairro, agr_escola = process_zip(tmp_path, secao_bairro, secao_escola)
+        agr_bairro, agr_escola, agr_escola_cand, nomes, secao_stats = process_zip(
+            tmp_path, secao_bairro, secao_escola)
 
     finally:
         if os.path.exists(tmp_path):
@@ -261,6 +322,13 @@ def main():
         json.dump(res_escola, f, ensure_ascii=False, indent=2)
     print(f"Salvo: {OUTPUT_ESCOLA}  ({len(res_escola)} escolas, "
           f"{total_votos_escolas:,} votos prefeito)")
+
+    # 6. Salva cotia_votos_por_escola_detalhe.json (compacto)
+    res_detalhe = build_detalhe_output(agr_escola_cand, nomes, secao_stats, secao_escola)
+    with open(OUTPUT_DETALHE, "w", encoding="utf-8") as f:
+        json.dump(res_detalhe, f, ensure_ascii=False, separators=(",", ":"))
+    print(f"Salvo: {OUTPUT_DETALHE}  ({len(res_detalhe['escolas'])} escolas, "
+          f"{os.path.getsize(OUTPUT_DETALHE) / 1e3:.0f} kB)")
 
 
 if __name__ == "__main__":

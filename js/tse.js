@@ -10,6 +10,7 @@ let votosPorBairro = null;  // dados de ./data/cotia_votos_por_bairro.json
 let locaisVotacao = null;   // dados de ./data/cotia_locais_votacao.json (por seção)
 let escolasSummary = null;  // dados agregados por local de votação (62 escolas)
 let votosPorEscola = null;  // dados de ./data/cotia_votos_por_escola.json
+let votosPorEscolaDetalhe = null; // ./data/cotia_votos_por_escola_detalhe.json
 
 // Mapeamento: nome de urna (tse_cotia_2024) <-> nome completo (cotia_votos_por_bairro)
 // Necessário porque os dois datasets usam campos diferentes do TSE.
@@ -199,6 +200,63 @@ async function loadVotosPorEscola() {
   } catch (e) {
     return { error: e.message };
   }
+}
+
+/**
+ * Carrega cotia_votos_por_escola_detalhe.json (votos por candidato em cada
+ * escola, gerado por download_secoes.py) e mescla aptos/comparecimento no
+ * escolasSummary. Deve ser chamado APÓS loadLocaisVotacao().
+ */
+async function loadVotosPorEscolaDetalhe() {
+  try {
+    const r = await fetch("./data/cotia_votos_por_escola_detalhe.json");
+    if (!r.ok) return { error: r.status === 404 ? "not_found" : `http_${r.status}` };
+    votosPorEscolaDetalhe = await r.json();
+    for (const escola of escolasSummary || []) {
+      const d = votosPorEscolaDetalhe.escolas?.[escola.nr];
+      if (!d) continue;
+      escola.aptos          = d.aptos || 0;
+      escola.comparecimento = d.comparecimento || 0;
+    }
+    return { ok: true, count: Object.keys(votosPorEscolaDetalhe.escolas || {}).length };
+  } catch (e) {
+    return { error: e.message };
+  }
+}
+
+/**
+ * Lista de candidatos de um cargo numa escola ("zona_nr"), ordenada por votos,
+ * no mesmo formato dos totais ({ nome, numero, partido, situacao, votos }).
+ * Nome de urna, partido e situação vêm dos totais do TSE (casados pelo número);
+ * brancos, nulos e votos de legenda ficam com o nome do arquivo.
+ * Retorna null se os dados por escola não estiverem carregados.
+ */
+function getEscolaCandidatos(escolaNr, cargo) {
+  const d = votosPorEscolaDetalhe?.escolas?.[escolaNr];
+  if (!d) return null;
+  const meta = {};
+  for (const c of getTotais()?.[cargo]?.["1"] || []) meta[c.numero] = c;
+  const nomes = votosPorEscolaDetalhe.candidatos?.[cargo] || {};
+  return Object.entries(d[cargo] || {})
+    .map(([numero, votos]) => ({
+      numero,
+      votos,
+      nome:     meta[numero]?.nome || nomes[numero] || numero,
+      partido:  meta[numero]?.partido || "",
+      situacao: meta[numero]?.situacao || "",
+    }))
+    .sort((a, b) => b.votos - a.votos);
+}
+
+/**
+ * Votos de um candidato (pelo nome de urna dos totais) numa escola.
+ * Retorna número ou null se não houver dados.
+ */
+function getVotosCandidatoEscola(escolaNr, cargo, nome) {
+  const d = votosPorEscolaDetalhe?.escolas?.[escolaNr];
+  if (!d) return null;
+  const c = (getTotais()?.[cargo]?.["1"] || []).find(x => x.nome === nome);
+  return c ? (d[cargo]?.[c.numero] || 0) : null;
 }
 
 /**
