@@ -14,13 +14,19 @@
 // false = sempre abre em português; o inglês aparece só pelo botão EN.
 const INGLES_AUTOMATICO = true;
 
+/** Tag BCP 47 bem formada ("en-US" sim; "", "*", "en-" não). */
+function tagValida(l) {
+  if (typeof l !== "string" || !l) return false;
+  try { Intl.getCanonicalLocales(l); return true; } catch (e) { return false; }
+}
+
 /** "en" só quando o navegador declara idiomas válidos e nenhum é português. */
 function idiomaDoNavegador() {
   if (!INGLES_AUTOMATICO) return "pt";
   let langs = [];
   try {
     langs = (navigator.languages && navigator.languages.length ? navigator.languages : [navigator.language])
-      .filter((l) => typeof l === "string" && /^[a-z]{2,3}(-|$)/i.test(l));
+      .filter(tagValida);
   } catch (e) { /* sem navigator: português */ }
   if (!langs.length) return "pt";
   return langs.some((l) => /^pt(-|$)/i.test(l)) ? "pt" : "en";
