@@ -1,3 +1,14 @@
+# Sessão — 2026-10-19 (2) · Evolução anual dos pagamentos
+
+**Status:** iniciada 2026-10-19 17:22 UTC · em andamento.
+
+## Pedido
+
+Gráfico de evolução dos pagamentos por ano (2020 até hoje), para ver quanto a
+Prefeitura vem gastando ano a ano, e um top 10 dos pagamentos de cada ano.
+
+---
+
 # Sessão — 2026-10-19 · Contas do Município
 
 **Status:** iniciada 2026-10-19 16:56 UTC · finalizada 2026-10-19 17:15 UTC.

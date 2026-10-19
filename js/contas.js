@@ -56,6 +56,11 @@ function esc(s) {
     ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
 }
 
+/** Ano de competência do lançamento (mês consultado na API); cai para a data de emissão. */
+function anoLanc(l, idxMes) {
+  return (l[idxMes] || l[0] || "").slice(0, 4);
+}
+
 function rotuloForn(f) {
   return f.doc ? `${f.nome} — ${fmtCNPJ(f.doc)}` : f.nome;
 }
@@ -245,7 +250,7 @@ function renderSelecionado() {
   if (estado.sel === null) { box.hidden = true; return; }
   const f = DADOS.fornecedores[estado.sel];
   const tops = ((f.top || {})[estado.evento] || [])
-    .filter((l) => !estado.ano || l[0].startsWith(estado.ano));
+    .filter((l) => !estado.ano || anoLanc(l, 4) === estado.ano);
   const totalEv = DADOS.meta.eventos
     .map((e) => `${esc(e)}: <b>${fmtBRL.format(f.total[e] || 0)}</b>`).join(" · ");
   box.hidden = false;
@@ -437,12 +442,12 @@ function renderTop10() {
     let linhas;
     if (f) {
       linhas = ((f.top || {})[estado.evento] || [])
-        .filter((l) => !estado.ano || l[0].startsWith(estado.ano))
+        .filter((l) => !estado.ano || anoLanc(l, 4) === estado.ano)
         .map((l) => ({ data: l[0], valor: l[1], orgao: l[2], emp: l[3], i: estado.sel }));
     } else {
       const q = normaliza(estado.busca).trim();
       linhas = DADOS.top_lancamentos
-        .filter((l) => l[2] === estado.evento && (!estado.ano || l[0].startsWith(estado.ano)))
+        .filter((l) => l[2] === estado.evento && (!estado.ano || anoLanc(l, 6) === estado.ano))
         .filter((l) => !q || normaliza(DADOS.fornecedores[l[5]].nome).includes(q))
         .map((l) => ({ data: l[0], valor: l[1], orgao: l[3], emp: l[4], i: l[5] }));
     }

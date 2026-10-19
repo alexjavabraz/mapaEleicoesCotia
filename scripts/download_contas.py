@@ -37,7 +37,7 @@ ANO_INICIAL = 2020
 OUT = os.path.join(os.path.dirname(__file__), "..", "data", "contas_cotia.json")
 
 # Quantos lançamentos individuais guardar: no ranking geral e por fornecedor
-TOP_GERAL = 50  # por evento e por ano
+TOP_GERAL = 20  # por evento, ano e órgão
 TOP_POR_FORNECEDOR = 5  # por evento
 
 
@@ -116,6 +116,7 @@ def main():
     por_ano = defaultdict(lambda: defaultdict(float))
     por_mes = defaultdict(lambda: defaultdict(float))
     por_orgao = defaultdict(lambda: defaultdict(lambda: defaultdict(float)))
+    por_orgao_mes = defaultdict(lambda: defaultdict(lambda: defaultdict(float)))
     eventos = Counter()
     forn = {}
     lancamentos = []  # (valor, registro compacto) — filtrado no fim
@@ -140,6 +141,7 @@ def main():
                 por_ano[str(ano)][ev] += vl
                 por_mes[chave_mes][ev] += vl
                 por_orgao[orgao][str(ano)][ev] += vl
+                por_orgao_mes[orgao][chave_mes][ev] += vl
 
                 f = forn.get(fid)
                 if f is None:
@@ -153,9 +155,11 @@ def main():
                 f["total"][ev] += vl
                 f["n"] += 1
 
-                # [data, valor, evento, orgao, empenho, fornecedor_id]
+                # [data de emissão, valor, evento, orgao, empenho, fornecedor_id, mês]
+                # O ano do lançamento é o do mês consultado: um pagamento de 2025
+                # pode ter data de emissão (empenho) de 2024.
                 lanc = [parse_data(r.get("dt_emissao_despesa")) or chave_mes,
-                        r2(vl), ev, orgao, (r.get("nr_empenho") or "").strip(), fid]
+                        r2(vl), ev, orgao, (r.get("nr_empenho") or "").strip(), fid, chave_mes]
                 if ev in EVENTOS_COM_TOP:
                     tops = f["top"][ev]
                     tops.append(lanc)
@@ -188,14 +192,14 @@ def main():
             "n": f["n"],
             "total": arredonda(f["total"]),
             "anos": {a: arredonda(v) for a, v in sorted(f["anos"].items())},
-            # por evento: [data, valor, orgao, empenho]
-            "top": {ev: [[l[0], l[1], l[3], l[4]]
+            # por evento: [data, valor, orgao, empenho, mês da competência]
+            "top": {ev: [[l[0], l[1], l[3], l[4], l[6]]
                          for l in sorted(ls, key=lambda x: -x[1])[:TOP_POR_FORNECEDOR]]
                     for ev, ls in f["top"].items()},
         })
 
     lancamentos.sort(key=lambda x: -x[1])
-    top = [l[:5] + [idx[l[5]]] for l in _top_por_evento(lancamentos)]
+    top = [l[:5] + [idx[l[5]], l[6]] for l in _top_por_evento(lancamentos)]
 
     saida = {
         "meta": {
@@ -211,8 +215,10 @@ def main():
         "por_mes": {m: arredonda(v) for m, v in sorted(por_mes.items())},
         "por_orgao": {o: {a: arredonda(v) for a, v in sorted(anos.items())}
                       for o, anos in sorted(por_orgao.items())},
+        "por_orgao_mes": {o: {m: arredonda(v) for m, v in sorted(meses.items())}
+                          for o, meses in sorted(por_orgao_mes.items())},
         "fornecedores": fornecedores,
-        # [data, valor, evento, orgao, empenho, índice em fornecedores]
+        # [data, valor, evento, orgao, empenho, índice em fornecedores, mês]
         "top_lancamentos": top,
     }
 
@@ -230,11 +236,11 @@ def _ordena_eventos(eventos):
 
 
 def _top_por_evento(lancs):
-    """Mantém os TOP_GERAL maiores de cada (evento, ano) — lista já ordenada."""
+    """Mantém os TOP_GERAL maiores de cada (evento, ano, órgão) — lista já ordenada."""
     cont = Counter()
     out = []
     for l in lancs:
-        k = (l[2], l[0][:4])
+        k = (l[2], l[6][:4], l[3])
         if cont[k] < TOP_GERAL:
             cont[k] += 1
             out.append(l)
