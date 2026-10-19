@@ -20,6 +20,7 @@ const SHELL_ASSETS = [
   "./contas.html",
   "./css/style.css",
   "./css/contas.css",
+  "./js/i18n.js",
   "./js/tse.js",
   "./js/map.js",
   "./js/app.js",
