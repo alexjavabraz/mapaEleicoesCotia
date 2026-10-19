@@ -14,7 +14,7 @@ Saída:
   ../data/cotia_votos_por_bairro.json   — votos por bairro (prefeito + vereadores)
   ../data/cotia_votos_por_escola.json   — votos totais de prefeito por escola
   ../data/cotia_votos_por_escola_detalhe.json — votos por candidato (prefeito e
-      vereador, com brancos/nulos/legenda), aptos e comparecimento por escola
+      vereador, com brancos/nulos/legenda) por escola
 """
 
 import csv
@@ -136,8 +136,6 @@ def process_zip(zip_path, secao_bairro, secao_escola):
     agr_escola_cand = defaultdict(lambda: {"prefeito": defaultdict(int),
                                            "vereadores": defaultdict(int)})
     nomes = {"prefeito": {}, "vereadores": {}}
-    # { (zona, secao): (aptos, comparecimento) } — repetidos em cada linha da seção
-    secao_stats = {}
 
     with zipfile.ZipFile(zip_path, "r") as zf:
         csv_names = [n for n in zf.namelist() if n.endswith("_SP.csv") or n.lower().endswith(".csv")]
@@ -198,18 +196,9 @@ def process_zip(zip_path, secao_bairro, secao_escola):
                         agr_escola_cand[nr][cargo][nr_cand] += votos
                         nomes[cargo].setdefault(nr_cand, nome_cand)
 
-                    if cd_cargo == "11" and nr:
-                        try:
-                            secao_stats[(zona, secao)] = (
-                                int(row.get("QT_APTOS", "0") or 0),
-                                int(row.get("QT_COMPARECIMENTO", "0") or 0),
-                            )
-                        except ValueError:
-                            pass
-
                 print(f"  Total: {n_total:,} linhas, {n_cotia:,} votos de Cotia registrados.")
 
-    return agr_bairro, agr_escola, agr_escola_cand, nomes, secao_stats
+    return agr_bairro, agr_escola, agr_escola_cand, nomes
 
 
 def build_bairro_output(agr_bairro):
@@ -247,31 +236,19 @@ def build_escola_output(agr_escola, escola_meta):
     return resultado
 
 
-def build_detalhe_output(agr_escola_cand, nomes, secao_stats, secao_escola):
+def build_detalhe_output(agr_escola_cand, nomes):
     """
     JSON compacto com os votos por candidato em cada escola:
       { candidatos: { prefeito: {nr: nome}, vereadores: {nr: nome} },
-        escolas: { "zona_nr": { aptos, comparecimento, secoes,
-                                prefeito: {nr: votos}, vereadores: {nr: votos} } } }
+        escolas: { "zona_nr": { prefeito: {nr: votos}, vereadores: {nr: votos} } } }
     NR_VOTAVEL 95 = branco, 96 = nulo; números de 2 dígitos em vereador são
     votos de legenda (nome = partido).
     """
-    stats = defaultdict(lambda: {"aptos": 0, "comparecimento": 0, "secoes": 0})
-    for key, (aptos, comp) in secao_stats.items():
-        nr = secao_escola.get(key)
-        if nr:
-            stats[nr]["aptos"] += aptos
-            stats[nr]["comparecimento"] += comp
-            stats[nr]["secoes"] += 1
-
-    escolas = {}
-    for nr in sorted(agr_escola_cand):
-        cargos = agr_escola_cand[nr]
-        escolas[nr] = {
-            **stats[nr],
-            **{cargo: dict(sorted(c.items(), key=lambda x: -x[1]))
-               for cargo, c in cargos.items()},
-        }
+    escolas = {
+        nr: {cargo: dict(sorted(c.items(), key=lambda x: -x[1]))
+             for cargo, c in agr_escola_cand[nr].items()}
+        for nr in sorted(agr_escola_cand)
+    }
     return {
         "fonte": URL_SECAO,
         "turno": 1,
@@ -298,7 +275,7 @@ def main():
 
         # 3. Processa CSV
         print("Processando dados de votação por seção...")
-        agr_bairro, agr_escola, agr_escola_cand, nomes, secao_stats = process_zip(
+        agr_bairro, agr_escola, agr_escola_cand, nomes = process_zip(
             tmp_path, secao_bairro, secao_escola)
 
     finally:
@@ -324,7 +301,7 @@ def main():
           f"{total_votos_escolas:,} votos prefeito)")
 
     # 6. Salva cotia_votos_por_escola_detalhe.json (compacto)
-    res_detalhe = build_detalhe_output(agr_escola_cand, nomes, secao_stats, secao_escola)
+    res_detalhe = build_detalhe_output(agr_escola_cand, nomes)
     with open(OUTPUT_DETALHE, "w", encoding="utf-8") as f:
         json.dump(res_detalhe, f, ensure_ascii=False, separators=(",", ":"))
     print(f"Salvo: {OUTPUT_DETALHE}  ({len(res_detalhe['escolas'])} escolas, "

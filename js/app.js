@@ -109,8 +109,6 @@ const SECAO_EN = {
   "Bairro": "Neighborhood",
   "Endereço": "Address",
   "Seções": "Sections",
-  "Eleitores aptos": "Eligible voters",
-  "Comparecimento": "Turnout",
   "Abstenção": "Abstention",
   "Eleitores registrados": "Registered voters",
   "Votos (prefeito)": "Votes (mayor)",
@@ -623,11 +621,9 @@ function renderConteudoSidebarEscola(escola) {
   const prefList = getEscolaCandidatos(escola.nr, "prefeito");
   const verList  = getEscolaCandidatos(escola.nr, "vereadores");
 
-  // Abstenção: aptos × comparecimento do TSE; sem eles, estimada pelos votos de prefeito
-  const aptos = escola.aptos || escola.eleitores || 0;
-  const comparecimento = escola.comparecimento || escola.votos_prefeito || 0;
-  const abstNum = aptos > 0 && comparecimento > 0
-    ? Math.round((aptos - comparecimento) / aptos * 100)
+  // Abstenção estimada: eleitores registrados × votos para prefeito
+  const abstNum = escola.eleitores > 0 && escola.votos_prefeito > 0
+    ? Math.round((escola.eleitores - escola.votos_prefeito) / escola.eleitores * 100)
     : null;
   const cor = abstNum !== null ? corAbstencao(abstNum) : "#ffd54f";
 
@@ -637,12 +633,10 @@ function renderConteudoSidebarEscola(escola) {
     html += `<div class="zona-info-row"><span>${_t("Endereço")}</span><strong style="font-size:0.78rem">${escola.endereco}</strong></div>`;
   }
   html += `<div class="zona-info-row"><span>${_t("Seções")}</span><strong>${escola.secoes}</strong></div>`;
-  if (aptos > 0) {
-    html += `<div class="zona-info-row"><span>${_t(escola.aptos ? "Eleitores aptos" : "Eleitores registrados")}</span><strong>${_fmt(aptos)}</strong></div>`;
+  if (escola.eleitores > 0) {
+    html += `<div class="zona-info-row"><span>${_t("Eleitores registrados")}</span><strong>${_fmt(escola.eleitores)}</strong></div>`;
   }
-  if (escola.comparecimento) {
-    html += `<div class="zona-info-row"><span>${_t("Comparecimento")}</span><strong>${_fmt(escola.comparecimento)}</strong></div>`;
-  } else if (escola.votos_prefeito) {
+  if (escola.votos_prefeito) {
     html += `<div class="zona-info-row"><span>${_t("Votos (prefeito)")}</span><strong>${_fmt(escola.votos_prefeito)}</strong></div>`;
   }
   if (abstNum !== null) {
@@ -687,7 +681,7 @@ function infoVotosEscola(escola) {
   const pref = getEscolaCandidatos(escola.nr, "prefeito");
   if (!pref) return null;
   const vencedor = pref.find(c => c.partido); // ignora brancos/nulos
-  const total = escola.comparecimento || pref.reduce((s, c) => s + c.votos, 0);
+  const total = pref.reduce((s, c) => s + c.votos, 0);
   return { cor: vencedor ? corPrefeito(vencedor.numero) : "#9e9e9e", label: _fmt(total) };
 }
 

@@ -204,20 +204,13 @@ async function loadVotosPorEscola() {
 
 /**
  * Carrega cotia_votos_por_escola_detalhe.json (votos por candidato em cada
- * escola, gerado por download_secoes.py) e mescla aptos/comparecimento no
- * escolasSummary. Deve ser chamado APÓS loadLocaisVotacao().
+ * escola, gerado por download_secoes.py).
  */
 async function loadVotosPorEscolaDetalhe() {
   try {
     const r = await fetch("./data/cotia_votos_por_escola_detalhe.json");
     if (!r.ok) return { error: r.status === 404 ? "not_found" : `http_${r.status}` };
     votosPorEscolaDetalhe = await r.json();
-    for (const escola of escolasSummary || []) {
-      const d = votosPorEscolaDetalhe.escolas?.[escola.nr];
-      if (!d) continue;
-      escola.aptos          = d.aptos || 0;
-      escola.comparecimento = d.comparecimento || 0;
-    }
     return { ok: true, count: Object.keys(votosPorEscolaDetalhe.escolas || {}).length };
   } catch (e) {
     return { error: e.message };
@@ -373,7 +366,7 @@ function renderCandidateCard(candidato, maxVotos, extraHtml) {
           ${situacaoLabel}
         </div>
         <div class="candidate-header-right">
-          <span class="candidate-partido">${candidato.partido || "??"}</span>
+          ${candidato.partido ? `<span class="candidate-partido">${candidato.partido}</span>` : ""}
           ${extraHtml || ""}
         </div>
       </div>
