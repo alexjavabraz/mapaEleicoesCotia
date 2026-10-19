@@ -146,7 +146,7 @@ function toggleExtra(id, btn) {
   if (!el) return;
   const hidden = el.style.display === "none";
   el.style.display = hidden ? "block" : "none";
-  btn.textContent = hidden ? "Ver menos ▲" : `Ver mais ${el.children.length} candidatos ▼`;
+  btn.textContent = hidden ? t("Ver menos ▲") : t("Ver mais {n} candidatos ▼", { n: el.children.length });
 }
 
 /** Alterna entre as abas Prefeito / Vereadores e re-renderiza o conteúdo. */
@@ -175,9 +175,9 @@ function renderCargoTabs() {
   return `
     <div class="cargo-tabs">
       <button class="cargo-tab ${currentTab === "prefeito" ? "active" : ""}"
-              data-tab="prefeito" onclick="switchTab('prefeito')">Prefeito</button>
+              data-tab="prefeito" onclick="switchTab('prefeito')">${t("Prefeito")}</button>
       <button class="cargo-tab ${currentTab === "vereadores" ? "active" : ""}"
-              data-tab="vereadores" onclick="switchTab('vereadores')">Vereadores</button>
+              data-tab="vereadores" onclick="switchTab('vereadores')">${t("Vereadores")}</button>
     </div>`;
 }
 
@@ -185,14 +185,14 @@ function showPlaceholder() {
   currentBairroNome = null;
   currentBairroDisplay = null;
   currentZona = null;
-  document.getElementById("sidebar-header").innerHTML = `<h2>Selecione um bairro</h2>`;
+  document.getElementById("sidebar-header").innerHTML = `<h2>${t("Selecione um bairro")}</h2>`;
   document.getElementById("sidebar-content").innerHTML = `
     <div class="placeholder">
       <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
         <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/>
         <circle cx="12" cy="9" r="2.5"/>
       </svg>
-      <p>Clique em um bairro ou local de votação no mapa para ver os resultados eleitorais por zona.</p>
+      <p>${t("Clique em um bairro ou local de votação no mapa para ver os resultados eleitorais por zona.")}</p>
     </div>`;
 }
 
@@ -203,7 +203,7 @@ function showNoBairroData(bairroName) {
         <circle cx="12" cy="12" r="10"/>
         <line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
       </svg>
-      <p>Bairro "<strong>${bairroName}</strong>" sem zona eleitoral mapeada.</p>
+      <p>${t("Bairro \"{b}\" sem zona eleitoral mapeada.", { b: `<strong>${bairroName}</strong>` })}</p>
     </div>`;
 }
 
@@ -216,11 +216,11 @@ function renderAbaPrefeito(prefData, label) {
   html += `<div class="section-title"><div class="dot" style="background:#e94560"></div>${label}</div>`;
   if (hasTurno2) {
     html += `<div class="turno-tabs">
-      <button class="turno-tab ${currentTurno==="1"?"active":""}" onclick="switchTurno('1')">1º Turno</button>
-      <button class="turno-tab ${currentTurno==="2"?"active":""}" onclick="switchTurno('2')">2º Turno</button>
+      <button class="turno-tab ${currentTurno==="1"?"active":""}" onclick="switchTurno('1')">${t("1º Turno")}</button>
+      <button class="turno-tab ${currentTurno==="2"?"active":""}" onclick="switchTurno('2')">${t("2º Turno")}</button>
     </div>`;
   } else if (prefT1.length) {
-    html += `<div class="turno-tabs"><button class="turno-tab active">1º Turno</button></div>`;
+    html += `<div class="turno-tabs"><button class="turno-tab active">${t("1º Turno")}</button></div>`;
   }
   const candidatos = (hasTurno2 ? prefData[currentTurno] : prefT1) || [];
   html += `<div class="candidate-list">${renderPrefeito(candidatos, currentTurno)}</div></div>`;
@@ -323,7 +323,7 @@ function setVereadorOrdem(ordem) {
 /** Renderiza aba Vereadores: toggle de ordem + combobox + lista */
 function renderAbaVereadores(verData, uid) {
   const verT1 = verData?.["1"] || [];
-  if (!verT1.length) return `<p style="color:var(--text-muted);padding:12px 0;font-size:.8rem">Nenhum dado de vereadores.</p>`;
+  if (!verT1.length) return `<p style="color:var(--text-muted);padding:12px 0;font-size:.8rem">${t("Nenhum dado de vereadores.")}</p>`;
 
   // Usa o maior valor de votos da lista original (não ordenada) para as barras
   const maxVotos = Math.max(...verT1.map(c => c.votos), 1);
@@ -344,24 +344,24 @@ function renderAbaVereadores(verData, uid) {
     <div class="ver-stats">
       <div class="ver-stat eleitos-stat">
         <span class="ver-stat-num">${eleitos.length}</span>
-        <span class="ver-stat-label">Eleitos</span>
+        <span class="ver-stat-label">${t("Eleitos")}</span>
       </div>
       <div class="ver-stat">
         <span class="ver-stat-num">${verT1.length}</span>
-        <span class="ver-stat-label">Candidatos</span>
+        <span class="ver-stat-label">${t("Candidatos")}</span>
       </div>
       <div class="ver-stat">
         <span class="ver-stat-num">${formatVotos(totalVotos(verT1))}</span>
-        <span class="ver-stat-label">Total Votos</span>
+        <span class="ver-stat-label">${t("Total Votos")}</span>
       </div>
     </div>`;
 
   // Toggle de ordenação
   html += `
     <div class="ver-sort-row">
-      <span class="ver-sort-label">Ordenar:</span>
+      <span class="ver-sort-label">${t("Ordenar:")}</span>
       <button class="ver-sort-btn${currentVereadorOrdem === "votos" ? " active" : ""}"
-              onclick="setVereadorOrdem('votos')">Votos ▼</button>
+              onclick="setVereadorOrdem('votos')">${t("Votos ▼")}</button>
       <button class="ver-sort-btn${currentVereadorOrdem === "nome" ? " active" : ""}"
               onclick="setVereadorOrdem('nome')">A–Z</button>
     </div>`;
@@ -374,9 +374,9 @@ function renderAbaVereadores(verData, uid) {
   ).join("");
   html += `
     <div class="ver-select-wrapper">
-      <label class="ver-select-label">Buscar vereador</label>
+      <label class="ver-select-label">${t("Buscar vereador")}</label>
       <select class="ver-select" onchange="filtrarVereador(this.value)">
-        <option value="">— Todos os candidatos —</option>
+        <option value="">${t("— Todos os candidatos —")}</option>
         ${options}
       </select>
     </div>`;
@@ -386,7 +386,7 @@ function renderAbaVereadores(verData, uid) {
     const candidato = sorted.find(c => c.nome === currentVereadorFiltro);
     if (candidato) {
       const dotColor = isEleito(candidato) ? "#4caf50" : "#607d8b";
-      const label    = isEleito(candidato) ? "Eleito" : "Não Eleito";
+      const label    = isEleito(candidato) ? t("Eleito") : t("Não Eleito");
       html += `
         <div class="election-section">
           <div class="section-title">
@@ -401,7 +401,7 @@ function renderAbaVereadores(verData, uid) {
   // Lista completa: eleitos em destaque, não eleitos colapsáveis
   if (eleitos.length) {
     html += `<div class="election-section">
-      <div class="section-title"><div class="dot" style="background:#4caf50"></div>Eleitos (${eleitos.length})</div>
+      <div class="section-title"><div class="dot" style="background:#4caf50"></div>${t("Eleitos")} (${eleitos.length})</div>
       <div class="candidate-list">${eleitos.map(c => renderCandidateCard(c, maxVotos)).join("")}</div>
     </div>`;
   }
@@ -411,7 +411,7 @@ function renderAbaVereadores(verData, uid) {
     const inicial  = naoEleitos.slice(0, SHOW);
     const restante = naoEleitos.slice(SHOW);
     html += `<div class="election-section">
-      <div class="section-title"><div class="dot" style="background:#607d8b"></div>Não Eleitos (${naoEleitos.length})</div>
+      <div class="section-title"><div class="dot" style="background:#607d8b"></div>${t("Não Eleitos")} (${naoEleitos.length})</div>
       <div class="candidate-list">
         ${inicial.map(c => renderCandidateCard(c, maxVotos)).join("")}
         ${restante.length ? `
@@ -419,7 +419,7 @@ function renderAbaVereadores(verData, uid) {
             ${restante.map(c => renderCandidateCard(c, maxVotos)).join("")}
           </div>
           <button class="show-more" onclick="toggleExtra('${extraId}',this)">
-            Ver mais ${restante.length} candidatos ▼
+            ${t("Ver mais {n} candidatos ▼", { n: restante.length })}
           </button>` : ""}
       </div>
     </div>`;
@@ -429,9 +429,9 @@ function renderAbaVereadores(verData, uid) {
 
 function fonteInfo() {
   return `<div class="fonte-info">
-    Fonte: <a href="https://dadosabertos.tse.jus.br/dataset/resultados-2024" target="_blank">
-      TSE — Dados Abertos — Eleições 2024</a><br>
-    Votação Nominal por Município e Zona
+    ${t("Fonte")}: <a href="https://dadosabertos.tse.jus.br/dataset/resultados-2024" target="_blank">
+      ${t("TSE — Dados Abertos — Eleições {ano}", { ano: 2024 })}</a><br>
+    ${t("Votação Nominal por Município e Zona")}
   </div>`;
 }
 
@@ -446,9 +446,9 @@ function renderConteudoSidebarBairro(bairroName, bairroNome) {
 
   if (!prefList.length && !verList.length) {
     html += `<div class="placeholder">
-      <p>Dados do bairro não disponíveis.</p>
+      <p>${t("Dados do bairro não disponíveis.")}</p>
       <p style="font-size:0.75rem;margin-top:8px;color:var(--text-muted)">
-        Execute: <code style="background:rgba(255,255,255,0.07);padding:2px 5px;border-radius:3px;color:#ffd54f">python scripts/download_secoes.py</code>
+        ${t("Execute:")} <code style="background:rgba(255,255,255,0.07);padding:2px 5px;border-radius:3px;color:#ffd54f">python scripts/download_secoes.py</code>
       </p>
     </div>`;
     html += fonteInfo();
@@ -457,13 +457,13 @@ function renderConteudoSidebarBairro(bairroName, bairroNome) {
   }
 
   html += `<div class="zona-info">
-    <div class="zona-info-row"><span>Votos prefeito</span><strong>${formatVotos(totalPref)}</strong></div>
-    <div class="zona-info-row"><span>Vereadores eleitos</span><strong>${countEleitos(verList)}</strong></div>
-    <div class="zona-info-row"><span>Candidatos vereador</span><strong>${verList.length}</strong></div>
+    <div class="zona-info-row"><span>${t("Votos prefeito")}</span><strong>${formatVotos(totalPref)}</strong></div>
+    <div class="zona-info-row"><span>${t("Vereadores eleitos")}</span><strong>${countEleitos(verList)}</strong></div>
+    <div class="zona-info-row"><span>${t("Candidatos vereador")}</span><strong>${verList.length}</strong></div>
   </div>`;
 
   if (currentTab === "prefeito") {
-    html += renderAbaPrefeito({ "1": prefList }, "Resultado — Prefeito");
+    html += renderAbaPrefeito({ "1": prefList }, t("Resultado — Prefeito"));
   } else {
     html += renderAbaVereadores({ "1": verList }, uid);
   }
@@ -482,15 +482,15 @@ function renderConteudoSidebarTotais() {
   html += `<div class="stats-grid">
     <div class="stat-card">
       <div class="stat-value">${formatVotos(totalVotos(prefT1))}</div>
-      <div class="stat-label">Votos Prefeito</div>
+      <div class="stat-label">${t("Votos Prefeito")}</div>
     </div>
     <div class="stat-card">
       <div class="stat-value">${countEleitos(verT1)}</div>
-      <div class="stat-label">Vereadores Eleitos</div>
+      <div class="stat-label">${t("Vereadores Eleitos")}</div>
     </div>
   </div>`;
   if (currentTab === "prefeito") {
-    html += renderAbaPrefeito(totais.prefeito, "Resultado — Prefeito (Total Geral)");
+    html += renderAbaPrefeito(totais.prefeito, t("Resultado — Prefeito (Total Geral)"));
   } else {
     html += renderAbaVereadores(totais.vereadores, "totais");
   }
@@ -503,17 +503,17 @@ function renderConteudoSidebarTotais() {
  * Usa dados por bairro (votosPorBairro). Reavaliado a cada abertura do tooltip.
  */
 function getTooltipContent(feature, zona) {
-  const name = feature.properties.name || feature.properties.nome || "Bairro";
+  const name = feature.properties.name || feature.properties.nome || t("Bairro");
 
   // Tenta nome exato e fallback em maiúsculas (normalização defensiva)
   const total = getTotalVotosBairro(name) ?? getTotalVotosBairro(name.toUpperCase());
 
   const zonaColor = zona && zoneColorMap[zona] ? zoneColorMap[zona] : "#888";
   let html = `<div class="tooltip-name">${name}</div>`;
-  html += `<div class="tooltip-zona" style="color:${zonaColor}">Zona ${zona || "—"}</div>`;
+  html += `<div class="tooltip-zona" style="color:${zonaColor}">${t("Zona {z}", { z: zona || "—" })}</div>`;
 
   if (total !== null && total > 0) {
-    html += `<div class="tooltip-votos">${formatVotos(total)} votos (prefeito)</div>`;
+    html += `<div class="tooltip-votos">${t("{n} votos (prefeito)", { n: formatVotos(total) })}</div>`;
   }
 
   if (currentVereadorFiltro) {
@@ -521,8 +521,8 @@ function getTooltipContent(feature, zona) {
                ?? getVotosVereadorBairro(name.toUpperCase(), currentVereadorFiltro);
     if (votos !== null) {
       const label = votos > 0
-        ? `<strong style="color:#ffd54f">${formatVotos(votos)}</strong> votos`
-        : `Sem votos`;
+        ? t("{n} votos", { n: `<strong style="color:#ffd54f">${formatVotos(votos)}</strong>` })
+        : t("Sem votos");
       html += `<div class="tooltip-zona" style="color:#ffd54f;margin-top:5px;padding-top:4px;border-top:1px solid rgba(255,255,255,0.15)">${currentVereadorFiltro.split(" ")[0]}: ${label}</div>`;
     }
   }
@@ -539,12 +539,12 @@ function displayBairroData(displayName, bairroNome, zonaNum) {
   let badge = "";
   if (total !== null && total > 0) {
     badge = `<span class="zona-badge" style="background:rgba(233,69,96,0.15);color:#e94560;border:1px solid rgba(233,69,96,0.3)">
-      ${formatVotos(total)} votos
+      ${t("{n} votos", { n: formatVotos(total) })}
     </span>`;
   } else if (zonaNum) {
     const zonaColor = zoneColorMap[zonaNum] || "#888";
     badge = `<span class="zona-badge" style="background:${zonaColor}20;color:${zonaColor};border:1px solid ${zonaColor}50">
-      Zona ${zonaNum}
+      ${t("Zona {z}", { z: zonaNum })}
     </span>`;
   }
 
@@ -573,29 +573,29 @@ function displayEscolaData(escola) {
   document.getElementById("sidebar-header").innerHTML = `
     <h2>${escola.nome}</h2>
     <span class="zona-badge" style="background:${zonaColor}20;color:${zonaColor};border:1px solid ${zonaColor}50">
-      Zona ${escola.zona}
+      ${t("Zona {z}", { z: escola.zona })}
     </span>`;
 
   let html = `<div class="zona-info">`;
-  html += `<div class="zona-info-row"><span>Bairro</span><strong>${escola.bairro}</strong></div>`;
+  html += `<div class="zona-info-row"><span>${t("Bairro")}</span><strong>${escola.bairro}</strong></div>`;
   if (escola.endereco) {
-    html += `<div class="zona-info-row"><span>Endereço</span><strong style="font-size:0.78rem">${escola.endereco}</strong></div>`;
+    html += `<div class="zona-info-row"><span>${t("Endereço")}</span><strong style="font-size:0.78rem">${escola.endereco}</strong></div>`;
   }
-  html += `<div class="zona-info-row"><span>Seções</span><strong>${escola.secoes}</strong></div>`;
+  html += `<div class="zona-info-row"><span>${t("Seções")}</span><strong>${escola.secoes}</strong></div>`;
   html += `</div>`;
 
   if (temDados) {
     html += `<div class="zona-info" style="margin-top:8px">
-      <div class="zona-info-row"><span>Eleitores registrados</span><strong>${escola.eleitores.toLocaleString("pt-BR")}</strong></div>
-      <div class="zona-info-row"><span>Votos (prefeito)</span><strong>${escola.votos_prefeito.toLocaleString("pt-BR")}</strong></div>
+      <div class="zona-info-row"><span>${t("Eleitores registrados")}</span><strong>${escola.eleitores.toLocaleString(LOCALE)}</strong></div>
+      <div class="zona-info-row"><span>${t("Votos (prefeito)")}</span><strong>${escola.votos_prefeito.toLocaleString(LOCALE)}</strong></div>
       <div class="zona-info-row">
-        <span>Abstenção</span>
+        <span>${t("Abstenção")}</span>
         <strong style="color:${cor}">${abstNum}%</strong>
       </div>
     </div>`;
   } else if (escola.eleitores > 0) {
     html += `<div class="zona-info" style="margin-top:8px">
-      <div class="zona-info-row"><span>Eleitores registrados</span><strong>${escola.eleitores.toLocaleString("pt-BR")}</strong></div>
+      <div class="zona-info-row"><span>${t("Eleitores registrados")}</span><strong>${escola.eleitores.toLocaleString(LOCALE)}</strong></div>
     </div>`;
   }
 
@@ -605,9 +605,9 @@ function displayEscolaData(escola) {
 
 function displayTotaisGerais() {
   document.getElementById("sidebar-header").innerHTML = `
-    <h2>Cotia — Total Geral</h2>
+    <h2>${t("Cotia — Total Geral")}</h2>
     <span class="zona-badge" style="background:rgba(233,69,96,0.15);color:#e94560;border:1px solid rgba(233,69,96,0.3)">
-      Todas as Zonas
+      ${t("Todas as Zonas")}
     </span>`;
   renderConteudoSidebarTotais();
 }
@@ -637,13 +637,13 @@ function setupControls() {
 
 async function init() {
   showLoading(true);
-  setLoadingStatus("Inicializando mapa...");
+  setLoadingStatus(t("Inicializando mapa..."));
 
   // 1. Inicializa o mapa
   initMap();
 
   // 2. Carrega dados TSE
-  setLoadingStatus("Carregando dados eleitorais...");
+  setLoadingStatus(t("Carregando dados eleitorais..."));
   const tseResult = await loadTSEData();
 
   // 2b. Carrega dados auxiliares em paralelo
@@ -663,20 +663,20 @@ async function init() {
 
   // Carrega votos por escola APÓS locais (mescla no escolasSummary)
   const escolaResult = await loadVotosPorEscola();
-  if (escolaResult.ok) console.log(`Votos por escola: ${escolaResult.count} escolas, ${escolaResult.total?.toLocaleString("pt-BR")} votos`);
+  if (escolaResult.ok) console.log(`Votos por escola: ${escolaResult.count} escolas, ${escolaResult.total?.toLocaleString(LOCALE)} votos`);
   else console.log("Votos por escola não disponíveis:", escolaResult.error);
 
   if (tseResult.error) {
     let banner = "";
     if (tseResult.error === "not_found" || tseResult.error === "cors_or_network") {
       banner = `
-        ⚠️ Arquivo de dados não encontrado.
-        Execute: <code>cd scripts && pip install -r requirements.txt && python download_tse.py</code>
-        Em seguida, sirva a aplicação com: <code>python3 -m http.server 8080</code>
-        e acesse <code>http://localhost:8080</code>
+        ⚠️ ${t("Arquivo de dados não encontrado.")}
+        ${t("Execute:")} <code>cd scripts && pip install -r requirements.txt && python download_tse.py</code>
+        ${t("Em seguida, sirva a aplicação com:")} <code>python3 -m http.server 8080</code>
+        ${t("e acesse")} <code>http://localhost:8080</code>
       `;
     } else {
-      banner = `⚠️ Erro ao carregar dados TSE: ${tseResult.error}`;
+      banner = `⚠️ ${t("Erro ao carregar dados TSE:")} ${tseResult.error}`;
     }
     showNoBanner(banner);
     document.getElementById("no-data-banner").style.display = "block";
@@ -700,7 +700,7 @@ async function init() {
   }
 
   // 3. Busca contorno do município e aplica máscara branca fora de Cotia
-  setLoadingStatus("Buscando contorno de Cotia (OpenStreetMap)...");
+  setLoadingStatus(t("Buscando contorno de Cotia (OpenStreetMap)..."));
   const municipioGeoJSON = await fetchCotiaMunicipio(setLoadingStatus);
   if (municipioGeoJSON) {
     renderMascaraExterna(municipioGeoJSON);  // máscara branca externa (abaixo)
@@ -709,7 +709,7 @@ async function init() {
   }
 
   // 4. Busca bairros via OSM; se não retornar polígonos, usa Voronoi dos locais de votação
-  setLoadingStatus("Buscando bairros (Overpass API)...");
+  setLoadingStatus(t("Buscando bairros (Overpass API)..."));
   let bairrosGeoJSON = await fetchCotiaBairros(setLoadingStatus);
 
   const osmPolygons = bairrosGeoJSON?.features?.filter(f => {
@@ -719,7 +719,7 @@ async function init() {
 
   const locais = getLocaisVotacao();
   if (osmPolygons.length < 5 && locais.length) {
-    setLoadingStatus("Gerando bairros por proximidade (Voronoi)...");
+    setLoadingStatus(t("Gerando bairros por proximidade (Voronoi)..."));
     bairrosGeoJSON = computeVoronoiBairros(locais, municipioGeoJSON);
     if (bairrosGeoJSON) {
       console.log(`Voronoi: ${bairrosGeoJSON.features.length} bairros gerados.`);
@@ -732,7 +732,7 @@ async function init() {
       bairroZonaMap,
       // onClick
       (feature, zona) => {
-        const name = feature.properties.name || feature.properties.nome || "Bairro";
+        const name = feature.properties.name || feature.properties.nome || t("Bairro");
         displayBairroData(name, name, zona);
       },
       // onHover — não utilizado (tooltip usa função dinâmica)
@@ -748,7 +748,7 @@ async function init() {
   // 5. Renderiza escolas (locais de votação) como marcadores amarelos
   const escolas = getEscolasSummary();
   if (escolas.length > 0) {
-    setLoadingStatus("Renderizando locais de votação...");
+    setLoadingStatus(t("Renderizando locais de votação..."));
     renderEscolas(escolas, displayEscolaData);
     console.log(`${escolas.length} locais de votação renderizados.`);
   }

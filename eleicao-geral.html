@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Mapa Eleitoral — Cotia — Eleição Geral</title>
+  <title data-i18n>Mapa Eleitoral — Cotia — Eleição Geral</title>
 
   <!-- PWA -->
   <link rel="manifest" href="./manifest.json" />
@@ -15,6 +15,9 @@
   <link rel="apple-touch-icon" href="./icons/apple-touch-icon.png" />
   <link rel="icon" type="image/svg+xml" href="./icons/cotia-flag.svg" />
   <link rel="icon" type="image/png" sizes="32x32" href="./icons/favicon-32.png" />
+
+  <!-- Idioma (PT/EN): carregado antes de tudo para os outros scripts usarem t() -->
+  <script src="js/i18n.js"></script>
 
   <!-- Leaflet CSS -->
   <link
@@ -32,8 +35,8 @@
        ============================== -->
   <header id="header">
     <h1>
-      Mapa Eleitoral de Cotia
-      <span class="badge">Eleição Geral</span>
+      <span data-i18n>Mapa Eleitoral de Cotia</span>
+      <span class="badge" data-i18n>Eleição Geral</span>
     </h1>
 
     <div id="controls">
@@ -41,15 +44,15 @@
               style="background:rgba(255,255,255,0.07);color:#fff;border:1px solid rgba(255,255,255,0.15);
                      border-radius:4px;padding:4px 8px;font-size:0.78rem">
         <option value="2022">2022</option>
-        <option value="2026">2026 — 1º Turno</option>
+        <option value="2026" data-i18n>2026 — 1º Turno</option>
       </select>
-      <span style="font-size:0.72rem;color:var(--text-muted);margin-left:8px">
+      <span style="font-size:0.72rem;color:var(--text-muted);margin-left:8px" data-i18n>
         Presidente · Governador · Senador · Dep. Federal · Dep. Estadual — Cotia/SP
       </span>
-      <a href="./index.html" style="font-size:0.72rem;color:var(--text-muted);margin-left:16px;white-space:nowrap">
+      <a href="./index.html" style="font-size:0.72rem;color:var(--text-muted);margin-left:16px;white-space:nowrap" data-i18n>
         ← Eleição Municipal 2024
       </a>
-      <a href="./contas.html" style="font-size:0.72rem;color:var(--text-muted);margin-left:16px;white-space:nowrap">
+      <a href="./contas.html" style="font-size:0.72rem;color:var(--text-muted);margin-left:16px;white-space:nowrap" data-i18n>
         Contas do Município →
       </a>
     </div>
@@ -70,7 +73,7 @@
     <!-- SIDEBAR com dados eleitorais -->
     <aside id="sidebar">
       <div id="sidebar-header">
-        <h2>Selecione um bairro</h2>
+        <h2 data-i18n>Selecione um bairro</h2>
       </div>
       <div id="sidebar-content">
         <div class="placeholder">
@@ -79,7 +82,7 @@
             <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/>
             <circle cx="12" cy="9" r="2.5"/>
           </svg>
-          <p>Clique em um bairro no mapa para ver os resultados da zona eleitoral.</p>
+          <p data-i18n>Clique em um bairro no mapa para ver os resultados da zona eleitoral.</p>
         </div>
       </div>
     </aside>
@@ -90,8 +93,8 @@
        ============================== -->
   <div id="loading">
     <div class="spinner"></div>
-    <p>Carregando dados...</p>
-    <span id="loading-status">Inicializando...</span>
+    <p data-i18n>Carregando dados...</p>
+    <span id="loading-status" data-i18n>Inicializando...</span>
   </div>
 
   <!-- ==============================

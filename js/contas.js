@@ -9,10 +9,14 @@
 const DATA_URL = "data/contas_cotia.json";
 const POR_PAGINA = 50;
 
-const fmtBRL = new Intl.NumberFormat("pt-BR", { style: "currency", currency: "BRL" });
-const fmtCompacto = new Intl.NumberFormat("pt-BR", { notation: "compact", maximumFractionDigits: 1 });
-const fmtInt = new Intl.NumberFormat("pt-BR");
-const MESES = ["jan", "fev", "mar", "abr", "mai", "jun", "jul", "ago", "set", "out", "nov", "dez"];
+const fmtBRL = new Intl.NumberFormat(LOCALE, { style: "currency", currency: "BRL" });
+const fmtCompacto = new Intl.NumberFormat(LOCALE, { notation: "compact", maximumFractionDigits: 1 });
+const fmtInt = new Intl.NumberFormat(LOCALE);
+const fmtPct = new Intl.NumberFormat(LOCALE, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+const fmtVar1 = new Intl.NumberFormat(LOCALE, { minimumFractionDigits: 1, maximumFractionDigits: 1 });
+const MESES = LANG === "en"
+  ? ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+  : ["jan", "fev", "mar", "abr", "mai", "jun", "jul", "ago", "set", "out", "nov", "dez"];
 
 const COR = "#e94560";
 const COR_SUAVE = "rgba(233,69,96,0.35)";
@@ -48,7 +52,8 @@ function fmtCNPJ(d) {
 
 function fmtData(iso) {
   const [a, m, d] = (iso || "").split("-");
-  return d ? `${d}/${m}/${a}` : iso;
+  if (!d) return iso;
+  return LANG === "en" ? `${m}/${d}/${a}` : `${d}/${m}/${a}`;
 }
 
 function esc(s) {
@@ -76,7 +81,13 @@ function anos() {
 }
 
 function eventoLabel() {
-  return estado.evento.toLowerCase();
+  return t(estado.evento).toLowerCase();
+}
+
+/** "pagos" no plural em português ("Top 10 valores pagos"); em inglês não flexiona. */
+function eventoPlural() {
+  const ev = eventoLabel();
+  return ev === "pago" ? "pagos" : ev;
 }
 
 function periodoLabel() {
@@ -102,13 +113,13 @@ function fornecedoresFiltrados() {
 
 async function init() {
   try {
-    $("loading-status").textContent = "Baixando dados do TCE-SP…";
+    $("loading-status").textContent = t("Baixando dados do TCE-SP…");
     const resp = await fetch(DATA_URL);
     if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
     DADOS = await resp.json();
   } catch (err) {
     $("loading").innerHTML =
-      `<p>Não foi possível carregar as contas (${esc(err.message)}).</p>`;
+      `<p>${t("Não foi possível carregar as contas ({erro}).", { erro: esc(err.message) })}</p>`;
     return;
   }
 
@@ -118,21 +129,23 @@ async function init() {
 
   const ev = DADOS.meta.eventos;
   estado.evento = ev.includes("Pago") ? "Pago" : ev[0];
-  $("f-evento").innerHTML = ev.map((e) => `<option value="${esc(e)}">${esc(e)}</option>`).join("");
+  $("f-evento").innerHTML = ev.map((e) => `<option value="${esc(e)}">${esc(t(e))}</option>`).join("");
   $("f-evento").value = estado.evento;
-  $("f-ano").innerHTML = `<option value="">Todos (${anos()[0]}–${anos().at(-1)})</option>` +
+  $("f-ano").innerHTML = `<option value="">${t("Todos")} (${anos()[0]}–${anos().at(-1)})</option>` +
     anos().slice().reverse().map((a) => `<option value="${a}">${a}</option>`).join("");
 
   $("lista-fornecedores").innerHTML = DADOS.fornecedores
     .map((f) => `<option value="${esc(rotuloForn(f))}"></option>`).join("");
 
   const [ua, um] = DADOS.meta.ultimo_mes.split("-");
+  const [pa, pm] = DADOS.meta.primeiro_mes.split("-");
   $("k-ultimo").textContent = `${MESES[+um - 1]}/${ua}`;
   $("fonte").innerHTML =
-    `Fonte: <a href="${esc(DADOS.meta.url)}" target="_blank" rel="noopener">${esc(DADOS.meta.fonte)}</a> · ` +
-    `despesas de ${fmtData(DADOS.meta.primeiro_mes + "-01").slice(3)} a ${um}/${ua} · ` +
-    `${fmtInt.format(DADOS.meta.registros)} registros · atualizado em ${fmtData(DADOS.meta.gerado_em.slice(0, 10))}. ` +
-    `CPF de pessoa física não é exibido.`;
+    `${t("Fonte")}: <a href="${esc(DADOS.meta.url)}" target="_blank" rel="noopener">${esc(DADOS.meta.fonte)}</a> · ` +
+    t("despesas de {ini} a {fim}", { ini: `${pm}/${pa}`, fim: `${um}/${ua}` }) + " · " +
+    t("{n} registros", { n: fmtInt.format(DADOS.meta.registros) }) + " · " +
+    t("atualizado em {data}.", { data: fmtData(DADOS.meta.gerado_em.slice(0, 10)) }) + " " +
+    t("CPF de pessoa física não é exibido.");
 
   ligarEventos();
   initEvolucao();
@@ -213,7 +226,7 @@ function selecionar(idx) {
 // -----------------------------------------------------------------------
 
 function render() {
-  $("btn-top10").textContent = `Top 10 valores ${eventoLabel() === "pago" ? "pagos" : eventoLabel()}`;
+  $("btn-top10").textContent = t("Top 10 valores {ev}", { ev: eventoPlural() });
   renderKPIs();
   renderSelecionado();
   renderGraficoAno();
@@ -241,7 +254,7 @@ function renderKPIs() {
     lanc = lista.reduce((s, x) => s + x.f.n, 0);
   }
   $("k-total").textContent = fmtBRL.format(total);
-  $("k-total-lbl").textContent = `Total ${eventoLabel()} · ${periodoLabel()}`;
+  $("k-total-lbl").textContent = `${t("Total {ev}", { ev: eventoLabel() })} · ${periodoLabel()}`;
   $("k-receb").textContent = fmtInt.format(receb);
   $("k-lanc").textContent = fmtInt.format(lanc);
 }
@@ -253,23 +266,25 @@ function renderSelecionado() {
   const tops = ((f.top || {})[estado.evento] || [])
     .filter((l) => !estado.ano || anoLanc(l, 4) === estado.ano);
   const totalEv = DADOS.meta.eventos
-    .map((e) => `${esc(e)}: <b>${fmtBRL.format(f.total[e] || 0)}</b>`).join(" · ");
+    .map((e) => `${esc(t(e))}: <b>${fmtBRL.format(f.total[e] || 0)}</b>`).join(" · ");
   box.hidden = false;
   box.innerHTML = `
     <div class="sel-head">
       <div>
         <h3>${esc(f.nome)}</h3>
-        <div class="sel-meta">${f.tipo === "PF" ? "Pessoa física" : f.doc ? "CNPJ " + fmtCNPJ(f.doc) : ""}
-          · ${fmtInt.format(f.n)} lançamentos · ${totalEv} (${anos()[0]}–${anos().at(-1)})</div>
+        <div class="sel-meta">${f.tipo === "PF" ? t("Pessoa física") : f.doc ? "CNPJ " + fmtCNPJ(f.doc) : ""}
+          · ${t("{n} lançamentos", { n: fmtInt.format(f.n) })} · ${totalEv} (${anos()[0]}–${anos().at(-1)})</div>
       </div>
-      <button type="button" class="btn sec" onclick="document.getElementById('btn-limpar').click()">Ver todos</button>
+      <button type="button" class="btn sec" onclick="document.getElementById('btn-limpar').click()">${t("Ver todos")}</button>
     </div>
     ${tops.length ? `
       <div class="tabela-wrap"><table>
-        <thead><tr><th>Data</th><th>Órgão</th><th>Empenho</th><th class="num">Valor ${esc(eventoLabel())}</th></tr></thead>
+        <thead><tr><th>${t("Data")}</th><th>${t("Órgão")}</th><th>${t("Empenho")}</th><th class="num">${t("Valor {ev}", { ev: esc(eventoLabel()) })}</th></tr></thead>
         <tbody>${tops.map((l) => `<tr><td>${fmtData(l[0])}</td><td>${esc(l[2])}</td>
           <td>${esc(l[3])}</td><td class="num">${fmtBRL.format(l[1])}</td></tr>`).join("")}</tbody>
-      </table></div>` : `<p class="vazio">Nenhum lançamento ${esc(eventoLabel())} ${estado.ano ? "em " + estado.ano : ""}.</p>`}`;
+      </table></div>` : `<p class="vazio">${estado.ano
+        ? t("Nenhum lançamento {ev} em {ano}.", { ev: esc(eventoLabel()), ano: estado.ano })
+        : t("Nenhum lançamento {ev}.", { ev: esc(eventoLabel()) })}</p>`}`;
 }
 
 function grafico(id, config) {
@@ -286,7 +301,7 @@ function renderGraficoAno() {
   const as = anos();
   const f = estado.sel !== null ? DADOS.fornecedores[estado.sel] : null;
   const valores = as.map((a) => ((f ? f.anos[a] : DADOS.por_ano[a]) || {})[estado.evento] || 0);
-  $("g-ano-titulo").textContent = `Valor ${eventoLabel()} por ano${f ? " — " + f.nome : ""}`;
+  $("g-ano-titulo").textContent = t("Valor {ev} por ano", { ev: eventoLabel() }) + (f ? " — " + f.nome : "");
   grafico("g-ano", {
     type: "bar",
     data: {
@@ -315,7 +330,7 @@ function renderGraficoAno() {
 
 function renderGraficoMes() {
   const meses = Object.keys(DADOS.por_mes).filter((m) => !estado.ano || m.startsWith(estado.ano));
-  $("g-mes-titulo").textContent = `Valor ${eventoLabel()} por mês — município${estado.ano ? " · " + estado.ano : ""}`;
+  $("g-mes-titulo").textContent = t("Valor {ev} por mês — município", { ev: eventoLabel() }) + (estado.ano ? " · " + estado.ano : "");
   grafico("g-mes", {
     type: estado.ano ? "bar" : "line",
     data: {
@@ -418,14 +433,14 @@ function renderTabela() {
     ? lista.slice(ini, ini + POR_PAGINA).map(({ f, i, valor }) => `
       <tr data-i="${i}">
         <td>${esc(f.nome)}</td>
-        <td>${f.tipo === "PF" ? "<i>pessoa física</i>" : fmtCNPJ(f.doc)}</td>
+        <td>${f.tipo === "PF" ? `<i>${t("pessoa física")}</i>` : fmtCNPJ(f.doc)}</td>
         <td class="num">${fmtInt.format(f.n)}</td>
         <td class="num"><span class="barra" style="width:${Math.max(2, (valor / max) * 60)}px"></span>${fmtBRL.format(valor)}</td>
-        <td class="num">${((valor / total) * 100).toFixed(2).replace(".", ",")}%</td>
+        <td class="num">${fmtPct.format((valor / total) * 100)}%</td>
       </tr>`).join("")
-    : `<tr><td colspan="5" class="vazio">Nenhum recebedor encontrado.</td></tr>`;
+    : `<tr><td colspan="5" class="vazio">${t("Nenhum recebedor encontrado.")}</td></tr>`;
 
-  $("p-info").textContent = `${fmtInt.format(lista.length)} recebedores · página ${estado.pagina + 1} de ${paginas}`;
+  $("p-info").textContent = t("{n} recebedores · página {p} de {total}", { n: fmtInt.format(lista.length), p: estado.pagina + 1, total: paginas });
   $("p-ant").disabled = estado.pagina === 0;
   $("p-prox").disabled = estado.pagina >= paginas - 1;
 }
@@ -439,7 +454,7 @@ function renderTop10() {
   const tab = $("m-tabela");
 
   if (estado.aba === "lanc") {
-    $("m-titulo").textContent = `Top 10 maiores valores ${evl === "pago" ? "pagos" : evl} · ${sufixo}`;
+    $("m-titulo").textContent = `${t("Top 10 maiores valores {ev}", { ev: eventoPlural() })} · ${sufixo}`;
     let linhas;
     if (f) {
       linhas = ((f.top || {})[estado.evento] || [])
@@ -454,22 +469,22 @@ function renderTop10() {
     }
     linhas = linhas.sort((a, b) => b.valor - a.valor).slice(0, 10);
     tab.innerHTML = `
-      <thead><tr><th>#</th><th>Recebedor</th><th>Data</th><th>Órgão</th><th>Empenho</th><th class="num">Valor</th></tr></thead>
+      <thead><tr><th>#</th><th>${t("Recebedor")}</th><th>${t("Data")}</th><th>${t("Órgão")}</th><th>${t("Empenho")}</th><th class="num">${t("Valor")}</th></tr></thead>
       <tbody>${linhas.map((l, k) => `
         <tr data-i="${l.i}" style="cursor:pointer">
           <td>${k + 1}</td><td>${esc(DADOS.fornecedores[l.i].nome)}</td><td>${fmtData(l.data)}</td>
           <td>${esc(l.orgao)}</td><td>${esc(l.emp)}</td><td class="num">${fmtBRL.format(l.valor)}</td>
-        </tr>`).join("") || `<tr><td colspan="6" class="vazio">Sem lançamentos.</td></tr>`}</tbody>`;
+        </tr>`).join("") || `<tr><td colspan="6" class="vazio">${t("Sem lançamentos.")}</td></tr>`}</tbody>`;
   } else {
-    $("m-titulo").textContent = `Top 10 recebedores (${evl}) · ${periodoLabel()}`;
+    $("m-titulo").textContent = `${t("Top 10 recebedores ({ev})", { ev: evl })} · ${periodoLabel()}`;
     const lista = fornecedoresFiltrados().sort((a, b) => b.valor - a.valor).slice(0, 10);
     tab.innerHTML = `
-      <thead><tr><th>#</th><th>Recebedor</th><th>CNPJ</th><th class="num">Lançamentos</th><th class="num">Valor</th></tr></thead>
+      <thead><tr><th>#</th><th>${t("Recebedor")}</th><th>CNPJ</th><th class="num">${t("Lançamentos")}</th><th class="num">${t("Valor")}</th></tr></thead>
       <tbody>${lista.map((x, k) => `
         <tr data-i="${x.i}" style="cursor:pointer">
-          <td>${k + 1}</td><td>${esc(x.f.nome)}</td><td>${x.f.tipo === "PF" ? "<i>pessoa física</i>" : fmtCNPJ(x.f.doc)}</td>
+          <td>${k + 1}</td><td>${esc(x.f.nome)}</td><td>${x.f.tipo === "PF" ? `<i>${t("pessoa física")}</i>` : fmtCNPJ(x.f.doc)}</td>
           <td class="num">${fmtInt.format(x.f.n)}</td><td class="num">${fmtBRL.format(x.valor)}</td>
-        </tr>`).join("") || `<tr><td colspan="5" class="vazio">Sem recebedores.</td></tr>`}</tbody>`;
+        </tr>`).join("") || `<tr><td colspan="5" class="vazio">${t("Sem recebedores.")}</td></tr>`}</tbody>`;
   }
 }
 
@@ -482,9 +497,9 @@ const EVO_EVENTO = "Pago";
 const evo = { orgao: "", ano: "" };
 
 function nomeOrgaoCurto(o) {
-  if (/PREFEITURA/i.test(o)) return "Prefeitura";
-  if (/C[AÂ]MARA/i.test(o)) return "Câmara Municipal";
-  if (/PREV/i.test(o)) return "Instituto de Previdência";
+  if (/PREFEITURA/i.test(o)) return t("Prefeitura");
+  if (/C[AÂ]MARA/i.test(o)) return t("Câmara Municipal");
+  if (/PREV/i.test(o)) return t("Instituto de Previdência");
   return o;
 }
 
@@ -503,7 +518,7 @@ function pagoAno(ano, ate = 12) {
 function fmtVar(atual, anterior) {
   if (!anterior) return "";
   const v = (atual / anterior - 1) * 100;
-  return `${v >= 0 ? "+" : "−"}${Math.abs(v).toFixed(1).replace(".", ",")}%`;
+  return `${v >= 0 ? "+" : "−"}${fmtVar1.format(Math.abs(v))}%`;
 }
 
 function initEvolucao() {
@@ -513,7 +528,7 @@ function initEvolucao() {
   }
   const orgaos = Object.keys(DADOS.por_orgao_mes);
   evo.orgao = orgaos.find((o) => /PREFEITURA/i.test(o)) || "";
-  $("evo-orgao").innerHTML = `<option value="">Todos os órgãos</option>` +
+  $("evo-orgao").innerHTML = `<option value="">${t("Todos os órgãos")}</option>` +
     orgaos.map((o) => `<option value="${esc(o)}">${esc(nomeOrgaoCurto(o))}</option>`).join("");
   $("evo-orgao").value = evo.orgao;
   $("evo-orgao").addEventListener("change", (e) => { evo.orgao = e.target.value; renderEvolucao(); });
@@ -539,31 +554,33 @@ function renderEvolucao() {
   const [ua, um] = DADOS.meta.ultimo_mes.split("-").map(Number);
   const parcial = um < 12 ? String(ua) : null;
   const valores = as.map((a) => pagoAno(a));
-  const quem = evo.orgao ? nomeOrgaoCurto(evo.orgao) : "Todos os órgãos";
+  const quem = evo.orgao ? nomeOrgaoCurto(evo.orgao) : t("Todos os órgãos");
 
   // Resumo: primeiro → último ano completo, e o ano corrente contra o mesmo período do anterior
   const completos = as.filter((a) => a !== parcial);
   const ini = completos[0], fim = completos.at(-1);
-  let resumo = `<b>${quem}</b> pagou <b>${fmtBRL.format(pagoAno(fim))}</b> em ${fim}`;
+  let resumo = t("{quem} pagou {valor} em {ano}", { quem: `<b>${quem}</b>`, valor: `<b>${fmtBRL.format(pagoAno(fim))}</b>`, ano: fim });
   if (ini !== fim) {
-    resumo += `, contra <b>${fmtBRL.format(pagoAno(ini))}</b> em ${ini} (<b>${fmtVar(pagoAno(fim), pagoAno(ini))}</b>)`;
+    resumo += t(", contra {valor} em {ano} ({var})", { valor: `<b>${fmtBRL.format(pagoAno(ini))}</b>`, ano: ini, var: `<b>${fmtVar(pagoAno(fim), pagoAno(ini))}</b>` });
   }
   resumo += ".";
   if (parcial) {
     const mesNome = MESES[um - 1];
-    resumo += ` Em ${parcial}, até ${mesNome}: <b>${fmtBRL.format(pagoAno(parcial, um))}</b>` +
-      ` (${fmtVar(pagoAno(parcial, um), pagoAno(ua - 1, um))} sobre jan–${mesNome} de ${ua - 1}).`;
+    resumo += " " + t("Em {ano}, até {mes}: {valor} ({var} sobre {ini}–{mes} de {anoAnt}).", {
+      ano: parcial, mes: mesNome, valor: `<b>${fmtBRL.format(pagoAno(parcial, um))}</b>`,
+      var: fmtVar(pagoAno(parcial, um), pagoAno(ua - 1, um)), ini: MESES[0], anoAnt: ua - 1,
+    });
   }
   $("evo-resumo").innerHTML = resumo;
-  $("evo-nota").textContent = (parcial ? `${parcial}* é parcial: só jan a ${MESES[um - 1]} foram publicados pelo TCE. ` : "") +
-    "Valores nominais (sem correção pela inflação), pelo mês do pagamento.";
+  $("evo-nota").textContent = (parcial ? t("{ano}* é parcial: só {ini} a {mes} foram publicados pelo TCE.", { ano: parcial, ini: MESES[0], mes: MESES[um - 1] }) + " " : "") +
+    t("Valores nominais (sem correção pela inflação), pelo mês do pagamento.");
 
   grafico("g-evolucao", {
     type: "bar",
     data: {
       labels: as.map((a) => (a === parcial ? `${a}*` : a)),
       datasets: [{
-        label: `Pago — ${quem}`,
+        label: `${t("Pago")} — ${quem}`,
         data: valores,
         backgroundColor: as.map((a) => (a === parcial ? COR_SUAVE : COR)),
         borderColor: COR,
@@ -583,7 +600,7 @@ function renderEvolucao() {
               if (i === 0) return "";
               const a = as[i];
               if (a === parcial) {
-                return `${fmtVar(pagoAno(a, um), pagoAno(ua - 1, um))} vs jan–${MESES[um - 1]} de ${ua - 1}`;
+                return t("{var} vs {ini}–{mes} de {ano}", { var: fmtVar(pagoAno(a, um), pagoAno(ua - 1, um)), ini: MESES[0], mes: MESES[um - 1], ano: ua - 1 });
               }
               return `${fmtVar(valores[i], valores[i - 1])} vs ${as[i - 1]}`;
             },
@@ -613,17 +630,17 @@ function renderTopAno() {
     .sort((a, b) => b[1] - a[1])
     .slice(0, 10);
   $("evo-top").innerHTML = `
-    <thead><tr><th>#</th><th>Recebedor</th><th>Órgão</th><th>Mês</th><th>Empenho</th>
-      <th class="num">Valor pago</th><th class="num">% do ano</th></tr></thead>
+    <thead><tr><th>#</th><th>${t("Recebedor")}</th><th>${t("Órgão")}</th><th>${t("Mês")}</th><th>${t("Empenho")}</th>
+      <th class="num">${t("Valor pago")}</th><th class="num">${t("% do ano")}</th></tr></thead>
     <tbody>${linhas.map((l, k) => {
       const mes = l[6] || l[0].slice(0, 7);
       return `<tr data-i="${l[5]}" style="cursor:pointer">
         <td>${k + 1}</td><td>${esc(DADOS.fornecedores[l[5]].nome)}</td><td>${esc(nomeOrgaoCurto(l[3]))}</td>
         <td>${MESES[+mes.slice(5, 7) - 1]}/${mes.slice(0, 4)}</td><td>${esc(l[4])}</td>
         <td class="num">${fmtBRL.format(l[1])}</td>
-        <td class="num">${((l[1] / totalAno) * 100).toFixed(2).replace(".", ",")}%</td>
+        <td class="num">${fmtPct.format((l[1] / totalAno) * 100)}%</td>
       </tr>`;
-    }).join("") || `<tr><td colspan="7" class="vazio">Sem pagamentos em ${esc(evo.ano)}.</td></tr>`}</tbody>`;
+    }).join("") || `<tr><td colspan="7" class="vazio">${t("Sem pagamentos em {ano}.", { ano: esc(evo.ano) })}</td></tr>`}</tbody>`;
 }
 
 init();
