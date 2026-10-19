@@ -1330,3 +1330,30 @@ html, body {
 .fonte-info a:hover {
   text-decoration: underline;
 }
+
+/* ---- IDIOMA (PT/EN) ---- */
+.lang-toggle {
+  background: rgba(255,255,255,0.07);
+  color: var(--text);
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 4px;
+  padding: 3px 8px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  margin-left: 12px;
+  font-family: inherit;
+  flex-shrink: 0;
+}
+
+@media (max-width: 768px) {
+  /* No celular os links do header rolam na horizontal e o botão PT/EN fica visível */
+  #header { gap: 8px; }
+  #controls { min-width: 0; overflow-x: auto; }
+  .lang-toggle { margin-left: 0; }
+}
+
+.lang-toggle:hover {
+  border-color: rgba(255,255,255,0.35);
+}

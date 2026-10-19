@@ -315,7 +315,7 @@ function getTotais() {
  */
 function formatVotos(n) {
   if (typeof n !== "number") n = parseInt(n) || 0;
-  return n.toLocaleString("pt-BR");
+  return n.toLocaleString(LOCALE);
 }
 
 /**
@@ -355,14 +355,14 @@ function renderCandidateCard(candidato, maxVotos, extraHtml) {
                    situacaoClass === "suplente" ? "#607d8b" : "#ef5350";
 
   const situacaoLabel = candidato.situacao
-    ? `<span class="situacao-badge ${badgeClass}">${candidato.situacao}</span>`
+    ? `<span class="situacao-badge ${badgeClass}">${tSituacao(candidato.situacao)}</span>`
     : "";
 
   return `
     <div class="candidate-card ${situacaoClass}">
       <div class="candidate-header">
         <div style="flex:1;min-width:0">
-          <div class="candidate-name">${candidato.nome}</div>
+          <div class="candidate-name">${tNomeVoto(candidato.nome)}</div>
           ${situacaoLabel}
         </div>
         <div class="candidate-header-right">
@@ -374,7 +374,7 @@ function renderCandidateCard(candidato, maxVotos, extraHtml) {
         <div class="vote-bar">
           <div class="vote-bar-fill" style="width:${pct.toFixed(1)}%;background:${barColor}"></div>
         </div>
-        <span class="vote-count">${formatVotos(candidato.votos)} votos</span>
+        <span class="vote-count">${t("{n} votos", { n: formatVotos(candidato.votos) })}</span>
       </div>
     </div>
   `;
@@ -385,7 +385,7 @@ function renderCandidateCard(candidato, maxVotos, extraHtml) {
  */
 function renderPrefeito(candidatos, turno) {
   if (!candidatos || candidatos.length === 0) {
-    return `<p style="color:var(--text-muted);font-size:0.8rem;padding:8px 0">Nenhum dado disponível para o ${turno}º turno.</p>`;
+    return `<p style="color:var(--text-muted);font-size:0.8rem;padding:8px 0">${t("Nenhum dado disponível para o {n}º turno.", { n: turno })}</p>`;
   }
 
   const maxVotos = candidatos[0]?.votos || 1;
@@ -398,7 +398,7 @@ function renderPrefeito(candidatos, turno) {
  */
 function renderVereadores(candidatos, turno, containerId) {
   if (!candidatos || candidatos.length === 0) {
-    return `<p style="color:var(--text-muted);font-size:0.8rem;padding:8px 0">Nenhum dado disponível para o ${turno}º turno.</p>`;
+    return `<p style="color:var(--text-muted);font-size:0.8rem;padding:8px 0">${t("Nenhum dado disponível para o {n}º turno.", { n: turno })}</p>`;
   }
 
   const INITIAL_SHOW = 10;
@@ -414,7 +414,7 @@ function renderVereadores(candidatos, turno, containerId) {
         ${restante.map((c) => renderCandidateCard(c, maxVotos)).join("")}
       </div>
       <button class="show-more" onclick="toggleExtra('${containerId}-extra', this)">
-        Ver mais ${restante.length} candidatos ▼
+        ${t("Ver mais {n} candidatos ▼", { n: restante.length })}
       </button>
     `;
   }

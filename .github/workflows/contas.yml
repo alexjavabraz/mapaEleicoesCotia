@@ -8,6 +8,7 @@ on:
     branches: [claude/contas-municipio-cak3b6]
     paths:
       - scripts/download_contas.py
+      - scripts/download_viagens.py
       - .github/workflows/contas.yml
 
 permissions:
@@ -27,15 +28,17 @@ jobs:
         with:
           python-version: "3.12"
       - run: pip install requests
+      - run: sudo apt-get install -y poppler-utils tesseract-ocr tesseract-ocr-por >/dev/null
       - run: python scripts/download_contas.py
+      - run: python scripts/download_viagens.py
       - name: Commit do JSON atualizado
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/contas_cotia.json
+          git add data/contas_cotia.json data/viagens_camara.json
           if git diff --cached --quiet; then
             echo "Sem mudanças."
           else
-            git commit -m "dados: atualiza contas do município (TCE-SP)"
+            git commit -m "dados: atualiza contas do município (TCE-SP) e viagens da Câmara"
             git push
           fi

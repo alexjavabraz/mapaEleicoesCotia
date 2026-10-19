@@ -1,4 +1,4 @@
-# Sessão — 2026-10-19 (3) · Votos por escola no mapa 2024
+# Sessão — 2026-10-19 (5) · Votos por escola no mapa 2024
 
 **Status:** iniciada 2026-10-19 19:05 UTC · finalizada 2026-10-19 19:20 UTC (PR #5, label `agentic`).
 
@@ -23,6 +23,8 @@ para prefeito e para vereador.
 - `.github/workflows/secoes.yml` roda o script (manual / push do script na
   branch) e commita só o detalhe. `sw.js` → v12. Textos novos via `t()` (PR #3).
 - Badge de partido vazio ("??") some para brancos/nulos.
+- Merge da main (PRs #3 e #4) em 2026-10-19 19:30 UTC: textos novos movidos
+  para `I18N_EN` em `js/i18n.js` e chamados com `t()`; `sw.js` fica em v12.
 
 ## Armadilhas
 
@@ -31,6 +33,79 @@ para prefeito e para vereador.
 - `votacao_secao` não tem QT_APTOS/QT_COMPARECIMENTO (estão em
   `detalhe_votacao_secao`); a abstenção da escola segue estimada por
   eleitores registrados × votos para prefeito.
+
+---
+
+# Sessão — 2026-10-19 (3) · Viagens da Câmara
+
+**Status:** iniciada 2026-10-19 18:14 UTC · finalizada 2026-10-19 18:45 UTC (PR #4, label `agentic`).
+
+## Pedido
+
+Analisar os relatórios de viagens da Câmara
+(https://www.cotia.sp.leg.br/relatorio-de-viagens) e adicionar os dados por
+vereador e por ano na página de contas.
+
+## O que foi feito
+
+- A página da Câmara não tem uma tabela: é uma lista de links (Google Drive /
+  Docs), um PDF por viagem, identificado pelo Ato da Mesa (vereadores) ou
+  Portaria (servidores). O formulário é sempre o mesmo: período, nome,
+  destino, motivo, passagens, hospedagem e observação sobre o adiantamento.
+- `scripts/download_viagens.py` baixa os PDFs, extrai os campos (OCR com
+  tesseract para os escaneados de 2018–2019), normaliza nomes e calcula o
+  custo = passagens + hospedagem + adiantamento efetivamente gasto (lido da
+  observação). Grava `data/viagens_camara.json`. Roda no workflow mensal das
+  contas.
+- `js/viagens.js` + seção "Viagens da Câmara" em `contas.html`: filtros de ano
+  e de quem viajou (vereadores/servidores), KPIs, gráfico por ano, maiores
+  gastos, tabela pessoa × ano e detalhe das viagens com link para o PDF.
+  Textos passam por `t()` e registram as traduções EN quando `js/i18n.js`
+  (PR #3) estiver na página.
+- `sw.js` → v11.
+
+## Armadilhas
+
+- `cotia.sp.leg.br` também é bloqueado na sessão cloud: tudo roda no Actions.
+- 11 PDFs de 2017 (links antigos `drive.google.com/open?id=0B…`) são
+  privados e não podem ser baixados; ficam listados em `meta.nao_lidos`.
+- Não há relatórios para 2020 e 2022 na página da Câmara.
+- Valores lidos por OCR (14 relatórios) ficam marcados na página.
+
+---
+
+# Sessão — 2026-10-19 (3) · Versão em inglês (i18n)
+
+**Status:** iniciada 2026-10-19 18:10 UTC · finalizada 2026-10-19 18:50 UTC
+(branch `claude/i18n-english-tm8c3p`, label `agentic`).
+
+## Pedido
+
+Apresentar o mapa em inglês quando o navegador do usuário não estiver em
+português.
+
+## O que foi feito
+
+- `js/i18n.js` (carregado no `<head>` das 3 páginas): idioma = escolha salva
+  no botão PT/EN (`localStorage["lang"]`) ou, sem escolha, inglês quando
+  `navigator.languages[0]` não começa com `pt`. `t("texto PT", {vars})`
+  traduz pelo próprio texto em português (dicionário `I18N_EN`); HTML
+  estático usa `data-i18n` / `data-i18n-placeholder` / `data-i18n-aria-label`.
+- Todos os textos de `app.js`, `map.js`, `tse.js`, `geral.js`,
+  `geral-config.js` e `contas.js` passam por `t()`. Números/moeda usam
+  `LOCALE` (en-US no inglês: R$1,234.56); datas em mm/dd/aaaa no inglês.
+- Traduzidos também rótulos que vêm dos dados mas são categorias: situação
+  (ELEITO → ELECTED, 2º TURNO → RUNOFF…), VOTO NULO/BRANCO e os eventos da
+  despesa (Pago → Paid, Liquidado → Accrued, Empenhado → Committed).
+  Nomes de candidatos, bairros, fornecedores e órgãos ficam como estão.
+- Botão PT/EN no canto do header (recarrega a página; se o localStorage
+  estiver bloqueado, a escolha vai na URL como `?lang=en`). `sw.js` → v11.
+
+## Armadilhas
+
+- Texto novo na interface: escreva `t("…")` e adicione a chave em `I18N_EN`,
+  senão aparece em português no modo inglês.
+- Para testar o inglês no navegador em PT: clique em "EN" no header.
 
 ---
 

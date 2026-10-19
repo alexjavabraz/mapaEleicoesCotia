@@ -14,7 +14,7 @@ const COTIA_ZOOM = 12;
 // públicos e sem necessidade de conta, no mesmo padrão já usado pro Satélite.
 const TILE_CONFIGS = {
   dark: {
-    label: "Escuro",
+    label: t("Escuro"),
     base: "https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}",
     baseOpts: {
       attribution: '&copy; <a href="https://www.esri.com/">Esri</a>',
@@ -34,7 +34,7 @@ const TILE_CONFIGS = {
     labelsOpts: null,
   },
   light: {
-    label: "Claro",
+    label: t("Claro"),
     base: "https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}",
     baseOpts: {
       attribution: '&copy; <a href="https://www.esri.com/">Esri</a>',
@@ -44,7 +44,7 @@ const TILE_CONFIGS = {
     labelsOpts: { attribution: "", maxZoom: 16, pane: "shadowPane" },
   },
   satellite: {
-    label: "Satélite",
+    label: t("Satélite"),
     base: "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",
     baseOpts: {
       attribution: '&copy; <a href="https://www.esri.com/">Esri</a>, Maxar, Earthstar Geographics',
@@ -92,8 +92,8 @@ function addCustomZoomControl() {
   ctrl.onAdd = function () {
     const div = L.DomUtil.create("div", "custom-zoom-control");
     div.innerHTML = `
-      <button class="zoom-btn" id="zoom-in-btn" title="Aproximar">+</button>
-      <button class="zoom-btn" id="zoom-out-btn" title="Afastar">&#x2212;</button>
+      <button class="zoom-btn" id="zoom-in-btn" title="${t("Aproximar")}">+</button>
+      <button class="zoom-btn" id="zoom-out-btn" title="${t("Afastar")}">&#x2212;</button>
     `;
     L.DomEvent.disableClickPropagation(div);
     L.DomEvent.on(div.querySelector("#zoom-in-btn"), "click", () => map.zoomIn());
@@ -410,7 +410,7 @@ out skel qt;
 
   const url = "https://overpass-api.de/api/interpreter";
 
-  if (onStatus) onStatus("Buscando bairros no OpenStreetMap...");
+  if (onStatus) onStatus(t("Buscando bairros no OpenStreetMap..."));
 
   try {
     const response = await fetch(url, {
@@ -455,7 +455,7 @@ out body;
 out skel qt;
 `.trim();
 
-  if (onStatus) onStatus("Buscando contorno do município...");
+  if (onStatus) onStatus(t("Buscando contorno do município..."));
 
   try {
     const response = await fetch("https://overpass-api.de/api/interpreter", {
@@ -480,7 +480,7 @@ out skel qt;
  * (relation/298252, admin_level=8 — mesmo filtro da query Overpass acima).
  */
 async function fetchCotiaMunicipioFallback(onStatus) {
-  if (onStatus) onStatus("Overpass indisponível — usando contorno local de Cotia...");
+  if (onStatus) onStatus(t("Overpass indisponível — usando contorno local de Cotia..."));
   try {
     const r = await fetch("./data/cotia_municipio.geojson");
     if (!r.ok) return null;
@@ -551,7 +551,7 @@ function renderBairros(geojson, bairroZonaMap, onBairroClick, onBairroHover, onG
       return type === "Polygon" || type === "MultiPolygon";
     },
     onEachFeature: (feature, layer) => {
-      const name = feature.properties.name || feature.properties.nome || "Sem nome";
+      const name = feature.properties.name || feature.properties.nome || t("Sem nome");
       const zona = feature.properties._zona;
 
       // Tooltip — usa função para reavaliar conteúdo a cada abertura (lê globals atuais)
@@ -609,7 +609,7 @@ function renderLocaisVotacao(locais, onLocaisClick) {
 
     circle.bindTooltip(
       `<div class="tooltip-name">${local.nome}</div>
-       <div class="tooltip-zona">${local.bairro} — Zona ${local.zona}</div>
+       <div class="tooltip-zona">${local.bairro} — ${t("Zona {z}", { z: local.zona })}</div>
        <div class="tooltip-zona" style="font-size:0.68rem;margin-top:2px">${local.endereco}</div>`,
       {
         sticky: true,
@@ -655,14 +655,14 @@ function renderRankingBoxItens(titulo, itens, emptyMsg) {
     L.DomEvent.disableClickPropagation(div);
 
     if (!titulo) {
-      div.innerHTML = `<div class="ranking-title">Votos por Bairro</div><div class="ranking-empty">Nenhum candidato selecionado</div>`;
+      div.innerHTML = `<div class="ranking-title">${t("Votos por Bairro")}</div><div class="ranking-empty">${t("Nenhum candidato selecionado")}</div>`;
       return div;
     }
 
     if (!itens) {
       div.innerHTML = `
         <div class="ranking-title">${titulo}</div>
-        <div class="ranking-empty">${emptyMsg || "Dados por bairro nao disponiveis."}</div>`;
+        <div class="ranking-empty">${emptyMsg || t("Dados por bairro não disponíveis.")}</div>`;
       return div;
     }
 
@@ -671,7 +671,7 @@ function renderRankingBoxItens(titulo, itens, emptyMsg) {
     if (!sorted.length) {
       div.innerHTML = `
         <div class="ranking-title">${titulo}</div>
-        <div class="ranking-empty">Sem votos por bairro disponiveis</div>`;
+        <div class="ranking-empty">${t("Sem votos por bairro disponíveis")}</div>`;
       return div;
     }
 
@@ -680,20 +680,20 @@ function renderRankingBoxItens(titulo, itens, emptyMsg) {
       `<tr class="ranking-tr">
         <td class="ranking-rank">${idx + 1}</td>
         <td class="ranking-bairro">${item.bairro}</td>
-        <td class="ranking-votos">${item.votos.toLocaleString("pt-BR")}</td>
+        <td class="ranking-votos">${item.votos.toLocaleString(LOCALE)}</td>
       </tr>`
     ).join("");
 
     div.innerHTML = `
       <div class="ranking-title">${titulo}</div>
-      <div class="ranking-total">${totalVotos.toLocaleString("pt-BR")} votos em ${sorted.length} bairro${sorted.length !== 1 ? "s" : ""}</div>
+      <div class="ranking-total">${t(sorted.length !== 1 ? "{v} votos em {n} bairros" : "{v} votos em {n} bairro", { v: totalVotos.toLocaleString(LOCALE), n: sorted.length })}</div>
       <div class="ranking-list">
         <table class="ranking-table">
           <thead>
             <tr>
               <th class="ranking-th ranking-th-num">#</th>
-              <th class="ranking-th">Bairro</th>
-              <th class="ranking-th ranking-th-votos">Votos</th>
+              <th class="ranking-th">${t("Bairro")}</th>
+              <th class="ranking-th ranking-th-votos">${t("Votos")}</th>
             </tr>
           </thead>
           <tbody>${rows}</tbody>
@@ -714,7 +714,7 @@ function renderRankingBox(vereadorNome, dadosBairro) {
 
   if (!dadosBairro) {
     renderRankingBoxItens(vereadorNome, null,
-      `Dados por bairro nao disponiveis.<br>Execute:<br><code>python scripts/download_secoes.py</code>`);
+      `${t("Dados por bairro não disponíveis.")}<br>${t("Execute:")}<br><code>python scripts/download_secoes.py</code>`);
     return;
   }
 
@@ -750,13 +750,13 @@ function updateLegend(zonasList) {
     const div = L.DomUtil.create("div", "");
     div.id = "map-legend";
     div.innerHTML = `
-      <h4>Zonas Eleitorais</h4>
+      <h4>${t("Zonas Eleitorais")}</h4>
       ${zonasList
         .map(
           (z) => `
         <div class="legend-item">
           <div class="legend-color" style="background:${zoneColorMap[z] || "#888"}"></div>
-          <span>Zona ${z}</span>
+          <span>${t("Zona {z}", { z })}</span>
         </div>
       `
         )
@@ -826,33 +826,33 @@ function renderEscolas(escolas, onEscolaClick) {
     const statsHtml = temDados
       ? `<div class="tooltip-escola-detalhe">
            <div class="ted-row">
-             <span class="ted-label">Eleitores registrados</span>
-             <span class="ted-val">${escola.eleitores.toLocaleString("pt-BR")}</span>
+             <span class="ted-label">${t("Eleitores registrados")}</span>
+             <span class="ted-val">${escola.eleitores.toLocaleString(LOCALE)}</span>
            </div>
            <div class="ted-row">
-             <span class="ted-label">Votos (prefeito)</span>
-             <span class="ted-val">${escola.votos_prefeito.toLocaleString("pt-BR")}</span>
+             <span class="ted-label">${t("Votos (prefeito)")}</span>
+             <span class="ted-val">${escola.votos_prefeito.toLocaleString(LOCALE)}</span>
            </div>
            <div class="ted-row">
-             <span class="ted-label">% de Abstenção</span>
+             <span class="ted-label">${t("% de Abstenção")}</span>
              <span class="ted-val" style="color:${cor};font-weight:700">${abstNum}%</span>
            </div>
            <div class="ted-row">
-             <span class="ted-label">Seções</span>
+             <span class="ted-label">${t("Seções")}</span>
              <span class="ted-val">${escola.secoes}</span>
            </div>
          </div>`
       : escola.eleitores > 0
         ? `<div class="tooltip-escola-stat">
-             <span>${escola.eleitores.toLocaleString("pt-BR")} eleitores</span>
-             <span>${escola.secoes} seção${escola.secoes !== 1 ? "ões" : ""}</span>
+             <span>${t("{n} eleitores", { n: escola.eleitores.toLocaleString(LOCALE) })}</span>
+             <span>${t(escola.secoes !== 1 ? "{n} seções" : "{n} seção", { n: escola.secoes })}</span>
            </div>`
         : "";
 
     circle.bindTooltip(
       `<div class="tooltip-name">${escola.nome}</div>
        <div class="tooltip-zona">${escola.endereco}</div>
-       <div class="tooltip-zona" style="margin-bottom:4px">${escola.bairro} · Zona ${escola.zona}</div>
+       <div class="tooltip-zona" style="margin-bottom:4px">${escola.bairro} · ${t("Zona {z}", { z: escola.zona })}</div>
        ${statsHtml}`,
       { sticky: true, className: "map-tooltip", direction: "top", offset: [0, -10] }
     );
@@ -996,7 +996,7 @@ function localizarUsuario(municipioGeoJSON) {
       });
 
       userLocationMarker = L.marker([lat, lng], { icon, zIndexOffset: 1000 })
-        .bindTooltip("Você está aqui", {
+        .bindTooltip(t("Você está aqui"), {
           permanent: false,
           className: "map-tooltip",
           direction: "top",
