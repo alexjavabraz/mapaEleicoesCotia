@@ -135,6 +135,7 @@ async function init() {
     `CPF de pessoa física não é exibido.`;
 
   ligarEventos();
+  initEvolucao();
   render();
   $("loading").style.display = "none";
 }
@@ -470,6 +471,159 @@ function renderTop10() {
           <td class="num">${fmtInt.format(x.f.n)}</td><td class="num">${fmtBRL.format(x.valor)}</td>
         </tr>`).join("") || `<tr><td colspan="5" class="vazio">Sem recebedores.</td></tr>`}</tbody>`;
   }
+}
+
+// -----------------------------------------------------------------------
+// Evolução anual dos pagamentos + top 10 de cada ano
+// (sempre evento "Pago", independente dos filtros do topo da página)
+// -----------------------------------------------------------------------
+
+const EVO_EVENTO = "Pago";
+const evo = { orgao: "", ano: "" };
+
+function nomeOrgaoCurto(o) {
+  if (/PREFEITURA/i.test(o)) return "Prefeitura";
+  if (/C[AÂ]MARA/i.test(o)) return "Câmara Municipal";
+  if (/PREV/i.test(o)) return "Instituto de Previdência";
+  return o;
+}
+
+/** Soma de "Pago" no órgão escolhido, para os meses do ano (opcionalmente até o mês `ate`). */
+function pagoAno(ano, ate = 12) {
+  const fontes = evo.orgao ? [DADOS.por_orgao_mes[evo.orgao] || {}] : Object.values(DADOS.por_orgao_mes);
+  let total = 0;
+  for (const meses of fontes) {
+    for (let m = 1; m <= ate; m++) {
+      total += (meses[`${ano}-${String(m).padStart(2, "0")}`] || {})[EVO_EVENTO] || 0;
+    }
+  }
+  return total;
+}
+
+function fmtVar(atual, anterior) {
+  if (!anterior) return "";
+  const v = (atual / anterior - 1) * 100;
+  return `${v >= 0 ? "+" : "−"}${Math.abs(v).toFixed(1).replace(".", ",")}%`;
+}
+
+function initEvolucao() {
+  if (!DADOS.por_orgao_mes || !DADOS.meta.eventos.includes(EVO_EVENTO)) {
+    $("evolucao").hidden = true;
+    return;
+  }
+  const orgaos = Object.keys(DADOS.por_orgao_mes);
+  evo.orgao = orgaos.find((o) => /PREFEITURA/i.test(o)) || "";
+  $("evo-orgao").innerHTML = `<option value="">Todos os órgãos</option>` +
+    orgaos.map((o) => `<option value="${esc(o)}">${esc(nomeOrgaoCurto(o))}</option>`).join("");
+  $("evo-orgao").value = evo.orgao;
+  $("evo-orgao").addEventListener("change", (e) => { evo.orgao = e.target.value; renderEvolucao(); });
+
+  evo.ano = anos().at(-1);
+  $("evo-anos").innerHTML = anos().map((a) =>
+    `<button type="button" role="tab" data-ano="${a}">${a}</button>`).join("");
+  $("evo-anos").addEventListener("click", (e) => {
+    const b = e.target.closest("button[data-ano]");
+    if (!b) return;
+    evo.ano = b.dataset.ano;
+    renderTopAno();
+  });
+  $("evo-top").addEventListener("click", (e) => {
+    const tr = e.target.closest("tr[data-i]");
+    if (tr) selecionar(+tr.dataset.i);
+  });
+  renderEvolucao();
+}
+
+function renderEvolucao() {
+  const as = anos();
+  const [ua, um] = DADOS.meta.ultimo_mes.split("-").map(Number);
+  const parcial = um < 12 ? String(ua) : null;
+  const valores = as.map((a) => pagoAno(a));
+  const quem = evo.orgao ? nomeOrgaoCurto(evo.orgao) : "Todos os órgãos";
+
+  // Resumo: primeiro → último ano completo, e o ano corrente contra o mesmo período do anterior
+  const completos = as.filter((a) => a !== parcial);
+  const ini = completos[0], fim = completos.at(-1);
+  let resumo = `<b>${quem}</b> pagou <b>${fmtBRL.format(pagoAno(fim))}</b> em ${fim}`;
+  if (ini !== fim) {
+    resumo += `, contra <b>${fmtBRL.format(pagoAno(ini))}</b> em ${ini} (<b>${fmtVar(pagoAno(fim), pagoAno(ini))}</b>)`;
+  }
+  resumo += ".";
+  if (parcial) {
+    const mesNome = MESES[um - 1];
+    resumo += ` Em ${parcial}, até ${mesNome}: <b>${fmtBRL.format(pagoAno(parcial, um))}</b>` +
+      ` (${fmtVar(pagoAno(parcial, um), pagoAno(ua - 1, um))} sobre jan–${mesNome} de ${ua - 1}).`;
+  }
+  $("evo-resumo").innerHTML = resumo;
+  $("evo-nota").textContent = (parcial ? `${parcial}* é parcial: só jan a ${MESES[um - 1]} foram publicados pelo TCE. ` : "") +
+    "Valores nominais (sem correção pela inflação), pelo mês do pagamento.";
+
+  grafico("g-evolucao", {
+    type: "bar",
+    data: {
+      labels: as.map((a) => (a === parcial ? `${a}*` : a)),
+      datasets: [{
+        label: `Pago — ${quem}`,
+        data: valores,
+        backgroundColor: as.map((a) => (a === parcial ? COR_SUAVE : COR)),
+        borderColor: COR,
+        borderWidth: as.map((a) => (a === parcial ? 1 : 0)),
+        borderRadius: 4,
+      }],
+    },
+    options: {
+      maintainAspectRatio: false,
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          callbacks: {
+            label: (c) => fmtBRL.format(c.parsed.y),
+            afterLabel: (c) => {
+              const i = c.dataIndex;
+              if (i === 0) return "";
+              const a = as[i];
+              if (a === parcial) {
+                return `${fmtVar(pagoAno(a, um), pagoAno(ua - 1, um))} vs jan–${MESES[um - 1]} de ${ua - 1}`;
+              }
+              return `${fmtVar(valores[i], valores[i - 1])} vs ${as[i - 1]}`;
+            },
+          },
+        },
+      },
+      scales: { y: eixoBRL, x: { grid: { display: false } } },
+      onClick: (_, els) => {
+        if (!els.length) return;
+        evo.ano = as[els[0].index];
+        renderTopAno();
+      },
+    },
+  });
+  renderTopAno();
+}
+
+function renderTopAno() {
+  $("evo-anos").querySelectorAll("button").forEach((b) => {
+    const ativa = b.dataset.ano === evo.ano;
+    b.classList.toggle("ativa", ativa);
+    b.setAttribute("aria-selected", ativa);
+  });
+  const totalAno = pagoAno(evo.ano) || 1;
+  const linhas = DADOS.top_lancamentos
+    .filter((l) => l[2] === EVO_EVENTO && anoLanc(l, 6) === evo.ano && (!evo.orgao || l[3] === evo.orgao))
+    .sort((a, b) => b[1] - a[1])
+    .slice(0, 10);
+  $("evo-top").innerHTML = `
+    <thead><tr><th>#</th><th>Recebedor</th><th>Órgão</th><th>Mês</th><th>Empenho</th>
+      <th class="num">Valor pago</th><th class="num">% do ano</th></tr></thead>
+    <tbody>${linhas.map((l, k) => {
+      const mes = l[6] || l[0].slice(0, 7);
+      return `<tr data-i="${l[5]}" style="cursor:pointer">
+        <td>${k + 1}</td><td>${esc(DADOS.fornecedores[l[5]].nome)}</td><td>${esc(nomeOrgaoCurto(l[3]))}</td>
+        <td>${MESES[+mes.slice(5, 7) - 1]}/${mes.slice(0, 4)}</td><td>${esc(l[4])}</td>
+        <td class="num">${fmtBRL.format(l[1])}</td>
+        <td class="num">${((l[1] / totalAno) * 100).toFixed(2).replace(".", ",")}%</td>
+      </tr>`;
+    }).join("") || `<tr><td colspan="7" class="vazio">Sem pagamentos em ${esc(evo.ano)}.</td></tr>`}</tbody>`;
 }
 
 init();
