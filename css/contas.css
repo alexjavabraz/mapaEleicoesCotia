@@ -175,8 +175,6 @@ body.contas-page {
   border-color: var(--highlight);
   color: #fff;
 }
-.var-pos { color: #ef9a9a; }
-.var-neg { color: #a5d6a7; }
 
 /* ---- Fornecedor selecionado ---- */
 #fornecedor-sel { border-color: var(--highlight); }
@@ -218,7 +216,8 @@ td.num, th.num {
 }
 #t-receb tbody tr { cursor: pointer; }
 #t-receb tbody tr:hover,
-#m-tabela tbody tr:hover { background: rgba(255,255,255,0.04); }
+#m-tabela tbody tr:hover,
+#evo-top tbody tr:hover { background: rgba(255,255,255,0.04); }
 td .barra {
   display: inline-block;
   height: 6px;

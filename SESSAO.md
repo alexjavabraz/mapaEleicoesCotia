@@ -1,11 +1,25 @@
 # Sessão — 2026-10-19 (2) · Evolução anual dos pagamentos
 
-**Status:** iniciada 2026-10-19 17:22 UTC · em andamento.
+**Status:** iniciada 2026-10-19 17:22 UTC · finalizada 2026-10-19 17:35 UTC (PR #2, label `agentic`).
 
 ## Pedido
 
 Gráfico de evolução dos pagamentos por ano (2020 até hoje), para ver quanto a
 Prefeitura vem gastando ano a ano, e um top 10 dos pagamentos de cada ano.
+
+## O que foi feito
+
+- Nova seção "Evolução dos pagamentos por ano" em `contas.html`: gráfico de
+  barras do valor pago por ano (2020 até o último mês publicado), com seletor
+  de órgão (padrão: Prefeitura), resumo com a variação 2020 → último ano
+  completo e do ano corrente contra o mesmo período do ano anterior; tooltip
+  com a variação ano a ano. Ano parcial marcado com `*`.
+- "Top 10 pagamentos do ano": botões por ano (ou clique na barra), tabela com
+  recebedor, órgão, mês, empenho, valor e % do total do ano.
+- Script: `por_orgao_mes` no JSON; maiores lançamentos guardados por
+  (evento, ano, órgão); ano do lançamento = mês consultado na API (competência
+  do pagamento), não a data de emissão do empenho.
+- `sw.js` → v10.
 
 ---
 
