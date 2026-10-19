@@ -1,3 +1,15 @@
+# Sessão — 2026-10-19 (3) · Viagens da Câmara
+
+**Status:** iniciada 2026-10-19 18:14 UTC · em andamento.
+
+## Pedido
+
+Analisar os relatórios de viagens da Câmara
+(https://www.cotia.sp.leg.br/relatorio-de-viagens) e adicionar os dados por
+vereador e por ano na página de contas.
+
+---
+
 # Sessão — 2026-10-19 (2) · Evolução anual dos pagamentos
 
 **Status:** iniciada 2026-10-19 17:22 UTC · finalizada 2026-10-19 17:35 UTC (PR #2, label `agentic`).
