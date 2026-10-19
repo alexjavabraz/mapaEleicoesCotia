@@ -96,7 +96,14 @@ const BAIRRO_ZONA_MAP_DEFAULT = {
   "parque mirante da mata": "286",
 };
 
+const _fmt = (n) => (n || 0).toLocaleString(LOCALE);
+
+// Cores dos candidatos a prefeito no modo "Votos por seção" (ordem dos totais)
+const PREFEITO_CORES = ["#e94560", "#4fc3f7", "#81c784", "#ffb74d", "#ba68c8", "#4db6ac", "#fff176", "#ff8a65"];
+
 // ---- ESTADO GLOBAL ----
+let currentEscola = null;   // escola clicada (objeto de getEscolasSummary)
+let modoSecao = false;      // botão "Votos por seção" ligado
 let currentZona = null;
 let currentBairroNome = null;    // chave de lookup em votosPorBairro
 let currentBairroDisplay = null; // nome exibido no header
@@ -155,7 +162,9 @@ function switchTab(tab) {
   document.querySelectorAll(".cargo-tab").forEach((b) => {
     b.classList.toggle("active", b.dataset.tab === tab);
   });
-  if (currentBairroNome) {
+  if (currentEscola) {
+    renderConteudoSidebarEscola(currentEscola);
+  } else if (currentBairroNome) {
     renderConteudoSidebarBairro(currentBairroDisplay, currentBairroNome);
   } else {
     renderConteudoSidebarTotais();
@@ -182,6 +191,7 @@ function renderCargoTabs() {
 }
 
 function showPlaceholder() {
+  currentEscola = null;
   currentBairroNome = null;
   currentBairroDisplay = null;
   currentZona = null;
@@ -311,6 +321,7 @@ function filtrarVereador(nome) {
   currentVereadorFiltro = nome;
   highlightVereadorOnMap(nome);
   renderRankingBox(nome, votosPorBairro);
+  if (modoSecao) atualizarVotosSecao();
   switchTab("vereadores");
 }
 
@@ -383,7 +394,9 @@ function renderAbaVereadores(verData, uid) {
 
   // Filtro ativo: exibe apenas o candidato selecionado
   if (currentVereadorFiltro) {
-    const candidato = sorted.find(c => c.nome === currentVereadorFiltro);
+    // Dados por bairro usam o nome completo; os totais e as escolas, o nome de urna
+    const alvo = [currentVereadorFiltro, resolveNomeFull(currentVereadorFiltro)].map(normalizeName);
+    const candidato = sorted.find(c => alvo.includes(normalizeName(c.nome)));
     if (candidato) {
       const dotColor = isEleito(candidato) ? "#4caf50" : "#607d8b";
       const label    = isEleito(candidato) ? t("Eleito") : t("Não Eleito");
@@ -394,6 +407,8 @@ function renderAbaVereadores(verData, uid) {
           </div>
           <div class="candidate-list">${renderCandidateCard(candidato, maxVotos)}</div>
         </div>`;
+    } else {
+      html += `<p style="color:var(--text-muted);padding:12px 0;font-size:.8rem">${t("Sem votos de {nome} aqui.", { nome: currentVereadorFiltro })}</p>`;
     }
     return html;
   }
@@ -531,6 +546,8 @@ function getTooltipContent(feature, zona) {
 }
 
 function displayBairroData(displayName, bairroNome, zonaNum) {
+  currentEscola = null;
+  marcarEscolaSelecionada(null);
   currentBairroNome    = bairroNome;
   currentBairroDisplay = displayName;
   currentZona          = zonaNum;
@@ -562,12 +579,8 @@ function displayEscolaData(escola) {
   currentBairroNome    = null;
   currentBairroDisplay = null;
   currentZona          = null;
-
-  const temDados = escola.votos_prefeito > 0 && escola.eleitores > 0;
-  const abstNum  = temDados
-    ? Math.round((escola.eleitores - escola.votos_prefeito) / escola.eleitores * 100)
-    : null;
-  const cor = abstNum !== null ? corAbstencao(abstNum) : "#ffd54f";
+  currentEscola        = escola;
+  marcarEscolaSelecionada(escola.nr);
 
   const zonaColor = zoneColorMap[escola.zona] || "#888";
   document.getElementById("sidebar-header").innerHTML = `
@@ -575,6 +588,19 @@ function displayEscolaData(escola) {
     <span class="zona-badge" style="background:${zonaColor}20;color:${zonaColor};border:1px solid ${zonaColor}50">
       ${t("Zona {z}", { z: escola.zona })}
     </span>`;
+  renderConteudoSidebarEscola(escola);
+}
+
+/** Dados da escola + votos por candidato (prefeito/vereadores) somados das seções dela. */
+function renderConteudoSidebarEscola(escola) {
+  const prefList = getEscolaCandidatos(escola.nr, "prefeito");
+  const verList  = getEscolaCandidatos(escola.nr, "vereadores");
+
+  // Abstenção estimada: eleitores registrados × votos para prefeito
+  const abstNum = escola.eleitores > 0 && escola.votos_prefeito > 0
+    ? Math.round((escola.eleitores - escola.votos_prefeito) / escola.eleitores * 100)
+    : null;
+  const cor = abstNum !== null ? corAbstencao(abstNum) : "#ffd54f";
 
   let html = `<div class="zona-info">`;
   html += `<div class="zona-info-row"><span>${t("Bairro")}</span><strong>${escola.bairro}</strong></div>`;
@@ -582,28 +608,121 @@ function displayEscolaData(escola) {
     html += `<div class="zona-info-row"><span>${t("Endereço")}</span><strong style="font-size:0.78rem">${escola.endereco}</strong></div>`;
   }
   html += `<div class="zona-info-row"><span>${t("Seções")}</span><strong>${escola.secoes}</strong></div>`;
+  if (escola.eleitores > 0) {
+    html += `<div class="zona-info-row"><span>${t("Eleitores registrados")}</span><strong>${_fmt(escola.eleitores)}</strong></div>`;
+  }
+  if (escola.votos_prefeito) {
+    html += `<div class="zona-info-row"><span>${t("Votos (prefeito)")}</span><strong>${_fmt(escola.votos_prefeito)}</strong></div>`;
+  }
+  if (abstNum !== null) {
+    html += `<div class="zona-info-row"><span>${t("Abstenção")}</span><strong style="color:${cor}">${abstNum}%</strong></div>`;
+  }
   html += `</div>`;
 
-  if (temDados) {
-    html += `<div class="zona-info" style="margin-top:8px">
-      <div class="zona-info-row"><span>${t("Eleitores registrados")}</span><strong>${escola.eleitores.toLocaleString(LOCALE)}</strong></div>
-      <div class="zona-info-row"><span>${t("Votos (prefeito)")}</span><strong>${escola.votos_prefeito.toLocaleString(LOCALE)}</strong></div>
-      <div class="zona-info-row">
-        <span>${t("Abstenção")}</span>
-        <strong style="color:${cor}">${abstNum}%</strong>
-      </div>
-    </div>`;
-  } else if (escola.eleitores > 0) {
-    html += `<div class="zona-info" style="margin-top:8px">
-      <div class="zona-info-row"><span>${t("Eleitores registrados")}</span><strong>${escola.eleitores.toLocaleString(LOCALE)}</strong></div>
-    </div>`;
+  if (!prefList) {
+    html += `<div class="placeholder"><p>${t("Votos por candidato desta escola ainda não disponíveis.")}</p></div>`;
+  } else {
+    html += `<div style="margin-top:12px">${renderCargoTabs()}</div>`;
+    if (currentTab === "prefeito") {
+      html += renderAbaPrefeito({ "1": prefList }, t("Resultado na escola — Prefeito"));
+    } else {
+      // Brancos (95), nulos (96) e legenda (nº do partido) ficam fora da lista de candidatos
+      const ehCandidato = c => c.numero.length > 2;
+      html += renderAbaVereadores({ "1": (verList || []).filter(ehCandidato) }, `e_${escola.nr}`);
+      const outros = (verList || []).filter(c => !ehCandidato(c));
+      if (outros.length && !currentVereadorFiltro) {
+        html += `<div class="zona-info" style="margin-top:8px">
+          <div class="zona-info-row"><span><strong>${t("Brancos, nulos e legenda")}</strong></span><strong>${_fmt(outros.reduce((s, c) => s + c.votos, 0))}</strong></div>
+          ${outros.map(c => `<div class="zona-info-row"><span>${tNomeVoto(c.nome)}</span><strong>${_fmt(c.votos)}</strong></div>`).join("")}
+        </div>`;
+      }
+    }
   }
 
-  html += fonteInfo();
+  html += `<div class="fonte-info">
+    ${t("Fonte: {fonte}", { fonte: `<a href="https://dadosabertos.tse.jus.br/dataset/resultados-2024" target="_blank" rel="noopener">TSE — Dados Abertos — Eleições 2024</a>` })}<br>
+    ${t("Votação por Seção Eleitoral, somada por local de votação")}
+  </div>`;
   document.getElementById("sidebar-content").innerHTML = html;
 }
 
+// ---- VOTOS POR SEÇÃO / LIMPAR ----
+
+/** Cor de um candidato a prefeito, pela posição dele nos totais. */
+function corPrefeito(numero) {
+  const lista = getTotais()?.prefeito?.["1"] || [];
+  const idx = lista.findIndex(c => c.numero === numero);
+  return idx >= 0 ? PREFEITO_CORES[idx % PREFEITO_CORES.length] : "#9e9e9e";
+}
+
+/** Cor + rótulo de cada escola no modo "Votos por seção". */
+function infoVotosEscola(escola) {
+  if (currentVereadorFiltro) {
+    const votos = getVotosCandidatoEscola(escola.nr, "vereadores", currentVereadorFiltro);
+    if (votos === null) return null;
+    return { cor: votos > 0 ? "#29b6f6" : "#607d8b", label: _fmt(votos) };
+  }
+  const pref = getEscolaCandidatos(escola.nr, "prefeito");
+  if (!pref) return null;
+  const vencedor = pref.find(c => c.partido); // ignora brancos/nulos
+  const total = pref.reduce((s, c) => s + c.votos, 0);
+  return { cor: vencedor ? corPrefeito(vencedor.numero) : "#9e9e9e", label: _fmt(total) };
+}
+
+/** Reaplica rótulos/cores das escolas e a legenda do modo "Votos por seção". */
+function atualizarVotosSecao() {
+  const btn = document.getElementById("btn-votos-secao");
+  if (btn) {
+    btn.classList.toggle("active", modoSecao);
+    btn.setAttribute("aria-pressed", String(modoSecao));
+  }
+  setEscolasVotos(modoSecao ? infoVotosEscola : null);
+
+  const legenda = document.getElementById("secao-legenda");
+  if (!legenda) return;
+  legenda.hidden = !modoSecao;
+  if (!modoSecao) return;
+  if (currentVereadorFiltro) {
+    legenda.innerHTML = `<div class="secao-legenda-titulo">${t("Votos de {nome} em cada escola", { nome: currentVereadorFiltro })}</div>`;
+    return;
+  }
+  const lista = getTotais()?.prefeito?.["1"] || [];
+  legenda.innerHTML = `<div class="secao-legenda-titulo">${t("Vencedor para prefeito em cada escola")}</div>` +
+    lista.map(c => `<div class="secao-legenda-item"><span style="background:${corPrefeito(c.numero)}"></span>${c.nome}</div>`).join("");
+}
+
+function toggleVotosSecao() {
+  modoSecao = !modoSecao;
+  atualizarVotosSecao();
+}
+
+/** Botão "Limpar": tira seleção, filtro de vereador, destaques e volta ao total geral. */
+function limparMapa() {
+  currentVereadorFiltro = "";
+  currentVereadorOrdem  = "votos";
+  currentTab            = "prefeito";
+  currentTurno          = "1";
+  currentEscola         = null;
+  modoSecao             = false;
+
+  marcarEscolaSelecionada(null);
+  atualizarVotosSecao();
+  resetBairrosStyle();
+  if (rankingControl) {
+    rankingControl.remove();
+    rankingControl = null;
+  }
+  // Mesma vista do carregamento: o contorno do município, se já desenhado
+  if (municipioLayer) map.fitBounds(municipioLayer.getBounds(), { padding: [20, 20] });
+  else map.setView(COTIA_CENTER, COTIA_ZOOM);
+
+  showPlaceholder();
+  if (getTotais()) displayTotaisGerais();
+}
+
 function displayTotaisGerais() {
+  currentEscola = null;
+  marcarEscolaSelecionada(null);
   document.getElementById("sidebar-header").innerHTML = `
     <h2>${t("Cotia — Total Geral")}</h2>
     <span class="zona-badge" style="background:rgba(233,69,96,0.15);color:#e94560;border:1px solid rgba(233,69,96,0.3)">
@@ -641,6 +760,14 @@ async function init() {
 
   // 1. Inicializa o mapa
   initMap();
+  addMapActions({
+    labelSecao:  t("Votos por seção"),
+    titleSecao:  t("Mostra os votos de cada local de votação (escola) no mapa"),
+    labelLimpar: t("Limpar"),
+    titleLimpar: t("Limpa a seleção, o filtro de vereador e volta ao total geral"),
+    onSecao:     toggleVotosSecao,
+    onLimpar:    limparMapa,
+  });
 
   // 2. Carrega dados TSE
   setLoadingStatus(t("Carregando dados eleitorais..."));
@@ -662,7 +789,12 @@ async function init() {
   else console.log("Locais de votação não disponíveis:", locaisResult.error);
 
   // Carrega votos por escola APÓS locais (mescla no escolasSummary)
-  const escolaResult = await loadVotosPorEscola();
+  const [escolaResult, detalheResult] = await Promise.all([
+    loadVotosPorEscola(),
+    loadVotosPorEscolaDetalhe(),
+  ]);
+  if (detalheResult.ok) console.log(`Votos por candidato: ${detalheResult.count} escolas`);
+  else console.log("Votos por candidato por escola não disponíveis:", detalheResult.error);
   if (escolaResult.ok) console.log(`Votos por escola: ${escolaResult.count} escolas, ${escolaResult.total?.toLocaleString(LOCALE)} votos`);
   else console.log("Votos por escola não disponíveis:", escolaResult.error);
 

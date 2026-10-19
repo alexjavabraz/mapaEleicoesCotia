@@ -1,3 +1,41 @@
+# Sessão — 2026-10-19 (5) · Votos por escola no mapa 2024
+
+**Status:** iniciada 2026-10-19 19:05 UTC · finalizada 2026-10-19 19:20 UTC (PR #5, label `agentic`).
+
+## Pedido
+
+No mapa de votos de 2024: botão "Limpar", botão "Votos por seção" e, ao
+clicar numa escola (local de votação), os votos totalizados daquela escola,
+para prefeito e para vereador.
+
+## O que foi feito
+
+- Clique numa escola: votos somados das seções dela, abas Prefeito/Vereadores
+  (mesmos cards, ordenação e busca de vereador), escola destacada no mapa.
+- Botões no canto superior esquerdo do mapa: "Votos por seção" (rótulo com o
+  total de votos de cada escola, marcador na cor do vencedor para prefeito, ou
+  votos do vereador filtrado) e "Limpar" (tira seleção, filtro, destaques,
+  ranking e o modo; volta ao total geral e ao zoom inicial).
+- `scripts/download_secoes.py` grava `data/cotia_votos_por_escola_detalhe.json`
+  ({candidatos: {cargo: {nr: nome}}, escolas: {zona_nr: {cargo: {nr: votos}}}},
+  ~145 kB, só 1º turno). Conferido: soma por candidato = totais do TSE (6
+  prefeitos, 302 vereadores) e soma de prefeito por escola = escola.json.
+- `.github/workflows/secoes.yml` roda o script (manual / push do script na
+  branch) e commita só o detalhe. `sw.js` → v12. Textos novos via `t()` (PR #3).
+- Badge de partido vazio ("??") some para brancos/nulos.
+- Merge da main (PRs #3 e #4) em 2026-10-19 19:30 UTC: textos novos movidos
+  para `I18N_EN` em `js/i18n.js` e chamados com `t()`; `sw.js` fica em v12.
+
+## Armadilhas
+
+- O CDN do TSE (`cdn.tse.jus.br`) é bloqueado na sessão cloud; o download
+  (~475 MB) leva ~1 min no Actions.
+- `votacao_secao` não tem QT_APTOS/QT_COMPARECIMENTO (estão em
+  `detalhe_votacao_secao`); a abstenção da escola segue estimada por
+  eleitores registrados × votos para prefeito.
+
+---
+
 # Sessão — 2026-10-19 (3) · Viagens da Câmara
 
 **Status:** iniciada 2026-10-19 18:14 UTC · finalizada 2026-10-19 18:45 UTC (PR #4, label `agentic`).
@@ -33,7 +71,9 @@ vereador e por ano na página de contas.
   privados e não podem ser baixados; ficam listados em `meta.nao_lidos`.
 - Não há relatórios para 2020 e 2022 na página da Câmara.
 - Valores lidos por OCR (14 relatórios) ficam marcados na página.
-=======
+
+---
+
 # Sessão — 2026-10-19 (3) · Versão em inglês (i18n)
 
 **Status:** iniciada 2026-10-19 18:10 UTC · finalizada 2026-10-19 18:50 UTC

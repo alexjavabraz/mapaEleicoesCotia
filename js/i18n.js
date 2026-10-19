@@ -258,6 +258,19 @@ const I18N_EN = {
   "Empenhado": "Committed",
   "Anulação": "Cancellation",
   "Reforço": "Increase",
+
+  // ---- Mapa 2024: votos por escola ----
+  "Votos por seção": "Votes by polling place",
+  "Mostra os votos de cada local de votação (escola) no mapa": "Shows the votes of each polling place (school) on the map",
+  "Limpa a seleção, o filtro de vereador e volta ao total geral": "Clears the selection and the council member filter and goes back to the overall total",
+  "Vencedor para prefeito em cada escola": "Mayor winner at each school",
+  "Votos de {nome} em cada escola": "Votes for {nome} at each school",
+  "Resultado na escola — Prefeito": "Result at this school — Mayor",
+  "Votos por candidato desta escola ainda não disponíveis.": "Per-candidate votes for this school are not available yet.",
+  "Sem votos de {nome} aqui.": "No votes for {nome} here.",
+  "Brancos, nulos e legenda": "Blank, null and party-only votes",
+  "Fonte: {fonte}": "Source: {fonte}",
+  "Votação por Seção Eleitoral, somada por local de votação": "Votes by electoral section, summed by polling place",
 };
 
 /** Situação do candidato (dado do TSE) → rótulo exibido. */
