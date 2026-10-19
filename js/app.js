@@ -117,7 +117,7 @@ const SECAO_EN = {
   "Zona {z}": "Zone {z}",
   "Resultado na escola — Prefeito": "Result at this school — Mayor",
   "Votos por candidato desta escola ainda não disponíveis.": "Per-candidate votes for this school are not available yet.",
-  "{n} votos": "{n} votes",
+  "Sem votos de {nome} aqui.": "No votes for {nome} here.",
   "Fonte: {fonte}": "Source: {fonte}",
   "Votação por Seção Eleitoral, somada por local de votação": "Votes by electoral section, summed by polling place",
 };
@@ -434,6 +434,8 @@ function renderAbaVereadores(verData, uid) {
           </div>
           <div class="candidate-list">${renderCandidateCard(candidato, maxVotos)}</div>
         </div>`;
+    } else {
+      html += `<p style="color:var(--text-muted);padding:12px 0;font-size:.8rem">${_t("Sem votos de {nome} aqui.", { nome: currentVereadorFiltro })}</p>`;
     }
     return html;
   }
@@ -732,7 +734,6 @@ function limparMapa() {
     rankingControl.remove();
     rankingControl = null;
   }
-  map.closeTooltip();
   map.setView(COTIA_CENTER, COTIA_ZOOM);
 
   showPlaceholder();
