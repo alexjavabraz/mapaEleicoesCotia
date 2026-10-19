@@ -1,14 +1,30 @@
 /**
  * i18n.js — Português (padrão) / inglês.
  *
- * Idioma: o escolhido no botão PT/EN (localStorage "lang"); sem escolha, inglês
- * se o navegador não estiver em português. Carregado no <head>, antes dos
+ * Português é o padrão. Inglês só com o botão PT/EN (localStorage "lang" ou
+ * ?lang=en) ou, sem escolha, quando nenhum idioma do navegador é português
+ * (ver idiomaDoNavegador). Qualquer dúvida cai em português. Carregado no <head>, antes dos
  * outros scripts, que usam t("texto em português", { vars }) para traduzir.
  *
  * HTML estático: marque o elemento com data-i18n (o texto dele é a chave) e
  * atributos com data-i18n-placeholder / data-i18n-title / data-i18n-aria-label.
  * Nomes de candidatos, bairros, fornecedores e órgãos são dados e não mudam.
  */
+
+// false = sempre abre em português; o inglês aparece só pelo botão EN.
+const INGLES_AUTOMATICO = true;
+
+/** "en" só quando o navegador declara idiomas válidos e nenhum é português. */
+function idiomaDoNavegador() {
+  if (!INGLES_AUTOMATICO) return "pt";
+  let langs = [];
+  try {
+    langs = (navigator.languages && navigator.languages.length ? navigator.languages : [navigator.language])
+      .filter((l) => typeof l === "string" && /^[a-z]{2,3}(-|$)/i.test(l));
+  } catch (e) { /* sem navigator: português */ }
+  if (!langs.length) return "pt";
+  return langs.some((l) => /^pt(-|$)/i.test(l)) ? "pt" : "en";
+}
 
 const LANG = (() => {
   // ?lang=en|pt vale mesmo sem localStorage (ver setLang)
@@ -18,8 +34,7 @@ const LANG = (() => {
     const salvo = localStorage.getItem("lang");
     if (salvo === "pt" || salvo === "en") return salvo;
   } catch (e) { /* storage bloqueado: segue o navegador */ }
-  const nav = (navigator.languages && navigator.languages[0]) || navigator.language || "pt";
-  return /^pt\b/i.test(nav) ? "pt" : "en";
+  return idiomaDoNavegador();
 })();
 const LOCALE = LANG === "en" ? "en-US" : "pt-BR";
 

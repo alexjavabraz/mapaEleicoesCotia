@@ -1,3 +1,25 @@
+# Sessão — 2026-10-19 (4) · Português como idioma padrão
+
+**Status:** iniciada 2026-10-19 19:55 UTC · finalizada 2026-10-19 20:05 UTC
+(branch `claude/i18n-english-tm8c3p`, label `agentic`).
+
+## Pedido
+
+"Garanta que o PT é o padrão de idioma."
+
+## O que foi feito
+
+- `js/i18n.js`: `idiomaDoNavegador()` só devolve inglês quando o navegador
+  declara idiomas válidos e **nenhum** deles é português. Antes bastava o
+  primeiro idioma não ser `pt` (ex.: `en-US, pt-BR` abria em inglês; agora
+  abre em PT). Navegador sem idioma, com valor vazio ou estranho (`*`) → PT.
+- Chave `INGLES_AUTOMATICO` no topo do arquivo: `false` faz o site abrir
+  sempre em PT, com o inglês só pelo botão EN.
+- O HTML continua `lang="pt-BR"` e com o texto em português (sem JS = PT).
+- `sw.js` → v13.
+
+---
+
 # Sessão — 2026-10-19 (5) · Votos por escola no mapa 2024
 
 **Status:** iniciada 2026-10-19 19:05 UTC · finalizada 2026-10-19 19:20 UTC (PR #5, label `agentic`).
