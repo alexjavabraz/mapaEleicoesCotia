@@ -27,6 +27,7 @@ const SHELL_ASSETS = [
   "./js/geral-config.js",
   "./js/geral.js",
   "./js/contas.js",
+  "./js/viagens.js",
   "./manifest.json",
   "./icons/cotia-flag.svg",
   "./icons/icon-192.png",
@@ -47,6 +48,7 @@ const DATA_ASSETS = [
   "./data/cotia_locais_votacao.json",
   "./data/cotia_municipio.geojson",
   "./data/contas_cotia.json",
+  "./data/viagens_camara.json",
 ];
 
 // -----------------------------------------------------------------------

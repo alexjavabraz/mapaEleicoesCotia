@@ -1,3 +1,39 @@
+# Sessão — 2026-10-19 (3) · Viagens da Câmara
+
+**Status:** iniciada 2026-10-19 18:14 UTC · finalizada 2026-10-19 18:45 UTC (PR #4, label `agentic`).
+
+## Pedido
+
+Analisar os relatórios de viagens da Câmara
+(https://www.cotia.sp.leg.br/relatorio-de-viagens) e adicionar os dados por
+vereador e por ano na página de contas.
+
+## O que foi feito
+
+- A página da Câmara não tem uma tabela: é uma lista de links (Google Drive /
+  Docs), um PDF por viagem, identificado pelo Ato da Mesa (vereadores) ou
+  Portaria (servidores). O formulário é sempre o mesmo: período, nome,
+  destino, motivo, passagens, hospedagem e observação sobre o adiantamento.
+- `scripts/download_viagens.py` baixa os PDFs, extrai os campos (OCR com
+  tesseract para os escaneados de 2018–2019), normaliza nomes e calcula o
+  custo = passagens + hospedagem + adiantamento efetivamente gasto (lido da
+  observação). Grava `data/viagens_camara.json`. Roda no workflow mensal das
+  contas.
+- `js/viagens.js` + seção "Viagens da Câmara" em `contas.html`: filtros de ano
+  e de quem viajou (vereadores/servidores), KPIs, gráfico por ano, maiores
+  gastos, tabela pessoa × ano e detalhe das viagens com link para o PDF.
+  Textos passam por `t()` e registram as traduções EN quando `js/i18n.js`
+  (PR #3) estiver na página.
+- `sw.js` → v11.
+
+## Armadilhas
+
+- `cotia.sp.leg.br` também é bloqueado na sessão cloud: tudo roda no Actions.
+- 11 PDFs de 2017 (links antigos `drive.google.com/open?id=0B…`) são
+  privados e não podem ser baixados; ficam listados em `meta.nao_lidos`.
+- Não há relatórios para 2020 e 2022 na página da Câmara.
+- Valores lidos por OCR (14 relatórios) ficam marcados na página.
+=======
 # Sessão — 2026-10-19 (3) · Versão em inglês (i18n)
 
 **Status:** iniciada 2026-10-19 18:10 UTC · finalizada 2026-10-19 18:50 UTC
