@@ -121,6 +121,37 @@
       </div>
     </section>
 
+    <!-- Viagens da Câmara (relatórios de viagens, por vereador e por ano) -->
+    <section class="cartao" id="viagens" hidden>
+      <div class="evo-head">
+        <h3 data-i18n>Viagens da Câmara</h3>
+        <div class="viag-filtros">
+          <label><span data-i18n>Ano</span> <select id="v-ano"></select></label>
+          <label><span data-i18n>Quem viajou</span> <select id="v-tipo"></select></label>
+        </div>
+      </div>
+      <div class="kpis kpis-viag">
+        <div class="kpi"><span id="vk-total">—</span><small id="vk-total-lbl"></small></div>
+        <div class="kpi"><span id="vk-viagens">—</span><small data-i18n>Viagens</small></div>
+        <div class="kpi"><span id="vk-pessoas">—</span><small id="vk-pessoas-lbl"></small></div>
+        <div class="kpi"><span id="vk-media">—</span><small data-i18n>Custo médio por viagem</small></div>
+      </div>
+      <div class="graficos">
+        <div>
+          <h4 data-i18n>Gasto com viagens por ano</h4>
+          <div class="canvas-box"><canvas id="g-viag-ano"></canvas></div>
+        </div>
+        <div>
+          <h4 id="g-viag-pessoa-titulo"></h4>
+          <div class="canvas-box alto"><canvas id="g-viag-pessoa"></canvas></div>
+        </div>
+      </div>
+      <h4 class="evo-top-titulo" data-i18n>Por vereador e por ano</h4>
+      <div class="tabela-wrap"><table id="t-viag-pivo"></table></div>
+      <div id="viag-detalhe"></div>
+      <p class="nota" id="viag-nota"></p>
+    </section>
+
     <p class="fonte" id="fonte"></p>
   </main>
 
@@ -145,6 +176,7 @@
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
   <script src="js/contas.js"></script>
+  <script src="js/viagens.js"></script>
 
   <script>
     if ("serviceWorker" in navigator) {

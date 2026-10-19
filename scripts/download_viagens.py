@@ -55,6 +55,7 @@ ALIASES = {
     "FELIPE A. ARAUJO": "FELIPE AUGUSTO ARAUJO",
     "LETICIA C.B. DE OLIVEIRA": "LETICIA CRISTINA BRANCO DE OLIVEIRA",
     "MARILDA A. M. DE PAULA": "MARILDA AMELIA MARTINS DE PAULA",
+    "EDSONSILVA": "EDSON DA SILVA",  # OCR
 }
 
 ROTULOS = [
@@ -125,7 +126,8 @@ def separa_nomes(s):
 def nome_canonico(n):
     """Devolve (chave, nome para exibição)."""
     exib = re.sub(r"^(DR|DRA)\.?\s+", "", n.strip().rstrip("."), flags=re.I)
-    exib = re.split(r"\s+[–-]\s+|-(?=[A-ZÀ-Ú]+$)", exib)[0].strip()  # remove apelido
+    exib = re.split(r"\s+[–—-]\s+|-(?=[A-ZÀ-Ú]+$)", exib)[0].strip()  # remove apelido
+    exib = re.sub(r"\b(DA|DE|DO|DOS|DAS)(SILVA|SOUZA|SANTOS)\b", r"\1 \2", exib)  # OCR: "DASILVA"
     chave = sem_acento(exib).upper()
     chave = ALIASES.get(chave, chave)
     return chave, exib
@@ -222,7 +224,7 @@ def main():
             texto, usou_ocr = pdf_para_texto(arq[1])
             ocr += usou_ocr
         else:
-            texto = arq[1]
+            texto, usou_ocr = arq[1], False
         relatorios = extrai_campos(texto)
         relatorios = [r for r in relatorios if valores(r.get("passagens", "") + r.get("hospedagem", ""))
                       or re.search(r"\w{3}", r.get("destino", ""))]
@@ -240,7 +242,9 @@ def main():
             usado, certo = adiantamento_usado(c.get("obs", ""), len(nomes))
             pessoas = [nome_canonico(n) for n in nomes]
             viagens.append({
-                "ato": re.sub(r"\s+", "", c.get("ato", "")).rstrip(".") or rotulo,
+                # o rótulo do link é mais confiável que o número lido por OCR
+                "ato": rotulo if re.fullmatch(r"\d+[/-]\d{4}", rotulo)
+                else re.sub(r"\s+", "", c.get("ato", "")).rstrip(".") or rotulo,
                 "tipo": "servidor" if c["_servidor"] else "vereador",
                 "ano": ano_de(c.get("ato"), c.get("periodo"), rotulo),
                 "periodo": c.get("periodo", "").rstrip("."),
@@ -254,6 +258,7 @@ def main():
                 "total": round(pass_ + hosp + usado, 2),
                 "obs": c.get("obs", ""),
                 "url": href,
+                "ocr": usou_ocr,
                 "_exib": dict(pessoas),
             })
 
