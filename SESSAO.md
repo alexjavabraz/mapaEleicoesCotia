@@ -1,7 +1,8 @@
 # Sessão — 2026-10-20 (4) · Renda do Censo nos bairros (mapa 2024)
 
 **Status:** iniciada 2026-10-20 17:20 UTC · finalizada 2026-10-20 17:40 UTC
-(branch `claude/project-thread-20twi4`, sobre `main`, label `agentic`).
+(branch `claude/project-thread-20twi4`; a pedido do Alex entrou direto no `main`,
+PR #12 fechado).
 
 ## Pedido
 
@@ -28,6 +29,15 @@ Plano em `/mnt/project-files/plano-censo/plano-renda-censo.md`.
   `getFeatureStyle` (map.js) usa o estilo de renda quando ligado, então Limpar
   e o destaque de vereador mantêm as cores. Só `index.html` carrega o arquivo.
 - i18n (PT/EN), css, `sw.js` → v26 (o PR #11 usa v25).
+
+# Sessão — 2026-10-20 (4) · Bandeira de Cotia no header
+
+**Status:** iniciada 2026-10-20 16:47 UTC · finalizada 2026-10-20 17:25 UTC
+(commit direto no `main`, a pedido do Alex).
+
+- Bandeira (`icons/cotia-flag.svg`, 28 px) ao lado do nome "Cotia" no header
+  das três páginas. No celular o nome some e a bandeira fica, ao lado das abas
+  curtas. `sw.js` → v22 (o branch do tema já usa v21).
 
 ---
 
