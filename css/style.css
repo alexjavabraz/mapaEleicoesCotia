@@ -488,6 +488,14 @@ html, body {
 }
 .candidate-custo strong { color: var(--text); font-weight: 600; }
 .candidate-custo.sem-dados { font-style: italic; }
+.candidate-tse-link {
+  margin-left: 4px;
+  color: var(--highlight);
+  font-weight: 600;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.candidate-tse-link:hover { text-decoration: underline; }
 
 .candidate-partido {
   display: inline-block;

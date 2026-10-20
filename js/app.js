@@ -778,13 +778,16 @@ async function init() {
   // 2. Carrega dados TSE e auxiliares em paralelo
   // loadLocaisVotacao deve completar antes de loadVotosPorEscola (que mescla no escolasSummary)
   setLoadingStatus(t("Carregando dados eleitorais..."));
-  const [tseResult, bairroResult, locaisResult, gastosResult, rendaResult] = await Promise.all([
+  const [tseResult, bairroResult, locaisResult, gastosResult, rendaResult, patrimonioResult] = await Promise.all([
     loadTSEData(),
     loadVotosPorBairro(),
     loadLocaisVotacao(),
     loadGastosCampanha(),
     loadRendaCenso(),
+    loadPatrimonio(),
   ]);
+  if (patrimonioResult.ok) console.log(`Patrimônio declarado: ${patrimonioResult.count} candidatos`);
+  else console.log("Patrimônio declarado não disponível:", patrimonioResult.error);
   if (gastosResult.ok) console.log(`Gastos de campanha: ${gastosResult.count} candidatos`);
   else console.log("Gastos de campanha não disponíveis:", gastosResult.error);
   if (rendaResult.ok) {
