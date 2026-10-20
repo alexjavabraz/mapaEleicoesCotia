@@ -400,7 +400,8 @@ def censo_2022(tmp):
     cod, descricao, _, _ = escolhido
 
     print(f"\n2. Valores por setor de Cotia ({cod} e peso {var_dom})")
-    valores, arquivo = valores_cotia(tmp, [cod, var_dom])
+    # V06006 = rendimento mediano dos responsáveis (mesmo arquivo), para conferência
+    valores, arquivo = valores_cotia(tmp, [cod, var_dom, "V06006"])
 
     print("\n3. Malha de setores 2022")
     pontos = pontos_setores(tmp, URL_MALHA, r"^SP.*setores.*\.(zip|gpkg)$")
@@ -408,7 +409,7 @@ def censo_2022(tmp):
     print("\n4. Renda por bairro do próprio IBGE")
     BAIRROS_IBGE.update(bairros_ibge_2022(tmp, cod, var_dom))
 
-    dados = {cd: (v.get(cod), v.get(var_dom)) for cd, v in valores.items()}
+    dados = {cd: (v.get(cod), v.get(var_dom), v.get("V06006")) for cd, v in valores.items()}
     meta = {
         "fonte": "IBGE, Censo Demográfico 2022 — Agregados por setores censitários",
         "arquivo": arquivo, "variavel": cod, "variavel_domicilios": var_dom,
@@ -473,7 +474,8 @@ def main():
 
     setores = []
     sem_ponto = sem_renda = 0
-    for cd, (renda, dom) in dados.items():
+    for cd, (renda, dom, *resto) in dados.items():
+        mediana = resto[0] if resto else None
         if renda is None or not dom:
             sem_renda += 1
             continue
@@ -481,7 +483,8 @@ def main():
             sem_ponto += 1
             continue
         lat, lng, bairro_ibge = pontos[cd]
-        setores.append([lat, lng, round(renda, 2), int(dom), bairro_ibge, cd])
+        setores.append([lat, lng, round(renda, 2), int(dom), bairro_ibge, cd,
+                        round(mediana, 2) if mediana is not None else None])
     print(f"\n{len(setores)} setores válidos ({sem_renda} sem renda/domicílios por sigilo, {sem_ponto} sem geometria)")
     if not setores:
         raise SystemExit("Nenhum setor válido; abortando sem gravar.")
@@ -504,7 +507,7 @@ def main():
     print("\nSetores perto do Jardim do Engenho (bairro IBGE, renda, domicílios):")
     for s in setores:
         if -23.615 < s[0] < -23.598 and -46.845 < s[1] < -46.82:
-            print(f"  {s[5]}  {s[0]:.5f},{s[1]:.5f}  {s[4]:30s} R$ {s[2]:>9,.0f}  {s[3]}")
+            print(f"  {s[5]}  {s[0]:.5f},{s[1]:.5f}  média R$ {s[2]:>9,.0f}  mediana R$ {s[6] or 0:>9,.0f}  {s[3]}")
     for b, d in bairros.items():
         print(f"  {b:45s} R$ {d['renda_media']:>10,.0f}  faixa {d['faixa']}  ({d['setores']} setores)")
 
@@ -514,7 +517,7 @@ def main():
             "municipio": CD_MUN_COTIA,
             "faixas_sm": FAIXAS_SM,
             "renda_media_municipio": round(media_cotia, 2),
-            "campos_setor": ["lat", "lng", "renda_media", "domicilios", "bairro_ibge", "cd_setor"],
+            "campos_setor": ["lat", "lng", "renda_media", "domicilios", "bairro_ibge", "cd_setor", "renda_mediana"],
             "gerado_em": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
         },
         "setores": sorted(setores),
