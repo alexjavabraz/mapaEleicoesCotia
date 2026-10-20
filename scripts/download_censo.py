@@ -24,7 +24,7 @@ Saída:
   ../data/censo_renda_setores.json
     {
       "_meta": { fonte, variavel, descricao, ano, salario_minimo, faixas, ... },
-      "setores": [[lat, lng, renda_media, domicilios], ...],
+      "setores": [[lat, lng, renda_media, domicilios, bairro_ibge, cd_setor], ...],
       "bairros_tse": { "GRANJA VIANA": { renda_media, domicilios, setores, faixa }, ... }
     }
   O mapa calcula a renda de cada polígono (OSM ou Voronoi) com os pontos dos
@@ -299,7 +299,50 @@ def pontos_setores(tmp, url_base, padrao):
     print(f"  {len(gdf)} setores de Cotia na malha (CRS {gdf.crs})")
     gdf = gdf.to_crs(4326)
     pts = gdf.geometry.representative_point()
-    return {str(cd): (round(p.y, 5), round(p.x, 5)) for cd, p in zip(gdf[col_setor], pts)}
+    # Bairro do próprio IBGE (vazio onde o município não tem bairros cadastrados)
+    col_bairro = next((c for c in gdf.columns if c.upper() == "NM_BAIRRO"), None)
+    nomes = gdf[col_bairro].fillna("").astype(str) if col_bairro else [""] * len(gdf)
+    return {str(cd): (round(p.y, 5), round(p.x, 5), str(nb).strip())
+            for cd, p, nb in zip(gdf[col_setor], pts, nomes)}
+
+
+def bairros_ibge_2022(tmp, cod, var_dom):
+    """Renda por bairro publicada pelo próprio IBGE (Agregados_por_bairros_renda_responsavel)
+    para Cotia: {nome: {cd_bairro, renda_media, responsaveis}}."""
+    zips = [u for u in listar(URL_RENDA)
+            if re.search(r"^Agregados_por_bairros.*csv\.zip$", u.rsplit("/", 1)[-1], re.I)]
+    if not zips:
+        return {}
+    destino = baixar(sorted(zips)[-1], os.path.join(tmp, "bairros_renda.zip"))
+    out = {}
+    with zipfile.ZipFile(destino) as z:
+        for nome in z.namelist():
+            if not nome.lower().endswith(".csv"):
+                continue
+            raw = z.read(nome)
+            try:
+                texto = raw.decode("utf-8-sig")
+            except UnicodeDecodeError:
+                texto = raw.decode("latin-1")
+            primeira = texto.split("\n", 1)[0]
+            sep = ";" if primeira.count(";") >= primeira.count(",") else ","
+            leitor = csv.DictReader(io.StringIO(texto), delimiter=sep)
+            campos = {f.strip().upper(): f for f in (leitor.fieldnames or [])}
+            print(f"  {nome}: colunas {list(campos)[:12]}")
+            c_cd, c_nm = campos.get("CD_BAIRRO"), campos.get("NM_BAIRRO")
+            c_r, c_d = campos.get(cod.upper()), campos.get(var_dom.upper())
+            if not (c_cd and c_r):
+                continue
+            for linha in leitor:
+                cd = (linha.get(c_cd) or "").strip()
+                if not cd.startswith(CD_MUN_COTIA):
+                    continue
+                nm = (linha.get(c_nm) or cd).strip() if c_nm else cd
+                out[nm] = {"cd_bairro": cd, "renda_media": numero(linha.get(c_r)),
+                           "responsaveis": numero(linha.get(c_d)) if c_d else None}
+    os.remove(destino)
+    print(f"  {len(out)} bairros IBGE de Cotia com renda")
+    return out
 
 
 # ---- Agregação por bairro do TSE (local de votação mais próximo) ----
@@ -326,7 +369,7 @@ def bairros_tse(setores):
         pts.append((lat, lng, l["NM_BAIRRO"].strip()))
 
     soma = {}
-    for lat, lng, renda, dom in setores:
+    for lat, lng, renda, dom, *_ in setores:
         coslat = math.cos(math.radians(lat))
         _, _, bairro = min(pts, key=lambda p: (p[0] - lat) ** 2 + ((p[1] - lng) * coslat) ** 2)
         s = soma.setdefault(bairro, [0.0, 0.0, 0])
@@ -361,6 +404,9 @@ def censo_2022(tmp):
 
     print("\n3. Malha de setores 2022")
     pontos = pontos_setores(tmp, URL_MALHA, r"^SP.*setores.*\.(zip|gpkg)$")
+
+    print("\n4. Renda por bairro do próprio IBGE")
+    BAIRROS_IBGE.update(bairros_ibge_2022(tmp, cod, var_dom))
 
     dados = {cd: (v.get(cod), v.get(var_dom)) for cd, v in valores.items()}
     meta = {
@@ -412,6 +458,9 @@ def censo_2010(tmp):
     return dados, pontos, meta
 
 
+BAIRROS_IBGE = {}  # renda por bairro publicada pelo IBGE (só 2022)
+
+
 def main():
     global SALARIO_MINIMO
     with tempfile.TemporaryDirectory() as tmp:
@@ -431,8 +480,8 @@ def main():
         if cd not in pontos:
             sem_ponto += 1
             continue
-        lat, lng = pontos[cd]
-        setores.append([lat, lng, round(renda, 2), int(dom)])
+        lat, lng, bairro_ibge = pontos[cd]
+        setores.append([lat, lng, round(renda, 2), int(dom), bairro_ibge, cd])
     print(f"\n{len(setores)} setores válidos ({sem_renda} sem renda/domicílios por sigilo, {sem_ponto} sem geometria)")
     if not setores:
         raise SystemExit("Nenhum setor válido; abortando sem gravar.")
@@ -448,6 +497,14 @@ def main():
         print(f"  faixa {i}: {n} setores")
 
     bairros = bairros_tse(setores)
+    if BAIRROS_IBGE:
+        print("\nRenda por bairro (IBGE):")
+        for nm, v in sorted(BAIRROS_IBGE.items(), key=lambda kv: -(kv[1]["renda_media"] or 0)):
+            print(f"  {nm:45s} {v['cd_bairro']}  R$ {v['renda_media'] or 0:>10,.0f}  ({v['responsaveis']} resp.)")
+    print("\nSetores perto do Jardim do Engenho (bairro IBGE, renda, domicílios):")
+    for s in setores:
+        if -23.615 < s[0] < -23.598 and -46.845 < s[1] < -46.82:
+            print(f"  {s[5]}  {s[0]:.5f},{s[1]:.5f}  {s[4]:30s} R$ {s[2]:>9,.0f}  {s[3]}")
     for b, d in bairros.items():
         print(f"  {b:45s} R$ {d['renda_media']:>10,.0f}  faixa {d['faixa']}  ({d['setores']} setores)")
 
@@ -457,11 +514,12 @@ def main():
             "municipio": CD_MUN_COTIA,
             "faixas_sm": FAIXAS_SM,
             "renda_media_municipio": round(media_cotia, 2),
-            "campos_setor": ["lat", "lng", "renda_media", "domicilios"],
+            "campos_setor": ["lat", "lng", "renda_media", "domicilios", "bairro_ibge", "cd_setor"],
             "gerado_em": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
         },
         "setores": sorted(setores),
         "bairros_tse": bairros,
+        "bairros_ibge": BAIRROS_IBGE,
     }
     os.makedirs(DATA_DIR, exist_ok=True)
     with open(OUTPUT, "w", encoding="utf-8") as f:
