@@ -35,126 +35,153 @@
   </header>
 
   <main id="contas">
-    <!-- Filtros -->
-    <section class="filtros">
-      <label><span data-i18n>Evento</span>
-        <select id="f-evento"></select>
-      </label>
-      <label><span data-i18n>Ano</span>
-        <select id="f-ano"></select>
-      </label>
-      <label class="busca"><span data-i18n>Fornecedor / recebedor</span>
-        <input id="f-busca" type="search" list="lista-fornecedores"
-               placeholder="Digite o nome ou CNPJ…" data-i18n-placeholder autocomplete="off" />
-        <datalist id="lista-fornecedores"></datalist>
-      </label>
-      <button id="btn-limpar" type="button" class="btn sec" data-i18n>Limpar</button>
-      <button id="btn-top10" type="button" class="btn" data-i18n>Top 10 valores pagos</button>
-    </section>
+    <!-- Abas da página: visão geral (fixa), por fornecedor e viagens -->
+    <nav class="abas-contas" role="tablist" aria-label="Seções da página" data-i18n-aria-label>
+      <button type="button" role="tab" id="tab-geral" aria-controls="aba-geral" data-aba="geral" data-i18n>Visão geral</button>
+      <button type="button" role="tab" id="tab-fornecedor" aria-controls="aba-fornecedor" data-aba="fornecedor" data-i18n>Por fornecedor</button>
+      <button type="button" role="tab" id="tab-viagens" aria-controls="aba-viagens" data-aba="viagens" data-i18n>Viagens da Câmara</button>
+    </nav>
 
-    <!-- Fornecedor selecionado -->
-    <section id="fornecedor-sel" class="cartao" hidden></section>
+    <!-- Aba 1: visão geral, valores pagos de todo o período, sem filtros -->
+    <div class="aba-painel" id="aba-geral" role="tabpanel" aria-labelledby="tab-geral">
+      <section class="kpis">
+        <div class="kpi"><span id="gk-total">—</span><small id="gk-total-lbl">Total</small></div>
+        <div class="kpi"><span id="gk-receb">—</span><small data-i18n>Recebedores</small></div>
+        <div class="kpi"><span id="gk-lanc">—</span><small data-i18n>Registros (todos os eventos)</small></div>
+        <div class="kpi"><span id="k-ultimo">—</span><small data-i18n>Último mês publicado</small></div>
+      </section>
 
-    <!-- Indicadores -->
-    <section class="kpis">
-      <div class="kpi"><span id="k-total">—</span><small id="k-total-lbl">Total</small></div>
-      <div class="kpi"><span id="k-receb">—</span><small data-i18n>Recebedores</small></div>
-      <div class="kpi"><span id="k-lanc">—</span><small data-i18n>Registros (todos os eventos)</small></div>
-      <div class="kpi"><span id="k-ultimo">—</span><small data-i18n>Último mês publicado</small></div>
-    </section>
+      <!-- Evolução anual dos pagamentos + top 10 de cada ano -->
+      <section class="cartao" id="evolucao">
+        <div class="evo-head">
+          <h3 data-i18n>Evolução dos pagamentos por ano</h3>
+          <label><span data-i18n>Órgão</span>
+            <select id="evo-orgao"></select>
+          </label>
+        </div>
+        <div class="evo-resumo" id="evo-resumo"></div>
+        <div class="canvas-box alto"><canvas id="g-evolucao"></canvas></div>
+        <p class="nota" id="evo-nota"></p>
 
-    <!-- Evolução anual dos pagamentos + top 10 de cada ano -->
-    <section class="cartao" id="evolucao">
-      <div class="evo-head">
-        <h3 data-i18n>Evolução dos pagamentos por ano</h3>
-        <label><span data-i18n>Órgão</span>
-          <select id="evo-orgao"></select>
+        <h3 class="evo-top-titulo" data-i18n>Top 10 pagamentos do ano</h3>
+        <div class="anos-pills" id="evo-anos" role="tablist"></div>
+        <div class="tabela-wrap"><table id="evo-top"></table></div>
+      </section>
+
+      <section class="graficos">
+        <div class="cartao">
+          <h3 id="g-ano-geral-titulo" data-i18n>Por ano</h3>
+          <div class="canvas-box"><canvas id="g-ano-geral"></canvas></div>
+        </div>
+        <div class="cartao">
+          <h3 id="g-mes-titulo" data-i18n>Por mês</h3>
+          <div class="canvas-box"><canvas id="g-mes"></canvas></div>
+        </div>
+        <div class="cartao">
+          <h3 data-i18n>Maiores recebedores</h3>
+          <div class="canvas-box alto"><canvas id="g-top"></canvas></div>
+        </div>
+        <div class="cartao">
+          <h3 data-i18n>Por órgão</h3>
+          <div class="canvas-box"><canvas id="g-orgao"></canvas></div>
+        </div>
+      </section>
+      <p class="nota" data-i18n>Clique num recebedor para ver os pagamentos dele na aba Por fornecedor.</p>
+    </div>
+
+    <!-- Aba 2: escolha um fornecedor e os dados são atualizados -->
+    <div class="aba-painel" id="aba-fornecedor" role="tabpanel" aria-labelledby="tab-fornecedor" hidden>
+      <!-- Filtros -->
+      <section class="filtros">
+        <label><span data-i18n>Evento</span>
+          <select id="f-evento"></select>
         </label>
-      </div>
-      <div class="evo-resumo" id="evo-resumo"></div>
-      <div class="canvas-box alto"><canvas id="g-evolucao"></canvas></div>
-      <p class="nota" id="evo-nota"></p>
+        <label><span data-i18n>Ano</span>
+          <select id="f-ano"></select>
+        </label>
+        <label class="busca"><span data-i18n>Fornecedor / recebedor</span>
+          <input id="f-busca" type="search" list="lista-fornecedores"
+                 placeholder="Digite o nome ou CNPJ…" data-i18n-placeholder autocomplete="off" />
+          <datalist id="lista-fornecedores"></datalist>
+        </label>
+        <button id="btn-limpar" type="button" class="btn sec" data-i18n>Limpar</button>
+        <button id="btn-top10" type="button" class="btn" data-i18n>Top 10 valores pagos</button>
+      </section>
 
-      <h3 class="evo-top-titulo" data-i18n>Top 10 pagamentos do ano</h3>
-      <div class="anos-pills" id="evo-anos" role="tablist"></div>
-      <div class="tabela-wrap"><table id="evo-top"></table></div>
-    </section>
+      <!-- Fornecedor selecionado -->
+      <section id="fornecedor-sel" class="cartao" hidden></section>
 
-    <!-- Gráficos -->
-    <section class="graficos">
-      <div class="cartao">
+      <section class="kpis">
+        <div class="kpi"><span id="k-total">—</span><small id="k-total-lbl">Total</small></div>
+        <div class="kpi"><span id="k-receb">—</span><small data-i18n>Recebedores</small></div>
+        <div class="kpi"><span id="k-lanc">—</span><small data-i18n>Registros (todos os eventos)</small></div>
+      </section>
+
+      <section class="cartao">
         <h3 id="g-ano-titulo" data-i18n>Por ano</h3>
         <div class="canvas-box"><canvas id="g-ano"></canvas></div>
-      </div>
-      <div class="cartao">
-        <h3 id="g-mes-titulo" data-i18n>Por mês</h3>
-        <div class="canvas-box"><canvas id="g-mes"></canvas></div>
-      </div>
-      <div class="cartao">
-        <h3 data-i18n>Maiores recebedores</h3>
-        <div class="canvas-box alto"><canvas id="g-top"></canvas></div>
-      </div>
-      <div class="cartao">
-        <h3 data-i18n>Por órgão</h3>
-        <div class="canvas-box"><canvas id="g-orgao"></canvas></div>
-      </div>
-    </section>
+      </section>
 
-    <!-- Agrupamento por recebedor -->
-    <section class="cartao">
-      <h3 data-i18n>Agrupado por recebedor</h3>
-      <div class="tabela-wrap">
-        <table id="t-receb">
-          <thead>
-            <tr>
-              <th data-sort="nome" data-i18n>Recebedor</th>
-              <th data-sort="doc">CNPJ</th>
-              <th data-sort="n" class="num" data-i18n>Lançamentos</th>
-              <th data-sort="valor" class="num" data-i18n>Valor</th>
-              <th class="num" data-i18n>% do total</th>
-            </tr>
-          </thead>
-          <tbody></tbody>
-        </table>
-      </div>
-      <div class="paginacao">
-        <button id="p-ant" type="button" class="btn sec" data-i18n>‹ Anterior</button>
-        <span id="p-info"></span>
-        <button id="p-prox" type="button" class="btn sec" data-i18n>Próxima ›</button>
-      </div>
-    </section>
+      <!-- Agrupamento por recebedor -->
+      <section class="cartao">
+        <h3 data-i18n>Agrupado por recebedor</h3>
+        <div class="tabela-wrap">
+          <table id="t-receb">
+            <thead>
+              <tr>
+                <th data-sort="nome" data-i18n>Recebedor</th>
+                <th data-sort="doc">CNPJ</th>
+                <th data-sort="n" class="num" data-i18n>Lançamentos</th>
+                <th data-sort="valor" class="num" data-i18n>Valor</th>
+                <th class="num" data-i18n>% do total</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+        <div class="paginacao">
+          <button id="p-ant" type="button" class="btn sec" data-i18n>‹ Anterior</button>
+          <span id="p-info"></span>
+          <button id="p-prox" type="button" class="btn sec" data-i18n>Próxima ›</button>
+        </div>
+      </section>
+    </div>
 
-    <!-- Viagens da Câmara (relatórios de viagens, por vereador e por ano) -->
-    <section class="cartao" id="viagens" hidden>
-      <div class="evo-head">
-        <h3 data-i18n>Viagens da Câmara</h3>
-        <div class="viag-filtros">
-          <label><span data-i18n>Ano</span> <select id="v-ano"></select></label>
-          <label><span data-i18n>Quem viajou</span> <select id="v-tipo"></select></label>
+    <!-- Aba 3: viagens da Câmara -->
+    <div class="aba-painel" id="aba-viagens" role="tabpanel" aria-labelledby="tab-viagens" hidden>
+      <!-- Viagens da Câmara (relatórios de viagens, por vereador e por ano) -->
+      <section class="cartao" id="viagens" hidden>
+        <div class="evo-head">
+          <h3 data-i18n>Viagens da Câmara</h3>
+          <div class="viag-filtros">
+            <label><span data-i18n>Ano</span> <select id="v-ano"></select></label>
+            <label><span data-i18n>Quem viajou</span> <select id="v-tipo"></select></label>
+          </div>
         </div>
-      </div>
-      <div class="kpis kpis-viag">
-        <div class="kpi"><span id="vk-total">—</span><small id="vk-total-lbl"></small></div>
-        <div class="kpi"><span id="vk-viagens">—</span><small data-i18n>Viagens</small></div>
-        <div class="kpi"><span id="vk-pessoas">—</span><small id="vk-pessoas-lbl"></small></div>
-        <div class="kpi"><span id="vk-media">—</span><small data-i18n>Custo médio por viagem</small></div>
-      </div>
-      <p class="nota" id="viag-parcial"></p>
-      <div class="graficos">
-        <div>
-          <h4 data-i18n>Gasto com viagens por ano</h4>
-          <div class="canvas-box"><canvas id="g-viag-ano"></canvas></div>
+        <div class="kpis kpis-viag">
+          <div class="kpi"><span id="vk-total">—</span><small id="vk-total-lbl"></small></div>
+          <div class="kpi"><span id="vk-viagens">—</span><small data-i18n>Viagens</small></div>
+          <div class="kpi"><span id="vk-pessoas">—</span><small id="vk-pessoas-lbl"></small></div>
+          <div class="kpi"><span id="vk-media">—</span><small data-i18n>Custo médio por viagem</small></div>
         </div>
-        <div>
-          <h4 id="g-viag-pessoa-titulo"></h4>
-          <div class="canvas-box alto"><canvas id="g-viag-pessoa"></canvas></div>
+        <p class="nota" id="viag-parcial"></p>
+        <div class="graficos">
+          <div>
+            <h4 data-i18n>Gasto com viagens por ano</h4>
+            <div class="canvas-box"><canvas id="g-viag-ano"></canvas></div>
+          </div>
+          <div>
+            <h4 id="g-viag-pessoa-titulo"></h4>
+            <div class="canvas-box alto"><canvas id="g-viag-pessoa"></canvas></div>
+          </div>
         </div>
-      </div>
-      <h4 class="evo-top-titulo" data-i18n>Por vereador e por ano</h4>
-      <div class="tabela-wrap"><table id="t-viag-pivo"></table></div>
-      <div id="viag-detalhe"></div>
-      <p class="nota" id="viag-nota"></p>
-    </section>
+        <h4 class="evo-top-titulo" data-i18n>Por vereador e por ano</h4>
+        <div class="tabela-wrap"><table id="t-viag-pivo"></table></div>
+        <div id="viag-detalhe"></div>
+        <p class="nota" id="viag-nota"></p>
+      </section>
+      <p class="vazio" id="viag-vazio" data-i18n>Carregando viagens…</p>
+    </div>
 
     <p class="fonte" id="fonte"></p>
   </main>

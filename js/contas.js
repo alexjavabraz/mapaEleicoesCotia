@@ -1,9 +1,13 @@
 /**
  * contas.js — Página "Contas do Município" (despesas de Cotia, TCE-SP).
  *
- * Lê data/contas_cotia.json (gerado por scripts/download_contas.py) e monta:
- * filtro por fornecedor, top 10, gráficos por ano/mês/órgão e a tabela
- * agrupada por recebedor.
+ * Lê data/contas_cotia.json (gerado por scripts/download_contas.py) e monta
+ * três abas:
+ *  - Visão geral: valores pagos de todo o período, sem filtros (evolução anual,
+ *    top 10 de cada ano, gráficos por ano/mês/órgão e maiores recebedores);
+ *  - Por fornecedor: filtros, top 10, gráfico por ano do fornecedor escolhido
+ *    e a tabela agrupada por recebedor;
+ *  - Viagens da Câmara (montada por js/viagens.js).
  */
 
 const DATA_URL = "data/contas_cotia.json";
@@ -33,6 +37,9 @@ const estado = {
   pagina: 0,
   aba: "lanc",
 };
+/** Estado fixo da aba Visão geral: valor pago, todos os anos, sem busca. */
+const FIXO = { evento: "Pago", ano: "", sel: null, busca: "" };
+const ABAS = ["geral", "fornecedor", "viagens"];
 const graficos = {};
 
 // -----------------------------------------------------------------------
@@ -70,18 +77,18 @@ function rotuloForn(f) {
   return f.doc ? `${f.nome} — ${fmtCNPJ(f.doc)}` : f.nome;
 }
 
-/** Valor do fornecedor no evento/ano selecionados. */
-function valorForn(f) {
-  const fonte = estado.ano ? f.anos[estado.ano] : f.total;
-  return (fonte && fonte[estado.evento]) || 0;
+/** Valor do fornecedor no evento/ano do estado `s`. */
+function valorForn(f, s = estado) {
+  const fonte = s.ano ? f.anos[s.ano] : f.total;
+  return (fonte && fonte[s.evento]) || 0;
 }
 
 function anos() {
   return Object.keys(DADOS.por_ano).sort();
 }
 
-function eventoLabel() {
-  return t(estado.evento).toLowerCase();
+function eventoLabel(s = estado) {
+  return t(s.evento).toLowerCase();
 }
 
 /** "pagos" no plural em português ("Top 10 valores pagos"); em inglês não flexiona. */
@@ -90,16 +97,16 @@ function eventoPlural() {
   return ev === "pago" ? "pagos" : ev;
 }
 
-function periodoLabel() {
-  return estado.ano || `${anos()[0]}–${anos().at(-1)}`;
+function periodoLabel(s = estado) {
+  return s.ano || `${anos()[0]}–${anos().at(-1)}`;
 }
 
 /** Fornecedores que passam no filtro de busca (sem seleção). */
-function fornecedoresFiltrados() {
-  const q = normaliza(estado.busca).trim();
+function fornecedoresFiltrados(s = estado) {
+  const q = normaliza(s.busca).trim();
   const qd = q.replace(/\D/g, "");
   return DADOS.fornecedores
-    .map((f, i) => ({ f, i, valor: valorForn(f) }))
+    .map((f, i) => ({ f, i, valor: valorForn(f, s) }))
     .filter(({ f, valor }) => {
       if (valor <= 0) return false;
       if (!q) return true;
@@ -149,8 +156,53 @@ async function init() {
 
   ligarEventos();
   initEvolucao();
+  renderGeral();
   render();
   $("loading").style.display = "none";
+}
+
+// -----------------------------------------------------------------------
+// Abas (#geral, #fornecedor, #viagens na URL)
+// -----------------------------------------------------------------------
+
+function abaDaUrl() {
+  const h = location.hash.slice(1);
+  return ABAS.includes(h) ? h : "geral";
+}
+
+function mostrarAba(nome, foco = false) {
+  ABAS.forEach((a) => {
+    const ativa = a === nome;
+    const tab = $(`tab-${a}`);
+    tab.classList.toggle("ativa", ativa);
+    tab.setAttribute("aria-selected", ativa);
+    tab.tabIndex = ativa ? 0 : -1;
+    $(`aba-${a}`).hidden = !ativa;
+  });
+  if (foco) $(`tab-${nome}`).focus();
+}
+
+function irParaAba(nome) {
+  if (abaDaUrl() !== nome || !location.hash) history.pushState(null, "", `#${nome}`);
+  mostrarAba(nome);
+}
+
+function initAbas() {
+  const lista = document.querySelector(".abas-contas");
+  lista.addEventListener("click", (e) => {
+    const b = e.target.closest("button[data-aba]");
+    if (b) irParaAba(b.dataset.aba);
+  });
+  // Setas esquerda/direita trocam de aba (padrão WAI-ARIA de tabs)
+  lista.addEventListener("keydown", (e) => {
+    if (e.key !== "ArrowLeft" && e.key !== "ArrowRight") return;
+    const i = ABAS.indexOf(abaDaUrl());
+    const prox = ABAS[(i + (e.key === "ArrowRight" ? 1 : ABAS.length - 1)) % ABAS.length];
+    irParaAba(prox);
+    $(`tab-${prox}`).focus();
+  });
+  window.addEventListener("popstate", () => mostrarAba(abaDaUrl()));
+  mostrarAba(abaDaUrl());
 }
 
 function ligarEventos() {
@@ -213,6 +265,12 @@ function ligarEventos() {
   });
 }
 
+/** Abre a aba Por fornecedor já com o recebedor escolhido (cliques na Visão geral). */
+function abrirFornecedor(idx) {
+  irParaAba("fornecedor");
+  selecionar(idx);
+}
+
 function selecionar(idx) {
   estado.sel = idx;
   estado.busca = "";
@@ -225,38 +283,46 @@ function selecionar(idx) {
 // Render
 // -----------------------------------------------------------------------
 
+/** Aba Visão geral: sempre o estado FIXO, desenhada uma vez. */
+function renderGeral() {
+  if (!DADOS.meta.eventos.includes(FIXO.evento)) FIXO.evento = DADOS.meta.eventos[0];
+  renderKPIs(FIXO, "gk-");
+  renderGraficoAno(FIXO, "g-ano-geral");
+  renderGraficoMes(FIXO);
+  renderGraficoTop(FIXO);
+  renderGraficoOrgao(FIXO);
+}
+
+/** Aba Por fornecedor: redesenhada a cada mudança de filtro ou seleção. */
 function render() {
   $("btn-top10").textContent = t("Top 10 valores {ev}", { ev: eventoPlural() });
-  renderKPIs();
+  renderKPIs(estado, "k-");
   renderSelecionado();
-  renderGraficoAno();
-  renderGraficoMes();
-  renderGraficoTop();
-  renderGraficoOrgao();
+  renderGraficoAno(estado, "g-ano");
   renderTabela();
 }
 
-function renderKPIs() {
+function renderKPIs(s, pre) {
   let total, receb, lanc;
-  if (estado.sel !== null) {
-    const f = DADOS.fornecedores[estado.sel];
-    total = valorForn(f);
+  if (s.sel !== null) {
+    const f = DADOS.fornecedores[s.sel];
+    total = valorForn(f, s);
     receb = 1;
     lanc = f.n;
   } else {
-    const lista = fornecedoresFiltrados();
-    total = estado.busca
-      ? lista.reduce((s, x) => s + x.valor, 0)
-      : estado.ano
-        ? (DADOS.por_ano[estado.ano] || {})[estado.evento] || 0
-        : anos().reduce((s, a) => s + ((DADOS.por_ano[a] || {})[estado.evento] || 0), 0);
+    const lista = fornecedoresFiltrados(s);
+    total = s.busca
+      ? lista.reduce((soma, x) => soma + x.valor, 0)
+      : s.ano
+        ? (DADOS.por_ano[s.ano] || {})[s.evento] || 0
+        : anos().reduce((soma, a) => soma + ((DADOS.por_ano[a] || {})[s.evento] || 0), 0);
     receb = lista.length;
-    lanc = lista.reduce((s, x) => s + x.f.n, 0);
+    lanc = lista.reduce((soma, x) => soma + x.f.n, 0);
   }
-  $("k-total").textContent = fmtBRL.format(total);
-  $("k-total-lbl").textContent = `${t("Total {ev}", { ev: eventoLabel() })} · ${periodoLabel()}`;
-  $("k-receb").textContent = fmtInt.format(receb);
-  $("k-lanc").textContent = fmtInt.format(lanc);
+  $(pre + "total").textContent = fmtBRL.format(total);
+  $(pre + "total-lbl").textContent = `${t("Total {ev}", { ev: eventoLabel(s) })} · ${periodoLabel(s)}`;
+  $(pre + "receb").textContent = fmtInt.format(receb);
+  $(pre + "lanc").textContent = fmtInt.format(lanc);
 }
 
 function renderSelecionado() {
@@ -297,18 +363,29 @@ const tooltipBRL = {
 };
 const eixoBRL = { ticks: { callback: (v) => "R$ " + fmtCompacto.format(v) }, beginAtZero: true };
 
-function renderGraficoAno() {
+/**
+ * Valor por ano: do município (sem busca), do fornecedor selecionado ou da
+ * soma dos fornecedores que casam com a busca.
+ */
+function renderGraficoAno(s, id) {
   const as = anos();
-  const f = estado.sel !== null ? DADOS.fornecedores[estado.sel] : null;
-  const valores = as.map((a) => ((f ? f.anos[a] : DADOS.por_ano[a]) || {})[estado.evento] || 0);
-  $("g-ano-titulo").textContent = t("Valor {ev} por ano", { ev: eventoLabel() }) + (f ? " — " + f.nome : "");
-  grafico("g-ano", {
+  const f = s.sel !== null ? DADOS.fornecedores[s.sel] : null;
+  const filtrados = !f && s.busca ? fornecedoresFiltrados({ ...s, ano: "" }) : null;
+  const valores = as.map((a) => {
+    if (f) return (f.anos[a] || {})[s.evento] || 0;
+    if (filtrados) return filtrados.reduce((soma, x) => soma + ((x.f.anos[a] || {})[s.evento] || 0), 0);
+    return (DADOS.por_ano[a] || {})[s.evento] || 0;
+  });
+  $(`${id}-titulo`).textContent = t("Valor {ev} por ano", { ev: eventoLabel(s) }) +
+    (f ? " — " + f.nome : filtrados ? ` — “${s.busca.trim()}”` : "");
+  const interativo = s === estado;
+  grafico(id, {
     type: "bar",
     data: {
       labels: as,
       datasets: [{
         data: valores,
-        backgroundColor: as.map((a) => (!estado.ano || a === estado.ano ? COR : COR_SUAVE)),
+        backgroundColor: as.map((a) => (!s.ano || a === s.ano ? COR : COR_SUAVE)),
         borderRadius: 4,
       }],
     },
@@ -317,7 +394,7 @@ function renderGraficoAno() {
       plugins: { legend: { display: false }, tooltip: tooltipBRL },
       scales: { y: eixoBRL, x: { grid: { display: false } } },
       onClick: (_, els) => {
-        if (!els.length) return;
+        if (!interativo || !els.length) return;
         const a = as[els[0].index];
         estado.ano = estado.ano === a ? "" : a;
         $("f-ano").value = estado.ano;
@@ -328,18 +405,18 @@ function renderGraficoAno() {
   });
 }
 
-function renderGraficoMes() {
-  const meses = Object.keys(DADOS.por_mes).filter((m) => !estado.ano || m.startsWith(estado.ano));
-  $("g-mes-titulo").textContent = t("Valor {ev} por mês — município", { ev: eventoLabel() }) + (estado.ano ? " · " + estado.ano : "");
+function renderGraficoMes(s) {
+  const meses = Object.keys(DADOS.por_mes).filter((m) => !s.ano || m.startsWith(s.ano));
+  $("g-mes-titulo").textContent = t("Valor {ev} por mês — município", { ev: eventoLabel(s) }) + (s.ano ? " · " + s.ano : "");
   grafico("g-mes", {
-    type: estado.ano ? "bar" : "line",
+    type: s.ano ? "bar" : "line",
     data: {
       labels: meses.map((m) => `${MESES[+m.slice(5) - 1]}/${m.slice(2, 4)}`),
       datasets: [{
-        data: meses.map((m) => DADOS.por_mes[m][estado.evento] || 0),
+        data: meses.map((m) => DADOS.por_mes[m][s.evento] || 0),
         borderColor: COR,
-        backgroundColor: estado.ano ? COR : COR_SUAVE,
-        fill: !estado.ano,
+        backgroundColor: s.ano ? COR : COR_SUAVE,
+        fill: !s.ano,
         pointRadius: 0,
         tension: 0,
         borderRadius: 4,
@@ -354,15 +431,15 @@ function renderGraficoMes() {
   });
 }
 
-function renderGraficoTop() {
-  const top = fornecedoresFiltrados().sort((a, b) => b.valor - a.valor).slice(0, 10);
+function renderGraficoTop(s) {
+  const top = fornecedoresFiltrados(s).sort((a, b) => b.valor - a.valor).slice(0, 10);
   grafico("g-top", {
     type: "bar",
     data: {
       labels: top.map((x) => (x.f.nome.length > 32 ? x.f.nome.slice(0, 30) + "…" : x.f.nome)),
       datasets: [{
         data: top.map((x) => x.valor),
-        backgroundColor: top.map((x) => (x.i === estado.sel ? "#ffb74d" : COR)),
+        backgroundColor: COR,
         borderRadius: 4,
       }],
     },
@@ -377,15 +454,15 @@ function renderGraficoTop() {
         x: { ticks: { callback: (v) => "R$ " + fmtCompacto.format(v) }, beginAtZero: true },
         y: { grid: { display: false }, ticks: { font: { size: 11 } } },
       },
-      onClick: (_, els) => { if (els.length) selecionar(top[els[0].index].i); },
+      onClick: (_, els) => { if (els.length) abrirFornecedor(top[els[0].index].i); },
     },
   });
 }
 
-function renderGraficoOrgao() {
+function renderGraficoOrgao(s) {
   const as = anos();
   const orgaos = Object.keys(DADOS.por_orgao)
-    .map((o) => ({ o, tot: as.reduce((s, a) => s + ((DADOS.por_orgao[o][a] || {})[estado.evento] || 0), 0) }))
+    .map((o) => ({ o, tot: as.reduce((soma, a) => soma + ((DADOS.por_orgao[o][a] || {})[s.evento] || 0), 0) }))
     .filter((x) => x.tot > 0)
     .sort((a, b) => b.tot - a.tot);
   grafico("g-orgao", {
@@ -394,7 +471,7 @@ function renderGraficoOrgao() {
       labels: as,
       datasets: orgaos.map(({ o }, k) => ({
         label: o,
-        data: as.map((a) => (DADOS.por_orgao[o][a] || {})[estado.evento] || 0),
+        data: as.map((a) => (DADOS.por_orgao[o][a] || {})[s.evento] || 0),
         backgroundColor: CORES_ORGAO[k % CORES_ORGAO.length],
         borderRadius: 2,
       })),
@@ -544,7 +621,7 @@ function initEvolucao() {
   });
   $("evo-top").addEventListener("click", (e) => {
     const tr = e.target.closest("tr[data-i]");
-    if (tr) selecionar(+tr.dataset.i);
+    if (tr) abrirFornecedor(+tr.dataset.i);
   });
   renderEvolucao();
 }
@@ -643,4 +720,5 @@ function renderTopAno() {
     }).join("") || `<tr><td colspan="7" class="vazio">${t("Sem pagamentos em {ano}.", { ano: esc(evo.ano) })}</td></tr>`}</tbody>`;
 }
 
+initAbas();
 init();

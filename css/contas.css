@@ -40,6 +40,40 @@ body.contas-page {
   color: var(--text);
 }
 
+/* ---- Abas da página ---- */
+.abas-contas {
+  display: flex;
+  gap: 4px;
+  border-bottom: 1px solid rgba(255,255,255,0.12);
+  overflow-x: auto;
+}
+.abas-contas button {
+  background: none;
+  color: var(--text-muted);
+  border: 0;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
+  padding: 10px 14px;
+  font-size: 0.88rem;
+  font-family: inherit;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.abas-contas button:hover { color: var(--text); }
+.abas-contas button.ativa {
+  color: var(--text);
+  font-weight: 600;
+  border-bottom-color: var(--highlight);
+}
+.abas-contas button:focus-visible { outline: 2px solid var(--highlight); outline-offset: -2px; }
+.aba-painel {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.aba-painel[hidden] { display: none; }
+#viagens:not([hidden]) ~ #viag-vazio { display: none; }
+
 /* ---- Filtros ---- */
 .filtros {
   display: flex;
@@ -338,6 +372,7 @@ td .barra {
 .fechar:hover { color: var(--text); }
 
 @media (max-width: 600px) {
+  .abas-contas button { padding: 9px 8px; font-size: 0.8rem; }
   .contas-page #header h1 { font-size: 0.95rem; }
   .contas-page #controls { gap: 8px; }
   .contas-page #controls a { font-size: 0.7rem; }

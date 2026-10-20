@@ -1,6 +1,6 @@
 # Sessão — 2026-10-20 (1) · Contas em três abas
 
-**Status:** iniciada 2026-10-20 02:20 UTC · em andamento
+**Status:** iniciada 2026-10-20 02:20 UTC · finalizada 2026-10-20 02:45 UTC
 (branch `claude/contas-municipio-cak3b6`, label `agentic`).
 
 ## Pedido
@@ -9,6 +9,22 @@
 pode selecionar o fornecedor e os dados são atualizados e aba de gastos com
 viagens." Na aba de fornecedor, tirar o gráfico "Evolução dos pagamentos por
 ano" e deixar só "Valor pago por ano — {fornecedor}".
+
+## O que foi feito
+
+- `contas.html` em três abas (`#geral`, `#fornecedor`, `#viagens` na URL; o
+  botão Voltar do navegador troca de aba, setas ←/→ também):
+  - **Visão geral** (inicial): valor pago de 2020 até o último mês, sem
+    filtros: KPIs, evolução anual + top 10 de cada ano, por ano, por mês,
+    maiores recebedores e por órgão. Clicar num recebedor abre a aba Por
+    fornecedor com ele selecionado.
+  - **Por fornecedor**: filtros (evento, ano, busca), Top 10, cartão do
+    fornecedor, KPIs, só o gráfico "Valor pago por ano — {fornecedor}" e a
+    tabela agrupada por recebedor. Com busca sem seleção, o gráfico soma os
+    fornecedores encontrados.
+  - **Viagens da Câmara**: a seção de viagens como estava.
+- `js/contas.js`: funções de render recebem o estado (fixo ou filtrado);
+  `js/viagens.js` mostra aviso se os dados não carregarem. `sw.js` → v14.
 
 ---
 

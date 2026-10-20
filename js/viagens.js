@@ -13,6 +13,8 @@
   // as traduções desta seção no dicionário dele.
   const EN = {
     "Viagens da Câmara": "City Council trips",
+    "Carregando viagens…": "Loading trips…",
+    "Não foi possível carregar as viagens da Câmara.": "Could not load the City Council trips.",
     "Quem viajou": "Who travelled",
     "Vereadores": "Council members",
     "Servidores": "Staff",
@@ -101,15 +103,20 @@
     return [...m.entries()].map(([k, x]) => ({ k, ...x })).sort((a, b) => b.total - a.total);
   }
 
+  function semDados() {
+    const p = $("viag-vazio");
+    if (p) p.textContent = tr("Não foi possível carregar as viagens da Câmara.");
+  }
+
   async function init() {
     try {
       const r = await fetch(URL_DADOS);
-      if (!r.ok) return;
+      if (!r.ok) return semDados();
       D = await r.json();
     } catch (e) {
-      return;
+      return semDados();
     }
-    if (!D.viagens || !D.viagens.length) return;
+    if (!D.viagens || !D.viagens.length) return semDados();
     $("viagens").hidden = false;
 
     $("v-ano").innerHTML = `<option value="">${esc(tr("Todos"))} (${anos()[0]}–${anos().at(-1)})</option>` +
