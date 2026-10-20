@@ -1,3 +1,14 @@
+# Sessão — 2026-10-20 (4) · Bandeira de Cotia no header
+
+**Status:** iniciada 2026-10-20 16:47 UTC · finalizada 2026-10-20 17:25 UTC
+(commit direto no `main`, a pedido do Alex).
+
+- Bandeira (`icons/cotia-flag.svg`, 28 px) ao lado do nome "Cotia" no header
+  das três páginas. No celular o nome some e a bandeira fica, ao lado das abas
+  curtas. `sw.js` → v22 (o branch do tema já usa v21).
+
+---
+
 # Sessão — 2026-10-20 (3) · Loading animado nas Contas
 
 **Status:** iniciada 2026-10-20 03:05 UTC · finalizada 2026-10-20 03:25 UTC
