@@ -1,3 +1,36 @@
+# Sessão — 2026-10-20 (3) · Tema claro/escuro e tabelas em cartões
+
+**Status:** iniciada 2026-10-20 02:50 UTC · finalizada 2026-10-20 03:20 UTC
+(branch `claude/contas-tema-g60600`, sobre `claude/abas-header-tlksjp` do
+PR #8; PR ainda não aberto, aguardando o OK do Alex sobre as prévias).
+
+## Pedido
+
+Tema claro/escuro (variáveis CSS em `:root` + `[data-theme="dark"]`, botão
+Alternar tema no header, preferência no `localStorage`) em todas as páginas,
+e tabelas financeiras responsivas (card view abaixo de 768px, `data-label`
+em cada `<td>`) só nas Contas Municipais. Exemplo em arquivo único.
+
+## O que foi feito
+
+- `css/style.css`: `:root` = tema claro, `[data-theme="dark"]` = o visual
+  escuro original. Sobreposições brancas viraram `rgba(var(--tinta), a)` e
+  painéis sobre o mapa `rgba(var(--painel-rgb), a)`; sombras escalam com
+  `--sombra-k`. Utilitários `.valor-positivo` / `.valor-negativo`.
+- `js/tema.js` (todas as páginas, no `<head>`): escolhe o tema (salvo →
+  sistema → claro) antes do primeiro desenho, cria o botão ☀️/🌙 ao lado do
+  PT/EN, atualiza `theme-color`, recolore gráficos do Chart.js e dispara
+  `temachange`. O mapa troca entre os tiles Escuro/Claro junto com o tema
+  (se a pessoa escolheu OSM ou Satélite, fica como está).
+- Contas: `rotularTabela()` em `js/contas.js` põe `data-label` e papéis ARIA
+  em todas as tabelas (inclusive as redesenhadas, via MutationObserver);
+  `css/contas.css` transforma linhas em cartões no celular.
+- Exemplo isolado: `/mnt/project-files/contas-tema/tema-tabela-responsiva.html`;
+  prévias em `/mnt/project-files/contas-tema/previews/`.
+- `sw.js` → v17 (cacheia `js/tema.js`).
+
+---
+
 # Sessão — 2026-10-20 (2) · Abas segmentadas no header e nas Contas
 
 **Status:** iniciada 2026-10-20 02:45 UTC · finalizada 2026-10-20 03:15 UTC

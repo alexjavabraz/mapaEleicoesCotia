@@ -21,7 +21,7 @@ body.contas-page {
 
 .cartao {
   background: var(--sidebar-bg);
-  border: 1px solid rgba(255,255,255,0.08);
+  border: 1px solid rgba(var(--tinta), 0.08);
   border-radius: 10px;
   padding: 14px 16px;
   min-width: 0;
@@ -64,7 +64,7 @@ body.contas-page {
 .filtros input {
   background: var(--accent);
   color: var(--text);
-  border: 1px solid rgba(255,255,255,0.15);
+  border: 1px solid rgba(var(--tinta), 0.15);
   border-radius: 6px;
   padding: 7px 10px;
   font-size: 0.85rem;
@@ -84,7 +84,7 @@ body.contas-page {
   font-family: inherit;
 }
 .btn.sec {
-  background: rgba(255,255,255,0.08);
+  background: rgba(var(--tinta), 0.08);
   font-weight: 400;
 }
 .btn:hover { filter: brightness(1.12); }
@@ -98,7 +98,7 @@ body.contas-page {
 }
 .kpi {
   background: var(--sidebar-bg);
-  border: 1px solid rgba(255,255,255,0.08);
+  border: 1px solid rgba(var(--tinta), 0.08);
   border-radius: 10px;
   padding: 12px 16px;
   display: flex;
@@ -144,7 +144,7 @@ body.contas-page {
 .evo-head select {
   background: var(--accent);
   color: var(--text);
-  border: 1px solid rgba(255,255,255,0.15);
+  border: 1px solid rgba(var(--tinta), 0.15);
   border-radius: 6px;
   padding: 5px 8px;
   font-size: 0.8rem;
@@ -165,9 +165,9 @@ body.contas-page {
   margin-bottom: 10px;
 }
 .anos-pills button {
-  background: rgba(255,255,255,0.06);
+  background: rgba(var(--tinta), 0.06);
   color: var(--text-muted);
-  border: 1px solid rgba(255,255,255,0.1);
+  border: 1px solid rgba(var(--tinta), 0.1);
   border-radius: 999px;
   padding: 5px 12px;
   font-size: 0.8rem;
@@ -199,20 +199,20 @@ body.contas-page {
 .viag-filtros select {
   background: var(--accent);
   color: var(--text);
-  border: 1px solid rgba(255,255,255,0.15);
+  border: 1px solid rgba(var(--tinta), 0.15);
   border-radius: 6px;
   padding: 5px 8px;
   font-size: 0.8rem;
   font-family: inherit;
 }
 .kpis-viag { margin: 6px 0 14px; }
-.kpis-viag .kpi { background: rgba(255,255,255,0.03); }
+.kpis-viag .kpi { background: rgba(var(--tinta), 0.03); }
 #t-viag-pivo tbody tr { cursor: pointer; }
-#t-viag-pivo tbody tr:hover { background: rgba(255,255,255,0.04); }
+#t-viag-pivo tbody tr:hover { background: rgba(var(--tinta), 0.04); }
 #t-viag-pivo tr.ativa { background: rgba(233,69,96,0.12); }
-#t-viag-pivo td.zero { color: rgba(255,255,255,0.2); }
+#t-viag-pivo td.zero { color: rgba(var(--tinta), 0.2); }
 #t-viag-pivo td.ativo { background: rgba(233,69,96,0.08); }
-#t-viag-pivo tfoot td { font-weight: 600; border-top: 1px solid rgba(255,255,255,0.15); }
+#t-viag-pivo tfoot td { font-weight: 600; border-top: 1px solid rgba(var(--tinta), 0.15); }
 #viag-detalhe { margin-top: 14px; }
 #viagens .link-btn {
   background: none;
@@ -252,7 +252,7 @@ table {
 th, td {
   padding: 7px 8px;
   text-align: left;
-  border-bottom: 1px solid rgba(255,255,255,0.06);
+  border-bottom: 1px solid rgba(var(--tinta), 0.06);
 }
 th {
   color: var(--text-muted);
@@ -271,7 +271,7 @@ td.num, th.num {
 #t-receb tbody tr { cursor: pointer; }
 #t-receb tbody tr:hover,
 #m-tabela tbody tr:hover,
-#evo-top tbody tr:hover { background: rgba(255,255,255,0.04); }
+#evo-top tbody tr:hover { background: rgba(var(--tinta), 0.04); }
 td .barra {
   display: inline-block;
   height: 6px;
@@ -304,7 +304,7 @@ td .barra {
 #modal-top10 {
   background: var(--secondary);
   color: var(--text);
-  border: 1px solid rgba(255,255,255,0.12);
+  border: 1px solid rgba(var(--tinta), 0.12);
   border-radius: 12px;
   width: min(900px, calc(100vw - 32px));
   max-height: calc(100vh - 64px);
@@ -322,16 +322,16 @@ td .barra {
 .modal-head h3 { font-size: 1rem; flex: 1 1 auto; }
 .abas { display: flex; gap: 6px; }
 .aba {
-  background: rgba(255,255,255,0.06);
+  background: rgba(var(--tinta), 0.06);
   color: var(--text-muted);
-  border: 1px solid rgba(255,255,255,0.1);
+  border: 1px solid rgba(var(--tinta), 0.1);
   border-radius: 6px;
   padding: 6px 10px;
   font-size: 0.8rem;
   cursor: pointer;
   font-family: inherit;
 }
-.aba.ativa { background: var(--accent); color: var(--text); border-color: rgba(255,255,255,0.3); }
+.aba.ativa { background: var(--accent); color: var(--text); border-color: rgba(var(--tinta), 0.3); }
 .fechar {
   background: none;
   border: 0;
@@ -349,4 +349,77 @@ td .barra {
   .kpis { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .kpis .kpi:first-child { grid-column: 1 / -1; }
   .contas-page #header { padding: 0 12px; }
+}
+
+/* ---- Tabelas em cartões (celular) ----
+   No celular cada linha vira um cartão e cada célula uma linha
+   "Coluna ...... valor": o nome da coluna vem do data-label que
+   js/contas.js (rotularTabela) coloca em cada <td>. O <thead> fica
+   escondido só visualmente, para leitores de tela continuarem a lê-lo. */
+.contas-page .cartao,
+.contas-page .kpi { box-shadow: 0 1px 3px rgba(0,0,0,calc(0.3 * var(--sombra-k))); }
+
+@media screen and (max-width: 768px) {
+  .contas-page .tabela-wrap { overflow: visible; }
+
+  .contas-page table thead {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+
+  .contas-page table,
+  .contas-page table tbody,
+  .contas-page table tfoot,
+  .contas-page table tr,
+  .contas-page table td {
+    display: block;
+    width: 100%;
+  }
+
+  /* Cada linha é um cartão com borda arredondada e sombra do tema */
+  .contas-page table tr {
+    background: var(--secondary);
+    border: 1px solid rgba(var(--tinta), 0.12);
+    border-radius: 10px;
+    box-shadow: 0 1px 4px rgba(0,0,0,calc(0.35 * var(--sombra-k)));
+    padding: 2px 12px;
+    margin-bottom: 10px;
+  }
+  .contas-page table tfoot tr { border-width: 2px; }
+
+  /* Cada célula: rótulo à esquerda, valor à direita */
+  .contas-page table td {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 12px;
+    padding: 8px 0;
+    text-align: right;
+    white-space: normal;
+    border-bottom: 1px solid rgba(var(--tinta), 0.07);
+    overflow-wrap: anywhere;
+  }
+  .contas-page table td:last-child { border-bottom: 0; }
+  .contas-page table td::before {
+    content: attr(data-label);
+    flex-shrink: 0;
+    max-width: 45%;
+    text-align: left;
+    font-weight: 600;
+    color: var(--text-muted);
+  }
+  .contas-page table td .td-valor { min-width: 0; }
+  .contas-page table td .link-btn { text-align: right; }
+  /* Linha de "nenhum resultado" (colspan): sem rótulo, texto centralizado */
+  .contas-page table td[colspan] { justify-content: center; text-align: center; }
+  .contas-page table td[colspan]::before { content: none; }
+  /* Barrinha de proporção e anos zerados não cabem no cartão */
+  .contas-page table td .barra { display: none; }
+  #t-viag-pivo td.zero { display: none; }
+  #t-viag-pivo tfoot td { border-top: 0; }
 }

@@ -2,7 +2,32 @@
    Mapa Eleitoral de Cotia 2024 - Estilos
    ============================================= */
 
+/* ---- Tema claro / escuro ----
+   :root = tema claro (padrão). [data-theme="dark"] no <html> sobrescreve as
+   mesmas variáveis com o tema escuro, que era o visual original do site.
+   O atributo é definido por js/tema.js (preferência salva no localStorage,
+   senão a do sistema). Sobreposições translúcidas usam --tinta (texto/linhas
+   sobre o fundo) e --painel-rgb (painéis flutuantes sobre o mapa). */
 :root {
+  --primary: #f3f5f9;
+  --secondary: #ffffff;
+  --accent: #e8edf5;
+  --highlight: #d6334f;
+  --text: #1c2333;
+  --text-muted: #5a6478;
+  --sidebar-bg: #ffffff;
+  --tinta: 15, 23, 42;
+  --painel-rgb: 255, 255, 255;
+  --sombra-k: 0.35;
+  --positivo: #15803d;
+  --negativo: #b91c1c;
+  --sidebar-width: 380px;
+  --header-height: 56px;
+  --zone-colors: #4fc3f7, #81c784, #ffb74d, #f06292, #ba68c8, #4db6ac;
+  color-scheme: light;
+}
+
+[data-theme="dark"] {
   --primary: #1a1a2e;
   --secondary: #16213e;
   --accent: #0f3460;
@@ -10,10 +35,42 @@
   --text: #eaeaea;
   --text-muted: #a0a0b0;
   --sidebar-bg: #12122a;
-  --sidebar-width: 380px;
-  --header-height: 56px;
-  --zone-colors: #4fc3f7, #81c784, #ffb74d, #f06292, #ba68c8, #4db6ac;
+  --tinta: 255, 255, 255;
+  --painel-rgb: 18, 18, 42;
+  --sombra-k: 1;
+  --positivo: #4ade80;
+  --negativo: #f87171;
+  color-scheme: dark;
 }
+
+/* Botão Alternar tema (criado por js/tema.js no header, junto do PT/EN) */
+.header-acoes {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+.header-acoes .lang-toggle { margin-left: 0; }
+.tema-toggle {
+  flex-shrink: 0;
+  width: 30px;
+  height: 30px;
+  border-radius: 8px;
+  border: 1px solid rgba(var(--tinta), 0.15);
+  background: rgba(var(--tinta), 0.05);
+  font-size: 1rem;
+  line-height: 1;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.tema-toggle:hover { background: rgba(var(--tinta), 0.1); }
+.tema-toggle:focus-visible { outline: 2px solid var(--highlight); outline-offset: 2px; }
+
+/* Utilitários de cor financeira (positivo/negativo), ajustados por tema */
+.valor-positivo { color: var(--positivo); }
+.valor-negativo { color: var(--negativo); }
 
 * {
   box-sizing: border-box;
@@ -37,13 +94,13 @@ html, body {
   right: 0;
   height: var(--header-height);
   background: var(--secondary);
-  border-bottom: 1px solid rgba(255,255,255,0.08);
+  border-bottom: 1px solid rgba(var(--tinta), 0.08);
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 0 20px;
   z-index: 1000;
-  box-shadow: 0 2px 12px rgba(0,0,0,0.4);
+  box-shadow: 0 2px 12px rgba(0,0,0,calc(0.4 * var(--sombra-k)));
 }
 
 #header h1 {
@@ -88,7 +145,7 @@ html, body {
 #controls select {
   background: var(--accent);
   color: var(--text);
-  border: 1px solid rgba(255,255,255,0.12);
+  border: 1px solid rgba(var(--tinta), 0.12);
   border-radius: 6px;
   padding: 5px 10px;
   font-size: 0.85rem;
@@ -99,7 +156,7 @@ html, body {
 
 #controls select:hover,
 #controls select:focus {
-  border-color: rgba(255,255,255,0.35);
+  border-color: rgba(var(--tinta), 0.35);
 }
 
 /* ---- LAYOUT PRINCIPAL ---- */
@@ -127,7 +184,7 @@ html, body {
 #sidebar {
   width: var(--sidebar-width);
   background: var(--sidebar-bg);
-  border-left: 1px solid rgba(255,255,255,0.07);
+  border-left: 1px solid rgba(var(--tinta), 0.07);
   display: flex;
   flex-direction: column;
   overflow: hidden;
@@ -137,7 +194,7 @@ html, body {
 #sidebar-header {
   padding: 16px 20px;
   background: var(--secondary);
-  border-bottom: 1px solid rgba(255,255,255,0.07);
+  border-bottom: 1px solid rgba(var(--tinta), 0.07);
   flex-shrink: 0;
 }
 
@@ -209,7 +266,7 @@ html, body {
   background: transparent;
 }
 #sidebar-content::-webkit-scrollbar-thumb {
-  background: rgba(255,255,255,0.15);
+  background: rgba(var(--tinta), 0.15);
   border-radius: 2px;
 }
 
@@ -251,7 +308,7 @@ html, body {
   color: var(--text-muted);
   margin-bottom: 10px;
   padding-bottom: 6px;
-  border-bottom: 1px solid rgba(255,255,255,0.07);
+  border-bottom: 1px solid rgba(var(--tinta), 0.07);
 }
 
 .section-title .dot {
@@ -272,7 +329,7 @@ html, body {
   font-size: 0.75rem;
   font-weight: 600;
   cursor: pointer;
-  border: 1px solid rgba(255,255,255,0.15);
+  border: 1px solid rgba(var(--tinta), 0.15);
   background: transparent;
   color: var(--text-muted);
   transition: all 0.2s;
@@ -285,7 +342,7 @@ html, body {
 }
 
 .turno-tab:hover:not(.active) {
-  border-color: rgba(255,255,255,0.3);
+  border-color: rgba(var(--tinta), 0.3);
   color: var(--text);
 }
 
@@ -297,8 +354,8 @@ html, body {
 }
 
 .candidate-card {
-  background: rgba(255,255,255,0.04);
-  border: 1px solid rgba(255,255,255,0.07);
+  background: rgba(var(--tinta), 0.04);
+  border: 1px solid rgba(var(--tinta), 0.07);
   border-radius: 8px;
   padding: 10px 12px;
   transition: background 0.15s;
@@ -306,7 +363,7 @@ html, body {
 }
 
 .candidate-card:hover {
-  background: rgba(255,255,255,0.07);
+  background: rgba(var(--tinta), 0.07);
 }
 
 .candidate-card.eleito {
@@ -346,9 +403,9 @@ html, body {
 
 /* Select de cor do destaque */
 .cand-cor-select {
-  background: rgba(255,255,255,0.07);
+  background: rgba(var(--tinta), 0.07);
   color: var(--text-muted);
-  border: 1px solid rgba(255,255,255,0.12);
+  border: 1px solid rgba(var(--tinta), 0.12);
   border-radius: 4px;
   font-size: 0.62rem;
   padding: 2px 3px;
@@ -359,11 +416,11 @@ html, body {
 }
 .cand-cor-select:hover,
 .cand-cor-select:focus {
-  border-color: rgba(255,255,255,0.3);
+  border-color: rgba(var(--tinta), 0.3);
   color: var(--text);
 }
 .cand-map-ctrl.ativo .cand-cor-select {
-  border-color: rgba(255,255,255,0.35);
+  border-color: rgba(var(--tinta), 0.35);
   color: var(--text);
 }
 
@@ -374,8 +431,8 @@ html, body {
   justify-content: center;
   width: 24px;
   height: 24px;
-  background: rgba(255,255,255,0.07);
-  border: 1px solid rgba(255,255,255,0.12);
+  background: rgba(var(--tinta), 0.07);
+  border: 1px solid rgba(var(--tinta), 0.12);
   border-radius: 4px;
   color: var(--text-muted);
   cursor: pointer;
@@ -383,9 +440,9 @@ html, body {
   flex-shrink: 0;
 }
 .cand-map-btn:hover {
-  background: rgba(255,255,255,0.15);
+  background: rgba(var(--tinta), 0.15);
   color: var(--text);
-  border-color: rgba(255,255,255,0.3);
+  border-color: rgba(var(--tinta), 0.3);
 }
 .cand-map-btn.ativo {
   background: rgba(233,69,96,0.2);
@@ -424,7 +481,7 @@ html, body {
 
 .candidate-partido {
   display: inline-block;
-  background: rgba(255,255,255,0.1);
+  background: rgba(var(--tinta), 0.1);
   color: var(--text-muted);
   font-size: 0.7rem;
   font-weight: 700;
@@ -444,7 +501,7 @@ html, body {
 .vote-bar {
   flex: 1;
   height: 4px;
-  background: rgba(255,255,255,0.08);
+  background: rgba(var(--tinta), 0.08);
   border-radius: 2px;
   overflow: hidden;
 }
@@ -478,6 +535,10 @@ html, body {
 .situacao-segundo-turno { background: rgba(255,152,0,0.25); color: #ffb74d; }
 .situacao-suplente { background: rgba(96,125,139,0.25); color: #90a4ae; }
 .situacao-nao-eleito { background: rgba(244,67,54,0.2); color: #ef9a9a; }
+/* Tema claro: tons mais escuros para manter o contraste do texto */
+:root:not([data-theme="dark"]) .situacao-eleito { color: #2e7d32; }
+:root:not([data-theme="dark"]) .situacao-segundo-turno { color: #b45309; }
+:root:not([data-theme="dark"]) .situacao-nao-eleito { color: #c62828; }
 
 /* ---- TOTAIS / ESTATÍSTICAS ---- */
 .stats-grid {
@@ -488,8 +549,8 @@ html, body {
 }
 
 .stat-card {
-  background: rgba(255,255,255,0.04);
-  border: 1px solid rgba(255,255,255,0.07);
+  background: rgba(var(--tinta), 0.04);
+  border: 1px solid rgba(var(--tinta), 0.07);
   border-radius: 8px;
   padding: 10px 12px;
   text-align: center;
@@ -514,8 +575,8 @@ html, body {
   position: absolute;
   bottom: 24px;
   left: 12px;
-  background: rgba(18, 18, 42, 0.92);
-  border: 1px solid rgba(255,255,255,0.1);
+  background: rgba(var(--painel-rgb), 0.92);
+  border: 1px solid rgba(var(--tinta), 0.1);
   border-radius: 8px;
   padding: 10px 14px;
   z-index: 800;
@@ -534,8 +595,8 @@ html, body {
 
 /* Legenda de partidos (eleicao-geral.html) */
 #map-legend-partidos {
-  background: rgba(18, 18, 42, 0.92);
-  border: 1px solid rgba(255,255,255,0.1);
+  background: rgba(var(--painel-rgb), 0.92);
+  border: 1px solid rgba(var(--tinta), 0.1);
   border-radius: 8px;
   padding: 10px 14px;
   z-index: 800;
@@ -569,19 +630,19 @@ html, body {
 
 /* ---- TOOLTIP ---- */
 .map-tooltip {
-  background: rgba(18, 18, 42, 0.95) !important;
-  border: 1px solid rgba(255,255,255,0.15) !important;
+  background: rgba(var(--painel-rgb), 0.95) !important;
+  border: 1px solid rgba(var(--tinta), 0.15) !important;
   color: var(--text) !important;
   border-radius: 6px !important;
   font-family: inherit !important;
   font-size: 0.8rem !important;
   padding: 6px 10px !important;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.4) !important;
+  box-shadow: 0 4px 12px rgba(0,0,0,calc(0.4 * var(--sombra-k))) !important;
   backdrop-filter: blur(4px);
 }
 
 .map-tooltip::before {
-  border-top-color: rgba(255,255,255,0.15) !important;
+  border-top-color: rgba(var(--tinta), 0.15) !important;
 }
 
 .tooltip-name {
@@ -601,7 +662,7 @@ html, body {
   font-weight: 600;
   margin-top: 5px;
   padding-top: 4px;
-  border-top: 1px solid rgba(255,255,255,0.12);
+  border-top: 1px solid rgba(var(--tinta), 0.12);
 }
 
 .tooltip-escola-stat {
@@ -613,14 +674,14 @@ html, body {
   color: #ffd54f;
   margin-top: 5px;
   padding-top: 4px;
-  border-top: 1px solid rgba(255,255,255,0.12);
+  border-top: 1px solid rgba(var(--tinta), 0.12);
 }
 
 /* ---- DETALHE DO TOOLTIP DE ESCOLA ---- */
 .tooltip-escola-detalhe {
   margin-top: 5px;
   padding-top: 5px;
-  border-top: 1px solid rgba(255,255,255,0.12);
+  border-top: 1px solid rgba(var(--tinta), 0.12);
   display: flex;
   flex-direction: column;
   gap: 3px;
@@ -656,8 +717,8 @@ html, body {
   position: absolute;
   /* ancora a borda inferior ao centro do marcador; afasta 12px para cima (raio 6 + gap 6) */
   transform: translate(-50%, calc(-100% - 12px));
-  background: rgba(12, 12, 30, 0.88);
-  border: 1px solid rgba(255, 255, 255, 0.13);
+  background: rgba(var(--painel-rgb), 0.88);
+  border: 1px solid rgba(var(--tinta), 0.13);
   border-radius: 4px;
   padding: 2px 6px 3px;
   white-space: nowrap;
@@ -676,7 +737,7 @@ html, body {
 
 .elp-key {
   font-size: 0.56rem;
-  color: rgba(160, 160, 180, 0.8);
+  color: var(--text-muted);
   text-transform: uppercase;
   letter-spacing: 0.04em;
   flex-shrink: 0;
@@ -685,14 +746,14 @@ html, body {
 .elp-val {
   font-size: 0.65rem;
   font-weight: 700;
-  color: #eaeaea;
+  color: var(--text);
 }
 
 /* ---- LOADING ---- */
 #loading {
   position: fixed;
   inset: 0;
-  background: rgba(15, 15, 30, 0.92);
+  background: rgba(var(--painel-rgb), 0.92);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -710,7 +771,7 @@ html, body {
 .spinner {
   width: 40px;
   height: 40px;
-  border: 3px solid rgba(255,255,255,0.1);
+  border: 3px solid rgba(var(--tinta), 0.1);
   border-top-color: var(--highlight);
   border-radius: 50%;
   animation: spin 0.8s linear infinite;
@@ -745,7 +806,7 @@ html, body {
 }
 
 #no-data-banner code {
-  background: rgba(255,255,255,0.1);
+  background: rgba(var(--tinta), 0.1);
   padding: 1px 5px;
   border-radius: 3px;
   font-size: 0.78rem;
@@ -763,7 +824,7 @@ html, body {
   width: 36px;
   height: 36px;
   background: var(--secondary);
-  border: 1px solid rgba(255,255,255,0.14);
+  border: 1px solid rgba(var(--tinta), 0.14);
   border-radius: 8px;
   color: var(--text);
   font-size: 1.25rem;
@@ -774,13 +835,13 @@ html, body {
   align-items: center;
   justify-content: center;
   transition: background 0.15s, border-color 0.15s, transform 0.1s;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.35);
+  box-shadow: 0 2px 6px rgba(0,0,0,calc(0.35 * var(--sombra-k)));
   font-family: inherit;
 }
 
 .zoom-btn:hover {
   background: var(--accent);
-  border-color: rgba(255,255,255,0.3);
+  border-color: rgba(var(--tinta), 0.3);
 }
 
 .zoom-btn:active {
@@ -799,7 +860,7 @@ html, body {
   width: 56px;
   height: 28px;
   background: var(--secondary);
-  border: 1px solid rgba(255,255,255,0.14);
+  border: 1px solid rgba(var(--tinta), 0.14);
   border-radius: 8px;
   color: var(--text-muted);
   font-size: 0.68rem;
@@ -809,7 +870,7 @@ html, body {
   align-items: center;
   justify-content: center;
   transition: background 0.15s, border-color 0.15s, color 0.15s, transform 0.1s;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.35);
+  box-shadow: 0 2px 6px rgba(0,0,0,calc(0.35 * var(--sombra-k)));
   font-family: inherit;
   letter-spacing: 0.02em;
   white-space: nowrap;
@@ -817,7 +878,7 @@ html, body {
 
 .layer-btn:hover {
   background: var(--accent);
-  border-color: rgba(255,255,255,0.3);
+  border-color: rgba(var(--tinta), 0.3);
   color: var(--text);
 }
 
@@ -843,7 +904,7 @@ html, body {
   height: 30px;
   padding: 0 12px;
   background: var(--secondary);
-  border: 1px solid rgba(255,255,255,0.14);
+  border: 1px solid rgba(var(--tinta), 0.14);
   border-radius: 8px;
   color: var(--text);
   font-size: 0.74rem;
@@ -851,24 +912,24 @@ html, body {
   font-family: inherit;
   cursor: pointer;
   white-space: nowrap;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.35);
+  box-shadow: 0 2px 6px rgba(0,0,0,calc(0.35 * var(--sombra-k)));
   transition: background 0.15s, border-color 0.15s, transform 0.1s;
 }
 
-.map-action-btn:hover { background: var(--accent); border-color: rgba(255,255,255,0.3); }
+.map-action-btn:hover { background: var(--accent); border-color: rgba(var(--tinta), 0.3); }
 .map-action-btn.active { background: var(--highlight); border-color: var(--highlight); color: #fff; }
 .map-action-btn:active { transform: scale(0.95); }
 .map-action-btn:focus-visible { outline: 2px solid #ffd54f; outline-offset: 2px; }
 
 .secao-legenda {
-  background: rgba(18, 18, 42, 0.93);
-  border: 1px solid rgba(255,255,255,0.14);
+  background: rgba(var(--painel-rgb), 0.93);
+  border: 1px solid rgba(var(--tinta), 0.14);
   border-radius: 8px;
   padding: 8px 10px;
   max-width: 220px;
   font-size: 0.68rem;
   color: var(--text);
-  box-shadow: 0 4px 16px rgba(0,0,0,0.5);
+  box-shadow: 0 4px 16px rgba(0,0,0,calc(0.5 * var(--sombra-k)));
 }
 
 .secao-legenda[hidden] { display: none; }
@@ -895,7 +956,7 @@ html, body {
   display: flex;
   gap: 4px;
   margin-bottom: 12px;
-  background: rgba(255,255,255,0.04);
+  background: rgba(var(--tinta), 0.04);
   border-radius: 8px;
   padding: 3px;
 }
@@ -922,7 +983,7 @@ html, body {
 }
 
 .cargo-tab:hover:not(.active) {
-  background: rgba(255,255,255,0.08);
+  background: rgba(var(--tinta), 0.08);
   color: var(--text);
 }
 
@@ -935,8 +996,8 @@ html, body {
 
 .ver-stat {
   flex: 1;
-  background: rgba(255,255,255,0.04);
-  border: 1px solid rgba(255,255,255,0.07);
+  background: rgba(var(--tinta), 0.04);
+  border: 1px solid rgba(var(--tinta), 0.07);
   border-radius: 8px;
   padding: 8px 6px;
   text-align: center;
@@ -989,7 +1050,7 @@ html, body {
   font-size: 0.72rem;
   font-weight: 600;
   cursor: pointer;
-  border: 1px solid rgba(255,255,255,0.14);
+  border: 1px solid rgba(var(--tinta), 0.14);
   background: transparent;
   color: var(--text-muted);
   transition: all 0.18s;
@@ -1003,7 +1064,7 @@ html, body {
 }
 
 .ver-sort-btn:hover:not(.active) {
-  border-color: rgba(255,255,255,0.3);
+  border-color: rgba(var(--tinta), 0.3);
   color: var(--text);
 }
 
@@ -1025,7 +1086,7 @@ html, body {
   width: 100%;
   background: var(--accent);
   color: var(--text);
-  border: 1px solid rgba(255,255,255,0.12);
+  border: 1px solid rgba(var(--tinta), 0.12);
   border-radius: 6px;
   padding: 7px 10px;
   font-size: 0.82rem;
@@ -1042,7 +1103,7 @@ html, body {
 
 /* ---- RANKING BOX (canto inferior esquerdo) ---- */
 .ranking-box {
-  background: rgba(18, 18, 42, 0.93);
+  background: rgba(var(--painel-rgb), 0.93);
   border: 1px solid rgba(233, 69, 96, 0.35);
   border-radius: 8px;
   padding: 10px 12px;
@@ -1053,7 +1114,7 @@ html, body {
   display: flex;
   flex-direction: column;
   gap: 4px;
-  box-shadow: 0 4px 16px rgba(0,0,0,0.5);
+  box-shadow: 0 4px 16px rgba(0,0,0,calc(0.5 * var(--sombra-k)));
   pointer-events: auto;
 }
 
@@ -1085,7 +1146,7 @@ html, body {
 .ranking-empty code {
   font-style: normal;
   font-size: 0.65rem;
-  background: rgba(255,255,255,0.07);
+  background: rgba(var(--tinta), 0.07);
   padding: 1px 4px;
   border-radius: 3px;
   color: #ffd54f;
@@ -1122,10 +1183,10 @@ html, body {
   text-transform: uppercase;
   letter-spacing: 0.07em;
   padding: 0 4px 5px;
-  border-bottom: 1px solid rgba(255,255,255,0.15);
+  border-bottom: 1px solid rgba(var(--tinta), 0.15);
   position: sticky;
   top: 0;
-  background: rgba(14, 14, 36, 0.98);
+  background: rgba(var(--painel-rgb), 0.98);
   z-index: 1;
 }
 
@@ -1140,11 +1201,11 @@ html, body {
 }
 
 .ranking-tr {
-  border-bottom: 1px solid rgba(255,255,255,0.04);
+  border-bottom: 1px solid rgba(var(--tinta), 0.04);
 }
 
 .ranking-tr:hover td {
-  background: rgba(255,255,255,0.05);
+  background: rgba(var(--tinta), 0.05);
 }
 
 .ranking-rank {
@@ -1201,7 +1262,7 @@ html, body {
   background: #2196f3;
   border: 2.5px solid #fff;
   border-radius: 50%;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.45);
+  box-shadow: 0 2px 8px rgba(0,0,0,calc(0.45 * var(--sombra-k)));
   z-index: 2;
 }
 
@@ -1230,7 +1291,7 @@ html, body {
 }
 
 .leaflet-control-attribution {
-  background: rgba(15,15,30,0.8) !important;
+  background: rgba(var(--painel-rgb), 0.8) !important;
   color: var(--text-muted) !important;
   font-size: 0.65rem !important;
 }
@@ -1258,7 +1319,7 @@ html, body {
     width: 100%;
     height: 45vh;
     border-left: none;
-    border-top: 1px solid rgba(255,255,255,0.07);
+    border-top: 1px solid rgba(var(--tinta), 0.07);
   }
 
   #header h1 {
@@ -1268,11 +1329,11 @@ html, body {
 
 /* ---- ZONA HIGHLIGHT ---- */
 .zona-info {
-  background: rgba(255,255,255,0.04);
+  background: rgba(var(--tinta), 0.04);
   border-radius: 8px;
   padding: 10px 12px;
   margin-bottom: 14px;
-  border: 1px solid rgba(255,255,255,0.07);
+  border: 1px solid rgba(var(--tinta), 0.07);
 }
 
 .zona-info-row {
@@ -1295,8 +1356,8 @@ html, body {
 /* ---- VEREADORES COLLAPSE ---- */
 .show-more {
   width: 100%;
-  background: rgba(255,255,255,0.04);
-  border: 1px solid rgba(255,255,255,0.1);
+  background: rgba(var(--tinta), 0.04);
+  border: 1px solid rgba(var(--tinta), 0.1);
   border-radius: 6px;
   color: var(--text-muted);
   font-size: 0.78rem;
@@ -1308,7 +1369,7 @@ html, body {
 }
 
 .show-more:hover {
-  background: rgba(255,255,255,0.08);
+  background: rgba(var(--tinta), 0.08);
   color: var(--text);
 }
 
@@ -1316,7 +1377,7 @@ html, body {
 .fonte-info {
   margin-top: 16px;
   padding-top: 12px;
-  border-top: 1px solid rgba(255,255,255,0.07);
+  border-top: 1px solid rgba(var(--tinta), 0.07);
   font-size: 0.68rem;
   color: var(--text-muted);
   line-height: 1.5;
@@ -1333,9 +1394,9 @@ html, body {
 
 /* ---- IDIOMA (PT/EN) ---- */
 .lang-toggle {
-  background: rgba(255,255,255,0.07);
+  background: rgba(var(--tinta), 0.07);
   color: var(--text);
-  border: 1px solid rgba(255,255,255,0.15);
+  border: 1px solid rgba(var(--tinta), 0.15);
   border-radius: 4px;
   padding: 3px 8px;
   font-size: 0.72rem;
@@ -1355,5 +1416,5 @@ html, body {
 }
 
 .lang-toggle:hover {
-  border-color: rgba(255,255,255,0.35);
+  border-color: rgba(var(--tinta), 0.35);
 }

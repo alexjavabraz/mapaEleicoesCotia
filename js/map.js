@@ -57,7 +57,7 @@ const TILE_CONFIGS = {
 
 let currentBaseLayer   = null;
 let currentLabelsLayer = null;
-let currentTileKey     = "dark";
+let currentTileKey     = typeof temaAtual === "function" && temaAtual() === "light" ? "light" : "dark";
 
 // Cores para cada zona eleitoral (atribuídas dinamicamente)
 const ZONE_COLORS = [
@@ -158,13 +158,21 @@ function initMap() {
     attributionControl: true,
   });
 
-  // Camada inicial: Dark Matter
-  const cfg = TILE_CONFIGS.dark;
+  // Camada inicial: segue o tema (Escuro no tema escuro, Claro no claro)
+  const cfg = TILE_CONFIGS[currentTileKey];
   currentBaseLayer   = L.tileLayer(cfg.base,   cfg.baseOpts).addTo(map);
   currentLabelsLayer = L.tileLayer(cfg.labels, cfg.labelsOpts).addTo(map);
 
   addCustomZoomControl();
   addLayerSwitcher();
+
+  // Ao alternar o tema, o mapa acompanha, a não ser que a pessoa tenha
+  // escolhido OSM ou Satélite no seletor de camadas.
+  document.addEventListener("temachange", (e) => {
+    if (currentTileKey === "dark" || currentTileKey === "light") {
+      setTileLayer(e.detail.tema === "dark" ? "dark" : "light");
+    }
+  });
 
   return map;
 }
