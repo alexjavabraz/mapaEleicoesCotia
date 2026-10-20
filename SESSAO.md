@@ -1,3 +1,17 @@
+# Sessão — 2026-10-20 (1) · Contas em três abas
+
+**Status:** iniciada 2026-10-20 02:20 UTC · em andamento
+(branch `claude/contas-municipio-cak3b6`, label `agentic`).
+
+## Pedido
+
+"Aba inicial com dados fixos sem filtro do jeito que está hoje, aba onde se
+pode selecionar o fornecedor e os dados são atualizados e aba de gastos com
+viagens." Na aba de fornecedor, tirar o gráfico "Evolução dos pagamentos por
+ano" e deixar só "Valor pago por ano — {fornecedor}".
+
+---
+
 # Sessão — 2026-10-19 (4) · Português como idioma padrão
 
 **Status:** iniciada 2026-10-19 19:55 UTC · finalizada 2026-10-19 20:05 UTC
