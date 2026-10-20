@@ -35,6 +35,11 @@ except ImportError:
 API = "https://transparencia.tce.sp.gov.br/api/json/despesas/cotia/{ano}/{mes}"
 ANO_INICIAL = 2020
 OUT = os.path.join(os.path.dirname(__file__), "..", "data", "contas_cotia.json")
+# Um arquivo por fornecedor com todos os lançamentos (o "analítico" da página),
+# baixado só quando o fornecedor é aberto: data/contas_fornecedores/{índice}.json
+OUT_DET = os.path.join(os.path.dirname(__file__), "..", "data", "contas_fornecedores")
+# Opcional: pasta para guardar as respostas brutas da API e não baixar de novo
+CACHE = os.environ.get("CONTAS_CACHE")
 
 # Quantos lançamentos individuais guardar: no ranking geral e por fornecedor
 TOP_GERAL = 20  # por evento, ano e órgão
@@ -72,6 +77,19 @@ def parse_fornecedor(id_raw, nome):
 
 
 def baixar_mes(sess, ano, mes):
+    cache = CACHE and os.path.join(CACHE, f"{ano}-{mes:02d}.json")
+    if cache and os.path.exists(cache):
+        with open(cache, encoding="utf-8") as fh:
+            return json.load(fh)
+    dados = _baixar_mes_api(sess, ano, mes)
+    if cache and dados and (ano, mes) < (date.today().year, date.today().month):
+        os.makedirs(CACHE, exist_ok=True)
+        with open(cache, "w", encoding="utf-8") as fh:
+            json.dump(dados, fh, ensure_ascii=False)
+    return dados
+
+
+def _baixar_mes_api(sess, ano, mes):
     url = API.format(ano=ano, mes=mes)
     for tentativa in range(5):
         try:
@@ -149,11 +167,15 @@ def main():
                         "tipo": tipo, "doc": doc, "nomes": Counter(),
                         "anos": defaultdict(lambda: defaultdict(float)),
                         "total": defaultdict(float), "n": 0, "top": defaultdict(list),
+                        "lanc": [],
                     }
                 f["nomes"][nome] += 1
                 f["anos"][str(ano)][ev] += vl
                 f["total"][ev] += vl
                 f["n"] += 1
+                # [data de emissão, valor, evento, órgão, empenho, mês]
+                f["lanc"].append([parse_data(r.get("dt_emissao_despesa")) or chave_mes, r2(vl),
+                                  ev, orgao, (r.get("nr_empenho") or "").strip(), chave_mes])
 
                 # [data de emissão, valor, evento, orgao, empenho, fornecedor_id, mês]
                 # O ano do lançamento é o do mês consultado: um pagamento de 2025
@@ -225,8 +247,31 @@ def main():
     os.makedirs(os.path.dirname(OUT), exist_ok=True)
     with open(OUT, "w", encoding="utf-8") as fh:
         json.dump(saida, fh, ensure_ascii=False, separators=(",", ":"))
+    gravar_detalhes(forn, ids, ordem_ev)
     print(f"Gravado {OUT}: {len(fornecedores)} fornecedores, "
           f"{saida['meta']['registros']} registros, eventos {dict(eventos)}")
+
+
+def gravar_detalhes(forn, ids, ordem_ev):
+    """data/contas_fornecedores/{i}.json: todos os lançamentos do fornecedor i.
+
+    Formato: {"eventos": [...], "orgaos": [...], "l": [[data, valor, i_evento,
+    i_orgao, empenho, mês], ...]}, em ordem de mês e data.
+    """
+    os.makedirs(OUT_DET, exist_ok=True)
+    for nome in os.listdir(OUT_DET):
+        if nome.endswith(".json"):
+            os.remove(os.path.join(OUT_DET, nome))
+    i_ev = {e: i for i, e in enumerate(ordem_ev)}
+    for i, fid in enumerate(ids):
+        lancs = sorted(forn[fid]["lanc"], key=lambda l: (l[5], l[0]))
+        orgaos = sorted({l[3] for l in lancs})
+        i_org = {o: k for k, o in enumerate(orgaos)}
+        det = {"eventos": ordem_ev, "orgaos": orgaos,
+               "l": [[l[0], l[1], i_ev[l[2]], i_org[l[3]], l[4], l[5]] for l in lancs]}
+        with open(os.path.join(OUT_DET, f"{i}.json"), "w", encoding="utf-8") as fh:
+            json.dump(det, fh, ensure_ascii=False, separators=(",", ":"))
+    print(f"Gravados {len(ids)} arquivos em {OUT_DET}")
 
 
 def _ordena_eventos(eventos):
