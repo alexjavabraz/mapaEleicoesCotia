@@ -28,6 +28,7 @@
 
   <!-- App CSS (reaproveitado da página municipal) -->
   <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/abas.css" />
 </head>
 <body>
   <!-- ==============================
@@ -36,8 +37,14 @@
   <header id="header">
     <h1>
       <span data-i18n>Mapa Eleitoral de Cotia</span>
-      <span class="badge" data-i18n>Eleição Geral</span>
     </h1>
+
+    <!-- Seções do site em controle segmentado (css/abas.css, js/abas.js) -->
+    <nav class="segmentado segmentado--site" aria-label="Seções do site" data-i18n-aria-label>
+      <a class="segmentado__aba" href="./index.html"><span class="seg-longo" data-i18n>Eleições 2024</span><span class="seg-curto" data-i18n>2024</span></a>
+      <a class="segmentado__aba" href="./eleicao-geral.html" aria-current="page"><span class="seg-longo" data-i18n>Eleições 2026</span><span class="seg-curto" data-i18n>2026</span></a>
+      <a class="segmentado__aba" href="./contas.html"><span class="seg-longo" data-i18n>Contas Municipais</span><span class="seg-curto" data-i18n>Contas</span></a>
+    </nav>
 
     <div id="controls">
       <select id="year-select" onchange="changeYear(this.value)"
@@ -46,15 +53,9 @@
         <option value="2022">2022</option>
         <option value="2026" data-i18n>2026 — 1º Turno</option>
       </select>
-      <span style="font-size:0.72rem;color:var(--text-muted);margin-left:8px" data-i18n>
+      <span class="header-descricao" style="font-size:0.72rem;color:var(--text-muted);margin-left:8px" data-i18n>
         Presidente · Governador · Senador · Dep. Federal · Dep. Estadual — Cotia/SP
       </span>
-      <a href="./index.html" style="font-size:0.72rem;color:var(--text-muted);margin-left:16px;white-space:nowrap" data-i18n>
-        ← Eleição Municipal 2024
-      </a>
-      <a href="./contas.html" style="font-size:0.72rem;color:var(--text-muted);margin-left:16px;white-space:nowrap" data-i18n>
-        Contas do Município →
-      </a>
     </div>
   </header>
 
@@ -114,6 +115,7 @@
   <script src="https://cdn.jsdelivr.net/npm/@turf/turf@6.5.0/turf.min.js"></script>
 
   <!-- Módulos da aplicação -->
+  <script src="js/abas.js"></script>
   <script src="js/tse.js"></script>
   <script src="js/map.js"></script>
   <script src="js/geral-config.js"></script>

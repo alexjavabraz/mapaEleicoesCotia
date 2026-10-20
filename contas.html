@@ -21,28 +21,36 @@
 
   <link rel="stylesheet" href="css/style.css" />
   <link rel="stylesheet" href="css/contas.css" />
+  <link rel="stylesheet" href="css/abas.css" />
 </head>
 <body class="contas-page">
   <header id="header">
-    <h1>
-      Cotia
-      <span class="badge" data-i18n>Contas do Município</span>
-    </h1>
-    <nav id="controls">
-      <a href="./index.html" data-i18n>Eleição Municipal 2024</a>
-      <a href="./eleicao-geral.html" data-i18n>Eleição Geral</a>
+    <h1>Cotia</h1>
+
+    <!-- Seções do site em controle segmentado (css/abas.css, js/abas.js) -->
+    <nav class="segmentado segmentado--site" aria-label="Seções do site" data-i18n-aria-label>
+      <a class="segmentado__aba" href="./index.html"><span class="seg-longo" data-i18n>Eleições 2024</span><span class="seg-curto" data-i18n>2024</span></a>
+      <a class="segmentado__aba" href="./eleicao-geral.html"><span class="seg-longo" data-i18n>Eleições 2026</span><span class="seg-curto" data-i18n>2026</span></a>
+      <a class="segmentado__aba" href="./contas.html" aria-current="page"><span class="seg-longo" data-i18n>Contas Municipais</span><span class="seg-curto" data-i18n>Contas</span></a>
     </nav>
   </header>
 
   <main id="contas">
-    <!-- Abas da página: visão geral (fixa), por fornecedor e viagens -->
-    <nav class="abas-contas" role="tablist" aria-label="Seções da página" data-i18n-aria-label>
-      <button type="button" role="tab" id="tab-geral" aria-controls="aba-geral" data-aba="geral" data-i18n>Visão geral</button>
-      <button type="button" role="tab" id="tab-fornecedor" aria-controls="aba-fornecedor" data-aba="fornecedor" data-i18n>Por fornecedor</button>
-      <button type="button" role="tab" id="tab-viagens" aria-controls="aba-viagens" data-aba="viagens" data-i18n>Viagens da Câmara</button>
-    </nav>
+    <!-- Abas da página (controle segmentado): Pagamentos e Viagens; dentro de
+         Pagamentos, Visão geral e Por fornecedor. URL: #geral, #fornecedor, #viagens -->
+    <div class="segmentado abas-contas" role="tablist" aria-label="Seções da página" data-i18n-aria-label>
+      <button type="button" class="segmentado__aba" role="tab" id="tab-pagamentos" aria-controls="aba-pagamentos" data-aba="pagamentos" data-i18n>Pagamentos</button>
+      <button type="button" class="segmentado__aba" role="tab" id="tab-viagens" aria-controls="aba-viagens" data-aba="viagens" data-i18n>Viagens da Câmara</button>
+    </div>
 
-    <!-- Aba 1: visão geral, valores pagos de todo o período, sem filtros -->
+    <!-- Pagamentos da prefeitura -->
+    <div class="aba-painel" id="aba-pagamentos" role="tabpanel" aria-labelledby="tab-pagamentos">
+    <div class="segmentado abas-pagamentos" role="tablist" aria-label="Pagamentos" data-i18n-aria-label>
+      <button type="button" class="segmentado__aba" role="tab" id="tab-geral" aria-controls="aba-geral" data-aba="geral" data-i18n>Visão geral</button>
+      <button type="button" class="segmentado__aba" role="tab" id="tab-fornecedor" aria-controls="aba-fornecedor" data-aba="fornecedor" data-i18n>Por fornecedor</button>
+    </div>
+
+    <!-- Pagamentos › Visão geral: valores pagos de todo o período, sem filtros -->
     <div class="aba-painel" id="aba-geral" role="tabpanel" aria-labelledby="tab-geral">
       <section class="kpis">
         <div class="kpi"><span id="gk-total">—</span><small id="gk-total-lbl">Total</small></div>
@@ -89,7 +97,7 @@
       <p class="nota" data-i18n>Clique num recebedor para ver os pagamentos dele na aba Por fornecedor.</p>
     </div>
 
-    <!-- Aba 2: escolha um fornecedor e os dados são atualizados -->
+    <!-- Pagamentos › Por fornecedor: escolha um fornecedor e os dados são atualizados -->
     <div class="aba-painel" id="aba-fornecedor" role="tabpanel" aria-labelledby="tab-fornecedor" hidden>
       <!-- Filtros -->
       <section class="filtros">
@@ -147,7 +155,9 @@
       </section>
     </div>
 
-    <!-- Aba 3: viagens da Câmara -->
+    </div><!-- /aba-pagamentos -->
+
+    <!-- Viagens da Câmara: valores pagos em viagens -->
     <div class="aba-painel" id="aba-viagens" role="tabpanel" aria-labelledby="tab-viagens" hidden>
       <!-- Viagens da Câmara (relatórios de viagens, por vereador e por ano) -->
       <section class="cartao" id="viagens" hidden>
@@ -206,6 +216,7 @@
   </div>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+  <script src="js/abas.js"></script>
   <script src="js/contas.js"></script>
   <script src="js/viagens.js"></script>
 

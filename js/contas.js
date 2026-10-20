@@ -2,12 +2,13 @@
  * contas.js — Página "Contas do Município" (despesas de Cotia, TCE-SP).
  *
  * Lê data/contas_cotia.json (gerado por scripts/download_contas.py) e monta
- * três abas:
+ * as abas (controle segmentado, css/abas.css):
+ *  Pagamentos
  *  - Visão geral: valores pagos de todo o período, sem filtros (evolução anual,
  *    top 10 de cada ano, gráficos por ano/mês/órgão e maiores recebedores);
  *  - Por fornecedor: filtros, top 10, gráfico por ano do fornecedor escolhido
  *    e a tabela agrupada por recebedor;
- *  - Viagens da Câmara (montada por js/viagens.js).
+ *  Viagens da Câmara (montada por js/viagens.js).
  */
 
 const DATA_URL = "data/contas_cotia.json";
@@ -162,45 +163,53 @@ async function init() {
 }
 
 // -----------------------------------------------------------------------
-// Abas (#geral, #fornecedor, #viagens na URL)
+// Abas: Pagamentos (Visão geral, Por fornecedor) e Viagens; #geral, #fornecedor, #viagens na URL
 // -----------------------------------------------------------------------
+
+/** Sub-aba de Pagamentos vista por último (o clique em Pagamentos volta a ela). */
+let ultimaPagamentos = "geral";
 
 function abaDaUrl() {
   const h = location.hash.slice(1);
+  if (h === "pagamentos") return ultimaPagamentos;
   return ABAS.includes(h) ? h : "geral";
 }
 
-function mostrarAba(nome, foco = false) {
-  ABAS.forEach((a) => {
-    const ativa = a === nome;
+/** Marca a aba escolhida de um grupo e mostra/esconde os painéis dele. */
+function marcarAbas(grupo, ativaNome) {
+  grupo.forEach((a) => {
+    const ativa = a === ativaNome;
     const tab = $(`tab-${a}`);
-    tab.classList.toggle("ativa", ativa);
     tab.setAttribute("aria-selected", ativa);
     tab.tabIndex = ativa ? 0 : -1;
-    $(`aba-${a}`).hidden = !ativa;
+    const painel = $(`aba-${a}`);
+    painel.hidden = !ativa;
+    painel.setAttribute("aria-hidden", !ativa);
   });
-  if (foco) $(`tab-${nome}`).focus();
+}
+
+function mostrarAba(nome) {
+  const principal = nome === "viagens" ? "viagens" : "pagamentos";
+  marcarAbas(["pagamentos", "viagens"], principal);
+  if (principal === "pagamentos") {
+    ultimaPagamentos = nome;
+    marcarAbas(["geral", "fornecedor"], nome);
+  }
 }
 
 function irParaAba(nome) {
+  if (nome === "pagamentos") nome = ultimaPagamentos;
   if (abaDaUrl() !== nome || !location.hash) history.pushState(null, "", `#${nome}`);
   mostrarAba(nome);
 }
 
+/** Clique, Enter e Espaço ativam a aba; as setas (js/abas.js) só movem o foco. */
 function initAbas() {
-  const lista = document.querySelector(".abas-contas");
-  lista.addEventListener("click", (e) => {
-    const b = e.target.closest("button[data-aba]");
-    if (b) irParaAba(b.dataset.aba);
-  });
-  // Setas esquerda/direita trocam de aba (padrão WAI-ARIA de tabs)
-  lista.addEventListener("keydown", (e) => {
-    if (e.key !== "ArrowLeft" && e.key !== "ArrowRight") return;
-    const i = ABAS.indexOf(abaDaUrl());
-    const prox = ABAS[(i + (e.key === "ArrowRight" ? 1 : ABAS.length - 1)) % ABAS.length];
-    irParaAba(prox);
-    $(`tab-${prox}`).focus();
-  });
+  document.querySelectorAll(".abas-contas, .abas-pagamentos").forEach((lista) =>
+    lista.addEventListener("click", (e) => {
+      const b = e.target.closest("button[data-aba]");
+      if (b && b.closest(".segmentado") === lista) irParaAba(b.dataset.aba);
+    }));
   window.addEventListener("popstate", () => mostrarAba(abaDaUrl()));
   mostrarAba(abaDaUrl());
 }

@@ -1,6 +1,6 @@
 # Sessão — 2026-10-20 (2) · Abas segmentadas no header e nas Contas
 
-**Status:** iniciada 2026-10-20 02:45 UTC · em andamento
+**Status:** iniciada 2026-10-20 02:45 UTC · finalizada 2026-10-20 03:15 UTC
 (branch `claude/abas-header-tlksjp`, label `agentic`).
 
 ## Pedido
@@ -9,6 +9,25 @@ Abas mais visuais no header (Eleições 2024 / Eleições 2026 / Contas
 Municipais) no estilo "Controle Segmentado", acessíveis (tablist/tab/tabpanel,
 aria-selected, setas do teclado), com um exemplo em arquivo único; dentro de
 Contas, abas para os pagamentos e para os valores pagos em viagens.
+
+## O que foi feito
+
+- `css/abas.css` + `js/abas.js`: controle segmentado (contêiner com fundo
+  suave, aba ativa branca com texto indigo e sombra sutil, transição 0.2s,
+  anel de foco por dentro). O estado visual sai dos atributos ARIA
+  (`aria-selected` / `aria-current`). Setas ←/→ e Home/End movem o foco;
+  Enter/Espaço ativam.
+- Header das três páginas: "Eleições 2024 / Eleições 2026 / Contas
+  Municipais" no lugar dos links soltos e dos badges. São links entre páginas
+  (`<nav>` + `aria-current="page"`), não `role="tab"`, porque trocam de página.
+  No celular o título some e os rótulos ficam curtos (2024 / 2026 / Contas).
+- `contas.html`: abas Pagamentos | Viagens da Câmara; dentro de Pagamentos,
+  Visão geral | Por fornecedor. URLs `#geral`, `#fornecedor`, `#viagens`
+  continuam valendo; o clique em Pagamentos volta à última sub-aba. Painéis
+  com `hidden` + `aria-hidden`.
+- Exemplo isolado (arquivo único) em
+  `/mnt/project-files/abas-header/abas-segmentadas.html` (fora do repo).
+- `sw.js` → v16 (cacheia `css/abas.css` e `js/abas.js`).
 
 ---
 
