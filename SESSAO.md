@@ -1,3 +1,15 @@
+# Sessão — 2026-10-20 (4) · Cache do mapa 2024
+
+**Status:** iniciada 2026-10-20 17:25 UTC
+(branch `claude/cache-mapa-2024-171431`, sobre `main`, label `agentic`).
+
+## Pedido
+
+O mapa da aba Eleições 2024 demora muito para carregar: cachear os arquivos
+usados no processamento das eleições 2024.
+
+---
+
 # Sessão — 2026-10-20 (3) · Loading animado nas Contas
 
 **Status:** iniciada 2026-10-20 03:05 UTC · finalizada 2026-10-20 03:25 UTC
