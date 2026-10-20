@@ -9,8 +9,8 @@
 // (app.js, map.js, css) ou o schema dos dados. O navegador só roda o evento
 // "install" de novo quando este arquivo muda byte a byte — sem o bump, quem
 // já tem o SW instalado fica preso na versão antiga em cache (cache-first).
-const CACHE_NAME   = "cotia-mapa-v26";
-const DATA_CACHE   = "cotia-data-v26";
+const CACHE_NAME   = "cotia-mapa-v27";
+const DATA_CACHE   = "cotia-data-v27";
 
 // Assets estáticos que formam o "shell" da aplicação
 const SHELL_ASSETS = [
@@ -43,8 +43,11 @@ const SHELL_ASSETS = [
   "https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js",
 ];
 
-// Arquivos de dados — atualizados periodicamente
-const DATA_ASSETS = [
+// Dados do mapa de 2024 + contorno e bairros de Cotia: não mudam entre deploys,
+// então são pré-carregados no install e servidos do cache na hora
+// (stale-while-revalidate: a cópia em cache responde e a rede atualiza o cache
+// em segundo plano para a próxima visita).
+const MAPA_2024_ASSETS = [
   "./data/tse_cotia_2024.json",
   "./data/cotia_votos_por_bairro.json",
   "./data/cotia_votos_por_escola.json",
@@ -52,7 +55,12 @@ const DATA_ASSETS = [
   "./data/cotia_locais_votacao.json",
   "./data/gastos_campanha_2024.json",
   "./data/cotia_municipio.geojson",
+  "./data/osm_bairros_cotia.json",
   "./data/censo_renda_setores.json",
+];
+
+// Arquivos de dados — atualizados periodicamente (network-first)
+const DATA_ASSETS = [
   "./data/contas_cotia.json",
   "./data/viagens_camara.json",
 ];
@@ -62,7 +70,12 @@ const DATA_ASSETS = [
 // -----------------------------------------------------------------------
 self.addEventListener("install", (event) => {
   event.waitUntil(
-    caches.open(CACHE_NAME).then((cache) => cache.addAll(SHELL_ASSETS))
+    Promise.all([
+      caches.open(CACHE_NAME).then((cache) => cache.addAll(SHELL_ASSETS)),
+      // Um arquivo de dados que falhe não deve impedir o cache do shell.
+      caches.open(DATA_CACHE).then((cache) =>
+        Promise.allSettled(MAPA_2024_ASSETS.map((a) => cache.add(a)))),
+    ])
       .then(() => self.skipWaiting())
       .catch((err) => console.warn("[SW] install: alguns assets falharam →", err))
   );
@@ -88,6 +101,14 @@ self.addEventListener("activate", (event) => {
 // -----------------------------------------------------------------------
 self.addEventListener("fetch", (event) => {
   const url = new URL(event.request.url);
+
+  // Dados do mapa 2024 (inclui .geojson): cache na hora, revalida em segundo plano
+  const isMapa2024 = url.origin === self.location.origin &&
+    MAPA_2024_ASSETS.some((d) => url.pathname.endsWith(d.replace("./", "/")));
+  if (isMapa2024) {
+    event.respondWith(staleWhileRevalidate(event, DATA_CACHE));
+    return;
+  }
 
   // Dados JSON: Network-first (atualiza cache se online)
   const isData = DATA_ASSETS.some((d) => event.request.url.endsWith(d.replace("./", "")));
@@ -125,6 +146,23 @@ async function cacheFirst(request) {
   } catch {
     return new Response("Recurso não disponível offline.", { status: 503 });
   }
+}
+
+async function staleWhileRevalidate(event, cacheName) {
+  const request = event.request;
+  const cache = await caches.open(cacheName);
+  const cached = await cache.match(request, { ignoreSearch: true });
+  const network = fetch(request)
+    .then((response) => {
+      if (response.ok) cache.put(request, response.clone());
+      return response;
+    })
+    .catch(() => null);
+  if (cached) {
+    event.waitUntil(network);
+    return cached;
+  }
+  return (await network) || new Response("Offline — dado não disponível.", { status: 503 });
 }
 
 async function networkFirst(request, cacheName) {

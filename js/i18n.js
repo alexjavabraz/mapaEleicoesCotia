@@ -81,7 +81,6 @@ const I18N_EN = {
   "Buscando bairros (Overpass API)...": "Fetching neighborhoods (Overpass API)...",
   "Buscando bairros no OpenStreetMap...": "Fetching neighborhoods from OpenStreetMap...",
   "Buscando contorno do município...": "Fetching city boundary...",
-  "Overpass indisponível — usando contorno local de Cotia...": "Overpass unavailable — using local Cotia boundary...",
   "Gerando bairros por proximidade (Voronoi)...": "Building neighborhoods by proximity (Voronoi)...",
   "Renderizando locais de votação...": "Drawing polling places...",
 

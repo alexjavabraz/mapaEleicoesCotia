@@ -1,3 +1,45 @@
+# Sessão — 2026-10-20 (4) · Cache do mapa 2024
+
+**Status:** iniciada 2026-10-20 17:25 UTC · finalizada 2026-10-20 17:50 UTC
+(branch `claude/cache-mapa-2024-171431`, sobre `main`, label `agentic`).
+
+## Pedido
+
+O mapa da aba Eleições 2024 demora muito para carregar: cachear os arquivos
+usados no processamento das eleições 2024.
+
+## Diagnóstico
+
+Os JSON do TSE de 2024 somam ~160 KB comprimidos (o GitHub Pages serve com
+gzip) e carregam em menos de 1 s. O que travava eram duas consultas POST à
+Overpass API (contorno e bairros), feitas em sequência a cada visita, sem
+cache possível (POST) e que demoram de dezenas de segundos a minutos ou falham
+(timeout de 90 s), caindo no Voronoi dos locais de votação.
+
+## O que foi feito
+
+- `scripts/download_bairros_osm.py` + workflow `bairros-osm.yml` (push no
+  branch, manual e todo dia 1º): grava a resposta da Overpass em
+  `data/osm_bairros_cotia.json` (JSON OSM bruto; a página segue convertendo com
+  osmtogeojson, então o mapa mostra o mesmo que a consulta ao vivo).
+- `js/map.js`: `fetchCotiaMunicipio` lê `data/cotia_municipio.geojson` primeiro
+  e `fetchCotiaBairros` lê `data/osm_bairros_cotia.json` primeiro; a Overpass
+  vira fallback com limite de 15 s. Vale também para a página de 2026.
+- `js/app.js`: contorno e bairros começam a baixar junto com os dados do TSE,
+  e `tse_cotia_2024.json` baixa em paralelo com bairros/locais.
+- `sw.js` → v27 (main já estava em v26): os dados do mapa 2024 (inclui gastos de campanha e renda do Censo) são pré-carregados no install e
+  servidos do cache na hora (stale-while-revalidate).
+- Teste local (Playwright, Overpass bloqueada): mapa pronto em ~0,7 s, 59
+  bairros por Voronoi, sem erros.
+- O 1º run do workflow mostrou que a Overpass responde à query de bairros com
+  lista vazia (ou cai): o site ao vivo sempre acabava no Voronoi depois de
+  esperar. Lista vazia agora é salva como resposta válida e a página vai
+  direto para o Voronoi.
+- Branch atualizado com o `main` (custo por voto e renda do Censo): os
+  loaders novos seguem no mesmo `Promise.all`.
+
+---
+
 # Sessão — 2026-10-20 (6) · Renda do Censo nos bairros (mapa 2024)
 
 **Status:** iniciada 2026-10-20 17:20 UTC · finalizada 2026-10-20 17:40 UTC

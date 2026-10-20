@@ -770,13 +770,16 @@ async function init() {
     onLimpar:    limparMapa,
   });
 
-  // 2. Carrega dados TSE
-  setLoadingStatus(t("Carregando dados eleitorais..."));
-  const tseResult = await loadTSEData();
+  // Contorno e bairros (arquivos locais, ou Overpass se faltarem) começam a
+  // baixar já, em paralelo com os dados do TSE; são aguardados nos passos 3 e 4.
+  const municipioPromise = fetchCotiaMunicipio();
+  const bairrosPromise = fetchCotiaBairros();
 
-  // 2b. Carrega dados auxiliares em paralelo
+  // 2. Carrega dados TSE e auxiliares em paralelo
   // loadLocaisVotacao deve completar antes de loadVotosPorEscola (que mescla no escolasSummary)
-  const [bairroResult, locaisResult, gastosResult, rendaResult] = await Promise.all([
+  setLoadingStatus(t("Carregando dados eleitorais..."));
+  const [tseResult, bairroResult, locaisResult, gastosResult, rendaResult] = await Promise.all([
+    loadTSEData(),
     loadVotosPorBairro(),
     loadLocaisVotacao(),
     loadGastosCampanha(),
@@ -844,7 +847,7 @@ async function init() {
 
   // 3. Busca contorno do município e aplica máscara branca fora de Cotia
   setLoadingStatus(t("Buscando contorno de Cotia (OpenStreetMap)..."));
-  const municipioGeoJSON = await fetchCotiaMunicipio(setLoadingStatus);
+  const municipioGeoJSON = await municipioPromise;
   if (municipioGeoJSON) {
     renderMascaraExterna(municipioGeoJSON);  // máscara branca externa (abaixo)
     renderMunicipio(municipioGeoJSON);       // borda do município (acima)
@@ -853,7 +856,7 @@ async function init() {
 
   // 4. Busca bairros via OSM; se não retornar polígonos, usa Voronoi dos locais de votação
   setLoadingStatus(t("Buscando bairros (Overpass API)..."));
-  let bairrosGeoJSON = await fetchCotiaBairros(setLoadingStatus);
+  let bairrosGeoJSON = await bairrosPromise;
 
   const osmPolygons = bairrosGeoJSON?.features?.filter(f => {
     const t = f.geometry?.type;
