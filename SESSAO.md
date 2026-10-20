@@ -1,3 +1,16 @@
+# Sessão — 2026-10-20 (4) · Renda do Censo nos bairros (mapa 2024)
+
+**Status:** iniciada 2026-10-20 17:20 UTC · em andamento
+(branch `claude/project-thread-20twi4`, sobre `main`, label `agentic`).
+
+## Pedido
+
+Com os dados do Censo IBGE, criar 3 faixas de renda, pintar os bairros pela
+faixa e adicionar uma legenda no mapa, só na aba Eleições 2024 (`index.html`).
+Plano em `/mnt/project-files/plano-censo/plano-renda-censo.md`.
+
+---
+
 # Sessão — 2026-10-20 (3) · Loading animado nas Contas
 
 **Status:** iniciada 2026-10-20 03:05 UTC · finalizada 2026-10-20 03:25 UTC
