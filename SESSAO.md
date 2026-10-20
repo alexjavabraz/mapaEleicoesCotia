@@ -1,6 +1,6 @@
 # Sessão — 2026-10-20 (4) · Renda do Censo nos bairros (mapa 2024)
 
-**Status:** iniciada 2026-10-20 17:20 UTC · em andamento
+**Status:** iniciada 2026-10-20 17:20 UTC · finalizada 2026-10-20 17:40 UTC
 (branch `claude/project-thread-20twi4`, sobre `main`, label `agentic`).
 
 ## Pedido
@@ -8,6 +8,26 @@
 Com os dados do Censo IBGE, criar 3 faixas de renda, pintar os bairros pela
 faixa e adicionar uma legenda no mapa, só na aba Eleições 2024 (`index.html`).
 Plano em `/mnt/project-files/plano-censo/plano-renda-censo.md`.
+
+## O que foi feito
+
+- `scripts/download_censo.py` + `.github/workflows/censo.yml` (roda no Actions;
+  o IBGE é bloqueado no sandbox). A renda por setor de 2022 saiu à parte, em
+  `Agregados_por_Setores_Censitarios_Rendimento_do_Responsavel/` (maio/2026):
+  `V06004` = rendimento nominal médio mensal dos responsáveis com rendimento,
+  peso `V06001` = responsáveis (≈ domicílios). Malha `SP_setores_CD2022.gpkg`.
+  Se a renda 2022 sumir, o script cai para o Censo 2010 (`V005`/`V001`).
+- `data/censo_renda_setores.json` (29 KB): 720 setores de Cotia com ponto,
+  renda e domicílios, mais um resumo por bairro do TSE (setor → local de
+  votação mais próximo). Renda média de Cotia: R$ 4.087.
+- 3 faixas: até 2,5 SM (R$ 3.030), 2,5 a 5 SM, acima de 5 SM (R$ 6.060);
+  bairros do TSE ficam 24 / 27 / 7. Com 2 e 5 SM seriam 8 / 43 / 7.
+- `js/renda.js`: botão "Renda (Censo)" nos botões do mapa, cor por faixa em
+  cada polígono (média dos setores dentro dele, ponderada; serve para OSM ou
+  Voronoi), legenda no canto inferior direito, linha de renda no tooltip.
+  `getFeatureStyle` (map.js) usa o estilo de renda quando ligado, então Limpar
+  e o destaque de vereador mantêm as cores. Só `index.html` carrega o arquivo.
+- i18n (PT/EN), css, `sw.js` → v26 (o PR #11 usa v25).
 
 ---
 
