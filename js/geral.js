@@ -1022,6 +1022,7 @@ function desligarRendaGeral() {
     btn.classList.remove("active");
     btn.setAttribute("aria-pressed", "false");
   }
+  atualizarCamadaSetores();
   atualizarLegendaRenda();
 }
 

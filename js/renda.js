@@ -8,6 +8,13 @@
  * pelos domicílios. Polígono sem setor dentro usa o setor mais próximo do
  * centro dele.
  *
+ * Com o modo ligado, o mapa pinta cada SETOR pela sua renda
+ * (data/censo_renda_setores.geojson, carregado no primeiro clique) e os
+ * bairros ficam só no contorno: os bairros do mapa são aproximados (local de
+ * votação mais próximo) e juntam setores muito diferentes — ex.: Jardim do
+ * Engenho somava setores de R$ 2 mil com condomínios de R$ 15 mil. A renda
+ * agregada do bairro continua no tooltip. Sem o geojson, pinta o bairro.
+ *
  * O botão "Renda (Censo)" (topleft do mapa) liga/desliga a coloração e a
  * legenda (bottomright). map.js chama estiloRendaBairro() em getFeatureStyle,
  * então resets e o destaque de vereador preservam as cores da renda.
@@ -24,6 +31,45 @@ let rendaDados = null;   // conteúdo do JSON
 let rendaAtiva = false;  // botão ligado
 let _legendaRendaCtrl = null;
 let _aoMudarRenda = null; // repinta os bairros; padrão: reaplicarEstiloBairros (2024)
+let _geoSetores = null;    // FeatureCollection dos setores (props r, m, d)
+let _carregandoSetores = null;
+let _camadaSetores = null;
+
+/** Carrega (uma vez) os contornos dos setores com renda. */
+function carregarSetoresRenda() {
+  if (_geoSetores) return Promise.resolve(_geoSetores);
+  if (!_carregandoSetores) {
+    _carregandoSetores = fetch("data/censo_renda_setores.geojson")
+      .then((r) => (r.ok ? r.json() : null))
+      .then((g) => (_geoSetores = g?.features?.length ? g : null))
+      .catch(() => null);
+  }
+  return _carregandoSetores;
+}
+
+/** Mostra/esconde a camada de setores (abaixo dos bairros, sem interação). */
+function atualizarCamadaSetores() {
+  if (!rendaAtiva || !_geoSetores) {
+    if (_camadaSetores) { map.removeLayer(_camadaSetores); }
+    return;
+  }
+  if (!_camadaSetores) {
+    if (!map.getPane("setoresRenda")) {
+      const pane = map.createPane("setoresRenda");
+      pane.style.zIndex = 350; // abaixo dos bairros (overlayPane = 400)
+      pane.style.pointerEvents = "none";
+    }
+    _camadaSetores = L.geoJSON(_geoSetores, {
+      pane: "setoresRenda",
+      interactive: false,
+      style: (f) => {
+        const cor = RENDA_CORES[faixaRenda(f.properties.r)];
+        return { fillColor: cor, fillOpacity: 0.6, color: cor, weight: 0.5, opacity: 0.9 };
+      },
+    });
+  }
+  _camadaSetores.addTo(map);
+}
 
 async function loadRendaCenso() {
   try {
@@ -86,9 +132,10 @@ function rendaDoBairro(feature) {
   return resultado;
 }
 
-/** Estilo do bairro no modo renda; null quando o modo está desligado. */
+/** Estilo do bairro no modo renda; null quando o modo está desligado ou
+ *  quando a camada de setores já mostra a renda (bairro só no contorno). */
 function estiloRendaBairro(feature) {
-  if (!rendaAtiva) return null;
+  if (!rendaAtiva || _geoSetores) return null;
   const r = rendaDoBairro(feature);
   if (!r) return null;
   const cor = RENDA_CORES[faixaRenda(r.renda)];
@@ -112,7 +159,8 @@ function tooltipRendaBairro(feature) {
   const cor = RENDA_CORES[faixaRenda(r.renda)];
   return `<div class="tooltip-zona" style="margin-top:5px;padding-top:4px;border-top:1px solid rgba(var(--tinta),0.15)">
     <span style="display:inline-block;width:9px;height:9px;border-radius:2px;background:${cor};margin-right:5px"></span>${t(RENDA_ROTULOS[faixaRenda(r.renda)])}:
-    <strong>${_fmtReais(r.renda)}</strong> ${t("por mês")}</div>`;
+    <strong>${_fmtReais(r.renda)}</strong> ${t("por mês")}
+    ${_geoSetores ? `<div style="font-size:0.66rem;color:var(--text-muted)">${t("média dos setores do bairro")}</div>` : ""}</div>`;
 }
 
 function atualizarLegendaRenda() {
@@ -141,6 +189,7 @@ function atualizarLegendaRenda() {
           <div class="legend-color" style="background:${cor};opacity:0.85"></div>
           <span><strong>${t(RENDA_ROTULOS[i])}</strong> · ${faixas[i]}</span>
         </div>`).join("")}
+      ${_geoSetores ? `<div class="legenda-renda-fonte">${t("Cada mancha é um setor censitário; a linha tracejada é o bairro.")}</div>` : ""}
       <div class="legenda-renda-fonte">${t("Fonte: IBGE, Censo {ano}", { ano })}</div>`;
     return div;
   };
@@ -165,8 +214,14 @@ function setRenda(ativa) {
     btn.classList.toggle("active", rendaAtiva);
     btn.setAttribute("aria-pressed", String(rendaAtiva));
   }
-  (_aoMudarRenda || reaplicarEstiloBairros)();
-  atualizarLegendaRenda();
+  const repintar = () => {
+    atualizarCamadaSetores();
+    (_aoMudarRenda || reaplicarEstiloBairros)();
+    atualizarLegendaRenda();
+  };
+  repintar();
+  // Primeiro clique: os setores chegam depois; repinta quando carregarem
+  if (rendaAtiva && !_geoSetores) carregarSetoresRenda().then((g) => { if (g && rendaAtiva) repintar(); });
 }
 
 function toggleRenda() {

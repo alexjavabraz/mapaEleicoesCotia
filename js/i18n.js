@@ -323,6 +323,8 @@ const I18N_EN = {
   // ---- Mapa 2024: votos por escola ----
   "Votos por seção": "Votes by polling place",
   "Renda (Censo)": "Income (Census)",
+  "média dos setores do bairro": "average of the neighborhood's census tracts",
+  "Cada mancha é um setor censitário; a linha tracejada é o bairro.": "Each patch is a census tract; the dashed line is the neighborhood.",
   "Pinta os bairros pela renda média do Censo IBGE, sem as cores dos candidatos": "Colors neighborhoods by average income from the IBGE Census, ignoring candidate colors",
   "Volta às cores dos candidatos": "Back to candidate colors",
   "Pinta os bairros pela renda média do Censo IBGE": "Colors neighborhoods by average income from the IBGE Census",

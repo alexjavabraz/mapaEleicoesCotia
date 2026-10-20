@@ -1,3 +1,30 @@
+# Sessão — 2026-10-20 (8) · Renda por setor censitário (Jardim do Engenho)
+
+**Status:** iniciada 2026-10-20 23:28 UTC · finalizada 2026-10-20 23:50 UTC
+(direto no `main`).
+
+## Pedido
+
+Alex estranhou o Jardim do Engenho aparecer como renda alta (R$ 7.634) e
+mandou uma análise que o coloca em renda média-baixa a média.
+
+## O que foi feito
+
+- Conferência: o IBGE não tem bairros para Cotia (só setores). O bairro do
+  mapa (local de votação mais próximo) juntava setores de R$ 2–4 mil com um
+  de R$ 9,9 mil colado na escola e três de R$ 12–16 mil a 1,2–1,3 km, já do
+  lado da Granja Viana. Tabela em `/mnt/project-files/plano-censo/jardim-do-engenho-setores.md`.
+- Correção: com "Renda (Censo)" ligado, o mapa pinta cada setor censitário
+  pela sua renda (`data/censo_renda_setores.geojson`, 720 setores, 391 KB,
+  76 KB gzip, carregado só no primeiro clique) e os bairros ficam só no
+  contorno tracejado. O tooltip do bairro continua com a média dos setores.
+  Vale nos mapas 2024 e 2022/2026.
+- `download_censo.py` grava também código do setor, mediana (V06006), bairro
+  do IBGE (vazio em Cotia) e os contornos simplificados (~10 m).
+- `sw.js` → v33.
+
+---
+
 # Sessão — 2026-10-20 (10) · Patrimônio declarado dos candidatos 2024
 
 **Status:** iniciada 2026-10-20 23:05 UTC · finalizada 2026-10-20 23:20 UTC
