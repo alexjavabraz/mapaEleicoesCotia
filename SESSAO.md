@@ -26,6 +26,15 @@ processamento, cálculo, interpretação, modelos estatísticos e "Tudo pronto".
 - Pedido seguinte: no gráfico "Valor pago por ano" da aba Por fornecedor, a
   barra selecionada (clique/toque) mantém a legenda aberta, sem depender de
   hover (plugin `legendaFixa` em `renderGraficoAno`). `sw.js` → v18.
+- Pedido seguinte: analítico dos totais do fornecedor. `download_contas.py`
+  grava `data/contas_fornecedores/{índice}.json` com todos os lançamentos de
+  cada fornecedor (2.391 arquivos, ~19 MB; a página baixa só o do fornecedor
+  aberto) e aceita `CONTAS_CACHE` para reaproveitar as respostas da API. No
+  cartão do fornecedor os totais (Pago, Liquidado…) são do ano filtrado e viram
+  botões; abaixo, o analítico lista os lançamentos que somam aquele total
+  (ordem por valor ou data, "Mostrar mais", linha de total). O Top 10 do
+  fornecedor também passa a sair do analítico, valendo com ano filtrado.
+  Workflow `contas.yml` comita a pasta nova. `sw.js` → v19.
 
 ---
 

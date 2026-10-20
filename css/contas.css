@@ -474,3 +474,48 @@ td .barra {
   .carga-doc { opacity: 1; }
   .carga-doc:nth-child(n+2) { display: none; }
 }
+
+/* ---- Fornecedor selecionado: totais clicáveis e analítico ---- */
+#fornecedor-sel .sel-totais {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  margin: 10px 0 4px;
+  font-size: 0.8rem;
+}
+#fornecedor-sel .sel-periodo { color: var(--text-muted); margin-right: 2px; }
+.ev-total {
+  font: inherit;
+  color: var(--text-muted);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 999px;
+  padding: 4px 10px;
+  cursor: pointer;
+}
+.ev-total b { color: var(--text); }
+.ev-total.ativo { border-color: var(--highlight); background: rgba(233, 69, 96, 0.15); color: var(--text); }
+#analitico { margin-top: 10px; }
+.analitico-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 6px;
+}
+.analitico-head h4 { margin: 0; font-size: 0.85rem; font-weight: 500; }
+.analitico-ordem { display: inline-flex; border: 1px solid rgba(255, 255, 255, 0.12); border-radius: 6px; overflow: hidden; }
+.analitico-ordem button {
+  font: inherit;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  background: none;
+  border: 0;
+  padding: 4px 10px;
+  cursor: pointer;
+}
+.analitico-ordem button[aria-pressed="true"] { background: rgba(255, 255, 255, 0.1); color: var(--text); }
+.analitico-tabela tfoot td { font-weight: 700; border-top: 1px solid rgba(255, 255, 255, 0.2); }
+.analitico-mais { margin-top: 8px; }
