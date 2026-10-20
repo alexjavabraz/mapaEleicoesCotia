@@ -854,7 +854,7 @@ function displayZona(displayName, zonaNum) {
 
   // Badge: mostra "bairro" se tiver dados por bairro, senão "zona"
   const badgeHtml = temBairro
-    ? `<span class="zona-badge" style="background:rgba(76,175,80,0.15);color:#81c784;border:1px solid rgba(76,175,80,0.3)">
+    ? `<span class="zona-badge" style="background:rgba(76,175,80,0.15);color:var(--positivo);border:1px solid rgba(76,175,80,0.3)">
          ${t("dados por bairro")}
        </span>`
     : `<span class="zona-badge" style="background:${zonaColor}20;color:${zonaColor};border:1px solid ${zonaColor}50">
@@ -937,10 +937,10 @@ function getTooltipContentGeral(feature, zona) {
     const partido = (top.partido || "").toUpperCase();
     const corBadge = partido === "PT" ? "#c62828" : partido === "PL" ? "#1565c0" : "#607d8b";
     html += `<div style="margin-top:5px;padding-top:4px;border-top:1px solid rgba(var(--tinta),0.15)">
-      <span style="font-size:0.7rem;color:#aaa">${cargo}: </span>
-      <strong style="color:#fff;font-size:0.8rem">${top.nome}</strong>
+      <span style="font-size:0.7rem;color:var(--text-muted)">${cargo}: </span>
+      <strong style="color:var(--text);font-size:0.8rem">${top.nome}</strong>
       ${top.partido ? `<span style="background:${corBadge};color:#fff;font-size:0.62rem;padding:1px 5px;border-radius:3px;margin-left:4px">${top.partido}</span>` : ""}
-      <div style="font-size:0.7rem;color:#ccc;margin-top:2px">${t("{n} votos", { n: formatVotos(top.votos) })}${fonte === "bairro" ? ` <span style='color:#81c784'>✓ ${t("por bairro")}</span>` : ""}</div>
+      <div style="font-size:0.7rem;color:var(--text-muted);margin-top:2px">${t("{n} votos", { n: formatVotos(top.votos) })}${fonte === "bairro" ? ` <span style='color:var(--positivo)'>✓ ${t("por bairro")}</span>` : ""}</div>
     </div>`;
   }
   html += tooltipRendaBairro(feature);

@@ -1,3 +1,15 @@
+# Sessão — 2026-10-20 (8) · Correções do tema claro na Eleição 2026
+
+**Status:** iniciada 2026-10-20 22:10 UTC · finalizada 2026-10-20 22:20 UTC
+(commit direto no `main`).
+
+- Seletor "2026 — 1º Turno" do header e nome do candidato no tooltip do
+  bairro tinham cores fixas brancas (sumiam no tema claro); agora usam
+  `--text`, `--text-muted`, `--tinta` e `--positivo`.
+- `sw.js` → v30.
+
+---
+
 # Sessão — 2026-10-20 (7) · Renda do Censo também no mapa 2026
 
 **Status:** iniciada 2026-10-20 22:07 UTC · finalizada 2026-10-20 22:25 UTC
