@@ -542,6 +542,7 @@ function getTooltipContent(feature, zona) {
     }
   }
 
+  html += tooltipRendaBairro(feature);
   return html;
 }
 
@@ -777,11 +778,21 @@ async function init() {
   // 2. Carrega dados TSE e auxiliares em paralelo
   // loadLocaisVotacao deve completar antes de loadVotosPorEscola (que mescla no escolasSummary)
   setLoadingStatus(t("Carregando dados eleitorais..."));
-  const [tseResult, bairroResult, locaisResult] = await Promise.all([
+  const [tseResult, bairroResult, locaisResult, gastosResult, rendaResult] = await Promise.all([
     loadTSEData(),
     loadVotosPorBairro(),
     loadLocaisVotacao(),
+    loadGastosCampanha(),
+    loadRendaCenso(),
   ]);
+  if (gastosResult.ok) console.log(`Gastos de campanha: ${gastosResult.count} candidatos`);
+  else console.log("Gastos de campanha não disponíveis:", gastosResult.error);
+  if (rendaResult.ok) {
+    console.log(`Renda do Censo: ${rendaResult.count} setores`);
+    addBotaoRenda();
+  } else {
+    console.log("Renda do Censo não disponível:", rendaResult.error);
+  }
   if (bairroResult.ok) {
     console.log(`Votos por bairro: ${bairroResult.count} bairros`);
     buildNomeMapping(); // constrói mapeamento urna→nome-completo

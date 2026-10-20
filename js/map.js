@@ -295,8 +295,13 @@ function resetBairrosStyle() {
 
 /**
  * Estilo padrão para polígonos de bairros — sem preenchimento, borda vermelha.
+ * Com o modo renda ligado (js/renda.js, só no mapa de 2024), pinta pela faixa.
  */
 function getFeatureStyle(feature, zona) {
+  if (typeof estiloRendaBairro === "function") {
+    const renda = estiloRendaBairro(feature);
+    if (renda) return renda;
+  }
   return {
     fillColor: "transparent",
     fillOpacity: 0,

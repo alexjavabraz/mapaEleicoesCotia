@@ -422,6 +422,14 @@ html, body {
   line-height: 1.3;
 }
 
+.candidate-custo {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  margin: 1px 0 2px;
+}
+.candidate-custo strong { color: var(--text); font-weight: 600; }
+.candidate-custo.sem-dados { font-style: italic; }
+
 .candidate-partido {
   display: inline-block;
   background: rgba(255,255,255,0.1);
@@ -532,8 +540,9 @@ html, body {
   margin-bottom: 6px;
 }
 
-/* Legenda de partidos (eleicao-geral.html) */
-#map-legend-partidos {
+/* Legenda de partidos (eleicao-geral.html) e de renda do Censo (index.html) */
+#map-legend-partidos,
+#map-legend-renda {
   background: rgba(18, 18, 42, 0.92);
   border: 1px solid rgba(255,255,255,0.1);
   border-radius: 8px;
@@ -544,7 +553,16 @@ html, body {
   max-width: 190px;
 }
 
-#map-legend-partidos h4 {
+#map-legend-renda { max-width: 230px; }
+
+.legenda-renda-fonte {
+  margin-top: 6px;
+  font-size: 0.62rem;
+  color: var(--text-muted);
+}
+
+#map-legend-partidos h4,
+#map-legend-renda h4 {
   color: var(--text-muted);
   text-transform: uppercase;
   letter-spacing: 0.08em;

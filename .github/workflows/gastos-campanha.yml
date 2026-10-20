@@ -1,0 +1,39 @@
+name: Gastos de campanha 2024 (TSE)
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [claude/custo-por-voto-2024-2riugw]
+    paths:
+      - scripts/download_gastos_campanha.py
+      - .github/workflows/gastos-campanha.yml
+
+permissions:
+  contents: write
+
+concurrency:
+  group: gastos-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  atualizar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install requests
+      - run: python scripts/download_gastos_campanha.py
+      - name: Commit do JSON atualizado
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/gastos_campanha_2024.json
+          if git diff --cached --quiet; then
+            echo "Sem mudanças."
+          else
+            git commit -m "dados: gastos de campanha 2024 e custo por voto (TSE)"
+            git push
+          fi
