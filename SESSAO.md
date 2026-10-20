@@ -1,3 +1,17 @@
+# Sessão — 2026-10-20 (2) · Abas segmentadas no header e nas Contas
+
+**Status:** iniciada 2026-10-20 02:45 UTC · em andamento
+(branch `claude/abas-header-tlksjp`, label `agentic`).
+
+## Pedido
+
+Abas mais visuais no header (Eleições 2024 / Eleições 2026 / Contas
+Municipais) no estilo "Controle Segmentado", acessíveis (tablist/tab/tabpanel,
+aria-selected, setas do teclado), com um exemplo em arquivo único; dentro de
+Contas, abas para os pagamentos e para os valores pagos em viagens.
+
+---
+
 # Sessão — 2026-10-20 (1) · Contas em três abas
 
 **Status:** iniciada 2026-10-20 02:20 UTC · finalizada 2026-10-20 02:45 UTC
