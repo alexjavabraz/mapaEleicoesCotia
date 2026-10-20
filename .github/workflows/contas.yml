@@ -35,7 +35,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/contas_cotia.json data/viagens_camara.json
+          git add -A data/contas_cotia.json data/contas_fornecedores data/viagens_camara.json
           if git diff --cached --quiet; then
             echo "Sem mudanças."
           else

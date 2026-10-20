@@ -119,12 +119,68 @@ function fornecedoresFiltrados(s = estado) {
 // Inicialização
 // -----------------------------------------------------------------------
 
+// O arquivo vem inteiro de uma vez (data/contas_cotia.json); as etapas abaixo
+// narram o que o script de download e a página fazem com ele, enquanto o
+// fetch corre em paralelo. "Processando" só avança depois que o fetch termina.
+const espera = (ms) => new Promise((r) => setTimeout(r, ms));
+let etapaAtual = null;
+
+function etapa(texto, classe) {
+  const lista = $("carga-etapas");
+  if (etapaAtual) etapaAtual.classList.add("ok");
+  etapaAtual = document.createElement("li");
+  etapaAtual.textContent = texto;
+  if (classe) etapaAtual.className = classe;
+  lista.append(etapaAtual);
+  while (lista.children.length > 8) lista.firstChild.remove();
+  $("loading-status").textContent = texto;
+}
+
+async function animarCarga(dadosProntos) {
+  const hoje = new Date();
+  const consultas = [];
+  for (let ano = 2020; ano <= hoje.getFullYear(); ano++) {
+    for (let s = 1; s <= 2; s++) {
+      if (ano === hoje.getFullYear() && s === 2 && hoje.getMonth() < 6) break;
+      consultas.push([t("Consultando {ano} · semestre {s}", { ano, s }), 140]);
+    }
+  }
+  const etapas = [
+    [t("Conectando ao TCE-SP"), 350],
+    ...consultas,
+    [t("Processando os lançamentos"), 380, true],
+    [t("Calculando totais por órgão e fornecedor"), 380],
+    [t("Interpretando os dados"), 380],
+    [t("Aplicando modelos estatísticos"), 450],
+  ];
+  const barra = $("carga-progresso");
+  for (const [i, [texto, ms, aguarda]] of etapas.entries()) {
+    etapa(texto);
+    barra.style.width = `${((i + 1) / (etapas.length + 1)) * 100}%`;
+    if (aguarda) await dadosProntos;
+    await espera(ms);
+  }
+}
+
+async function concluirCarga() {
+  etapa(t("Tudo pronto!"), "fim");
+  etapaAtual.classList.add("ok");
+  $("carga-progresso").style.width = "100%";
+  await espera(600);
+  $("loading").classList.add("saindo");
+  await espera(350);
+  $("loading").style.display = "none";
+}
+
 async function init() {
-  try {
-    $("loading-status").textContent = t("Baixando dados do TCE-SP…");
-    const resp = await fetch(DATA_URL);
+  const dadosProntos = fetch(DATA_URL).then((resp) => {
     if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
-    DADOS = await resp.json();
+    return resp.json();
+  });
+  dadosProntos.catch(() => {}); // o erro é tratado abaixo, depois da animação
+  try {
+    await animarCarga(dadosProntos);
+    DADOS = await dadosProntos;
   } catch (err) {
     $("loading").innerHTML =
       `<p>${t("Não foi possível carregar as contas ({erro}).", { erro: esc(err.message) })}</p>`;
@@ -159,7 +215,7 @@ async function init() {
   initEvolucao();
   renderGeral();
   render();
-  $("loading").style.display = "none";
+  concluirCarga();
 }
 
 // -----------------------------------------------------------------------
@@ -304,6 +360,7 @@ function renderGeral() {
 
 /** Aba Por fornecedor: redesenhada a cada mudança de filtro ou seleção. */
 function render() {
+  analitico.limite = ANALITICO_PAGINA;
   $("btn-top10").textContent = t("Top 10 valores {ev}", { ev: eventoPlural() });
   renderKPIs(estado, "k-");
   renderSelecionado();
@@ -338,33 +395,116 @@ function renderSelecionado() {
   const box = $("fornecedor-sel");
   if (estado.sel === null) { box.hidden = true; return; }
   const f = DADOS.fornecedores[estado.sel];
-  const tops = ((f.top || {})[estado.evento] || [])
-    .filter((l) => !estado.ano || anoLanc(l, 4) === estado.ano);
+  // Totais do período filtrado (ano escolhido ou todos), um botão por evento:
+  // tocar num total mostra no analítico os lançamentos que o compõem.
+  const soma = estado.ano ? (f.anos[estado.ano] || {}) : f.total;
   const totalEv = DADOS.meta.eventos
-    .map((e) => `${esc(t(e))}: <b>${fmtBRL.format(f.total[e] || 0)}</b>`).join(" · ");
+    .map((e) => `<button type="button" class="ev-total${e === estado.evento ? " ativo" : ""}" data-ev="${esc(e)}"
+      aria-pressed="${e === estado.evento}">${esc(t(e))}: <b>${fmtBRL.format(soma[e] || 0)}</b></button>`).join(" ");
   box.hidden = false;
   box.innerHTML = `
     <div class="sel-head">
       <div>
         <h3>${esc(f.nome)}</h3>
         <div class="sel-meta">${f.tipo === "PF" ? t("Pessoa física") : f.doc ? "CNPJ " + fmtCNPJ(f.doc) : ""}
-          · ${t("{n} lançamentos", { n: fmtInt.format(f.n) })} · ${totalEv} (${anos()[0]}–${anos().at(-1)})</div>
+          · ${t("{n} lançamentos", { n: fmtInt.format(f.n) })} (${anos()[0]}–${anos().at(-1)})</div>
       </div>
       <button type="button" class="btn sec" onclick="document.getElementById('btn-limpar').click()">${t("Ver todos")}</button>
     </div>
-    ${tops.length ? `
-      <div class="tabela-wrap"><table>
-        <thead><tr><th>${t("Data")}</th><th>${t("Órgão")}</th><th>${t("Empenho")}</th><th class="num">${t("Valor {ev}", { ev: esc(eventoLabel()) })}</th></tr></thead>
-        <tbody>${tops.map((l) => `<tr><td>${fmtData(l[0])}</td><td>${esc(l[2])}</td>
-          <td>${esc(l[3])}</td><td class="num">${fmtBRL.format(l[1])}</td></tr>`).join("")}</tbody>
-      </table></div>` : `<p class="vazio">${estado.ano
-        ? t("Nenhum lançamento {ev} em {ano}.", { ev: esc(eventoLabel()), ano: estado.ano })
-        : t("Nenhum lançamento {ev}.", { ev: esc(eventoLabel()) })}</p>`}`;
+    <div class="sel-totais"><span class="sel-periodo">${t("Totais")} · ${periodoLabel()}</span> ${totalEv}</div>
+    <div id="analitico"></div>`;
+  box.querySelectorAll(".ev-total").forEach((b) => b.addEventListener("click", () => {
+    estado.evento = b.dataset.ev;
+    $("f-evento").value = estado.evento;
+    estado.pagina = 0;
+    render();
+  }));
+  renderAnalitico();
+}
+
+// -----------------------------------------------------------------------
+// Analítico: todos os lançamentos que compõem o total do fornecedor
+// (data/contas_fornecedores/{índice}.json, baixado ao abrir o fornecedor)
+// -----------------------------------------------------------------------
+
+const ANALITICO_PAGINA = 50;
+const detalhes = new Map(); // índice do fornecedor → Promise do JSON
+const analitico = { ordem: "valor", limite: ANALITICO_PAGINA };
+
+function carregarDetalhe(i) {
+  if (!detalhes.has(i)) {
+    detalhes.set(i, fetch(`data/contas_fornecedores/${i}.json`).then((r) => {
+      if (!r.ok) throw new Error(`HTTP ${r.status}`);
+      return r.json();
+    }));
+    detalhes.get(i).catch(() => detalhes.delete(i));
+  }
+  return detalhes.get(i);
+}
+
+async function renderAnalitico() {
+  const box = $("analitico");
+  const sel = estado.sel;
+  box.innerHTML = `<p class="vazio">${t("Carregando lançamentos…")}</p>`;
+  let det;
+  try {
+    det = await carregarDetalhe(sel);
+  } catch (err) {
+    box.innerHTML = `<p class="vazio">${t("Não foi possível carregar os lançamentos ({erro}).", { erro: esc(err.message) })}</p>`;
+    return;
+  }
+  if (estado.sel !== sel || !box.isConnected) return; // trocou de fornecedor no meio
+
+  const iEv = det.eventos.indexOf(estado.evento);
+  const linhas = det.l.filter((l) => l[2] === iEv && (!estado.ano || l[5].startsWith(estado.ano)));
+  linhas.sort(analitico.ordem === "valor"
+    ? (a, b) => b[1] - a[1]
+    : (a, b) => (b[5] + b[0]).localeCompare(a[5] + a[0]));
+  const total = linhas.reduce((soma, l) => soma + l[1], 0);
+  const vis = linhas.slice(0, analitico.limite);
+  const ev = esc(eventoLabel());
+
+  box.innerHTML = `
+    <div class="analitico-head">
+      <h4>${t("Analítico")}: ${t("{n} lançamentos", { n: fmtInt.format(linhas.length) })} ${ev} · ${periodoLabel()}
+        = <b>${fmtBRL.format(total)}</b></h4>
+      <div class="analitico-ordem" role="group" aria-label="${t("Ordenar por")}">
+        <button type="button" data-ordem="valor" aria-pressed="${analitico.ordem === "valor"}">${t("Maior valor")}</button>
+        <button type="button" data-ordem="data" aria-pressed="${analitico.ordem === "data"}">${t("Mais recentes")}</button>
+      </div>
+    </div>
+    ${linhas.length ? `
+      <div class="tabela-wrap"><table class="analitico-tabela">
+        <thead><tr><th>${t("Data")}</th><th>${t("Mês")}</th><th>${t("Órgão")}</th><th>${t("Empenho")}</th>
+          <th class="num">${t("Valor {ev}", { ev })}</th></tr></thead>
+        <tbody>${vis.map((l) => {
+          const [a, m] = l[5].split("-");
+          return `<tr><td>${fmtData(l[0])}</td><td>${MESES[+m - 1]}/${a}</td><td>${esc(det.orgaos[l[3]])}</td>
+            <td>${esc(l[4])}</td><td class="num">${fmtBRL.format(l[1])}</td></tr>`;
+        }).join("")}</tbody>
+        <tfoot><tr><td colspan="4">${t("Total")} (${fmtInt.format(linhas.length)})</td>
+          <td class="num">${fmtBRL.format(total)}</td></tr></tfoot>
+      </table></div>
+      ${linhas.length > vis.length ? `<button type="button" class="btn sec analitico-mais">${
+        t("Mostrar mais ({n} de {total})", { n: fmtInt.format(vis.length), total: fmtInt.format(linhas.length) })}</button>` : ""}`
+    : `<p class="vazio">${estado.ano
+        ? t("Nenhum lançamento {ev} em {ano}.", { ev, ano: estado.ano })
+        : t("Nenhum lançamento {ev}.", { ev })}</p>`}`;
+
+  box.querySelectorAll("[data-ordem]").forEach((b) => b.addEventListener("click", () => {
+    analitico.ordem = b.dataset.ordem;
+    renderAnalitico();
+  }));
+  box.querySelector(".analitico-mais")?.addEventListener("click", () => {
+    analitico.limite += ANALITICO_PAGINA * 4;
+    renderAnalitico();
+  });
 }
 
 function grafico(id, config) {
   if (graficos[id]) graficos[id].destroy();
   graficos[id] = new Chart($(id), config);
+  return graficos[id];
 }
 
 const tooltipBRL = {
@@ -388,7 +528,11 @@ function renderGraficoAno(s, id) {
   $(`${id}-titulo`).textContent = t("Valor {ev} por ano", { ev: eventoLabel(s) }) +
     (f ? " — " + f.nome : filtrados ? ` — “${s.busca.trim()}”` : "");
   const interativo = s === estado;
-  grafico(id, {
+  // Ano selecionado (clique na barra): a legenda dela fica aberta, mesmo sem
+  // hover — no celular não há mouse para revelá-la.
+  const fixo = interativo && s.ano ? as.indexOf(s.ano) : -1;
+  const ativaFixo = (chart) => chart.tooltip.setActiveElements([{ datasetIndex: 0, index: fixo }], { x: 0, y: 0 });
+  const chart = grafico(id, {
     type: "bar",
     data: {
       labels: as,
@@ -411,7 +555,19 @@ function renderGraficoAno(s, id) {
         render();
       },
     },
+    plugins: [{
+      id: "legendaFixa",
+      afterEvent(c, args) {
+        if (fixo < 0 || c.tooltip.getActiveElements().length) return;
+        ativaFixo(c);
+        args.changed = true;
+      },
+    }],
   });
+  if (fixo >= 0) {
+    ativaFixo(chart);
+    chart.update();
+  }
 }
 
 function renderGraficoMes(s) {
@@ -531,7 +687,7 @@ function renderTabela() {
   $("p-prox").disabled = estado.pagina >= paginas - 1;
 }
 
-function renderTop10() {
+async function renderTop10() {
   document.querySelectorAll("#modal-top10 .aba").forEach((b) =>
     b.classList.toggle("ativa", b.dataset.aba === estado.aba));
   const evl = eventoLabel();
@@ -543,9 +699,17 @@ function renderTop10() {
     $("m-titulo").textContent = `${t("Top 10 maiores valores {ev}", { ev: eventoPlural() })} · ${sufixo}`;
     let linhas;
     if (f) {
-      linhas = ((f.top || {})[estado.evento] || [])
-        .filter((l) => !estado.ano || anoLanc(l, 4) === estado.ano)
-        .map((l) => ({ data: l[0], valor: l[1], orgao: l[2], emp: l[3], i: estado.sel }));
+      // Do analítico do fornecedor (todos os lançamentos), para valer também
+      // com um ano filtrado; sem ele, cai nos 5 maiores do período (f.top).
+      const sel = estado.sel;
+      const det = await carregarDetalhe(sel).catch(() => null);
+      if (estado.sel !== sel) return;
+      linhas = det
+        ? det.l.filter((l) => det.eventos[l[2]] === estado.evento && (!estado.ano || l[5].startsWith(estado.ano)))
+          .map((l) => ({ data: l[0], valor: l[1], orgao: det.orgaos[l[3]], emp: l[4], i: sel }))
+        : ((f.top || {})[estado.evento] || [])
+          .filter((l) => !estado.ano || anoLanc(l, 4) === estado.ano)
+          .map((l) => ({ data: l[0], valor: l[1], orgao: l[2], emp: l[3], i: sel }));
     } else {
       const q = normaliza(estado.busca).trim();
       linhas = DADOS.top_lancamentos
