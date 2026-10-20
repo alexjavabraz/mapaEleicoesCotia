@@ -1,4 +1,4 @@
-# Sessão — 2026-10-20 (4) · Renda do Censo nos bairros (mapa 2024)
+# Sessão — 2026-10-20 (6) · Renda do Censo nos bairros (mapa 2024)
 
 **Status:** iniciada 2026-10-20 17:20 UTC · finalizada 2026-10-20 17:40 UTC
 (branch `claude/project-thread-20twi4`; a pedido do Alex entrou direto no `main`,
@@ -29,6 +29,43 @@ Plano em `/mnt/project-files/plano-censo/plano-renda-censo.md`.
   `getFeatureStyle` (map.js) usa o estilo de renda quando ligado, então Limpar
   e o destaque de vereador mantêm as cores. Só `index.html` carrega o arquivo.
 - i18n (PT/EN), css, `sw.js` → v26 (o PR #11 usa v25).
+
+---
+
+# Sessão — 2026-10-20 (5) · Custo por voto em 2024
+
+**Status:** iniciada 2026-10-20 17:13 UTC · finalizada 2026-10-20 17:40 UTC
+(branch `claude/custo-por-voto-2024-2riugw`, PR #10 fechado; entrou direto no
+`main` a pedido do Alex).
+
+## Pedido
+
+Obter os gastos de campanha de cada vereador e candidato a prefeito de 2024 no
+TSE, dividir pelo total de votos e mostrar o custo/voto embaixo do nome do
+candidato, com ou sem escola selecionada. Gerar um arquivo com isso e consultar
+o arquivo.
+
+## O que foi feito
+
+- `scripts/download_gastos_campanha.py`: baixa
+  `prestacao_de_contas_eleitorais_candidatos_2024.zip` (TSE Dados Abertos),
+  filtra Cotia/SP, prefeito e vereador, e soma as despesas contratadas da
+  prestação final mais recente de cada candidato (também as despesas pagas).
+  Custo/voto = despesas contratadas ÷ votos nominais do 1º turno
+  (`data/tse_cotia_2024.json`). `GASTOS_ZIP` aceita um zip já baixado.
+- O CDN do TSE é bloqueado na rede da sessão, então o download roda no
+  workflow `.github/workflows/gastos-campanha.yml` (manual ou push no branch),
+  que comita `data/gastos_campanha_2024.json` (308 candidatos, todos com
+  prestação de contas; 176, nenhum eleito, declararam R$ 0 de despesas
+  contratadas e aparecem como "sem gastos declarados").
+- `js/tse.js`: `loadGastosCampanha()` e `htmlCustoVoto()`; o card do candidato
+  mostra "Custo/voto: R$ x" embaixo do nome (tooltip com gasto ÷ votos). O
+  valor é sempre o da cidade inteira, com ou sem escola/bairro selecionado. Só
+  a página 2024 carrega o arquivo; 2026 não muda.
+- Textos em `js/i18n.js`, estilo `.candidate-custo` em `css/style.css`,
+  `sw.js` → v24 (outros branches usam v21–v23) e o JSON novo no cache de dados.
+
+---
 
 # Sessão — 2026-10-20 (4) · Bandeira de Cotia no header
 

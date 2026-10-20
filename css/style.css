@@ -422,6 +422,14 @@ html, body {
   line-height: 1.3;
 }
 
+.candidate-custo {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  margin: 1px 0 2px;
+}
+.candidate-custo strong { color: var(--text); font-weight: 600; }
+.candidate-custo.sem-dados { font-style: italic; }
+
 .candidate-partido {
   display: inline-block;
   background: rgba(255,255,255,0.1);

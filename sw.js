@@ -50,6 +50,7 @@ const DATA_ASSETS = [
   "./data/cotia_votos_por_escola.json",
   "./data/cotia_votos_por_escola_detalhe.json",
   "./data/cotia_locais_votacao.json",
+  "./data/gastos_campanha_2024.json",
   "./data/cotia_municipio.geojson",
   "./data/censo_renda_setores.json",
   "./data/contas_cotia.json",

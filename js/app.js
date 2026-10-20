@@ -776,11 +776,14 @@ async function init() {
 
   // 2b. Carrega dados auxiliares em paralelo
   // loadLocaisVotacao deve completar antes de loadVotosPorEscola (que mescla no escolasSummary)
-  const [bairroResult, locaisResult, rendaResult] = await Promise.all([
+  const [bairroResult, locaisResult, gastosResult, rendaResult] = await Promise.all([
     loadVotosPorBairro(),
     loadLocaisVotacao(),
+    loadGastosCampanha(),
     loadRendaCenso(),
   ]);
+  if (gastosResult.ok) console.log(`Gastos de campanha: ${gastosResult.count} candidatos`);
+  else console.log("Gastos de campanha não disponíveis:", gastosResult.error);
   if (rendaResult.ok) {
     console.log(`Renda do Censo: ${rendaResult.count} setores`);
     addBotaoRenda();

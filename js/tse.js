@@ -11,6 +11,9 @@ let locaisVotacao = null;   // dados de ./data/cotia_locais_votacao.json (por se
 let escolasSummary = null;  // dados agregados por local de votação (62 escolas)
 let votosPorEscola = null;  // dados de ./data/cotia_votos_por_escola.json
 let votosPorEscolaDetalhe = null; // ./data/cotia_votos_por_escola_detalhe.json
+// ./data/gastos_campanha_2024.json indexado por número e por nome (urna e completo).
+// Só a página 2024 carrega; com null o card não mostra o custo por voto.
+let gastosCampanha = null;
 
 // Mapeamento: nome de urna (tse_cotia_2024) <-> nome completo (cotia_votos_por_bairro)
 // Necessário porque os dois datasets usam campos diferentes do TSE.
@@ -97,6 +100,55 @@ async function loadTSEData() {
     }
     return { error: err.message };
   }
+}
+
+/**
+ * Carrega os gastos de campanha 2024 (gerado por download_gastos_campanha.py).
+ * Retorna { ok, count } ou { error } sem quebrar o app se o arquivo não existir.
+ */
+async function loadGastosCampanha() {
+  try {
+    const r = await fetch("./data/gastos_campanha_2024.json");
+    if (!r.ok) return { error: r.status === 404 ? "not_found" : `http_${r.status}` };
+    const data = await r.json();
+    const porNumero = {}, porNome = {};
+    for (const c of data.candidatos || []) {
+      porNumero[c.numero] = c;
+      porNome[normalizeName(c.nome)] = c;
+      if (c.nome_completo) porNome[normalizeName(c.nome_completo)] = c;
+    }
+    gastosCampanha = { porNumero, porNome, fonte: data.fonte, fonte_url: data.fonte_url };
+    return { ok: true, count: (data.candidatos || []).length };
+  } catch (err) {
+    return { error: err.message };
+  }
+}
+
+function formatReais(v) {
+  return v.toLocaleString(LOCALE, { style: "currency", currency: "BRL" });
+}
+
+/**
+ * Linha "Custo/voto" do card: gasto total ÷ votos totais do candidato na
+ * cidade (não muda com escola ou bairro selecionado). "" se não houver dados.
+ */
+function htmlCustoVoto(candidato) {
+  if (!gastosCampanha) return "";
+  const g = (candidato.numero && gastosCampanha.porNumero[candidato.numero])
+         || gastosCampanha.porNome[normalizeName(candidato.nome)]
+         || gastosCampanha.porNome[normalizeName(resolveNomeFull(candidato.nome))];
+  if (!g) return "";
+  if (g.despesas_contratadas == null) {
+    return `<div class="candidate-custo sem-dados">${t("Custo/voto: sem prestação de contas")}</div>`;
+  }
+  if (g.despesas_contratadas === 0) {
+    return `<div class="candidate-custo sem-dados">${t("Custo/voto: sem gastos declarados")}</div>`;
+  }
+  const titulo = t("Gasto de campanha {g} ÷ {n} votos no total", {
+    g: formatReais(g.despesas_contratadas), n: formatVotos(g.votos),
+  });
+  const custo = g.custo_por_voto == null ? "—" : formatReais(g.custo_por_voto);
+  return `<div class="candidate-custo" title="${titulo}">${t("Custo/voto: {v}", { v: `<strong>${custo}</strong>` })}</div>`;
 }
 
 /**
@@ -363,6 +415,7 @@ function renderCandidateCard(candidato, maxVotos, extraHtml) {
       <div class="candidate-header">
         <div style="flex:1;min-width:0">
           <div class="candidate-name">${tNomeVoto(candidato.nome)}</div>
+          ${htmlCustoVoto(candidato)}
           ${situacaoLabel}
         </div>
         <div class="candidate-header-right">
