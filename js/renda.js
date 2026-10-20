@@ -1,5 +1,5 @@
 /**
- * renda.js — Renda do Censo IBGE 2022 nos bairros (só no mapa de 2024).
+ * renda.js — Renda do Censo IBGE 2022 nos bairros (mapas de 2024 e 2022/2026).
  *
  * Lê data/censo_renda_setores.json (gerado por scripts/download_censo.py):
  * um ponto por setor censitário com a renda média do responsável pelo
@@ -11,6 +11,9 @@
  * O botão "Renda (Censo)" (topleft do mapa) liga/desliga a coloração e a
  * legenda (bottomright). map.js chama estiloRendaBairro() em getFeatureStyle,
  * então resets e o destaque de vereador preservam as cores da renda.
+ * 2024: addBotaoRenda() entra nos botões já existentes (Votos por seção /
+ * Limpar). 2022/2026: addAcoesRenda() cria "Renda (Censo)" + "Limpar"; a
+ * página passa como repintar (cores de renda ou de candidatos).
  */
 
 // Do mais claro (renda baixa) ao mais escuro (renda alta)
@@ -20,6 +23,7 @@ const RENDA_ROTULOS = ["Renda baixa", "Renda média", "Renda alta"];
 let rendaDados = null;   // conteúdo do JSON
 let rendaAtiva = false;  // botão ligado
 let _legendaRendaCtrl = null;
+let _aoMudarRenda = null; // repinta os bairros; padrão: reaplicarEstiloBairros (2024)
 
 async function loadRendaCenso() {
   try {
@@ -152,16 +156,21 @@ function reaplicarEstiloBairros() {
   }
 }
 
-function toggleRenda() {
+/** Liga/desliga o modo renda e repinta os bairros. */
+function setRenda(ativa) {
   if (!rendaDados) return;
-  rendaAtiva = !rendaAtiva;
+  rendaAtiva = !!ativa;
   const btn = document.getElementById("btn-renda");
   if (btn) {
     btn.classList.toggle("active", rendaAtiva);
     btn.setAttribute("aria-pressed", String(rendaAtiva));
   }
-  reaplicarEstiloBairros();
+  (_aoMudarRenda || reaplicarEstiloBairros)();
   atualizarLegendaRenda();
+}
+
+function toggleRenda() {
+  setRenda(!rendaAtiva);
 }
 
 /** Acrescenta o botão "Renda (Censo)" aos botões do mapa (Votos por seção / Limpar). */
@@ -178,4 +187,28 @@ function addBotaoRenda() {
   btn.addEventListener("click", toggleRenda);
   const limpar = document.getElementById("btn-limpar");
   acoes.insertBefore(btn, limpar);
+}
+
+/**
+ * Botões "Renda (Censo)" e "Limpar" no topleft do mapa (página 2022/2026).
+ * aoMudar repinta os bairros conforme rendaAtiva; onLimpar volta às cores
+ * dos candidatos.
+ */
+function addAcoesRenda({ aoMudar, onLimpar }) {
+  _aoMudarRenda = aoMudar;
+  const ctrl = L.control({ position: "topleft" });
+  ctrl.onAdd = function () {
+    const div = L.DomUtil.create("div", "map-actions");
+    L.DomEvent.disableClickPropagation(div);
+    L.DomEvent.disableScrollPropagation(div);
+    div.innerHTML = `
+      <button type="button" class="map-action-btn" id="btn-renda" aria-pressed="false"
+              title="${t("Pinta os bairros pela renda média do Censo IBGE, sem as cores dos candidatos")}">${t("Renda (Censo)")}</button>
+      <button type="button" class="map-action-btn" id="btn-limpar"
+              title="${t("Volta às cores dos candidatos")}">${t("Limpar")}</button>`;
+    div.querySelector("#btn-renda").addEventListener("click", toggleRenda);
+    div.querySelector("#btn-limpar").addEventListener("click", onLimpar);
+    return div;
+  };
+  ctrl.addTo(map);
 }

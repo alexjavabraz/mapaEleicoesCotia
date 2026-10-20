@@ -316,6 +316,8 @@ const I18N_EN = {
   // ---- Mapa 2024: votos por escola ----
   "Votos por seção": "Votes by polling place",
   "Renda (Censo)": "Income (Census)",
+  "Pinta os bairros pela renda média do Censo IBGE, sem as cores dos candidatos": "Colors neighborhoods by average income from the IBGE Census, ignoring candidate colors",
+  "Volta às cores dos candidatos": "Back to candidate colors",
   "Pinta os bairros pela renda média do Censo IBGE": "Colors neighborhoods by average income from the IBGE Census",
   "Renda média do responsável pelo domicílio": "Average income of the head of household",
   "Renda baixa": "Low income",

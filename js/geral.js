@@ -456,6 +456,7 @@ function toggleHighlightCandidat(nomeUrna, cor) {
   }
   candidatoDestaque = { nome: nomeUrna, cor };
   currentCandidatoFiltro = ""; // mutuamente exclusivo com o combobox "votos por bairro"
+  desligarRendaGeral();        // escolher um candidato volta às cores de candidatos
   renderRankingBoxGeral("");
   limparLegendaTop3(); // a legenda do top-3 não se aplica a essa coloração
   aplicarHighlightCandidato();
@@ -498,6 +499,7 @@ function filtrarCandidatoGeral(nome) {
   currentCandidatoFiltro = nome;
   if (nome) {
     candidatoDestaque = null; // mutuamente exclusivo com o destaque por ícone
+    desligarRendaGeral();
     limparLegendaTop3();      // o ranking (mesmo canto, bottomleft) substitui a legenda
     highlightCandidatoGeralOnMap(nome);
   } else {
@@ -515,6 +517,7 @@ function filtrarCandidatoGeral(nome) {
 function highlightCandidatoGeralOnMap(nome) {
   if (!neighborhoodLayer) return;
   if (!nome) { colorirMapaPartidoVencedor(); return; }
+  if (rendaAtiva) { pintarBairrosGeral(); return; }
 
   // Dados por bairro usam nome completo do candidato; tseData/totais usam o
   // nome de urna (combobox). Resolve antes de comparar — ver buildNomeMappingGeral().
@@ -599,6 +602,7 @@ function renderRankingBoxGeral(nome) {
  */
 function aplicarHighlightCandidato() {
   if (!neighborhoodLayer || !candidatoDestaque) return;
+  if (rendaAtiva) { pintarBairrosGeral(); return; }
 
   const { nome, cor } = candidatoDestaque;
   const normNome = normBairro(nome);
@@ -939,7 +943,45 @@ function getTooltipContentGeral(feature, zona) {
       <div style="font-size:0.7rem;color:#ccc;margin-top:2px">${t("{n} votos", { n: formatVotos(top.votos) })}${fonte === "bairro" ? ` <span style='color:#81c784'>✓ ${t("por bairro")}</span>` : ""}</div>
     </div>`;
   }
+  html += tooltipRendaBairro(feature);
   return html;
+}
+
+// ---- RENDA DO CENSO (js/renda.js) ----
+
+/**
+ * Repinta os bairros conforme o modo: com a renda ligada, todos pela faixa de
+ * renda (sem as cores dos candidatos); desligada, as cores de candidatos que
+ * estavam valendo (destaque por ícone, combobox ou top-3 do cargo).
+ */
+function pintarBairrosGeral() {
+  if (!neighborhoodLayer) return;
+  if (rendaAtiva) {
+    limparLegendaTop3();
+    resetBairrosStyle(); // getFeatureStyle devolve o estilo da renda
+    return;
+  }
+  if (candidatoDestaque) aplicarHighlightCandidato();
+  else if (currentCandidatoFiltro) highlightCandidatoGeralOnMap(currentCandidatoFiltro);
+  else colorirMapaPartidoVencedor();
+}
+
+/** Desliga o modo renda sem repintar (quem chama repinta com as cores de candidatos). */
+function desligarRendaGeral() {
+  if (!rendaAtiva) return;
+  rendaAtiva = false;
+  const btn = document.getElementById("btn-renda");
+  if (btn) {
+    btn.classList.remove("active");
+    btn.setAttribute("aria-pressed", "false");
+  }
+  atualizarLegendaRenda();
+}
+
+/** Botão Limpar: desliga a renda e volta às cores dos candidatos. */
+function limparRendaGeral() {
+  if (rendaAtiva) setRenda(false);
+  else pintarBairrosGeral();
 }
 
 // ---- COLORAÇÃO DO MAPA POR TOP-3 CANDIDATOS DO CARGO ----
@@ -1042,6 +1084,7 @@ function getCorVencedorBairro(bairroNomeFeature, zona, top3, cores) {
  */
 function colorirMapaPartidoVencedor() {
   if (!neighborhoodLayer) return;
+  if (rendaAtiva) { pintarBairrosGeral(); return; } // modo renda ignora as cores dos candidatos
   const top3 = getTop3CandidatosCargo();
   const cores = getCoresTop3(top3);
   neighborhoodLayer.eachLayer((layer) => {
@@ -1148,10 +1191,17 @@ async function init() {
   await loadLocaisVotacao(); // dado geográfico (geometria), reaproveitado de 2024 — serve de base pra Voronoi
 
   setLoadingStatus(t("Carregando dados eleitorais de {ano}...", { ano: currentYear }));
-  const [result] = await Promise.all([
+  const [result, rendaResult] = await Promise.all([
     loadYearData(currentYear),
+    loadRendaCenso(),
     loadVotosPorBairroGeral(currentYear),
   ]);
+  if (rendaResult.ok) {
+    console.log(`Renda do Censo: ${rendaResult.count} setores`);
+    addAcoesRenda({ aoMudar: pintarBairrosGeral, onLimpar: limparRendaGeral });
+  } else {
+    console.log("Renda do Censo não disponível:", rendaResult.error);
+  }
   if (result.ok) {
     buildNomeMappingGeral();
     buildZoneColors(getZonas());
