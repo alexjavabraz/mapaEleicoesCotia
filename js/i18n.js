@@ -273,6 +273,11 @@ const I18N_EN = {
   "Valor pago": "Amount paid",
   "% do ano": "% of year",
   "Sem pagamentos em {ano}.": "No payments in {ano}.",
+  "Seções da página": "Page sections",
+  "Visão geral": "Overview",
+  "Por fornecedor": "By supplier",
+  "Clique num recebedor para ver os pagamentos dele na aba Por fornecedor.":
+    "Click a payee to see their payments in the By supplier tab.",
   // Eventos da despesa pública (valores de DADOS.meta.eventos)
   "Pago": "Paid",
   "Liquidado": "Accrued",
