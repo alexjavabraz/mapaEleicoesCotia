@@ -406,6 +406,10 @@ async function fetchCotiaBairros(onStatus) {
   return fetchCotiaBairrosOverpass(onStatus);
 }
 
+// A Overpass costuma levar minutos quando está sobrecarregada; depois disso o
+// mapa desiste e segue com o contorno local / bairros por Voronoi.
+const OVERPASS_TIMEOUT_MS = 15000;
+
 /**
  * Consulta os bairros direto na Overpass API (fallback de fetchCotiaBairros).
  */
@@ -437,6 +441,7 @@ out skel qt;
       method: "POST",
       body: `data=${encodeURIComponent(query)}`,
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      signal: AbortSignal.timeout(OVERPASS_TIMEOUT_MS),
     });
 
     if (!response.ok) throw new Error(`Overpass API: ${response.status}`);
@@ -497,6 +502,7 @@ out skel qt;
       method: "POST",
       body: `data=${encodeURIComponent(query)}`,
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      signal: AbortSignal.timeout(OVERPASS_TIMEOUT_MS),
     });
 
     if (!response.ok) throw new Error(`Overpass API: ${response.status}`);
