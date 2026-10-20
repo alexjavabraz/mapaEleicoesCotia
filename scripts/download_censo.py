@@ -299,6 +299,10 @@ def pontos_setores(tmp, url_base, padrao):
     print(f"  {len(gdf)} setores de Cotia na malha (CRS {gdf.crs})")
     gdf = gdf.to_crs(4326)
     pts = gdf.geometry.representative_point()
+    # Contorno simplificado (~10 m) de cada setor, para pintar a renda por setor
+    simpl = gdf.geometry.simplify(0.0001, preserve_topology=True)
+    for cd, g in zip(gdf[col_setor], simpl):
+        SETOR_GEOM[str(cd)] = g
     # Bairro do próprio IBGE (vazio onde o município não tem bairros cadastrados)
     col_bairro = next((c for c in gdf.columns if c.upper() == "NM_BAIRRO"), None)
     nomes = gdf[col_bairro].fillna("").astype(str) if col_bairro else [""] * len(gdf)
@@ -460,6 +464,32 @@ def censo_2010(tmp):
 
 
 BAIRROS_IBGE = {}  # renda por bairro publicada pelo IBGE (só 2022)
+SETOR_GEOM = {}    # CD_SETOR -> geometria shapely simplificada (EPSG:4326)
+OUTPUT_GEOM = os.path.join(DATA_DIR, "censo_renda_setores.geojson")
+
+
+def arredonda(coords):
+    """Arredonda coordenadas aninhadas para 5 casas (~1 m)."""
+    if isinstance(coords[0], (int, float)):
+        return [round(coords[0], 5), round(coords[1], 5)]
+    return [arredonda(c) for c in coords]
+
+
+def grava_geojson(setores):
+    """Polígonos dos setores com renda: propriedades r (média), m (mediana), d (domicílios)."""
+    from shapely.geometry import mapping
+    feats = []
+    for s in setores:
+        g = SETOR_GEOM.get(s[5])
+        if g is None or g.is_empty:
+            continue
+        geo = mapping(g)
+        feats.append({"type": "Feature",
+                      "properties": {"s": s[5], "r": s[2], "m": s[6], "d": s[3]},
+                      "geometry": {"type": geo["type"], "coordinates": arredonda(geo["coordinates"])}})
+    with open(OUTPUT_GEOM, "w", encoding="utf-8") as f:
+        json.dump({"type": "FeatureCollection", "features": feats}, f, ensure_ascii=False, separators=(",", ":"))
+    print(f"Gravado {OUTPUT_GEOM} ({len(feats)} setores, {os.path.getsize(OUTPUT_GEOM) / 1e3:.0f} KB)")
 
 
 def main():
@@ -528,6 +558,7 @@ def main():
     with open(OUTPUT, "w", encoding="utf-8") as f:
         json.dump(saida, f, ensure_ascii=False, separators=(",", ":"))
     print(f"\nGravado {OUTPUT} ({os.path.getsize(OUTPUT) / 1e3:.0f} KB)")
+    grava_geojson(setores)
 
 
 if __name__ == "__main__":
