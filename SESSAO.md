@@ -24,7 +24,9 @@ ano" e deixar só "Valor pago por ano — {fornecedor}".
     fornecedores encontrados.
   - **Viagens da Câmara**: a seção de viagens como estava.
 - `js/contas.js`: funções de render recebem o estado (fixo ou filtrado);
-  `js/viagens.js` mostra aviso se os dados não carregarem. `sw.js` → v14.
+  `js/viagens.js` mostra aviso se os dados não carregarem. `setLang()` em
+  `js/i18n.js` recarrega a página quando a URL tem #aba (antes o botão PT/EN
+  não fazia nada depois de trocar de aba). `sw.js` → v15.
 
 ---
 
