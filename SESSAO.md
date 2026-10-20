@@ -23,6 +23,9 @@ processamento, cálculo, interpretação, modelos estatísticos e "Tudo pronto".
 - Leitor de tela: só a etapa atual é anunciada (`role="status"`); respeita
   `prefers-reduced-motion`. Textos traduzidos em `js/i18n.js`.
 - `sw.js` → v17.
+- Pedido seguinte: no gráfico "Valor pago por ano" da aba Por fornecedor, a
+  barra selecionada (clique/toque) mantém a legenda aberta, sem depender de
+  hover (plugin `legendaFixa` em `renderGraficoAno`). `sw.js` → v18.
 
 ---
 

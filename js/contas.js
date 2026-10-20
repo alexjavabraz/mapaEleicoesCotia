@@ -421,6 +421,7 @@ function renderSelecionado() {
 function grafico(id, config) {
   if (graficos[id]) graficos[id].destroy();
   graficos[id] = new Chart($(id), config);
+  return graficos[id];
 }
 
 const tooltipBRL = {
@@ -444,7 +445,11 @@ function renderGraficoAno(s, id) {
   $(`${id}-titulo`).textContent = t("Valor {ev} por ano", { ev: eventoLabel(s) }) +
     (f ? " — " + f.nome : filtrados ? ` — “${s.busca.trim()}”` : "");
   const interativo = s === estado;
-  grafico(id, {
+  // Ano selecionado (clique na barra): a legenda dela fica aberta, mesmo sem
+  // hover — no celular não há mouse para revelá-la.
+  const fixo = interativo && s.ano ? as.indexOf(s.ano) : -1;
+  const ativaFixo = (chart) => chart.tooltip.setActiveElements([{ datasetIndex: 0, index: fixo }], { x: 0, y: 0 });
+  const chart = grafico(id, {
     type: "bar",
     data: {
       labels: as,
@@ -467,7 +472,19 @@ function renderGraficoAno(s, id) {
         render();
       },
     },
+    plugins: [{
+      id: "legendaFixa",
+      afterEvent(c, args) {
+        if (fixo < 0 || c.tooltip.getActiveElements().length) return;
+        ativaFixo(c);
+        args.changed = true;
+      },
+    }],
   });
+  if (fixo >= 0) {
+    ativaFixo(chart);
+    chart.update();
+  }
 }
 
 function renderGraficoMes(s) {
