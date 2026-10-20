@@ -1,3 +1,33 @@
+# Sessão — 2026-10-20 (10) · Patrimônio declarado dos candidatos 2024
+
+**Status:** iniciada 2026-10-20 23:05 UTC · finalizada 2026-10-20 23:20 UTC
+(commit direto no `main`).
+
+## Pedido
+
+Mostrar o patrimônio declarado de cada candidato abaixo do nome, antes do
+custo/voto, com link para esse dado no TSE.
+
+## O que foi feito
+
+- `scripts/download_patrimonio.py`: baixa `consulta_cand_2024.zip` e
+  `bem_candidato_2024.zip` (TSE Dados Abertos), filtra prefeito e vereadores
+  de Cotia/SP e soma `VR_BEM_CANDIDATO` por `SQ_CANDIDATO`. Grava
+  `data/patrimonio_candidatos_2024.json` (308 candidatos, 226 com bens) com o
+  link da página do candidato no DivulgaCandContas
+  (`…/candidato/SUDESTE/SP/2045202024/{SQ_CANDIDATO}/2024/63614`).
+- Workflow `.github/workflows/patrimonio.yml` (manual ou push no `main` que
+  mexa no script) roda o script e comita o JSON, porque o CDN do TSE é
+  bloqueado na rede da sessão.
+- `js/tse.js`: `loadPatrimonio()` e `htmlPatrimonio()`; o card mostra
+  "Patrimônio: R$ x  TSE ↗" acima do "Custo/voto" (ou "nenhum bem
+  declarado"). Os dois arquivos usam o mesmo índice por número/nome
+  (`carregarIndiceCandidatos`, `buscarNoIndice`). Só no mapa 2024.
+- Textos em `js/i18n.js`, `.candidate-tse-link` em `css/style.css` (conferido
+  nos temas claro e escuro), `sw.js` → v32 com o JSON novo no cache de dados.
+
+---
+
 # Sessão — 2026-10-20 (9) · Abas de cargo na página Eleições 2026
 
 **Status:** iniciada 2026-10-20 22:08 UTC · finalizada 2026-10-20 22:35 UTC

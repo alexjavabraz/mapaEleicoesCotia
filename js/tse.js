@@ -14,6 +14,8 @@ let votosPorEscolaDetalhe = null; // ./data/cotia_votos_por_escola_detalhe.json
 // ./data/gastos_campanha_2024.json indexado por número e por nome (urna e completo).
 // Só a página 2024 carrega; com null o card não mostra o custo por voto.
 let gastosCampanha = null;
+// ./data/patrimonio_candidatos_2024.json, no mesmo formato de índice.
+let patrimonioCandidatos = null;
 
 // Mapeamento: nome de urna (tse_cotia_2024) <-> nome completo (cotia_votos_por_bairro)
 // Necessário porque os dois datasets usam campos diferentes do TSE.
@@ -107,9 +109,26 @@ async function loadTSEData() {
  * Retorna { ok, count } ou { error } sem quebrar o app se o arquivo não existir.
  */
 async function loadGastosCampanha() {
+  const r = await carregarIndiceCandidatos("./data/gastos_campanha_2024.json");
+  if (r.indice) gastosCampanha = r.indice;
+  return r.resultado;
+}
+
+/**
+ * Carrega o patrimônio declarado 2024 (gerado por download_patrimonio.py).
+ * Retorna { ok, count } ou { error } sem quebrar o app se o arquivo não existir.
+ */
+async function loadPatrimonio() {
+  const r = await carregarIndiceCandidatos("./data/patrimonio_candidatos_2024.json");
+  if (r.indice) patrimonioCandidatos = r.indice;
+  return r.resultado;
+}
+
+/** Baixa um JSON { candidatos: [...] } e indexa por número e por nome (urna e completo). */
+async function carregarIndiceCandidatos(url) {
   try {
-    const r = await fetch("./data/gastos_campanha_2024.json");
-    if (!r.ok) return { error: r.status === 404 ? "not_found" : `http_${r.status}` };
+    const r = await fetch(url);
+    if (!r.ok) return { resultado: { error: r.status === 404 ? "not_found" : `http_${r.status}` } };
     const data = await r.json();
     const porNumero = {}, porNome = {};
     for (const c of data.candidatos || []) {
@@ -117,11 +136,22 @@ async function loadGastosCampanha() {
       porNome[normalizeName(c.nome)] = c;
       if (c.nome_completo) porNome[normalizeName(c.nome_completo)] = c;
     }
-    gastosCampanha = { porNumero, porNome, fonte: data.fonte, fonte_url: data.fonte_url };
-    return { ok: true, count: (data.candidatos || []).length };
+    return {
+      indice: { porNumero, porNome, fonte: data.fonte, fonte_url: data.fonte_url },
+      resultado: { ok: true, count: (data.candidatos || []).length },
+    };
   } catch (err) {
-    return { error: err.message };
+    return { resultado: { error: err.message } };
   }
+}
+
+/** Registro do candidato num índice: pelo número ou pelo nome (urna ou completo). */
+function buscarNoIndice(indice, candidato) {
+  if (!indice) return null;
+  return (candidato.numero && indice.porNumero[candidato.numero])
+      || indice.porNome[normalizeName(candidato.nome)]
+      || indice.porNome[normalizeName(resolveNomeFull(candidato.nome))]
+      || null;
 }
 
 function formatReais(v) {
@@ -129,14 +159,28 @@ function formatReais(v) {
 }
 
 /**
+ * Linha "Patrimônio" do card: soma dos bens declarados ao TSE, com link para a
+ * página do candidato no DivulgaCandContas. "" se não houver dados.
+ */
+function htmlPatrimonio(candidato) {
+  const p = buscarNoIndice(patrimonioCandidatos, candidato);
+  if (!p) return "";
+  const valor = p.bens > 0
+    ? `<strong>${p.patrimonio.toLocaleString(LOCALE, { style: "currency", currency: "BRL", maximumFractionDigits: 0 })}</strong>`
+    : t("nenhum bem declarado");
+  const texto = t("Patrimônio: {v}", { v: valor });
+  if (!p.url_tse) return `<div class="candidate-custo">${texto}</div>`;
+  return `<div class="candidate-custo">${texto}
+    <a class="candidate-tse-link" href="${p.url_tse}" target="_blank" rel="noopener"
+       title="${t("Ver os bens declarados no TSE")}" onclick="event.stopPropagation()">${t("TSE")} ↗</a></div>`;
+}
+
+/**
  * Linha "Custo/voto" do card: gasto total ÷ votos totais do candidato na
  * cidade (não muda com escola ou bairro selecionado). "" se não houver dados.
  */
 function htmlCustoVoto(candidato) {
-  if (!gastosCampanha) return "";
-  const g = (candidato.numero && gastosCampanha.porNumero[candidato.numero])
-         || gastosCampanha.porNome[normalizeName(candidato.nome)]
-         || gastosCampanha.porNome[normalizeName(resolveNomeFull(candidato.nome))];
+  const g = buscarNoIndice(gastosCampanha, candidato);
   if (!g) return "";
   if (g.despesas_contratadas == null) {
     return `<div class="candidate-custo sem-dados">${t("Custo/voto: sem prestação de contas")}</div>`;
@@ -415,6 +459,7 @@ function renderCandidateCard(candidato, maxVotos, extraHtml) {
       <div class="candidate-header">
         <div style="flex:1;min-width:0">
           <div class="candidate-name">${tNomeVoto(candidato.nome)}</div>
+          ${htmlPatrimonio(candidato)}
           ${htmlCustoVoto(candidato)}
           ${situacaoLabel}
         </div>
