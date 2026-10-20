@@ -1,7 +1,8 @@
-# Sessão — 2026-10-20 (4) · Custo por voto em 2024
+# Sessão — 2026-10-20 (5) · Custo por voto em 2024
 
-**Status:** iniciada 2026-10-20 17:13 UTC · finalizada 2026-10-20 17:35 UTC
-(branch `claude/custo-por-voto-2024-2riugw`, sobre `main`, label `agentic`).
+**Status:** iniciada 2026-10-20 17:13 UTC · finalizada 2026-10-20 17:40 UTC
+(branch `claude/custo-por-voto-2024-2riugw`, PR #10 fechado; entrou direto no
+`main` a pedido do Alex).
 
 ## Pedido
 
@@ -29,6 +30,19 @@ o arquivo.
   a página 2024 carrega o arquivo; 2026 não muda.
 - Textos em `js/i18n.js`, estilo `.candidate-custo` em `css/style.css`,
   `sw.js` → v24 (outros branches usam v21–v23) e o JSON novo no cache de dados.
+
+---
+
+# Sessão — 2026-10-20 (4) · Bandeira de Cotia no header
+
+**Status:** iniciada 2026-10-20 16:47 UTC · finalizada 2026-10-20 17:25 UTC
+(commit direto no `main`, a pedido do Alex).
+
+- Bandeira (`icons/cotia-flag.svg`, 28 px) ao lado do nome "Cotia" no header
+  das três páginas. No celular o nome some e a bandeira fica, ao lado das abas
+  curtas. `sw.js` → v22 (o branch do tema já usa v21).
+
+---
 
 # Sessão — 2026-10-20 (3) · Loading animado nas Contas
 
