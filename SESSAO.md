@@ -1,3 +1,28 @@
+# Sessão — 2026-10-20 (7) · Renda do Censo também no mapa 2026
+
+**Status:** iniciada 2026-10-20 22:07 UTC · finalizada 2026-10-20 22:25 UTC
+(direto no `main`, a pedido do Alex).
+
+## Pedido
+
+Levar a renda do Censo para a aba Eleições 2026, com um botão que pinta os
+bairros pela renda ignorando as cores dos candidatos e um botão Limpar que
+volta às cores dos candidatos.
+
+## O que foi feito
+
+- `eleicao-geral.html` carrega `js/renda.js`; `addAcoesRenda()` cria os botões
+  "Renda (Censo)" e "Limpar" no topleft do mapa.
+- `js/geral.js`: `pintarBairrosGeral()` pinta tudo pela renda (esconde a
+  legenda do top-3, mostra a da renda) ou volta às cores de candidatos que
+  valiam (destaque por ícone, combobox ou top-3). Trocar cargo/turno/ano com a
+  renda ligada mantém a renda; escolher um candidato desliga a renda. Tooltip
+  do bairro ganha a linha de renda.
+- `js/renda.js`: `setRenda()` com callback por página (o 2024 segue igual).
+- Testado no Chromium nos temas claro e escuro. `sw.js` → v29.
+
+---
+
 # Sessão — 2026-10-20 (7) · Tema claro/escuro e tabelas em cartões
 
 **Status:** iniciada 2026-10-20 02:50 UTC · finalizada 2026-10-20 22:20 UTC
