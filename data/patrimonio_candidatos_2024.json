@@ -1,7 +1,7 @@
 {
  "fonte": "TSE — Dados Abertos — Candidatos 2024 (bens declarados)",
  "fonte_url": "https://dadosabertos.tse.jus.br/dataset/candidatos-2024",
- "gerado_em": "2026-10-20T23:06:46Z",
+ "gerado_em": "2026-10-20T23:07:33Z",
  "municipio": "COTIA",
  "uf": "SP",
  "candidatos": [
@@ -13,7 +13,7 @@
    "sq_candidato": "250001894671",
    "patrimonio": 410000.0,
    "bens": 3,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001894671/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001894671/2024/63614"
   },
   {
    "cargo": "prefeito",
@@ -23,7 +23,7 @@
    "sq_candidato": "250001920602",
    "patrimonio": 1127241.29,
    "bens": 8,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001920602/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001920602/2024/63614"
   },
   {
    "cargo": "prefeito",
@@ -33,7 +33,7 @@
    "sq_candidato": "250002173234",
    "patrimonio": 29000.0,
    "bens": 1,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250002173234/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250002173234/2024/63614"
   },
   {
    "cargo": "prefeito",
@@ -43,7 +43,7 @@
    "sq_candidato": "250001910452",
    "patrimonio": 0.0,
    "bens": 0,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001910452/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001910452/2024/63614"
   },
   {
    "cargo": "prefeito",
@@ -53,7 +53,7 @@
    "sq_candidato": "250002061510",
    "patrimonio": 10383538.99,
    "bens": 23,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250002061510/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250002061510/2024/63614"
   },
   {
    "cargo": "prefeito",
@@ -63,7 +63,7 @@
    "sq_candidato": "250002157512",
    "patrimonio": 240000.0,
    "bens": 2,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250002157512/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250002157512/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -73,7 +73,7 @@
    "sq_candidato": "250001907535",
    "patrimonio": 180000.0,
    "bens": 3,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001907535/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001907535/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -83,7 +83,7 @@
    "sq_candidato": "250001907679",
    "patrimonio": 20000.0,
    "bens": 1,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001907679/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001907679/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -93,7 +93,7 @@
    "sq_candidato": "250001907507",
    "patrimonio": 150225.0,
    "bens": 5,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001907507/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001907507/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -103,7 +103,7 @@
    "sq_candidato": "250001894720",
    "patrimonio": 717000.0,
    "bens": 5,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001894720/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001894720/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -113,7 +113,7 @@
    "sq_candidato": "250001907594",
    "patrimonio": 572647.81,
    "bens": 6,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001907594/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001907594/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -123,7 +123,7 @@
    "sq_candidato": "250001894716",
    "patrimonio": 30000.0,
    "bens": 1,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001894716/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001894716/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -133,7 +133,7 @@
    "sq_candidato": "250001894715",
    "patrimonio": 70000.0,
    "bens": 1,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001894715/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001894715/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -143,7 +143,7 @@
    "sq_candidato": "250001907587",
    "patrimonio": 673686.94,
    "bens": 12,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001907587/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001907587/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -153,7 +153,7 @@
    "sq_candidato": "250001907511",
    "patrimonio": 250000.0,
    "bens": 1,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001907511/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001907511/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -163,7 +163,7 @@
    "sq_candidato": "250001894723",
    "patrimonio": 0.0,
    "bens": 0,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001894723/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001894723/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -173,7 +173,7 @@
    "sq_candidato": "250001907700",
    "patrimonio": 141483.29,
    "bens": 3,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001907700/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001907700/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -183,7 +183,7 @@
    "sq_candidato": "250001907671",
    "patrimonio": 851014.08,
    "bens": 16,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001907671/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001907671/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -193,7 +193,7 @@
    "sq_candidato": "250001907791",
    "patrimonio": 0.0,
    "bens": 0,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001907791/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001907791/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -203,7 +203,7 @@
    "sq_candidato": "250001910331",
    "patrimonio": 1295299.62,
    "bens": 14,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001910331/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001910331/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -213,7 +213,7 @@
    "sq_candidato": "250001907532",
    "patrimonio": 516889.56,
    "bens": 8,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001907532/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001907532/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -223,7 +223,7 @@
    "sq_candidato": "250001894726",
    "patrimonio": 1563538.6,
    "bens": 5,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001894726/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001894726/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -233,7 +233,7 @@
    "sq_candidato": "250001907779",
    "patrimonio": 630016.19,
    "bens": 8,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001907779/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001907779/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -243,7 +243,7 @@
    "sq_candidato": "250001907697",
    "patrimonio": 18000.0,
    "bens": 2,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001907697/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001907697/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -253,7 +253,7 @@
    "sq_candidato": "250001907519",
    "patrimonio": 625000.0,
    "bens": 2,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001907519/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001907519/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -263,7 +263,7 @@
    "sq_candidato": "250001907673",
    "patrimonio": 1477168.81,
    "bens": 8,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001907673/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001907673/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -273,7 +273,7 @@
    "sq_candidato": "250001907490",
    "patrimonio": 165000.0,
    "bens": 2,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001907490/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001907490/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -283,7 +283,7 @@
    "sq_candidato": "250001907781",
    "patrimonio": 4351495.44,
    "bens": 29,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001907781/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001907781/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -293,7 +293,7 @@
    "sq_candidato": "250001907491",
    "patrimonio": 893978.03,
    "bens": 6,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001907491/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001907491/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -303,7 +303,7 @@
    "sq_candidato": "250001907706",
    "patrimonio": 1184420.61,
    "bens": 11,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001907706/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001907706/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -313,7 +313,7 @@
    "sq_candidato": "250001910328",
    "patrimonio": 38000.0,
    "bens": 1,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001910328/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001910328/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -323,7 +323,7 @@
    "sq_candidato": "250001894730",
    "patrimonio": 10000.0,
    "bens": 1,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001894730/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001894730/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -333,7 +333,7 @@
    "sq_candidato": "250001907702",
    "patrimonio": 200000.0,
    "bens": 1,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001907702/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001907702/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -343,7 +343,7 @@
    "sq_candidato": "250001907529",
    "patrimonio": 259122.0,
    "bens": 3,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001907529/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001907529/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -353,7 +353,7 @@
    "sq_candidato": "250001907541",
    "patrimonio": 86139.0,
    "bens": 2,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001907541/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001907541/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -363,7 +363,7 @@
    "sq_candidato": "250001907694",
    "patrimonio": 542030.0,
    "bens": 6,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001907694/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001907694/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -373,7 +373,7 @@
    "sq_candidato": "250001907668",
    "patrimonio": 42000.0,
    "bens": 2,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001907668/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001907668/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -383,7 +383,7 @@
    "sq_candidato": "250001894718",
    "patrimonio": 9000.0,
    "bens": 1,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001894718/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001894718/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -393,7 +393,7 @@
    "sq_candidato": "250001907531",
    "patrimonio": 157001.0,
    "bens": 3,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001907531/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001907531/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -403,7 +403,7 @@
    "sq_candidato": "250001910332",
    "patrimonio": 187000.0,
    "bens": 4,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001910332/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001910332/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -413,7 +413,7 @@
    "sq_candidato": "250001907684",
    "patrimonio": 260000.0,
    "bens": 1,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001907684/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001907684/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -423,7 +423,7 @@
    "sq_candidato": "250001907598",
    "patrimonio": 702384.59,
    "bens": 9,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001907598/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001907598/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -433,7 +433,7 @@
    "sq_candidato": "250001907600",
    "patrimonio": 967000.0,
    "bens": 2,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001907600/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001907600/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -443,7 +443,7 @@
    "sq_candidato": "250001907597",
    "patrimonio": 610000.0,
    "bens": 2,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001907597/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001907597/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -453,7 +453,7 @@
    "sq_candidato": "250001907699",
    "patrimonio": 102500.0,
    "bens": 4,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001907699/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001907699/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -463,7 +463,7 @@
    "sq_candidato": "250001894731",
    "patrimonio": 11000.0,
    "bens": 1,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001894731/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001894731/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -473,7 +473,7 @@
    "sq_candidato": "250001907703",
    "patrimonio": 198000.0,
    "bens": 2,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001907703/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001907703/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -483,7 +483,7 @@
    "sq_candidato": "250001894725",
    "patrimonio": 38000.0,
    "bens": 2,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001894725/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001894725/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -493,7 +493,7 @@
    "sq_candidato": "250001910324",
    "patrimonio": 0.0,
    "bens": 0,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001910324/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001910324/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -503,7 +503,7 @@
    "sq_candidato": "250001907696",
    "patrimonio": 509000.0,
    "bens": 2,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001907696/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001907696/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -513,7 +513,7 @@
    "sq_candidato": "250001907695",
    "patrimonio": 350000.0,
    "bens": 3,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001907695/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001907695/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -523,7 +523,7 @@
    "sq_candidato": "250002201485",
    "patrimonio": 12000.0,
    "bens": 1,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250002201485/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250002201485/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -533,7 +533,7 @@
    "sq_candidato": "250001910326",
    "patrimonio": 120000.0,
    "bens": 1,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001910326/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001910326/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -543,7 +543,7 @@
    "sq_candidato": "250001907494",
    "patrimonio": 169000.0,
    "bens": 3,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001907494/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001907494/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -553,7 +553,7 @@
    "sq_candidato": "250001910330",
    "patrimonio": 250300.0,
    "bens": 2,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001910330/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001910330/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -563,7 +563,7 @@
    "sq_candidato": "250001907486",
    "patrimonio": 0.0,
    "bens": 0,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001907486/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001907486/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -573,7 +573,7 @@
    "sq_candidato": "250001894724",
    "patrimonio": 11000.0,
    "bens": 1,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001894724/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001894724/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -583,7 +583,7 @@
    "sq_candidato": "250001910329",
    "patrimonio": 92000.0,
    "bens": 1,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001910329/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001910329/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -593,7 +593,7 @@
    "sq_candidato": "250001910325",
    "patrimonio": 90016.28,
    "bens": 6,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001910325/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001910325/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -603,7 +603,7 @@
    "sq_candidato": "250001894721",
    "patrimonio": 11000.0,
    "bens": 1,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001894721/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001894721/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -613,7 +613,7 @@
    "sq_candidato": "250001894719",
    "patrimonio": 15000.0,
    "bens": 1,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001894719/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001894719/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -623,7 +623,7 @@
    "sq_candidato": "250001907485",
    "patrimonio": 225904.06,
    "bens": 4,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001907485/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001907485/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -633,7 +633,7 @@
    "sq_candidato": "250001907515",
    "patrimonio": 87000.0,
    "bens": 3,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001907515/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001907515/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -643,7 +643,7 @@
    "sq_candidato": "250001907784",
    "patrimonio": 417976.0,
    "bens": 3,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001907784/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001907784/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -653,7 +653,7 @@
    "sq_candidato": "250001907480",
    "patrimonio": 55060.0,
    "bens": 1,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001907480/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001907480/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -663,7 +663,7 @@
    "sq_candidato": "250001946034",
    "patrimonio": 1181000.0,
    "bens": 5,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001946034/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001946034/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -673,7 +673,7 @@
    "sq_candidato": "250001907487",
    "patrimonio": 392185.07,
    "bens": 5,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001907487/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001907487/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -683,7 +683,7 @@
    "sq_candidato": "250001907481",
    "patrimonio": 84000.0,
    "bens": 2,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001907481/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001907481/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -693,7 +693,7 @@
    "sq_candidato": "250001907693",
    "patrimonio": 0.0,
    "bens": 0,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001907693/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001907693/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -703,7 +703,7 @@
    "sq_candidato": "250001907518",
    "patrimonio": 78000.0,
    "bens": 1,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001907518/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001907518/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -713,7 +713,7 @@
    "sq_candidato": "250001907504",
    "patrimonio": 250000.0,
    "bens": 3,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001907504/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001907504/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -723,7 +723,7 @@
    "sq_candidato": "250001907506",
    "patrimonio": 817000.0,
    "bens": 3,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001907506/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001907506/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -733,7 +733,7 @@
    "sq_candidato": "250001946033",
    "patrimonio": 563247.81,
    "bens": 3,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001946033/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001946033/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -743,7 +743,7 @@
    "sq_candidato": "250001907669",
    "patrimonio": 380000.0,
    "bens": 2,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001907669/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001907669/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -753,7 +753,7 @@
    "sq_candidato": "250001907698",
    "patrimonio": 437009.18,
    "bens": 6,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001907698/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001907698/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -763,7 +763,7 @@
    "sq_candidato": "250001907512",
    "patrimonio": 524540.17,
    "bens": 6,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001907512/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001907512/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -773,7 +773,7 @@
    "sq_candidato": "250001907517",
    "patrimonio": 0.0,
    "bens": 0,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001907517/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001907517/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -783,7 +783,7 @@
    "sq_candidato": "250002396488",
    "patrimonio": 0.0,
    "bens": 0,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250002396488/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250002396488/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -793,7 +793,7 @@
    "sq_candidato": "250001907509",
    "patrimonio": 0.0,
    "bens": 0,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001907509/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001907509/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -803,7 +803,7 @@
    "sq_candidato": "250002164284",
    "patrimonio": 485000.0,
    "bens": 2,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250002164284/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250002164284/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -813,7 +813,7 @@
    "sq_candidato": "250002158148",
    "patrimonio": 278000.0,
    "bens": 2,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250002158148/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250002158148/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -823,7 +823,7 @@
    "sq_candidato": "250001907685",
    "patrimonio": 414050.16,
    "bens": 4,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001907685/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001907685/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -833,7 +833,7 @@
    "sq_candidato": "250001907482",
    "patrimonio": 950000.0,
    "bens": 2,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001907482/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001907482/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -843,7 +843,7 @@
    "sq_candidato": "250001907678",
    "patrimonio": 28968.0,
    "bens": 2,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001907678/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001907678/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -853,7 +853,7 @@
    "sq_candidato": "250001910334",
    "patrimonio": 217238.9,
    "bens": 4,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001910334/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001910334/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -863,7 +863,7 @@
    "sq_candidato": "250002201472",
    "patrimonio": 904713.16,
    "bens": 7,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250002201472/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250002201472/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -873,7 +873,7 @@
    "sq_candidato": "250001907681",
    "patrimonio": 1000.0,
    "bens": 1,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001907681/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001907681/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -883,7 +883,7 @@
    "sq_candidato": "250001907585",
    "patrimonio": 499774.5,
    "bens": 5,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001907585/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001907585/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -893,7 +893,7 @@
    "sq_candidato": "250001910336",
    "patrimonio": 110000.0,
    "bens": 2,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001910336/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001910336/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -903,7 +903,7 @@
    "sq_candidato": "250002158146",
    "patrimonio": 0.0,
    "bens": 0,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250002158146/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250002158146/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -913,7 +913,7 @@
    "sq_candidato": "250001907478",
    "patrimonio": 784000.0,
    "bens": 5,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001907478/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001907478/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -923,7 +923,7 @@
    "sq_candidato": "250002164281",
    "patrimonio": 300000.0,
    "bens": 1,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250002164281/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250002164281/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -933,7 +933,7 @@
    "sq_candidato": "250001910322",
    "patrimonio": 0.0,
    "bens": 0,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001910322/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001910322/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -943,7 +943,7 @@
    "sq_candidato": "250001907483",
    "patrimonio": 195000.0,
    "bens": 2,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001907483/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001907483/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -953,7 +953,7 @@
    "sq_candidato": "250001907776",
    "patrimonio": 15000.0,
    "bens": 1,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001907776/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001907776/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -963,7 +963,7 @@
    "sq_candidato": "250001907777",
    "patrimonio": 65000.0,
    "bens": 1,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001907777/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001907777/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -973,7 +973,7 @@
    "sq_candidato": "250001907488",
    "patrimonio": 600000.0,
    "bens": 2,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001907488/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001907488/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -983,7 +983,7 @@
    "sq_candidato": "250002164285",
    "patrimonio": 680000.0,
    "bens": 1,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250002164285/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250002164285/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -993,7 +993,7 @@
    "sq_candidato": "250001907707",
    "patrimonio": 390000.0,
    "bens": 1,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001907707/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001907707/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -1003,7 +1003,7 @@
    "sq_candidato": "250001907539",
    "patrimonio": 72000.0,
    "bens": 2,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001907539/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001907539/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -1013,7 +1013,7 @@
    "sq_candidato": "250001907631",
    "patrimonio": 188000.0,
    "bens": 2,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001907631/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001907631/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -1023,7 +1023,7 @@
    "sq_candidato": "250001907521",
    "patrimonio": 200000.0,
    "bens": 2,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001907521/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001907521/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -1033,7 +1033,7 @@
    "sq_candidato": "250001907677",
    "patrimonio": 4550000.0,
    "bens": 2,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001907677/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001907677/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -1043,7 +1043,7 @@
    "sq_candidato": "250001907672",
    "patrimonio": 401000.0,
    "bens": 5,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001907672/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001907672/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -1053,7 +1053,7 @@
    "sq_candidato": "250001910335",
    "patrimonio": 210000.0,
    "bens": 3,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001910335/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001910335/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -1063,7 +1063,7 @@
    "sq_candidato": "250002158147",
    "patrimonio": 430000.0,
    "bens": 3,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250002158147/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250002158147/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -1073,7 +1073,7 @@
    "sq_candidato": "250001907595",
    "patrimonio": 1607000.0,
    "bens": 5,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001907595/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001907595/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -1083,7 +1083,7 @@
    "sq_candidato": "250002164280",
    "patrimonio": 0.0,
    "bens": 0,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250002164280/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250002164280/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -1093,7 +1093,7 @@
    "sq_candidato": "250001907705",
    "patrimonio": 100000.0,
    "bens": 1,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001907705/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001907705/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -1103,7 +1103,7 @@
    "sq_candidato": "250001946036",
    "patrimonio": 200000.0,
    "bens": 1,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001946036/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001946036/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -1113,7 +1113,7 @@
    "sq_candidato": "250001907704",
    "patrimonio": 0.0,
    "bens": 0,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001907704/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001907704/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -1123,7 +1123,7 @@
    "sq_candidato": "250001907526",
    "patrimonio": 368000.0,
    "bens": 4,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001907526/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001907526/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -1133,7 +1133,7 @@
    "sq_candidato": "250001907514",
    "patrimonio": 328000.0,
    "bens": 3,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001907514/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001907514/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -1143,7 +1143,7 @@
    "sq_candidato": "250001907527",
    "patrimonio": 50000.0,
    "bens": 1,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001907527/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001907527/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -1153,7 +1153,7 @@
    "sq_candidato": "250001907788",
    "patrimonio": 323441.85,
    "bens": 39,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001907788/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001907788/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -1163,7 +1163,7 @@
    "sq_candidato": "250001894729",
    "patrimonio": 11000.0,
    "bens": 1,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001894729/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001894729/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -1173,7 +1173,7 @@
    "sq_candidato": "250001907508",
    "patrimonio": 299500.0,
    "bens": 4,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001907508/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001907508/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -1183,7 +1183,7 @@
    "sq_candidato": "250002201475",
    "patrimonio": 121570.88,
    "bens": 8,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250002201475/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250002201475/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -1193,7 +1193,7 @@
    "sq_candidato": "250002158143",
    "patrimonio": 87000.0,
    "bens": 1,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250002158143/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250002158143/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -1203,7 +1203,7 @@
    "sq_candidato": "250001907692",
    "patrimonio": 52000.0,
    "bens": 2,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001907692/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001907692/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -1213,7 +1213,7 @@
    "sq_candidato": "250001907810",
    "patrimonio": 0.0,
    "bens": 0,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001907810/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001907810/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -1223,7 +1223,7 @@
    "sq_candidato": "250001910327",
    "patrimonio": 78000.0,
    "bens": 6,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001910327/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001910327/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -1233,7 +1233,7 @@
    "sq_candidato": "250002158142",
    "patrimonio": 0.0,
    "bens": 0,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250002158142/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250002158142/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -1243,7 +1243,7 @@
    "sq_candidato": "250001894714",
    "patrimonio": 5000.0,
    "bens": 1,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001894714/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001894714/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -1253,7 +1253,7 @@
    "sq_candidato": "250001907520",
    "patrimonio": 0.0,
    "bens": 0,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001907520/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001907520/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -1263,7 +1263,7 @@
    "sq_candidato": "250001907674",
    "patrimonio": 640000.0,
    "bens": 6,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001907674/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001907674/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -1273,7 +1273,7 @@
    "sq_candidato": "250001910323",
    "patrimonio": 38163.74,
    "bens": 7,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001910323/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001910323/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -1283,7 +1283,7 @@
    "sq_candidato": "250001907533",
    "patrimonio": 0.0,
    "bens": 0,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001907533/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001907533/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -1293,7 +1293,7 @@
    "sq_candidato": "250002061243",
    "patrimonio": 108000.0,
    "bens": 3,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250002061243/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250002061243/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -1303,7 +1303,7 @@
    "sq_candidato": "250001907786",
    "patrimonio": 108000.0,
    "bens": 1,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001907786/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001907786/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -1313,7 +1313,7 @@
    "sq_candidato": "250001907789",
    "patrimonio": 63400.0,
    "bens": 1,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001907789/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001907789/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -1323,7 +1323,7 @@
    "sq_candidato": "250001907510",
    "patrimonio": 20000.0,
    "bens": 1,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001907510/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001907510/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -1333,7 +1333,7 @@
    "sq_candidato": "250001907680",
    "patrimonio": 710000.0,
    "bens": 2,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001907680/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001907680/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -1343,7 +1343,7 @@
    "sq_candidato": "250002201474",
    "patrimonio": 0.0,
    "bens": 0,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250002201474/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250002201474/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -1353,7 +1353,7 @@
    "sq_candidato": "250001907792",
    "patrimonio": 6000.0,
    "bens": 1,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001907792/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001907792/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -1363,7 +1363,7 @@
    "sq_candidato": "250001907589",
    "patrimonio": 50000.0,
    "bens": 1,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001907589/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001907589/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -1373,7 +1373,7 @@
    "sq_candidato": "250002158153",
    "patrimonio": 0.0,
    "bens": 0,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250002158153/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250002158153/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -1383,7 +1383,7 @@
    "sq_candidato": "250002201483",
    "patrimonio": 34266.12,
    "bens": 1,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250002201483/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250002201483/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -1393,7 +1393,7 @@
    "sq_candidato": "250001907593",
    "patrimonio": 45654.18,
    "bens": 11,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001907593/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001907593/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -1403,7 +1403,7 @@
    "sq_candidato": "250001907778",
    "patrimonio": 531000.0,
    "bens": 3,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001907778/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001907778/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -1413,7 +1413,7 @@
    "sq_candidato": "250001907701",
    "patrimonio": 150000.0,
    "bens": 1,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001907701/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001907701/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -1423,7 +1423,7 @@
    "sq_candidato": "250001907617",
    "patrimonio": 0.0,
    "bens": 0,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001907617/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001907617/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -1433,7 +1433,7 @@
    "sq_candidato": "250001907536",
    "patrimonio": 141000.0,
    "bens": 2,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001907536/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001907536/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -1443,7 +1443,7 @@
    "sq_candidato": "250001907530",
    "patrimonio": 30000.0,
    "bens": 1,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001907530/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001907530/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -1453,7 +1453,7 @@
    "sq_candidato": "250001907780",
    "patrimonio": 295500.0,
    "bens": 7,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001907780/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001907780/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -1463,7 +1463,7 @@
    "sq_candidato": "250001907733",
    "patrimonio": 201000.0,
    "bens": 2,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001907733/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001907733/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -1473,7 +1473,7 @@
    "sq_candidato": "250001907741",
    "patrimonio": 330000.0,
    "bens": 2,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001907741/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001907741/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -1483,7 +1483,7 @@
    "sq_candidato": "250001907670",
    "patrimonio": 311829.58,
    "bens": 1,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001907670/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001907670/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -1493,7 +1493,7 @@
    "sq_candidato": "250001907763",
    "patrimonio": 280000.0,
    "bens": 2,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001907763/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001907763/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -1503,7 +1503,7 @@
    "sq_candidato": "250002158149",
    "patrimonio": 114300.0,
    "bens": 4,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250002158149/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250002158149/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -1513,7 +1513,7 @@
    "sq_candidato": "250001907675",
    "patrimonio": 1200000.0,
    "bens": 6,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001907675/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001907675/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -1523,7 +1523,7 @@
    "sq_candidato": "250001907783",
    "patrimonio": 985000.0,
    "bens": 3,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001907783/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001907783/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -1533,7 +1533,7 @@
    "sq_candidato": "250002158152",
    "patrimonio": 0.0,
    "bens": 0,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250002158152/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250002158152/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -1543,7 +1543,7 @@
    "sq_candidato": "250001894717",
    "patrimonio": 7000.0,
    "bens": 1,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001894717/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001894717/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -1553,7 +1553,7 @@
    "sq_candidato": "250002201478",
    "patrimonio": 0.0,
    "bens": 0,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250002201478/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250002201478/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -1563,7 +1563,7 @@
    "sq_candidato": "250001894728",
    "patrimonio": 7000.0,
    "bens": 1,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001894728/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001894728/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -1573,7 +1573,7 @@
    "sq_candidato": "250002164289",
    "patrimonio": 31199.22,
    "bens": 1,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250002164289/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250002164289/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -1583,7 +1583,7 @@
    "sq_candidato": "250001907730",
    "patrimonio": 262000.0,
    "bens": 2,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001907730/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001907730/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -1593,7 +1593,7 @@
    "sq_candidato": "250002396494",
    "patrimonio": 400000.0,
    "bens": 1,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250002396494/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250002396494/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -1603,7 +1603,7 @@
    "sq_candidato": "250002158157",
    "patrimonio": 14000.0,
    "bens": 1,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250002158157/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250002158157/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -1613,7 +1613,7 @@
    "sq_candidato": "250001907735",
    "patrimonio": 235000.0,
    "bens": 2,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001907735/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001907735/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -1623,7 +1623,7 @@
    "sq_candidato": "250001907767",
    "patrimonio": 50000.0,
    "bens": 1,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001907767/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001907767/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -1633,7 +1633,7 @@
    "sq_candidato": "250001907682",
    "patrimonio": 420000.0,
    "bens": 2,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001907682/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001907682/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -1643,7 +1643,7 @@
    "sq_candidato": "250001907479",
    "patrimonio": 445000.0,
    "bens": 2,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001907479/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001907479/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -1653,7 +1653,7 @@
    "sq_candidato": "250002061242",
    "patrimonio": 0.0,
    "bens": 0,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250002061242/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250002061242/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -1663,7 +1663,7 @@
    "sq_candidato": "250001907540",
    "patrimonio": 0.0,
    "bens": 0,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001907540/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001907540/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -1673,7 +1673,7 @@
    "sq_candidato": "250002201489",
    "patrimonio": 135.97,
    "bens": 2,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250002201489/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250002201489/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -1683,7 +1683,7 @@
    "sq_candidato": "250001907729",
    "patrimonio": 10000.0,
    "bens": 1,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001907729/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001907729/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -1693,7 +1693,7 @@
    "sq_candidato": "250002201479",
    "patrimonio": 55000.0,
    "bens": 1,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250002201479/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250002201479/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -1703,7 +1703,7 @@
    "sq_candidato": "250001907588",
    "patrimonio": 680000.0,
    "bens": 2,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001907588/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001907588/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -1713,7 +1713,7 @@
    "sq_candidato": "250002164283",
    "patrimonio": 22134.0,
    "bens": 1,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250002164283/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250002164283/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -1723,7 +1723,7 @@
    "sq_candidato": "250001907760",
    "patrimonio": 1200000.0,
    "bens": 1,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001907760/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001907760/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -1733,7 +1733,7 @@
    "sq_candidato": "250001910319",
    "patrimonio": 20000.0,
    "bens": 1,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001910319/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001910319/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -1743,7 +1743,7 @@
    "sq_candidato": "250001907619",
    "patrimonio": 0.0,
    "bens": 0,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001907619/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001907619/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -1753,7 +1753,7 @@
    "sq_candidato": "250001907785",
    "patrimonio": 720000.0,
    "bens": 2,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001907785/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001907785/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -1763,7 +1763,7 @@
    "sq_candidato": "250001907590",
    "patrimonio": 50000.0,
    "bens": 2,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001907590/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001907590/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -1773,7 +1773,7 @@
    "sq_candidato": "250002164276",
    "patrimonio": 6293.88,
    "bens": 1,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250002164276/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250002164276/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -1783,7 +1783,7 @@
    "sq_candidato": "250001907770",
    "patrimonio": 0.0,
    "bens": 0,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001907770/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001907770/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -1793,7 +1793,7 @@
    "sq_candidato": "250002061241",
    "patrimonio": 17000.0,
    "bens": 1,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250002061241/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250002061241/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -1803,7 +1803,7 @@
    "sq_candidato": "250001907505",
    "patrimonio": 27000.0,
    "bens": 2,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001907505/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001907505/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -1813,7 +1813,7 @@
    "sq_candidato": "250001907737",
    "patrimonio": 123000.0,
    "bens": 4,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001907737/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001907737/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -1823,7 +1823,7 @@
    "sq_candidato": "250002158158",
    "patrimonio": 12000.0,
    "bens": 1,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250002158158/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250002158158/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -1833,7 +1833,7 @@
    "sq_candidato": "250002164282",
    "patrimonio": 398000.0,
    "bens": 2,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250002164282/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250002164282/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -1843,7 +1843,7 @@
    "sq_candidato": "250001907624",
    "patrimonio": 310000.0,
    "bens": 2,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001907624/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001907624/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -1853,7 +1853,7 @@
    "sq_candidato": "250001907742",
    "patrimonio": 14000.0,
    "bens": 1,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001907742/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001907742/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -1863,7 +1863,7 @@
    "sq_candidato": "250002201477",
    "patrimonio": 113423.0,
    "bens": 2,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250002201477/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250002201477/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -1873,7 +1873,7 @@
    "sq_candidato": "250001907513",
    "patrimonio": 290000.0,
    "bens": 2,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001907513/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001907513/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -1883,7 +1883,7 @@
    "sq_candidato": "250001910333",
    "patrimonio": 47000.0,
    "bens": 1,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001910333/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001910333/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -1893,7 +1893,7 @@
    "sq_candidato": "250001907618",
    "patrimonio": 19000.0,
    "bens": 2,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001907618/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001907618/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -1903,7 +1903,7 @@
    "sq_candidato": "250001907762",
    "patrimonio": 300000.0,
    "bens": 1,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001907762/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001907762/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -1913,7 +1913,7 @@
    "sq_candidato": "250001907790",
    "patrimonio": 0.0,
    "bens": 0,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001907790/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001907790/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -1923,7 +1923,7 @@
    "sq_candidato": "250001946032",
    "patrimonio": 250000.0,
    "bens": 2,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001946032/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001946032/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -1933,7 +1933,7 @@
    "sq_candidato": "250001907727",
    "patrimonio": 0.0,
    "bens": 0,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001907727/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001907727/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -1943,7 +1943,7 @@
    "sq_candidato": "250002380883",
    "patrimonio": 0.0,
    "bens": 0,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250002380883/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250002380883/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -1953,7 +1953,7 @@
    "sq_candidato": "250001907870",
    "patrimonio": 0.0,
    "bens": 0,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001907870/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001907870/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -1963,7 +1963,7 @@
    "sq_candidato": "250001907708",
    "patrimonio": 2000.0,
    "bens": 1,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001907708/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001907708/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -1973,7 +1973,7 @@
    "sq_candidato": "250001906681",
    "patrimonio": 0.0,
    "bens": 0,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001906681/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001906681/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -1983,7 +1983,7 @@
    "sq_candidato": "250001907740",
    "patrimonio": 508000.0,
    "bens": 2,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001907740/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001907740/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -1993,7 +1993,7 @@
    "sq_candidato": "250001907869",
    "patrimonio": 0.0,
    "bens": 0,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001907869/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001907869/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -2003,7 +2003,7 @@
    "sq_candidato": "250001907630",
    "patrimonio": 0.0,
    "bens": 0,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001907630/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001907630/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -2013,7 +2013,7 @@
    "sq_candidato": "250001907736",
    "patrimonio": 12156.0,
    "bens": 1,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001907736/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001907736/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -2023,7 +2023,7 @@
    "sq_candidato": "250001907731",
    "patrimonio": 0.0,
    "bens": 0,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001907731/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001907731/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -2033,7 +2033,7 @@
    "sq_candidato": "250001907812",
    "patrimonio": 0.0,
    "bens": 0,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001907812/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001907812/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -2043,7 +2043,7 @@
    "sq_candidato": "250002158151",
    "patrimonio": 0.0,
    "bens": 0,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250002158151/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250002158151/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -2053,7 +2053,7 @@
    "sq_candidato": "250001907592",
    "patrimonio": 0.0,
    "bens": 0,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001907592/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001907592/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -2063,7 +2063,7 @@
    "sq_candidato": "250001907633",
    "patrimonio": 291000.0,
    "bens": 3,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001907633/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001907633/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -2073,7 +2073,7 @@
    "sq_candidato": "250002201482",
    "patrimonio": 16000.0,
    "bens": 2,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250002201482/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250002201482/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -2083,7 +2083,7 @@
    "sq_candidato": "250001907759",
    "patrimonio": 250000.0,
    "bens": 1,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001907759/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001907759/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -2093,7 +2093,7 @@
    "sq_candidato": "250001907771",
    "patrimonio": 1450000.0,
    "bens": 4,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001907771/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001907771/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -2103,7 +2103,7 @@
    "sq_candidato": "250002201484",
    "patrimonio": 0.0,
    "bens": 0,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250002201484/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250002201484/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -2113,7 +2113,7 @@
    "sq_candidato": "250001907484",
    "patrimonio": 214500.0,
    "bens": 2,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001907484/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001907484/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -2123,7 +2123,7 @@
    "sq_candidato": "250001907599",
    "patrimonio": 85000.0,
    "bens": 1,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001907599/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001907599/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -2133,7 +2133,7 @@
    "sq_candidato": "250001907728",
    "patrimonio": 123000.0,
    "bens": 2,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001907728/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001907728/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -2143,7 +2143,7 @@
    "sq_candidato": "250001907634",
    "patrimonio": 100000.0,
    "bens": 1,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001907634/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001907634/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -2153,7 +2153,7 @@
    "sq_candidato": "250001907813",
    "patrimonio": 22000.0,
    "bens": 3,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001907813/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001907813/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -2163,7 +2163,7 @@
    "sq_candidato": "250002201473",
    "patrimonio": 0.0,
    "bens": 0,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250002201473/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250002201473/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -2173,7 +2173,7 @@
    "sq_candidato": "250001907620",
    "patrimonio": 0.0,
    "bens": 0,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001907620/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001907620/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -2183,7 +2183,7 @@
    "sq_candidato": "250001907622",
    "patrimonio": 10000.0,
    "bens": 1,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001907622/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001907622/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -2193,7 +2193,7 @@
    "sq_candidato": "250001907625",
    "patrimonio": 20187.02,
    "bens": 2,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001907625/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001907625/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -2203,7 +2203,7 @@
    "sq_candidato": "250001907596",
    "patrimonio": 183000.0,
    "bens": 2,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001907596/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001907596/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -2213,7 +2213,7 @@
    "sq_candidato": "250002164279",
    "patrimonio": 111000.0,
    "bens": 3,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250002164279/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250002164279/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -2223,7 +2223,7 @@
    "sq_candidato": "250002201488",
    "patrimonio": 40000.0,
    "bens": 1,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250002201488/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250002201488/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -2233,7 +2233,7 @@
    "sq_candidato": "250001907872",
    "patrimonio": 679017.28,
    "bens": 27,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001907872/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001907872/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -2243,7 +2243,7 @@
    "sq_candidato": "250001910321",
    "patrimonio": 0.0,
    "bens": 0,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001910321/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001910321/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -2253,7 +2253,7 @@
    "sq_candidato": "250001946035",
    "patrimonio": 0.0,
    "bens": 0,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001946035/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001946035/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -2263,7 +2263,7 @@
    "sq_candidato": "250001907584",
    "patrimonio": 250000.0,
    "bens": 1,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001907584/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001907584/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -2273,7 +2273,7 @@
    "sq_candidato": "250001907764",
    "patrimonio": 350000.0,
    "bens": 1,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001907764/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001907764/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -2283,7 +2283,7 @@
    "sq_candidato": "250001907802",
    "patrimonio": 300000.0,
    "bens": 3,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001907802/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001907802/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -2293,7 +2293,7 @@
    "sq_candidato": "250002164275",
    "patrimonio": 0.0,
    "bens": 0,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250002164275/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250002164275/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -2303,7 +2303,7 @@
    "sq_candidato": "250001907758",
    "patrimonio": 314457.33,
    "bens": 3,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001907758/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001907758/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -2313,7 +2313,7 @@
    "sq_candidato": "250002201480",
    "patrimonio": 105323.35,
    "bens": 3,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250002201480/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250002201480/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -2323,7 +2323,7 @@
    "sq_candidato": "250001907583",
    "patrimonio": 39000.0,
    "bens": 2,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001907583/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001907583/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -2333,7 +2333,7 @@
    "sq_candidato": "250002164277",
    "patrimonio": 10600.0,
    "bens": 1,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250002164277/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250002164277/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -2343,7 +2343,7 @@
    "sq_candidato": "250001907629",
    "patrimonio": 1106443.32,
    "bens": 3,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001907629/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001907629/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -2353,7 +2353,7 @@
    "sq_candidato": "250001907493",
    "patrimonio": 270000.0,
    "bens": 2,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001907493/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001907493/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -2363,7 +2363,7 @@
    "sq_candidato": "250002164286",
    "patrimonio": 225000.0,
    "bens": 3,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250002164286/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250002164286/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -2373,7 +2373,7 @@
    "sq_candidato": "250002158154",
    "patrimonio": 0.0,
    "bens": 0,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250002158154/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250002158154/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -2383,7 +2383,7 @@
    "sq_candidato": "250002201476",
    "patrimonio": 55400.0,
    "bens": 3,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250002201476/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250002201476/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -2393,7 +2393,7 @@
    "sq_candidato": "250001907632",
    "patrimonio": 0.0,
    "bens": 0,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001907632/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001907632/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -2403,7 +2403,7 @@
    "sq_candidato": "250001907738",
    "patrimonio": 0.0,
    "bens": 0,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001907738/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001907738/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -2413,7 +2413,7 @@
    "sq_candidato": "250001907676",
    "patrimonio": 400000.0,
    "bens": 1,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001907676/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001907676/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -2423,7 +2423,7 @@
    "sq_candidato": "250001907862",
    "patrimonio": 410000.0,
    "bens": 2,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001907862/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001907862/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -2433,7 +2433,7 @@
    "sq_candidato": "250001907586",
    "patrimonio": 0.0,
    "bens": 0,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001907586/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001907586/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -2443,7 +2443,7 @@
    "sq_candidato": "250001907621",
    "patrimonio": 155000.0,
    "bens": 2,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001907621/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001907621/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -2453,7 +2453,7 @@
    "sq_candidato": "250001907803",
    "patrimonio": 0.0,
    "bens": 0,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001907803/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001907803/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -2463,7 +2463,7 @@
    "sq_candidato": "250001907683",
    "patrimonio": 100.0,
    "bens": 2,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001907683/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001907683/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -2473,7 +2473,7 @@
    "sq_candidato": "250001907591",
    "patrimonio": 0.0,
    "bens": 0,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001907591/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001907591/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -2483,7 +2483,7 @@
    "sq_candidato": "250002201486",
    "patrimonio": 377623.71,
    "bens": 5,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250002201486/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250002201486/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -2493,7 +2493,7 @@
    "sq_candidato": "250001910320",
    "patrimonio": 170000.0,
    "bens": 2,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001910320/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001910320/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -2503,7 +2503,7 @@
    "sq_candidato": "250002158144",
    "patrimonio": 0.0,
    "bens": 0,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250002158144/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250002158144/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -2513,7 +2513,7 @@
    "sq_candidato": "250001907627",
    "patrimonio": 200000.0,
    "bens": 1,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001907627/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001907627/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -2523,7 +2523,7 @@
    "sq_candidato": "250001907769",
    "patrimonio": 14000.0,
    "bens": 1,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001907769/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001907769/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -2533,7 +2533,7 @@
    "sq_candidato": "250002158156",
    "patrimonio": 160000.0,
    "bens": 1,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250002158156/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250002158156/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -2543,7 +2543,7 @@
    "sq_candidato": "250001907804",
    "patrimonio": 0.0,
    "bens": 0,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001907804/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001907804/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -2553,7 +2553,7 @@
    "sq_candidato": "250001907757",
    "patrimonio": 0.0,
    "bens": 0,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001907757/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001907757/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -2563,7 +2563,7 @@
    "sq_candidato": "250001907808",
    "patrimonio": 375000.0,
    "bens": 7,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001907808/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001907808/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -2573,7 +2573,7 @@
    "sq_candidato": "250001907866",
    "patrimonio": 0.0,
    "bens": 0,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001907866/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001907866/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -2583,7 +2583,7 @@
    "sq_candidato": "250002378620",
    "patrimonio": 0.0,
    "bens": 0,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250002378620/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250002378620/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -2593,7 +2593,7 @@
    "sq_candidato": "250001907868",
    "patrimonio": 0.0,
    "bens": 0,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001907868/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001907868/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -2603,7 +2603,7 @@
    "sq_candidato": "250002164288",
    "patrimonio": 380000.0,
    "bens": 2,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250002164288/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250002164288/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -2613,7 +2613,7 @@
    "sq_candidato": "250001907537",
    "patrimonio": 10000.0,
    "bens": 1,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001907537/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001907537/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -2623,7 +2623,7 @@
    "sq_candidato": "250001907756",
    "patrimonio": 72000.0,
    "bens": 2,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001907756/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001907756/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -2633,7 +2633,7 @@
    "sq_candidato": "250001907793",
    "patrimonio": 1650000.0,
    "bens": 2,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001907793/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001907793/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -2643,7 +2643,7 @@
    "sq_candidato": "250001907782",
    "patrimonio": 411880.0,
    "bens": 3,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001907782/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001907782/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -2653,7 +2653,7 @@
    "sq_candidato": "250001907628",
    "patrimonio": 28000.0,
    "bens": 2,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001907628/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001907628/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -2663,7 +2663,7 @@
    "sq_candidato": "250001906680",
    "patrimonio": 0.0,
    "bens": 0,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001906680/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001906680/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -2673,7 +2673,7 @@
    "sq_candidato": "250001907492",
    "patrimonio": 0.0,
    "bens": 0,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001907492/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001907492/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -2683,7 +2683,7 @@
    "sq_candidato": "250001907766",
    "patrimonio": 5000.0,
    "bens": 1,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001907766/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001907766/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -2693,7 +2693,7 @@
    "sq_candidato": "250001907814",
    "patrimonio": 0.0,
    "bens": 0,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001907814/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001907814/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -2703,7 +2703,7 @@
    "sq_candidato": "250001907732",
    "patrimonio": 0.0,
    "bens": 0,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001907732/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001907732/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -2713,7 +2713,7 @@
    "sq_candidato": "250002388038",
    "patrimonio": 0.0,
    "bens": 0,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250002388038/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250002388038/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -2723,7 +2723,7 @@
    "sq_candidato": "250001906677",
    "patrimonio": 0.0,
    "bens": 0,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001906677/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001906677/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -2733,7 +2733,7 @@
    "sq_candidato": "250001907623",
    "patrimonio": 0.0,
    "bens": 0,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001907623/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001907623/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -2743,7 +2743,7 @@
    "sq_candidato": "250001906682",
    "patrimonio": 0.0,
    "bens": 0,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001906682/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001906682/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -2753,7 +2753,7 @@
    "sq_candidato": "250001907863",
    "patrimonio": 0.0,
    "bens": 0,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001907863/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001907863/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -2763,7 +2763,7 @@
    "sq_candidato": "250002201481",
    "patrimonio": 100000.0,
    "bens": 1,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250002201481/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250002201481/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -2773,7 +2773,7 @@
    "sq_candidato": "250001907865",
    "patrimonio": 20000.0,
    "bens": 1,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001907865/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001907865/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -2783,7 +2783,7 @@
    "sq_candidato": "250002378621",
    "patrimonio": 0.0,
    "bens": 0,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250002378621/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250002378621/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -2793,7 +2793,7 @@
    "sq_candidato": "250001907761",
    "patrimonio": 0.0,
    "bens": 0,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001907761/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001907761/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -2803,7 +2803,7 @@
    "sq_candidato": "250001907805",
    "patrimonio": 15750.0,
    "bens": 1,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001907805/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001907805/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -2813,7 +2813,7 @@
    "sq_candidato": "250001907534",
    "patrimonio": 35000.0,
    "bens": 2,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001907534/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001907534/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -2823,7 +2823,7 @@
    "sq_candidato": "250001907800",
    "patrimonio": 16000.0,
    "bens": 2,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001907800/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001907800/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -2833,7 +2833,7 @@
    "sq_candidato": "250001907807",
    "patrimonio": 0.0,
    "bens": 0,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001907807/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001907807/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -2843,7 +2843,7 @@
    "sq_candidato": "250001907734",
    "patrimonio": 340000.0,
    "bens": 2,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001907734/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001907734/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -2853,7 +2853,7 @@
    "sq_candidato": "250001907626",
    "patrimonio": 12000.0,
    "bens": 1,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001907626/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001907626/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -2863,7 +2863,7 @@
    "sq_candidato": "250002158145",
    "patrimonio": 0.0,
    "bens": 0,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250002158145/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250002158145/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -2873,7 +2873,7 @@
    "sq_candidato": "250001907765",
    "patrimonio": 0.0,
    "bens": 0,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001907765/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001907765/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -2883,7 +2883,7 @@
    "sq_candidato": "250002201487",
    "patrimonio": 50000.0,
    "bens": 1,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250002201487/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250002201487/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -2893,7 +2893,7 @@
    "sq_candidato": "250001907801",
    "patrimonio": 4029.71,
    "bens": 1,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001907801/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001907801/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -2903,7 +2903,7 @@
    "sq_candidato": "250001906676",
    "patrimonio": 0.0,
    "bens": 0,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001906676/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001906676/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -2913,7 +2913,7 @@
    "sq_candidato": "250001907528",
    "patrimonio": 0.0,
    "bens": 0,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001907528/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001907528/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -2923,7 +2923,7 @@
    "sq_candidato": "250001907867",
    "patrimonio": 0.0,
    "bens": 0,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001907867/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001907867/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -2933,7 +2933,7 @@
    "sq_candidato": "250001907768",
    "patrimonio": 0.0,
    "bens": 0,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001907768/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001907768/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -2943,7 +2943,7 @@
    "sq_candidato": "250001907806",
    "patrimonio": 0.0,
    "bens": 0,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001907806/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001907806/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -2953,7 +2953,7 @@
    "sq_candidato": "250001907477",
    "patrimonio": 0.0,
    "bens": 0,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001907477/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001907477/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -2963,7 +2963,7 @@
    "sq_candidato": "250001907739",
    "patrimonio": 0.0,
    "bens": 0,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001907739/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001907739/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -2973,7 +2973,7 @@
    "sq_candidato": "250001906678",
    "patrimonio": 200000.0,
    "bens": 2,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001906678/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001906678/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -2983,7 +2983,7 @@
    "sq_candidato": "250001907489",
    "patrimonio": 0.0,
    "bens": 0,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001907489/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001907489/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -2993,7 +2993,7 @@
    "sq_candidato": "250001907858",
    "patrimonio": 600000.0,
    "bens": 1,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001907858/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001907858/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -3003,7 +3003,7 @@
    "sq_candidato": "250001907859",
    "patrimonio": 42500.0,
    "bens": 2,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001907859/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001907859/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -3013,7 +3013,7 @@
    "sq_candidato": "250001907538",
    "patrimonio": 80000.0,
    "bens": 2,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001907538/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001907538/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -3023,7 +3023,7 @@
    "sq_candidato": "250001907809",
    "patrimonio": 0.0,
    "bens": 0,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001907809/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001907809/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -3033,7 +3033,7 @@
    "sq_candidato": "250001907811",
    "patrimonio": 203900.0,
    "bens": 2,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001907811/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001907811/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -3043,7 +3043,7 @@
    "sq_candidato": "250001906679",
    "patrimonio": 0.0,
    "bens": 0,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001906679/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001906679/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -3053,7 +3053,7 @@
    "sq_candidato": "250001907861",
    "patrimonio": 0.0,
    "bens": 0,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001907861/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001907861/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -3063,7 +3063,7 @@
    "sq_candidato": "250001907864",
    "patrimonio": 0.0,
    "bens": 0,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001907864/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001907864/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -3073,7 +3073,7 @@
    "sq_candidato": "250002158155",
    "patrimonio": 0.0,
    "bens": 0,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250002158155/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250002158155/2024/63614"
   },
   {
    "cargo": "vereadores",
@@ -3083,7 +3083,7 @@
    "sq_candidato": "250001907871",
    "patrimonio": 444800.0,
    "bens": 3,
-   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/619/250001907871/2024/63614"
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001907871/2024/63614"
   }
  ]
 }
