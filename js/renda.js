@@ -33,11 +33,11 @@ async function loadRendaCenso() {
   }
 }
 
-/** Limites das faixas em reais (ex.: [2424, 6060]). */
+/** Limites das faixas em reais (ex.: [3030, 6060]). */
 function limitesRenda() {
   const meta = rendaDados?._meta || {};
   const sm = meta.salario_minimo || 1212;
-  return (meta.faixas_sm || [2, 5]).map((x) => x * sm);
+  return (meta.faixas_sm || [2.5, 5]).map((x) => x * sm);
 }
 
 /** 0, 1 ou 2 conforme a renda. */

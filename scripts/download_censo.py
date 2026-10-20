@@ -56,8 +56,9 @@ CD_MUN_COTIA = "3513009"
 
 # Salário mínimo de referência do Censo 2022 (agosto/2022)
 SALARIO_MINIMO = 1212.0
-# 3 faixas, em salários mínimos (limites superiores das duas primeiras)
-FAIXAS_SM = [2.0, 5.0]
+# 3 faixas, em salários mínimos (limites superiores das duas primeiras).
+# Com 2,5 e 5 SM os bairros de Cotia ficam ~24 / 27 / 7 (Censo 2022).
+FAIXAS_SM = [2.5, 5.0]
 
 URL_AGREGADOS = "https://ftp.ibge.gov.br/Censos/Censo_Demografico_2022/Agregados_por_Setores_Censitarios/"
 URL_CENSO_2022 = "https://ftp.ibge.gov.br/Censos/Censo_Demografico_2022/"
