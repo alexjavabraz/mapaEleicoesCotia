@@ -119,12 +119,68 @@ function fornecedoresFiltrados(s = estado) {
 // Inicialização
 // -----------------------------------------------------------------------
 
+// O arquivo vem inteiro de uma vez (data/contas_cotia.json); as etapas abaixo
+// narram o que o script de download e a página fazem com ele, enquanto o
+// fetch corre em paralelo. "Processando" só avança depois que o fetch termina.
+const espera = (ms) => new Promise((r) => setTimeout(r, ms));
+let etapaAtual = null;
+
+function etapa(texto, classe) {
+  const lista = $("carga-etapas");
+  if (etapaAtual) etapaAtual.classList.add("ok");
+  etapaAtual = document.createElement("li");
+  etapaAtual.textContent = texto;
+  if (classe) etapaAtual.className = classe;
+  lista.append(etapaAtual);
+  while (lista.children.length > 8) lista.firstChild.remove();
+  $("loading-status").textContent = texto;
+}
+
+async function animarCarga(dadosProntos) {
+  const hoje = new Date();
+  const consultas = [];
+  for (let ano = 2020; ano <= hoje.getFullYear(); ano++) {
+    for (let s = 1; s <= 2; s++) {
+      if (ano === hoje.getFullYear() && s === 2 && hoje.getMonth() < 6) break;
+      consultas.push([t("Consultando {ano} · semestre {s}", { ano, s }), 140]);
+    }
+  }
+  const etapas = [
+    [t("Conectando ao TCE-SP"), 350],
+    ...consultas,
+    [t("Processando os lançamentos"), 380, true],
+    [t("Calculando totais por órgão e fornecedor"), 380],
+    [t("Interpretando os dados"), 380],
+    [t("Aplicando modelos estatísticos"), 450],
+  ];
+  const barra = $("carga-progresso");
+  for (const [i, [texto, ms, aguarda]] of etapas.entries()) {
+    etapa(texto);
+    barra.style.width = `${((i + 1) / (etapas.length + 1)) * 100}%`;
+    if (aguarda) await dadosProntos;
+    await espera(ms);
+  }
+}
+
+async function concluirCarga() {
+  etapa(t("Tudo pronto!"), "fim");
+  etapaAtual.classList.add("ok");
+  $("carga-progresso").style.width = "100%";
+  await espera(600);
+  $("loading").classList.add("saindo");
+  await espera(350);
+  $("loading").style.display = "none";
+}
+
 async function init() {
-  try {
-    $("loading-status").textContent = t("Baixando dados do TCE-SP…");
-    const resp = await fetch(DATA_URL);
+  const dadosProntos = fetch(DATA_URL).then((resp) => {
     if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
-    DADOS = await resp.json();
+    return resp.json();
+  });
+  dadosProntos.catch(() => {}); // o erro é tratado abaixo, depois da animação
+  try {
+    await animarCarga(dadosProntos);
+    DADOS = await dadosProntos;
   } catch (err) {
     $("loading").innerHTML =
       `<p>${t("Não foi possível carregar as contas ({erro}).", { erro: esc(err.message) })}</p>`;
@@ -159,7 +215,7 @@ async function init() {
   initEvolucao();
   renderGeral();
   render();
-  $("loading").style.display = "none";
+  concluirCarga();
 }
 
 // -----------------------------------------------------------------------

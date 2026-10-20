@@ -1,3 +1,31 @@
+# Sessão — 2026-10-20 (3) · Loading animado nas Contas
+
+**Status:** iniciada 2026-10-20 03:05 UTC · finalizada 2026-10-20 03:25 UTC
+(branch `claude/project-thread-4vl91m`, sobre `claude/abas-header-tlksjp`, label `agentic`).
+
+## Pedido
+
+Loading com animação explicando que os dados do Tribunal de Contas estão sendo
+baixados, mostrando as consultas (2020 semestre 1, 2020 semestre 2, …),
+processamento, cálculo, interpretação, modelos estatísticos e "Tudo pronto".
+
+## O que foi feito
+
+- `contas.html` / `css/contas.css`: o spinner virou um cartão com folhas
+  animadas, título "Baixando os dados do Tribunal de Contas", barra de
+  progresso e uma lista de etapas que rola (✓ nas concluídas, spinner na atual).
+- `js/contas.js`: `animarCarga()` narra Conectando ao TCE-SP → Consultando
+  2020 semestre 1 … semestre atual → Processando → Calculando → Interpretando →
+  Aplicando modelos estatísticos; `concluirCarga()` mostra "Tudo pronto!" e
+  some com fade. O fetch do JSON corre em paralelo; "Processando" só avança
+  depois que ele termina. Como os dados vêm num arquivo só, as consultas por
+  semestre são narrativas (~4 s no total).
+- Leitor de tela: só a etapa atual é anunciada (`role="status"`); respeita
+  `prefers-reduced-motion`. Textos traduzidos em `js/i18n.js`.
+- `sw.js` → v17.
+
+---
+
 # Sessão — 2026-10-20 (2) · Abas segmentadas no header e nas Contas
 
 **Status:** iniciada 2026-10-20 02:45 UTC · finalizada 2026-10-20 03:15 UTC
