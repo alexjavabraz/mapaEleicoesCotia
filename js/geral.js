@@ -932,7 +932,7 @@ function getTooltipContentGeral(feature, zona) {
   if (top) {
     const partido = (top.partido || "").toUpperCase();
     const corBadge = partido === "PT" ? "#c62828" : partido === "PL" ? "#1565c0" : "#607d8b";
-    html += `<div style="margin-top:5px;padding-top:4px;border-top:1px solid rgba(255,255,255,0.15)">
+    html += `<div style="margin-top:5px;padding-top:4px;border-top:1px solid rgba(var(--tinta),0.15)">
       <span style="font-size:0.7rem;color:#aaa">${cargo}: </span>
       <strong style="color:#fff;font-size:0.8rem">${top.nome}</strong>
       ${top.partido ? `<span style="background:${corBadge};color:#fff;font-size:0.62rem;padding:1px 5px;border-radius:3px;margin-left:4px">${top.partido}</span>` : ""}

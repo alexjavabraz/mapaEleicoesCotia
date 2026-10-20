@@ -1,0 +1,41 @@
+name: Gera renda por setor (IBGE Censo 2022)
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [claude/project-thread-20twi4]
+    paths:
+      - scripts/download_censo.py
+      - .github/workflows/censo.yml
+
+permissions:
+  contents: write
+
+concurrency:
+  group: censo-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  gerar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      # O Censo é estático: roda só sob demanda (ou ao mudar o script).
+      - run: pip install -r scripts/requirements.txt geopandas pyogrio openpyxl
+      - run: python scripts/download_censo.py
+      - name: Commit do JSON gerado
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/censo_renda_setores.json
+          if git diff --cached --quiet; then
+            echo "Sem mudanças."
+          else
+            git commit -m "dados: renda por setor censitário de Cotia (IBGE Censo)"
+            git pull --rebase origin "${GITHUB_REF_NAME}"
+            git push
+          fi

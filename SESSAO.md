@@ -1,8 +1,8 @@
-# Sessão — 2026-10-20 (4) · Tema claro/escuro e tabelas em cartões
+# Sessão — 2026-10-20 (7) · Tema claro/escuro e tabelas em cartões
 
-**Status:** iniciada 2026-10-20 02:50 UTC · finalizada 2026-10-20 03:20 UTC
-(branch `claude/contas-tema-g60600`, atualizado com o main depois dos PRs
-#7, #8 e #9; PR ainda não aberto, aguardando o OK do Alex sobre as prévias).
+**Status:** iniciada 2026-10-20 02:50 UTC · finalizada 2026-10-20 22:20 UTC
+(branch `claude/contas-tema-g60600`, aprovado pelo Alex e enviado direto
+para o `main`, sem PR, conforme a nova regra).
 
 ## Pedido
 
@@ -29,7 +29,134 @@ em cada `<td>`) só nas Contas Municipais. Exemplo em arquivo único.
   prévias em `/mnt/project-files/contas-tema/previews/`.
 - Loading animado e analítico por fornecedor (PR #9) ajustados aos dois
   temas (verde do ✓ usa `--positivo`, bordas usam `--tinta`).
-- `sw.js` → v21 (cacheia `js/tema.js`).
+- Partes novas do main (legenda de renda do Censo, custo por voto, tooltips)
+  ajustadas aos dois temas: legenda usa `--painel-rgb`/`--tinta`, bordas
+  dos tooltips usam `--tinta`, o amarelo de votos virou `--amarelo`
+  (âmbar escuro no claro). Os rótulos de votos por escola no mapa ficam
+  sempre escuros.
+- `sw.js` → v28 (cacheia `js/tema.js`).
+
+---
+
+# Sessão — 2026-10-20 (4) · Cache do mapa 2024
+
+**Status:** iniciada 2026-10-20 17:25 UTC · finalizada 2026-10-20 17:50 UTC
+(branch `claude/cache-mapa-2024-171431`, sobre `main`, label `agentic`).
+
+## Pedido
+
+O mapa da aba Eleições 2024 demora muito para carregar: cachear os arquivos
+usados no processamento das eleições 2024.
+
+## Diagnóstico
+
+Os JSON do TSE de 2024 somam ~160 KB comprimidos (o GitHub Pages serve com
+gzip) e carregam em menos de 1 s. O que travava eram duas consultas POST à
+Overpass API (contorno e bairros), feitas em sequência a cada visita, sem
+cache possível (POST) e que demoram de dezenas de segundos a minutos ou falham
+(timeout de 90 s), caindo no Voronoi dos locais de votação.
+
+## O que foi feito
+
+- `scripts/download_bairros_osm.py` + workflow `bairros-osm.yml` (push no
+  branch, manual e todo dia 1º): grava a resposta da Overpass em
+  `data/osm_bairros_cotia.json` (JSON OSM bruto; a página segue convertendo com
+  osmtogeojson, então o mapa mostra o mesmo que a consulta ao vivo).
+- `js/map.js`: `fetchCotiaMunicipio` lê `data/cotia_municipio.geojson` primeiro
+  e `fetchCotiaBairros` lê `data/osm_bairros_cotia.json` primeiro; a Overpass
+  vira fallback com limite de 15 s. Vale também para a página de 2026.
+- `js/app.js`: contorno e bairros começam a baixar junto com os dados do TSE,
+  e `tse_cotia_2024.json` baixa em paralelo com bairros/locais.
+- `sw.js` → v27 (main já estava em v26): os dados do mapa 2024 (inclui gastos de campanha e renda do Censo) são pré-carregados no install e
+  servidos do cache na hora (stale-while-revalidate).
+- Teste local (Playwright, Overpass bloqueada): mapa pronto em ~0,7 s, 59
+  bairros por Voronoi, sem erros.
+- O 1º run do workflow mostrou que a Overpass responde à query de bairros com
+  lista vazia (ou cai): o site ao vivo sempre acabava no Voronoi depois de
+  esperar. Lista vazia agora é salva como resposta válida e a página vai
+  direto para o Voronoi.
+- Branch atualizado com o `main` (custo por voto e renda do Censo): os
+  loaders novos seguem no mesmo `Promise.all`.
+
+---
+
+# Sessão — 2026-10-20 (6) · Renda do Censo nos bairros (mapa 2024)
+
+**Status:** iniciada 2026-10-20 17:20 UTC · finalizada 2026-10-20 17:40 UTC
+(branch `claude/project-thread-20twi4`; a pedido do Alex entrou direto no `main`,
+PR #12 fechado).
+
+## Pedido
+
+Com os dados do Censo IBGE, criar 3 faixas de renda, pintar os bairros pela
+faixa e adicionar uma legenda no mapa, só na aba Eleições 2024 (`index.html`).
+Plano em `/mnt/project-files/plano-censo/plano-renda-censo.md`.
+
+## O que foi feito
+
+- `scripts/download_censo.py` + `.github/workflows/censo.yml` (roda no Actions;
+  o IBGE é bloqueado no sandbox). A renda por setor de 2022 saiu à parte, em
+  `Agregados_por_Setores_Censitarios_Rendimento_do_Responsavel/` (maio/2026):
+  `V06004` = rendimento nominal médio mensal dos responsáveis com rendimento,
+  peso `V06001` = responsáveis (≈ domicílios). Malha `SP_setores_CD2022.gpkg`.
+  Se a renda 2022 sumir, o script cai para o Censo 2010 (`V005`/`V001`).
+- `data/censo_renda_setores.json` (29 KB): 720 setores de Cotia com ponto,
+  renda e domicílios, mais um resumo por bairro do TSE (setor → local de
+  votação mais próximo). Renda média de Cotia: R$ 4.087.
+- 3 faixas: até 2,5 SM (R$ 3.030), 2,5 a 5 SM, acima de 5 SM (R$ 6.060);
+  bairros do TSE ficam 24 / 27 / 7. Com 2 e 5 SM seriam 8 / 43 / 7.
+- `js/renda.js`: botão "Renda (Censo)" nos botões do mapa, cor por faixa em
+  cada polígono (média dos setores dentro dele, ponderada; serve para OSM ou
+  Voronoi), legenda no canto inferior direito, linha de renda no tooltip.
+  `getFeatureStyle` (map.js) usa o estilo de renda quando ligado, então Limpar
+  e o destaque de vereador mantêm as cores. Só `index.html` carrega o arquivo.
+- i18n (PT/EN), css, `sw.js` → v26 (o PR #11 usa v25).
+
+---
+
+# Sessão — 2026-10-20 (5) · Custo por voto em 2024
+
+**Status:** iniciada 2026-10-20 17:13 UTC · finalizada 2026-10-20 17:40 UTC
+(branch `claude/custo-por-voto-2024-2riugw`, PR #10 fechado; entrou direto no
+`main` a pedido do Alex).
+
+## Pedido
+
+Obter os gastos de campanha de cada vereador e candidato a prefeito de 2024 no
+TSE, dividir pelo total de votos e mostrar o custo/voto embaixo do nome do
+candidato, com ou sem escola selecionada. Gerar um arquivo com isso e consultar
+o arquivo.
+
+## O que foi feito
+
+- `scripts/download_gastos_campanha.py`: baixa
+  `prestacao_de_contas_eleitorais_candidatos_2024.zip` (TSE Dados Abertos),
+  filtra Cotia/SP, prefeito e vereador, e soma as despesas contratadas da
+  prestação final mais recente de cada candidato (também as despesas pagas).
+  Custo/voto = despesas contratadas ÷ votos nominais do 1º turno
+  (`data/tse_cotia_2024.json`). `GASTOS_ZIP` aceita um zip já baixado.
+- O CDN do TSE é bloqueado na rede da sessão, então o download roda no
+  workflow `.github/workflows/gastos-campanha.yml` (manual ou push no branch),
+  que comita `data/gastos_campanha_2024.json` (308 candidatos, todos com
+  prestação de contas; 176, nenhum eleito, declararam R$ 0 de despesas
+  contratadas e aparecem como "sem gastos declarados").
+- `js/tse.js`: `loadGastosCampanha()` e `htmlCustoVoto()`; o card do candidato
+  mostra "Custo/voto: R$ x" embaixo do nome (tooltip com gasto ÷ votos). O
+  valor é sempre o da cidade inteira, com ou sem escola/bairro selecionado. Só
+  a página 2024 carrega o arquivo; 2026 não muda.
+- Textos em `js/i18n.js`, estilo `.candidate-custo` em `css/style.css`,
+  `sw.js` → v24 (outros branches usam v21–v23) e o JSON novo no cache de dados.
+
+---
+
+# Sessão — 2026-10-20 (4) · Bandeira de Cotia no header
+
+**Status:** iniciada 2026-10-20 16:47 UTC · finalizada 2026-10-20 17:25 UTC
+(commit direto no `main`, a pedido do Alex).
+
+- Bandeira (`icons/cotia-flag.svg`, 28 px) ao lado do nome "Cotia" no header
+  das três páginas. No celular o nome some e a bandeira fica, ao lado das abas
+  curtas. `sw.js` → v22 (o branch do tema já usa v21).
 
 ---
 

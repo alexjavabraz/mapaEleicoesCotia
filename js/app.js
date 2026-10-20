@@ -463,7 +463,7 @@ function renderConteudoSidebarBairro(bairroName, bairroNome) {
     html += `<div class="placeholder">
       <p>${t("Dados do bairro não disponíveis.")}</p>
       <p style="font-size:0.75rem;margin-top:8px;color:var(--text-muted)">
-        ${t("Execute:")} <code style="background:rgba(255,255,255,0.07);padding:2px 5px;border-radius:3px;color:#ffd54f">python scripts/download_secoes.py</code>
+        ${t("Execute:")} <code style="background:rgba(var(--tinta),0.07);padding:2px 5px;border-radius:3px;color:var(--amarelo)">python scripts/download_secoes.py</code>
       </p>
     </div>`;
     html += fonteInfo();
@@ -536,12 +536,13 @@ function getTooltipContent(feature, zona) {
                ?? getVotosVereadorBairro(name.toUpperCase(), currentVereadorFiltro);
     if (votos !== null) {
       const label = votos > 0
-        ? t("{n} votos", { n: `<strong style="color:#ffd54f">${formatVotos(votos)}</strong>` })
+        ? t("{n} votos", { n: `<strong style="color:var(--amarelo)">${formatVotos(votos)}</strong>` })
         : t("Sem votos");
-      html += `<div class="tooltip-zona" style="color:#ffd54f;margin-top:5px;padding-top:4px;border-top:1px solid rgba(255,255,255,0.15)">${currentVereadorFiltro.split(" ")[0]}: ${label}</div>`;
+      html += `<div class="tooltip-zona" style="color:var(--amarelo);margin-top:5px;padding-top:4px;border-top:1px solid rgba(var(--tinta),0.15)">${currentVereadorFiltro.split(" ")[0]}: ${label}</div>`;
     }
   }
 
+  html += tooltipRendaBairro(feature);
   return html;
 }
 
@@ -769,16 +770,29 @@ async function init() {
     onLimpar:    limparMapa,
   });
 
-  // 2. Carrega dados TSE
-  setLoadingStatus(t("Carregando dados eleitorais..."));
-  const tseResult = await loadTSEData();
+  // Contorno e bairros (arquivos locais, ou Overpass se faltarem) começam a
+  // baixar já, em paralelo com os dados do TSE; são aguardados nos passos 3 e 4.
+  const municipioPromise = fetchCotiaMunicipio();
+  const bairrosPromise = fetchCotiaBairros();
 
-  // 2b. Carrega dados auxiliares em paralelo
+  // 2. Carrega dados TSE e auxiliares em paralelo
   // loadLocaisVotacao deve completar antes de loadVotosPorEscola (que mescla no escolasSummary)
-  const [bairroResult, locaisResult] = await Promise.all([
+  setLoadingStatus(t("Carregando dados eleitorais..."));
+  const [tseResult, bairroResult, locaisResult, gastosResult, rendaResult] = await Promise.all([
+    loadTSEData(),
     loadVotosPorBairro(),
     loadLocaisVotacao(),
+    loadGastosCampanha(),
+    loadRendaCenso(),
   ]);
+  if (gastosResult.ok) console.log(`Gastos de campanha: ${gastosResult.count} candidatos`);
+  else console.log("Gastos de campanha não disponíveis:", gastosResult.error);
+  if (rendaResult.ok) {
+    console.log(`Renda do Censo: ${rendaResult.count} setores`);
+    addBotaoRenda();
+  } else {
+    console.log("Renda do Censo não disponível:", rendaResult.error);
+  }
   if (bairroResult.ok) {
     console.log(`Votos por bairro: ${bairroResult.count} bairros`);
     buildNomeMapping(); // constrói mapeamento urna→nome-completo
@@ -833,7 +847,7 @@ async function init() {
 
   // 3. Busca contorno do município e aplica máscara branca fora de Cotia
   setLoadingStatus(t("Buscando contorno de Cotia (OpenStreetMap)..."));
-  const municipioGeoJSON = await fetchCotiaMunicipio(setLoadingStatus);
+  const municipioGeoJSON = await municipioPromise;
   if (municipioGeoJSON) {
     renderMascaraExterna(municipioGeoJSON);  // máscara branca externa (abaixo)
     renderMunicipio(municipioGeoJSON);       // borda do município (acima)
@@ -842,7 +856,7 @@ async function init() {
 
   // 4. Busca bairros via OSM; se não retornar polígonos, usa Voronoi dos locais de votação
   setLoadingStatus(t("Buscando bairros (Overpass API)..."));
-  let bairrosGeoJSON = await fetchCotiaBairros(setLoadingStatus);
+  let bairrosGeoJSON = await bairrosPromise;
 
   const osmPolygons = bairrosGeoJSON?.features?.filter(f => {
     const t = f.geometry?.type;
