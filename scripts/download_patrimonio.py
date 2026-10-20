@@ -31,7 +31,8 @@ CAND_URL = "https://cdn.tse.jus.br/estatistica/sead/odsele/consulta_cand/consult
 BENS_URL = "https://cdn.tse.jus.br/estatistica/sead/odsele/bem_candidato/bem_candidato_2024.zip"
 FONTE_URL = "https://dadosabertos.tse.jus.br/dataset/candidatos-2024"
 # Página do candidato: /candidato/{região}/{UF}/{eleição}/{SQ_CANDIDATO}/{ano}/{código do município}
-DIVULGA_URL = "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/{uf}/{eleicao}/{sq}/2024/{ue}"
+# O código da eleição no DivulgaCandContas (2045202024 = municipais 2024) não é o CD_ELEICAO dos dados abertos (619).
+DIVULGA_URL = "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/{uf}/2045202024/{sq}/2024/{ue}"
 
 BASE = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..")
 TSE_FILE = os.path.join(BASE, "data", "tse_cotia_2024.json")
@@ -71,7 +72,6 @@ def main():
                 continue
             cands[(cargo, row["NR_CANDIDATO"].strip())] = {
                 "sq": row["SQ_CANDIDATO"].strip(),
-                "eleicao": row.get("CD_ELEICAO", "").strip(),
                 "ue": row.get("SG_UE", "").strip(),
                 "nome_completo": row.get("NM_CANDIDATO", "").strip(),
             }
@@ -105,7 +105,7 @@ def main():
                 "sq_candidato": info["sq"],
                 "patrimonio": round(b["total"], 2) if b else 0.0,
                 "bens": b["n"] if b else 0,
-                "url_tse": DIVULGA_URL.format(uf=UF, eleicao=info["eleicao"], sq=info["sq"], ue=info["ue"]),
+                "url_tse": DIVULGA_URL.format(uf=UF, sq=info["sq"], ue=info["ue"]),
             })
 
     print(f"Candidatos com dados: {len(candidatos)}; com bens declarados: {sum(1 for c in candidatos if c['bens'])}")
