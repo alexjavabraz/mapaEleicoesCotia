@@ -66,6 +66,9 @@ URL_AGREGADOS_2010 = ("https://ftp.ibge.gov.br/Censos/Censo_Demografico_2010/"
 URL_MALHA_2010 = ("https://geoftp.ibge.gov.br/organizacao_do_territorio/malhas_territoriais/"
                   "malhas_de_setores_censitarios__divisoes_intramunicipais/censo_2010/"
                   "setores_censitarios_shp/sp/")
+# Renda do responsável por setor: publicada à parte (maio/2026)
+URL_RENDA = URL_AGREGADOS.replace("Agregados_por_Setores_Censitarios/",
+                                  "Agregados_por_Setores_Censitarios_Rendimento_do_Responsavel/")
 URL_MALHA = ("https://geoftp.ibge.gov.br/organizacao_do_territorio/malhas_territoriais/"
              "malhas_de_setores_censitarios__divisoes_intramunicipais/censo_2022/setores/")
 
@@ -127,13 +130,16 @@ def achar_arquivos(url, padrao, profundidade=3):
 
 # ---- Dicionário de dados: descobre a variável de renda ----
 
-def descobrir_variavel(tmp):
-    """Lê o dicionário de dados 2022 e devolve (código, descrição, tema)."""
+def descobrir_variavel(tmp, pasta=None):
+    """Lê o dicionário de dados 2022 (da pasta de renda do responsável) e devolve
+    ((código, descrição, tema, aba), variável de domicílios)."""
     import openpyxl
 
-    dic_urls = [u for u in listar(URL_AGREGADOS) if re.search(r"dicionario.*\.xlsx$", u, re.I)]
+    pasta = pasta or URL_RENDA
+    dic_urls = [u for u in listar(pasta) if re.search(r"dicionario.*\.xlsx$", u, re.I)]
     if not dic_urls:
-        raise SystemExit("Dicionário de dados não encontrado em " + URL_AGREGADOS)
+        print("  Dicionário de dados não encontrado em " + pasta)
+        return None, None
     caminho = baixar(sorted(dic_urls)[-1], os.path.join(tmp, "dicionario.xlsx"))
 
     wb = openpyxl.load_workbook(caminho, read_only=True, data_only=True)
@@ -159,9 +165,19 @@ def descobrir_variavel(tmp):
             if cod:
                 candidatos.append((cod, texto, tema_atual, ws.title))
 
+    # Peso: domicílios particulares permanentes ocupados (descrição mais curta que casa)
+    doms = [(c, t) for c, t in todas
+            if "domicilios particulares permanentes ocupados" in sem_acento(t)
+            and not re.search(r"moradores|media|pessoas|rendimento|especie|tipo", sem_acento(t))]
+    doms.sort(key=lambda ct: (len(ct[1]), ct[0]))
+    for c, t in doms[:5]:
+        print(f"  peso candidato: {c} — {t[:160]}")
+    var_dom = doms[0][0] if doms else "V0007"
+    print(f"Peso (domicílios): {var_dom}")
+
     if not candidatos:
         print(f"  {len(todas)} variáveis no dicionário, nenhuma de rendimento.")
-        return None, None
+        return None, var_dom
 
     def pontos(c):
         t = sem_acento(c[1])
@@ -182,15 +198,6 @@ def descobrir_variavel(tmp):
     escolhido = candidatos[0]
     print(f"\nVariável escolhida: {escolhido[0]} — {escolhido[1][:200]} (tema: {escolhido[2]} / aba {escolhido[3]})")
 
-    # Peso: domicílios particulares permanentes ocupados (descrição mais curta que casa)
-    doms = [(c, t) for c, t in todas
-            if "domicilios particulares permanentes ocupados" in sem_acento(t)
-            and not re.search(r"moradores|media|pessoas|rendimento|especie|tipo", sem_acento(t))]
-    doms.sort(key=lambda ct: (len(ct[1]), ct[0]))
-    for c, t in doms[:5]:
-        print(f"  peso candidato: {c} — {t[:160]}")
-    var_dom = doms[0][0] if doms else "V0007"
-    print(f"Peso (domicílios): {var_dom}")
     return escolhido, var_dom
 
 
@@ -244,14 +251,18 @@ def numero(v):
 
 
 def valores_cotia(tmp, variavel):
-    """Procura a variável nos zips de agregados por setor (menores primeiro)."""
-    pasta = urljoin(URL_AGREGADOS, "Agregados_por_Setor_csv/")
-    zips = [u for u in listar(pasta) if u.lower().endswith(".zip")]
+    """Procura a variável nos zips CSV por setor: primeiro os de renda do
+    responsável, depois os agregados gerais (básico primeiro)."""
+    pasta = URL_RENDA
+    zips = [u for u in listar(URL_RENDA)
+            if re.search(r"setores.*csv\.zip$", u, re.I)]
+    zips += [u for u in listar(urljoin(URL_AGREGADOS, "Agregados_por_Setor_csv/"))
+             if u.lower().endswith(".zip")]
     # renda/rendimento primeiro, depois básico, depois o resto
     def ordem(u):
         n = u.lower()
         return (0 if "rend" in n or "renda" in n else 1 if "basico" in n else 2, n)
-    zips.sort(key=ordem)
+    zips.sort(key=ordem)  # estável: renda do responsável continua na frente
     print("Zips de agregados por setor:\n  " + "\n  ".join(z.rsplit("/", 1)[-1] for z in zips))
     for i, url in enumerate(zips):
         destino = os.path.join(tmp, f"agregado_{i}.zip")
@@ -344,8 +355,10 @@ def bairros_tse(setores):
 
 def censo_2022(tmp):
     """(dados {CD_SETOR: (renda, domicílios)}, pontos, meta) ou None sem renda por setor."""
-    print("1. Dicionário de dados 2022 (descobre a variável de renda)")
-    escolhido, var_dom = descobrir_variavel(tmp)
+    print("1. Dicionário de dados 2022 da renda do responsável")
+    escolhido, _ = descobrir_variavel(tmp, URL_RENDA)
+    print("\n   Dicionário dos agregados gerais (peso: domicílios)")
+    _, var_dom = descobrir_variavel(tmp, URL_AGREGADOS)
     if not escolhido:
         print("  Outras pastas do Censo 2022 com renda/rendimento no nome:")
         for u in achar_arquivos(URL_CENSO_2022, r"rend", profundidade=2):

@@ -35,7 +35,7 @@ jobs:
           if git diff --cached --quiet; then
             echo "Sem mudanças."
           else
-            git commit -m "dados: renda por setor censitário de Cotia (IBGE Censo 2022)"
+            git commit -m "dados: renda por setor censitário de Cotia (IBGE Censo)"
             git pull --rebase origin "${GITHUB_REF_NAME}"
             git push
           fi
