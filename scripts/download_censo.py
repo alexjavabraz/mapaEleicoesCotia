@@ -60,6 +60,12 @@ SALARIO_MINIMO = 1212.0
 FAIXAS_SM = [2.0, 5.0]
 
 URL_AGREGADOS = "https://ftp.ibge.gov.br/Censos/Censo_Demografico_2022/Agregados_por_Setores_Censitarios/"
+URL_CENSO_2022 = "https://ftp.ibge.gov.br/Censos/Censo_Demografico_2022/"
+URL_AGREGADOS_2010 = ("https://ftp.ibge.gov.br/Censos/Censo_Demografico_2010/"
+                      "Resultados_do_Universo/Agregados_por_Setores_Censitarios/")
+URL_MALHA_2010 = ("https://geoftp.ibge.gov.br/organizacao_do_territorio/malhas_territoriais/"
+                  "malhas_de_setores_censitarios__divisoes_intramunicipais/censo_2010/"
+                  "setores_censitarios_shp/sp/")
 URL_MALHA = ("https://geoftp.ibge.gov.br/organizacao_do_territorio/malhas_territoriais/"
              "malhas_de_setores_censitarios__divisoes_intramunicipais/censo_2022/setores/")
 
@@ -134,6 +140,7 @@ def descobrir_variavel(tmp):
     candidatos = []
     todas = []
     for ws in wb.worksheets:
+        print(f"  aba '{ws.title}'")
         tema_atual = ws.title
         for row in ws.iter_rows(values_only=True):
             cells = [str(c).strip() for c in row if c is not None and str(c).strip()]
@@ -146,14 +153,15 @@ def descobrir_variavel(tmp):
             cod = next((c for c in cells if re.fullmatch(r"V\d{3,6}", c)), None)
             if cod:
                 todas.append((cod, texto))
-            if "rendimento" not in sem_acento(texto):
+            if not re.search(r"rendimento|renda", sem_acento(texto)):
                 continue
             print(f"  [{ws.title}] {texto[:220]}")
             if cod:
                 candidatos.append((cod, texto, tema_atual, ws.title))
 
     if not candidatos:
-        raise SystemExit("Nenhuma variável de rendimento no dicionário 2022.")
+        print(f"  {len(todas)} variáveis no dicionário, nenhuma de rendimento.")
+        return None, None
 
     def pontos(c):
         t = sem_acento(c[1])
@@ -270,25 +278,24 @@ def domicilios_cotia(tmp, var_dom):
 
 # ---- Malha: ponto representativo de cada setor ----
 
-def pontos_setores(tmp):
+def pontos_setores(tmp, url_base, padrao):
     import geopandas as gpd
 
-    candidatos = achar_arquivos(URL_MALHA, r"^SP.*setores.*\.(zip|gpkg)$")
+    candidatos = achar_arquivos(url_base, padrao)
     print("Malhas de SP encontradas:\n  " + "\n  ".join(candidatos))
     if not candidatos:
-        raise SystemExit("Malha de setores de SP não encontrada em " + URL_MALHA)
+        raise SystemExit("Malha de setores de SP não encontrada em " + url_base)
     # Prefere gpkg; senão shapefile zipado
     candidatos.sort(key=lambda u: (0 if u.lower().endswith(".gpkg") else 1, u))
     url = candidatos[0]
     destino = baixar(url, os.path.join(tmp, url.rsplit("/", 1)[-1]))
     caminho = destino if destino.lower().endswith(".gpkg") else f"zip://{destino}"
 
-    gdf = gpd.read_file(caminho, where=f"CD_MUN = '{CD_MUN_COTIA}'")
-    if gdf.empty:
-        gdf = gpd.read_file(caminho)
-        col_mun = next(c for c in gdf.columns if c.upper() == "CD_MUN")
-        gdf = gdf[gdf[col_mun].astype(str) == CD_MUN_COTIA]
-    col_setor = next(c for c in gdf.columns if c.upper() == "CD_SETOR")
+    gdf = gpd.read_file(caminho)
+    print(f"  colunas: {list(gdf.columns)}")
+    # 2022: CD_SETOR / CD_MUN; 2010: CD_GEOCODI (o município são os 7 primeiros dígitos)
+    col_setor = next(c for c in gdf.columns if c.upper() in ("CD_SETOR", "CD_GEOCODI"))
+    gdf = gdf[gdf[col_setor].astype(str).str.startswith(CD_MUN_COTIA)]
     print(f"  {len(gdf)} setores de Cotia na malha (CRS {gdf.crs})")
     gdf = gdf.to_crs(4326)
     pts = gdf.geometry.representative_point()
@@ -335,26 +342,90 @@ def bairros_tse(setores):
     return out
 
 
+def censo_2022(tmp):
+    """(dados {CD_SETOR: (renda, domicílios)}, pontos, meta) ou None sem renda por setor."""
+    print("1. Dicionário de dados 2022 (descobre a variável de renda)")
+    escolhido, var_dom = descobrir_variavel(tmp)
+    if not escolhido:
+        print("  Outras pastas do Censo 2022 com renda/rendimento no nome:")
+        for u in achar_arquivos(URL_CENSO_2022, r"rend", profundidade=2):
+            print("   ", u)
+        return None
+    cod, descricao, _, _ = escolhido
+
+    print("\n2. Valores por setor de Cotia")
+    valores, arquivo = valores_cotia(tmp, cod)
+
+    print(f"\n3. Domicílios por setor ({var_dom}, arquivo básico)")
+    doms = domicilios_cotia(tmp, var_dom)
+    print(f"  {len(doms)} setores com domicílios")
+
+    print("\n4. Malha de setores 2022")
+    pontos = pontos_setores(tmp, URL_MALHA, r"^SP.*setores.*\.(zip|gpkg)$")
+
+    dados = {cd: (v.get(cod), doms.get(cd)) for cd, v in valores.items()}
+    meta = {
+        "fonte": "IBGE, Censo Demográfico 2022 — Agregados por setores censitários",
+        "arquivo": arquivo, "variavel": cod, "variavel_domicilios": var_dom,
+        "descricao": descricao, "ano": 2022, "salario_minimo": 1212.0,
+    }
+    return dados, pontos, meta
+
+
+def censo_2010(tmp):
+    """Plano B: Censo 2010, Basico_SP2.csv (V005 = rendimento nominal médio mensal
+    dos responsáveis por domicílios particulares permanentes; V001 = domicílios)."""
+    print("\n== Censo 2010 (plano B) ==")
+    zips = [u for u in listar(URL_AGREGADOS_2010) if re.search(r"SP_Exceto_Capital.*\.zip$", u, re.I)]
+    if not zips:
+        raise SystemExit("Agregados 2010 de SP não encontrados em " + URL_AGREGADOS_2010)
+    url = sorted(zips)[-1]
+    destino = baixar(url, os.path.join(tmp, "sp2010.zip"))
+    dados = {}
+    with zipfile.ZipFile(destino) as z:
+        nomes = [n for n in z.namelist() if re.search(r"basico_sp\d?\.csv$", n, re.I)]
+        print("  arquivos básicos:", nomes)
+        for nome in nomes:
+            texto = z.read(nome).decode("latin-1")
+            leitor = csv.DictReader(io.StringIO(texto), delimiter=";")
+            campos = {f.strip().upper(): f for f in (leitor.fieldnames or [])}
+            c_set, c_rend, c_dom = campos.get("COD_SETOR"), campos.get("V005"), campos.get("V001")
+            if not (c_set and c_rend and c_dom):
+                print(f"  {nome}: colunas esperadas ausentes ({list(campos)[:12]})")
+                continue
+            for linha in leitor:
+                cd = (linha.get(c_set) or "").strip()
+                if cd.startswith(CD_MUN_COTIA):
+                    dados[cd] = (numero(linha.get(c_rend)), numero(linha.get(c_dom)))
+    os.remove(destino)
+    print(f"  {len(dados)} setores de Cotia")
+    if not dados:
+        raise SystemExit("Nenhum setor de Cotia nos agregados 2010.")
+
+    print("\nMalha de setores 2010")
+    pontos = pontos_setores(tmp, URL_MALHA_2010, r"setores.*\.zip$")
+    meta = {
+        "fonte": "IBGE, Censo Demográfico 2010 — Resultados do universo, agregados por setores censitários",
+        "arquivo": url.rsplit("/", 1)[-1], "variavel": "V005", "variavel_domicilios": "V001",
+        "descricao": "Valor do rendimento nominal médio mensal das pessoas responsáveis por domicílios particulares permanentes",
+        "ano": 2010, "salario_minimo": 510.0,
+    }
+    return dados, pontos, meta
+
+
 def main():
+    global SALARIO_MINIMO
     with tempfile.TemporaryDirectory() as tmp:
-        print("1. Dicionário de dados (descobre a variável de renda)")
-        (cod, descricao, tema, _), var_dom = descobrir_variavel(tmp)
-
-        print("\n2. Valores por setor de Cotia")
-        valores, arquivo = valores_cotia(tmp, cod)
-
-        print(f"\n3. Domicílios por setor ({var_dom}, arquivo básico)")
-        doms = domicilios_cotia(tmp, var_dom)
-        print(f"  {len(doms)} setores com domicílios")
-
-        print("\n4. Malha de setores")
-        pontos = pontos_setores(tmp)
+        r = censo_2022(tmp)
+        if r is None:
+            print("\nCenso 2022 sem renda por setor publicada; usando o Censo 2010.")
+            r = censo_2010(tmp)
+    dados, pontos, meta = r
+    SALARIO_MINIMO = meta["salario_minimo"]
 
     setores = []
     sem_ponto = sem_renda = 0
-    for cd, v in valores.items():
-        renda = v.get(cod)
-        dom = doms.get(cd)
+    for cd, (renda, dom) in dados.items():
         if renda is None or not dom:
             sem_renda += 1
             continue
@@ -383,14 +454,8 @@ def main():
 
     saida = {
         "_meta": {
-            "fonte": "IBGE, Censo Demográfico 2022 — Agregados por setores censitários",
-            "arquivo": arquivo,
-            "variavel": cod,
-            "variavel_domicilios": var_dom,
-            "descricao": descricao,
-            "ano": 2022,
+            **meta,
             "municipio": CD_MUN_COTIA,
-            "salario_minimo": SALARIO_MINIMO,
             "faixas_sm": FAIXAS_SM,
             "renda_media_municipio": round(media_cotia, 2),
             "campos_setor": ["lat", "lng", "renda_media", "domicilios"],

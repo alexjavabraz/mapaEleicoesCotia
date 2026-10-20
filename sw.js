@@ -9,8 +9,8 @@
 // (app.js, map.js, css) ou o schema dos dados. O navegador só roda o evento
 // "install" de novo quando este arquivo muda byte a byte — sem o bump, quem
 // já tem o SW instalado fica preso na versão antiga em cache (cache-first).
-const CACHE_NAME   = "cotia-mapa-v20";
-const DATA_CACHE   = "cotia-data-v20";
+const CACHE_NAME   = "cotia-mapa-v23";
+const DATA_CACHE   = "cotia-data-v23";
 
 // Assets estáticos que formam o "shell" da aplicação
 const SHELL_ASSETS = [
@@ -25,6 +25,7 @@ const SHELL_ASSETS = [
   "./js/abas.js",
   "./js/tse.js",
   "./js/map.js",
+  "./js/renda.js",
   "./js/app.js",
   "./js/geral-config.js",
   "./js/geral.js",
@@ -50,6 +51,7 @@ const DATA_ASSETS = [
   "./data/cotia_votos_por_escola_detalhe.json",
   "./data/cotia_locais_votacao.json",
   "./data/cotia_municipio.geojson",
+  "./data/censo_renda_setores.json",
   "./data/contas_cotia.json",
   "./data/viagens_camara.json",
 ];

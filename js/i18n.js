@@ -312,6 +312,17 @@ const I18N_EN = {
 
   // ---- Mapa 2024: votos por escola ----
   "Votos por seção": "Votes by polling place",
+  "Renda (Censo)": "Income (Census)",
+  "Pinta os bairros pela renda média do Censo IBGE": "Colors neighborhoods by average income from the IBGE Census",
+  "Renda média do responsável pelo domicílio": "Average income of the head of household",
+  "Renda baixa": "Low income",
+  "Renda média": "Middle income",
+  "Renda alta": "High income",
+  "até {v}": "up to {v}",
+  "{a} a {b}": "{a} to {b}",
+  "acima de {v}": "above {v}",
+  "por mês": "per month",
+  "Fonte: IBGE, Censo {ano}": "Source: IBGE, {ano} Census",
   "Mostra os votos de cada local de votação (escola) no mapa": "Shows the votes of each polling place (school) on the map",
   "Limpa a seleção, o filtro de vereador e volta ao total geral": "Clears the selection and the council member filter and goes back to the overall total",
   "Vencedor para prefeito em cada escola": "Mayor winner at each school",
