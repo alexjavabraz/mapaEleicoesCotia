@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title data-i18n>Sobre o projeto — Cotia</title>
+  <meta name="description" content="Portal de transparência de dados cívicos de Cotia: eleições por bairro e escola, gastos de campanha e contas do município, a partir de dados públicos oficiais." />
+
+  <!-- PWA -->
+  <link rel="manifest" href="./manifest.json" />
+  <meta name="theme-color" content="#16213e" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="Cotia" />
+  <link rel="apple-touch-icon" href="./icons/apple-touch-icon.png" />
+  <link rel="icon" type="image/svg+xml" href="./icons/cotia-flag.svg" />
+  <link rel="icon" type="image/png" sizes="32x32" href="./icons/favicon-32.png" />
+
+  <!-- Idioma (PT/EN): carregado antes de tudo para os outros scripts usarem t() -->
+  <script src="js/i18n.js"></script>
+  <!-- Tema claro/escuro: define data-theme no <html> antes do primeiro desenho -->
+  <script src="js/tema.js"></script>
+
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/abas.css" />
+  <link rel="stylesheet" href="css/sobre.css" />
+</head>
+<body class="sobre-page">
+  <header id="header">
+    <h1><img class="header-bandeira" src="./icons/cotia-flag.svg" alt="" width="28" height="28" /><span class="header-nome">Cotia</span></h1>
+
+    <!-- Seções do site em controle segmentado (css/abas.css, js/abas.js) -->
+    <nav class="segmentado segmentado--site" aria-label="Seções do site" data-i18n-aria-label>
+      <a class="segmentado__aba" href="./index.html"><span class="seg-longo" data-i18n>Eleições 2024</span><span class="seg-curto" data-i18n>2024</span></a>
+      <a class="segmentado__aba" href="./eleicao-geral.html"><span class="seg-longo" data-i18n>Eleições 2026</span><span class="seg-curto" data-i18n>2026</span></a>
+      <a class="segmentado__aba" href="./contas.html"><span class="seg-longo" data-i18n>Contas Municipais</span><span class="seg-curto" data-i18n>Contas</span></a>
+    </nav>
+  </header>
+
+  <main id="sobre">
+    <!-- Abertura -->
+    <section class="sobre-hero">
+      <div class="sobre-largura">
+        <p class="sobre-selo" data-i18n>Portal de transparência de dados cívicos</p>
+        <h2 class="sobre-titulo" data-i18n>Cotia em dados públicos, no mapa</h2>
+        <p class="sobre-lead" data-i18n>Resultados eleitorais por bairro e por escola, gastos de campanha e as contas da Prefeitura e da Câmara, reunidos em mapas e tabelas a partir de dados públicos oficiais.</p>
+        <div class="sobre-ctas">
+          <a class="sobre-btn sobre-btn--primario" href="./eleicao-geral.html" data-i18n>Ver Eleições 2026</a>
+          <a class="sobre-btn" href="#areas" data-i18n>Conhecer o portal</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Números rápidos -->
+    <section class="sobre-largura sobre-numeros" aria-label="Destaques" data-i18n-aria-label>
+      <div class="sobre-numero"><strong>3</strong><span data-i18n>áreas: eleições municipais, eleições gerais e contas públicas</span></div>
+      <div class="sobre-numero"><strong>100%</strong><span data-i18n>dos números vêm de fontes oficiais (TSE, TCE-SP, IBGE, Câmara)</span></div>
+      <div class="sobre-numero"><strong data-i18n>Aberto</strong><span data-i18n>código e dados publicados no GitHub, para qualquer pessoa conferir</span></div>
+    </section>
+
+    <!-- O projeto -->
+    <section class="sobre-largura sobre-bloco">
+      <h2 class="sobre-h2" data-i18n>O projeto</h2>
+      <div class="sobre-colunas">
+        <p data-i18n>Os dados públicos de Cotia existem, mas estão espalhados em arquivos enormes, planilhas e PDFs de órgãos diferentes. Este portal baixa esses arquivos, organiza e mostra o que eles dizem sobre a cidade, bairro por bairro.</p>
+        <p data-i18n>A ideia é simples: qualquer morador deve conseguir ver como Cotia votou, quanto custou cada campanha e para onde vai o dinheiro do município, sem precisar saber programar nem cruzar tabelas.</p>
+      </div>
+    </section>
+
+    <!-- Áreas -->
+    <section class="sobre-largura sobre-bloco" id="areas">
+      <h2 class="sobre-h2" data-i18n>O que você encontra</h2>
+      <div class="sobre-cards">
+        <a class="sobre-card" href="./index.html">
+          <span class="sobre-card__icone" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>
+          </span>
+          <h3 data-i18n>Eleições 2024</h3>
+          <p data-i18n>Prefeito e vereadores: votos por bairro, por escola e por seção, com gasto de campanha, custo por voto e patrimônio declarado de cada candidato.</p>
+          <span class="sobre-card__link" data-i18n>Abrir o mapa →</span>
+        </a>
+        <a class="sobre-card" href="./eleicao-geral.html">
+          <span class="sobre-card__icone" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="10" width="16" height="10" rx="2"/><path d="M9 10V6a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v4"/><path d="M10 14h4"/></svg>
+          </span>
+          <h3 data-i18n>Eleições 2026</h3>
+          <p data-i18n>Presidente, Governador, Senador e Deputados: quem venceu em cada bairro de Cotia, comparado com 2022 e com a renda do Censo do IBGE.</p>
+          <span class="sobre-card__link" data-i18n>Abrir o mapa →</span>
+        </a>
+        <a class="sobre-card" href="./contas.html">
+          <span class="sobre-card__icone" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg>
+          </span>
+          <h3 data-i18n>Contas Municipais</h3>
+          <p data-i18n>Pagamentos da Prefeitura desde 2020 por ano e por fornecedor, segundo o TCE-SP, e as viagens dos vereadores pagas pela Câmara.</p>
+          <span class="sobre-card__link" data-i18n>Ver as contas →</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- Princípios -->
+    <section class="sobre-largura sobre-bloco">
+      <h2 class="sobre-h2" data-i18n>Como trabalhamos</h2>
+      <ul class="sobre-principios">
+        <li>
+          <h3 data-i18n>Só dados oficiais</h3>
+          <p data-i18n>Cada número tem uma fonte pública: Tribunal Superior Eleitoral, Tribunal de Contas do Estado, IBGE e a própria Câmara de Cotia.</p>
+        </li>
+        <li>
+          <h3 data-i18n>Metodologia à vista</h3>
+          <p data-i18n>O que foi somado, estimado ou aproximado está explicado, com as limitações de cada base.</p>
+        </li>
+        <li>
+          <h3 data-i18n>Atualização automática</h3>
+          <p data-i18n>Scripts baixam os arquivos novos das fontes e publicam no site, sem digitação manual.</p>
+        </li>
+        <li>
+          <h3 data-i18n>Apartidário</h3>
+          <p data-i18n>O portal mostra resultados e gastos de todos os candidatos e partidos do mesmo jeito.</p>
+        </li>
+      </ul>
+      <p class="sobre-acao"><button type="button" class="sobre-btn" id="sobre-abrir-fontes" data-i18n>Ver fontes e metodologia</button></p>
+    </section>
+
+    <!-- Equipe -->
+    <section class="sobre-largura sobre-bloco" id="equipe">
+      <h2 class="sobre-h2" data-i18n>Idealização e desenvolvimento</h2>
+      <article class="sobre-pessoa">
+        <div class="sobre-pessoa__avatar" aria-hidden="true">AB</div>
+        <div>
+          <h3 class="sobre-pessoa__nome">Alex Braz</h3>
+          <p data-i18n>Engenheiro de Software há mais de 20 anos, Arquiteto Blockchain, Membro do grupo de trabalho técnico de Desenvolvimento do PIX. Especialista em Blockchain e membro do comitê ISO para assuntos relacionados ao tema.</p>
+          <p class="sobre-pessoa__links">
+            <a href="https://github.com/alexjavabraz" target="_blank" rel="noopener">GitHub ↗</a>
+          </p>
+        </div>
+      </article>
+    </section>
+
+    <!-- Código aberto -->
+    <section class="sobre-largura sobre-bloco">
+      <div class="sobre-final">
+        <div>
+          <h2 class="sobre-h2" data-i18n>Código aberto</h2>
+          <p data-i18n>Todo o código e os dados do portal estão no GitHub. Encontrou um erro ou tem uma sugestão? Abra uma issue no repositório.</p>
+        </div>
+        <a class="sobre-btn sobre-btn--primario" href="https://github.com/alexjavabraz/mapaEleicoesCotia" target="_blank" rel="noopener" data-i18n>Ver no GitHub ↗</a>
+      </div>
+    </section>
+  </main>
+
+  <script src="js/abas.js"></script>
+  <script src="js/fontes.js"></script>
+  <script src="js/sobre.js"></script>
+
+  <script>
+    if ("serviceWorker" in navigator) {
+      let swRefreshing = false;
+      navigator.serviceWorker.addEventListener("controllerchange", () => {
+        if (swRefreshing) return;
+        swRefreshing = true;
+        window.location.reload();
+      });
+      window.addEventListener("load", () => {
+        navigator.serviceWorker.register("./sw.js")
+          .catch((err) => console.warn("SW registro falhou:", err));
+      });
+    }
+  </script>
+</body>
+</html>

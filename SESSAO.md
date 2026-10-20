@@ -1,3 +1,33 @@
+# Sessão — 2026-10-20 (12) · Landing page "Sobre o projeto"
+
+**Status:** iniciada 2026-10-20 23:50 UTC · finalizada 2026-10-21 00:15 UTC
+(commit direto no `main`).
+
+## Pedido
+
+Ler a landing page https://www.labdage.net/ e criar uma semelhante para o
+projeto, com a seção "Idealização e desenvolvimento" trazendo Alex Braz
+(texto dele, só "comitê" acentuado). Descrever o projeto como "portal de
+transparência de dados cívicos".
+
+## O que foi feito
+
+- O domínio labdage.net não resolve (DNS) a partir do ambiente da sessão, e
+  a busca não achou cópia; a página segue uma estrutura típica de landing
+  institucional: abertura com selo "Portal de transparência de dados
+  cívicos" e CTAs, 3 destaques, "O projeto", "O que você encontra" (cards
+  Eleições 2024 / 2026 / Contas), "Como trabalhamos" (botão abre o modal de
+  fontes), "Idealização e desenvolvimento" (Alex Braz) e "Código aberto".
+- `sobre.html` + `css/sobre.css` (só variáveis do tema) + `js/sobre.js`
+  (inglês em `SOBRE_EN`, registrado no `I18N_EN`).
+- `js/fontes.js`: link "Sobre o projeto" no rodapé de todas as páginas
+  (menos na própria); estilo `.rodape-sobre` em `css/style.css`.
+- `sw.js` → v35 com sobre.html, css/sobre.css e js/sobre.js no shell.
+- Conferido claro/escuro, desktop/celular (sem rolagem horizontal) e EN.
+  Capturas em `/mnt/project-files/landing-page/` do projeto.
+
+---
+
 # Sessão — 2026-10-20 (11) · Rodapé com as fontes dos dados
 
 **Status:** iniciada 2026-10-20 23:29 UTC · finalizada 2026-10-20 23:50 UTC

@@ -1479,6 +1479,17 @@ body.contas-page #rodape { position: static; }
   text-overflow: ellipsis;
 }
 .rodape-rotulo { font-weight: 600; }
+.rodape-fontes { flex: 1 1 auto; }
+
+.rodape-sobre {
+  flex-shrink: 0;
+  color: var(--text);
+  font-weight: 600;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.rodape-sobre:hover { text-decoration: underline; }
+.rodape-sobre:focus-visible { outline: 2px solid var(--highlight); outline-offset: 2px; border-radius: 4px; }
 
 .rodape-info {
   flex-shrink: 0;

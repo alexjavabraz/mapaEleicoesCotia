@@ -14,6 +14,7 @@ const FONTES_EN = {
   "Dados públicos:": "Public data:",
   "Câmara de Cotia": "Cotia City Council",
   "Fontes e metodologia": "Sources and methodology",
+  "Sobre o projeto": "About the project",
   "De onde vêm os dados": "Where the data comes from",
   "Fechar": "Close",
   "Todos os números do site vêm de dados públicos oficiais. Os arquivos são baixados por scripts automáticos e guardados no próprio site; ao abrir uma página nenhum dado é consultado em tempo real.":
@@ -262,6 +263,13 @@ function montarRodape() {
   btn.innerHTML = ICONE_INFO;
   btn.appendChild(fontesEl("span", null, t("Fontes e metodologia")));
   footer.appendChild(btn);
+
+  // Link para a página "Sobre o projeto" (sobre.html), menos na própria
+  if (!document.body.classList.contains("sobre-page")) {
+    const sobre = fontesEl("a", "rodape-sobre", t("Sobre o projeto"));
+    sobre.href = "./sobre.html";
+    footer.insertBefore(sobre, btn);
+  }
 
   const dlg = montarModalFontes();
   btn.addEventListener("click", () => {

@@ -1,0 +1,262 @@
+/* =============================================
+   Sobre o projeto (sobre.html) — landing page do portal.
+   Reaproveita variáveis do tema e o header de style.css; nada de cor fixa
+   para fundo/texto, só var(--…) e rgba(var(--tinta), a).
+   ============================================= */
+
+html:has(body.sobre-page),
+body.sobre-page {
+  overflow: auto;
+  height: auto;
+  min-height: 100%;
+}
+body.sobre-page #rodape { position: static; }
+
+#sobre {
+  padding-top: var(--header-height);
+  padding-bottom: 48px;
+}
+
+.sobre-largura {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* ---- Abertura ---- */
+.sobre-hero {
+  padding: 72px 0 64px;
+  background:
+    radial-gradient(ellipse 70% 90% at 85% 0%, color-mix(in srgb, var(--highlight) 16%, transparent), transparent 70%),
+    radial-gradient(ellipse 60% 80% at 0% 100%, color-mix(in srgb, var(--accent) 80%, transparent), transparent 70%),
+    var(--secondary);
+  border-bottom: 1px solid rgba(var(--tinta), 0.08);
+}
+.sobre-selo {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 999px;
+  border: 1px solid color-mix(in srgb, var(--highlight) 45%, transparent);
+  color: var(--highlight);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.sobre-titulo {
+  margin-top: 18px;
+  max-width: 16ch;
+  font-size: clamp(2rem, 5vw, 3.4rem);
+  line-height: 1.08;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--text);
+}
+.sobre-lead {
+  margin-top: 18px;
+  max-width: 60ch;
+  font-size: 1.12rem;
+  line-height: 1.6;
+  color: var(--text-muted);
+}
+.sobre-ctas {
+  margin-top: 28px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+/* ---- Botões ---- */
+.sobre-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 11px 20px;
+  border-radius: 10px;
+  border: 1px solid rgba(var(--tinta), 0.18);
+  background: rgba(var(--tinta), 0.04);
+  color: var(--text);
+  font: inherit;
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background 0.15s, transform 0.15s;
+}
+.sobre-btn:hover { background: rgba(var(--tinta), 0.09); }
+.sobre-btn--primario {
+  background: var(--highlight);
+  border-color: var(--highlight);
+  color: #fff; /* texto sobre o vermelho de destaque, legível nos dois temas */
+}
+.sobre-btn--primario:hover { background: color-mix(in srgb, var(--highlight) 88%, #000); }
+.sobre-btn:focus-visible,
+.sobre-card:focus-visible,
+.sobre-pessoa a:focus-visible { outline: 2px solid var(--highlight); outline-offset: 3px; }
+
+/* ---- Números ---- */
+.sobre-numeros {
+  margin-top: -28px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+}
+.sobre-numero {
+  background: var(--sidebar-bg);
+  border: 1px solid rgba(var(--tinta), 0.08);
+  border-radius: 12px;
+  padding: 18px 20px;
+  box-shadow: 0 6px 20px rgba(0,0,0,calc(0.25 * var(--sombra-k)));
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.sobre-numero strong {
+  font-size: 1.7rem;
+  font-weight: 800;
+  color: var(--highlight);
+}
+.sobre-numero span {
+  font-size: 0.9rem;
+  line-height: 1.45;
+  color: var(--text-muted);
+}
+
+/* ---- Blocos ---- */
+.sobre-bloco { margin-top: 64px; }
+.sobre-h2 {
+  font-size: clamp(1.4rem, 3vw, 1.9rem);
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  color: var(--text);
+  margin-bottom: 20px;
+}
+.sobre-bloco p {
+  line-height: 1.65;
+  color: var(--text-muted);
+}
+.sobre-colunas {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 28px;
+  font-size: 1.02rem;
+}
+
+/* ---- Áreas ---- */
+.sobre-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+.sobre-card {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 22px;
+  border-radius: 14px;
+  background: var(--sidebar-bg);
+  border: 1px solid rgba(var(--tinta), 0.08);
+  color: inherit;
+  text-decoration: none;
+  transition: transform 0.15s, border-color 0.15s, box-shadow 0.15s;
+}
+.sobre-card:hover {
+  transform: translateY(-3px);
+  border-color: color-mix(in srgb, var(--highlight) 50%, transparent);
+  box-shadow: 0 10px 24px rgba(0,0,0,calc(0.25 * var(--sombra-k)));
+}
+.sobre-card__icone {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--highlight);
+  background: color-mix(in srgb, var(--highlight) 12%, transparent);
+}
+.sobre-card h3 { font-size: 1.15rem; color: var(--text); }
+.sobre-card p { font-size: 0.94rem; flex: 1; }
+.sobre-card__link { font-weight: 700; font-size: 0.9rem; color: var(--highlight); }
+
+/* ---- Princípios ---- */
+.sobre-principios {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+.sobre-principios li {
+  padding: 18px 0 0;
+  border-top: 3px solid var(--highlight);
+}
+.sobre-principios h3 { font-size: 1rem; color: var(--text); margin-bottom: 6px; }
+.sobre-principios p { font-size: 0.92rem; }
+.sobre-acao { margin-top: 24px; }
+
+/* ---- Equipe ---- */
+.sobre-pessoa {
+  display: flex;
+  gap: 22px;
+  align-items: flex-start;
+  padding: 26px;
+  border-radius: 14px;
+  background: var(--sidebar-bg);
+  border: 1px solid rgba(var(--tinta), 0.08);
+  max-width: 760px;
+}
+.sobre-pessoa__avatar {
+  flex-shrink: 0;
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--highlight);
+  background: color-mix(in srgb, var(--highlight) 14%, transparent);
+  border: 2px solid color-mix(in srgb, var(--highlight) 40%, transparent);
+}
+.sobre-pessoa__nome { font-size: 1.25rem; color: var(--text); margin-bottom: 6px; }
+.sobre-pessoa__links { margin-top: 10px; }
+.sobre-pessoa__links a { color: var(--highlight); font-weight: 600; text-decoration: none; }
+.sobre-pessoa__links a:hover { text-decoration: underline; }
+
+/* ---- Código aberto ---- */
+.sobre-final {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 28px;
+  border-radius: 14px;
+  background: var(--accent);
+  border: 1px solid rgba(var(--tinta), 0.08);
+}
+.sobre-final .sobre-h2 { margin-bottom: 8px; }
+.sobre-final p { max-width: 60ch; }
+.sobre-final .sobre-btn { flex-shrink: 0; }
+
+/* ---- Celular ---- */
+@media (max-width: 860px) {
+  .sobre-cards { grid-template-columns: 1fr; }
+  .sobre-principios { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 640px) {
+  .sobre-largura { padding: 0 16px; }
+  .sobre-hero { padding: 44px 0 52px; }
+  .sobre-lead { font-size: 1rem; }
+  .sobre-numeros { grid-template-columns: 1fr; gap: 10px; }
+  .sobre-colunas { grid-template-columns: 1fr; gap: 14px; }
+  .sobre-bloco { margin-top: 48px; }
+  .sobre-principios { grid-template-columns: 1fr; }
+  .sobre-pessoa { flex-direction: column; padding: 20px; gap: 14px; }
+  .sobre-final { flex-direction: column; align-items: flex-start; padding: 22px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sobre-card, .sobre-btn { transition: none; }
+  .sobre-card:hover { transform: none; }
+}
