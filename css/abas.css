@@ -7,12 +7,12 @@
    ============================================= */
 
 :root {
-  --seg-fundo: rgba(255,255,255,0.08);
+  --seg-fundo: rgba(var(--tinta), 0.08);
   --seg-texto: var(--text-muted);
-  --seg-texto-hover: #ffffff;
+  --seg-texto-hover: var(--text);
   --seg-ativa-fundo: #ffffff;
   --seg-ativa-texto: #3730a3;   /* indigo */
-  --seg-sombra: 0 1px 3px rgba(0,0,0,0.35);
+  --seg-sombra: 0 1px 3px rgba(0,0,0,calc(0.35 * var(--sombra-k)));
   --seg-foco: #818cf8;
   --seg-raio: 10px;
   --seg-raio-aba: 7px;
@@ -51,7 +51,7 @@
 }
 .segmentado__aba:hover {
   color: var(--seg-texto-hover);
-  background: rgba(255,255,255,0.08);
+  background: rgba(var(--tinta), 0.08);
 }
 .segmentado__aba[aria-selected="true"],
 .segmentado__aba[aria-current="page"] {

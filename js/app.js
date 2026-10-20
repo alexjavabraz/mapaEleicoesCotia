@@ -463,7 +463,7 @@ function renderConteudoSidebarBairro(bairroName, bairroNome) {
     html += `<div class="placeholder">
       <p>${t("Dados do bairro não disponíveis.")}</p>
       <p style="font-size:0.75rem;margin-top:8px;color:var(--text-muted)">
-        ${t("Execute:")} <code style="background:rgba(255,255,255,0.07);padding:2px 5px;border-radius:3px;color:#ffd54f">python scripts/download_secoes.py</code>
+        ${t("Execute:")} <code style="background:rgba(var(--tinta),0.07);padding:2px 5px;border-radius:3px;color:var(--amarelo)">python scripts/download_secoes.py</code>
       </p>
     </div>`;
     html += fonteInfo();
@@ -536,9 +536,9 @@ function getTooltipContent(feature, zona) {
                ?? getVotosVereadorBairro(name.toUpperCase(), currentVereadorFiltro);
     if (votos !== null) {
       const label = votos > 0
-        ? t("{n} votos", { n: `<strong style="color:#ffd54f">${formatVotos(votos)}</strong>` })
+        ? t("{n} votos", { n: `<strong style="color:var(--amarelo)">${formatVotos(votos)}</strong>` })
         : t("Sem votos");
-      html += `<div class="tooltip-zona" style="color:#ffd54f;margin-top:5px;padding-top:4px;border-top:1px solid rgba(255,255,255,0.15)">${currentVereadorFiltro.split(" ")[0]}: ${label}</div>`;
+      html += `<div class="tooltip-zona" style="color:var(--amarelo);margin-top:5px;padding-top:4px;border-top:1px solid rgba(var(--tinta),0.15)">${currentVereadorFiltro.split(" ")[0]}: ${label}</div>`;
     }
   }
 

@@ -1,3 +1,43 @@
+# Sessão — 2026-10-20 (7) · Tema claro/escuro e tabelas em cartões
+
+**Status:** iniciada 2026-10-20 02:50 UTC · finalizada 2026-10-20 22:20 UTC
+(branch `claude/contas-tema-g60600`, aprovado pelo Alex e enviado direto
+para o `main`, sem PR, conforme a nova regra).
+
+## Pedido
+
+Tema claro/escuro (variáveis CSS em `:root` + `[data-theme="dark"]`, botão
+Alternar tema no header, preferência no `localStorage`) em todas as páginas,
+e tabelas financeiras responsivas (card view abaixo de 768px, `data-label`
+em cada `<td>`) só nas Contas Municipais. Exemplo em arquivo único.
+
+## O que foi feito
+
+- `css/style.css`: `:root` = tema claro, `[data-theme="dark"]` = o visual
+  escuro original. Sobreposições brancas viraram `rgba(var(--tinta), a)` e
+  painéis sobre o mapa `rgba(var(--painel-rgb), a)`; sombras escalam com
+  `--sombra-k`. Utilitários `.valor-positivo` / `.valor-negativo`.
+- `js/tema.js` (todas as páginas, no `<head>`): escolhe o tema (salvo →
+  sistema → claro) antes do primeiro desenho, cria o botão ☀️/🌙 ao lado do
+  PT/EN, atualiza `theme-color`, recolore gráficos do Chart.js e dispara
+  `temachange`. O mapa troca entre os tiles Escuro/Claro junto com o tema
+  (se a pessoa escolheu OSM ou Satélite, fica como está).
+- Contas: `rotularTabela()` em `js/contas.js` põe `data-label` e papéis ARIA
+  em todas as tabelas (inclusive as redesenhadas, via MutationObserver);
+  `css/contas.css` transforma linhas em cartões no celular.
+- Exemplo isolado: `/mnt/project-files/contas-tema/tema-tabela-responsiva.html`;
+  prévias em `/mnt/project-files/contas-tema/previews/`.
+- Loading animado e analítico por fornecedor (PR #9) ajustados aos dois
+  temas (verde do ✓ usa `--positivo`, bordas usam `--tinta`).
+- Partes novas do main (legenda de renda do Censo, custo por voto, tooltips)
+  ajustadas aos dois temas: legenda usa `--painel-rgb`/`--tinta`, bordas
+  dos tooltips usam `--tinta`, o amarelo de votos virou `--amarelo`
+  (âmbar escuro no claro). Os rótulos de votos por escola no mapa ficam
+  sempre escuros.
+- `sw.js` → v28 (cacheia `js/tema.js`).
+
+---
+
 # Sessão — 2026-10-20 (4) · Cache do mapa 2024
 
 **Status:** iniciada 2026-10-20 17:25 UTC · finalizada 2026-10-20 17:50 UTC

@@ -187,8 +187,7 @@ async function init() {
     return;
   }
 
-  Chart.defaults.color = "#a0a0b0";
-  Chart.defaults.borderColor = "rgba(255,255,255,0.07)";
+  // Cores de texto/grade dos gráficos: js/tema.js (seguem o tema claro/escuro)
   Chart.defaults.font.family = "'Segoe UI', 'Inter', Arial, sans-serif";
 
   const ev = DADOS.meta.eventos;
@@ -893,5 +892,51 @@ function renderTopAno() {
     }).join("") || `<tr><td colspan="7" class="vazio">${t("Sem pagamentos em {ano}.", { ano: esc(evo.ano) })}</td></tr>`}</tbody>`;
 }
 
+// -----------------------------------------------------------------------
+// Tabelas em cartões no celular (css/contas.css, max-width 768px)
+// -----------------------------------------------------------------------
+
+/**
+ * Põe data-label (nome da coluna, tirado do <thead>) em cada <td> para o
+ * card view mostrar "Coluna ........ valor" via td::before. Também declara
+ * os papéis ARIA de tabela, porque display:block no celular faz alguns
+ * leitores de tela deixarem de tratar o elemento como tabela. Células com
+ * mais de um nó ganham um <span class="td-valor"> para o valor ficar todo
+ * à direita do rótulo.
+ */
+function rotularTabela(tab) {
+  const nomes = [...tab.querySelectorAll("thead th")].map((th) => th.textContent.trim());
+  if (!nomes.length) return;
+  tab.setAttribute("role", "table");
+  tab.querySelectorAll("thead, tbody, tfoot").forEach((g) => g.setAttribute("role", "rowgroup"));
+  tab.querySelectorAll("tr").forEach((tr) => tr.setAttribute("role", "row"));
+  tab.querySelectorAll("th").forEach((th) => th.setAttribute("role", "columnheader"));
+  tab.querySelectorAll("tbody tr, tfoot tr").forEach((tr) => {
+    [...tr.children].forEach((td, k) => {
+      td.setAttribute("role", "cell");
+      if (td.hasAttribute("data-label") || td.colSpan > 1) return;
+      td.setAttribute("data-label", nomes[k] || "");
+      if (td.childNodes.length > 1) {
+        const span = document.createElement("span");
+        span.className = "td-valor";
+        span.append(...td.childNodes);
+        td.append(span);
+      }
+    });
+  });
+}
+
+/** Rotula as tabelas existentes e as que forem (re)desenhadas depois. */
+function observarTabelas() {
+  const rotularTudo = (raiz) => raiz.querySelectorAll("table").forEach(rotularTabela);
+  ["contas", "modal-top10"].forEach((id) => {
+    const raiz = $(id);
+    if (!raiz) return;
+    rotularTudo(raiz);
+    new MutationObserver(() => rotularTudo(raiz)).observe(raiz, { childList: true, subtree: true });
+  });
+}
+
 initAbas();
+observarTabelas();
 init();

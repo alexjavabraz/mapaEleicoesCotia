@@ -110,7 +110,7 @@ function tooltipRendaBairro(feature) {
   const r = rendaDoBairro(feature);
   if (!r) return "";
   const cor = RENDA_CORES[faixaRenda(r.renda)];
-  return `<div class="tooltip-zona" style="margin-top:5px;padding-top:4px;border-top:1px solid rgba(255,255,255,0.15)">
+  return `<div class="tooltip-zona" style="margin-top:5px;padding-top:4px;border-top:1px solid rgba(var(--tinta),0.15)">
     <span style="display:inline-block;width:9px;height:9px;border-radius:2px;background:${cor};margin-right:5px"></span>${t(RENDA_ROTULOS[faixaRenda(r.renda)])}:
     <strong>${_fmtReais(r.renda)}</strong> ${t("por mês")}</div>`;
 }
