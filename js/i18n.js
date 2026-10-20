@@ -59,6 +59,13 @@ const I18N_EN = {
   "Contas do Município": "Municipal Spending",
   "← Eleição Municipal 2024": "← 2024 Municipal Election",
   "Eleição Municipal 2024": "2024 Municipal Election",
+  // Abas do header (css/abas.css) e de Contas
+  "Seções do site": "Site sections",
+  "Eleições 2024": "2024 Elections",
+  "Eleições 2026": "2026 Elections",
+  "Contas Municipais": "Municipal Spending",
+  "Contas": "Spending",
+  "Pagamentos": "Payments",
   "Presidente · Governador · Senador · Dep. Federal · Dep. Estadual — Cotia/SP":
     "President · Governor · Senator · Federal Deputy · State Deputy — Cotia/SP",
 

@@ -1,0 +1,88 @@
+/* =============================================
+   Abas no estilo "Controle Segmentado" (header e Contas)
+   Contêiner arredondado com fundo suave; a aba ativa é um "botão" claro
+   encaixado nele. Versão do exemplo claro adaptada ao tema escuro do site.
+   O estado ativo vem dos próprios atributos ARIA (aria-selected nas abas
+   da página, aria-current nos links do header).
+   ============================================= */
+
+:root {
+  --seg-fundo: rgba(255,255,255,0.08);
+  --seg-texto: var(--text-muted);
+  --seg-texto-hover: #ffffff;
+  --seg-ativa-fundo: #ffffff;
+  --seg-ativa-texto: #3730a3;   /* indigo */
+  --seg-sombra: 0 1px 3px rgba(0,0,0,0.35);
+  --seg-foco: #818cf8;
+  --seg-raio: 10px;
+  --seg-raio-aba: 7px;
+  --seg-padding: 4px;
+}
+
+.segmentado {
+  display: inline-flex;
+  gap: 2px;
+  padding: var(--seg-padding);
+  background: var(--seg-fundo);
+  border-radius: var(--seg-raio);
+  max-width: 100%;
+  min-width: 0;
+  overflow-x: auto;
+  scrollbar-width: none;
+  flex-shrink: 0;
+}
+.segmentado::-webkit-scrollbar { display: none; }
+
+.segmentado__aba {
+  appearance: none;
+  border: 0;
+  background: transparent;
+  color: var(--seg-texto);
+  font: inherit;
+  font-size: 0.85rem;
+  font-weight: 500;
+  line-height: 1.2;
+  white-space: nowrap;
+  text-decoration: none;
+  padding: 7px 14px;
+  border-radius: var(--seg-raio-aba);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.segmentado__aba:hover {
+  color: var(--seg-texto-hover);
+  background: rgba(255,255,255,0.08);
+}
+.segmentado__aba[aria-selected="true"],
+.segmentado__aba[aria-current="page"] {
+  background: var(--seg-ativa-fundo);
+  color: var(--seg-ativa-texto);
+  font-weight: 600;
+  box-shadow: var(--seg-sombra);
+}
+.segmentado__aba:focus-visible {
+  outline: 2px solid var(--seg-foco);
+  outline-offset: -2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .segmentado__aba { transition: none; }
+}
+
+/* ---- Header: seções do site ---- */
+.segmentado--site .segmentado__aba { font-size: 0.8rem; padding: 6px 12px; }
+.segmentado--site .seg-curto { display: none; }
+#header { gap: 12px; }
+#header h1 { flex-shrink: 0; }
+
+@media (max-width: 1100px) {
+  #controls .header-descricao { display: none; }
+}
+
+@media (max-width: 768px) {
+  /* Celular: título some e as abas usam rótulos curtos (2024 / 2026 / Contas) */
+  #header h1 { display: none; }
+  .segmentado--site .seg-longo { display: none; }
+  .segmentado--site .seg-curto { display: inline; }
+  .segmentado--site .segmentado__aba { padding: 6px 10px; }
+}

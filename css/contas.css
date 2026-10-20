@@ -10,13 +10,6 @@ body.contas-page {
   min-height: 100%;
 }
 
-.contas-page #controls a {
-  font-size: 0.78rem;
-  color: var(--text-muted);
-  white-space: nowrap;
-}
-.contas-page #controls a:hover { color: var(--text); }
-
 #contas {
   max-width: 1280px;
   margin: 0 auto;
@@ -40,32 +33,10 @@ body.contas-page {
   color: var(--text);
 }
 
-/* ---- Abas da página ---- */
-.abas-contas {
-  display: flex;
-  gap: 4px;
-  border-bottom: 1px solid rgba(255,255,255,0.12);
-  overflow-x: auto;
-}
-.abas-contas button {
-  background: none;
-  color: var(--text-muted);
-  border: 0;
-  border-bottom: 2px solid transparent;
-  margin-bottom: -1px;
-  padding: 10px 14px;
-  font-size: 0.88rem;
-  font-family: inherit;
-  cursor: pointer;
-  white-space: nowrap;
-}
-.abas-contas button:hover { color: var(--text); }
-.abas-contas button.ativa {
-  color: var(--text);
-  font-weight: 600;
-  border-bottom-color: var(--highlight);
-}
-.abas-contas button:focus-visible { outline: 2px solid var(--highlight); outline-offset: -2px; }
+/* ---- Abas da página (estilo em css/abas.css) ---- */
+#contas > .segmentado,
+.aba-painel > .segmentado { align-self: flex-start; }
+.abas-contas .segmentado__aba { font-size: 0.92rem; padding: 8px 18px; }
 .aba-painel {
   display: flex;
   flex-direction: column;
@@ -372,14 +343,10 @@ td .barra {
 .fechar:hover { color: var(--text); }
 
 @media (max-width: 600px) {
-  .abas-contas button { padding: 9px 8px; font-size: 0.8rem; }
-  .contas-page #header h1 { font-size: 0.95rem; }
-  .contas-page #controls { gap: 8px; }
-  .contas-page #controls a { font-size: 0.7rem; }
+  #contas > .abas-contas { align-self: stretch; display: flex; }
+  .abas-contas .segmentado__aba { flex: 1 1 0; padding: 8px 10px; font-size: 0.85rem; }
   .kpi span { font-size: 1.05rem; }
   .kpis { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .kpis .kpi:first-child { grid-column: 1 / -1; }
-  .contas-page #controls { flex-direction: column; align-items: flex-end; gap: 2px; }
   .contas-page #header { padding: 0 12px; }
-  .contas-page #header h1 .badge { white-space: nowrap; font-size: 0.62rem; }
 }
