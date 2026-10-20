@@ -369,16 +369,60 @@ function showDataErrorBanner(year, error) {
 // ---- RENDERIZAÇÃO DO SIDEBAR ----
 
 function renderCargoTabs() {
+  // Abas segmentadas numa faixa com rolagem horizontal; as setas ‹ › só
+  // aparecem quando nem todas as abas cabem na largura (ver iniciarAbasCargo).
   return (
-    `<div class="cargo-tabs">` +
+    `<div class="cargo-abas">` +
+    `<button type="button" class="cargo-rolar cargo-rolar--esq" hidden onclick="rolarAbasCargo(-1)"
+             aria-label="${t("Rolar abas para a esquerda")}" title="${t("Rolar abas para a esquerda")}">‹</button>` +
+    `<div class="segmentado segmentado--cargos" role="tablist" aria-label="${t("Cargos")}"
+          onscroll="atualizarSetasCargo()">` +
     CARGOS_GERAL.map(
       (c) =>
-        `<button class="cargo-tab ${currentCargo === c.key ? "active" : ""}"
+        `<button type="button" class="segmentado__aba" role="tab"
+                 aria-selected="${currentCargo === c.key}"
                  onclick="switchCargo('${c.key}')">${c.label}</button>`
     ).join("") +
+    `</div>` +
+    `<button type="button" class="cargo-rolar cargo-rolar--dir" hidden onclick="rolarAbasCargo(1)"
+             aria-label="${t("Rolar abas para a direita")}" title="${t("Rolar abas para a direita")}">›</button>` +
     `</div>`
   );
 }
+
+/** Mostra/esconde as setas conforme ainda haja abas escondidas de cada lado. */
+function atualizarSetasCargo() {
+  const faixa = document.querySelector(".segmentado--cargos");
+  if (!faixa) return;
+  const abas = faixa.closest(".cargo-abas");
+  const resto = faixa.scrollWidth - faixa.clientWidth - faixa.scrollLeft;
+  abas.querySelector(".cargo-rolar--esq").hidden = faixa.scrollLeft <= 2;
+  abas.querySelector(".cargo-rolar--dir").hidden = resto <= 2;
+}
+
+/** Rola a faixa de abas ~70% da largura visível para a direita (1) ou esquerda (-1). */
+function rolarAbasCargo(direcao) {
+  const faixa = document.querySelector(".segmentado--cargos");
+  if (!faixa) return;
+  faixa.scrollBy({ left: direcao * faixa.clientWidth * 0.7, behavior: "smooth" });
+}
+
+/** Depois de redesenhar o sidebar: deixa a aba ativa à vista e acerta as setas. */
+function iniciarAbasCargo() {
+  const faixa = document.querySelector(".segmentado--cargos");
+  if (!faixa) return;
+  const ativa = faixa.querySelector('[aria-selected="true"]');
+  // Duas passadas: mostrar uma seta estreita a faixa, então reposiciona.
+  for (let i = 0; i < 2; i++) {
+    if (ativa) {
+      const margem = 24;
+      const fim = ativa.offsetLeft + ativa.offsetWidth - faixa.clientWidth + margem;
+      faixa.scrollTo({ left: Math.max(0, fim), behavior: "instant" });
+    }
+    atualizarSetasCargo();
+  }
+}
+window.addEventListener("resize", atualizarSetasCargo);
 
 function switchCargo(key) {
   currentCargo = key;
@@ -770,6 +814,7 @@ function renderSidebarForZona(zonaNum) {
   }
   html += fonteInfo();
   document.getElementById("sidebar-content").innerHTML = html;
+  iniciarAbasCargo();
 }
 
 /**
@@ -810,6 +855,7 @@ function renderSidebarBairro(displayName, bairroKey, zonaNum) {
     html += fonteInfo();
   }
   document.getElementById("sidebar-content").innerHTML = html;
+  iniciarAbasCargo();
 }
 
 function renderSidebarTotais() {
@@ -830,6 +876,7 @@ function renderSidebarTotais() {
   }
   html += fonteInfo();
   document.getElementById("sidebar-content").innerHTML = html;
+  iniciarAbasCargo();
 }
 
 function renderSidebar() {

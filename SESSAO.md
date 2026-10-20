@@ -1,3 +1,28 @@
+# Sessão — 2026-10-20 (9) · Abas de cargo na página Eleições 2026
+
+**Status:** iniciada 2026-10-20 22:08 UTC · finalizada 2026-10-20 22:35 UTC
+(commit direto no `main`).
+
+## Pedido
+
+Reorganizar as abas Presidente / Governador / Senador / Dep. Federal /
+Dep. Estadual da página Eleições 2026 (Dep. Federal não aparecia) e
+adicionar um botão de rolagem para a direita.
+
+## O que foi feito
+
+- `js/geral.js`: `renderCargoTabs()` agora usa o controle segmentado do site
+  (`segmentado segmentado--cargos`, `role="tablist"`, `aria-selected`) numa
+  faixa com rolagem horizontal e setas ‹ › nas pontas. As setas só aparecem
+  quando há abas escondidas daquele lado (`atualizarSetasCargo`, também no
+  resize); cada clique rola ~70% da largura. Depois de redesenhar o sidebar,
+  `iniciarAbasCargo()` deixa a aba ativa à vista (ex.: Dep. Estadual).
+- `css/abas.css`: estilos `.cargo-abas`, `.segmentado--cargos`, `.cargo-rolar`.
+- `js/i18n.js`: "Cargos", "Rolar abas para a esquerda/direita".
+- Testado no Chromium em 390px e 1366px, temas claro e escuro. `sw.js` → v31.
+
+---
+
 # Sessão — 2026-10-20 (8) · Correções do tema claro na Eleição 2026
 
 **Status:** iniciada 2026-10-20 22:10 UTC · finalizada 2026-10-20 22:20 UTC
