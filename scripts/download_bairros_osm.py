@@ -54,9 +54,12 @@ def baixar():
                                   headers={"User-Agent": "mapaEleicoesCotia/1.0"})
                 r.raise_for_status()
                 data = r.json()
-                if data.get("elements"):
+                if "elements" in data and "remark" not in data:
+                    # Lista vazia é resposta válida: a query não acha bairros
+                    # mapeados em Cotia e o mapa usa o Voronoi dos locais de
+                    # votação. Salvar isso evita esperar a Overpass à toa.
                     return data
-                print("  resposta sem elementos")
+                print(f"  resposta incompleta: {data.get('remark', '')}")
             except Exception as e:  # noqa: BLE001
                 print(f"  falhou: {e}")
         time.sleep(20 * (tentativa + 1))

@@ -31,6 +31,10 @@ cache possível (POST) e que demoram de dezenas de segundos a minutos ou falham
   servidos do cache na hora (stale-while-revalidate).
 - Teste local (Playwright, Overpass bloqueada): mapa pronto em ~0,7 s, 59
   bairros por Voronoi, sem erros.
+- O 1º run do workflow mostrou que a Overpass responde à query de bairros com
+  lista vazia (ou cai): o site ao vivo sempre acabava no Voronoi depois de
+  esperar. Lista vazia agora é salva como resposta válida e a página vai
+  direto para o Voronoi.
 - Branch atualizado com o `main` (custo por voto e renda do Censo): os
   loaders novos seguem no mesmo `Promise.all`.
 

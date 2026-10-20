@@ -402,8 +402,10 @@ async function fetchCotiaBairros(onStatus) {
   try {
     const r = await fetch("./data/osm_bairros_cotia.json");
     if (r.ok) {
+      // Lista vazia também vale: a Overpass não tem bairros de Cotia e o app
+      // segue direto para o Voronoi, sem esperar a consulta ao vivo.
       const data = await r.json();
-      if (data.elements?.length) return osmtogeojson(data);
+      if (Array.isArray(data.elements)) return osmtogeojson(data);
     }
   } catch (err) {
     console.warn("Bairros locais indisponíveis, consultando Overpass:", err);
