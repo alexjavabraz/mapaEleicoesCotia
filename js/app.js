@@ -775,10 +775,13 @@ async function init() {
 
   // 2b. Carrega dados auxiliares em paralelo
   // loadLocaisVotacao deve completar antes de loadVotosPorEscola (que mescla no escolasSummary)
-  const [bairroResult, locaisResult] = await Promise.all([
+  const [bairroResult, locaisResult, gastosResult] = await Promise.all([
     loadVotosPorBairro(),
     loadLocaisVotacao(),
+    loadGastosCampanha(),
   ]);
+  if (gastosResult.ok) console.log(`Gastos de campanha: ${gastosResult.count} candidatos`);
+  else console.log("Gastos de campanha não disponíveis:", gastosResult.error);
   if (bairroResult.ok) {
     console.log(`Votos por bairro: ${bairroResult.count} bairros`);
     buildNomeMapping(); // constrói mapeamento urna→nome-completo
