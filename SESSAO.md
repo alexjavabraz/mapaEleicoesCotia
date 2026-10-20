@@ -1,3 +1,34 @@
+# Sessão — 2026-10-20 (11) · Rodapé com as fontes dos dados
+
+**Status:** iniciada 2026-10-20 23:29 UTC · finalizada 2026-10-20 23:50 UTC
+(commit direto no `main`).
+
+## Pedido
+
+Criar um rodapé igual em todas as páginas com um ícone que abre um modal
+explicando de onde vêm os dados (TSE, TCE-SP, IBGE, Câmara etc.) e como são
+montados, com links para as fontes.
+
+## O que foi feito
+
+- `js/fontes.js` (carregado nas 3 páginas): cria o `<footer id="rodape">`
+  ("Dados públicos: TSE · TCE-SP · IBGE · Câmara de Cotia" + botão ⓘ "Fontes
+  e metodologia") e o `<dialog id="modal-fontes">` (foco preso, Esc e clique
+  fora fecham, foco volta ao botão). O conteúdo fica em `FONTES_SECOES`:
+  Eleições 2024; Eleições 2022/2026; gastos de campanha e patrimônio;
+  bairros do mapa (aproximados por proximidade); renda do Censo 2022
+  (V06004, setor pintado pela própria renda, renda do responsável e não per
+  capita); Contas do Município (TCE-SP, dia 10, ~6 semanas de atraso);
+  viagens da Câmara (PDFs + OCR); mapa base e código. Cada seção tem uma
+  "Limitação" e links. Inglês em `FONTES_EN` (registrado no `I18N_EN`).
+- `css/style.css`: rodapé fixo nas páginas de mapa (`--footer-height`, o
+  `#main` termina acima dele; no celular mapa e painel dividem a altura por
+  flex) e no fim do conteúdo em Contas; estilos do modal só com variáveis do
+  tema (conferido claro/escuro, desktop/celular, PT/EN).
+- `sw.js` → v34 com `js/fontes.js` no shell.
+
+---
+
 # Sessão — 2026-10-20 (8) · Renda por setor censitário (Jardim do Engenho)
 
 **Status:** iniciada 2026-10-20 23:28 UTC · finalizada 2026-10-20 23:50 UTC
