@@ -250,12 +250,12 @@ def numero(v):
         return None
 
 
-def valores_cotia(tmp, variavel):
+def valores_cotia(tmp, variaveis):
     """Procura a variável nos zips CSV por setor: primeiro os de renda do
     responsável, depois os agregados gerais (básico primeiro)."""
     pasta = URL_RENDA
     zips = [u for u in listar(URL_RENDA)
-            if re.search(r"setores.*csv\.zip$", u, re.I)]
+            if re.search(r"^Agregados_por_setores.*csv\.zip$", u.rsplit("/", 1)[-1], re.I)]
     zips += [u for u in listar(urljoin(URL_AGREGADOS, "Agregados_por_Setor_csv/"))
              if u.lower().endswith(".zip")]
     # renda/rendimento primeiro, depois básico, depois o resto
@@ -267,24 +267,12 @@ def valores_cotia(tmp, variavel):
     for i, url in enumerate(zips):
         destino = os.path.join(tmp, f"agregado_{i}.zip")
         baixar(url, destino)
-        vals = ler_csv_zip(destino, [variavel])
+        vals = ler_csv_zip(destino, variaveis)
         os.remove(destino)
         if vals is not None:
             print(f"  → {len(vals)} setores de Cotia em {url.rsplit('/', 1)[-1]}")
             return vals, url.rsplit("/", 1)[-1]
-    raise SystemExit(f"Variável {variavel} não encontrada em nenhum zip de {pasta}")
-
-
-def domicilios_cotia(tmp, var_dom):
-    """Domicílios particulares permanentes ocupados por setor (arquivo básico)."""
-    pasta = urljoin(URL_AGREGADOS, "Agregados_por_Setor_csv/")
-    basico = [u for u in listar(pasta) if "basico" in u.lower() and u.lower().endswith(".zip")]
-    if not basico:
-        return {}
-    destino = baixar(sorted(basico)[-1], os.path.join(tmp, "basico.zip"))
-    vals = ler_csv_zip(destino, [var_dom]) or {}
-    os.remove(destino)
-    return {cd: v.get(var_dom) for cd, v in vals.items()}
+    raise SystemExit(f"Variáveis {variaveis} não encontradas em nenhum zip de {pasta}")
 
 
 # ---- Malha: ponto representativo de cada setor ----
@@ -357,8 +345,9 @@ def censo_2022(tmp):
     """(dados {CD_SETOR: (renda, domicílios)}, pontos, meta) ou None sem renda por setor."""
     print("1. Dicionário de dados 2022 da renda do responsável")
     escolhido, _ = descobrir_variavel(tmp, URL_RENDA)
-    print("\n   Dicionário dos agregados gerais (peso: domicílios)")
-    _, var_dom = descobrir_variavel(tmp, URL_AGREGADOS)
+    # Peso: V06001 = pessoas responsáveis em domicílios particulares permanentes
+    # ocupados (= nº de domicílios), no mesmo arquivo da renda (dicionário 20260508).
+    var_dom = "V06001"
     if not escolhido:
         print("  Outras pastas do Censo 2022 com renda/rendimento no nome:")
         for u in achar_arquivos(URL_CENSO_2022, r"rend", profundidade=2):
@@ -366,17 +355,13 @@ def censo_2022(tmp):
         return None
     cod, descricao, _, _ = escolhido
 
-    print("\n2. Valores por setor de Cotia")
-    valores, arquivo = valores_cotia(tmp, cod)
+    print(f"\n2. Valores por setor de Cotia ({cod} e peso {var_dom})")
+    valores, arquivo = valores_cotia(tmp, [cod, var_dom])
 
-    print(f"\n3. Domicílios por setor ({var_dom}, arquivo básico)")
-    doms = domicilios_cotia(tmp, var_dom)
-    print(f"  {len(doms)} setores com domicílios")
-
-    print("\n4. Malha de setores 2022")
+    print("\n3. Malha de setores 2022")
     pontos = pontos_setores(tmp, URL_MALHA, r"^SP.*setores.*\.(zip|gpkg)$")
 
-    dados = {cd: (v.get(cod), doms.get(cd)) for cd, v in valores.items()}
+    dados = {cd: (v.get(cod), v.get(var_dom)) for cd, v in valores.items()}
     meta = {
         "fonte": "IBGE, Censo Demográfico 2022 — Agregados por setores censitários",
         "arquivo": arquivo, "variavel": cod, "variavel_domicilios": var_dom,
