@@ -386,10 +386,30 @@ function renderMascaraExterna(municipioGeoJSON) {
 }
 
 /**
- * Carrega os bairros de Cotia via Overpass API.
+ * Carrega os bairros de Cotia. Primeiro lê data/osm_bairros_cotia.json — a
+ * resposta da Overpass salva no repositório (scripts/download_bairros_osm.py,
+ * atualizada todo mês pelo workflow bairros-osm.yml) e cacheada pelo service
+ * worker. A Overpass ao vivo leva dezenas de segundos e cai com frequência,
+ * então só é consultada se o arquivo local não existir.
  * Retorna um FeatureCollection GeoJSON.
  */
 async function fetchCotiaBairros(onStatus) {
+  try {
+    const r = await fetch("./data/osm_bairros_cotia.json");
+    if (r.ok) {
+      const data = await r.json();
+      if (data.elements?.length) return osmtogeojson(data);
+    }
+  } catch (err) {
+    console.warn("Bairros locais indisponíveis, consultando Overpass:", err);
+  }
+  return fetchCotiaBairrosOverpass(onStatus);
+}
+
+/**
+ * Consulta os bairros direto na Overpass API (fallback de fetchCotiaBairros).
+ */
+async function fetchCotiaBairrosOverpass(onStatus) {
   // Query Overpass para buscar os distritos e subdistritos de Cotia
   // Relation ID 296610 = Cotia (município)
   const query = `
@@ -439,14 +459,29 @@ out skel qt;
 }
 
 /**
- * Carrega o contorno do município de Cotia (Overpass API).
- * A Overpass API (overpass-api.de) é instável — às vezes retorna erro ou timeout
- * sem motivo aparente. Sem um fallback, isso deixa a máscara externa (fundo
- * branco fora de Cotia) sem renderizar, mostrando a região metropolitana inteira.
- * Por isso cai para data/cotia_municipio.geojson (contorno salvo localmente)
- * sempre que a API externa falhar ou retornar vazio.
+ * Carrega o contorno do município de Cotia. O contorno salvo em
+ * data/cotia_municipio.geojson (mesma relation da query Overpass) vem primeiro:
+ * é instantâneo e fica no cache do service worker. A Overpass só é consultada
+ * se o arquivo local falhar.
  */
 async function fetchCotiaMunicipio(onStatus) {
+  if (onStatus) onStatus(t("Buscando contorno do município..."));
+  try {
+    const r = await fetch("./data/cotia_municipio.geojson");
+    if (r.ok) {
+      const geojson = await r.json();
+      if (geojson?.features?.length) return geojson;
+    }
+  } catch (err) {
+    console.warn("Contorno local indisponível, consultando Overpass:", err);
+  }
+  return fetchCotiaMunicipioOverpass(onStatus);
+}
+
+/**
+ * Contorno do município via Overpass API (fallback de fetchCotiaMunicipio).
+ */
+async function fetchCotiaMunicipioOverpass(onStatus) {
   const query = `
 [out:json][timeout:30];
 relation["name"="Cotia"]["admin_level"="8"];
@@ -470,23 +505,7 @@ out skel qt;
     if (!geojson?.features?.length) throw new Error("Overpass retornou contorno vazio");
     return geojson;
   } catch (err) {
-    console.warn("Overpass indisponível para contorno do município, usando fallback local:", err);
-    return fetchCotiaMunicipioFallback(onStatus);
-  }
-}
-
-/**
- * Fallback: contorno de Cotia salvo em data/cotia_municipio.geojson
- * (relation/298252, admin_level=8 — mesmo filtro da query Overpass acima).
- */
-async function fetchCotiaMunicipioFallback(onStatus) {
-  if (onStatus) onStatus(t("Overpass indisponível — usando contorno local de Cotia..."));
-  try {
-    const r = await fetch("./data/cotia_municipio.geojson");
-    if (!r.ok) return null;
-    return await r.json();
-  } catch (err) {
-    console.error("Fallback do contorno de Cotia também falhou:", err);
+    console.error("Overpass também falhou para o contorno do município:", err);
     return null;
   }
 }
