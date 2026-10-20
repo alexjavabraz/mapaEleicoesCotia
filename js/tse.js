@@ -141,6 +141,9 @@ function htmlCustoVoto(candidato) {
   if (g.despesas_contratadas == null) {
     return `<div class="candidate-custo sem-dados">${t("Custo/voto: sem prestação de contas")}</div>`;
   }
+  if (g.despesas_contratadas === 0) {
+    return `<div class="candidate-custo sem-dados">${t("Custo/voto: sem gastos declarados")}</div>`;
+  }
   const titulo = t("Gasto de campanha {g} ÷ {n} votos no total", {
     g: formatReais(g.despesas_contratadas), n: formatVotos(g.votos),
   });

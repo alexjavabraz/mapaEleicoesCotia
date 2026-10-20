@@ -112,6 +112,7 @@ const I18N_EN = {
   "Ver mais {n} candidatos ▼": "Show {n} more candidates ▼",
   "Custo/voto: {v}": "Cost/vote: {v}",
   "Custo/voto: sem prestação de contas": "Cost/vote: no campaign finance report",
+  "Custo/voto: sem gastos declarados": "Cost/vote: no declared spending",
   "Gasto de campanha {g} ÷ {n} votos no total": "Campaign spending {g} ÷ {n} total votes",
   "Ver menos ▲": "Show less ▲",
   "Fonte": "Source",

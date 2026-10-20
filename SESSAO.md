@@ -21,7 +21,8 @@ o arquivo.
 - O CDN do TSE é bloqueado na rede da sessão, então o download roda no
   workflow `.github/workflows/gastos-campanha.yml` (manual ou push no branch),
   que comita `data/gastos_campanha_2024.json` (308 candidatos, todos com
-  prestação de contas).
+  prestação de contas; 176, nenhum eleito, declararam R$ 0 de despesas
+  contratadas e aparecem como "sem gastos declarados").
 - `js/tse.js`: `loadGastosCampanha()` e `htmlCustoVoto()`; o card do candidato
   mostra "Custo/voto: R$ x" embaixo do nome (tooltip com gasto ÷ votos). O
   valor é sempre o da cidade inteira, com ou sem escola/bairro selecionado. Só
