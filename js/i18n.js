@@ -349,7 +349,10 @@ function setLang(lang) {
     // Storage bloqueado: leva a escolha na URL para o recarregamento respeitá-la
     url.searchParams.set("lang", lang);
   }
-  window.location.href = url.toString();
+  // Mesmo endereço com #fragmento (ex.: contas.html#viagens) não recarrega
+  // ao ser atribuído de novo, então recarrega explicitamente.
+  if (url.toString() === window.location.href) window.location.reload();
+  else window.location.href = url.toString();
 }
 
 /** Botão PT/EN no header: mostra o idioma para o qual troca. Fica fora de
