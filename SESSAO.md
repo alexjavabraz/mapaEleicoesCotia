@@ -35,6 +35,9 @@ processamento, cálculo, interpretação, modelos estatísticos e "Tudo pronto".
   (ordem por valor ou data, "Mostrar mais", linha de total). O Top 10 do
   fornecedor também passa a sair do analítico, valendo com ano filtrado.
   Workflow `contas.yml` comita a pasta nova. `sw.js` → v19.
+- Pedido seguinte: mesmo header nas três páginas. As abas Eleições 2024 /
+  Eleições 2026 / Contas Municipais já estavam no index e no eleicao-geral
+  (PR #8); o título passou a ser "Cotia" nas três, igual a Contas. `sw.js` → v20.
 
 ---
 
