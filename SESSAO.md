@@ -1,3 +1,12 @@
+# Sessão — 2026-10-21 (14) · Fim do bump manual do cache do Service Worker
+
+**Status:** iniciada 2026-10-21 00:36 UTC · em andamento (commit direto no `main`).
+
+## Pedido
+
+Acabar com a armadilha do cache preso: hoje toda mudança em js/css exige
+subir `CACHE_NAME` à mão em `sw.js`. Tirar também o `.DS_Store` do git.
+
 # Sessão — 2026-10-21 (13) · Loading com microcopy animado
 
 **Status:** iniciada 2026-10-21 00:13 UTC · finalizada 2026-10-21 00:45 UTC
