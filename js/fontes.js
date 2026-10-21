@@ -15,6 +15,15 @@ const FONTES_EN = {
   "Câmara de Cotia": "Cotia City Council",
   "Fontes e metodologia": "Sources and methodology",
   "Sobre o projeto": "About the project",
+  "Apoie a iniciativa": "Support the project",
+  "Apoie": "Support",
+  "Fontes": "Sources",
+  "Este site é feito de forma independente, sem patrocínio de partido ou candidato. Se ele é útil para você, considere apoiar com um PIX de qualquer valor: isso ajuda a manter os dados atualizados e a trazer novas informações de Cotia.":
+    "This site is built independently, with no sponsorship from any party or candidate. If you find it useful, consider supporting it with a PIX of any amount: it helps keep the data up to date and bring new information about Cotia.",
+  "No app do seu banco, escolha Pix → Pagar com QR Code e aponte a câmera para o código.":
+    "In your bank app, choose Pix → Pay with QR Code and point the camera at the code.",
+  "QR Code do PIX para apoiar o projeto": "PIX QR Code to support the project",
+  "Obrigado pelo apoio!": "Thank you for your support!",
   "De onde vêm os dados": "Where the data comes from",
   "Fechar": "Close",
   "Todos os números do site vêm de dados públicos oficiais. Os arquivos são baixados por scripts automáticos e guardados no próprio site; ao abrir uma página nenhum dado é consultado em tempo real.":
@@ -180,6 +189,15 @@ const FONTES_SECOES = [
   },
 ];
 
+// QR Code do PIX do Alex: lido da foto que ele enviou e gerado de novo, limpo
+// (mesmo conteúdo, conferido com um leitor). A chave não aparece em texto.
+const PIX_QRCODE = "./icons/pix-qrcode.png";
+
+const ICONE_APOIO =
+  '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" ' +
+  'stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">' +
+  '<path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 0 0-7.8 7.8l1 1.1L12 21l7.8-7.5 1-1.1a5.5 5.5 0 0 0 0-7.8z"/></svg>';
+
 const ICONE_INFO =
   '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" ' +
   'stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">' +
@@ -247,6 +265,46 @@ function montarModalFontes() {
   return dlg;
 }
 
+/** Cabeçalho comum dos modais do rodapé (título + botão Fechar). */
+function cabecalhoModal(dlg, id, titulo) {
+  const head = fontesEl("div", "fontes-modal__head");
+  head.appendChild(fontesEl("h2", null, titulo)).id = id;
+  const fechar = fontesEl("button", "fontes-modal__fechar", "×");
+  fechar.type = "button";
+  fechar.setAttribute("aria-label", t("Fechar"));
+  fechar.addEventListener("click", () => dlg.close());
+  head.appendChild(fechar);
+  return head;
+}
+
+/** Modal "Apoie a iniciativa": texto curto e o QR Code do PIX (sem a chave em texto). */
+function montarModalApoio() {
+  const dlg = document.createElement("dialog");
+  dlg.id = "modal-apoio";
+  dlg.className = "fontes-modal apoio-modal";
+  dlg.setAttribute("aria-labelledby", "apoio-titulo");
+  dlg.appendChild(cabecalhoModal(dlg, "apoio-titulo", t("Apoie a iniciativa")));
+
+  const corpo = fontesEl("div", "fontes-modal__corpo apoio-corpo");
+  corpo.appendChild(fontesEl("p", null,
+    t("Este site é feito de forma independente, sem patrocínio de partido ou candidato. Se ele é útil para você, considere apoiar com um PIX de qualquer valor: isso ajuda a manter os dados atualizados e a trazer novas informações de Cotia.")));
+  const img = document.createElement("img");
+  img.className = "apoio-qrcode";
+  img.src = PIX_QRCODE;
+  img.alt = t("QR Code do PIX para apoiar o projeto");
+  img.width = 240;
+  img.height = 240;
+  img.loading = "lazy";
+  corpo.appendChild(img);
+  corpo.appendChild(fontesEl("p", "fontes-intro",
+    t("No app do seu banco, escolha Pix → Pagar com QR Code e aponte a câmera para o código.")));
+  corpo.appendChild(fontesEl("p", "apoio-obrigado", t("Obrigado pelo apoio!")));
+  dlg.appendChild(corpo);
+
+  dlg.addEventListener("click", (e) => { if (e.target === dlg) dlg.close(); });
+  return dlg;
+}
+
 function montarRodape() {
   if (document.getElementById("rodape")) return;
   const footer = fontesEl("footer");
@@ -261,7 +319,9 @@ function montarRodape() {
   btn.type = "button";
   btn.setAttribute("aria-haspopup", "dialog");
   btn.innerHTML = ICONE_INFO;
-  btn.appendChild(fontesEl("span", null, t("Fontes e metodologia")));
+  btn.setAttribute("aria-label", t("Fontes e metodologia"));
+  btn.appendChild(fontesEl("span", "rotulo-longo", t("Fontes e metodologia")));
+  btn.appendChild(fontesEl("span", "rotulo-curto", t("Fontes")));
   footer.appendChild(btn);
 
   // Link para a página "Sobre o projeto" (sobre.html), menos na própria
@@ -279,8 +339,21 @@ function montarRodape() {
   // O <dialog> já devolve o foco ao fechar; isto cobre navegadores antigos
   dlg.addEventListener("close", () => btn.focus());
 
+  const apoio = fontesEl("button", "rodape-info rodape-apoio");
+  apoio.type = "button";
+  apoio.setAttribute("aria-haspopup", "dialog");
+  apoio.setAttribute("aria-label", t("Apoie a iniciativa"));
+  apoio.innerHTML = ICONE_APOIO;
+  apoio.appendChild(fontesEl("span", "rotulo-longo", t("Apoie a iniciativa")));
+  apoio.appendChild(fontesEl("span", "rotulo-curto", t("Apoie")));
+  footer.appendChild(apoio);
+  const dlgApoio = montarModalApoio();
+  apoio.addEventListener("click", () => dlgApoio.showModal());
+  dlgApoio.addEventListener("close", () => apoio.focus());
+
   document.body.appendChild(footer);
   document.body.appendChild(dlg);
+  document.body.appendChild(dlgApoio);
   document.body.classList.add("com-rodape");
 }
 

@@ -1593,3 +1593,31 @@ body.contas-page #rodape { position: static; }
 @media (max-width: 420px) {
   .rodape-rotulo { display: none; }
 }
+
+/* Botão e modal "Apoie a iniciativa" (QR Code do PIX, js/fontes.js) */
+.rodape-apoio svg { color: var(--highlight); }
+#rodape .rotulo-curto { display: none; }
+.apoio-modal { width: min(400px, calc(100vw - 24px)); }
+.apoio-corpo { text-align: center; }
+.apoio-corpo p { margin: 0 auto; max-width: 34ch; }
+.apoio-qrcode {
+  display: block;
+  width: min(240px, 70vw);
+  height: auto;
+  aspect-ratio: 1;
+  margin: 16px auto 12px;
+  padding: 10px;
+  border-radius: 10px;
+  /* Fundo branco de propósito: leitores de QR precisam de contraste
+     claro em volta do código, também no tema escuro. */
+  background: #fff;
+  object-fit: contain;
+}
+.apoio-obrigado { margin-top: 10px !important; font-weight: 600; color: var(--text); }
+
+@media (max-width: 520px) {
+  /* Celular: rótulos curtos; a lista de fontes fica no modal */
+  #rodape .rotulo-longo { display: none; }
+  #rodape .rotulo-curto { display: inline; }
+  .rodape-fontes { visibility: hidden; }
+}
