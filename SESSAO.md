@@ -1,3 +1,14 @@
+# Sessão — 2026-10-21 (15) · Página de metodologia
+
+**Status:** iniciada 2026-10-21 00:40 UTC · em andamento (commit direto no `main`).
+
+## Pedido
+
+Alex mandou um zip do site com uma página `metodologia.html` (fontes dos
+dados, como os cálculos são feitos e avisos legais). Analisar o conteúdo,
+conferir com o que o site faz hoje e colocar a página no ar, com link no
+rodapé, tema claro/escuro e PT/EN.
+
 # Sessão — 2026-10-21 (14) · Fim do bump manual do cache do Service Worker
 
 **Status:** iniciada 2026-10-21 00:36 UTC · finalizada 2026-10-21 00:50 UTC
