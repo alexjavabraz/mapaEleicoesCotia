@@ -105,6 +105,9 @@ transparência de dados cívicos".
   (app Guia da Granja Viana). As URLs das matérias não foram achadas (site
   inacessível da sessão, busca sem resultado): o link vai para a home da
   revista. `sw.js` → v37.
+- 2026-10-21 00:33 UTC: Alex mandou os links; "Na imprensa" aponta para
+  issuu (ed. 274, março de 2023) e revistacircuito.com/appg/ (2014).
+  `sw.js` → v40.
 
 ---
 
