@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title data-i18n>Metodologia, fontes e avisos legais — Cotia</title>
+  <meta name="description" content="Como o portal Cotia coleta e calcula os dados públicos: votos por bairro e escola, bairros aproximados, custo por voto, patrimônio, renda do Censo, contas municipais e viagens da Câmara, com limitações e avisos legais." />
+
+  <!-- PWA -->
+  <link rel="manifest" href="./manifest.json" />
+  <meta name="theme-color" content="#16213e" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="Cotia" />
+  <link rel="apple-touch-icon" href="./icons/apple-touch-icon.png" />
+  <link rel="icon" type="image/svg+xml" href="./icons/cotia-flag.svg" />
+  <link rel="icon" type="image/png" sizes="32x32" href="./icons/favicon-32.png" />
+
+  <!-- Idioma (PT/EN): carregado antes de tudo para os outros scripts usarem t() -->
+  <script src="js/i18n.js"></script>
+  <!-- Tema claro/escuro: define data-theme no <html> antes do primeiro desenho -->
+  <script src="js/tema.js"></script>
+
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/abas.css" />
+  <link rel="stylesheet" href="css/sobre.css" />
+  <link rel="stylesheet" href="css/metodologia.css" />
+</head>
+<body class="sobre-page metodologia-page">
+  <header id="header">
+    <h1><img class="header-bandeira" src="./icons/cotia-flag.svg" alt="" width="28" height="28" /><span class="header-nome">Cotia</span></h1>
+
+    <!-- Seções do site em controle segmentado (css/abas.css, js/abas.js) -->
+    <nav class="segmentado segmentado--site" aria-label="Seções do site" data-i18n-aria-label>
+      <a class="segmentado__aba" href="./index.html"><span class="seg-longo" data-i18n>Eleições 2024</span><span class="seg-curto" data-i18n>2024</span></a>
+      <a class="segmentado__aba" href="./eleicao-geral.html"><span class="seg-longo" data-i18n>Eleições 2026</span><span class="seg-curto" data-i18n>2026</span></a>
+      <a class="segmentado__aba" href="./contas.html"><span class="seg-longo" data-i18n>Contas Municipais</span><span class="seg-curto" data-i18n>Contas</span></a>
+    </nav>
+  </header>
+
+  <!-- Texto-base escrito pelo Alex; os números e fórmulas conferem com o código
+       (scripts/ e js/). Ao mudar um cálculo, atualize aqui e em js/fontes.js. -->
+  <main id="metodologia">
+    <div class="metodologia-largura">
+      <header class="metodologia-hero">
+        <p class="sobre-selo" data-i18n>Transparência e reprodutibilidade</p>
+        <h2 class="metodologia-titulo" data-i18n>Metodologia, fontes e avisos legais</h2>
+        <p class="metodologia-lead" data-i18n>Como os dados públicos são coletados, tratados e apresentados, o que cada indicador significa e quais são as suas limitações.</p>
+        <p class="metodologia-versao"><span data-i18n>Versão desta página:</span> <time datetime="2026-10-21" data-i18n>21 de outubro de 2026</time></p>
+      </header>
+
+      <aside class="metodologia-alerta">
+        <strong data-i18n>Como ler o mapa eleitoral:</strong>
+        <span data-i18n>os votos de um bairro são os das seções instaladas nos locais de votação daquele bairro, segundo o cadastro do TSE. Não representam necessariamente a preferência de quem mora nele. Os contornos dos bairros no mapa são aproximações, não divisas oficiais.</span>
+      </aside>
+
+      <nav class="metodologia-sumario" aria-label="Índice da metodologia" data-i18n-aria-label>
+        <strong data-i18n>Nesta página</strong>
+        <a href="#natureza" data-i18n>Natureza do portal</a>
+        <a href="#eleicoes" data-i18n>Votos e cálculos eleitorais</a>
+        <a href="#geografia" data-i18n>Bairros no mapa</a>
+        <a href="#campanhas" data-i18n>Campanhas e patrimônio</a>
+        <a href="#renda" data-i18n>Renda do Censo</a>
+        <a href="#contas" data-i18n>Contas e viagens</a>
+        <a href="#atualizacao" data-i18n>Atualização e limitações</a>
+        <a href="#legal" data-i18n>Avisos legais e correções</a>
+        <a href="#referencias" data-i18n>Fontes e código</a>
+      </nav>
+
+      <section id="natureza">
+        <h3 data-i18n>1. Natureza e finalidade</h3>
+        <p data-i18n>Este é um projeto independente de transparência e visualização de dados públicos, sem vínculo institucional, chancela ou representação do TSE, do IBGE, do TCE-SP, da Prefeitura ou da Câmara Municipal de Cotia. O objetivo é facilitar o acesso e a análise descritiva de informações públicas, sem recomendar candidatos, partidos ou posições políticas.</p>
+        <p data-i18n>Os números exibidos são reproduções de bases oficiais ou indicadores derivados delas por processamento automatizado. Os mapas, agrupamentos, gráficos e textos explicativos são produtos do projeto e não devem ser confundidos com documentos oficiais.</p>
+      </section>
+
+      <section id="eleicoes">
+        <h3 data-i18n>2. Como são calculados os resultados eleitorais</h3>
+        <p data-i18n>Os scripts do projeto baixam os arquivos públicos de votação por seção eleitoral do Tribunal Superior Eleitoral (TSE), ficam só com as seções de Cotia e ligam cada seção (zona e número) ao seu local de votação pelo cadastro de locais de votação do TSE, que também informa o endereço, o bairro e as coordenadas de cada escola. Depois somam os votos por candidato e cargo.</p>
+        <div class="metodologia-formula" data-i18n>Votos do candidato em uma escola = soma dos votos dele em todas as seções daquela escola.</div>
+        <div class="metodologia-formula" data-i18n>Votos do candidato em um bairro = soma dos votos dele nas seções de todos os locais de votação cadastrados naquele bairro.</div>
+        <p data-i18n>Em 2024 (Prefeito e Vereadores) o mapa também usa o total de votos de cada candidato por zona eleitoral. Em 2022 e 2026 (Presidente, Governador, Senador e Deputados) vale o mesmo cálculo por seção, com o arquivo de São Paulo para os cargos estaduais e o arquivo nacional para Presidente, filtrados para Cotia.</p>
+        <p data-i18n>Ao clicar em uma escola no mapa de 2024 aparece uma abstenção estimada, calculada com os eleitores registrados naquela escola (cadastro do TSE) e todos os votos para prefeito registrados nas seções dela:</p>
+        <div class="metodologia-formula" data-i18n>Abstenção estimada da escola = (eleitores registrados − votos para prefeito) ÷ eleitores registrados.</div>
+        <p data-i18n>Percentuais dependem do denominador de cada visualização e não devem ser lidos como percentual da população, do eleitorado residente ou de todos os eleitores aptos. Votos brancos, nulos e abstenções são categorias distintas e não devem ser presumidos incluídos no percentual de um candidato.</p>
+        <p data-i18n>Os recortes de 2022, 2024 e 2026 devem ser lidos por eleição, turno e cargo. O TSE só publica a votação por seção depois que a apuração termina, então um turno ainda não publicado (como o 2º turno de 2026, até a divulgação) não aparece no mapa, e dado ausente não significa zero votos. Este portal não substitui a totalização e a consulta oficial do TSE.</p>
+        <p class="metodologia-limite"><strong data-i18n>Limitação fundamental:</strong> <span data-i18n>o eleitor vota onde está inscrito, que nem sempre é perto de onde mora. Os resultados são agrupados pela localização do local de votação, não pelo endereço, pela identidade ou pela preferência individual de cada eleitor.</span></p>
+      </section>
+
+      <section id="geografia">
+        <h3 data-i18n>3. Como os bairros aparecem no mapa</h3>
+        <p data-i18n>Não existe um mapa oficial de bairros de Cotia em formato aberto: o OpenStreetMap não tem os bairros da cidade e o IBGE não divulga bairros para Cotia. Por isso o mapa desenha os bairros por proximidade.</p>
+        <p data-i18n>Para cada bairro do cadastro do TSE, o ponto de referência é o centro (média das coordenadas) dos seus locais de votação. Cada ponto do município fica com o bairro cujo ponto de referência está mais perto (um diagrama de Voronoi), e o resultado é recortado pelo contorno de Cotia do OpenStreetMap. O desenho é calculado no próprio navegador, a partir de arquivos guardados no site.</p>
+        <div class="metodologia-formula" data-i18n>Ponto de referência do bairro = média das latitudes e longitudes dos locais de votação do bairro.</div>
+        <p class="metodologia-limite"><strong data-i18n>Importante:</strong> <span data-i18n>as áreas servem para organizar o mapa e não definem limites administrativos, postais, cadastrais ou legais. Uma escola perto de uma divisa pode receber eleitores de outras regiões, e a área ou a cor de um polígono não mostram onde moram os eleitores.</span></p>
+      </section>
+
+      <section id="campanhas">
+        <h3 data-i18n>4. Gastos de campanha e patrimônio declarado (2024)</h3>
+        <p data-i18n>O gasto de campanha é a soma das despesas contratadas que o candidato declarou na prestação de contas final ao TSE. O custo por voto, mostrado abaixo do nome de cada candidato de 2024, divide esse gasto pelos votos que ele teve no 1º turno em Cotia.</p>
+        <div class="metodologia-formula" data-i18n>Custo por voto = despesas contratadas declaradas ao TSE ÷ votos no 1º turno.</div>
+        <p data-i18n>Esse quociente é um indicador aritmético. Não é o preço de um voto, não prova compra de votos, não mede eficiência eleitoral e não indica irregularidade.</p>
+        <p data-i18n>O patrimônio é a soma dos valores dos bens que o candidato declarou à Justiça Eleitoral ao registrar a candidatura (arquivo de bens de candidatos do TSE). O link “TSE ↗” ao lado abre a página do candidato no DivulgaCandContas.</p>
+        <div class="metodologia-formula" data-i18n>Patrimônio = soma dos valores de todos os bens declarados pelo candidato.</div>
+        <p class="metodologia-limite"><strong data-i18n>Limitação:</strong> <span data-i18n>são valores declarados pelo próprio candidato. Bens costumam ser informados pelo valor de compra, não pelo valor de mercado, e as declarações podem ser retificadas depois.</span></p>
+      </section>
+
+      <section id="renda">
+        <h3 data-i18n>5. Indicadores de renda (Censo 2022)</h3>
+        <p data-i18n>O botão “Renda (Censo)”, nos mapas de 2024 e de 2026, usa o rendimento nominal médio mensal dos responsáveis pelos domicílios (variável V06004 do IBGE) de cada um dos setores censitários de Cotia no Censo Demográfico de 2022. Com ele ligado, cada setor é pintado pela sua própria renda e os bairros ficam só no contorno tracejado.</p>
+        <p data-i18n>A renda que aparece ao passar sobre um bairro é a média dos setores que caem dentro dele, ponderada pelo número de domicílios particulares permanentes ocupados de cada setor:</p>
+        <div class="metodologia-formula" data-i18n>Renda média do bairro = Σ (renda média do setor × domicílios do setor) ÷ Σ (domicílios dos setores do bairro).</div>
+        <p data-i18n>As cores separam três faixas em salários mínimos de 2022 (R$ 1.212): até 2,5 salários mínimos (R$ 3.030), de 2,5 a 5 (até R$ 6.060) e acima de 5. Os cortes foram escolhidos pelo projeto para separar bem os bairros de Cotia; não são uma classificação oficial do IBGE.</p>
+        <p class="metodologia-limite"><strong data-i18n>Limitação:</strong> <span data-i18n>é a renda da pessoa responsável pelo domicílio, não a renda per capita, a renda total da família nem a renda de todos os moradores. Os dados são de 2022, a média de um bairro grande pode esconder setores muito diferentes, e o IBGE não divulga renda por bairro em Cotia, só por setor, então não há número oficial por bairro para comparar.</span></p>
+      </section>
+
+      <section id="contas">
+        <h3 data-i18n>6. Contas municipais e viagens da Câmara</h3>
+        <p data-i18n>As despesas da Prefeitura e da Câmara de Cotia vêm do Portal da Transparência Municipal do Tribunal de Contas do Estado (TCE-SP), que recebe os dados enviados pelos próprios órgãos. O projeto baixa todos os meses desde 2020. Os valores pagos são agrupados pelo mês de pagamento informado na fonte, não pelo mês do empenho, da liquidação ou da execução do serviço.</p>
+        <div class="metodologia-formula" data-i18n>Total pago no período = soma dos pagamentos lançados no período e no filtro selecionados.</div>
+        <p data-i18n>Diferenças entre empenho, liquidação e pagamento, anulações, retificações e atrasos de publicação afetam comparações. O TCE publica cada mês com cerca de seis semanas de atraso, então os meses mais recentes ainda não aparecem. A ausência de um lançamento no portal não prova ausência de gasto ou de obrigação financeira.</p>
+        <p data-i18n>Os relatórios de viagem de vereadores e servidores são PDFs publicados pela Câmara Municipal de Cotia, um por viagem. O projeto lê cada PDF automaticamente, com reconhecimento de texto (OCR) nos documentos escaneados, para extrair destino, período e valores.</p>
+        <p class="metodologia-limite"><strong data-i18n>Limitação:</strong> <span data-i18n>a leitura automática pode errar textos, valores ou classificações, principalmente em PDFs escaneados. Alguns arquivos de 2017 estão privados e não há relatórios publicados para 2020 e 2022. Para comprovação, consulte sempre o documento original.</span></p>
+      </section>
+
+      <section id="atualizacao">
+        <h3 data-i18n>7. Atualização, qualidade e reprodutibilidade</h3>
+        <p data-i18n>Os dados são baixados e transformados por scripts publicados no repositório do projeto, que rodam no GitHub Actions e guardam os arquivos no próprio site. Ao abrir uma página nenhuma fonte é consultada em tempo real. As contas municipais são atualizadas todo dia 10; os resultados eleitorais, depois de cada divulgação do TSE; as demais bases, quando a fonte publica uma nova versão. A data de uma página não significa que todas as bases foram atualizadas na mesma data.</p>
+        <p data-i18n>O site pode ser instalado como aplicativo e guarda uma cópia local (Service Worker) para funcionar sem internet. Com conexão, sempre carrega a versão publicada; sem conexão, mostra a última cópia guardada, que pode estar desatualizada. Em caso de divergência, prevalece a publicação oficial mais recente do órgão de origem.</p>
+        <p data-i18n>O código-fonte permite examinar cada transformação aplicada. A disponibilidade do código não é uma certificação independente de que os dados estejam completos ou livres de erro.</p>
+      </section>
+
+      <section id="legal">
+        <h3 data-i18n>8. Avisos legais, responsabilidade e correções</h3>
+        <p><strong data-i18n>Uso informativo:</strong> <span data-i18n>as informações destinam-se à consulta pública, à educação cívica e à análise descritiva. Não constituem certidão, laudo, auditoria, parecer jurídico, acusação de ilícito nem conclusão sobre a conduta, a idoneidade ou a responsabilidade de qualquer pessoa.</span></p>
+        <p><strong data-i18n>Fontes primárias:</strong> <span data-i18n>a interpretação de registros oficiais deve considerar a base original, suas notas metodológicas, revisões e contexto. Se houver divergência entre este portal e a fonte pública, vale o documento oficial.</span></p>
+        <p><strong data-i18n>Independência e neutralidade:</strong> <span data-i18n>o projeto não é canal oficial de órgão público e não apoia nem se opõe a candidaturas ou partidos. A presença de pessoas, partidos, empresas e valores reflete os recortes disponíveis nas fontes e não implica juízo de valor.</span></p>
+        <p><strong data-i18n>Dados pessoais:</strong> <span data-i18n>o portal procura limitar a exposição de informações pessoais e não mostra o CPF de pessoas físicas nas contas municipais. Informações publicadas em fontes oficiais continuam exigindo cuidado com privacidade, finalidade e contexto. Pedidos de correção ou questionamentos são avaliados caso a caso, conforme a legislação aplicável.</span></p>
+        <p><strong data-i18n>Correções e contestação:</strong> <span data-i18n>se encontrar um dado incorreto, desatualizado, sem contexto suficiente ou uma possível violação de direitos, informe a página, o registro, a fonte original e a correção pretendida pelo</span> <a href="https://github.com/alexjavabraz/mapaEleicoesCotia/issues" target="_blank" rel="noopener noreferrer" data-i18n>canal público de issues do GitHub ↗</a><span data-i18n>.</span> <strong data-i18n>Não publique dados pessoais sensíveis em issues públicas.</strong> <span data-i18n>Para assuntos que envolvam informações privadas, peça na issue um contato reservado, sem incluir os dados.</span></p>
+        <p><strong data-i18n>Limites deste aviso:</strong> <span data-i18n>estas explicações não afastam obrigações legais, não limitam direitos assegurados por lei e não substituem orientação jurídica profissional. O uso e a republicação dos dados devem respeitar as condições e licenças das respectivas fontes.</span></p>
+      </section>
+
+      <section id="referencias">
+        <h3 data-i18n>9. Fontes primárias e documentação</h3>
+        <ul class="metodologia-fontes">
+          <li><a href="https://dadosabertos.tse.jus.br/" target="_blank" rel="noopener noreferrer" data-i18n>TSE — Dados Abertos ↗</a> <span data-i18n>resultados por seção, locais de votação, candidaturas, bens e prestação de contas.</span></li>
+          <li><a href="https://divulgacandcontas.tse.jus.br/divulga/" target="_blank" rel="noopener noreferrer">TSE — DivulgaCandContas ↗</a> <span data-i18n>página de cada candidato, com bens e contas de campanha.</span></li>
+          <li><a href="https://ftp.ibge.gov.br/Censos/Censo_Demografico_2022/Agregados_por_Setores_Censitarios_Rendimento_do_Responsavel/" target="_blank" rel="noopener noreferrer" data-i18n>IBGE — Censo 2022, renda por setor ↗</a> <span data-i18n>rendimento dos responsáveis por setor censitário e a malha dos setores.</span></li>
+          <li><a href="https://transparencia.tce.sp.gov.br/" target="_blank" rel="noopener noreferrer" data-i18n>TCE-SP — Transparência Municipal ↗</a> <span data-i18n>despesas da Prefeitura e da Câmara de Cotia.</span></li>
+          <li><a href="https://www.cotia.sp.leg.br/relatorio-de-viagens" target="_blank" rel="noopener noreferrer" data-i18n>Câmara de Cotia — Relatório de viagens ↗</a> <span data-i18n>PDFs das viagens de vereadores e servidores.</span></li>
+          <li><a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">OpenStreetMap ↗</a> <span data-i18n>contorno do município e parte do fundo do mapa.</span></li>
+          <li><a href="https://www.esri.com/" target="_blank" rel="noopener noreferrer">Esri ↗</a> <span data-i18n>fundo do mapa (claro, escuro e satélite).</span></li>
+          <li><a href="https://github.com/alexjavabraz/mapaEleicoesCotia" target="_blank" rel="noopener noreferrer" data-i18n>Código do site (GitHub) ↗</a> <span data-i18n>scripts de download, processamento e visualização de cada arquivo.</span></li>
+        </ul>
+      </section>
+
+      <p class="metodologia-final"><a href="./sobre.html" data-i18n>← Sobre o projeto</a> · <a href="./index.html" data-i18n>Voltar ao mapa</a></p>
+    </div>
+  </main>
+
+  <script src="js/abas.js"></script>
+  <script src="js/fontes.js"></script>
+  <script src="js/metodologia.js"></script>
+
+  <script>
+    if ("serviceWorker" in navigator) {
+      let swRefreshing = false;
+      navigator.serviceWorker.addEventListener("controllerchange", () => {
+        if (swRefreshing) return;
+        swRefreshing = true;
+        window.location.reload();
+      });
+      window.addEventListener("load", () => {
+        navigator.serviceWorker.register("./sw.js")
+          .catch((err) => console.warn("SW registro falhou:", err));
+      });
+    }
+  </script>
+</body>
+</html>

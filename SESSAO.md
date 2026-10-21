@@ -1,6 +1,7 @@
 # Sessão — 2026-10-21 (15) · Página de metodologia
 
-**Status:** iniciada 2026-10-21 00:40 UTC · em andamento (commit direto no `main`).
+**Status:** iniciada 2026-10-21 00:40 UTC · finalizada 2026-10-21 01:05 UTC
+(commit direto no `main`).
 
 ## Pedido
 
@@ -8,6 +9,38 @@ Alex mandou um zip do site com uma página `metodologia.html` (fontes dos
 dados, como os cálculos são feitos e avisos legais). Analisar o conteúdo,
 conferir com o que o site faz hoje e colocar a página no ar, com link no
 rodapé, tema claro/escuro e PT/EN.
+
+## O que foi feito
+
+- `metodologia.html` + `css/metodologia.css` + `js/metodologia.js`: texto do
+  zip do Alex, conferido com o código e ajustado onde divergia. Só cores de
+  tema (`var(--…)`, `--amarelo` nos quadros de limitação) e todo o texto com
+  `data-i18n` + inglês em `METODOLOGIA_EN`.
+- Correções em relação ao zip: custo/voto usa **despesas contratadas** da
+  prestação de contas final (o zip dizia "despesas consideradas") e só existe
+  para 2024; ponto de cada bairro no Voronoi é a média das coordenadas dos
+  locais de votação do bairro; o trecho do Service Worker dizia que o usuário
+  pode ver versão antiga (desde a v41 só offline); incluídos V06004, peso por
+  domicílios, cortes de renda, abstenção estimada da escola, dia 10/atraso
+  de ~6 semanas do TCE, lacunas das viagens (2017, 2020, 2022).
+- O zip partia de um main antigo (sw.js v40 cache-first, links antigos da
+  Revista Circuito em sobre.html): só as partes novas foram aproveitadas.
+- `js/fontes.js`: link "Metodologia" no rodapé de todas as páginas (e "Sobre"
+  agora também aparece na página de metodologia); no celular "Sobre o
+  projeto" vira "Sobre" para caber em 320 px. Link "Metodologia completa e
+  avisos legais →" no topo do modal de fontes. Texto dos bairros no modal
+  corrigido (centro dos locais do bairro, não o local mais próximo).
+- `sw.js`: página, css e js novos no shell (sem bump, network-first).
+
+## Como foi testado
+
+Playwright local: todas as chaves `data-i18n` têm inglês, sem erros no
+console, sem rolagem horizontal em 320/360/390/1280 px, claro e escuro.
+
+## Pendente / para o Alex decidir
+
+- Canal reservado para pedidos com dados pessoais: hoje o texto manda pedir
+  contato na issue. Se quiser um e-mail, é só trocar.
 
 # Sessão — 2026-10-21 (14) · Fim do bump manual do cache do Service Worker
 

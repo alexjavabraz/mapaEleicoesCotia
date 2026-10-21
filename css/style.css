@@ -1613,6 +1613,8 @@ body.contas-page #rodape { position: static; }
   line-height: 1.5;
 }
 .fontes-intro { color: var(--text-muted); margin-bottom: 4px; }
+.fontes-completa { color: var(--highlight); font-weight: 600; text-decoration: none; }
+.fontes-completa:hover { text-decoration: underline; }
 .fontes-secao {
   padding: 12px 0;
   border-bottom: 1px solid rgba(var(--tinta), 0.07);

@@ -15,6 +15,9 @@ const FONTES_EN = {
   "Câmara de Cotia": "Cotia City Council",
   "Fontes e metodologia": "Sources and methodology",
   "Sobre o projeto": "About the project",
+  "Metodologia": "Methodology",
+  "Sobre": "About",
+  "Metodologia completa e avisos legais →": "Full methodology and legal notices →",
   "Apoie a iniciativa": "Support the project",
   "Apoie": "Support",
   "Fontes": "Sources",
@@ -60,8 +63,8 @@ const FONTES_EN = {
   "TSE — Candidatos e bens 2024": "TSE — 2024 candidates and assets",
 
   "Bairros do mapa": "Neighborhoods on the map",
-  "Não existe um mapa oficial de bairros de Cotia em formato aberto: o OpenStreetMap não tem os bairros da cidade e o IBGE não divulga bairros para Cotia. Por isso as áreas são desenhadas por proximidade: cada ponto do município fica com o bairro do local de votação mais próximo (segundo o cadastro do TSE), recortado pelo contorno do município do OpenStreetMap.":
-    "There is no official open map of Cotia's neighborhoods: OpenStreetMap does not have them and IBGE does not publish neighborhoods for Cotia. So the areas are drawn by proximity: each point of the city is assigned the neighborhood of the nearest polling place (per the TSE register), clipped by the city boundary from OpenStreetMap.",
+  "Não existe um mapa oficial de bairros de Cotia em formato aberto: o OpenStreetMap não tem os bairros da cidade e o IBGE não divulga bairros para Cotia. Por isso as áreas são desenhadas por proximidade: cada ponto do município fica com o bairro cujo centro (a média das coordenadas dos seus locais de votação, segundo o cadastro do TSE) está mais perto, recortado pelo contorno do município do OpenStreetMap.":
+    "There is no official open map of Cotia's neighborhoods: OpenStreetMap does not have them and IBGE does not publish neighborhoods for Cotia. So the areas are drawn by proximity: each point of the city is assigned the neighborhood whose center (the average coordinates of its polling places, per the TSE register) is closest, clipped by the city boundary from OpenStreetMap.",
   "As fronteiras são aproximadas e não são os limites oficiais dos bairros.":
     "The borders are approximate and are not the official neighborhood limits.",
   "OpenStreetMap — contorno de Cotia": "OpenStreetMap — Cotia boundary",
@@ -137,7 +140,7 @@ const FONTES_SECOES = [
   {
     titulo: "Bairros do mapa",
     textos: [
-      "Não existe um mapa oficial de bairros de Cotia em formato aberto: o OpenStreetMap não tem os bairros da cidade e o IBGE não divulga bairros para Cotia. Por isso as áreas são desenhadas por proximidade: cada ponto do município fica com o bairro do local de votação mais próximo (segundo o cadastro do TSE), recortado pelo contorno do município do OpenStreetMap.",
+      "Não existe um mapa oficial de bairros de Cotia em formato aberto: o OpenStreetMap não tem os bairros da cidade e o IBGE não divulga bairros para Cotia. Por isso as áreas são desenhadas por proximidade: cada ponto do município fica com o bairro cujo centro (a média das coordenadas dos seus locais de votação, segundo o cadastro do TSE) está mais perto, recortado pelo contorno do município do OpenStreetMap.",
     ],
     limite: "As fronteiras são aproximadas e não são os limites oficiais dos bairros.",
     links: [
@@ -237,6 +240,12 @@ function montarModalFontes() {
   const corpo = fontesEl("div", "fontes-modal__corpo");
   corpo.appendChild(fontesEl("p", "fontes-intro",
     t("Todos os números do site vêm de dados públicos oficiais. Os arquivos são baixados por scripts automáticos e guardados no próprio site; ao abrir uma página nenhum dado é consultado em tempo real.")));
+  // Página completa (metodologia.html), com fórmulas e avisos legais
+  if (!document.body.classList.contains("metodologia-page")) {
+    const completa = fontesEl("a", "fontes-completa", t("Metodologia completa e avisos legais →"));
+    completa.href = "./metodologia.html";
+    corpo.appendChild(fontesEl("p")).appendChild(completa);
+  }
 
   for (const s of FONTES_SECOES) {
     const sec = fontesEl("section", "fontes-secao");
@@ -324,11 +333,21 @@ function montarRodape() {
   btn.appendChild(fontesEl("span", "rotulo-curto", t("Fontes")));
   footer.appendChild(btn);
 
-  // Link para a página "Sobre o projeto" (sobre.html), menos na própria
-  if (!document.body.classList.contains("sobre-page")) {
-    const sobre = fontesEl("a", "rodape-sobre", t("Sobre o projeto"));
+  // Links para "Sobre o projeto" (sobre.html) e "Metodologia"
+  // (metodologia.html), menos na própria página
+  const classes = document.body.classList;
+  if (!classes.contains("sobre-page") || classes.contains("metodologia-page")) {
+    // No celular o rótulo encurta (css/style.css, .rotulo-curto), como nos botões
+    const sobre = fontesEl("a", "rodape-sobre");
+    sobre.appendChild(fontesEl("span", "rotulo-longo", t("Sobre o projeto")));
+    sobre.appendChild(fontesEl("span", "rotulo-curto", t("Sobre")));
     sobre.href = "./sobre.html";
     footer.insertBefore(sobre, btn);
+  }
+  if (!classes.contains("metodologia-page")) {
+    const metodologia = fontesEl("a", "rodape-sobre", t("Metodologia"));
+    metodologia.href = "./metodologia.html";
+    footer.insertBefore(metodologia, btn);
   }
 
   const dlg = montarModalFontes();

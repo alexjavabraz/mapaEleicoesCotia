@@ -1,0 +1,133 @@
+/* =============================================
+   Metodologia, fontes e avisos legais (metodologia.html).
+   Usa o header, o rodapé e o selo de sobre.css; cores só por var(--…)
+   e rgba(var(--tinta), a), para funcionar nos temas claro e escuro.
+   ============================================= */
+
+#metodologia {
+  padding-top: var(--header-height);
+  padding-bottom: 48px;
+}
+
+.metodologia-largura {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* ---- Abertura ---- */
+.metodologia-hero {
+  padding: 56px 0 28px;
+  border-bottom: 1px solid rgba(var(--tinta), 0.1);
+}
+.metodologia-titulo {
+  margin-top: 16px;
+  font-size: clamp(1.9rem, 5vw, 3rem);
+  line-height: 1.1;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--text);
+}
+.metodologia-lead {
+  margin-top: 16px;
+  max-width: 62ch;
+  font-size: 1.08rem;
+  line-height: 1.6;
+  color: var(--text-muted);
+}
+.metodologia-versao {
+  margin-top: 14px;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+/* ---- Aviso de leitura e quadros de limitação ---- */
+.metodologia-alerta,
+.metodologia-limite {
+  border-left: 4px solid var(--amarelo);
+  background: color-mix(in srgb, var(--amarelo) 10%, transparent);
+  color: var(--text);
+  line-height: 1.65;
+}
+.metodologia-alerta {
+  margin: 26px 0;
+  padding: 18px 22px;
+  border-radius: 10px;
+  border-top: 1px solid color-mix(in srgb, var(--amarelo) 40%, transparent);
+  border-right: 1px solid color-mix(in srgb, var(--amarelo) 40%, transparent);
+  border-bottom: 1px solid color-mix(in srgb, var(--amarelo) 40%, transparent);
+}
+.metodologia-limite {
+  padding: 14px 18px;
+  border-radius: 4px 8px 8px 4px;
+}
+
+/* ---- Índice ---- */
+.metodologia-sumario {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin: 24px 0 24px;
+}
+.metodologia-sumario strong {
+  margin-right: 8px;
+  color: var(--text);
+}
+.metodologia-sumario a {
+  padding: 6px 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(var(--tinta), 0.18);
+  font-size: 0.82rem;
+  color: var(--text);
+  text-decoration: none;
+}
+.metodologia-sumario a:hover { background: rgba(var(--tinta), 0.06); }
+.metodologia-sumario a:focus-visible { outline: 2px solid var(--highlight); outline-offset: 2px; }
+
+/* ---- Seções ---- */
+#metodologia section {
+  padding: 28px 0;
+  border-bottom: 1px solid rgba(var(--tinta), 0.1);
+  scroll-margin-top: calc(var(--header-height) + 12px);
+}
+#metodologia section h3 {
+  margin: 0 0 14px;
+  font-size: 1.3rem;
+  color: var(--text);
+}
+#metodologia section p,
+.metodologia-fontes li {
+  margin: 12px 0;
+  line-height: 1.75;
+  color: var(--text);
+}
+#metodologia a { color: var(--highlight); }
+#metodologia .metodologia-sumario a { color: var(--text); }
+
+.metodologia-formula {
+  margin: 16px 0;
+  padding: 14px 18px;
+  border-radius: 10px;
+  background: rgba(var(--tinta), 0.06);
+  border: 1px solid rgba(var(--tinta), 0.1);
+  font-weight: 600;
+  line-height: 1.6;
+  color: var(--text);
+}
+
+.metodologia-fontes { padding-left: 22px; }
+.metodologia-fontes a { font-weight: 600; text-decoration: none; }
+.metodologia-fontes a:hover { text-decoration: underline; }
+
+.metodologia-final {
+  padding: 28px 0 0;
+  color: var(--text-muted);
+}
+
+@media (max-width: 640px) {
+  .metodologia-hero { padding-top: 36px; }
+  .metodologia-sumario strong { width: 100%; }
+  #metodologia section p,
+  .metodologia-fontes li { line-height: 1.65; }
+}
