@@ -1,28 +1,3 @@
-# Sessão — 2026-10-21 (12) · "Apoie a iniciativa" (PIX) no rodapé
-
-**Status:** iniciada 2026-10-21 00:14 UTC · finalizada 2026-10-21 00:25 UTC
-(commit direto no `main`).
-
-## Pedido
-
-Opção "Apoie a iniciativa" no rodapé que abre o QR Code do PIX do Alex
-(foto enviada pelo celular).
-
-## O que foi feito
-
-- `js/fontes.js`: botão ♥ "Apoie a iniciativa" (no celular "Apoie") no
-  rodapé de todas as páginas e o `<dialog id="modal-apoio">` com texto curto,
-  o QR Code e "Obrigado pelo apoio!". A chave PIX não aparece em texto.
-- `icons/pix-qrcode.png`: o conteúdo do QR foi lido da foto (BR Code do
-  Nubank, CRC conferido) e o código foi gerado de novo, limpo, com o mesmo
-  conteúdo; conferido com leitor de QR na imagem e nas capturas da página.
-- No celular (≤ 520 px) o rodapé usa rótulos curtos ("Fontes", "Apoie") e
-  esconde a lista de fontes (que continua no modal).
-- `css/style.css`: estilos do modal; o QR fica sobre fundo branco também no
-  tema escuro (contraste para leitura). `sw.js` → v38 com a imagem no shell.
-
----
-
 # Sessão — 2026-10-21 (13) · Loading com microcopy animado
 
 **Status:** iniciada 2026-10-21 00:13 UTC · finalizada 2026-10-21 00:45 UTC
@@ -67,6 +42,31 @@ Eleições 2024, Eleições 2026 e Contas Municipais.
 - `sw.js` → v39 com `js/carregando.js` no shell.
 - Testado claro/escuro, desktop/celular, EN, erro (HTTP 503) e movimento
   reduzido.
+
+---
+
+# Sessão — 2026-10-21 (12) · "Apoie a iniciativa" (PIX) no rodapé
+
+**Status:** iniciada 2026-10-21 00:14 UTC · finalizada 2026-10-21 00:25 UTC
+(commit direto no `main`).
+
+## Pedido
+
+Opção "Apoie a iniciativa" no rodapé que abre o QR Code do PIX do Alex
+(foto enviada pelo celular).
+
+## O que foi feito
+
+- `js/fontes.js`: botão ♥ "Apoie a iniciativa" (no celular "Apoie") no
+  rodapé de todas as páginas e o `<dialog id="modal-apoio">` com texto curto,
+  o QR Code e "Obrigado pelo apoio!". A chave PIX não aparece em texto.
+- `icons/pix-qrcode.png`: o conteúdo do QR foi lido da foto (BR Code do
+  Nubank, CRC conferido) e o código foi gerado de novo, limpo, com o mesmo
+  conteúdo; conferido com leitor de QR na imagem e nas capturas da página.
+- No celular (≤ 520 px) o rodapé usa rótulos curtos ("Fontes", "Apoie") e
+  esconde a lista de fontes (que continua no modal).
+- `css/style.css`: estilos do modal; o QR fica sobre fundo branco também no
+  tema escuro (contraste para leitura). `sw.js` → v38 com a imagem no shell.
 
 ---
 
