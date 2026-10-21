@@ -61,6 +61,12 @@ const SOBRE_EN = {
   "Palestrante e instrutor de Blockchain e smart contracts, com passagens por empresas de Blockchain como NEM e Rootstock. Um dos pioneiros da tecnologia no Brasil.":
     "Speaker and instructor on Blockchain and smart contracts, with experience at Blockchain companies such as NEM and Rootstock. One of the pioneers of the technology in Brazil.",
 
+  "Na imprensa": "In the press",
+  "março de 2023": "March 2023",
+  "entre os 50 profissionais de TI para seguir": "among the 50 IT professionals to follow",
+  "12 de maio de 2014": "May 12, 2014",
+  "o app Guia da Granja Viana, criado por ele": "the Guia da Granja Viana app he created",
+
   "Código aberto": "Open source",
   "Todo o código e os dados do portal estão no GitHub. Encontrou um erro ou tem uma sugestão? Abra uma issue no repositório.":
     "All of the portal's code and data are on GitHub. Found a mistake or have a suggestion? Open an issue in the repository.",

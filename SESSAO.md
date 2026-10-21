@@ -28,6 +28,11 @@ transparência de dados cívicos".
 - Complemento (2026-10-21 00:02 UTC, pedido do Alex): segundo parágrafo na
   bio — palestrante e instrutor de Blockchain e smart contracts, passagens
   por NEM e Rootstock, um dos pioneiros no Brasil (PT/EN). `sw.js` → v36.
+- Complemento (2026-10-21 00:06 UTC): "Na imprensa" na bio — Revista
+  Circuito, março de 2023 (50 profissionais de TI para seguir) e 12/05/2014
+  (app Guia da Granja Viana). As URLs das matérias não foram achadas (site
+  inacessível da sessão, busca sem resultado): o link vai para a home da
+  revista. `sw.js` → v37.
 
 ---
 
