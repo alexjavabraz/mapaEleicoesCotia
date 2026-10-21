@@ -25,6 +25,9 @@ transparência de dados cívicos".
 - `sw.js` → v35 com sobre.html, css/sobre.css e js/sobre.js no shell.
 - Conferido claro/escuro, desktop/celular (sem rolagem horizontal) e EN.
   Capturas em `/mnt/project-files/landing-page/` do projeto.
+- Complemento (2026-10-21 00:02 UTC, pedido do Alex): segundo parágrafo na
+  bio — palestrante e instrutor de Blockchain e smart contracts, passagens
+  por NEM e Rootstock, um dos pioneiros no Brasil (PT/EN). `sw.js` → v36.
 
 ---
 

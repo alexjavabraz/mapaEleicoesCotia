@@ -58,6 +58,8 @@ const SOBRE_EN = {
   "Idealização e desenvolvimento": "Conception and development",
   "Engenheiro de Software há mais de 20 anos, Arquiteto Blockchain, Membro do grupo de trabalho técnico de Desenvolvimento do PIX. Especialista em Blockchain e membro do comitê ISO para assuntos relacionados ao tema.":
     "Software Engineer for over 20 years, Blockchain Architect, member of the technical working group for PIX development. Blockchain specialist and member of the ISO committee on matters related to the subject.",
+  "Palestrante e instrutor de Blockchain e smart contracts, com passagens por empresas de Blockchain como NEM e Rootstock. Um dos pioneiros da tecnologia no Brasil.":
+    "Speaker and instructor on Blockchain and smart contracts, with experience at Blockchain companies such as NEM and Rootstock. One of the pioneers of the technology in Brazil.",
 
   "Código aberto": "Open source",
   "Todo o código e os dados do portal estão no GitHub. Encontrou um erro ou tem uma sugestão? Abra uma issue no repositório.":

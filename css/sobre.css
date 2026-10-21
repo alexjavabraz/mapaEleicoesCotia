@@ -220,6 +220,7 @@ body.sobre-page #rodape { position: static; }
   border: 2px solid color-mix(in srgb, var(--highlight) 40%, transparent);
 }
 .sobre-pessoa__nome { font-size: 1.25rem; color: var(--text); margin-bottom: 6px; }
+.sobre-pessoa p + p { margin-top: 8px; }
 .sobre-pessoa__links { margin-top: 10px; }
 .sobre-pessoa__links a { color: var(--highlight); font-weight: 600; text-decoration: none; }
 .sobre-pessoa__links a:hover { text-decoration: underline; }
