@@ -139,13 +139,13 @@ function getBairroCandidatos(bairroNome, cargo) {
   }));
 }
 
-function setLoadingStatus(text) {
-  const el = document.getElementById("loading-status");
-  if (el) el.textContent = text;
+// Microcopy do carregamento: js/carregando.js
+function setLoadingStatus(text, leitor) {
+  Carregando.status(text, leitor);
 }
 
 function showLoading(show) {
-  document.getElementById("loading").style.display = show ? "flex" : "none";
+  Carregando.mostrar(show);
 }
 
 function toggleExtra(id, btn) {
@@ -757,7 +757,7 @@ function setupControls() {
 
 async function init() {
   showLoading(true);
-  setLoadingStatus(t("Inicializando mapa..."));
+  setLoadingStatus(t("Preparando o mapa"));
 
   // 1. Inicializa o mapa
   initMap();
@@ -777,7 +777,7 @@ async function init() {
 
   // 2. Carrega dados TSE e auxiliares em paralelo
   // loadLocaisVotacao deve completar antes de loadVotosPorEscola (que mescla no escolasSummary)
-  setLoadingStatus(t("Carregando dados eleitorais..."));
+  setLoadingStatus(t("Carregando resultados do TSE"));
   const [tseResult, bairroResult, locaisResult, gastosResult, rendaResult, patrimonioResult] = await Promise.all([
     loadTSEData(),
     loadVotosPorBairro(),
@@ -806,6 +806,7 @@ async function init() {
   else console.log("Locais de votação não disponíveis:", locaisResult.error);
 
   // Carrega votos por escola APÓS locais (mescla no escolasSummary)
+  setLoadingStatus(t("Somando votos por local de votação"));
   const [escolaResult, detalheResult] = await Promise.all([
     loadVotosPorEscola(),
     loadVotosPorEscolaDetalhe(),
@@ -849,7 +850,7 @@ async function init() {
   }
 
   // 3. Busca contorno do município e aplica máscara branca fora de Cotia
-  setLoadingStatus(t("Buscando contorno de Cotia (OpenStreetMap)..."));
+  setLoadingStatus(t("Desenhando o contorno de Cotia"));
   const municipioGeoJSON = await municipioPromise;
   if (municipioGeoJSON) {
     renderMascaraExterna(municipioGeoJSON);  // máscara branca externa (abaixo)
@@ -858,7 +859,7 @@ async function init() {
   }
 
   // 4. Busca bairros via OSM; se não retornar polígonos, usa Voronoi dos locais de votação
-  setLoadingStatus(t("Buscando bairros (Overpass API)..."));
+  setLoadingStatus(t("Desenhando os bairros"));
   let bairrosGeoJSON = await bairrosPromise;
 
   const osmPolygons = bairrosGeoJSON?.features?.filter(f => {
@@ -868,7 +869,7 @@ async function init() {
 
   const locais = getLocaisVotacao();
   if (osmPolygons.length < 5 && locais.length) {
-    setLoadingStatus(t("Gerando bairros por proximidade (Voronoi)..."));
+    setLoadingStatus(t("Calculando bairros pelos locais de votação"));
     bairrosGeoJSON = computeVoronoiBairros(locais, municipioGeoJSON);
     if (bairrosGeoJSON) {
       console.log(`Voronoi: ${bairrosGeoJSON.features.length} bairros gerados.`);
@@ -897,7 +898,7 @@ async function init() {
   // 5. Renderiza escolas (locais de votação) como marcadores amarelos
   const escolas = getEscolasSummary();
   if (escolas.length > 0) {
-    setLoadingStatus(t("Renderizando locais de votação..."));
+    setLoadingStatus(t("Marcando os locais de votação"));
     renderEscolas(escolas, displayEscolaData);
     console.log(`${escolas.length} locais de votação renderizados.`);
   }
@@ -906,4 +907,9 @@ async function init() {
 }
 
 // ---- START ----
-window.addEventListener("DOMContentLoaded", init);
+window.addEventListener("DOMContentLoaded", () => {
+  init().catch((err) => {
+    console.error("Erro ao montar o mapa:", err);
+    Carregando.erro(t("Falha ao carregar o mapa"), err.message);
+  });
+});

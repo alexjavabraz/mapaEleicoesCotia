@@ -123,18 +123,6 @@ function fornecedoresFiltrados(s = estado) {
 // narram o que o script de download e a página fazem com ele, enquanto o
 // fetch corre em paralelo. "Processando" só avança depois que o fetch termina.
 const espera = (ms) => new Promise((r) => setTimeout(r, ms));
-let etapaAtual = null;
-
-function etapa(texto, classe) {
-  const lista = $("carga-etapas");
-  if (etapaAtual) etapaAtual.classList.add("ok");
-  etapaAtual = document.createElement("li");
-  etapaAtual.textContent = texto;
-  if (classe) etapaAtual.className = classe;
-  lista.append(etapaAtual);
-  while (lista.children.length > 8) lista.firstChild.remove();
-  $("loading-status").textContent = texto;
-}
 
 async function animarCarga(dadosProntos) {
   const hoje = new Date();
@@ -142,20 +130,22 @@ async function animarCarga(dadosProntos) {
   for (let ano = 2020; ano <= hoje.getFullYear(); ano++) {
     for (let s = 1; s <= 2; s++) {
       if (ano === hoje.getFullYear() && s === 2 && hoje.getMonth() < 6) break;
-      consultas.push([t("Consultando {ano} · semestre {s}", { ano, s }), 140]);
+      consultas.push([t("Consultando {ano} · semestre {s}", { ano, s }), 140, false, null]);
     }
   }
+  // [texto visual, ms, espera o fetch?, frase do leitor de tela]
+  // null = não anuncia (passos rápidos demais para o leitor acompanhar)
   const etapas = [
-    [t("Conectando ao TCE-SP"), 350],
+    [t("Conectando ao TCE-SP"), 350, false, null],
     ...consultas,
-    [t("Processando os lançamentos"), 380, true],
-    [t("Calculando totais por órgão e fornecedor"), 380],
-    [t("Interpretando os dados"), 380],
-    [t("Aplicando modelos estatísticos"), 450],
+    [t("Processando os lançamentos"), 380, true, t("Processando os lançamentos de despesas. Por favor, aguarde.")],
+    [t("Calculando totais por órgão e fornecedor"), 380, false, null],
+    [t("Interpretando os dados"), 380, false, null],
+    [t("Aplicando modelos estatísticos"), 450, false, null],
   ];
   const barra = $("carga-progresso");
-  for (const [i, [texto, ms, aguarda]] of etapas.entries()) {
-    etapa(texto);
+  for (const [i, [texto, ms, aguarda, leitor]] of etapas.entries()) {
+    Carregando.status(texto, leitor);
     barra.style.width = `${((i + 1) / (etapas.length + 1)) * 100}%`;
     if (aguarda) await dadosProntos;
     await espera(ms);
@@ -163,13 +153,10 @@ async function animarCarga(dadosProntos) {
 }
 
 async function concluirCarga() {
-  etapa(t("Tudo pronto!"), "fim");
-  etapaAtual.classList.add("ok");
+  Carregando.status(t("Tudo pronto!"), null);
   $("carga-progresso").style.width = "100%";
-  await espera(600);
-  $("loading").classList.add("saindo");
-  await espera(350);
-  $("loading").style.display = "none";
+  await espera(500);
+  Carregando.mostrar(false, t("Contas carregadas."));
 }
 
 async function init() {
@@ -182,8 +169,8 @@ async function init() {
     await animarCarga(dadosProntos);
     DADOS = await dadosProntos;
   } catch (err) {
-    $("loading").innerHTML =
-      `<p>${t("Não foi possível carregar as contas ({erro}).", { erro: esc(err.message) })}</p>`;
+    Carregando.erro(t("Falha ao obter as contas do município"), err.message);
+    console.error("Erro ao carregar as contas:", err);
     return;
   }
 

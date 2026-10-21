@@ -25,7 +25,8 @@ Opção "Apoie a iniciativa" no rodapé que abre o QR Code do PIX do Alex
 
 # Sessão — 2026-10-21 (13) · Loading com microcopy animado
 
-**Status:** iniciada 2026-10-21 00:13 UTC · em andamento.
+**Status:** iniciada 2026-10-21 00:13 UTC · finalizada 2026-10-21 00:45 UTC
+(commit direto no `main`).
 
 ## Pedido
 
@@ -35,6 +36,37 @@ acessível (WCAG): `role="status"` + `aria-live="polite"`, texto para leitor
 de tela separado do texto visual (`aria-hidden`), pulso de opacidade
 0,4 → 1, erro em vermelho. Exemplo completo em arquivo único + aplicar em
 Eleições 2024, Eleições 2026 e Contas Municipais.
+
+## O que foi feito
+
+- atlasbrasil.org.br responde 403 a partir da sessão; segui as diretrizes
+  escritas.
+- Exemplo completo em arquivo único (HTML+CSS+JS, mock de fetch com
+  sucesso/falha e "Tentar novamente") em
+  `/mnt/project-files/loading-microcopy/loading-microcopy.html` do projeto,
+  com capturas na mesma pasta.
+- `js/carregando.js` (novo): `Carregando.status(texto, leitor)`,
+  `.mostrar(bool)`, `.erro(texto, detalhe)`. Texto visual curto
+  (`aria-hidden`) + frase completa em `#loading-sr` (`.sr-only`) dentro de
+  `role="status" aria-live="polite"`. Passos rápidos (semestres do TCE)
+  passam `leitor = null` para não encher o leitor de tela.
+- `css/style.css`: novo bloco do loading (pulso 0,4 → 1, reticências
+  animadas, erro em `--negativo` parado, botão "Tentar novamente",
+  `.sr-only`, `prefers-reduced-motion`); variável `--azul-suave` nos dois
+  temas. Saiu o spinner. `css/contas.css`: saiu a animação de folhas e a
+  lista de etapas; ficou a legenda e a barra fina (agora azul).
+- Mensagens agora dizem o que acontece de verdade (bairros vêm de arquivo
+  local, não da Overpass): "Preparando o mapa", "Carregando resultados do
+  TSE", "Somando votos por local de votação", "Desenhando o contorno de
+  Cotia", "Desenhando os bairros", "Calculando bairros pelos locais de
+  votação", "Marcando os locais de votação". Contas mantém as etapas
+  (Conectando ao TCE-SP, Consultando 2020 · semestre 1…, Tudo pronto!).
+- Erro: `init()` dos dois mapas agora tem `catch` → mensagem vermelha;
+  Contas usa o mesmo padrão no lugar do parágrafo antigo. PT/EN no
+  `I18N_EN` (chaves antigas sem uso removidas).
+- `sw.js` → v39 com `js/carregando.js` no shell.
+- Testado claro/escuro, desktop/celular, EN, erro (HTTP 503) e movimento
+  reduzido.
 
 ---
 

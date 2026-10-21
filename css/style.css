@@ -22,6 +22,7 @@
   --positivo: #15803d;
   --negativo: #b91c1c;
   --amarelo: #a16207;          /* destaque de votos (amarelo legível no claro) */
+  --azul-suave: #2f5fb3;       /* texto do loading (microcopy) */
   --sidebar-width: 380px;
   --header-height: 56px;
   --zone-colors: #4fc3f7, #81c784, #ffb74d, #f06292, #ba68c8, #4db6ac;
@@ -42,6 +43,7 @@
   --positivo: #4ade80;
   --negativo: #f87171;
   --amarelo: #ffd54f;
+  --azul-suave: #8ab4f8;
   color-scheme: dark;
 }
 
@@ -777,38 +779,93 @@ html, body {
   color: var(--text);
 }
 
-/* ---- LOADING ---- */
+/* ---- LOADING: microcopy animado ----
+   Texto curto que diz o que a página está fazendo, com pulso de opacidade
+   (0,4 → 1) e reticências animadas. A frase completa para leitor de tela fica
+   em #loading-sr (.sr-only); o texto visual é aria-hidden. Lógica: js/carregando.js */
 #loading {
   position: fixed;
   inset: 0;
-  background: rgba(var(--painel-rgb), 0.92);
+  background: rgba(var(--painel-rgb), 0.94);
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
   z-index: 9999;
-  gap: 16px;
+  padding: 0 16px;
   backdrop-filter: blur(4px);
+  transition: opacity 0.3s;
+}
+#loading.saindo { opacity: 0; pointer-events: none; }
+
+.carga {
+  width: min(380px, 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  text-align: center;
 }
 
-#loading p {
-  color: var(--text-muted);
-  font-size: 0.9rem;
+.carga-texto {
+  color: var(--azul-suave);
+  font-family: 'Inter', 'Segoe UI', system-ui, Arial, sans-serif;
+  font-size: 1rem;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  line-height: 1.5;
+  animation: carga-pulso 1.6s ease-in-out infinite;
+}
+.carga-pontos span { animation: carga-ponto 1.6s ease-in-out infinite; }
+.carga-pontos span:nth-child(2) { animation-delay: 0.2s; }
+.carga-pontos span:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes carga-pulso {
+  0%, 100% { opacity: 0.4; }
+  50%      { opacity: 1; }
+}
+@keyframes carga-ponto {
+  0%, 20%   { opacity: 0; }
+  50%, 100% { opacity: 1; }
 }
 
-.spinner {
-  width: 40px;
-  height: 40px;
-  border: 3px solid rgba(var(--tinta), 0.1);
-  border-top-color: var(--highlight);
-  border-radius: 50%;
-  animation: spin 0.8s linear infinite;
+/* Erro: vermelho e parado (não está mais processando) */
+#loading.erro .carga-texto { color: var(--negativo); animation: none; opacity: 1; }
+#loading.fim .carga-texto { animation: none; opacity: 1; }
+#loading.fim .carga-pontos,
+#loading.erro .carga-pontos,
+#loading.erro .carga-barra { display: none; }
+
+.carga-acoes { margin-top: 4px; }
+.carga-acoes[hidden] { display: none; }
+.carga-acoes button {
+  font: inherit;
+  font-size: 0.85rem;
+  padding: 7px 14px;
+  border-radius: 8px;
+  border: 1px solid rgba(var(--tinta), 0.2);
+  background: rgba(var(--tinta), 0.05);
+  color: var(--text);
+  cursor: pointer;
+}
+.carga-acoes button:hover { border-color: var(--azul-suave); }
+.carga-acoes button:focus-visible { outline: 3px solid var(--azul-suave); outline-offset: 2px; }
+
+/* Esconde visualmente sem tirar do DOM nem da árvore de acessibilidade */
+.sr-only {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }
 
-#loading-status {
-  font-size: 0.78rem;
-  color: var(--text-muted);
-  opacity: 0.7;
+@media (prefers-reduced-motion: reduce) {
+  .carga-texto, .carga-pontos span { animation: none; opacity: 1; }
+  #loading { transition: none; }
 }
 
 @keyframes spin {

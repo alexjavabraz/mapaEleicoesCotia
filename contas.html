@@ -211,20 +211,20 @@
     <div class="tabela-wrap"><table id="m-tabela"></table></div>
   </dialog>
 
-  <div id="loading">
+  <div id="loading" role="status" aria-live="polite">
     <div class="carga">
-      <div class="carga-icone" aria-hidden="true">
-        <span class="carga-doc"></span><span class="carga-doc"></span><span class="carga-doc"></span>
-      </div>
-      <h2 class="carga-titulo" data-i18n>Baixando os dados do Tribunal de Contas</h2>
+      <span id="loading-sr" class="sr-only" data-i18n>Consultando as contas do município de Cotia no TCE-SP, por favor aguarde.</span>
+      <span class="carga-texto" aria-hidden="true"><span id="loading-status" data-i18n>Conectando ao TCE-SP</span><span class="carga-pontos"><span>.</span><span>.</span><span>.</span></span></span>
       <p class="carga-sub" data-i18n>Despesas da Prefeitura e da Câmara de Cotia (TCE-SP)</p>
       <div class="carga-barra" aria-hidden="true"><span id="carga-progresso"></span></div>
-      <ol id="carga-etapas" class="carga-etapas" aria-hidden="true"></ol>
-      <span id="loading-status" class="visually-hidden" role="status" aria-live="polite"></span>
+      <div id="loading-acoes" class="carga-acoes" hidden>
+        <button type="button" data-i18n>Tentar novamente</button>
+      </div>
     </div>
   </div>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+  <script src="js/carregando.js"></script>
   <script src="js/abas.js"></script>
   <script src="js/fontes.js"></script>
   <script src="js/contas.js"></script>

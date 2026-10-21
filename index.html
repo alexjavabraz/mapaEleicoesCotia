@@ -87,10 +87,14 @@
   <!-- ==============================
        LOADING OVERLAY
        ============================== -->
-  <div id="loading">
-    <div class="spinner"></div>
-    <p data-i18n>Carregando dados...</p>
-    <span id="loading-status" data-i18n>Inicializando...</span>
+  <div id="loading" role="status" aria-live="polite">
+    <div class="carga">
+      <span id="loading-sr" class="sr-only" data-i18n>Carregando o mapa das eleições de 2024 em Cotia, por favor aguarde.</span>
+      <span class="carga-texto" aria-hidden="true"><span id="loading-status" data-i18n>Preparando o mapa</span><span class="carga-pontos"><span>.</span><span>.</span><span>.</span></span></span>
+      <div id="loading-acoes" class="carga-acoes" hidden>
+        <button type="button" data-i18n>Tentar novamente</button>
+      </div>
+    </div>
   </div>
 
   <!-- ==============================
@@ -110,6 +114,7 @@
   <script src="https://cdn.jsdelivr.net/npm/@turf/turf@6.5.0/turf.min.js"></script>
 
   <!-- Módulos da aplicação -->
+  <script src="js/carregando.js"></script>
   <script src="js/abas.js"></script>
   <script src="js/fontes.js"></script>
   <script src="js/tse.js"></script>

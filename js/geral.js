@@ -152,13 +152,13 @@ function cargoCfg(key) {
   return CARGOS_GERAL.find((c) => c.key === key);
 }
 
-function setLoadingStatus(text) {
-  const el = document.getElementById("loading-status");
-  if (el) el.textContent = text;
+// Microcopy do carregamento: js/carregando.js
+function setLoadingStatus(text, leitor) {
+  Carregando.status(text, leitor);
 }
 
 function showLoading(show) {
-  document.getElementById("loading").style.display = show ? "flex" : "none";
+  Carregando.mostrar(show);
 }
 
 function showNoBanner(message) {
@@ -1205,7 +1205,7 @@ async function changeYear(year) {
   currentCandidatoFiltro = "";
   renderRankingBoxItens(null, null);
   showLoading(true);
-  setLoadingStatus(t("Carregando dados de {ano}...", { ano: year }));
+  setLoadingStatus(t("Carregando resultados do TSE de {ano}", { ano: year }));
 
   const [result] = await Promise.all([
     loadYearData(year),
@@ -1229,16 +1229,16 @@ async function changeYear(year) {
 
 async function init() {
   showLoading(true);
-  setLoadingStatus(t("Inicializando mapa..."));
+  setLoadingStatus(t("Preparando o mapa"));
   initMap();
 
   const yearSelect = document.getElementById("year-select");
   if (yearSelect) yearSelect.value = currentYear;
 
-  setLoadingStatus(t("Carregando locais de votação..."));
+  setLoadingStatus(t("Carregando locais de votação"));
   await loadLocaisVotacao(); // dado geográfico (geometria), reaproveitado de 2024 — serve de base pra Voronoi
 
-  setLoadingStatus(t("Carregando dados eleitorais de {ano}...", { ano: currentYear }));
+  setLoadingStatus(t("Carregando resultados do TSE de {ano}", { ano: currentYear }));
   const [result, rendaResult] = await Promise.all([
     loadYearData(currentYear),
     loadRendaCenso(),
@@ -1255,16 +1255,16 @@ async function init() {
     buildZoneColors(getZonas());
   }
 
-  setLoadingStatus(t("Buscando contorno de Cotia (OpenStreetMap)..."));
-  const municipioGeoJSON = await fetchCotiaMunicipio(setLoadingStatus);
+  setLoadingStatus(t("Desenhando o contorno de Cotia"));
+  const municipioGeoJSON = await fetchCotiaMunicipio();
   if (municipioGeoJSON) {
     renderMascaraExterna(municipioGeoJSON);
     renderMunicipio(municipioGeoJSON);
     localizarUsuario(municipioGeoJSON);
   }
 
-  setLoadingStatus(t("Buscando bairros (Overpass API)..."));
-  let bairrosGeoJSON = await fetchCotiaBairros(setLoadingStatus);
+  setLoadingStatus(t("Desenhando os bairros"));
+  let bairrosGeoJSON = await fetchCotiaBairros();
   const osmPolygons =
     bairrosGeoJSON?.features?.filter((f) => {
       const t = f.geometry?.type;
@@ -1273,7 +1273,7 @@ async function init() {
 
   const locais = getLocaisVotacao();
   if (osmPolygons.length < 5 && locais.length) {
-    setLoadingStatus(t("Gerando bairros por proximidade (Voronoi)..."));
+    setLoadingStatus(t("Calculando bairros pelos locais de votação"));
     bairrosGeoJSON = computeVoronoiBairros(locais, municipioGeoJSON);
   }
 
@@ -1300,4 +1300,9 @@ async function init() {
   showLoading(false);
 }
 
-window.addEventListener("DOMContentLoaded", init);
+window.addEventListener("DOMContentLoaded", () => {
+  init().catch((err) => {
+    console.error("Erro ao montar o mapa:", err);
+    Carregando.erro(t("Falha ao carregar o mapa"), err.message);
+  });
+});
