@@ -1,3 +1,18 @@
+# Sessão — 2026-10-21 (13) · Loading com microcopy animado
+
+**Status:** iniciada 2026-10-21 00:13 UTC · em andamento.
+
+## Pedido
+
+Trocar os carregamentos pelo padrão "microcopy animado" (texto informativo
+minimalista com pulso sutil, referência atlasbrasil.org.br/ranking),
+acessível (WCAG): `role="status"` + `aria-live="polite"`, texto para leitor
+de tela separado do texto visual (`aria-hidden`), pulso de opacidade
+0,4 → 1, erro em vermelho. Exemplo completo em arquivo único + aplicar em
+Eleições 2024, Eleições 2026 e Contas Municipais.
+
+---
+
 # Sessão — 2026-10-20 (12) · Landing page "Sobre o projeto"
 
 **Status:** iniciada 2026-10-20 23:50 UTC · finalizada 2026-10-21 00:15 UTC
