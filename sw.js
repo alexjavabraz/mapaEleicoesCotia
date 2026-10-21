@@ -1,16 +1,18 @@
 /**
  * sw.js — Service Worker para o Mapa Eleitoral de Cotia 2024.
  *
- * Estratégia: Cache-first para assets estáticos; Network-first para dados JSON.
+ * Estratégia: Network-first para os arquivos do próprio site (HTML, JS, CSS,
+ * ícones) e para dados JSON; o cache só responde quando a rede falha.
  * Permite instalação como PWA e uso básico offline (shell da app).
  */
 
-// IMPORTANTE: bump CACHE_NAME/DATA_CACHE a cada deploy que altera o shell
-// (app.js, map.js, css) ou o schema dos dados. O navegador só roda o evento
-// "install" de novo quando este arquivo muda byte a byte — sem o bump, quem
-// já tem o SW instalado fica preso na versão antiga em cache (cache-first).
-const CACHE_NAME   = "cotia-mapa-v40";
-const DATA_CACHE   = "cotia-data-v40";
+// Não é mais preciso subir a versão a cada deploy: os arquivos do site são
+// buscados na rede a cada visita (revalidando o cache HTTP do GitHub Pages),
+// então uma mudança em js/css chega na hora, e o cache só serve offline.
+// Suba CACHE_NAME/DATA_CACHE apenas para descartar caches antigos de vez
+// (ex.: um arquivo removido do site ou um schema de dados incompatível).
+const CACHE_NAME   = "cotia-mapa-v41";
+const DATA_CACHE   = "cotia-data-v41";
 
 // Assets estáticos que formam o "shell" da aplicação
 const SHELL_ASSETS = [
@@ -134,26 +136,28 @@ self.addEventListener("fetch", (event) => {
     return;
   }
 
-  // Assets estáticos: Cache-first
-  event.respondWith(cacheFirst(event.request));
+  // Arquivos do próprio site: Network-first (sempre a versão publicada;
+  // o cache só responde offline)
+  event.respondWith(networkFirstShell(event.request));
 });
 
 // -----------------------------------------------------------------------
 // Helpers
 // -----------------------------------------------------------------------
 
-async function cacheFirst(request) {
-  const cached = await caches.match(request);
-  if (cached) return cached;
+async function networkFirstShell(request) {
   try {
-    const response = await fetch(request);
+    // "no-cache" revalida com o servidor (ETag) em vez de aceitar a cópia do
+    // cache HTTP do navegador, que o GitHub Pages deixa valer por 10 minutos.
+    const response = await fetch(request, { cache: "no-cache" });
     if (response.ok) {
       const cache = await caches.open(CACHE_NAME);
       cache.put(request, response.clone());
     }
     return response;
   } catch {
-    return new Response("Recurso não disponível offline.", { status: 503 });
+    const cached = await caches.match(request, { ignoreSearch: true });
+    return cached || new Response("Recurso não disponível offline.", { status: 503 });
   }
 }
 

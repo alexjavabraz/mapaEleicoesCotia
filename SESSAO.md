@@ -1,11 +1,39 @@
 # Sessão — 2026-10-21 (14) · Fim do bump manual do cache do Service Worker
 
-**Status:** iniciada 2026-10-21 00:36 UTC · em andamento (commit direto no `main`).
+**Status:** iniciada 2026-10-21 00:36 UTC · finalizada 2026-10-21 00:50 UTC
+(commit direto no `main`).
 
 ## Pedido
 
 Acabar com a armadilha do cache preso: hoje toda mudança em js/css exige
 subir `CACHE_NAME` à mão em `sw.js`. Tirar também o `.DS_Store` do git.
+
+## O que foi feito
+
+- `sw.js`: os arquivos do próprio site (HTML, JS, CSS, ícones) passaram de
+  cache-first para network-first (`networkFirstShell`), com
+  `fetch(..., { cache: "no-cache" })` para revalidar com o GitHub Pages em
+  vez de aceitar os 10 minutos do cache HTTP. O cache só responde offline
+  (com `ignoreSearch`, para `?lang=en` funcionar sem rede). CDN e dados
+  continuam como estavam.
+- **Não é mais preciso subir `CACHE_NAME`/`DATA_CACHE` a cada deploy.** Subi
+  uma última vez (v41) só para quem já tem o SW instalado receber este novo
+  `sw.js`. Daqui em diante, subir apenas para descartar caches antigos de vez.
+- `.DS_Store` removido do git (já estava no `.gitignore`).
+- README atualizado.
+
+## Como foi testado
+
+Playwright com o site servido localmente: com o SW já controlando a página,
+alterei `js/tema.js` sem tocar no `sw.js` e recarreguei. Com o `sw.js` novo
+a mudança apareceu na hora; com o antigo (v40) continuou a versão em cache.
+Offline, a página (inclusive `?lang=en`) abriu pelo cache.
+
+## Atenção
+
+Cada visita agora faz uma requisição condicional por arquivo (respostas 304
+quando nada mudou), um pouco mais lenta que servir direto do cache, em troca
+de sempre mostrar a versão publicada.
 
 # Sessão — 2026-10-21 (13) · Loading com microcopy animado
 

@@ -48,7 +48,7 @@ Aplicação web interativa com os resultados eleitorais de Cotia/SP, visualizado
 
 ### PWA (Progressive Web App)
 - Instalável em dispositivos móveis e desktop
-- Service Worker com estratégia cache-first para assets e network-first para dados JSON
+- Service Worker network-first para os arquivos do site e para os dados JSON (o cache só responde offline), então um deploy chega na hora sem precisar subir a versão em `sw.js`
 - Auto-reload ao detectar nova versão disponível
 
 ---
