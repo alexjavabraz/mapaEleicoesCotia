@@ -295,7 +295,8 @@ def tce():
         c_mun, c_org, c_el = col("municipio"), col("orgao"), col("elemento")
         c_tp = col("tp_despesa") or col("evento") or col("tipo")
         c_vl = col("vl_") or col("valor")
-        c_id, c_forn = col("identificador"), col("fornecedor") or col("credor")
+        c_tpid, c_id = col("tp_identificador"), col("nr_identificador")
+        c_forn = col("ds_despesa") or col("fornecedor") or col("credor")
         c_hist = col("historico")
         print(f"  colunas usadas: mun={c_mun} org={c_org} elem={c_el} tipo={c_tp} valor={c_vl} "
               f"id={c_id} forn={c_forn} hist={c_hist}")
@@ -305,7 +306,11 @@ def tce():
         cotia_elem = defaultdict(float)
         orgs, tipos = Counter(), Counter()
         with z.open(nome) as f:
-            leitor = csv.DictReader(io.TextIOWrapper(f, encoding=enc, newline=""), delimiter=sep)
+            leitor = csv.DictReader(io.TextIOWrapper(f, encoding=enc, errors="replace", newline=""),
+                                    delimiter=sep)
+            saida = open(os.environ.get("VGP_CSV", os.path.join(TMP, "vgp.csv")), "w", newline="", encoding="utf-8")
+            grava = csv.DictWriter(saida, fieldnames=leitor.fieldnames, delimiter=";")
+            grava.writeheader()
             for row in leitor:
                 mun = norm(row.get(c_mun, ""))
                 if mun not in (NOME, "COTIA"):
@@ -323,13 +328,14 @@ def tce():
                     if pago:
                         cotia_elem[elem] += vl
                     continue
+                grava.writerow(row)
                 org = row.get(c_org, "")
                 orgs[org] += 1
                 if not pago:
                     continue
                 por_elem[org][elem] += vl
                 if "CAMARA" in norm(org):
-                    ident = row.get(c_id, "") if c_id else ""
+                    ident = (row.get(c_tpid, "") if c_tpid else "") + " " + (row.get(c_id, "") if c_id else "")
                     favorecido = (row.get(c_forn) if c_forn else "") or ident
                     el = norm(elem)
                     pf = "CPF" in ident.upper() or "FISICA" in norm(ident)
@@ -339,6 +345,7 @@ def tce():
                         camara_pf[(("PF " if pf else "") + elem, favorecido)] += vl
                         if especial and len(camara_hist) < 30:
                             camara_hist.append(row)
+        saida.close()
         print(f"  tipos/eventos: {dict(tipos)}")
         print(f"  órgãos de VGP (linhas): {dict(orgs)}")
         for org, elems in por_elem.items():

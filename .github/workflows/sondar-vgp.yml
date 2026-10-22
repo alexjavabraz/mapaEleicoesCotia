@@ -26,3 +26,11 @@ jobs:
           python-version: "3.12"
       - run: pip install -r scripts/requirements.txt geopandas pyogrio
       - run: python -u scripts/sondar_vgp.py ${{ matrix.alvo }}
+        env:
+          VGP_CSV: /tmp/vgp_despesas_2025.csv
+      - if: matrix.alvo == 'tce'
+        uses: actions/upload-artifact@v4
+        with:
+          name: vgp-despesas-tce-2025
+          path: /tmp/vgp_despesas_2025.csv
+          if-no-files-found: ignore
