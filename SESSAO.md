@@ -1,3 +1,23 @@
+# Sessão — 2026-10-22 (16) · Levantamento de dados de Vargem Grande Paulista
+
+**Status:** iniciada 2026-10-22 14:05 UTC (só pesquisa; nada implementado no
+site).
+
+## Pedido
+
+Alex quer o mesmo site para Vargem Grande Paulista (SP). Antes de implementar:
+inventariar tudo o que o site de Cotia usa e verificar se cada dado existe
+para VGP (TSE resultados, prestação de contas e bens; despesas do TCE-SP;
+Censo 2022 por setor; Câmara de VGP: se os vereadores recebem reembolsos,
+diárias ou verba de gabinete e onde isso é publicado; despesas por tipo).
+
+## O que foi feito
+
+- Inventário de dados, fontes, scripts e workflows do site de Cotia no
+  README ("Inventário completo: dados, fontes e como são gerados").
+- Sondagem das fontes de VGP por GitHub Actions (os hosts são bloqueados na
+  sessão em nuvem), na branch `claude/project-thread-3h6zh7`, sem tocar no main.
+
 # Sessão — 2026-10-21 (15) · Página de metodologia
 
 **Status:** iniciada 2026-10-21 00:40 UTC · finalizada 2026-10-21 01:05 UTC
