@@ -7,7 +7,7 @@
  * outros scripts, que usam t("texto em português", { vars }) para traduzir.
  *
  * HTML estático: marque o elemento com data-i18n (o texto dele é a chave) e
- * atributos com data-i18n-placeholder / data-i18n-title / data-i18n-aria-label.
+ * atributos com data-i18n-placeholder / data-i18n-title / data-i18n-aria-label / data-i18n-alt.
  * Nomes de candidatos, bairros, fornecedores e órgãos são dados e não mudam.
  */
 
@@ -437,7 +437,7 @@ function applyI18n(root = document) {
     const en = traduzEN(chave);
     if (en !== chave) el.textContent = en;
   });
-  for (const attr of ["placeholder", "title", "aria-label"]) {
+  for (const attr of ["placeholder", "title", "aria-label", "alt"]) {
     root.querySelectorAll(`[data-i18n-${attr}]`).forEach((el) => {
       el.setAttribute(attr, t(el.getAttribute(attr)));
     });

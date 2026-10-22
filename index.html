@@ -47,6 +47,7 @@
         <div class="sobre-ctas">
           <a class="sobre-btn sobre-btn--primario" href="#cidades" data-i18n>Escolher a cidade</a>
           <a class="sobre-btn" href="#areas" data-i18n>Conhecer o portal</a>
+          <a class="sobre-btn sobre-btn--apoio" href="#apoie"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 0 0-7.8 7.8l1 1.1L12 21l7.8-7.5 1-1.1a5.5 5.5 0 0 0 0-7.8z"/></svg><span data-i18n>Apoie a iniciativa</span></a>
         </div>
       </div>
     </section>
@@ -152,6 +153,27 @@
       <p class="sobre-acao"><button type="button" class="sobre-btn" id="sobre-abrir-fontes" data-i18n>Ver fontes e metodologia</button></p>
     </section>
 
+    <!-- Apoio: QR Code do PIX do Alex (a chave não aparece em texto, como no
+         modal do rodapé, js/fontes.js) -->
+    <section class="sobre-largura sobre-bloco" id="apoie">
+      <div class="apoie">
+        <div class="apoie__texto">
+          <p class="sobre-selo" data-i18n>Projeto independente</p>
+          <h2 class="sobre-h2" data-i18n>Apoie a iniciativa</h2>
+          <p data-i18n>Este portal é feito de forma independente, sem patrocínio de partido, candidato ou governo, e sem anúncios. Se ele é útil para você, considere apoiar com um PIX de qualquer valor.</p>
+          <ul class="apoie__lista">
+            <li data-i18n>Manter os dados atualizados a cada nova publicação das fontes</li>
+            <li data-i18n>Trazer novas cidades e novas bases de dados públicos</li>
+            <li data-i18n>Manter o site no ar, aberto e gratuito para todos</li>
+          </ul>
+        </div>
+        <figure class="apoie__qr">
+          <img src="./icons/pix-qrcode.png" alt="QR Code do PIX para apoiar o projeto" data-i18n-alt width="220" height="220" loading="lazy" />
+          <figcaption data-i18n>Abra o app do seu banco, escolha pagar com PIX e aponte a câmera para o código.</figcaption>
+        </figure>
+      </div>
+    </section>
+
     <!-- Equipe -->
     <section class="sobre-largura sobre-bloco" id="equipe">
       <h2 class="sobre-h2" data-i18n>Idealização e desenvolvimento</h2>
@@ -161,16 +183,45 @@
           <h3 class="sobre-pessoa__nome">Alex Braz</h3>
           <p data-i18n>Engenheiro de Software há mais de 20 anos, Arquiteto Blockchain, Membro do grupo de trabalho técnico de Desenvolvimento do PIX. Especialista em Blockchain e membro do comitê ISO para assuntos relacionados ao tema.</p>
           <p data-i18n>Palestrante e instrutor de Blockchain e smart contracts, com passagens por empresas de Blockchain como NEM e Rootstock. Um dos pioneiros da tecnologia no Brasil.</p>
-          <h4 class="sobre-imprensa__titulo" data-i18n>Na imprensa</h4>
-          <ul class="sobre-imprensa">
-            <li><a href="https://issuu.com/revistacircuito/docs/ed_274_-_mar_o_de_2023" target="_blank" rel="noopener">Revista Circuito ↗</a> · <span data-i18n>março de 2023</span> · <span data-i18n>entre os 50 profissionais de TI para seguir</span></li>
-            <li><a href="https://www.revistacircuito.com/appg/" target="_blank" rel="noopener">Revista Circuito ↗</a> · <span data-i18n>12 de maio de 2014</span> · <span data-i18n>o app Guia da Granja Viana, criado por ele</span></li>
-          </ul>
           <p class="sobre-pessoa__links">
             <a href="https://www.linkedin.com/in/alexjavabraz/" target="_blank" rel="noopener">LinkedIn ↗</a> · <a href="https://github.com/alexjavabraz" target="_blank" rel="noopener">GitHub ↗</a>
           </p>
         </div>
       </article>
+      <!-- Na imprensa: carrossel (rolagem com snap + botões, js/sobre.js).
+           Slide sem foto usa uma capa desenhada em CSS até chegar a imagem. -->
+      <div class="carrossel" id="imprensa" aria-roledescription="carrossel" aria-label="Na imprensa" data-i18n-aria-label>
+        <div class="carrossel__topo">
+          <h3 class="sobre-imprensa__titulo" data-i18n>Na imprensa</h3>
+          <div class="carrossel__botoes">
+            <button type="button" class="carrossel__btn" data-dir="-1" aria-label="Anterior" data-i18n-aria-label>‹</button>
+            <button type="button" class="carrossel__btn" data-dir="1" aria-label="Próximo" data-i18n-aria-label>›</button>
+          </div>
+        </div>
+        <ul class="carrossel__trilho" tabindex="0">
+          <li class="carrossel__slide">
+            <a href="https://issuu.com/revistacircuito/docs/ed_274_-_mar_o_de_2023" target="_blank" rel="noopener">
+              <img class="carrossel__foto" src="./icons/alex-braz.jpg" alt="Alex Braz" loading="lazy" />
+              <span class="carrossel__legenda">
+                <span class="carrossel__veiculo">Revista Circuito · <span data-i18n>março de 2023</span></span>
+                <strong data-i18n>Entre os 50 profissionais de TI para seguir</strong>
+                <span class="carrossel__ler" data-i18n>Ler a matéria ↗</span>
+              </span>
+            </a>
+          </li>
+          <li class="carrossel__slide">
+            <a href="https://www.revistacircuito.com/appg/" target="_blank" rel="noopener">
+              <span class="carrossel__foto carrossel__capa" aria-hidden="true"><span>Revista Circuito</span><strong>Guia da Granja Viana</strong><span>2014</span></span>
+              <span class="carrossel__legenda">
+                <span class="carrossel__veiculo">Revista Circuito · <span data-i18n>12 de maio de 2014</span></span>
+                <strong data-i18n>O app Guia da Granja Viana, criado por Alex Braz</strong>
+                <span class="carrossel__ler" data-i18n>Ler a matéria ↗</span>
+              </span>
+            </a>
+          </li>
+        </ul>
+        <div class="carrossel__pontos" aria-hidden="true"></div>
+      </div>
     </section>
 
     <!-- Código aberto -->

@@ -1,3 +1,27 @@
+# Sessão — 2026-10-22 (3) · Início: "Apoie a iniciativa" em destaque e carrossel "Na imprensa"
+
+**Status:** iniciada 2026-10-22 16:57 UTC · finalizada 2026-10-22 17:15 UTC
+(commit direto no `main`).
+
+## Pedido
+
+Na index, uma seção que evidencie o apoio (estava discreto só no rodapé) e
+as fotos do Alex num carrossel com os links das matérias da Revista Circuito.
+
+## O que foi feito
+
+- `index.html`: botão "Apoie a iniciativa" na abertura (âncora `#apoie`) e
+  seção `#apoie` antes de "Idealização e desenvolvimento", com texto, lista do
+  que o apoio financia e o QR Code do PIX visível na página
+  (`icons/pix-qrcode.png`; a chave nunca aparece em texto).
+- "Na imprensa" virou carrossel (`#imprensa`): rolagem com scroll-snap,
+  botões ‹ ›, pontos e setas do teclado (`initCarrossel` em `js/sobre.js`);
+  sem botões/pontos quando tudo cabe na tela. Slide 1 = foto do Alex (a do
+  GitHub) → Issuu ed. 274; slide 2 = capa desenhada em CSS → appg/2014.
+  Trocar pelas fotos que o Alex mandar (não chegaram; Issuu e o site da
+  revista estão bloqueados na sessão, sem capas).
+- `js/i18n.js`: `data-i18n-alt` traduz o atributo alt.
+- Conferido claro/escuro, desktop/celular, EN.
 # Sessão — 2026-10-22 (19) · Mapa 2024: vereadores eleitos ao clicar no bairro
 
 **Status:** iniciada 2026-10-22 17:00 UTC · finalizada 2026-10-22 17:20 UTC

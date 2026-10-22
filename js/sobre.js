@@ -90,6 +90,21 @@ const SOBRE_EN = {
   "12 de maio de 2014": "May 12, 2014",
   "o app Guia da Granja Viana, criado por ele": "the Guia da Granja Viana app he created",
 
+  "Projeto independente": "Independent project",
+  "Este portal é feito de forma independente, sem patrocínio de partido, candidato ou governo, e sem anúncios. Se ele é útil para você, considere apoiar com um PIX de qualquer valor.":
+    "This portal is built independently, with no sponsorship from any party, candidate or government, and no ads. If you find it useful, consider supporting it with a PIX of any amount.",
+  "Manter os dados atualizados a cada nova publicação das fontes": "Keep the data up to date with every new release from the sources",
+  "Trazer novas cidades e novas bases de dados públicos": "Bring in new cities and new public datasets",
+  "Manter o site no ar, aberto e gratuito para todos": "Keep the site online, open and free for everyone",
+  "Abra o app do seu banco, escolha pagar com PIX e aponte a câmera para o código.":
+    "Open your bank app, choose to pay with PIX and point the camera at the code.",
+  "Anterior": "Previous",
+  "Próximo": "Next",
+  "Entre os 50 profissionais de TI para seguir": "Among the 50 IT professionals to follow",
+  "O app Guia da Granja Viana, criado por Alex Braz": "The Guia da Granja Viana app, created by Alex Braz",
+  "Ler a matéria ↗": "Read the article ↗",
+  "Ir para o slide {n}": "Go to slide {n}",
+
   "Código aberto": "Open source",
   "Todo o código e os dados do portal estão no GitHub. Encontrou um erro ou tem uma sugestão? Abra uma issue no repositório.":
     "All of the portal's code and data are on GitHub. Found a mistake or have a suggestion? Open an issue in the repository.",
@@ -98,7 +113,63 @@ const SOBRE_EN = {
 
 if (typeof I18N_EN === "object") Object.assign(I18N_EN, SOBRE_EN);
 
+/** Carrossel "Na imprensa": o trilho rola com scroll-snap (toque e trackpad);
+ *  os botões e os pontos levam ao slide anterior/seguinte/escolhido. */
+function initCarrossel(raiz) {
+  const trilho = raiz.querySelector(".carrossel__trilho");
+  const slides = Array.from(trilho.children);
+  const pontos = raiz.querySelector(".carrossel__pontos");
+  const botoes = raiz.querySelectorAll(".carrossel__btn");
+  const reduzir = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  const atual = () => {
+    const x = trilho.scrollLeft;
+    let melhor = 0;
+    slides.forEach((s, i) => {
+      if (Math.abs(s.offsetLeft - trilho.offsetLeft - x) < Math.abs(slides[melhor].offsetLeft - trilho.offsetLeft - x)) melhor = i;
+    });
+    return melhor;
+  };
+  const irPara = (i) => {
+    const alvo = slides[Math.max(0, Math.min(slides.length - 1, i))];
+    trilho.scrollTo({ left: alvo.offsetLeft - trilho.offsetLeft, behavior: reduzir ? "auto" : "smooth" });
+  };
+
+  pontos.removeAttribute("aria-hidden");
+  const marcas = slides.map((_, i) => {
+    const b = document.createElement("button");
+    b.type = "button";
+    b.className = "carrossel__ponto";
+    b.setAttribute("aria-label", t("Ir para o slide {n}", { n: i + 1 }));
+    b.addEventListener("click", () => irPara(i));
+    pontos.appendChild(b);
+    return b;
+  });
+  const marcar = () => {
+    const i = atual();
+    const fim = trilho.scrollLeft + trilho.clientWidth >= trilho.scrollWidth - 2;
+    marcas.forEach((b, k) => b.setAttribute("aria-current", k === i ? "true" : "false"));
+    botoes[0].disabled = trilho.scrollLeft <= 2;
+    botoes[1].disabled = fim;
+    // Tudo cabe na tela (ex.: 2 slides no desktop): sem botões nem pontos
+    raiz.classList.toggle("carrossel--estatico", trilho.scrollWidth <= trilho.clientWidth + 2);
+  };
+  botoes.forEach((b) => b.addEventListener("click", () => irPara(atual() + Number(b.dataset.dir))));
+  trilho.addEventListener("keydown", (e) => {
+    if (e.key === "ArrowRight") { e.preventDefault(); irPara(atual() + 1); }
+    if (e.key === "ArrowLeft") { e.preventDefault(); irPara(atual() - 1); }
+  });
+  let quadro = 0;
+  trilho.addEventListener("scroll", () => {
+    cancelAnimationFrame(quadro);
+    quadro = requestAnimationFrame(marcar);
+  }, { passive: true });
+  window.addEventListener("resize", marcar);
+  marcar();
+}
+
 function initSobre() {
+  document.querySelectorAll(".carrossel").forEach(initCarrossel);
   const btn = document.getElementById("sobre-abrir-fontes");
   if (btn) {
     btn.addEventListener("click", () => {
