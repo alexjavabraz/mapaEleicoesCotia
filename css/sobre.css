@@ -300,6 +300,7 @@ a.cidade-card:hover .cidade-mapa__destaque { fill: color-mix(in srgb, var(--high
   background: color-mix(in srgb, var(--highlight) 14%, transparent);
   border: 2px solid color-mix(in srgb, var(--highlight) 40%, transparent);
 }
+.sobre-pessoa__foto { object-fit: cover; padding: 0; }
 .sobre-pessoa__nome { font-size: 1.25rem; color: var(--text); margin-bottom: 6px; }
 .sobre-pessoa p + p { margin-top: 8px; }
 .sobre-imprensa__titulo {

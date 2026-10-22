@@ -49,6 +49,7 @@ const SHELL_ASSETS = [
   "./icons/cotia-flag.svg",
   "./icons/vgp-icon.svg",
   "./icons/portal.svg",
+  "./icons/alex-braz.jpg",
   "./icons/pix-qrcode.png",
   "./icons/icon-192.png",
   "./icons/icon-512.png",

@@ -36,6 +36,9 @@ cidades, sem dados. Cotia → `/cotia/…` com a bandeira de Cotia; VGP →
   Até 1100px some o texto "Dados Cívicos"; no celular ficam só os 2 ícones.
 - Complemento (14:38 UTC): bandeira à esquerda de cada cidade nas abas
   "Cotia | Vargem Grande Paulista" do início e da metodologia.
+- Complemento (14:39 UTC): foto do Alex (`icons/alex-braz.jpg`, a foto
+  pública do perfil dele no GitHub, até ele mandar outra) e link do LinkedIn
+  na bio.
 - Conferido: todas as páginas sem erro de JS, dados carregando (com as libs
   de CDN servidas localmente no teste), nenhum link interno quebrado,
   redirecionamentos, claro/escuro, celular, EN.
