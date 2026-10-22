@@ -129,15 +129,15 @@ function getBairroCandidatos(bairroNome, cargo) {
   // Enriquece com situacao + partido dos totais do TSE
   const totais = getTotais();
   const allCands = totais?.[cargo]?.["1"] || [];
-  const meta = {};
-  for (const c of allCands) meta[c.nome] = c;
+  const meta = {}, porNumero = {};
+  for (const c of allCands) { meta[c.nome] = c; porNumero[c.numero] = c; }
 
-  return data[cargo].map(c => ({
-    nome: c.nome,
-    votos: c.votos,
-    situacao: meta[c.nome]?.situacao || "",
-    partido:  meta[c.nome]?.partido  || "",
-  }));
+  // O arquivo por bairro usa o nome completo; os totais, o nome de urna.
+  // Casa pelo número (quando o arquivo traz) ou pelo mapeamento completo→urna.
+  return data[cargo].map(c => {
+    const m = porNumero[c.numero] || meta[c.nome] || meta[_fullToUrna?.[c.nome]] || {};
+    return { nome: c.nome, votos: c.votos, situacao: m.situacao || "", partido: m.partido || "" };
+  });
 }
 
 // Microcopy do carregamento: js/carregando.js
@@ -474,7 +474,7 @@ function renderConteudoSidebarBairro(bairroName, bairroNome) {
 
   html += `<div class="zona-info">
     <div class="zona-info-row"><span>${t("Votos prefeito")}</span><strong>${formatVotos(totalPref)}</strong></div>
-    <div class="zona-info-row"><span>${t("Vereadores eleitos")}</span><strong>${countEleitos(verList)}</strong></div>
+    <div class="zona-info-row"><span>${t("Vereadores eleitos")}</span><strong>${countEleitos(getTotais()?.vereadores?.["1"])}</strong></div>
     <div class="zona-info-row"><span>${t("Candidatos vereador")}</span><strong>${verList.length}</strong></div>
   </div>`;
 

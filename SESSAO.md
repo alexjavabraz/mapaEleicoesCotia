@@ -1,3 +1,18 @@
+# Sessão — 2026-10-22 (19) · Mapa 2024: vereadores eleitos ao clicar no bairro
+
+**Status:** iniciada 2026-10-22 17:00 UTC · finalizada 2026-10-22 17:20 UTC
+(commit direto no `main`).
+
+Pedido do Alex: em VGP, ao clicar num bairro, "Vereadores eleitos" ia a 0.
+Acontecia também em Cotia. Causa: `votos_por_bairro` usa o nome completo e os
+totais usam o nome de urna, então `getBairroCandidatos` não achava a
+situação. Agora casa por número, nome de urna ou completo→urna
+(`_fullToUrna`), e a linha "Vereadores eleitos" do bairro mostra sempre o
+total da cidade (11 em VGP, 17 em Cotia). Testado com Playwright em 3 bairros
+de cada cidade; os selos de eleito voltaram na lista do bairro.
+
+---
+
 # Sessão — 2026-10-22 (18) · VGP, aba Câmara: filtro de vários anos
 
 **Status:** iniciada 2026-10-22 16:52 UTC · finalizada 2026-10-22 16:52 UTC
