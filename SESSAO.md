@@ -34,6 +34,10 @@ as fotos do Alex num carrossel com os links das matérias da Revista Circuito.
   GitHub) → Issuu ed. 274; slide 2 = capa desenhada em CSS → appg/2014.
   Trocar pelas fotos que o Alex mandar (não chegaram; Issuu e o site da
   revista estão bloqueados na sessão, sem capas).
+- Complemento (17:12 UTC): imagens da própria revista enviadas pelo Alex no
+  carrossel — `icons/imprensa-2023-a-seguir.png` (recorte "A seguir", 228×115,
+  mostrado inteiro sobre fundo branco) e
+  `icons/imprensa-2014-guia-granja-viana.jpg` (Alex com o app no tablet).
 - `js/i18n.js`: `data-i18n-alt` traduz o atributo alt.
 - Conferido claro/escuro, desktop/celular, EN.
 # Sessão — 2026-10-22 (19) · Mapa 2024: vereadores eleitos ao clicar no bairro

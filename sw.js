@@ -51,6 +51,8 @@ const SHELL_ASSETS = [
   "./icons/vgp-icon.svg",
   "./icons/portal.svg",
   "./icons/alex-braz.jpg",
+  "./icons/imprensa-2023-a-seguir.png",
+  "./icons/imprensa-2014-guia-granja-viana.jpg",
   "./icons/pix-qrcode.png",
   "./icons/icon-192.png",
   "./icons/icon-512.png",

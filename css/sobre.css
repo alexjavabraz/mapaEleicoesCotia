@@ -437,22 +437,18 @@ a.cidade-card:hover .cidade-mapa__destaque { fill: color-mix(in srgb, var(--high
 .carrossel__foto {
   display: block;
   width: 100%;
+  height: auto;
   aspect-ratio: 4 / 3;
   object-fit: cover;
   object-position: center 30%;
 }
-.carrossel__capa {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  padding: 18px;
-  /* Capa desenhada: cores fixas de propósito, como uma capa impressa */
-  background: linear-gradient(160deg, #0f3460 0%, #16213e 60%, #e94560 160%);
-  color: #fff;
+/* Recorte de revista (imagem pequena e larga): inteiro sobre fundo de papel */
+.carrossel__foto--recorte {
+  object-fit: contain;
+  padding: 12px;
+  /* Branco de propósito: é o papel da revista, nos dois temas */
+  background: #fff;
 }
-.carrossel__capa span:first-child { font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; font-size: 0.85rem; }
-.carrossel__capa strong { font-size: 1.6rem; line-height: 1.1; }
-.carrossel__capa span:last-child { font-size: 2.4rem; font-weight: 800; opacity: 0.5; }
 .carrossel__legenda { display: flex; flex-direction: column; gap: 6px; padding: 14px 16px 16px; }
 .carrossel__veiculo { font-size: 0.8rem; color: var(--text-muted); }
 .carrossel__legenda strong { font-size: 1rem; color: var(--text); line-height: 1.35; }

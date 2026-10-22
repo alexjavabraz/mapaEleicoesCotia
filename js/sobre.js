@@ -103,6 +103,10 @@ const SOBRE_EN = {
   "Entre os 50 profissionais de TI para seguir": "Among the 50 IT professionals to follow",
   "O app Guia da Granja Viana, criado por Alex Braz": "The Guia da Granja Viana app, created by Alex Braz",
   "Ler a matéria ↗": "Read the article ↗",
+  "Recorte da Revista Circuito: “A seguir”, Alex Braz entre os 50 profissionais de tecnologia para seguir":
+    "Revista Circuito clipping: “A seguir”, Alex Braz among the 50 tech professionals to follow",
+  "Alex Braz com o app Guia Granja Viana no tablet e no celular, na Revista Circuito":
+    "Alex Braz with the Guia Granja Viana app on a tablet and a phone, in Revista Circuito",
   "Ir para o slide {n}": "Go to slide {n}",
 
   "Código aberto": "Open source",
