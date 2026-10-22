@@ -38,15 +38,33 @@ def titulo(t):
     print(f"\n{'=' * 70}\n{t}\n{'=' * 70}", flush=True)
 
 
-def baixar(url, nome=None):
+def baixar(url, nome=None, tentativas=8):
+    """Download com retomada (Range): o zip do TCE (2 GB) cai no meio."""
     destino = os.path.join(TMP, nome or url.rsplit("/", 1)[-1])
     print(f"baixando {url}", flush=True)
-    with HTTP.get(url, stream=True, timeout=180) as r:
-        print(f"  HTTP {r.status_code}  {r.headers.get('content-length')} bytes")
-        r.raise_for_status()
-        with open(destino, "wb") as f:
-            for parte in r.iter_content(1 << 20):
-                f.write(parte)
+    total = None
+    for t in range(tentativas):
+        feito = os.path.getsize(destino) if os.path.exists(destino) else 0
+        if total and feito >= total:
+            break
+        cab = {"Range": f"bytes={feito}-"} if feito else {}
+        try:
+            with HTTP.get(url, stream=True, timeout=180, headers=cab) as r:
+                print(f"  HTTP {r.status_code}  {r.headers.get('content-length')} bytes (a partir de {feito})", flush=True)
+                r.raise_for_status()
+                if r.status_code == 200:
+                    feito = 0
+                    total = int(r.headers.get("content-length") or 0) or None
+                elif total is None:
+                    m = re.search(r"/(\d+)$", r.headers.get("content-range", ""))
+                    total = int(m.group(1)) if m else None
+                with open(destino, "ab" if feito else "wb") as f:
+                    for parte in r.iter_content(1 << 20):
+                        f.write(parte)
+            if not total or os.path.getsize(destino) >= total:
+                break
+        except (requests.exceptions.ChunkedEncodingError, requests.exceptions.ConnectionError) as e:
+            print(f"  conexão caiu ({type(e).__name__}), retomando...", flush=True)
     return destino
 
 
@@ -256,51 +274,86 @@ def tce():
     with zipfile.ZipFile(p) as z:
         print("  arquivos:", z.namelist())
         nome = csvs(z)[0]
+        with z.open(nome) as f:
+            cab = f.readline()
+        for enc in ("utf-8-sig", "latin-1"):
+            try:
+                cab = cab.decode(enc)
+                break
+            except UnicodeDecodeError:
+                continue
+        sep = ";" if cab.count(";") >= cab.count(",") else ","
+        print(f"  {nome}: encoding {enc}, separador {sep!r}\n  cabeçalho: {cab.strip()}")
+
+        def col(*chaves):
+            for c in cab.strip().split(sep):
+                c = c.strip().strip('"')
+                if all(k in c.lower() for k in chaves):
+                    return c
+            return None
+
+        c_mun, c_org, c_el = col("municipio"), col("orgao"), col("elemento")
+        c_tp = col("tp_despesa") or col("evento") or col("tipo")
+        c_vl = col("vl_") or col("valor")
+        c_id, c_forn = col("identificador"), col("fornecedor") or col("credor")
+        c_hist = col("historico")
+        print(f"  colunas usadas: mun={c_mun} org={c_org} elem={c_el} tipo={c_tp} valor={c_vl} "
+              f"id={c_id} forn={c_forn} hist={c_hist}")
         por_elem = defaultdict(lambda: defaultdict(float))
-        camara = defaultdict(float)
         camara_pf = defaultdict(float)
         camara_hist = []
-        cotia_elem = Counter()
-        orgs = Counter()
-        primeira = True
-        for row in linhas(z, nome):
-            if primeira:
-                print("  colunas:", list(row.keys()))
-                primeira = False
-            mun = norm(row.get("ds_municipio", ""))
-            if mun == "COTIA":
-                cotia_elem[row.get("ds_elemento")] += 1
-            if mun != NOME:
-                continue
-            org = row.get("ds_orgao", "")
-            orgs[org] += 1
-            tp = row.get("tp_despesa", "")
-            try:
-                vl = float((row.get("vl_despesa") or "0").replace(",", "."))
-            except ValueError:
-                vl = 0.0
-            if "pag" not in tp.lower():
-                continue
-            por_elem[org][row.get("ds_elemento", "")] += vl
-            if "CAMARA" in norm(org):
-                camara[row.get("ds_elemento", "")] += vl
-                el = norm(row.get("ds_elemento", ""))
-                if any(k in el for k in ("DIARIA", "INDENIZ", "RESSARC", "RESTITU", "PASSAGE", "LOCOMO", "SUPRIMENTO")):
-                    camara_pf[(row.get("ds_elemento"), row.get("identificador_despesa") or row.get("nm_fornecedor"))] += vl
-                    if len(camara_hist) < 40:
-                        camara_hist.append(row)
+        cotia_elem = defaultdict(float)
+        orgs, tipos = Counter(), Counter()
+        with z.open(nome) as f:
+            leitor = csv.DictReader(io.TextIOWrapper(f, encoding=enc, newline=""), delimiter=sep)
+            for row in leitor:
+                mun = norm(row.get(c_mun, ""))
+                if mun not in (NOME, "COTIA"):
+                    continue
+                tp = row.get(c_tp, "") if c_tp else ""
+                tipos[tp] += 1
+                try:
+                    vl = float((row.get(c_vl) or "0").replace(".", "").replace(",", ".")
+                               if "," in (row.get(c_vl) or "") else (row.get(c_vl) or "0"))
+                except ValueError:
+                    vl = 0.0
+                pago = "pag" in tp.lower()
+                elem = row.get(c_el, "") if c_el else ""
+                if mun == "COTIA":
+                    if pago:
+                        cotia_elem[elem] += vl
+                    continue
+                org = row.get(c_org, "")
+                orgs[org] += 1
+                if not pago:
+                    continue
+                por_elem[org][elem] += vl
+                if "CAMARA" in norm(org):
+                    ident = row.get(c_id, "") if c_id else ""
+                    favorecido = (row.get(c_forn) if c_forn else "") or ident
+                    el = norm(elem)
+                    pf = "CPF" in ident.upper() or "FISICA" in norm(ident)
+                    especial = any(k in el for k in ("DIARIA", "INDENIZ", "RESSARC", "RESTITU",
+                                                     "PASSAGE", "LOCOMO", "SUPRIMENTO", "ADIANTAMENTO"))
+                    if pf or especial:
+                        camara_pf[(("PF " if pf else "") + elem, favorecido)] += vl
+                        if especial and len(camara_hist) < 30:
+                            camara_hist.append(row)
+        print(f"  tipos/eventos: {dict(tipos)}")
         print(f"  órgãos de VGP (linhas): {dict(orgs)}")
         for org, elems in por_elem.items():
-            print(f"\n  PAGO 2025 por elemento — {org}")
-            for e, v in sorted(elems.items(), key=lambda x: -x[1])[:40]:
+            print(f"\n  PAGO por elemento — {org}")
+            for e, v in sorted(elems.items(), key=lambda x: -x[1])[:45]:
                 print(f"     R$ {v:16,.2f}  {e}")
-        print("\n  Câmara: diárias/indenizações/ressarcimentos por elemento e favorecido")
-        for (e, f), v in sorted(camara_pf.items(), key=lambda x: -x[1])[:60]:
+        print("\n  Câmara: pagamentos a pessoas físicas e em diárias/indenizações/ressarcimentos")
+        for (e, f), v in sorted(camara_pf.items(), key=lambda x: -x[1])[:80]:
             print(f"     R$ {v:12,.2f}  {e} | {f}")
-        print("\n  Câmara: exemplos de lançamentos nesses elementos")
+        print("\n  Câmara: exemplos de lançamentos de diárias/indenizações")
         for row in camara_hist:
-            print("    ", json.dumps(row, ensure_ascii=False)[:600])
-        print(f"\n  Cotia no mesmo arquivo: {sum(cotia_elem.values())} linhas, {len(cotia_elem)} elementos")
+            print("    ", json.dumps(row, ensure_ascii=False)[:700])
+        print(f"\n  Cotia (mesmo arquivo), PAGO por elemento, top 15:")
+        for e, v in sorted(cotia_elem.items(), key=lambda x: -x[1])[:15]:
+            print(f"     R$ {v:16,.2f}  {e}")
     os.remove(p)
 
 
