@@ -1,3 +1,17 @@
+# Sessão — 2026-10-22 (20) · VGP, aba Câmara: comprovantes dos adiantamentos
+
+**Status:** iniciada 2026-10-22 17:00 UTC · finalizada 2026-10-22 17:30 UTC
+(commit direto no `main`).
+
+Pedido do Alex: pôr na página de contas o que foi achado sobre comprovantes
+dos adiantamentos. Novo quadro "Os adiantamentos têm comprovante?" na aba
+Câmara de `vgp/contas.html` (PT/EN em `js/contas-tipo.js`): regra da Lei
+619/2011 (30 dias para gastar, 5 dias úteis para prestar contas, multa 1%/dia),
+servidor nomeado por portaria (Portaria 7/2026), saldo devolvido visível no
+TCE, notas e recibos não publicados (CECAM nem site), pedido via e-SIC/LAI.
+
+---
+
 # Sessão — 2026-10-22 (3) · Início: "Apoie a iniciativa" em destaque e carrossel "Na imprensa"
 
 **Status:** iniciada 2026-10-22 16:57 UTC · finalizada 2026-10-22 17:15 UTC

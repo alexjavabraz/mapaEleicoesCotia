@@ -504,5 +504,8 @@ td .barra {
 }
 .camara-aviso strong { display: block; margin-bottom: 4px; }
 .camara-aviso p { margin: 0; font-size: 0.85rem; line-height: 1.5; color: var(--text-muted); }
+.camara-aviso p + p { margin-top: 6px; }
+.camara-aviso a { color: var(--highlight); white-space: nowrap; }
+.camara-comprovantes { margin-top: 16px; }
 .camara-detalhe { margin-top: 12px; }
 .camara-detalhe summary { cursor: pointer; font-size: 0.85rem; color: var(--highlight); margin-bottom: 8px; }

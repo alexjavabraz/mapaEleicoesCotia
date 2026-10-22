@@ -68,6 +68,16 @@
     "A Câmara de Vargem Grande Paulista não tem verba de gabinete nem verba indenizatória para vereadores. Conferimos o arquivo de despesas do TCE-SP de 2020 a 2025, a legislação municipal (SISCAM) e a Lei Orgânica. Fora da folha, os pagamentos a pessoas físicas são diárias de viagem e o caixa de adiantamento de um servidor, listados abaixo.":
       "Vargem Grande Paulista City Council has no office allowance or expense allowance for council members. We checked the TCE-SP spending files from 2020 to 2025, municipal legislation (SISCAM) and the city's Organic Law. Outside payroll, payments to individuals are travel per diems and one staff member's petty-cash advance, listed below.",
     "Pagamentos a pessoas físicas fora da folha": "Payments to individuals outside payroll",
+    "Os adiantamentos têm comprovante?": "Do the cash advances have receipts?",
+    "A Lei municipal 619/2011 manda gastar o adiantamento em até 30 dias e prestar contas em até 5 dias úteis, sob multa de 1% ao dia. A Mesa da Câmara nomeia por portaria o servidor que pede e presta contas dos adiantamentos.":
+      "Municipal Law 619/2011 requires each advance to be spent within 30 days and accounted for within 5 business days, with a fine of 1% per day. The Council's board appoints, by ordinance, the staff member who requests advances and accounts for them.",
+    "Lei 619/2011": "Law 619/2011",
+    "Portaria 7/2026": "Ordinance 7/2026",
+    "Nos dados do TCE-SP, o saldo não usado volta para a Câmara todo mês (os valores negativos da lista acima), o que indica que a prestação de contas é feita internamente. Mas as notas fiscais e os recibos não são publicados: não estão no portal de transparência (CECAM) nem no site da Câmara.":
+      "In the TCE-SP data, the unused balance goes back to the Council every month (the negative amounts in the list above), which indicates the advances are accounted for internally. But the invoices and receipts are not published: they are not on the transparency portal (CECAM) or on the Council's website.",
+    "Para ver os comprovantes, peça pela Lei de Acesso à Informação (e-SIC da Câmara), informando o mês e o valor do adiantamento.":
+      "To see the receipts, file a Freedom of Information request (the Council's e-SIC), giving the month and amount of the advance.",
+    "Portal de transparência da Câmara": "Council transparency portal",
     "Ver os {n} lançamentos": "See the {n} entries",
     "Nenhum pagamento a pessoa física fora da folha.": "No payments to individuals outside payroll.",
     "Adiantamento é o caixa para despesas miúdas que um servidor recebe todo mês (regime de adiantamento, Lei municipal 619/2011); os valores negativos são o saldo devolvido no fim do mês. Diárias são pagas por viagem.":
