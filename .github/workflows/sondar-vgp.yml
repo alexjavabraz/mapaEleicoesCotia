@@ -6,6 +6,7 @@ on:
     branches: [claude/project-thread-3h6zh7]
     paths:
       - scripts/sondar_vgp.py
+      - scripts/analisar_camara_vgp.py
       - .github/workflows/sondar-vgp.yml
 
 permissions:
@@ -13,12 +14,13 @@ permissions:
 
 jobs:
   sondar:
+    if: github.event_name != 'push'
     runs-on: ubuntu-latest
     timeout-minutes: 90
     strategy:
       fail-fast: false
       matrix:
-        alvo: ${{ fromJSON(github.event_name == 'push' && '["leis"]' || '["tse2024","tse2026","tce","censo","camara","cecam"]') }}
+        alvo: [tse2024, tse2026, tce, censo, camara, cecam, leis]
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -34,3 +36,19 @@ jobs:
           name: vgp-despesas-${{ matrix.alvo }}
           path: /tmp/vgp_despesas.csv
           if-no-files-found: ignore
+
+  analisar:
+    if: github.event_name == 'push'
+    runs-on: ubuntu-latest
+    permissions:
+      actions: read
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: vgp-despesas-tce20*
+          path: /tmp/tce
+          run-id: 39805102698
+          github-token: ${{ github.token }}
+      - run: python3 -u scripts/analisar_camara_vgp.py /tmp/tce
