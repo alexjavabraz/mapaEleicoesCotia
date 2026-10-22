@@ -44,6 +44,8 @@
     "Mostrar menos": "Show less",
     // Aba Câmara
     "Câmara": "City Council",
+    "Anos: {anos}. Clique em um ou mais anos para filtrar; Todos volta ao período inteiro.":
+      "Years: {anos}. Click one or more years to filter; All goes back to the whole period.",
     "Câmara: diárias e adiantamentos": "City Council: per diems and cash advances",
     "Sem verba de gabinete": "No office allowance",
     "Pago pela Câmara": "Paid by the Council",
@@ -55,6 +57,7 @@
     "Ressarcimento": "Reimbursement",
     "Outro": "Other",
     "Ano": "Year",
+    "Anos": "Years",
     "Tipo": "Type",
     "Favorecido": "Payee",
     "Lançamentos": "Entries",
@@ -235,8 +238,54 @@
     return "Outro";
   }
 
+  /** Anos marcados no filtro da aba Câmara (vários ao mesmo tempo). */
+  const camaraAnos = new Set();
+
+  /** "2020–2025" para anos seguidos; senão "2020, 2023, 2025". */
+  function rotuloAnos(lista) {
+    const seguidos = lista.every((a, i) => i === 0 || +a === +lista[i - 1] + 1);
+    if (lista.length > 1 && seguidos) return `${lista[0]}–${lista.at(-1)}`;
+    return lista.join(", ");
+  }
+
   function initCamara() {
     const as = anosTipo();
+    as.forEach((a) => camaraAnos.add(a));
+    const pills = $("camara-anos");
+    pills.innerHTML = `<button type="button" data-ano="">${t("Todos")}</button>` +
+      as.map((a) => `<button type="button" data-ano="${a}">${a}</button>`).join("");
+    pills.addEventListener("click", (e) => {
+      const b = e.target.closest("button[data-ano]");
+      if (!b) return;
+      const a = b.dataset.ano;
+      const todosMarcados = camaraAnos.size === as.length;
+      if (!a) {
+        as.forEach((x) => camaraAnos.add(x));
+      } else if (todosMarcados) {
+        // Com todos marcados, o primeiro clique escolhe só aquele ano
+        camaraAnos.clear();
+        camaraAnos.add(a);
+      } else if (camaraAnos.has(a)) {
+        camaraAnos.delete(a);
+        if (!camaraAnos.size) as.forEach((x) => camaraAnos.add(x));
+      } else {
+        camaraAnos.add(a);
+      }
+      renderCamara();
+    });
+    $("camara").hidden = false;
+    $("camara-vazio").hidden = true;
+    renderCamara();
+  }
+
+  function renderCamara() {
+    const as = anosTipo().filter((a) => camaraAnos.has(a));
+    const todosMarcados = as.length === anosTipo().length;
+    $("camara-anos").querySelectorAll("button").forEach((b) => {
+      const ativa = b.dataset.ano ? !todosMarcados && camaraAnos.has(b.dataset.ano) : todosMarcados;
+      b.classList.toggle("ativa", ativa);
+      b.setAttribute("aria-pressed", ativa);
+    });
     const camara = (o) => /C[AÂ]MARA/i.test(o);
     let pago = 0, folha = 0, diarias = 0, adiant = 0;
     const grupos = new Map();
@@ -262,7 +311,7 @@
         todos.push(l);
       }
     }
-    const periodo = `${as[0]}–${as.at(-1)}`;
+    const periodo = rotuloAnos(as);
     $("ck-pago").textContent = fmtBRL.format(pago);
     $("ck-pago-lbl").textContent = `${t("Pago pela Câmara")} · ${periodo}`;
     $("ck-folha").textContent = fmtBRL.format(folha);
@@ -285,8 +334,7 @@
       <thead><tr><th>${t("Data")}</th><th>${t("Favorecido")}</th><th>${t("Tipo")}</th><th>${t("Histórico")}</th><th class="num">${t("Valor")}</th></tr></thead>
       <tbody>${todos.map((l) => `<tr><td>${fmtData(l[0])}</td><td>${esc(l[2])}</td><td>${esc(t(tipoLancamento(l[4])))}</td>
         <td>${esc(l[4])}</td><td class="num">${fmtBRL.format(l[1])}</td></tr>`).join("")}</tbody>`;
-    $("camara").hidden = false;
-    $("camara-vazio").hidden = true;
+    $("camara-nota-anos").textContent = t("Anos: {anos}. Clique em um ou mais anos para filtrar; Todos volta ao período inteiro.", { anos: periodo });
   }
 
   function semDados(err) {

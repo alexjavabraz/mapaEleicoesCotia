@@ -1,3 +1,17 @@
+# Sessão — 2026-10-22 (18) · VGP, aba Câmara: filtro de vários anos
+
+**Status:** iniciada 2026-10-22 16:52 UTC · finalizada 2026-10-22 16:52 UTC
+(commit direto no `main`).
+
+Pedido do Alex: filtro por ano na aba Câmara de VGP, com mais de um ano ao
+mesmo tempo. Feito em `js/contas-tipo.js` (`initCamara`/`renderCamara`):
+botões Todos + um por ano; com todos marcados, o primeiro clique escolhe só
+aquele ano, os seguintes somam/tiram anos, e desmarcar o último volta a
+Todos. Totais, tabela por favorecido e lista de lançamentos seguem os anos
+marcados. Testado com Playwright (2020 → 2020+2025 → 2020+2023+2025 → Todos).
+
+---
+
 # Sessão — 2026-10-22 (17) · Vargem Grande Paulista: implementação
 
 **Status:** iniciada 2026-10-22 16:07 UTC · finalizada 2026-10-22 16:37 UTC
