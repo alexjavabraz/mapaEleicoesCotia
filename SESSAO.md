@@ -1,3 +1,15 @@
+# Sessão — 2026-10-22 (22) · Mapa 2026: selo "2º TURNO" virou "VAI AO 2º TURNO"
+
+**Status:** iniciada 2026-10-22 19:20 UTC · finalizada 2026-10-22 19:30 UTC
+(commit direto no `main`).
+
+Alex achou que o mapa de 2026 mostrava o 2º turno. Os dados são só do 1º
+turno; o selo vinha da situação do TSE ("2º TURNO" = foi ao 2º turno) em
+Presidente e Governador, nas duas cidades. `tSituacao` (js/i18n.js) agora
+mostra "VAI AO 2º TURNO" / "TO RUNOFF".
+
+---
+
 # Sessão — 2026-10-22 (21) · VGP, aba Câmara: de que é feito o "Pago pela Câmara"
 
 **Status:** iniciada 2026-10-22 19:03 UTC · finalizada 2026-10-22 19:15 UTC

@@ -392,7 +392,7 @@ const I18N_SITUACAO_EN = {
   "ELEITO POR MÉDIA": "ELECTED (REMAINDER)",
   "NÃO ELEITO": "NOT ELECTED",
   "SUPLENTE": "ALTERNATE",
-  "2º TURNO": "RUNOFF",
+  "2º TURNO": "TO RUNOFF",
 };
 
 /** Traduz um texto em português; {nome} é substituído por vars.nome. */
@@ -426,6 +426,9 @@ function tNomeVoto(nome) {
 }
 
 function tSituacao(s) {
+  // O TSE marca "2º TURNO" no resultado do 1º turno para quem foi ao 2º turno;
+  // sozinho, o selo parecia dizer que os dados eram do 2º turno.
+  if (LANG !== "en" && /^2º TURNO$/i.test((s || "").trim())) return "VAI AO 2º TURNO";
   return LANG === "en" ? I18N_SITUACAO_EN[(s || "").toUpperCase()] || s : s;
 }
 
