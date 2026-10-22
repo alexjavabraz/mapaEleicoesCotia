@@ -509,3 +509,4 @@ td .barra {
 .camara-comprovantes { margin-top: 16px; }
 .camara-detalhe { margin-top: 12px; }
 .camara-detalhe summary { cursor: pointer; font-size: 0.85rem; color: var(--highlight); margin-bottom: 8px; }
+#camara-composicao tr.total td { font-weight: 600; border-top: 1px solid rgba(var(--tinta), 0.2); }

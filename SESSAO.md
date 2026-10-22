@@ -1,3 +1,17 @@
+# Sessão — 2026-10-22 (21) · VGP, aba Câmara: de que é feito o "Pago pela Câmara"
+
+**Status:** iniciada 2026-10-22 19:03 UTC · finalizada 2026-10-22 19:15 UTC
+(commit direto no `main`).
+
+Pergunta do Alex: o total "Pago pela Câmara" é muito maior que os pagamentos a
+pessoas físicas. É todo o gasto da Câmara no TCE-SP (2025: R$ 10,58 mi, 57%
+salários de servidores, 16,5% subsídio de vereadores, 9% INSS, 10,7% serviços).
+Nova tabela "De que é feito o valor pago pela Câmara" (categorias por elemento,
+`CATEGORIAS_CAMARA` em `js/contas-tipo.js`) + detalhes por elemento, seguindo
+os anos marcados. PT/EN.
+
+---
+
 # Sessão — 2026-10-22 (20) · VGP, aba Câmara: comprovantes dos adiantamentos
 
 **Status:** iniciada 2026-10-22 17:00 UTC · finalizada 2026-10-22 17:30 UTC

@@ -69,6 +69,18 @@
       "Vargem Grande Paulista City Council has no office allowance or expense allowance for council members. We checked the TCE-SP spending files from 2020 to 2025, municipal legislation (SISCAM) and the city's Organic Law. Outside payroll, payments to individuals are travel per diems and one staff member's petty-cash advance, listed below.",
     "Pagamentos a pessoas físicas fora da folha": "Payments to individuals outside payroll",
     "Os adiantamentos têm comprovante?": "Do the cash advances have receipts?",
+    "De que é feito o valor pago pela Câmara": "What the Council's total spending is made of",
+    "O valor pago é tudo o que a Câmara pagou no período, segundo o TCE-SP: a maior parte é salário dos servidores, subsídio dos vereadores e INSS. Os pagamentos a pessoas físicas listados mais abaixo são só uma pequena parte, fora da folha.":
+      "The amount paid is everything the Council paid in the period, according to TCE-SP: most of it is staff salaries, council members' pay and social security. The payments to individuals listed further down are only a small part, outside payroll.",
+    "Subsídio dos vereadores": "Council members' pay",
+    "INSS (contribuição patronal)": "Social security (employer contribution)",
+    "Salários, 13º, férias e gratificações dos servidores": "Staff salaries, 13th salary, vacation and bonuses",
+    "Auxílio-alimentação": "Meal allowance",
+    "Serviços contratados (empresas, assessoria, manutenção, contas de consumo)": "Contracted services (companies, consulting, maintenance, utilities)",
+    "Materiais de consumo": "Supplies",
+    "Equipamentos e mobiliário": "Equipment and furniture",
+    "Categoria": "Category",
+    "Ver por elemento de despesa ({n})": "See by spending element ({n})",
     "A Lei municipal 619/2011 manda gastar o adiantamento em até 30 dias e prestar contas em até 5 dias úteis, sob multa de 1% ao dia. A Mesa da Câmara nomeia por portaria o servidor que pede e presta contas dos adiantamentos.":
       "Municipal Law 619/2011 requires each advance to be spent within 30 days and accounted for within 5 business days, with a fine of 1% per day. The Council's board appoints, by ordinance, the staff member who requests advances and accounts for them.",
     "Lei 619/2011": "Law 619/2011",
@@ -298,6 +310,7 @@
     });
     const camara = (o) => /C[AÂ]MARA/i.test(o);
     let pago = 0, folha = 0, diarias = 0, adiant = 0;
+    const porElemento = new Map();
     const grupos = new Map();
     const todos = [];
     for (const a of as) {
@@ -307,6 +320,7 @@
         for (const [e, v] of Object.entries(mapa)) {
           pago += v[0];
           if (/^319[01]/.test(e)) folha += v[0];
+          porElemento.set(e, (porElemento.get(e) || 0) + v[0]);
         }
       }
       for (const l of ano.camara_pf || []) {
@@ -321,6 +335,7 @@
         todos.push(l);
       }
     }
+    renderComposicao(porElemento, pago);
     const periodo = rotuloAnos(as);
     $("ck-pago").textContent = fmtBRL.format(pago);
     $("ck-pago-lbl").textContent = `${t("Pago pela Câmara")} · ${periodo}`;
@@ -345,6 +360,37 @@
       <tbody>${todos.map((l) => `<tr><td>${fmtData(l[0])}</td><td>${esc(l[2])}</td><td>${esc(t(tipoLancamento(l[4])))}</td>
         <td>${esc(l[4])}</td><td class="num">${fmtBRL.format(l[1])}</td></tr>`).join("")}</tbody>`;
     $("camara-nota-anos").textContent = t("Anos: {anos}. Clique em um ou mais anos para filtrar; Todos volta ao período inteiro.", { anos: periodo });
+  }
+
+  // Agrupa os elementos de despesa da Câmara em categorias fáceis de ler.
+  const CATEGORIAS_CAMARA = [
+    ["Subsídio dos vereadores", (e) => e.startsWith("31901175")],
+    ["INSS (contribuição patronal)", (e) => e.startsWith("319013")],
+    ["Salários, 13º, férias e gratificações dos servidores", (e) => e.startsWith("3190")],
+    ["Auxílio-alimentação", (e) => e.startsWith("33903942")],
+    ["Serviços contratados (empresas, assessoria, manutenção, contas de consumo)", (e) => /^33903[59]/.test(e)],
+    ["Materiais de consumo", (e) => e.startsWith("339030")],
+    ["Equipamentos e mobiliário", (e) => e.startsWith("4490")],
+    ["Outros", () => true],
+  ];
+
+  function renderComposicao(porElemento, pago) {
+    const pct = (v) => (pago ? (100 * v / pago).toLocaleString(LOCALE, { maximumFractionDigits: 1 }) : "0") + "%";
+    const cats = new Map();
+    for (const [e, v] of porElemento) {
+      const [nome] = CATEGORIAS_CAMARA.find(([, f]) => f(e));
+      cats.set(nome, (cats.get(nome) || 0) + v);
+    }
+    const linhas = [...cats].filter(([, v]) => v).sort((a, b) => b[1] - a[1]);
+    $("camara-composicao").innerHTML = `
+      <thead><tr><th>${t("Categoria")}</th><th class="num">${t("Valor pago")}</th><th class="num">%</th></tr></thead>
+      <tbody>${linhas.map(([n, v]) => `<tr><td>${esc(t(n))}</td><td class="num">${fmtBRL.format(v)}</td><td class="num">${pct(v)}</td></tr>`).join("")}
+        <tr class="total"><td>${t("Total")}</td><td class="num">${fmtBRL.format(pago)}</td><td class="num">100%</td></tr></tbody>`;
+    const elems = [...porElemento].filter(([, v]) => v).sort((a, b) => b[1] - a[1]);
+    $("camara-elementos").querySelector("summary").textContent = t("Ver por elemento de despesa ({n})", { n: elems.length });
+    $("camara-elem").innerHTML = `
+      <thead><tr><th>${t("Elemento")}</th><th class="num">${t("Valor pago")}</th><th class="num">%</th></tr></thead>
+      <tbody>${elems.map(([e, v]) => `<tr><td>${esc(e)}</td><td class="num">${fmtBRL.format(v)}</td><td class="num">${pct(v)}</td></tr>`).join("")}</tbody>`;
   }
 
   function semDados(err) {
