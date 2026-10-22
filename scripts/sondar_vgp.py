@@ -219,7 +219,9 @@ def tse_locais(ano):
 TCE = "https://transparencia.tce.sp.gov.br"
 
 
-def tce():
+def tce(ano_csv=None):
+    if ano_csv:
+        return tce_csv(TCE + f"/sites/default/files/conjunto-dados/despesas-{ano_csv}.zip")
     titulo("TCE-SP API: lista de municípios")
     r = HTTP.get(TCE + "/api/json/municipios", timeout=60)
     print("HTTP", r.status_code)
@@ -266,6 +268,11 @@ def tce():
         links += [urljoin(TCE + pag, a) for a in achados]
     despesas = [u for u in links if re.search(r"despesas?-?_?2025", u, re.I)]
     url = despesas[0] if despesas else TCE + "/sites/default/files/conjunto-dados/despesas-2025.zip"
+    tce_csv(url)
+
+
+def tce_csv(url):
+    titulo(f"TCE-SP {url.rsplit('/', 1)[-1]}")
     try:
         p = baixar(url, "despesas-tce.zip")
     except Exception as e:
@@ -306,7 +313,7 @@ def tce():
         cotia_elem = defaultdict(float)
         orgs, tipos = Counter(), Counter()
         with z.open(nome) as f:
-            leitor = csv.DictReader(io.TextIOWrapper(f, encoding=enc, errors="replace", newline=""),
+            leitor = csv.DictReader(io.TextIOWrapper(f, encoding="latin-1", newline=""),
                                     delimiter=sep)
             saida = open(os.environ.get("VGP_CSV", os.path.join(TMP, "vgp.csv")), "w", newline="", encoding="utf-8")
             grava = csv.DictWriter(saida, fieldnames=leitor.fieldnames, delimiter=";")
@@ -510,8 +517,8 @@ if __name__ == "__main__":
         seguro(tse_munzona, 2026)
         seguro(tse_locais, 2026)
         seguro(tse_secao, 2026)
-    elif alvo == "tce":
-        seguro(tce)
+    elif alvo.startswith("tce"):
+        seguro(tce, alvo[3:] or None)
     elif alvo == "censo":
         seguro(censo)
     elif alvo == "camara":

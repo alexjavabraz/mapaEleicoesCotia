@@ -18,7 +18,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        alvo: ${{ fromJSON(github.event_name == 'push' && '["tce"]' || '["tse2024","tse2026","tce","censo","camara","cecam"]') }}
+        alvo: ${{ fromJSON(github.event_name == 'push' && '["tce2020","tce2021","tce2022","tce2023","tce2024","tce2025"]' || '["tse2024","tse2026","tce","censo","camara","cecam"]') }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -27,10 +27,10 @@ jobs:
       - run: pip install -r scripts/requirements.txt geopandas pyogrio
       - run: python -u scripts/sondar_vgp.py ${{ matrix.alvo }}
         env:
-          VGP_CSV: /tmp/vgp_despesas_2025.csv
-      - if: matrix.alvo == 'tce'
+          VGP_CSV: /tmp/vgp_despesas.csv
+      - if: startsWith(matrix.alvo, 'tce')
         uses: actions/upload-artifact@v4
         with:
-          name: vgp-despesas-tce-2025
-          path: /tmp/vgp_despesas_2025.csv
+          name: vgp-despesas-${{ matrix.alvo }}
+          path: /tmp/vgp_despesas.csv
           if-no-files-found: ignore
