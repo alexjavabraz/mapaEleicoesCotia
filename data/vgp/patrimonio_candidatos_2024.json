@@ -1,0 +1,1059 @@
+{
+ "fonte": "TSE — Dados Abertos — Candidatos 2024 (bens declarados)",
+ "fonte_url": "https://dadosabertos.tse.jus.br/dataset/candidatos-2024",
+ "gerado_em": "2026-10-22T16:14:20Z",
+ "municipio": "VARGEM GRANDE PAULISTA",
+ "uf": "SP",
+ "candidatos": [
+  {
+   "cargo": "prefeito",
+   "numero": "20",
+   "nome": "PITER SANTOS",
+   "nome_completo": "PITER APARECIDO DOS SANTOS",
+   "sq_candidato": "250001898751",
+   "patrimonio": 5590515.44,
+   "bens": 21,
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001898751/2024/72737"
+  },
+  {
+   "cargo": "prefeito",
+   "numero": "22",
+   "nome": "DRA. LARISSA",
+   "nome_completo": "LARISSA MAGALHÃES CANAVEZ SANTOS",
+   "sq_candidato": "250001923954",
+   "patrimonio": 855000.0,
+   "bens": 3,
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001923954/2024/72737"
+  },
+  {
+   "cargo": "prefeito",
+   "numero": "50",
+   "nome": "LEONARDO ZAMPIERI",
+   "nome_completo": "LEONARDO AUGUSTO ZAMPIERI",
+   "sq_candidato": "250002357303",
+   "patrimonio": 0.0,
+   "bens": 0,
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250002357303/2024/72737"
+  },
+  {
+   "cargo": "vereadores",
+   "numero": "25123",
+   "nome": "MARCELO LENHA",
+   "nome_completo": "MARCELO TRAJANO DA SILVA",
+   "sq_candidato": "250001964583",
+   "patrimonio": 362500.0,
+   "bens": 3,
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001964583/2024/72737"
+  },
+  {
+   "cargo": "vereadores",
+   "numero": "22123",
+   "nome": "LUCIMAR DO LUIA",
+   "nome_completo": "LUCIMAR MARQUES MOREIRA",
+   "sq_candidato": "250001963262",
+   "patrimonio": 958000.0,
+   "bens": 8,
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001963262/2024/72737"
+  },
+  {
+   "cargo": "vereadores",
+   "numero": "44123",
+   "nome": "ADEMIR MI",
+   "nome_completo": "ADEMIR MARTINS SILVA",
+   "sq_candidato": "250001967833",
+   "patrimonio": 50000.0,
+   "bens": 1,
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001967833/2024/72737"
+  },
+  {
+   "cargo": "vereadores",
+   "numero": "11111",
+   "nome": "FERRUGEM DA PIZZARIA",
+   "nome_completo": "EDERSON DOS SANTOS ALVES",
+   "sq_candidato": "250001962992",
+   "patrimonio": 61000.0,
+   "bens": 3,
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001962992/2024/72737"
+  },
+  {
+   "cargo": "vereadores",
+   "numero": "20655",
+   "nome": "NEY",
+   "nome_completo": "SIDNEY DOS SANTOS",
+   "sq_candidato": "250001913793",
+   "patrimonio": 441143.0,
+   "bens": 4,
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001913793/2024/72737"
+  },
+  {
+   "cargo": "vereadores",
+   "numero": "22630",
+   "nome": "MAURINHO",
+   "nome_completo": "ANTONIO MAURO DE SOUZA FILHO",
+   "sq_candidato": "250001963259",
+   "patrimonio": 352000.0,
+   "bens": 2,
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001963259/2024/72737"
+  },
+  {
+   "cargo": "vereadores",
+   "numero": "11123",
+   "nome": "CAFU",
+   "nome_completo": "ADEMIR JOSE DE SANTANA",
+   "sq_candidato": "250001962985",
+   "patrimonio": 300000.0,
+   "bens": 1,
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001962985/2024/72737"
+  },
+  {
+   "cargo": "vereadores",
+   "numero": "15789",
+   "nome": "MARCELINHO DO CONSELHO",
+   "nome_completo": "MARCELO LIMA COSTA",
+   "sq_candidato": "250001913690",
+   "patrimonio": 1250000.0,
+   "bens": 3,
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001913690/2024/72737"
+  },
+  {
+   "cargo": "vereadores",
+   "numero": "44999",
+   "nome": "FERNANDO BIXIGA",
+   "nome_completo": "FERNANDO FERREIRA DA SILVA",
+   "sq_candidato": "250001967842",
+   "patrimonio": 70000.0,
+   "bens": 1,
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001967842/2024/72737"
+  },
+  {
+   "cargo": "vereadores",
+   "numero": "44777",
+   "nome": "VAL",
+   "nome_completo": "VALMARI PEREIRA DA SILVA",
+   "sq_candidato": "250001967834",
+   "patrimonio": 0.0,
+   "bens": 0,
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001967834/2024/72737"
+  },
+  {
+   "cargo": "vereadores",
+   "numero": "15123",
+   "nome": "ZEZINHO TAPECEIRO",
+   "nome_completo": "JOSE FRANCISCO TEIXEIRA",
+   "sq_candidato": "250001913691",
+   "patrimonio": 695000.0,
+   "bens": 2,
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001913691/2024/72737"
+  },
+  {
+   "cargo": "vereadores",
+   "numero": "20789",
+   "nome": "TOM DO CONSELHO",
+   "nome_completo": "ERITON BEZERRA GOMES",
+   "sq_candidato": "250001913792",
+   "patrimonio": 0.0,
+   "bens": 0,
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001913792/2024/72737"
+  },
+  {
+   "cargo": "vereadores",
+   "numero": "20000",
+   "nome": "DJALMA",
+   "nome_completo": "DJALMA LIMA DE OLIVEIRA",
+   "sq_candidato": "250001913795",
+   "patrimonio": 1850000.0,
+   "bens": 6,
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001913795/2024/72737"
+  },
+  {
+   "cargo": "vereadores",
+   "numero": "15456",
+   "nome": "JUSCELINO MAGALHÃES",
+   "nome_completo": "JUSCELINO RALF PEREIRA MAGALHÃES",
+   "sq_candidato": "250001913685",
+   "patrimonio": 260900.0,
+   "bens": 4,
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001913685/2024/72737"
+  },
+  {
+   "cargo": "vereadores",
+   "numero": "15888",
+   "nome": "ROBERTA MACIEIRA",
+   "nome_completo": "ROBERTA MACIEIRA DE OLIVEIRA",
+   "sq_candidato": "250001913687",
+   "patrimonio": 1106440.87,
+   "bens": 3,
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001913687/2024/72737"
+  },
+  {
+   "cargo": "vereadores",
+   "numero": "20321",
+   "nome": "PROF CIDA IROSKI",
+   "nome_completo": "MARIA APARECIDA DE ANDRADE IROSKI",
+   "sq_candidato": "250001913791",
+   "patrimonio": 602155.2,
+   "bens": 11,
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001913791/2024/72737"
+  },
+  {
+   "cargo": "vereadores",
+   "numero": "22222",
+   "nome": "PROFESSOR VAGUINER",
+   "nome_completo": "VAGUINER DOS SANTOS FARIAS",
+   "sq_candidato": "250001963257",
+   "patrimonio": 595000.0,
+   "bens": 3,
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001963257/2024/72737"
+  },
+  {
+   "cargo": "vereadores",
+   "numero": "15043",
+   "nome": "JORGE DA OFICINA",
+   "nome_completo": "JORGE WILSON MIRANDA NICOLAU",
+   "sq_candidato": "250001913694",
+   "patrimonio": 14000.0,
+   "bens": 1,
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001913694/2024/72737"
+  },
+  {
+   "cargo": "vereadores",
+   "numero": "20222",
+   "nome": "LANE DO ROBERTÃO",
+   "nome_completo": "ROSILANE PYRAMO",
+   "sq_candidato": "250001913797",
+   "patrimonio": 864250.67,
+   "bens": 8,
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001913797/2024/72737"
+  },
+  {
+   "cargo": "vereadores",
+   "numero": "15777",
+   "nome": "LUCILENE HAVILLA",
+   "nome_completo": "LUCILENE DE FATIMA ALMEIDA HAVILLA",
+   "sq_candidato": "250001913686",
+   "patrimonio": 133000.0,
+   "bens": 3,
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001913686/2024/72737"
+  },
+  {
+   "cargo": "vereadores",
+   "numero": "15111",
+   "nome": "TIETA DO AGRESTE VGP",
+   "nome_completo": "DILENA FERREIRA DE LIMA",
+   "sq_candidato": "250001913696",
+   "patrimonio": 25000.0,
+   "bens": 3,
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001913696/2024/72737"
+  },
+  {
+   "cargo": "vereadores",
+   "numero": "22190",
+   "nome": "CAPITÃO EVANDRO",
+   "nome_completo": "EVANDRO LUIZ TEIXEIRA",
+   "sq_candidato": "250001963261",
+   "patrimonio": 800000.0,
+   "bens": 1,
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001963261/2024/72737"
+  },
+  {
+   "cargo": "vereadores",
+   "numero": "11100",
+   "nome": "CEZAR SENA",
+   "nome_completo": "CLERIO CEZAR BATISTA SENA",
+   "sq_candidato": "250001962986",
+   "patrimonio": 394547.36,
+   "bens": 6,
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001962986/2024/72737"
+  },
+  {
+   "cargo": "vereadores",
+   "numero": "20123",
+   "nome": "MATHEUS VENTURINI",
+   "nome_completo": "MATHEUS VENTURINI LOPES DA SILVA",
+   "sq_candidato": "250001913788",
+   "patrimonio": 0.0,
+   "bens": 0,
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001913788/2024/72737"
+  },
+  {
+   "cargo": "vereadores",
+   "numero": "15000",
+   "nome": "OZIEL ALVES",
+   "nome_completo": "OZIEL DE OLIVEIRA ALVES",
+   "sq_candidato": "250001913692",
+   "patrimonio": 400000.0,
+   "bens": 1,
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001913692/2024/72737"
+  },
+  {
+   "cargo": "vereadores",
+   "numero": "15611",
+   "nome": "DITO DA COOPERATIVA",
+   "nome_completo": "BENEDITO ANTONIO DOMINGUES",
+   "sq_candidato": "250001913693",
+   "patrimonio": 576000.0,
+   "bens": 5,
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001913693/2024/72737"
+  },
+  {
+   "cargo": "vereadores",
+   "numero": "20220",
+   "nome": "LINK ROCHA",
+   "nome_completo": "LIVIOMAR ALVES DA ROCHA",
+   "sq_candidato": "250001913798",
+   "patrimonio": 265000.0,
+   "bens": 2,
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001913798/2024/72737"
+  },
+  {
+   "cargo": "vereadores",
+   "numero": "22022",
+   "nome": "CIBELLE BENVENUTO",
+   "nome_completo": "CIBELLE ZINOBILE FRANCO",
+   "sq_candidato": "250001963260",
+   "patrimonio": 380000.0,
+   "bens": 2,
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001963260/2024/72737"
+  },
+  {
+   "cargo": "vereadores",
+   "numero": "15333",
+   "nome": "DONIZETE JUNIOR",
+   "nome_completo": "DONIZETE APARECIDO DE JESUS JUNIOR",
+   "sq_candidato": "250001913695",
+   "patrimonio": 1110997.55,
+   "bens": 10,
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001913695/2024/72737"
+  },
+  {
+   "cargo": "vereadores",
+   "numero": "44202",
+   "nome": "GUSTAVO MANCHA",
+   "nome_completo": "LUIZ GUSTAVO DE PAULA MARTINS SILVA",
+   "sq_candidato": "250001967838",
+   "patrimonio": 350000.0,
+   "bens": 1,
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001967838/2024/72737"
+  },
+  {
+   "cargo": "vereadores",
+   "numero": "15555",
+   "nome": "VILMA VEIGA",
+   "nome_completo": "VILMA VEIGA",
+   "sq_candidato": "250001913688",
+   "patrimonio": 123000.0,
+   "bens": 4,
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001913688/2024/72737"
+  },
+  {
+   "cargo": "vereadores",
+   "numero": "50000",
+   "nome": "THAIS PIERROT",
+   "nome_completo": "THAIS PIERROT MARTINS DOS SANTOS",
+   "sq_candidato": "250002359223",
+   "patrimonio": 0.0,
+   "bens": 0,
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250002359223/2024/72737"
+  },
+  {
+   "cargo": "vereadores",
+   "numero": "25555",
+   "nome": "WILLIAN SALVETTI",
+   "nome_completo": "WILLIAN SALVETTI NUNES",
+   "sq_candidato": "250001964582",
+   "patrimonio": 0.0,
+   "bens": 0,
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001964582/2024/72737"
+  },
+  {
+   "cargo": "vereadores",
+   "numero": "44920",
+   "nome": "EDER PIRES",
+   "nome_completo": "EDER DE MORAES PIRES",
+   "sq_candidato": "250001967836",
+   "patrimonio": 150000.0,
+   "bens": 1,
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001967836/2024/72737"
+  },
+  {
+   "cargo": "vereadores",
+   "numero": "44120",
+   "nome": "CAMARGO DA GUARDA",
+   "nome_completo": "DEIVIDE DE OLIVEIRA CAMARGO",
+   "sq_candidato": "250001967837",
+   "patrimonio": 50000.0,
+   "bens": 1,
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001967837/2024/72737"
+  },
+  {
+   "cargo": "vereadores",
+   "numero": "25190",
+   "nome": "RONALDO BRITTO",
+   "nome_completo": "RONALDO SILVA DE BRITO",
+   "sq_candidato": "250001964584",
+   "patrimonio": 100000.0,
+   "bens": 1,
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001964584/2024/72737"
+  },
+  {
+   "cargo": "vereadores",
+   "numero": "25025",
+   "nome": "DR. WILKER HOLLYWOOD",
+   "nome_completo": "WILQUER VELCIR WINCKLER LANGER",
+   "sq_candidato": "250001964585",
+   "patrimonio": 150000.0,
+   "bens": 2,
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001964585/2024/72737"
+  },
+  {
+   "cargo": "vereadores",
+   "numero": "44400",
+   "nome": "PROFESSORA CLAUDIA",
+   "nome_completo": "CLAUDIA FABIANA BOSCHETTI",
+   "sq_candidato": "250001967831",
+   "patrimonio": 824000.0,
+   "bens": 3,
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001967831/2024/72737"
+  },
+  {
+   "cargo": "vereadores",
+   "numero": "25700",
+   "nome": "MILTON DE OBRAS",
+   "nome_completo": "MILTON RIBEIRO",
+   "sq_candidato": "250001964590",
+   "patrimonio": 235000.0,
+   "bens": 2,
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001964590/2024/72737"
+  },
+  {
+   "cargo": "vereadores",
+   "numero": "22000",
+   "nome": "GORDO DO QUARENTA E TRÊS",
+   "nome_completo": "ANTONIO AUGUSTO FARIAS DA SILVA",
+   "sq_candidato": "250001963258",
+   "patrimonio": 0.0,
+   "bens": 0,
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001963258/2024/72737"
+  },
+  {
+   "cargo": "vereadores",
+   "numero": "36036",
+   "nome": "CÍCERO DA BARBEARIA",
+   "nome_completo": "CÍCERO MARTINS",
+   "sq_candidato": "250001913497",
+   "patrimonio": 0.0,
+   "bens": 0,
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001913497/2024/72737"
+  },
+  {
+   "cargo": "vereadores",
+   "numero": "70000",
+   "nome": "SAMUEL GONÇALVES",
+   "nome_completo": "SAMUEL GONÇALVES DOS SANTOS",
+   "sq_candidato": "250001966959",
+   "patrimonio": 17500.0,
+   "bens": 1,
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001966959/2024/72737"
+  },
+  {
+   "cargo": "vereadores",
+   "numero": "20111",
+   "nome": "PALICÓ MECÂNICO",
+   "nome_completo": "LUIZ GONZAGA FUSCO",
+   "sq_candidato": "250001913787",
+   "patrimonio": 313000.0,
+   "bens": 4,
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001913787/2024/72737"
+  },
+  {
+   "cargo": "vereadores",
+   "numero": "70123",
+   "nome": "NEWTON ENGENHEIRO",
+   "nome_completo": "NEWTON YOSHINOBU OIKAWA",
+   "sq_candidato": "250001966956",
+   "patrimonio": 841100.0,
+   "bens": 5,
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001966956/2024/72737"
+  },
+  {
+   "cargo": "vereadores",
+   "numero": "20234",
+   "nome": "VAL DO UBER",
+   "nome_completo": "GENIVAL ALMEIDA DA SILVA",
+   "sq_candidato": "250001913789",
+   "patrimonio": 0.0,
+   "bens": 0,
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001913789/2024/72737"
+  },
+  {
+   "cargo": "vereadores",
+   "numero": "11011",
+   "nome": "CLEYTON VIEIRA",
+   "nome_completo": "CLEYTON VIEIRA DE MORAES",
+   "sq_candidato": "250001962990",
+   "patrimonio": 39000.0,
+   "bens": 2,
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001962990/2024/72737"
+  },
+  {
+   "cargo": "vereadores",
+   "numero": "15015",
+   "nome": "ANDRE CHACON",
+   "nome_completo": "ANDRE DE MORAES CHACON",
+   "sq_candidato": "250001913689",
+   "patrimonio": 380000.0,
+   "bens": 1,
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001913689/2024/72737"
+  },
+  {
+   "cargo": "vereadores",
+   "numero": "11000",
+   "nome": "RAFAEL BATISTA",
+   "nome_completo": "RAFAEL BATISTA PEREIRA",
+   "sq_candidato": "250001962987",
+   "patrimonio": 18000.0,
+   "bens": 1,
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001962987/2024/72737"
+  },
+  {
+   "cargo": "vereadores",
+   "numero": "44444",
+   "nome": "NIVALDO PEIXOTO",
+   "nome_completo": "NIVALDO PEIXOTO DA SILVA",
+   "sq_candidato": "250001967839",
+   "patrimonio": 16000.0,
+   "bens": 1,
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001967839/2024/72737"
+  },
+  {
+   "cargo": "vereadores",
+   "numero": "22330",
+   "nome": "THATI DA SAÚDE",
+   "nome_completo": "TATIANA VALE LAROCA",
+   "sq_candidato": "250001963264",
+   "patrimonio": 0.0,
+   "bens": 0,
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001963264/2024/72737"
+  },
+  {
+   "cargo": "vereadores",
+   "numero": "11777",
+   "nome": "DENIS CASTELO PISCINAS",
+   "nome_completo": "DENIS JOSE RODRIGUES DOS SANTOS",
+   "sq_candidato": "250001962991",
+   "patrimonio": 1119000.0,
+   "bens": 4,
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001962991/2024/72737"
+  },
+  {
+   "cargo": "vereadores",
+   "numero": "36777",
+   "nome": "VALDEMIRO DIAS",
+   "nome_completo": "VALDEMIRO DIAS DE ALMEIDA",
+   "sq_candidato": "250001913502",
+   "patrimonio": 177372.48,
+   "bens": 2,
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001913502/2024/72737"
+  },
+  {
+   "cargo": "vereadores",
+   "numero": "44222",
+   "nome": "RICARDO ROGGIERI",
+   "nome_completo": "RICARDO ROGGIERI",
+   "sq_candidato": "250001967840",
+   "patrimonio": 700000.0,
+   "bens": 1,
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001967840/2024/72737"
+  },
+  {
+   "cargo": "vereadores",
+   "numero": "20200",
+   "nome": "ZULEIDE",
+   "nome_completo": "ZULEIDE NASCIMENTO PEREIRA",
+   "sq_candidato": "250001913794",
+   "patrimonio": 0.0,
+   "bens": 0,
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001913794/2024/72737"
+  },
+  {
+   "cargo": "vereadores",
+   "numero": "36333",
+   "nome": "TIAGO LAGES",
+   "nome_completo": "TIAGO LAGES DA SILVA",
+   "sq_candidato": "250001913495",
+   "patrimonio": 10000.0,
+   "bens": 1,
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001913495/2024/72737"
+  },
+  {
+   "cargo": "vereadores",
+   "numero": "11234",
+   "nome": "MESTRE DEONATO",
+   "nome_completo": "DEONATO AMARO DA SILVA",
+   "sq_candidato": "250001962988",
+   "patrimonio": 550000.0,
+   "bens": 1,
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001962988/2024/72737"
+  },
+  {
+   "cargo": "vereadores",
+   "numero": "36999",
+   "nome": "RITA ROCKERT",
+   "nome_completo": "RITA DE CASSIA DOS SANTOS ROCKERT",
+   "sq_candidato": "250001913503",
+   "patrimonio": 11000.0,
+   "bens": 1,
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001913503/2024/72737"
+  },
+  {
+   "cargo": "vereadores",
+   "numero": "20020",
+   "nome": "ANDERSON DINIZ",
+   "nome_completo": "EDVALDO ANDERSON DINIZ",
+   "sq_candidato": "250001913796",
+   "patrimonio": 10000.0,
+   "bens": 1,
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001913796/2024/72737"
+  },
+  {
+   "cargo": "vereadores",
+   "numero": "22442",
+   "nome": "PATRICK LESSA",
+   "nome_completo": "PATRICK ALEXANDRE LESSA SILVA",
+   "sq_candidato": "250001963263",
+   "patrimonio": 0.0,
+   "bens": 0,
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001963263/2024/72737"
+  },
+  {
+   "cargo": "vereadores",
+   "numero": "77131",
+   "nome": "RENILSON BARROCO",
+   "nome_completo": "RENILSON FERREIRA DO NASCIMENTO",
+   "sq_candidato": "250001965004",
+   "patrimonio": 990000.0,
+   "bens": 3,
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001965004/2024/72737"
+  },
+  {
+   "cargo": "vereadores",
+   "numero": "22400",
+   "nome": "GERLANE",
+   "nome_completo": "GERLANE DOS SANTOS BISPO",
+   "sq_candidato": "250001963256",
+   "patrimonio": 0.0,
+   "bens": 0,
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001963256/2024/72737"
+  },
+  {
+   "cargo": "vereadores",
+   "numero": "25000",
+   "nome": "EDSON BILIERI",
+   "nome_completo": "EDSON BILIERI",
+   "sq_candidato": "250001964581",
+   "patrimonio": 0.0,
+   "bens": 0,
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001964581/2024/72737"
+  },
+  {
+   "cargo": "vereadores",
+   "numero": "77000",
+   "nome": "ALEXANDRE BARROCO DO PAYSAGE",
+   "nome_completo": "ALEXANDRE AUGUSTO DE OLIVEIRA",
+   "sq_candidato": "250001965009",
+   "patrimonio": 1000000.0,
+   "bens": 1,
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001965009/2024/72737"
+  },
+  {
+   "cargo": "vereadores",
+   "numero": "44001",
+   "nome": "CONSELHEIRA ANA PASSARETTI",
+   "nome_completo": "ANA MARIA PASSARETTI LANG",
+   "sq_candidato": "250001967835",
+   "patrimonio": 452000.0,
+   "bens": 2,
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001967835/2024/72737"
+  },
+  {
+   "cargo": "vereadores",
+   "numero": "20120",
+   "nome": "CELIA DO ESPORTE",
+   "nome_completo": "MARIA CELIA DOMINGUES",
+   "sq_candidato": "250001913790",
+   "patrimonio": 0.0,
+   "bens": 0,
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001913790/2024/72737"
+  },
+  {
+   "cargo": "vereadores",
+   "numero": "44000",
+   "nome": "DAYA PONTES",
+   "nome_completo": "LINDALVA FERREIRA PONTES",
+   "sq_candidato": "250001967832",
+   "patrimonio": 240000.0,
+   "bens": 1,
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001967832/2024/72737"
+  },
+  {
+   "cargo": "vereadores",
+   "numero": "44110",
+   "nome": "ZENAIDE ARÃO",
+   "nome_completo": "ZENAIDE SILVA ARÃO FREITAS",
+   "sq_candidato": "250001967841",
+   "patrimonio": 550000.0,
+   "bens": 1,
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001967841/2024/72737"
+  },
+  {
+   "cargo": "vereadores",
+   "numero": "70444",
+   "nome": "SUELENE GONÇALVES DANTAS",
+   "nome_completo": "SUELENE GONÇALVES DANTAS ROSA DO NASCIMENTO",
+   "sq_candidato": "250001966957",
+   "patrimonio": 0.0,
+   "bens": 0,
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001966957/2024/72737"
+  },
+  {
+   "cargo": "vereadores",
+   "numero": "70555",
+   "nome": "TATU A SEMENTE",
+   "nome_completo": "AILTON NASCIMENTO",
+   "sq_candidato": "250001966962",
+   "patrimonio": 15000.0,
+   "bens": 1,
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001966962/2024/72737"
+  },
+  {
+   "cargo": "vereadores",
+   "numero": "22173",
+   "nome": "ODAIR CORRETOR",
+   "nome_completo": "ADAIL JOSE SILVA",
+   "sq_candidato": "250001963265",
+   "patrimonio": 0.0,
+   "bens": 0,
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001963265/2024/72737"
+  },
+  {
+   "cargo": "vereadores",
+   "numero": "11200",
+   "nome": "MARIA LOIRA",
+   "nome_completo": "MARIA IREMAR SALES GOMES",
+   "sq_candidato": "250001962994",
+   "patrimonio": 578000.0,
+   "bens": 2,
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001962994/2024/72737"
+  },
+  {
+   "cargo": "vereadores",
+   "numero": "36000",
+   "nome": "ANGELITA PAPAGAIO",
+   "nome_completo": "ANGELITA CRISTINA DE OLIVEIRA",
+   "sq_candidato": "250001913496",
+   "patrimonio": 622000.0,
+   "bens": 4,
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001913496/2024/72737"
+  },
+  {
+   "cargo": "vereadores",
+   "numero": "11444",
+   "nome": "SIMONE MANICURE",
+   "nome_completo": "SIMONE DE SOUZA",
+   "sq_candidato": "250001962995",
+   "patrimonio": 23000.0,
+   "bens": 1,
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001962995/2024/72737"
+  },
+  {
+   "cargo": "vereadores",
+   "numero": "36555",
+   "nome": "AGUINALDO SILVA  BOMBEIRO CEGO",
+   "nome_completo": "AGUINALDO DA SILVA BORBA",
+   "sq_candidato": "250001913493",
+   "patrimonio": 0.0,
+   "bens": 0,
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001913493/2024/72737"
+  },
+  {
+   "cargo": "vereadores",
+   "numero": "70124",
+   "nome": "DENIS HORTIFRUTI",
+   "nome_completo": "DENIS SIQUEIRA LINS",
+   "sq_candidato": "250001966961",
+   "patrimonio": 300000.0,
+   "bens": 1,
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001966961/2024/72737"
+  },
+  {
+   "cargo": "vereadores",
+   "numero": "36789",
+   "nome": "LUIZÃO DO TAXI",
+   "nome_completo": "LUIZ ESTEVÃO",
+   "sq_candidato": "250001913494",
+   "patrimonio": 70000.0,
+   "bens": 1,
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001913494/2024/72737"
+  },
+  {
+   "cargo": "vereadores",
+   "numero": "77520",
+   "nome": "ANDRÉ DA RÁDIO",
+   "nome_completo": "ANDRE CRISTIAM SOARES",
+   "sq_candidato": "250001965006",
+   "patrimonio": 0.0,
+   "bens": 0,
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001965006/2024/72737"
+  },
+  {
+   "cargo": "vereadores",
+   "numero": "25120",
+   "nome": "PEZÃO",
+   "nome_completo": "ALEXANDRE DE CAMARGO",
+   "sq_candidato": "250001964586",
+   "patrimonio": 0.0,
+   "bens": 0,
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001964586/2024/72737"
+  },
+  {
+   "cargo": "vereadores",
+   "numero": "77422",
+   "nome": "JOÃO PAULO ARRUDA",
+   "nome_completo": "JOAO PAULO HENRIQUES DE ARRUDA",
+   "sq_candidato": "250001965005",
+   "patrimonio": 1101000.0,
+   "bens": 4,
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001965005/2024/72737"
+  },
+  {
+   "cargo": "vereadores",
+   "numero": "25777",
+   "nome": "EDNA CONSELHEIRA",
+   "nome_completo": "EDNA DE OLIVEIRA COSTA",
+   "sq_candidato": "250001964589",
+   "patrimonio": 0.0,
+   "bens": 0,
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001964589/2024/72737"
+  },
+  {
+   "cargo": "vereadores",
+   "numero": "70777",
+   "nome": "MEL SALES",
+   "nome_completo": "MELISSA STABEL SOUZA SALES",
+   "sq_candidato": "250001966960",
+   "patrimonio": 0.0,
+   "bens": 0,
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001966960/2024/72737"
+  },
+  {
+   "cargo": "vereadores",
+   "numero": "36028",
+   "nome": "RISADINHA",
+   "nome_completo": "JEFFERSON DOS SANTOS ALVES",
+   "sq_candidato": "250001913501",
+   "patrimonio": 0.0,
+   "bens": 0,
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001913501/2024/72737"
+  },
+  {
+   "cargo": "vereadores",
+   "numero": "22458",
+   "nome": "DEBORAH DIAS",
+   "nome_completo": "DEBORAH DE BRITO DIAS",
+   "sq_candidato": "250001963266",
+   "patrimonio": 307500.0,
+   "bens": 4,
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001963266/2024/72737"
+  },
+  {
+   "cargo": "vereadores",
+   "numero": "11222",
+   "nome": "LEVI SANCHES",
+   "nome_completo": "LEVI SANCHES",
+   "sq_candidato": "250001962993",
+   "patrimonio": 515000.0,
+   "bens": 1,
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001962993/2024/72737"
+  },
+  {
+   "cargo": "vereadores",
+   "numero": "70100",
+   "nome": "FELIPE MOTA",
+   "nome_completo": "FELIPE RODRIGUES MOTA",
+   "sq_candidato": "250001966963",
+   "patrimonio": 0.0,
+   "bens": 0,
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001966963/2024/72737"
+  },
+  {
+   "cargo": "vereadores",
+   "numero": "77123",
+   "nome": "CARLINHOS SILVA",
+   "nome_completo": "CARLOS RIBEIRO DA SILVA",
+   "sq_candidato": "250001965007",
+   "patrimonio": 0.0,
+   "bens": 0,
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001965007/2024/72737"
+  },
+  {
+   "cargo": "vereadores",
+   "numero": "25111",
+   "nome": "KÉTI ABREU",
+   "nome_completo": "KETURA FREITAS DE SOUZA",
+   "sq_candidato": "250001964587",
+   "patrimonio": 3113000.0,
+   "bens": 8,
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001964587/2024/72737"
+  },
+  {
+   "cargo": "vereadores",
+   "numero": "77777",
+   "nome": "DANIELA GUSMÃO",
+   "nome_completo": "DANIELA ALMEIDA GUSMÃO ALVES",
+   "sq_candidato": "250001965008",
+   "patrimonio": 11000.0,
+   "bens": 1,
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001965008/2024/72737"
+  },
+  {
+   "cargo": "vereadores",
+   "numero": "70666",
+   "nome": "PRISCILA FREIRE",
+   "nome_completo": "PRISCILA FREIRE MARTINS",
+   "sq_candidato": "250001966954",
+   "patrimonio": 0.0,
+   "bens": 0,
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001966954/2024/72737"
+  },
+  {
+   "cargo": "vereadores",
+   "numero": "36666",
+   "nome": "VANESSA TIMOTHEO",
+   "nome_completo": "VANESSA CRISTINA TIMOTHEO",
+   "sq_candidato": "250001913498",
+   "patrimonio": 14000.0,
+   "bens": 1,
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001913498/2024/72737"
+  },
+  {
+   "cargo": "vereadores",
+   "numero": "70070",
+   "nome": "JORGE DA LOCAÇÃO",
+   "nome_completo": "JORGE PIRES DA SILVA",
+   "sq_candidato": "250001966955",
+   "patrimonio": 145000.0,
+   "bens": 3,
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001966955/2024/72737"
+  },
+  {
+   "cargo": "vereadores",
+   "numero": "25763",
+   "nome": "TATIANE MENTA PIMENTA",
+   "nome_completo": "TATIANE TRIGO MOREIRA SANT ANA LEOCADIO",
+   "sq_candidato": "250001964579",
+   "patrimonio": 1600000.0,
+   "bens": 4,
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001964579/2024/72737"
+  },
+  {
+   "cargo": "vereadores",
+   "numero": "11112",
+   "nome": "BIA AMERICO",
+   "nome_completo": "BEATRIZ AMERICO DA SILVA",
+   "sq_candidato": "250001962984",
+   "patrimonio": 700000.0,
+   "bens": 1,
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001962984/2024/72737"
+  },
+  {
+   "cargo": "vereadores",
+   "numero": "25456",
+   "nome": "FABIANA BIA",
+   "nome_completo": "FABIANA RIBEIRO DE ALMEIDA",
+   "sq_candidato": "250001964588",
+   "patrimonio": 0.0,
+   "bens": 0,
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001964588/2024/72737"
+  },
+  {
+   "cargo": "vereadores",
+   "numero": "70007",
+   "nome": "DENY LIBERATO",
+   "nome_completo": "DENY ROCHA LIBERATO",
+   "sq_candidato": "250001966964",
+   "patrimonio": 15000.0,
+   "bens": 1,
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001966964/2024/72737"
+  },
+  {
+   "cargo": "vereadores",
+   "numero": "36123",
+   "nome": "ALEXANDRE GAMM",
+   "nome_completo": "ALEXANDRE TADEU RIBEIRO",
+   "sq_candidato": "250001913500",
+   "patrimonio": 0.0,
+   "bens": 0,
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001913500/2024/72737"
+  },
+  {
+   "cargo": "vereadores",
+   "numero": "36360",
+   "nome": "LARISSA CAMPOS",
+   "nome_completo": "LARISSA CAMPOS SANTOS",
+   "sq_candidato": "250001913499",
+   "patrimonio": 40000.0,
+   "bens": 1,
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001913499/2024/72737"
+  },
+  {
+   "cargo": "vereadores",
+   "numero": "22300",
+   "nome": "TCHUNAY",
+   "nome_completo": "ELVIS SODRE SOARES",
+   "sq_candidato": "250002021324",
+   "patrimonio": 0.0,
+   "bens": 0,
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250002021324/2024/72737"
+  },
+  {
+   "cargo": "vereadores",
+   "numero": "77011",
+   "nome": "VIVIANE DO MARGARIDA",
+   "nome_completo": "VIVIANE CASSIA DE ALMEIDA",
+   "sq_candidato": "250001965003",
+   "patrimonio": 0.0,
+   "bens": 0,
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001965003/2024/72737"
+  },
+  {
+   "cargo": "vereadores",
+   "numero": "11255",
+   "nome": "TANIA GIROLDO",
+   "nome_completo": "TANIA LUCIA GIROLDO",
+   "sq_candidato": "250001962989",
+   "patrimonio": 820000.0,
+   "bens": 2,
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001962989/2024/72737"
+  },
+  {
+   "cargo": "vereadores",
+   "numero": "70888",
+   "nome": "ELIANA LOPES",
+   "nome_completo": "ELIANA LOPES SILVA",
+   "sq_candidato": "250001966958",
+   "patrimonio": 0.0,
+   "bens": 0,
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001966958/2024/72737"
+  },
+  {
+   "cargo": "vereadores",
+   "numero": "70181",
+   "nome": "ZOPA DO PET",
+   "nome_completo": "MARCELO EGGERT ZOPAZO",
+   "sq_candidato": "250001966953",
+   "patrimonio": 0.0,
+   "bens": 0,
+   "url_tse": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/SP/2045202024/250001966953/2024/72737"
+  }
+ ]
+}

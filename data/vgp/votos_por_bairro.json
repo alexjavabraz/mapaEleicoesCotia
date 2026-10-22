@@ -1,0 +1,7667 @@
+{
+  "CAPELA DE SÃO PEDRO": {
+    "prefeito": [
+      {
+        "nome": "PITER APARECIDO DOS SANTOS",
+        "numero": "20",
+        "votos": 451
+      },
+      {
+        "nome": "LARISSA MAGALHÃES CANAVEZ SANTOS",
+        "numero": "22",
+        "votos": 319
+      },
+      {
+        "nome": "VOTO NULO",
+        "numero": "96",
+        "votos": 29
+      },
+      {
+        "nome": "VOTO BRANCO",
+        "numero": "95",
+        "votos": 21
+      },
+      {
+        "nome": "LEONARDO AUGUSTO ZAMPIERI",
+        "numero": "50",
+        "votos": 13
+      }
+    ],
+    "vereadores": [
+      {
+        "nome": "SIDNEY DOS SANTOS",
+        "numero": "20655",
+        "votos": 133
+      },
+      {
+        "nome": "ANTONIO MAURO DE SOUZA FILHO",
+        "numero": "22630",
+        "votos": 71
+      },
+      {
+        "nome": "FERNANDO FERREIRA DA SILVA",
+        "numero": "44999",
+        "votos": 44
+      },
+      {
+        "nome": "LUCIMAR MARQUES MOREIRA",
+        "numero": "22123",
+        "votos": 37
+      },
+      {
+        "nome": "ERITON BEZERRA GOMES",
+        "numero": "20789",
+        "votos": 36
+      },
+      {
+        "nome": "ROBERTA MACIEIRA DE OLIVEIRA",
+        "numero": "15888",
+        "votos": 34
+      },
+      {
+        "nome": "VOTO BRANCO",
+        "numero": "95",
+        "votos": 28
+      },
+      {
+        "nome": "ADEMIR MARTINS SILVA",
+        "numero": "44123",
+        "votos": 25
+      },
+      {
+        "nome": "DEIVIDE DE OLIVEIRA CAMARGO",
+        "numero": "44120",
+        "votos": 24
+      },
+      {
+        "nome": "EDERSON DOS SANTOS ALVES",
+        "numero": "11111",
+        "votos": 22
+      },
+      {
+        "nome": "VOTO NULO",
+        "numero": "96",
+        "votos": 21
+      },
+      {
+        "nome": "VAGUINER DOS SANTOS FARIAS",
+        "numero": "22222",
+        "votos": 21
+      },
+      {
+        "nome": "LUIZ GONZAGA FUSCO",
+        "numero": "20111",
+        "votos": 18
+      },
+      {
+        "nome": "ADEMIR JOSE DE SANTANA",
+        "numero": "11123",
+        "votos": 17
+      },
+      {
+        "nome": "ANTONIO AUGUSTO FARIAS DA SILVA",
+        "numero": "22000",
+        "votos": 16
+      },
+      {
+        "nome": "JOSE FRANCISCO TEIXEIRA",
+        "numero": "15123",
+        "votos": 15
+      },
+      {
+        "nome": "JUSCELINO RALF PEREIRA MAGALHÃES",
+        "numero": "15456",
+        "votos": 15
+      },
+      {
+        "nome": "LUCILENE DE FATIMA ALMEIDA HAVILLA",
+        "numero": "15777",
+        "votos": 15
+      },
+      {
+        "nome": "VILMA VEIGA",
+        "numero": "15555",
+        "votos": 13
+      },
+      {
+        "nome": "RONALDO SILVA DE BRITO",
+        "numero": "25190",
+        "votos": 12
+      },
+      {
+        "nome": "PARTIDO LIBERAL",
+        "numero": "22",
+        "votos": 11
+      },
+      {
+        "nome": "MARCELO TRAJANO DA SILVA",
+        "numero": "25123",
+        "votos": 11
+      },
+      {
+        "nome": "MARCELO LIMA COSTA",
+        "numero": "15789",
+        "votos": 11
+      },
+      {
+        "nome": "ANDRE DE MORAES CHACON",
+        "numero": "15015",
+        "votos": 10
+      },
+      {
+        "nome": "OZIEL DE OLIVEIRA ALVES",
+        "numero": "15000",
+        "votos": 10
+      },
+      {
+        "nome": "PODEMOS",
+        "numero": "20",
+        "votos": 9
+      },
+      {
+        "nome": "EVANDRO LUIZ TEIXEIRA",
+        "numero": "22190",
+        "votos": 9
+      },
+      {
+        "nome": "ROSILANE PYRAMO",
+        "numero": "20222",
+        "votos": 8
+      },
+      {
+        "nome": "DJALMA LIMA DE OLIVEIRA",
+        "numero": "20000",
+        "votos": 8
+      },
+      {
+        "nome": "EDVALDO ANDERSON DINIZ",
+        "numero": "20020",
+        "votos": 8
+      },
+      {
+        "nome": "CLERIO CEZAR BATISTA SENA",
+        "numero": "11100",
+        "votos": 8
+      },
+      {
+        "nome": "JORGE WILSON MIRANDA NICOLAU",
+        "numero": "15043",
+        "votos": 8
+      },
+      {
+        "nome": "RITA DE CASSIA DOS SANTOS ROCKERT",
+        "numero": "36999",
+        "votos": 7
+      },
+      {
+        "nome": "BENEDITO ANTONIO DOMINGUES",
+        "numero": "15611",
+        "votos": 6
+      },
+      {
+        "nome": "WILQUER VELCIR WINCKLER LANGER",
+        "numero": "25025",
+        "votos": 6
+      },
+      {
+        "nome": "JEFFERSON DOS SANTOS ALVES",
+        "numero": "36028",
+        "votos": 5
+      },
+      {
+        "nome": "THAIS PIERROT MARTINS DOS SANTOS",
+        "numero": "50000",
+        "votos": 5
+      },
+      {
+        "nome": "VALMARI PEREIRA DA SILVA",
+        "numero": "44777",
+        "votos": 4
+      },
+      {
+        "nome": "RAFAEL BATISTA PEREIRA",
+        "numero": "11000",
+        "votos": 4
+      },
+      {
+        "nome": "NIVALDO PEIXOTO DA SILVA",
+        "numero": "44444",
+        "votos": 4
+      },
+      {
+        "nome": "MATHEUS VENTURINI LOPES DA SILVA",
+        "numero": "20123",
+        "votos": 4
+      },
+      {
+        "nome": "MARIA APARECIDA DE ANDRADE IROSKI",
+        "numero": "20321",
+        "votos": 4
+      },
+      {
+        "nome": "LINDALVA FERREIRA PONTES",
+        "numero": "44000",
+        "votos": 4
+      },
+      {
+        "nome": "DONIZETE APARECIDO DE JESUS JUNIOR",
+        "numero": "15333",
+        "votos": 4
+      },
+      {
+        "nome": "DEONATO AMARO DA SILVA",
+        "numero": "11234",
+        "votos": 3
+      },
+      {
+        "nome": "RENILSON FERREIRA DO NASCIMENTO",
+        "numero": "77131",
+        "votos": 3
+      },
+      {
+        "nome": "LIVIOMAR ALVES DA ROCHA",
+        "numero": "20220",
+        "votos": 3
+      },
+      {
+        "nome": "DENIS JOSE RODRIGUES DOS SANTOS",
+        "numero": "11777",
+        "votos": 3
+      },
+      {
+        "nome": "GERLANE DOS SANTOS BISPO",
+        "numero": "22400",
+        "votos": 3
+      },
+      {
+        "nome": "EDNA DE OLIVEIRA COSTA",
+        "numero": "25777",
+        "votos": 3
+      },
+      {
+        "nome": "TIAGO LAGES DA SILVA",
+        "numero": "36333",
+        "votos": 3
+      },
+      {
+        "nome": "CLAUDIA FABIANA BOSCHETTI",
+        "numero": "44400",
+        "votos": 2
+      },
+      {
+        "nome": "WILLIAN SALVETTI NUNES",
+        "numero": "25555",
+        "votos": 2
+      },
+      {
+        "nome": "MILTON RIBEIRO",
+        "numero": "25700",
+        "votos": 2
+      },
+      {
+        "nome": "CLEYTON VIEIRA DE MORAES",
+        "numero": "11011",
+        "votos": 2
+      },
+      {
+        "nome": "VALDEMIRO DIAS DE ALMEIDA",
+        "numero": "36777",
+        "votos": 2
+      },
+      {
+        "nome": "ZENAIDE SILVA ARÃO FREITAS",
+        "numero": "44110",
+        "votos": 2
+      },
+      {
+        "nome": "UNIÃO BRASIL",
+        "numero": "44",
+        "votos": 1
+      },
+      {
+        "nome": "ANDRE CRISTIAM SOARES",
+        "numero": "77520",
+        "votos": 1
+      },
+      {
+        "nome": "EDER DE MORAES PIRES",
+        "numero": "44920",
+        "votos": 1
+      },
+      {
+        "nome": "DILENA FERREIRA DE LIMA",
+        "numero": "15111",
+        "votos": 1
+      },
+      {
+        "nome": "ELIANA LOPES SILVA",
+        "numero": "70888",
+        "votos": 1
+      },
+      {
+        "nome": "PROGRESSISTAS",
+        "numero": "11",
+        "votos": 1
+      },
+      {
+        "nome": "MOVIMENTO DEMOCRÁTICO BRASILEIRO",
+        "numero": "15",
+        "votos": 1
+      },
+      {
+        "nome": "AVANTE",
+        "numero": "70",
+        "votos": 1
+      },
+      {
+        "nome": "SAMUEL GONÇALVES DOS SANTOS",
+        "numero": "70000",
+        "votos": 1
+      },
+      {
+        "nome": "VANESSA CRISTINA TIMOTHEO",
+        "numero": "36666",
+        "votos": 1
+      },
+      {
+        "nome": "AGUINALDO DA SILVA BORBA",
+        "numero": "36555",
+        "votos": 1
+      },
+      {
+        "nome": "MARIA CELIA DOMINGUES",
+        "numero": "20120",
+        "votos": 1
+      },
+      {
+        "nome": "EDSON BILIERI",
+        "numero": "25000",
+        "votos": 1
+      },
+      {
+        "nome": "NEWTON YOSHINOBU OIKAWA",
+        "numero": "70123",
+        "votos": 1
+      },
+      {
+        "nome": "PRISCILA FREIRE MARTINS",
+        "numero": "70666",
+        "votos": 1
+      }
+    ]
+  },
+  "JARDIM EUROPA": {
+    "prefeito": [
+      {
+        "nome": "LARISSA MAGALHÃES CANAVEZ SANTOS",
+        "numero": "22",
+        "votos": 994
+      },
+      {
+        "nome": "PITER APARECIDO DOS SANTOS",
+        "numero": "20",
+        "votos": 825
+      },
+      {
+        "nome": "VOTO NULO",
+        "numero": "96",
+        "votos": 164
+      },
+      {
+        "nome": "VOTO BRANCO",
+        "numero": "95",
+        "votos": 87
+      },
+      {
+        "nome": "LEONARDO AUGUSTO ZAMPIERI",
+        "numero": "50",
+        "votos": 58
+      }
+    ],
+    "vereadores": [
+      {
+        "nome": "EDERSON DOS SANTOS ALVES",
+        "numero": "11111",
+        "votos": 277
+      },
+      {
+        "nome": "VOTO NULO",
+        "numero": "96",
+        "votos": 152
+      },
+      {
+        "nome": "LUCIMAR MARQUES MOREIRA",
+        "numero": "22123",
+        "votos": 120
+      },
+      {
+        "nome": "VOTO BRANCO",
+        "numero": "95",
+        "votos": 103
+      },
+      {
+        "nome": "DJALMA LIMA DE OLIVEIRA",
+        "numero": "20000",
+        "votos": 85
+      },
+      {
+        "nome": "JOSE FRANCISCO TEIXEIRA",
+        "numero": "15123",
+        "votos": 77
+      },
+      {
+        "nome": "MARCELO LIMA COSTA",
+        "numero": "15789",
+        "votos": 63
+      },
+      {
+        "nome": "MARCELO TRAJANO DA SILVA",
+        "numero": "25123",
+        "votos": 62
+      },
+      {
+        "nome": "MARIA APARECIDA DE ANDRADE IROSKI",
+        "numero": "20321",
+        "votos": 57
+      },
+      {
+        "nome": "PARTIDO LIBERAL",
+        "numero": "22",
+        "votos": 56
+      },
+      {
+        "nome": "EVANDRO LUIZ TEIXEIRA",
+        "numero": "22190",
+        "votos": 52
+      },
+      {
+        "nome": "FERNANDO FERREIRA DA SILVA",
+        "numero": "44999",
+        "votos": 50
+      },
+      {
+        "nome": "ANTONIO MAURO DE SOUZA FILHO",
+        "numero": "22630",
+        "votos": 50
+      },
+      {
+        "nome": "ADEMIR JOSE DE SANTANA",
+        "numero": "11123",
+        "votos": 49
+      },
+      {
+        "nome": "CLERIO CEZAR BATISTA SENA",
+        "numero": "11100",
+        "votos": 41
+      },
+      {
+        "nome": "LUCILENE DE FATIMA ALMEIDA HAVILLA",
+        "numero": "15777",
+        "votos": 39
+      },
+      {
+        "nome": "SIDNEY DOS SANTOS",
+        "numero": "20655",
+        "votos": 35
+      },
+      {
+        "nome": "ADEMIR MARTINS SILVA",
+        "numero": "44123",
+        "votos": 34
+      },
+      {
+        "nome": "RONALDO SILVA DE BRITO",
+        "numero": "25190",
+        "votos": 31
+      },
+      {
+        "nome": "DONIZETE APARECIDO DE JESUS JUNIOR",
+        "numero": "15333",
+        "votos": 30
+      },
+      {
+        "nome": "CIBELLE ZINOBILE FRANCO",
+        "numero": "22022",
+        "votos": 29
+      },
+      {
+        "nome": "THAIS PIERROT MARTINS DOS SANTOS",
+        "numero": "50000",
+        "votos": 27
+      },
+      {
+        "nome": "ZULEIDE NASCIMENTO PEREIRA",
+        "numero": "20200",
+        "votos": 26
+      },
+      {
+        "nome": "NEWTON YOSHINOBU OIKAWA",
+        "numero": "70123",
+        "votos": 25
+      },
+      {
+        "nome": "RICARDO ROGGIERI",
+        "numero": "44222",
+        "votos": 24
+      },
+      {
+        "nome": "VAGUINER DOS SANTOS FARIAS",
+        "numero": "22222",
+        "votos": 23
+      },
+      {
+        "nome": "ROBERTA MACIEIRA DE OLIVEIRA",
+        "numero": "15888",
+        "votos": 22
+      },
+      {
+        "nome": "VILMA VEIGA",
+        "numero": "15555",
+        "votos": 22
+      },
+      {
+        "nome": "CLEYTON VIEIRA DE MORAES",
+        "numero": "11011",
+        "votos": 20
+      },
+      {
+        "nome": "JORGE WILSON MIRANDA NICOLAU",
+        "numero": "15043",
+        "votos": 20
+      },
+      {
+        "nome": "WILLIAN SALVETTI NUNES",
+        "numero": "25555",
+        "votos": 20
+      },
+      {
+        "nome": "ROSILANE PYRAMO",
+        "numero": "20222",
+        "votos": 19
+      },
+      {
+        "nome": "DILENA FERREIRA DE LIMA",
+        "numero": "15111",
+        "votos": 18
+      },
+      {
+        "nome": "DENIS SIQUEIRA LINS",
+        "numero": "70124",
+        "votos": 17
+      },
+      {
+        "nome": "ERITON BEZERRA GOMES",
+        "numero": "20789",
+        "votos": 17
+      },
+      {
+        "nome": "MILTON RIBEIRO",
+        "numero": "25700",
+        "votos": 17
+      },
+      {
+        "nome": "VALDEMIRO DIAS DE ALMEIDA",
+        "numero": "36777",
+        "votos": 15
+      },
+      {
+        "nome": "VALMARI PEREIRA DA SILVA",
+        "numero": "44777",
+        "votos": 13
+      },
+      {
+        "nome": "CLAUDIA FABIANA BOSCHETTI",
+        "numero": "44400",
+        "votos": 13
+      },
+      {
+        "nome": "EDER DE MORAES PIRES",
+        "numero": "44920",
+        "votos": 13
+      },
+      {
+        "nome": "NIVALDO PEIXOTO DA SILVA",
+        "numero": "44444",
+        "votos": 13
+      },
+      {
+        "nome": "PODEMOS",
+        "numero": "20",
+        "votos": 12
+      },
+      {
+        "nome": "TATIANA VALE LAROCA",
+        "numero": "22330",
+        "votos": 11
+      },
+      {
+        "nome": "ANDRE CRISTIAM SOARES",
+        "numero": "77520",
+        "votos": 10
+      },
+      {
+        "nome": "JOAO PAULO HENRIQUES DE ARRUDA",
+        "numero": "77422",
+        "votos": 9
+      },
+      {
+        "nome": "GENIVAL ALMEIDA DA SILVA",
+        "numero": "20234",
+        "votos": 9
+      },
+      {
+        "nome": "PARTIDO SOCIALISMO E LIBERDADE",
+        "numero": "50",
+        "votos": 8
+      },
+      {
+        "nome": "LIVIOMAR ALVES DA ROCHA",
+        "numero": "20220",
+        "votos": 8
+      },
+      {
+        "nome": "RENILSON FERREIRA DO NASCIMENTO",
+        "numero": "77131",
+        "votos": 8
+      },
+      {
+        "nome": "BENEDITO ANTONIO DOMINGUES",
+        "numero": "15611",
+        "votos": 8
+      },
+      {
+        "nome": "RAFAEL BATISTA PEREIRA",
+        "numero": "11000",
+        "votos": 7
+      },
+      {
+        "nome": "DENIS JOSE RODRIGUES DOS SANTOS",
+        "numero": "11777",
+        "votos": 7
+      },
+      {
+        "nome": "MATHEUS VENTURINI LOPES DA SILVA",
+        "numero": "20123",
+        "votos": 7
+      },
+      {
+        "nome": "KETURA FREITAS DE SOUZA",
+        "numero": "25111",
+        "votos": 7
+      },
+      {
+        "nome": "ANTONIO AUGUSTO FARIAS DA SILVA",
+        "numero": "22000",
+        "votos": 6
+      },
+      {
+        "nome": "PROGRESSISTAS",
+        "numero": "11",
+        "votos": 6
+      },
+      {
+        "nome": "RITA DE CASSIA DOS SANTOS ROCKERT",
+        "numero": "36999",
+        "votos": 6
+      },
+      {
+        "nome": "ANGELITA CRISTINA DE OLIVEIRA",
+        "numero": "36000",
+        "votos": 6
+      },
+      {
+        "nome": "OZIEL DE OLIVEIRA ALVES",
+        "numero": "15000",
+        "votos": 5
+      },
+      {
+        "nome": "ANA MARIA PASSARETTI LANG",
+        "numero": "44001",
+        "votos": 5
+      },
+      {
+        "nome": "PATRICK ALEXANDRE LESSA SILVA",
+        "numero": "22442",
+        "votos": 5
+      },
+      {
+        "nome": "DEIVIDE DE OLIVEIRA CAMARGO",
+        "numero": "44120",
+        "votos": 5
+      },
+      {
+        "nome": "JUSCELINO RALF PEREIRA MAGALHÃES",
+        "numero": "15456",
+        "votos": 5
+      },
+      {
+        "nome": "TATIANE TRIGO MOREIRA SANT ANA LEOCADIO",
+        "numero": "25763",
+        "votos": 5
+      },
+      {
+        "nome": "SIMONE DE SOUZA",
+        "numero": "11444",
+        "votos": 5
+      },
+      {
+        "nome": "AILTON NASCIMENTO",
+        "numero": "70555",
+        "votos": 5
+      },
+      {
+        "nome": "WILQUER VELCIR WINCKLER LANGER",
+        "numero": "25025",
+        "votos": 4
+      },
+      {
+        "nome": "ANDRE DE MORAES CHACON",
+        "numero": "15015",
+        "votos": 4
+      },
+      {
+        "nome": "FELIPE RODRIGUES MOTA",
+        "numero": "70100",
+        "votos": 4
+      },
+      {
+        "nome": "LUIZ GONZAGA FUSCO",
+        "numero": "20111",
+        "votos": 4
+      },
+      {
+        "nome": "PARTIDO RENOVAÇÃO DEMOCRÁTICA",
+        "numero": "25",
+        "votos": 4
+      },
+      {
+        "nome": "ADAIL JOSE SILVA",
+        "numero": "22173",
+        "votos": 4
+      },
+      {
+        "nome": "MARIA IREMAR SALES GOMES",
+        "numero": "11200",
+        "votos": 4
+      },
+      {
+        "nome": "MOVIMENTO DEMOCRÁTICO BRASILEIRO",
+        "numero": "15",
+        "votos": 4
+      },
+      {
+        "nome": "CÍCERO MARTINS",
+        "numero": "36036",
+        "votos": 4
+      },
+      {
+        "nome": "DEONATO AMARO DA SILVA",
+        "numero": "11234",
+        "votos": 3
+      },
+      {
+        "nome": "TIAGO LAGES DA SILVA",
+        "numero": "36333",
+        "votos": 3
+      },
+      {
+        "nome": "MARIA CELIA DOMINGUES",
+        "numero": "20120",
+        "votos": 3
+      },
+      {
+        "nome": "PRISCILA FREIRE MARTINS",
+        "numero": "70666",
+        "votos": 2
+      },
+      {
+        "nome": "ALEXANDRE DE CAMARGO",
+        "numero": "25120",
+        "votos": 2
+      },
+      {
+        "nome": "LINDALVA FERREIRA PONTES",
+        "numero": "44000",
+        "votos": 2
+      },
+      {
+        "nome": "MELISSA STABEL SOUZA SALES",
+        "numero": "70777",
+        "votos": 2
+      },
+      {
+        "nome": "ALEXANDRE AUGUSTO DE OLIVEIRA",
+        "numero": "77000",
+        "votos": 2
+      },
+      {
+        "nome": "DEBORAH DE BRITO DIAS",
+        "numero": "22458",
+        "votos": 2
+      },
+      {
+        "nome": "EDSON BILIERI",
+        "numero": "25000",
+        "votos": 2
+      },
+      {
+        "nome": "FABIANA RIBEIRO DE ALMEIDA",
+        "numero": "25456",
+        "votos": 2
+      },
+      {
+        "nome": "BEATRIZ AMERICO DA SILVA",
+        "numero": "11112",
+        "votos": 2
+      },
+      {
+        "nome": "LUIZ GUSTAVO DE PAULA MARTINS SILVA",
+        "numero": "44202",
+        "votos": 2
+      },
+      {
+        "nome": "DANIELA ALMEIDA GUSMÃO ALVES",
+        "numero": "77777",
+        "votos": 2
+      },
+      {
+        "nome": "SAMUEL GONÇALVES DOS SANTOS",
+        "numero": "70000",
+        "votos": 2
+      },
+      {
+        "nome": "UNIÃO BRASIL",
+        "numero": "44",
+        "votos": 2
+      },
+      {
+        "nome": "VANESSA CRISTINA TIMOTHEO",
+        "numero": "36666",
+        "votos": 1
+      },
+      {
+        "nome": "SUELENE GONÇALVES DANTAS ROSA DO NASCIMENTO",
+        "numero": "70444",
+        "votos": 1
+      },
+      {
+        "nome": "LEVI SANCHES",
+        "numero": "11222",
+        "votos": 1
+      },
+      {
+        "nome": "GERLANE DOS SANTOS BISPO",
+        "numero": "22400",
+        "votos": 1
+      },
+      {
+        "nome": "AGUINALDO DA SILVA BORBA",
+        "numero": "36555",
+        "votos": 1
+      },
+      {
+        "nome": "CARLOS RIBEIRO DA SILVA",
+        "numero": "77123",
+        "votos": 1
+      }
+    ]
+  },
+  "JARDIM FLORESTA": {
+    "prefeito": [
+      {
+        "nome": "PITER APARECIDO DOS SANTOS",
+        "numero": "20",
+        "votos": 1453
+      },
+      {
+        "nome": "LARISSA MAGALHÃES CANAVEZ SANTOS",
+        "numero": "22",
+        "votos": 1295
+      },
+      {
+        "nome": "VOTO NULO",
+        "numero": "96",
+        "votos": 131
+      },
+      {
+        "nome": "VOTO BRANCO",
+        "numero": "95",
+        "votos": 85
+      },
+      {
+        "nome": "LEONARDO AUGUSTO ZAMPIERI",
+        "numero": "50",
+        "votos": 58
+      }
+    ],
+    "vereadores": [
+      {
+        "nome": "LUCIMAR MARQUES MOREIRA",
+        "numero": "22123",
+        "votos": 288
+      },
+      {
+        "nome": "ANTONIO MAURO DE SOUZA FILHO",
+        "numero": "22630",
+        "votos": 175
+      },
+      {
+        "nome": "VOTO NULO",
+        "numero": "96",
+        "votos": 140
+      },
+      {
+        "nome": "MARCELO LIMA COSTA",
+        "numero": "15789",
+        "votos": 129
+      },
+      {
+        "nome": "ADEMIR JOSE DE SANTANA",
+        "numero": "11123",
+        "votos": 124
+      },
+      {
+        "nome": "VOTO BRANCO",
+        "numero": "95",
+        "votos": 118
+      },
+      {
+        "nome": "EDERSON DOS SANTOS ALVES",
+        "numero": "11111",
+        "votos": 103
+      },
+      {
+        "nome": "FERNANDO FERREIRA DA SILVA",
+        "numero": "44999",
+        "votos": 95
+      },
+      {
+        "nome": "SIDNEY DOS SANTOS",
+        "numero": "20655",
+        "votos": 88
+      },
+      {
+        "nome": "ERITON BEZERRA GOMES",
+        "numero": "20789",
+        "votos": 79
+      },
+      {
+        "nome": "ROSILANE PYRAMO",
+        "numero": "20222",
+        "votos": 74
+      },
+      {
+        "nome": "ADEMIR MARTINS SILVA",
+        "numero": "44123",
+        "votos": 71
+      },
+      {
+        "nome": "MARIA APARECIDA DE ANDRADE IROSKI",
+        "numero": "20321",
+        "votos": 67
+      },
+      {
+        "nome": "CIBELLE ZINOBILE FRANCO",
+        "numero": "22022",
+        "votos": 62
+      },
+      {
+        "nome": "LUCILENE DE FATIMA ALMEIDA HAVILLA",
+        "numero": "15777",
+        "votos": 62
+      },
+      {
+        "nome": "PARTIDO LIBERAL",
+        "numero": "22",
+        "votos": 60
+      },
+      {
+        "nome": "JOSE FRANCISCO TEIXEIRA",
+        "numero": "15123",
+        "votos": 57
+      },
+      {
+        "nome": "MATHEUS VENTURINI LOPES DA SILVA",
+        "numero": "20123",
+        "votos": 56
+      },
+      {
+        "nome": "CLERIO CEZAR BATISTA SENA",
+        "numero": "11100",
+        "votos": 55
+      },
+      {
+        "nome": "MARCELO TRAJANO DA SILVA",
+        "numero": "25123",
+        "votos": 54
+      },
+      {
+        "nome": "JORGE WILSON MIRANDA NICOLAU",
+        "numero": "15043",
+        "votos": 45
+      },
+      {
+        "nome": "DJALMA LIMA DE OLIVEIRA",
+        "numero": "20000",
+        "votos": 45
+      },
+      {
+        "nome": "VAGUINER DOS SANTOS FARIAS",
+        "numero": "22222",
+        "votos": 45
+      },
+      {
+        "nome": "WILLIAN SALVETTI NUNES",
+        "numero": "25555",
+        "votos": 42
+      },
+      {
+        "nome": "CÍCERO MARTINS",
+        "numero": "36036",
+        "votos": 39
+      },
+      {
+        "nome": "EVANDRO LUIZ TEIXEIRA",
+        "numero": "22190",
+        "votos": 38
+      },
+      {
+        "nome": "EDER DE MORAES PIRES",
+        "numero": "44920",
+        "votos": 37
+      },
+      {
+        "nome": "ROBERTA MACIEIRA DE OLIVEIRA",
+        "numero": "15888",
+        "votos": 36
+      },
+      {
+        "nome": "BENEDITO ANTONIO DOMINGUES",
+        "numero": "15611",
+        "votos": 34
+      },
+      {
+        "nome": "PODEMOS",
+        "numero": "20",
+        "votos": 29
+      },
+      {
+        "nome": "DONIZETE APARECIDO DE JESUS JUNIOR",
+        "numero": "15333",
+        "votos": 28
+      },
+      {
+        "nome": "CLAUDIA FABIANA BOSCHETTI",
+        "numero": "44400",
+        "votos": 26
+      },
+      {
+        "nome": "VILMA VEIGA",
+        "numero": "15555",
+        "votos": 26
+      },
+      {
+        "nome": "DENIS JOSE RODRIGUES DOS SANTOS",
+        "numero": "11777",
+        "votos": 25
+      },
+      {
+        "nome": "VALMARI PEREIRA DA SILVA",
+        "numero": "44777",
+        "votos": 23
+      },
+      {
+        "nome": "THAIS PIERROT MARTINS DOS SANTOS",
+        "numero": "50000",
+        "votos": 22
+      },
+      {
+        "nome": "TATIANA VALE LAROCA",
+        "numero": "22330",
+        "votos": 21
+      },
+      {
+        "nome": "RONALDO SILVA DE BRITO",
+        "numero": "25190",
+        "votos": 19
+      },
+      {
+        "nome": "MILTON RIBEIRO",
+        "numero": "25700",
+        "votos": 18
+      },
+      {
+        "nome": "ANGELITA CRISTINA DE OLIVEIRA",
+        "numero": "36000",
+        "votos": 18
+      },
+      {
+        "nome": "MARIA CELIA DOMINGUES",
+        "numero": "20120",
+        "votos": 18
+      },
+      {
+        "nome": "CLEYTON VIEIRA DE MORAES",
+        "numero": "11011",
+        "votos": 17
+      },
+      {
+        "nome": "ANDRE DE MORAES CHACON",
+        "numero": "15015",
+        "votos": 17
+      },
+      {
+        "nome": "LUIZ ESTEVÃO",
+        "numero": "36789",
+        "votos": 16
+      },
+      {
+        "nome": "GENIVAL ALMEIDA DA SILVA",
+        "numero": "20234",
+        "votos": 16
+      },
+      {
+        "nome": "ALEXANDRE AUGUSTO DE OLIVEIRA",
+        "numero": "77000",
+        "votos": 16
+      },
+      {
+        "nome": "OZIEL DE OLIVEIRA ALVES",
+        "numero": "15000",
+        "votos": 16
+      },
+      {
+        "nome": "AILTON NASCIMENTO",
+        "numero": "70555",
+        "votos": 15
+      },
+      {
+        "nome": "NEWTON YOSHINOBU OIKAWA",
+        "numero": "70123",
+        "votos": 15
+      },
+      {
+        "nome": "JOAO PAULO HENRIQUES DE ARRUDA",
+        "numero": "77422",
+        "votos": 14
+      },
+      {
+        "nome": "WILQUER VELCIR WINCKLER LANGER",
+        "numero": "25025",
+        "votos": 14
+      },
+      {
+        "nome": "EDVALDO ANDERSON DINIZ",
+        "numero": "20020",
+        "votos": 14
+      },
+      {
+        "nome": "RITA DE CASSIA DOS SANTOS ROCKERT",
+        "numero": "36999",
+        "votos": 12
+      },
+      {
+        "nome": "ANTONIO AUGUSTO FARIAS DA SILVA",
+        "numero": "22000",
+        "votos": 11
+      },
+      {
+        "nome": "AGUINALDO DA SILVA BORBA",
+        "numero": "36555",
+        "votos": 10
+      },
+      {
+        "nome": "VALDEMIRO DIAS DE ALMEIDA",
+        "numero": "36777",
+        "votos": 10
+      },
+      {
+        "nome": "ANA MARIA PASSARETTI LANG",
+        "numero": "44001",
+        "votos": 10
+      },
+      {
+        "nome": "VANESSA CRISTINA TIMOTHEO",
+        "numero": "36666",
+        "votos": 9
+      },
+      {
+        "nome": "JUSCELINO RALF PEREIRA MAGALHÃES",
+        "numero": "15456",
+        "votos": 9
+      },
+      {
+        "nome": "DENIS SIQUEIRA LINS",
+        "numero": "70124",
+        "votos": 8
+      },
+      {
+        "nome": "DILENA FERREIRA DE LIMA",
+        "numero": "15111",
+        "votos": 8
+      },
+      {
+        "nome": "MELISSA STABEL SOUZA SALES",
+        "numero": "70777",
+        "votos": 8
+      },
+      {
+        "nome": "PARTIDO SOCIALISMO E LIBERDADE",
+        "numero": "50",
+        "votos": 8
+      },
+      {
+        "nome": "ZULEIDE NASCIMENTO PEREIRA",
+        "numero": "20200",
+        "votos": 8
+      },
+      {
+        "nome": "PATRICK ALEXANDRE LESSA SILVA",
+        "numero": "22442",
+        "votos": 7
+      },
+      {
+        "nome": "RAFAEL BATISTA PEREIRA",
+        "numero": "11000",
+        "votos": 7
+      },
+      {
+        "nome": "RENILSON FERREIRA DO NASCIMENTO",
+        "numero": "77131",
+        "votos": 7
+      },
+      {
+        "nome": "GERLANE DOS SANTOS BISPO",
+        "numero": "22400",
+        "votos": 6
+      },
+      {
+        "nome": "LUIZ GONZAGA FUSCO",
+        "numero": "20111",
+        "votos": 6
+      },
+      {
+        "nome": "DEONATO AMARO DA SILVA",
+        "numero": "11234",
+        "votos": 6
+      },
+      {
+        "nome": "MOVIMENTO DEMOCRÁTICO BRASILEIRO",
+        "numero": "15",
+        "votos": 6
+      },
+      {
+        "nome": "LINDALVA FERREIRA PONTES",
+        "numero": "44000",
+        "votos": 6
+      },
+      {
+        "nome": "EDSON BILIERI",
+        "numero": "25000",
+        "votos": 6
+      },
+      {
+        "nome": "RICARDO ROGGIERI",
+        "numero": "44222",
+        "votos": 6
+      },
+      {
+        "nome": "ADAIL JOSE SILVA",
+        "numero": "22173",
+        "votos": 5
+      },
+      {
+        "nome": "SIMONE DE SOUZA",
+        "numero": "11444",
+        "votos": 5
+      },
+      {
+        "nome": "NIVALDO PEIXOTO DA SILVA",
+        "numero": "44444",
+        "votos": 5
+      },
+      {
+        "nome": "PRISCILA FREIRE MARTINS",
+        "numero": "70666",
+        "votos": 5
+      },
+      {
+        "nome": "FELIPE RODRIGUES MOTA",
+        "numero": "70100",
+        "votos": 5
+      },
+      {
+        "nome": "LIVIOMAR ALVES DA ROCHA",
+        "numero": "20220",
+        "votos": 4
+      },
+      {
+        "nome": "DENY ROCHA LIBERATO",
+        "numero": "70007",
+        "votos": 4
+      },
+      {
+        "nome": "LUIZ GUSTAVO DE PAULA MARTINS SILVA",
+        "numero": "44202",
+        "votos": 4
+      },
+      {
+        "nome": "ELIANA LOPES SILVA",
+        "numero": "70888",
+        "votos": 4
+      },
+      {
+        "nome": "BEATRIZ AMERICO DA SILVA",
+        "numero": "11112",
+        "votos": 3
+      },
+      {
+        "nome": "JEFFERSON DOS SANTOS ALVES",
+        "numero": "36028",
+        "votos": 3
+      },
+      {
+        "nome": "EDNA DE OLIVEIRA COSTA",
+        "numero": "25777",
+        "votos": 3
+      },
+      {
+        "nome": "SAMUEL GONÇALVES DOS SANTOS",
+        "numero": "70000",
+        "votos": 3
+      },
+      {
+        "nome": "TIAGO LAGES DA SILVA",
+        "numero": "36333",
+        "votos": 3
+      },
+      {
+        "nome": "KETURA FREITAS DE SOUZA",
+        "numero": "25111",
+        "votos": 3
+      },
+      {
+        "nome": "ALEXANDRE DE CAMARGO",
+        "numero": "25120",
+        "votos": 3
+      },
+      {
+        "nome": "JORGE PIRES DA SILVA",
+        "numero": "70070",
+        "votos": 2
+      },
+      {
+        "nome": "ZENAIDE SILVA ARÃO FREITAS",
+        "numero": "44110",
+        "votos": 2
+      },
+      {
+        "nome": "ALEXANDRE TADEU RIBEIRO",
+        "numero": "36123",
+        "votos": 2
+      },
+      {
+        "nome": "UNIÃO BRASIL",
+        "numero": "44",
+        "votos": 2
+      },
+      {
+        "nome": "DEIVIDE DE OLIVEIRA CAMARGO",
+        "numero": "44120",
+        "votos": 2
+      },
+      {
+        "nome": "MARIA IREMAR SALES GOMES",
+        "numero": "11200",
+        "votos": 2
+      },
+      {
+        "nome": "LEVI SANCHES",
+        "numero": "11222",
+        "votos": 2
+      },
+      {
+        "nome": "PROGRESSISTAS",
+        "numero": "11",
+        "votos": 2
+      },
+      {
+        "nome": "TATIANE TRIGO MOREIRA SANT ANA LEOCADIO",
+        "numero": "25763",
+        "votos": 2
+      },
+      {
+        "nome": "FABIANA RIBEIRO DE ALMEIDA",
+        "numero": "25456",
+        "votos": 1
+      },
+      {
+        "nome": "MARCELO EGGERT ZOPAZO",
+        "numero": "70181",
+        "votos": 1
+      },
+      {
+        "nome": "ELVIS SODRE SOARES",
+        "numero": "22300",
+        "votos": 1
+      },
+      {
+        "nome": "LARISSA CAMPOS SANTOS",
+        "numero": "36360",
+        "votos": 1
+      },
+      {
+        "nome": "SOLIDARIEDADE",
+        "numero": "77",
+        "votos": 1
+      },
+      {
+        "nome": "REDE SUSTENTABILIDADE",
+        "numero": "18",
+        "votos": 1
+      },
+      {
+        "nome": "TANIA LUCIA GIROLDO",
+        "numero": "11255",
+        "votos": 1
+      }
+    ]
+  },
+  "JARDIM HERMINIA": {
+    "prefeito": [
+      {
+        "nome": "PITER APARECIDO DOS SANTOS",
+        "numero": "20",
+        "votos": 519
+      },
+      {
+        "nome": "LARISSA MAGALHÃES CANAVEZ SANTOS",
+        "numero": "22",
+        "votos": 331
+      },
+      {
+        "nome": "VOTO NULO",
+        "numero": "96",
+        "votos": 31
+      },
+      {
+        "nome": "VOTO BRANCO",
+        "numero": "95",
+        "votos": 27
+      },
+      {
+        "nome": "LEONARDO AUGUSTO ZAMPIERI",
+        "numero": "50",
+        "votos": 17
+      }
+    ],
+    "vereadores": [
+      {
+        "nome": "ADEMIR MARTINS SILVA",
+        "numero": "44123",
+        "votos": 51
+      },
+      {
+        "nome": "EDERSON DOS SANTOS ALVES",
+        "numero": "11111",
+        "votos": 51
+      },
+      {
+        "nome": "LUCIMAR MARQUES MOREIRA",
+        "numero": "22123",
+        "votos": 47
+      },
+      {
+        "nome": "ANTONIO MAURO DE SOUZA FILHO",
+        "numero": "22630",
+        "votos": 44
+      },
+      {
+        "nome": "SIDNEY DOS SANTOS",
+        "numero": "20655",
+        "votos": 43
+      },
+      {
+        "nome": "FERNANDO FERREIRA DA SILVA",
+        "numero": "44999",
+        "votos": 43
+      },
+      {
+        "nome": "ADEMIR JOSE DE SANTANA",
+        "numero": "11123",
+        "votos": 39
+      },
+      {
+        "nome": "MARCELO LIMA COSTA",
+        "numero": "15789",
+        "votos": 39
+      },
+      {
+        "nome": "VOTO BRANCO",
+        "numero": "95",
+        "votos": 39
+      },
+      {
+        "nome": "ERITON BEZERRA GOMES",
+        "numero": "20789",
+        "votos": 37
+      },
+      {
+        "nome": "VOTO NULO",
+        "numero": "96",
+        "votos": 30
+      },
+      {
+        "nome": "BENEDITO ANTONIO DOMINGUES",
+        "numero": "15611",
+        "votos": 29
+      },
+      {
+        "nome": "JOSE FRANCISCO TEIXEIRA",
+        "numero": "15123",
+        "votos": 28
+      },
+      {
+        "nome": "LUCILENE DE FATIMA ALMEIDA HAVILLA",
+        "numero": "15777",
+        "votos": 21
+      },
+      {
+        "nome": "ROBERTA MACIEIRA DE OLIVEIRA",
+        "numero": "15888",
+        "votos": 19
+      },
+      {
+        "nome": "CLERIO CEZAR BATISTA SENA",
+        "numero": "11100",
+        "votos": 16
+      },
+      {
+        "nome": "MARIA APARECIDA DE ANDRADE IROSKI",
+        "numero": "20321",
+        "votos": 15
+      },
+      {
+        "nome": "MARCELO TRAJANO DA SILVA",
+        "numero": "25123",
+        "votos": 14
+      },
+      {
+        "nome": "DONIZETE APARECIDO DE JESUS JUNIOR",
+        "numero": "15333",
+        "votos": 14
+      },
+      {
+        "nome": "ROSILANE PYRAMO",
+        "numero": "20222",
+        "votos": 13
+      },
+      {
+        "nome": "CIBELLE ZINOBILE FRANCO",
+        "numero": "22022",
+        "votos": 13
+      },
+      {
+        "nome": "EDER DE MORAES PIRES",
+        "numero": "44920",
+        "votos": 12
+      },
+      {
+        "nome": "VILMA VEIGA",
+        "numero": "15555",
+        "votos": 12
+      },
+      {
+        "nome": "VAGUINER DOS SANTOS FARIAS",
+        "numero": "22222",
+        "votos": 11
+      },
+      {
+        "nome": "PODEMOS",
+        "numero": "20",
+        "votos": 11
+      },
+      {
+        "nome": "JORGE WILSON MIRANDA NICOLAU",
+        "numero": "15043",
+        "votos": 10
+      },
+      {
+        "nome": "GENIVAL ALMEIDA DA SILVA",
+        "numero": "20234",
+        "votos": 10
+      },
+      {
+        "nome": "WILLIAN SALVETTI NUNES",
+        "numero": "25555",
+        "votos": 10
+      },
+      {
+        "nome": "PARTIDO LIBERAL",
+        "numero": "22",
+        "votos": 10
+      },
+      {
+        "nome": "VALMARI PEREIRA DA SILVA",
+        "numero": "44777",
+        "votos": 9
+      },
+      {
+        "nome": "DENIS JOSE RODRIGUES DOS SANTOS",
+        "numero": "11777",
+        "votos": 9
+      },
+      {
+        "nome": "OZIEL DE OLIVEIRA ALVES",
+        "numero": "15000",
+        "votos": 8
+      },
+      {
+        "nome": "NEWTON YOSHINOBU OIKAWA",
+        "numero": "70123",
+        "votos": 8
+      },
+      {
+        "nome": "PATRICK ALEXANDRE LESSA SILVA",
+        "numero": "22442",
+        "votos": 7
+      },
+      {
+        "nome": "NIVALDO PEIXOTO DA SILVA",
+        "numero": "44444",
+        "votos": 7
+      },
+      {
+        "nome": "TIAGO LAGES DA SILVA",
+        "numero": "36333",
+        "votos": 6
+      },
+      {
+        "nome": "CLAUDIA FABIANA BOSCHETTI",
+        "numero": "44400",
+        "votos": 6
+      },
+      {
+        "nome": "MATHEUS VENTURINI LOPES DA SILVA",
+        "numero": "20123",
+        "votos": 6
+      },
+      {
+        "nome": "THAIS PIERROT MARTINS DOS SANTOS",
+        "numero": "50000",
+        "votos": 5
+      },
+      {
+        "nome": "RAFAEL BATISTA PEREIRA",
+        "numero": "11000",
+        "votos": 5
+      },
+      {
+        "nome": "ZENAIDE SILVA ARÃO FREITAS",
+        "numero": "44110",
+        "votos": 5
+      },
+      {
+        "nome": "LIVIOMAR ALVES DA ROCHA",
+        "numero": "20220",
+        "votos": 5
+      },
+      {
+        "nome": "ZULEIDE NASCIMENTO PEREIRA",
+        "numero": "20200",
+        "votos": 5
+      },
+      {
+        "nome": "RENILSON FERREIRA DO NASCIMENTO",
+        "numero": "77131",
+        "votos": 4
+      },
+      {
+        "nome": "ELVIS SODRE SOARES",
+        "numero": "22300",
+        "votos": 4
+      },
+      {
+        "nome": "ANTONIO AUGUSTO FARIAS DA SILVA",
+        "numero": "22000",
+        "votos": 4
+      },
+      {
+        "nome": "EVANDRO LUIZ TEIXEIRA",
+        "numero": "22190",
+        "votos": 4
+      },
+      {
+        "nome": "DJALMA LIMA DE OLIVEIRA",
+        "numero": "20000",
+        "votos": 4
+      },
+      {
+        "nome": "MARIA CELIA DOMINGUES",
+        "numero": "20120",
+        "votos": 4
+      },
+      {
+        "nome": "CÍCERO MARTINS",
+        "numero": "36036",
+        "votos": 4
+      },
+      {
+        "nome": "ANDRE DE MORAES CHACON",
+        "numero": "15015",
+        "votos": 4
+      },
+      {
+        "nome": "JORGE PIRES DA SILVA",
+        "numero": "70070",
+        "votos": 4
+      },
+      {
+        "nome": "VALDEMIRO DIAS DE ALMEIDA",
+        "numero": "36777",
+        "votos": 4
+      },
+      {
+        "nome": "DEIVIDE DE OLIVEIRA CAMARGO",
+        "numero": "44120",
+        "votos": 3
+      },
+      {
+        "nome": "RONALDO SILVA DE BRITO",
+        "numero": "25190",
+        "votos": 3
+      },
+      {
+        "nome": "CLEYTON VIEIRA DE MORAES",
+        "numero": "11011",
+        "votos": 3
+      },
+      {
+        "nome": "MELISSA STABEL SOUZA SALES",
+        "numero": "70777",
+        "votos": 3
+      },
+      {
+        "nome": "TATIANA VALE LAROCA",
+        "numero": "22330",
+        "votos": 3
+      },
+      {
+        "nome": "EDSON BILIERI",
+        "numero": "25000",
+        "votos": 3
+      },
+      {
+        "nome": "EDNA DE OLIVEIRA COSTA",
+        "numero": "25777",
+        "votos": 3
+      },
+      {
+        "nome": "PROGRESSISTAS",
+        "numero": "11",
+        "votos": 3
+      },
+      {
+        "nome": "JEFFERSON DOS SANTOS ALVES",
+        "numero": "36028",
+        "votos": 2
+      },
+      {
+        "nome": "AILTON NASCIMENTO",
+        "numero": "70555",
+        "votos": 2
+      },
+      {
+        "nome": "DILENA FERREIRA DE LIMA",
+        "numero": "15111",
+        "votos": 2
+      },
+      {
+        "nome": "WILQUER VELCIR WINCKLER LANGER",
+        "numero": "25025",
+        "votos": 2
+      },
+      {
+        "nome": "DENY ROCHA LIBERATO",
+        "numero": "70007",
+        "votos": 2
+      },
+      {
+        "nome": "LUIZ ESTEVÃO",
+        "numero": "36789",
+        "votos": 2
+      },
+      {
+        "nome": "LUIZ GONZAGA FUSCO",
+        "numero": "20111",
+        "votos": 2
+      },
+      {
+        "nome": "JUSCELINO RALF PEREIRA MAGALHÃES",
+        "numero": "15456",
+        "votos": 2
+      },
+      {
+        "nome": "SAMUEL GONÇALVES DOS SANTOS",
+        "numero": "70000",
+        "votos": 2
+      },
+      {
+        "nome": "AGUINALDO DA SILVA BORBA",
+        "numero": "36555",
+        "votos": 2
+      },
+      {
+        "nome": "CARLOS RIBEIRO DA SILVA",
+        "numero": "77123",
+        "votos": 2
+      },
+      {
+        "nome": "MARIA IREMAR SALES GOMES",
+        "numero": "11200",
+        "votos": 1
+      },
+      {
+        "nome": "DEONATO AMARO DA SILVA",
+        "numero": "11234",
+        "votos": 1
+      },
+      {
+        "nome": "EDVALDO ANDERSON DINIZ",
+        "numero": "20020",
+        "votos": 1
+      },
+      {
+        "nome": "ANGELITA CRISTINA DE OLIVEIRA",
+        "numero": "36000",
+        "votos": 1
+      },
+      {
+        "nome": "DANIELA ALMEIDA GUSMÃO ALVES",
+        "numero": "77777",
+        "votos": 1
+      },
+      {
+        "nome": "JOAO PAULO HENRIQUES DE ARRUDA",
+        "numero": "77422",
+        "votos": 1
+      },
+      {
+        "nome": "VANESSA CRISTINA TIMOTHEO",
+        "numero": "36666",
+        "votos": 1
+      },
+      {
+        "nome": "DENIS SIQUEIRA LINS",
+        "numero": "70124",
+        "votos": 1
+      },
+      {
+        "nome": "LINDALVA FERREIRA PONTES",
+        "numero": "44000",
+        "votos": 1
+      },
+      {
+        "nome": "LEVI SANCHES",
+        "numero": "11222",
+        "votos": 1
+      },
+      {
+        "nome": "RITA DE CASSIA DOS SANTOS ROCKERT",
+        "numero": "36999",
+        "votos": 1
+      },
+      {
+        "nome": "SOLIDARIEDADE",
+        "numero": "77",
+        "votos": 1
+      },
+      {
+        "nome": "MOVIMENTO DEMOCRÁTICO BRASILEIRO",
+        "numero": "15",
+        "votos": 1
+      },
+      {
+        "nome": "SIMONE DE SOUZA",
+        "numero": "11444",
+        "votos": 1
+      },
+      {
+        "nome": "UNIÃO BRASIL",
+        "numero": "44",
+        "votos": 1
+      },
+      {
+        "nome": "PARTIDO SOCIALISMO E LIBERDADE",
+        "numero": "50",
+        "votos": 1
+      },
+      {
+        "nome": "MILTON RIBEIRO",
+        "numero": "25700",
+        "votos": 1
+      }
+    ]
+  },
+  "JARDIM MARGARIDA": {
+    "prefeito": [
+      {
+        "nome": "PITER APARECIDO DOS SANTOS",
+        "numero": "20",
+        "votos": 984
+      },
+      {
+        "nome": "LARISSA MAGALHÃES CANAVEZ SANTOS",
+        "numero": "22",
+        "votos": 741
+      },
+      {
+        "nome": "VOTO BRANCO",
+        "numero": "95",
+        "votos": 74
+      },
+      {
+        "nome": "VOTO NULO",
+        "numero": "96",
+        "votos": 66
+      },
+      {
+        "nome": "LEONARDO AUGUSTO ZAMPIERI",
+        "numero": "50",
+        "votos": 39
+      }
+    ],
+    "vereadores": [
+      {
+        "nome": "MARCELO LIMA COSTA",
+        "numero": "15789",
+        "votos": 171
+      },
+      {
+        "nome": "CLERIO CEZAR BATISTA SENA",
+        "numero": "11100",
+        "votos": 111
+      },
+      {
+        "nome": "LUCIMAR MARQUES MOREIRA",
+        "numero": "22123",
+        "votos": 100
+      },
+      {
+        "nome": "VOTO BRANCO",
+        "numero": "95",
+        "votos": 87
+      },
+      {
+        "nome": "FERNANDO FERREIRA DA SILVA",
+        "numero": "44999",
+        "votos": 63
+      },
+      {
+        "nome": "EDERSON DOS SANTOS ALVES",
+        "numero": "11111",
+        "votos": 62
+      },
+      {
+        "nome": "ADEMIR JOSE DE SANTANA",
+        "numero": "11123",
+        "votos": 58
+      },
+      {
+        "nome": "VOTO NULO",
+        "numero": "96",
+        "votos": 54
+      },
+      {
+        "nome": "ERITON BEZERRA GOMES",
+        "numero": "20789",
+        "votos": 53
+      },
+      {
+        "nome": "DJALMA LIMA DE OLIVEIRA",
+        "numero": "20000",
+        "votos": 48
+      },
+      {
+        "nome": "JOSE FRANCISCO TEIXEIRA",
+        "numero": "15123",
+        "votos": 48
+      },
+      {
+        "nome": "ANTONIO MAURO DE SOUZA FILHO",
+        "numero": "22630",
+        "votos": 46
+      },
+      {
+        "nome": "MARIA APARECIDA DE ANDRADE IROSKI",
+        "numero": "20321",
+        "votos": 42
+      },
+      {
+        "nome": "SIDNEY DOS SANTOS",
+        "numero": "20655",
+        "votos": 39
+      },
+      {
+        "nome": "EVANDRO LUIZ TEIXEIRA",
+        "numero": "22190",
+        "votos": 36
+      },
+      {
+        "nome": "ROBERTA MACIEIRA DE OLIVEIRA",
+        "numero": "15888",
+        "votos": 35
+      },
+      {
+        "nome": "OZIEL DE OLIVEIRA ALVES",
+        "numero": "15000",
+        "votos": 34
+      },
+      {
+        "nome": "ANDRE DE MORAES CHACON",
+        "numero": "15015",
+        "votos": 34
+      },
+      {
+        "nome": "ADEMIR MARTINS SILVA",
+        "numero": "44123",
+        "votos": 31
+      },
+      {
+        "nome": "BENEDITO ANTONIO DOMINGUES",
+        "numero": "15611",
+        "votos": 31
+      },
+      {
+        "nome": "PARTIDO LIBERAL",
+        "numero": "22",
+        "votos": 31
+      },
+      {
+        "nome": "MARCELO TRAJANO DA SILVA",
+        "numero": "25123",
+        "votos": 30
+      },
+      {
+        "nome": "LINDALVA FERREIRA PONTES",
+        "numero": "44000",
+        "votos": 30
+      },
+      {
+        "nome": "ROSILANE PYRAMO",
+        "numero": "20222",
+        "votos": 29
+      },
+      {
+        "nome": "TIAGO LAGES DA SILVA",
+        "numero": "36333",
+        "votos": 27
+      },
+      {
+        "nome": "MILTON RIBEIRO",
+        "numero": "25700",
+        "votos": 25
+      },
+      {
+        "nome": "PODEMOS",
+        "numero": "20",
+        "votos": 25
+      },
+      {
+        "nome": "RONALDO SILVA DE BRITO",
+        "numero": "25190",
+        "votos": 24
+      },
+      {
+        "nome": "LUCILENE DE FATIMA ALMEIDA HAVILLA",
+        "numero": "15777",
+        "votos": 23
+      },
+      {
+        "nome": "THAIS PIERROT MARTINS DOS SANTOS",
+        "numero": "50000",
+        "votos": 22
+      },
+      {
+        "nome": "NEWTON YOSHINOBU OIKAWA",
+        "numero": "70123",
+        "votos": 22
+      },
+      {
+        "nome": "VILMA VEIGA",
+        "numero": "15555",
+        "votos": 22
+      },
+      {
+        "nome": "WILQUER VELCIR WINCKLER LANGER",
+        "numero": "25025",
+        "votos": 19
+      },
+      {
+        "nome": "RENILSON FERREIRA DO NASCIMENTO",
+        "numero": "77131",
+        "votos": 19
+      },
+      {
+        "nome": "MATHEUS VENTURINI LOPES DA SILVA",
+        "numero": "20123",
+        "votos": 19
+      },
+      {
+        "nome": "CIBELLE ZINOBILE FRANCO",
+        "numero": "22022",
+        "votos": 19
+      },
+      {
+        "nome": "CÍCERO MARTINS",
+        "numero": "36036",
+        "votos": 17
+      },
+      {
+        "nome": "CLEYTON VIEIRA DE MORAES",
+        "numero": "11011",
+        "votos": 17
+      },
+      {
+        "nome": "JORGE WILSON MIRANDA NICOLAU",
+        "numero": "15043",
+        "votos": 17
+      },
+      {
+        "nome": "VAGUINER DOS SANTOS FARIAS",
+        "numero": "22222",
+        "votos": 15
+      },
+      {
+        "nome": "CLAUDIA FABIANA BOSCHETTI",
+        "numero": "44400",
+        "votos": 14
+      },
+      {
+        "nome": "VALMARI PEREIRA DA SILVA",
+        "numero": "44777",
+        "votos": 13
+      },
+      {
+        "nome": "WILLIAN SALVETTI NUNES",
+        "numero": "25555",
+        "votos": 12
+      },
+      {
+        "nome": "ANA MARIA PASSARETTI LANG",
+        "numero": "44001",
+        "votos": 11
+      },
+      {
+        "nome": "LUIZ GONZAGA FUSCO",
+        "numero": "20111",
+        "votos": 11
+      },
+      {
+        "nome": "DONIZETE APARECIDO DE JESUS JUNIOR",
+        "numero": "15333",
+        "votos": 10
+      },
+      {
+        "nome": "ALEXANDRE TADEU RIBEIRO",
+        "numero": "36123",
+        "votos": 9
+      },
+      {
+        "nome": "MOVIMENTO DEMOCRÁTICO BRASILEIRO",
+        "numero": "15",
+        "votos": 9
+      },
+      {
+        "nome": "TATIANA VALE LAROCA",
+        "numero": "22330",
+        "votos": 8
+      },
+      {
+        "nome": "GENIVAL ALMEIDA DA SILVA",
+        "numero": "20234",
+        "votos": 8
+      },
+      {
+        "nome": "PATRICK ALEXANDRE LESSA SILVA",
+        "numero": "22442",
+        "votos": 8
+      },
+      {
+        "nome": "ANTONIO AUGUSTO FARIAS DA SILVA",
+        "numero": "22000",
+        "votos": 8
+      },
+      {
+        "nome": "DEONATO AMARO DA SILVA",
+        "numero": "11234",
+        "votos": 8
+      },
+      {
+        "nome": "LIVIOMAR ALVES DA ROCHA",
+        "numero": "20220",
+        "votos": 7
+      },
+      {
+        "nome": "EDER DE MORAES PIRES",
+        "numero": "44920",
+        "votos": 7
+      },
+      {
+        "nome": "ALEXANDRE AUGUSTO DE OLIVEIRA",
+        "numero": "77000",
+        "votos": 7
+      },
+      {
+        "nome": "VIVIANE CASSIA DE ALMEIDA",
+        "numero": "77011",
+        "votos": 7
+      },
+      {
+        "nome": "NIVALDO PEIXOTO DA SILVA",
+        "numero": "44444",
+        "votos": 7
+      },
+      {
+        "nome": "RAFAEL BATISTA PEREIRA",
+        "numero": "11000",
+        "votos": 7
+      },
+      {
+        "nome": "DEIVIDE DE OLIVEIRA CAMARGO",
+        "numero": "44120",
+        "votos": 6
+      },
+      {
+        "nome": "DENIS SIQUEIRA LINS",
+        "numero": "70124",
+        "votos": 5
+      },
+      {
+        "nome": "JUSCELINO RALF PEREIRA MAGALHÃES",
+        "numero": "15456",
+        "votos": 5
+      },
+      {
+        "nome": "MARCELO EGGERT ZOPAZO",
+        "numero": "70181",
+        "votos": 4
+      },
+      {
+        "nome": "DANIELA ALMEIDA GUSMÃO ALVES",
+        "numero": "77777",
+        "votos": 4
+      },
+      {
+        "nome": "SAMUEL GONÇALVES DOS SANTOS",
+        "numero": "70000",
+        "votos": 4
+      },
+      {
+        "nome": "KETURA FREITAS DE SOUZA",
+        "numero": "25111",
+        "votos": 4
+      },
+      {
+        "nome": "EDVALDO ANDERSON DINIZ",
+        "numero": "20020",
+        "votos": 4
+      },
+      {
+        "nome": "PARTIDO SOCIALISMO E LIBERDADE",
+        "numero": "50",
+        "votos": 4
+      },
+      {
+        "nome": "VALDEMIRO DIAS DE ALMEIDA",
+        "numero": "36777",
+        "votos": 4
+      },
+      {
+        "nome": "SIMONE DE SOUZA",
+        "numero": "11444",
+        "votos": 3
+      },
+      {
+        "nome": "ANGELITA CRISTINA DE OLIVEIRA",
+        "numero": "36000",
+        "votos": 3
+      },
+      {
+        "nome": "PROGRESSISTAS",
+        "numero": "11",
+        "votos": 3
+      },
+      {
+        "nome": "EDNA DE OLIVEIRA COSTA",
+        "numero": "25777",
+        "votos": 3
+      },
+      {
+        "nome": "CARLOS RIBEIRO DA SILVA",
+        "numero": "77123",
+        "votos": 3
+      },
+      {
+        "nome": "JORGE PIRES DA SILVA",
+        "numero": "70070",
+        "votos": 3
+      },
+      {
+        "nome": "DENIS JOSE RODRIGUES DOS SANTOS",
+        "numero": "11777",
+        "votos": 3
+      },
+      {
+        "nome": "RICARDO ROGGIERI",
+        "numero": "44222",
+        "votos": 3
+      },
+      {
+        "nome": "GERLANE DOS SANTOS BISPO",
+        "numero": "22400",
+        "votos": 3
+      },
+      {
+        "nome": "LEVI SANCHES",
+        "numero": "11222",
+        "votos": 2
+      },
+      {
+        "nome": "DILENA FERREIRA DE LIMA",
+        "numero": "15111",
+        "votos": 2
+      },
+      {
+        "nome": "SUELENE GONÇALVES DANTAS ROSA DO NASCIMENTO",
+        "numero": "70444",
+        "votos": 2
+      },
+      {
+        "nome": "ADAIL JOSE SILVA",
+        "numero": "22173",
+        "votos": 2
+      },
+      {
+        "nome": "RITA DE CASSIA DOS SANTOS ROCKERT",
+        "numero": "36999",
+        "votos": 2
+      },
+      {
+        "nome": "MARIA CELIA DOMINGUES",
+        "numero": "20120",
+        "votos": 2
+      },
+      {
+        "nome": "AILTON NASCIMENTO",
+        "numero": "70555",
+        "votos": 2
+      },
+      {
+        "nome": "ANDRE CRISTIAM SOARES",
+        "numero": "77520",
+        "votos": 1
+      },
+      {
+        "nome": "JEFFERSON DOS SANTOS ALVES",
+        "numero": "36028",
+        "votos": 1
+      },
+      {
+        "nome": "AGUINALDO DA SILVA BORBA",
+        "numero": "36555",
+        "votos": 1
+      },
+      {
+        "nome": "LARISSA CAMPOS SANTOS",
+        "numero": "36360",
+        "votos": 1
+      },
+      {
+        "nome": "DEBORAH DE BRITO DIAS",
+        "numero": "22458",
+        "votos": 1
+      },
+      {
+        "nome": "LUIZ GUSTAVO DE PAULA MARTINS SILVA",
+        "numero": "44202",
+        "votos": 1
+      },
+      {
+        "nome": "ZULEIDE NASCIMENTO PEREIRA",
+        "numero": "20200",
+        "votos": 1
+      },
+      {
+        "nome": "ALEXANDRE DE CAMARGO",
+        "numero": "25120",
+        "votos": 1
+      },
+      {
+        "nome": "SOLIDARIEDADE",
+        "numero": "77",
+        "votos": 1
+      },
+      {
+        "nome": "AGIR",
+        "numero": "36",
+        "votos": 1
+      },
+      {
+        "nome": "EDSON BILIERI",
+        "numero": "25000",
+        "votos": 1
+      },
+      {
+        "nome": "ZENAIDE SILVA ARÃO FREITAS",
+        "numero": "44110",
+        "votos": 1
+      },
+      {
+        "nome": "LUIZ ESTEVÃO",
+        "numero": "36789",
+        "votos": 1
+      }
+    ]
+  },
+  "JARDIM OLIMPIA": {
+    "prefeito": [
+      {
+        "nome": "PITER APARECIDO DOS SANTOS",
+        "numero": "20",
+        "votos": 1137
+      },
+      {
+        "nome": "LARISSA MAGALHÃES CANAVEZ SANTOS",
+        "numero": "22",
+        "votos": 806
+      },
+      {
+        "nome": "VOTO NULO",
+        "numero": "96",
+        "votos": 84
+      },
+      {
+        "nome": "VOTO BRANCO",
+        "numero": "95",
+        "votos": 69
+      },
+      {
+        "nome": "LEONARDO AUGUSTO ZAMPIERI",
+        "numero": "50",
+        "votos": 30
+      }
+    ],
+    "vereadores": [
+      {
+        "nome": "LUCIMAR MARQUES MOREIRA",
+        "numero": "22123",
+        "votos": 122
+      },
+      {
+        "nome": "ANTONIO MAURO DE SOUZA FILHO",
+        "numero": "22630",
+        "votos": 104
+      },
+      {
+        "nome": "MARCELO LIMA COSTA",
+        "numero": "15789",
+        "votos": 103
+      },
+      {
+        "nome": "SIDNEY DOS SANTOS",
+        "numero": "20655",
+        "votos": 101
+      },
+      {
+        "nome": "ADEMIR JOSE DE SANTANA",
+        "numero": "11123",
+        "votos": 94
+      },
+      {
+        "nome": "VOTO BRANCO",
+        "numero": "95",
+        "votos": 91
+      },
+      {
+        "nome": "ADEMIR MARTINS SILVA",
+        "numero": "44123",
+        "votos": 85
+      },
+      {
+        "nome": "ERITON BEZERRA GOMES",
+        "numero": "20789",
+        "votos": 79
+      },
+      {
+        "nome": "FERNANDO FERREIRA DA SILVA",
+        "numero": "44999",
+        "votos": 77
+      },
+      {
+        "nome": "VOTO NULO",
+        "numero": "96",
+        "votos": 74
+      },
+      {
+        "nome": "EDERSON DOS SANTOS ALVES",
+        "numero": "11111",
+        "votos": 68
+      },
+      {
+        "nome": "JOSE FRANCISCO TEIXEIRA",
+        "numero": "15123",
+        "votos": 53
+      },
+      {
+        "nome": "BENEDITO ANTONIO DOMINGUES",
+        "numero": "15611",
+        "votos": 53
+      },
+      {
+        "nome": "CLERIO CEZAR BATISTA SENA",
+        "numero": "11100",
+        "votos": 48
+      },
+      {
+        "nome": "ROBERTA MACIEIRA DE OLIVEIRA",
+        "numero": "15888",
+        "votos": 40
+      },
+      {
+        "nome": "MARIA APARECIDA DE ANDRADE IROSKI",
+        "numero": "20321",
+        "votos": 40
+      },
+      {
+        "nome": "ROSILANE PYRAMO",
+        "numero": "20222",
+        "votos": 39
+      },
+      {
+        "nome": "PARTIDO LIBERAL",
+        "numero": "22",
+        "votos": 36
+      },
+      {
+        "nome": "PODEMOS",
+        "numero": "20",
+        "votos": 33
+      },
+      {
+        "nome": "JORGE WILSON MIRANDA NICOLAU",
+        "numero": "15043",
+        "votos": 32
+      },
+      {
+        "nome": "MATHEUS VENTURINI LOPES DA SILVA",
+        "numero": "20123",
+        "votos": 32
+      },
+      {
+        "nome": "DENIS JOSE RODRIGUES DOS SANTOS",
+        "numero": "11777",
+        "votos": 31
+      },
+      {
+        "nome": "MARCELO TRAJANO DA SILVA",
+        "numero": "25123",
+        "votos": 30
+      },
+      {
+        "nome": "LUCILENE DE FATIMA ALMEIDA HAVILLA",
+        "numero": "15777",
+        "votos": 29
+      },
+      {
+        "nome": "DJALMA LIMA DE OLIVEIRA",
+        "numero": "20000",
+        "votos": 28
+      },
+      {
+        "nome": "EVANDRO LUIZ TEIXEIRA",
+        "numero": "22190",
+        "votos": 27
+      },
+      {
+        "nome": "CIBELLE ZINOBILE FRANCO",
+        "numero": "22022",
+        "votos": 27
+      },
+      {
+        "nome": "EDVALDO ANDERSON DINIZ",
+        "numero": "20020",
+        "votos": 24
+      },
+      {
+        "nome": "VILMA VEIGA",
+        "numero": "15555",
+        "votos": 23
+      },
+      {
+        "nome": "CLAUDIA FABIANA BOSCHETTI",
+        "numero": "44400",
+        "votos": 21
+      },
+      {
+        "nome": "WILLIAN SALVETTI NUNES",
+        "numero": "25555",
+        "votos": 20
+      },
+      {
+        "nome": "OZIEL DE OLIVEIRA ALVES",
+        "numero": "15000",
+        "votos": 18
+      },
+      {
+        "nome": "MARIA CELIA DOMINGUES",
+        "numero": "20120",
+        "votos": 17
+      },
+      {
+        "nome": "VAGUINER DOS SANTOS FARIAS",
+        "numero": "22222",
+        "votos": 16
+      },
+      {
+        "nome": "EDER DE MORAES PIRES",
+        "numero": "44920",
+        "votos": 16
+      },
+      {
+        "nome": "ZENAIDE SILVA ARÃO FREITAS",
+        "numero": "44110",
+        "votos": 15
+      },
+      {
+        "nome": "ANTONIO AUGUSTO FARIAS DA SILVA",
+        "numero": "22000",
+        "votos": 15
+      },
+      {
+        "nome": "NIVALDO PEIXOTO DA SILVA",
+        "numero": "44444",
+        "votos": 14
+      },
+      {
+        "nome": "DONIZETE APARECIDO DE JESUS JUNIOR",
+        "numero": "15333",
+        "votos": 14
+      },
+      {
+        "nome": "NEWTON YOSHINOBU OIKAWA",
+        "numero": "70123",
+        "votos": 14
+      },
+      {
+        "nome": "PATRICK ALEXANDRE LESSA SILVA",
+        "numero": "22442",
+        "votos": 12
+      },
+      {
+        "nome": "LIVIOMAR ALVES DA ROCHA",
+        "numero": "20220",
+        "votos": 11
+      },
+      {
+        "nome": "RONALDO SILVA DE BRITO",
+        "numero": "25190",
+        "votos": 11
+      },
+      {
+        "nome": "DEIVIDE DE OLIVEIRA CAMARGO",
+        "numero": "44120",
+        "votos": 11
+      },
+      {
+        "nome": "MILTON RIBEIRO",
+        "numero": "25700",
+        "votos": 11
+      },
+      {
+        "nome": "LUIZ GONZAGA FUSCO",
+        "numero": "20111",
+        "votos": 10
+      },
+      {
+        "nome": "TATIANA VALE LAROCA",
+        "numero": "22330",
+        "votos": 10
+      },
+      {
+        "nome": "ANDRE DE MORAES CHACON",
+        "numero": "15015",
+        "votos": 9
+      },
+      {
+        "nome": "CLEYTON VIEIRA DE MORAES",
+        "numero": "11011",
+        "votos": 9
+      },
+      {
+        "nome": "RENILSON FERREIRA DO NASCIMENTO",
+        "numero": "77131",
+        "votos": 9
+      },
+      {
+        "nome": "SAMUEL GONÇALVES DOS SANTOS",
+        "numero": "70000",
+        "votos": 9
+      },
+      {
+        "nome": "JUSCELINO RALF PEREIRA MAGALHÃES",
+        "numero": "15456",
+        "votos": 9
+      },
+      {
+        "nome": "LINDALVA FERREIRA PONTES",
+        "numero": "44000",
+        "votos": 9
+      },
+      {
+        "nome": "RAFAEL BATISTA PEREIRA",
+        "numero": "11000",
+        "votos": 8
+      },
+      {
+        "nome": "VALDEMIRO DIAS DE ALMEIDA",
+        "numero": "36777",
+        "votos": 8
+      },
+      {
+        "nome": "ANA MARIA PASSARETTI LANG",
+        "numero": "44001",
+        "votos": 8
+      },
+      {
+        "nome": "JORGE PIRES DA SILVA",
+        "numero": "70070",
+        "votos": 8
+      },
+      {
+        "nome": "VALMARI PEREIRA DA SILVA",
+        "numero": "44777",
+        "votos": 8
+      },
+      {
+        "nome": "PROGRESSISTAS",
+        "numero": "11",
+        "votos": 8
+      },
+      {
+        "nome": "DEONATO AMARO DA SILVA",
+        "numero": "11234",
+        "votos": 7
+      },
+      {
+        "nome": "THAIS PIERROT MARTINS DOS SANTOS",
+        "numero": "50000",
+        "votos": 7
+      },
+      {
+        "nome": "CÍCERO MARTINS",
+        "numero": "36036",
+        "votos": 7
+      },
+      {
+        "nome": "WILQUER VELCIR WINCKLER LANGER",
+        "numero": "25025",
+        "votos": 7
+      },
+      {
+        "nome": "GENIVAL ALMEIDA DA SILVA",
+        "numero": "20234",
+        "votos": 7
+      },
+      {
+        "nome": "ALEXANDRE DE CAMARGO",
+        "numero": "25120",
+        "votos": 6
+      },
+      {
+        "nome": "DILENA FERREIRA DE LIMA",
+        "numero": "15111",
+        "votos": 6
+      },
+      {
+        "nome": "ZULEIDE NASCIMENTO PEREIRA",
+        "numero": "20200",
+        "votos": 6
+      },
+      {
+        "nome": "EDSON BILIERI",
+        "numero": "25000",
+        "votos": 6
+      },
+      {
+        "nome": "AGUINALDO DA SILVA BORBA",
+        "numero": "36555",
+        "votos": 5
+      },
+      {
+        "nome": "ELVIS SODRE SOARES",
+        "numero": "22300",
+        "votos": 5
+      },
+      {
+        "nome": "LARISSA CAMPOS SANTOS",
+        "numero": "36360",
+        "votos": 4
+      },
+      {
+        "nome": "TIAGO LAGES DA SILVA",
+        "numero": "36333",
+        "votos": 4
+      },
+      {
+        "nome": "LUIZ GUSTAVO DE PAULA MARTINS SILVA",
+        "numero": "44202",
+        "votos": 4
+      },
+      {
+        "nome": "SIMONE DE SOUZA",
+        "numero": "11444",
+        "votos": 4
+      },
+      {
+        "nome": "LEVI SANCHES",
+        "numero": "11222",
+        "votos": 4
+      },
+      {
+        "nome": "RICARDO ROGGIERI",
+        "numero": "44222",
+        "votos": 4
+      },
+      {
+        "nome": "JOAO PAULO HENRIQUES DE ARRUDA",
+        "numero": "77422",
+        "votos": 3
+      },
+      {
+        "nome": "CARLOS RIBEIRO DA SILVA",
+        "numero": "77123",
+        "votos": 3
+      },
+      {
+        "nome": "MELISSA STABEL SOUZA SALES",
+        "numero": "70777",
+        "votos": 3
+      },
+      {
+        "nome": "AVANTE",
+        "numero": "70",
+        "votos": 3
+      },
+      {
+        "nome": "MOVIMENTO DEMOCRÁTICO BRASILEIRO",
+        "numero": "15",
+        "votos": 3
+      },
+      {
+        "nome": "LUIZ ESTEVÃO",
+        "numero": "36789",
+        "votos": 3
+      },
+      {
+        "nome": "VANESSA CRISTINA TIMOTHEO",
+        "numero": "36666",
+        "votos": 2
+      },
+      {
+        "nome": "ALEXANDRE AUGUSTO DE OLIVEIRA",
+        "numero": "77000",
+        "votos": 2
+      },
+      {
+        "nome": "PARTIDO RENOVAÇÃO DEMOCRÁTICA",
+        "numero": "25",
+        "votos": 2
+      },
+      {
+        "nome": "PARTIDO SOCIALISMO E LIBERDADE",
+        "numero": "50",
+        "votos": 2
+      },
+      {
+        "nome": "DENIS SIQUEIRA LINS",
+        "numero": "70124",
+        "votos": 2
+      },
+      {
+        "nome": "FELIPE RODRIGUES MOTA",
+        "numero": "70100",
+        "votos": 2
+      },
+      {
+        "nome": "ANDRE CRISTIAM SOARES",
+        "numero": "77520",
+        "votos": 2
+      },
+      {
+        "nome": "PRISCILA FREIRE MARTINS",
+        "numero": "70666",
+        "votos": 2
+      },
+      {
+        "nome": "TANIA LUCIA GIROLDO",
+        "numero": "11255",
+        "votos": 2
+      },
+      {
+        "nome": "AILTON NASCIMENTO",
+        "numero": "70555",
+        "votos": 2
+      },
+      {
+        "nome": "RITA DE CASSIA DOS SANTOS ROCKERT",
+        "numero": "36999",
+        "votos": 2
+      },
+      {
+        "nome": "EDNA DE OLIVEIRA COSTA",
+        "numero": "25777",
+        "votos": 1
+      },
+      {
+        "nome": "DEBORAH DE BRITO DIAS",
+        "numero": "22458",
+        "votos": 1
+      },
+      {
+        "nome": "JEFFERSON DOS SANTOS ALVES",
+        "numero": "36028",
+        "votos": 1
+      },
+      {
+        "nome": "FABIANA RIBEIRO DE ALMEIDA",
+        "numero": "25456",
+        "votos": 1
+      },
+      {
+        "nome": "ANGELITA CRISTINA DE OLIVEIRA",
+        "numero": "36000",
+        "votos": 1
+      },
+      {
+        "nome": "BEATRIZ AMERICO DA SILVA",
+        "numero": "11112",
+        "votos": 1
+      },
+      {
+        "nome": "ADAIL JOSE SILVA",
+        "numero": "22173",
+        "votos": 1
+      },
+      {
+        "nome": "GERLANE DOS SANTOS BISPO",
+        "numero": "22400",
+        "votos": 1
+      },
+      {
+        "nome": "UNIÃO BRASIL",
+        "numero": "44",
+        "votos": 1
+      },
+      {
+        "nome": "SOLIDARIEDADE",
+        "numero": "77",
+        "votos": 1
+      },
+      {
+        "nome": "MARIA IREMAR SALES GOMES",
+        "numero": "11200",
+        "votos": 1
+      },
+      {
+        "nome": "DANIELA ALMEIDA GUSMÃO ALVES",
+        "numero": "77777",
+        "votos": 1
+      }
+    ]
+  },
+  "JARDIM SÃO LUCAS": {
+    "prefeito": [
+      {
+        "nome": "PITER APARECIDO DOS SANTOS",
+        "numero": "20",
+        "votos": 1085
+      },
+      {
+        "nome": "LARISSA MAGALHÃES CANAVEZ SANTOS",
+        "numero": "22",
+        "votos": 617
+      },
+      {
+        "nome": "VOTO NULO",
+        "numero": "96",
+        "votos": 76
+      },
+      {
+        "nome": "VOTO BRANCO",
+        "numero": "95",
+        "votos": 40
+      },
+      {
+        "nome": "LEONARDO AUGUSTO ZAMPIERI",
+        "numero": "50",
+        "votos": 29
+      }
+    ],
+    "vereadores": [
+      {
+        "nome": "ADEMIR MARTINS SILVA",
+        "numero": "44123",
+        "votos": 225
+      },
+      {
+        "nome": "SIDNEY DOS SANTOS",
+        "numero": "20655",
+        "votos": 190
+      },
+      {
+        "nome": "ADEMIR JOSE DE SANTANA",
+        "numero": "11123",
+        "votos": 149
+      },
+      {
+        "nome": "MARCELO LIMA COSTA",
+        "numero": "15789",
+        "votos": 89
+      },
+      {
+        "nome": "FERNANDO FERREIRA DA SILVA",
+        "numero": "44999",
+        "votos": 74
+      },
+      {
+        "nome": "VOTO BRANCO",
+        "numero": "95",
+        "votos": 71
+      },
+      {
+        "nome": "VOTO NULO",
+        "numero": "96",
+        "votos": 68
+      },
+      {
+        "nome": "LUCIMAR MARQUES MOREIRA",
+        "numero": "22123",
+        "votos": 66
+      },
+      {
+        "nome": "JOSE FRANCISCO TEIXEIRA",
+        "numero": "15123",
+        "votos": 49
+      },
+      {
+        "nome": "ERITON BEZERRA GOMES",
+        "numero": "20789",
+        "votos": 46
+      },
+      {
+        "nome": "ROBERTA MACIEIRA DE OLIVEIRA",
+        "numero": "15888",
+        "votos": 43
+      },
+      {
+        "nome": "EDERSON DOS SANTOS ALVES",
+        "numero": "11111",
+        "votos": 41
+      },
+      {
+        "nome": "ANTONIO MAURO DE SOUZA FILHO",
+        "numero": "22630",
+        "votos": 39
+      },
+      {
+        "nome": "VAGUINER DOS SANTOS FARIAS",
+        "numero": "22222",
+        "votos": 39
+      },
+      {
+        "nome": "OZIEL DE OLIVEIRA ALVES",
+        "numero": "15000",
+        "votos": 37
+      },
+      {
+        "nome": "MARIA APARECIDA DE ANDRADE IROSKI",
+        "numero": "20321",
+        "votos": 29
+      },
+      {
+        "nome": "VILMA VEIGA",
+        "numero": "15555",
+        "votos": 29
+      },
+      {
+        "nome": "PODEMOS",
+        "numero": "20",
+        "votos": 28
+      },
+      {
+        "nome": "MARCELO TRAJANO DA SILVA",
+        "numero": "25123",
+        "votos": 27
+      },
+      {
+        "nome": "JORGE WILSON MIRANDA NICOLAU",
+        "numero": "15043",
+        "votos": 27
+      },
+      {
+        "nome": "RAFAEL BATISTA PEREIRA",
+        "numero": "11000",
+        "votos": 25
+      },
+      {
+        "nome": "PARTIDO LIBERAL",
+        "numero": "22",
+        "votos": 20
+      },
+      {
+        "nome": "LUCILENE DE FATIMA ALMEIDA HAVILLA",
+        "numero": "15777",
+        "votos": 20
+      },
+      {
+        "nome": "BENEDITO ANTONIO DOMINGUES",
+        "numero": "15611",
+        "votos": 19
+      },
+      {
+        "nome": "TIAGO LAGES DA SILVA",
+        "numero": "36333",
+        "votos": 19
+      },
+      {
+        "nome": "NIVALDO PEIXOTO DA SILVA",
+        "numero": "44444",
+        "votos": 19
+      },
+      {
+        "nome": "DJALMA LIMA DE OLIVEIRA",
+        "numero": "20000",
+        "votos": 17
+      },
+      {
+        "nome": "VALMARI PEREIRA DA SILVA",
+        "numero": "44777",
+        "votos": 14
+      },
+      {
+        "nome": "RONALDO SILVA DE BRITO",
+        "numero": "25190",
+        "votos": 14
+      },
+      {
+        "nome": "ZENAIDE SILVA ARÃO FREITAS",
+        "numero": "44110",
+        "votos": 14
+      },
+      {
+        "nome": "WILQUER VELCIR WINCKLER LANGER",
+        "numero": "25025",
+        "votos": 12
+      },
+      {
+        "nome": "CIBELLE ZINOBILE FRANCO",
+        "numero": "22022",
+        "votos": 11
+      },
+      {
+        "nome": "ANTONIO AUGUSTO FARIAS DA SILVA",
+        "numero": "22000",
+        "votos": 11
+      },
+      {
+        "nome": "EVANDRO LUIZ TEIXEIRA",
+        "numero": "22190",
+        "votos": 10
+      },
+      {
+        "nome": "MATHEUS VENTURINI LOPES DA SILVA",
+        "numero": "20123",
+        "votos": 10
+      },
+      {
+        "nome": "ZULEIDE NASCIMENTO PEREIRA",
+        "numero": "20200",
+        "votos": 10
+      },
+      {
+        "nome": "MOVIMENTO DEMOCRÁTICO BRASILEIRO",
+        "numero": "15",
+        "votos": 9
+      },
+      {
+        "nome": "JEFFERSON DOS SANTOS ALVES",
+        "numero": "36028",
+        "votos": 9
+      },
+      {
+        "nome": "EDER DE MORAES PIRES",
+        "numero": "44920",
+        "votos": 8
+      },
+      {
+        "nome": "CLERIO CEZAR BATISTA SENA",
+        "numero": "11100",
+        "votos": 8
+      },
+      {
+        "nome": "THAIS PIERROT MARTINS DOS SANTOS",
+        "numero": "50000",
+        "votos": 8
+      },
+      {
+        "nome": "ROSILANE PYRAMO",
+        "numero": "20222",
+        "votos": 8
+      },
+      {
+        "nome": "DENIS JOSE RODRIGUES DOS SANTOS",
+        "numero": "11777",
+        "votos": 8
+      },
+      {
+        "nome": "GERLANE DOS SANTOS BISPO",
+        "numero": "22400",
+        "votos": 7
+      },
+      {
+        "nome": "EDSON BILIERI",
+        "numero": "25000",
+        "votos": 7
+      },
+      {
+        "nome": "JUSCELINO RALF PEREIRA MAGALHÃES",
+        "numero": "15456",
+        "votos": 7
+      },
+      {
+        "nome": "MARIA CELIA DOMINGUES",
+        "numero": "20120",
+        "votos": 7
+      },
+      {
+        "nome": "PATRICK ALEXANDRE LESSA SILVA",
+        "numero": "22442",
+        "votos": 7
+      },
+      {
+        "nome": "EDNA DE OLIVEIRA COSTA",
+        "numero": "25777",
+        "votos": 6
+      },
+      {
+        "nome": "CÍCERO MARTINS",
+        "numero": "36036",
+        "votos": 6
+      },
+      {
+        "nome": "DEONATO AMARO DA SILVA",
+        "numero": "11234",
+        "votos": 6
+      },
+      {
+        "nome": "LIVIOMAR ALVES DA ROCHA",
+        "numero": "20220",
+        "votos": 6
+      },
+      {
+        "nome": "DONIZETE APARECIDO DE JESUS JUNIOR",
+        "numero": "15333",
+        "votos": 6
+      },
+      {
+        "nome": "LUIZ GONZAGA FUSCO",
+        "numero": "20111",
+        "votos": 6
+      },
+      {
+        "nome": "UNIÃO BRASIL",
+        "numero": "44",
+        "votos": 5
+      },
+      {
+        "nome": "ANGELITA CRISTINA DE OLIVEIRA",
+        "numero": "36000",
+        "votos": 5
+      },
+      {
+        "nome": "DEIVIDE DE OLIVEIRA CAMARGO",
+        "numero": "44120",
+        "votos": 5
+      },
+      {
+        "nome": "SAMUEL GONÇALVES DOS SANTOS",
+        "numero": "70000",
+        "votos": 5
+      },
+      {
+        "nome": "LEVI SANCHES",
+        "numero": "11222",
+        "votos": 5
+      },
+      {
+        "nome": "WILLIAN SALVETTI NUNES",
+        "numero": "25555",
+        "votos": 4
+      },
+      {
+        "nome": "CLEYTON VIEIRA DE MORAES",
+        "numero": "11011",
+        "votos": 4
+      },
+      {
+        "nome": "GENIVAL ALMEIDA DA SILVA",
+        "numero": "20234",
+        "votos": 4
+      },
+      {
+        "nome": "LUIZ ESTEVÃO",
+        "numero": "36789",
+        "votos": 4
+      },
+      {
+        "nome": "ANDRE DE MORAES CHACON",
+        "numero": "15015",
+        "votos": 4
+      },
+      {
+        "nome": "AGUINALDO DA SILVA BORBA",
+        "numero": "36555",
+        "votos": 3
+      },
+      {
+        "nome": "LINDALVA FERREIRA PONTES",
+        "numero": "44000",
+        "votos": 3
+      },
+      {
+        "nome": "VALDEMIRO DIAS DE ALMEIDA",
+        "numero": "36777",
+        "votos": 3
+      },
+      {
+        "nome": "MILTON RIBEIRO",
+        "numero": "25700",
+        "votos": 3
+      },
+      {
+        "nome": "VANESSA CRISTINA TIMOTHEO",
+        "numero": "36666",
+        "votos": 3
+      },
+      {
+        "nome": "CLAUDIA FABIANA BOSCHETTI",
+        "numero": "44400",
+        "votos": 3
+      },
+      {
+        "nome": "NEWTON YOSHINOBU OIKAWA",
+        "numero": "70123",
+        "votos": 3
+      },
+      {
+        "nome": "RITA DE CASSIA DOS SANTOS ROCKERT",
+        "numero": "36999",
+        "votos": 3
+      },
+      {
+        "nome": "RENILSON FERREIRA DO NASCIMENTO",
+        "numero": "77131",
+        "votos": 3
+      },
+      {
+        "nome": "DILENA FERREIRA DE LIMA",
+        "numero": "15111",
+        "votos": 3
+      },
+      {
+        "nome": "PARTIDO SOCIALISMO E LIBERDADE",
+        "numero": "50",
+        "votos": 2
+      },
+      {
+        "nome": "DANIELA ALMEIDA GUSMÃO ALVES",
+        "numero": "77777",
+        "votos": 2
+      },
+      {
+        "nome": "TATIANA VALE LAROCA",
+        "numero": "22330",
+        "votos": 2
+      },
+      {
+        "nome": "MELISSA STABEL SOUZA SALES",
+        "numero": "70777",
+        "votos": 2
+      },
+      {
+        "nome": "LUIZ GUSTAVO DE PAULA MARTINS SILVA",
+        "numero": "44202",
+        "votos": 2
+      },
+      {
+        "nome": "BEATRIZ AMERICO DA SILVA",
+        "numero": "11112",
+        "votos": 2
+      },
+      {
+        "nome": "DENIS SIQUEIRA LINS",
+        "numero": "70124",
+        "votos": 2
+      },
+      {
+        "nome": "PRISCILA FREIRE MARTINS",
+        "numero": "70666",
+        "votos": 2
+      },
+      {
+        "nome": "CARLOS RIBEIRO DA SILVA",
+        "numero": "77123",
+        "votos": 2
+      },
+      {
+        "nome": "RICARDO ROGGIERI",
+        "numero": "44222",
+        "votos": 2
+      },
+      {
+        "nome": "ALEXANDRE DE CAMARGO",
+        "numero": "25120",
+        "votos": 2
+      },
+      {
+        "nome": "AILTON NASCIMENTO",
+        "numero": "70555",
+        "votos": 2
+      },
+      {
+        "nome": "AGIR",
+        "numero": "36",
+        "votos": 1
+      },
+      {
+        "nome": "PARTIDO RENOVAÇÃO DEMOCRÁTICA",
+        "numero": "25",
+        "votos": 1
+      },
+      {
+        "nome": "ANDRE CRISTIAM SOARES",
+        "numero": "77520",
+        "votos": 1
+      },
+      {
+        "nome": "EDVALDO ANDERSON DINIZ",
+        "numero": "20020",
+        "votos": 1
+      },
+      {
+        "nome": "PROGRESSISTAS",
+        "numero": "11",
+        "votos": 1
+      },
+      {
+        "nome": "MARIA IREMAR SALES GOMES",
+        "numero": "11200",
+        "votos": 1
+      },
+      {
+        "nome": "FABIANA RIBEIRO DE ALMEIDA",
+        "numero": "25456",
+        "votos": 1
+      },
+      {
+        "nome": "VIVIANE CASSIA DE ALMEIDA",
+        "numero": "77011",
+        "votos": 1
+      }
+    ]
+  },
+  "JARDIM SÃO MATEUS": {
+    "prefeito": [
+      {
+        "nome": "PITER APARECIDO DOS SANTOS",
+        "numero": "20",
+        "votos": 1386
+      },
+      {
+        "nome": "LARISSA MAGALHÃES CANAVEZ SANTOS",
+        "numero": "22",
+        "votos": 731
+      },
+      {
+        "nome": "VOTO NULO",
+        "numero": "96",
+        "votos": 92
+      },
+      {
+        "nome": "VOTO BRANCO",
+        "numero": "95",
+        "votos": 85
+      },
+      {
+        "nome": "LEONARDO AUGUSTO ZAMPIERI",
+        "numero": "50",
+        "votos": 31
+      }
+    ],
+    "vereadores": [
+      {
+        "nome": "ADEMIR MARTINS SILVA",
+        "numero": "44123",
+        "votos": 252
+      },
+      {
+        "nome": "SIDNEY DOS SANTOS",
+        "numero": "20655",
+        "votos": 205
+      },
+      {
+        "nome": "ADEMIR JOSE DE SANTANA",
+        "numero": "11123",
+        "votos": 184
+      },
+      {
+        "nome": "FERNANDO FERREIRA DA SILVA",
+        "numero": "44999",
+        "votos": 132
+      },
+      {
+        "nome": "VOTO BRANCO",
+        "numero": "95",
+        "votos": 110
+      },
+      {
+        "nome": "ROBERTA MACIEIRA DE OLIVEIRA",
+        "numero": "15888",
+        "votos": 82
+      },
+      {
+        "nome": "VOTO NULO",
+        "numero": "96",
+        "votos": 76
+      },
+      {
+        "nome": "MARCELO LIMA COSTA",
+        "numero": "15789",
+        "votos": 73
+      },
+      {
+        "nome": "JOSE FRANCISCO TEIXEIRA",
+        "numero": "15123",
+        "votos": 72
+      },
+      {
+        "nome": "VAGUINER DOS SANTOS FARIAS",
+        "numero": "22222",
+        "votos": 69
+      },
+      {
+        "nome": "ANTONIO MAURO DE SOUZA FILHO",
+        "numero": "22630",
+        "votos": 69
+      },
+      {
+        "nome": "LUCIMAR MARQUES MOREIRA",
+        "numero": "22123",
+        "votos": 67
+      },
+      {
+        "nome": "ERITON BEZERRA GOMES",
+        "numero": "20789",
+        "votos": 64
+      },
+      {
+        "nome": "EDERSON DOS SANTOS ALVES",
+        "numero": "11111",
+        "votos": 62
+      },
+      {
+        "nome": "OZIEL DE OLIVEIRA ALVES",
+        "numero": "15000",
+        "votos": 54
+      },
+      {
+        "nome": "MARIA APARECIDA DE ANDRADE IROSKI",
+        "numero": "20321",
+        "votos": 36
+      },
+      {
+        "nome": "RAFAEL BATISTA PEREIRA",
+        "numero": "11000",
+        "votos": 35
+      },
+      {
+        "nome": "TIAGO LAGES DA SILVA",
+        "numero": "36333",
+        "votos": 32
+      },
+      {
+        "nome": "WILQUER VELCIR WINCKLER LANGER",
+        "numero": "25025",
+        "votos": 31
+      },
+      {
+        "nome": "PARTIDO LIBERAL",
+        "numero": "22",
+        "votos": 29
+      },
+      {
+        "nome": "JORGE WILSON MIRANDA NICOLAU",
+        "numero": "15043",
+        "votos": 27
+      },
+      {
+        "nome": "LUCILENE DE FATIMA ALMEIDA HAVILLA",
+        "numero": "15777",
+        "votos": 27
+      },
+      {
+        "nome": "MARCELO TRAJANO DA SILVA",
+        "numero": "25123",
+        "votos": 26
+      },
+      {
+        "nome": "DJALMA LIMA DE OLIVEIRA",
+        "numero": "20000",
+        "votos": 26
+      },
+      {
+        "nome": "PODEMOS",
+        "numero": "20",
+        "votos": 24
+      },
+      {
+        "nome": "RONALDO SILVA DE BRITO",
+        "numero": "25190",
+        "votos": 24
+      },
+      {
+        "nome": "VILMA VEIGA",
+        "numero": "15555",
+        "votos": 24
+      },
+      {
+        "nome": "MATHEUS VENTURINI LOPES DA SILVA",
+        "numero": "20123",
+        "votos": 21
+      },
+      {
+        "nome": "RITA DE CASSIA DOS SANTOS ROCKERT",
+        "numero": "36999",
+        "votos": 16
+      },
+      {
+        "nome": "BENEDITO ANTONIO DOMINGUES",
+        "numero": "15611",
+        "votos": 16
+      },
+      {
+        "nome": "ANTONIO AUGUSTO FARIAS DA SILVA",
+        "numero": "22000",
+        "votos": 15
+      },
+      {
+        "nome": "NIVALDO PEIXOTO DA SILVA",
+        "numero": "44444",
+        "votos": 15
+      },
+      {
+        "nome": "MARIA CELIA DOMINGUES",
+        "numero": "20120",
+        "votos": 15
+      },
+      {
+        "nome": "EVANDRO LUIZ TEIXEIRA",
+        "numero": "22190",
+        "votos": 14
+      },
+      {
+        "nome": "ROSILANE PYRAMO",
+        "numero": "20222",
+        "votos": 13
+      },
+      {
+        "nome": "EDER DE MORAES PIRES",
+        "numero": "44920",
+        "votos": 13
+      },
+      {
+        "nome": "GENIVAL ALMEIDA DA SILVA",
+        "numero": "20234",
+        "votos": 12
+      },
+      {
+        "nome": "CIBELLE ZINOBILE FRANCO",
+        "numero": "22022",
+        "votos": 12
+      },
+      {
+        "nome": "JEFFERSON DOS SANTOS ALVES",
+        "numero": "36028",
+        "votos": 11
+      },
+      {
+        "nome": "VALMARI PEREIRA DA SILVA",
+        "numero": "44777",
+        "votos": 11
+      },
+      {
+        "nome": "ANDRE DE MORAES CHACON",
+        "numero": "15015",
+        "votos": 11
+      },
+      {
+        "nome": "LUIZ GONZAGA FUSCO",
+        "numero": "20111",
+        "votos": 10
+      },
+      {
+        "nome": "ZENAIDE SILVA ARÃO FREITAS",
+        "numero": "44110",
+        "votos": 10
+      },
+      {
+        "nome": "DEIVIDE DE OLIVEIRA CAMARGO",
+        "numero": "44120",
+        "votos": 9
+      },
+      {
+        "nome": "UNIÃO BRASIL",
+        "numero": "44",
+        "votos": 8
+      },
+      {
+        "nome": "ZULEIDE NASCIMENTO PEREIRA",
+        "numero": "20200",
+        "votos": 8
+      },
+      {
+        "nome": "EDSON BILIERI",
+        "numero": "25000",
+        "votos": 8
+      },
+      {
+        "nome": "LEVI SANCHES",
+        "numero": "11222",
+        "votos": 8
+      },
+      {
+        "nome": "LIVIOMAR ALVES DA ROCHA",
+        "numero": "20220",
+        "votos": 7
+      },
+      {
+        "nome": "PROGRESSISTAS",
+        "numero": "11",
+        "votos": 7
+      },
+      {
+        "nome": "THAIS PIERROT MARTINS DOS SANTOS",
+        "numero": "50000",
+        "votos": 7
+      },
+      {
+        "nome": "PATRICK ALEXANDRE LESSA SILVA",
+        "numero": "22442",
+        "votos": 7
+      },
+      {
+        "nome": "VALDEMIRO DIAS DE ALMEIDA",
+        "numero": "36777",
+        "votos": 7
+      },
+      {
+        "nome": "EDVALDO ANDERSON DINIZ",
+        "numero": "20020",
+        "votos": 7
+      },
+      {
+        "nome": "CARLOS RIBEIRO DA SILVA",
+        "numero": "77123",
+        "votos": 6
+      },
+      {
+        "nome": "EDNA DE OLIVEIRA COSTA",
+        "numero": "25777",
+        "votos": 6
+      },
+      {
+        "nome": "LUIZ GUSTAVO DE PAULA MARTINS SILVA",
+        "numero": "44202",
+        "votos": 6
+      },
+      {
+        "nome": "CLERIO CEZAR BATISTA SENA",
+        "numero": "11100",
+        "votos": 6
+      },
+      {
+        "nome": "CLEYTON VIEIRA DE MORAES",
+        "numero": "11011",
+        "votos": 5
+      },
+      {
+        "nome": "DONIZETE APARECIDO DE JESUS JUNIOR",
+        "numero": "15333",
+        "votos": 5
+      },
+      {
+        "nome": "SAMUEL GONÇALVES DOS SANTOS",
+        "numero": "70000",
+        "votos": 4
+      },
+      {
+        "nome": "CÍCERO MARTINS",
+        "numero": "36036",
+        "votos": 4
+      },
+      {
+        "nome": "CLAUDIA FABIANA BOSCHETTI",
+        "numero": "44400",
+        "votos": 4
+      },
+      {
+        "nome": "DENIS JOSE RODRIGUES DOS SANTOS",
+        "numero": "11777",
+        "votos": 4
+      },
+      {
+        "nome": "MELISSA STABEL SOUZA SALES",
+        "numero": "70777",
+        "votos": 4
+      },
+      {
+        "nome": "ADAIL JOSE SILVA",
+        "numero": "22173",
+        "votos": 4
+      },
+      {
+        "nome": "AGUINALDO DA SILVA BORBA",
+        "numero": "36555",
+        "votos": 4
+      },
+      {
+        "nome": "LINDALVA FERREIRA PONTES",
+        "numero": "44000",
+        "votos": 4
+      },
+      {
+        "nome": "MOVIMENTO DEMOCRÁTICO BRASILEIRO",
+        "numero": "15",
+        "votos": 3
+      },
+      {
+        "nome": "GERLANE DOS SANTOS BISPO",
+        "numero": "22400",
+        "votos": 3
+      },
+      {
+        "nome": "FABIANA RIBEIRO DE ALMEIDA",
+        "numero": "25456",
+        "votos": 3
+      },
+      {
+        "nome": "NEWTON YOSHINOBU OIKAWA",
+        "numero": "70123",
+        "votos": 3
+      },
+      {
+        "nome": "MILTON RIBEIRO",
+        "numero": "25700",
+        "votos": 3
+      },
+      {
+        "nome": "DANIELA ALMEIDA GUSMÃO ALVES",
+        "numero": "77777",
+        "votos": 3
+      },
+      {
+        "nome": "TATIANA VALE LAROCA",
+        "numero": "22330",
+        "votos": 2
+      },
+      {
+        "nome": "DILENA FERREIRA DE LIMA",
+        "numero": "15111",
+        "votos": 2
+      },
+      {
+        "nome": "ANA MARIA PASSARETTI LANG",
+        "numero": "44001",
+        "votos": 2
+      },
+      {
+        "nome": "PRISCILA FREIRE MARTINS",
+        "numero": "70666",
+        "votos": 2
+      },
+      {
+        "nome": "WILLIAN SALVETTI NUNES",
+        "numero": "25555",
+        "votos": 2
+      },
+      {
+        "nome": "JUSCELINO RALF PEREIRA MAGALHÃES",
+        "numero": "15456",
+        "votos": 2
+      },
+      {
+        "nome": "VANESSA CRISTINA TIMOTHEO",
+        "numero": "36666",
+        "votos": 2
+      },
+      {
+        "nome": "AILTON NASCIMENTO",
+        "numero": "70555",
+        "votos": 2
+      },
+      {
+        "nome": "RENILSON FERREIRA DO NASCIMENTO",
+        "numero": "77131",
+        "votos": 2
+      },
+      {
+        "nome": "DEONATO AMARO DA SILVA",
+        "numero": "11234",
+        "votos": 2
+      },
+      {
+        "nome": "PARTIDO RENOVAÇÃO DEMOCRÁTICA",
+        "numero": "25",
+        "votos": 1
+      },
+      {
+        "nome": "ANDRE CRISTIAM SOARES",
+        "numero": "77520",
+        "votos": 1
+      },
+      {
+        "nome": "VIVIANE CASSIA DE ALMEIDA",
+        "numero": "77011",
+        "votos": 1
+      },
+      {
+        "nome": "ALEXANDRE AUGUSTO DE OLIVEIRA",
+        "numero": "77000",
+        "votos": 1
+      },
+      {
+        "nome": "AVANTE",
+        "numero": "70",
+        "votos": 1
+      },
+      {
+        "nome": "LUIZ ESTEVÃO",
+        "numero": "36789",
+        "votos": 1
+      },
+      {
+        "nome": "AGIR",
+        "numero": "36",
+        "votos": 1
+      },
+      {
+        "nome": "KETURA FREITAS DE SOUZA",
+        "numero": "25111",
+        "votos": 1
+      },
+      {
+        "nome": "FELIPE RODRIGUES MOTA",
+        "numero": "70100",
+        "votos": 1
+      },
+      {
+        "nome": "SUELENE GONÇALVES DANTAS ROSA DO NASCIMENTO",
+        "numero": "70444",
+        "votos": 1
+      },
+      {
+        "nome": "ALEXANDRE TADEU RIBEIRO",
+        "numero": "36123",
+        "votos": 1
+      }
+    ]
+  },
+  "JD. HELENA MARIA": {
+    "prefeito": [
+      {
+        "nome": "PITER APARECIDO DOS SANTOS",
+        "numero": "20",
+        "votos": 933
+      },
+      {
+        "nome": "LARISSA MAGALHÃES CANAVEZ SANTOS",
+        "numero": "22",
+        "votos": 745
+      },
+      {
+        "nome": "VOTO NULO",
+        "numero": "96",
+        "votos": 75
+      },
+      {
+        "nome": "VOTO BRANCO",
+        "numero": "95",
+        "votos": 56
+      },
+      {
+        "nome": "LEONARDO AUGUSTO ZAMPIERI",
+        "numero": "50",
+        "votos": 31
+      }
+    ],
+    "vereadores": [
+      {
+        "nome": "LUCIMAR MARQUES MOREIRA",
+        "numero": "22123",
+        "votos": 164
+      },
+      {
+        "nome": "EDERSON DOS SANTOS ALVES",
+        "numero": "11111",
+        "votos": 92
+      },
+      {
+        "nome": "ANTONIO MAURO DE SOUZA FILHO",
+        "numero": "22630",
+        "votos": 90
+      },
+      {
+        "nome": "VAGUINER DOS SANTOS FARIAS",
+        "numero": "22222",
+        "votos": 77
+      },
+      {
+        "nome": "ERITON BEZERRA GOMES",
+        "numero": "20789",
+        "votos": 76
+      },
+      {
+        "nome": "VOTO NULO",
+        "numero": "96",
+        "votos": 76
+      },
+      {
+        "nome": "LUCILENE DE FATIMA ALMEIDA HAVILLA",
+        "numero": "15777",
+        "votos": 69
+      },
+      {
+        "nome": "FERNANDO FERREIRA DA SILVA",
+        "numero": "44999",
+        "votos": 66
+      },
+      {
+        "nome": "VOTO BRANCO",
+        "numero": "95",
+        "votos": 61
+      },
+      {
+        "nome": "SIDNEY DOS SANTOS",
+        "numero": "20655",
+        "votos": 61
+      },
+      {
+        "nome": "MARCELO TRAJANO DA SILVA",
+        "numero": "25123",
+        "votos": 57
+      },
+      {
+        "nome": "ADEMIR JOSE DE SANTANA",
+        "numero": "11123",
+        "votos": 56
+      },
+      {
+        "nome": "JOSE FRANCISCO TEIXEIRA",
+        "numero": "15123",
+        "votos": 52
+      },
+      {
+        "nome": "MARCELO LIMA COSTA",
+        "numero": "15789",
+        "votos": 49
+      },
+      {
+        "nome": "MATHEUS VENTURINI LOPES DA SILVA",
+        "numero": "20123",
+        "votos": 45
+      },
+      {
+        "nome": "DJALMA LIMA DE OLIVEIRA",
+        "numero": "20000",
+        "votos": 40
+      },
+      {
+        "nome": "MARIA APARECIDA DE ANDRADE IROSKI",
+        "numero": "20321",
+        "votos": 37
+      },
+      {
+        "nome": "ADEMIR MARTINS SILVA",
+        "numero": "44123",
+        "votos": 36
+      },
+      {
+        "nome": "DONIZETE APARECIDO DE JESUS JUNIOR",
+        "numero": "15333",
+        "votos": 35
+      },
+      {
+        "nome": "CLAUDIA FABIANA BOSCHETTI",
+        "numero": "44400",
+        "votos": 34
+      },
+      {
+        "nome": "ROBERTA MACIEIRA DE OLIVEIRA",
+        "numero": "15888",
+        "votos": 27
+      },
+      {
+        "nome": "WILLIAN SALVETTI NUNES",
+        "numero": "25555",
+        "votos": 25
+      },
+      {
+        "nome": "EDER DE MORAES PIRES",
+        "numero": "44920",
+        "votos": 25
+      },
+      {
+        "nome": "PARTIDO LIBERAL",
+        "numero": "22",
+        "votos": 25
+      },
+      {
+        "nome": "NEWTON YOSHINOBU OIKAWA",
+        "numero": "70123",
+        "votos": 22
+      },
+      {
+        "nome": "JORGE WILSON MIRANDA NICOLAU",
+        "numero": "15043",
+        "votos": 21
+      },
+      {
+        "nome": "PODEMOS",
+        "numero": "20",
+        "votos": 21
+      },
+      {
+        "nome": "VILMA VEIGA",
+        "numero": "15555",
+        "votos": 20
+      },
+      {
+        "nome": "CLERIO CEZAR BATISTA SENA",
+        "numero": "11100",
+        "votos": 19
+      },
+      {
+        "nome": "OZIEL DE OLIVEIRA ALVES",
+        "numero": "15000",
+        "votos": 18
+      },
+      {
+        "nome": "GENIVAL ALMEIDA DA SILVA",
+        "numero": "20234",
+        "votos": 17
+      },
+      {
+        "nome": "ROSILANE PYRAMO",
+        "numero": "20222",
+        "votos": 16
+      },
+      {
+        "nome": "AGUINALDO DA SILVA BORBA",
+        "numero": "36555",
+        "votos": 16
+      },
+      {
+        "nome": "EVANDRO LUIZ TEIXEIRA",
+        "numero": "22190",
+        "votos": 15
+      },
+      {
+        "nome": "BENEDITO ANTONIO DOMINGUES",
+        "numero": "15611",
+        "votos": 14
+      },
+      {
+        "nome": "TATIANA VALE LAROCA",
+        "numero": "22330",
+        "votos": 13
+      },
+      {
+        "nome": "CIBELLE ZINOBILE FRANCO",
+        "numero": "22022",
+        "votos": 12
+      },
+      {
+        "nome": "RICARDO ROGGIERI",
+        "numero": "44222",
+        "votos": 11
+      },
+      {
+        "nome": "THAIS PIERROT MARTINS DOS SANTOS",
+        "numero": "50000",
+        "votos": 10
+      },
+      {
+        "nome": "WILQUER VELCIR WINCKLER LANGER",
+        "numero": "25025",
+        "votos": 10
+      },
+      {
+        "nome": "DEONATO AMARO DA SILVA",
+        "numero": "11234",
+        "votos": 10
+      },
+      {
+        "nome": "ANTONIO AUGUSTO FARIAS DA SILVA",
+        "numero": "22000",
+        "votos": 10
+      },
+      {
+        "nome": "RONALDO SILVA DE BRITO",
+        "numero": "25190",
+        "votos": 9
+      },
+      {
+        "nome": "JUSCELINO RALF PEREIRA MAGALHÃES",
+        "numero": "15456",
+        "votos": 9
+      },
+      {
+        "nome": "SIMONE DE SOUZA",
+        "numero": "11444",
+        "votos": 8
+      },
+      {
+        "nome": "GERLANE DOS SANTOS BISPO",
+        "numero": "22400",
+        "votos": 8
+      },
+      {
+        "nome": "ANGELITA CRISTINA DE OLIVEIRA",
+        "numero": "36000",
+        "votos": 8
+      },
+      {
+        "nome": "DEIVIDE DE OLIVEIRA CAMARGO",
+        "numero": "44120",
+        "votos": 7
+      },
+      {
+        "nome": "VALMARI PEREIRA DA SILVA",
+        "numero": "44777",
+        "votos": 7
+      },
+      {
+        "nome": "CÍCERO MARTINS",
+        "numero": "36036",
+        "votos": 7
+      },
+      {
+        "nome": "ANDRE DE MORAES CHACON",
+        "numero": "15015",
+        "votos": 7
+      },
+      {
+        "nome": "RAFAEL BATISTA PEREIRA",
+        "numero": "11000",
+        "votos": 6
+      },
+      {
+        "nome": "PATRICK ALEXANDRE LESSA SILVA",
+        "numero": "22442",
+        "votos": 6
+      },
+      {
+        "nome": "CLEYTON VIEIRA DE MORAES",
+        "numero": "11011",
+        "votos": 6
+      },
+      {
+        "nome": "MOVIMENTO DEMOCRÁTICO BRASILEIRO",
+        "numero": "15",
+        "votos": 6
+      },
+      {
+        "nome": "NIVALDO PEIXOTO DA SILVA",
+        "numero": "44444",
+        "votos": 5
+      },
+      {
+        "nome": "DILENA FERREIRA DE LIMA",
+        "numero": "15111",
+        "votos": 5
+      },
+      {
+        "nome": "LUIZ ESTEVÃO",
+        "numero": "36789",
+        "votos": 5
+      },
+      {
+        "nome": "LUIZ GONZAGA FUSCO",
+        "numero": "20111",
+        "votos": 4
+      },
+      {
+        "nome": "MILTON RIBEIRO",
+        "numero": "25700",
+        "votos": 4
+      },
+      {
+        "nome": "RITA DE CASSIA DOS SANTOS ROCKERT",
+        "numero": "36999",
+        "votos": 4
+      },
+      {
+        "nome": "LINDALVA FERREIRA PONTES",
+        "numero": "44000",
+        "votos": 4
+      },
+      {
+        "nome": "VALDEMIRO DIAS DE ALMEIDA",
+        "numero": "36777",
+        "votos": 3
+      },
+      {
+        "nome": "TANIA LUCIA GIROLDO",
+        "numero": "11255",
+        "votos": 3
+      },
+      {
+        "nome": "ZULEIDE NASCIMENTO PEREIRA",
+        "numero": "20200",
+        "votos": 3
+      },
+      {
+        "nome": "SAMUEL GONÇALVES DOS SANTOS",
+        "numero": "70000",
+        "votos": 3
+      },
+      {
+        "nome": "BEATRIZ AMERICO DA SILVA",
+        "numero": "11112",
+        "votos": 3
+      },
+      {
+        "nome": "ANA MARIA PASSARETTI LANG",
+        "numero": "44001",
+        "votos": 3
+      },
+      {
+        "nome": "MELISSA STABEL SOUZA SALES",
+        "numero": "70777",
+        "votos": 3
+      },
+      {
+        "nome": "RENILSON FERREIRA DO NASCIMENTO",
+        "numero": "77131",
+        "votos": 3
+      },
+      {
+        "nome": "PROGRESSISTAS",
+        "numero": "11",
+        "votos": 3
+      },
+      {
+        "nome": "LUIZ GUSTAVO DE PAULA MARTINS SILVA",
+        "numero": "44202",
+        "votos": 3
+      },
+      {
+        "nome": "ANDRE CRISTIAM SOARES",
+        "numero": "77520",
+        "votos": 3
+      },
+      {
+        "nome": "DENIS JOSE RODRIGUES DOS SANTOS",
+        "numero": "11777",
+        "votos": 3
+      },
+      {
+        "nome": "TATIANE TRIGO MOREIRA SANT ANA LEOCADIO",
+        "numero": "25763",
+        "votos": 2
+      },
+      {
+        "nome": "ZENAIDE SILVA ARÃO FREITAS",
+        "numero": "44110",
+        "votos": 2
+      },
+      {
+        "nome": "PRISCILA FREIRE MARTINS",
+        "numero": "70666",
+        "votos": 2
+      },
+      {
+        "nome": "AILTON NASCIMENTO",
+        "numero": "70555",
+        "votos": 2
+      },
+      {
+        "nome": "JOAO PAULO HENRIQUES DE ARRUDA",
+        "numero": "77422",
+        "votos": 2
+      },
+      {
+        "nome": "FELIPE RODRIGUES MOTA",
+        "numero": "70100",
+        "votos": 2
+      },
+      {
+        "nome": "JORGE PIRES DA SILVA",
+        "numero": "70070",
+        "votos": 2
+      },
+      {
+        "nome": "PARTIDO SOCIALISMO E LIBERDADE",
+        "numero": "50",
+        "votos": 2
+      },
+      {
+        "nome": "UNIÃO BRASIL",
+        "numero": "44",
+        "votos": 2
+      },
+      {
+        "nome": "KETURA FREITAS DE SOUZA",
+        "numero": "25111",
+        "votos": 2
+      },
+      {
+        "nome": "VANESSA CRISTINA TIMOTHEO",
+        "numero": "36666",
+        "votos": 1
+      },
+      {
+        "nome": "ALEXANDRE AUGUSTO DE OLIVEIRA",
+        "numero": "77000",
+        "votos": 1
+      },
+      {
+        "nome": "EDSON BILIERI",
+        "numero": "25000",
+        "votos": 1
+      },
+      {
+        "nome": "FABIANA RIBEIRO DE ALMEIDA",
+        "numero": "25456",
+        "votos": 1
+      },
+      {
+        "nome": "JEFFERSON DOS SANTOS ALVES",
+        "numero": "36028",
+        "votos": 1
+      },
+      {
+        "nome": "DENIS SIQUEIRA LINS",
+        "numero": "70124",
+        "votos": 1
+      },
+      {
+        "nome": "EDVALDO ANDERSON DINIZ",
+        "numero": "20020",
+        "votos": 1
+      },
+      {
+        "nome": "CARLOS RIBEIRO DA SILVA",
+        "numero": "77123",
+        "votos": 1
+      },
+      {
+        "nome": "LIVIOMAR ALVES DA ROCHA",
+        "numero": "20220",
+        "votos": 1
+      }
+    ]
+  },
+  "NARITA GARDEN": {
+    "prefeito": [
+      {
+        "nome": "PITER APARECIDO DOS SANTOS",
+        "numero": "20",
+        "votos": 564
+      },
+      {
+        "nome": "LARISSA MAGALHÃES CANAVEZ SANTOS",
+        "numero": "22",
+        "votos": 530
+      },
+      {
+        "nome": "VOTO NULO",
+        "numero": "96",
+        "votos": 59
+      },
+      {
+        "nome": "LEONARDO AUGUSTO ZAMPIERI",
+        "numero": "50",
+        "votos": 41
+      },
+      {
+        "nome": "VOTO BRANCO",
+        "numero": "95",
+        "votos": 38
+      }
+    ],
+    "vereadores": [
+      {
+        "nome": "LUCIMAR MARQUES MOREIRA",
+        "numero": "22123",
+        "votos": 82
+      },
+      {
+        "nome": "CÍCERO MARTINS",
+        "numero": "36036",
+        "votos": 66
+      },
+      {
+        "nome": "MARCELO LIMA COSTA",
+        "numero": "15789",
+        "votos": 63
+      },
+      {
+        "nome": "VOTO BRANCO",
+        "numero": "95",
+        "votos": 60
+      },
+      {
+        "nome": "VOTO NULO",
+        "numero": "96",
+        "votos": 58
+      },
+      {
+        "nome": "ADEMIR JOSE DE SANTANA",
+        "numero": "11123",
+        "votos": 52
+      },
+      {
+        "nome": "ANTONIO MAURO DE SOUZA FILHO",
+        "numero": "22630",
+        "votos": 43
+      },
+      {
+        "nome": "ROSILANE PYRAMO",
+        "numero": "20222",
+        "votos": 39
+      },
+      {
+        "nome": "EDERSON DOS SANTOS ALVES",
+        "numero": "11111",
+        "votos": 36
+      },
+      {
+        "nome": "PARTIDO LIBERAL",
+        "numero": "22",
+        "votos": 33
+      },
+      {
+        "nome": "EVANDRO LUIZ TEIXEIRA",
+        "numero": "22190",
+        "votos": 32
+      },
+      {
+        "nome": "MARIA APARECIDA DE ANDRADE IROSKI",
+        "numero": "20321",
+        "votos": 31
+      },
+      {
+        "nome": "JOSE FRANCISCO TEIXEIRA",
+        "numero": "15123",
+        "votos": 29
+      },
+      {
+        "nome": "SIDNEY DOS SANTOS",
+        "numero": "20655",
+        "votos": 28
+      },
+      {
+        "nome": "CLAUDIA FABIANA BOSCHETTI",
+        "numero": "44400",
+        "votos": 26
+      },
+      {
+        "nome": "MARCELO TRAJANO DA SILVA",
+        "numero": "25123",
+        "votos": 26
+      },
+      {
+        "nome": "EDER DE MORAES PIRES",
+        "numero": "44920",
+        "votos": 26
+      },
+      {
+        "nome": "FERNANDO FERREIRA DA SILVA",
+        "numero": "44999",
+        "votos": 25
+      },
+      {
+        "nome": "ALEXANDRE AUGUSTO DE OLIVEIRA",
+        "numero": "77000",
+        "votos": 24
+      },
+      {
+        "nome": "CIBELLE ZINOBILE FRANCO",
+        "numero": "22022",
+        "votos": 23
+      },
+      {
+        "nome": "ADEMIR MARTINS SILVA",
+        "numero": "44123",
+        "votos": 22
+      },
+      {
+        "nome": "THAIS PIERROT MARTINS DOS SANTOS",
+        "numero": "50000",
+        "votos": 22
+      },
+      {
+        "nome": "WILLIAN SALVETTI NUNES",
+        "numero": "25555",
+        "votos": 18
+      },
+      {
+        "nome": "AILTON NASCIMENTO",
+        "numero": "70555",
+        "votos": 18
+      },
+      {
+        "nome": "LUCILENE DE FATIMA ALMEIDA HAVILLA",
+        "numero": "15777",
+        "votos": 15
+      },
+      {
+        "nome": "DJALMA LIMA DE OLIVEIRA",
+        "numero": "20000",
+        "votos": 15
+      },
+      {
+        "nome": "LUIZ ESTEVÃO",
+        "numero": "36789",
+        "votos": 15
+      },
+      {
+        "nome": "JORGE WILSON MIRANDA NICOLAU",
+        "numero": "15043",
+        "votos": 14
+      },
+      {
+        "nome": "DONIZETE APARECIDO DE JESUS JUNIOR",
+        "numero": "15333",
+        "votos": 13
+      },
+      {
+        "nome": "PODEMOS",
+        "numero": "20",
+        "votos": 13
+      },
+      {
+        "nome": "TATIANA VALE LAROCA",
+        "numero": "22330",
+        "votos": 12
+      },
+      {
+        "nome": "MATHEUS VENTURINI LOPES DA SILVA",
+        "numero": "20123",
+        "votos": 12
+      },
+      {
+        "nome": "CLEYTON VIEIRA DE MORAES",
+        "numero": "11011",
+        "votos": 12
+      },
+      {
+        "nome": "JUSCELINO RALF PEREIRA MAGALHÃES",
+        "numero": "15456",
+        "votos": 12
+      },
+      {
+        "nome": "ERITON BEZERRA GOMES",
+        "numero": "20789",
+        "votos": 11
+      },
+      {
+        "nome": "NEWTON YOSHINOBU OIKAWA",
+        "numero": "70123",
+        "votos": 11
+      },
+      {
+        "nome": "VALMARI PEREIRA DA SILVA",
+        "numero": "44777",
+        "votos": 10
+      },
+      {
+        "nome": "ROBERTA MACIEIRA DE OLIVEIRA",
+        "numero": "15888",
+        "votos": 10
+      },
+      {
+        "nome": "ANA MARIA PASSARETTI LANG",
+        "numero": "44001",
+        "votos": 9
+      },
+      {
+        "nome": "MILTON RIBEIRO",
+        "numero": "25700",
+        "votos": 9
+      },
+      {
+        "nome": "CLERIO CEZAR BATISTA SENA",
+        "numero": "11100",
+        "votos": 9
+      },
+      {
+        "nome": "VAGUINER DOS SANTOS FARIAS",
+        "numero": "22222",
+        "votos": 8
+      },
+      {
+        "nome": "PARTIDO SOCIALISMO E LIBERDADE",
+        "numero": "50",
+        "votos": 8
+      },
+      {
+        "nome": "RICARDO ROGGIERI",
+        "numero": "44222",
+        "votos": 7
+      },
+      {
+        "nome": "ANDRE DE MORAES CHACON",
+        "numero": "15015",
+        "votos": 7
+      },
+      {
+        "nome": "GENIVAL ALMEIDA DA SILVA",
+        "numero": "20234",
+        "votos": 6
+      },
+      {
+        "nome": "RONALDO SILVA DE BRITO",
+        "numero": "25190",
+        "votos": 6
+      },
+      {
+        "nome": "DEONATO AMARO DA SILVA",
+        "numero": "11234",
+        "votos": 6
+      },
+      {
+        "nome": "ZULEIDE NASCIMENTO PEREIRA",
+        "numero": "20200",
+        "votos": 6
+      },
+      {
+        "nome": "DENIS JOSE RODRIGUES DOS SANTOS",
+        "numero": "11777",
+        "votos": 5
+      },
+      {
+        "nome": "DENY ROCHA LIBERATO",
+        "numero": "70007",
+        "votos": 5
+      },
+      {
+        "nome": "WILQUER VELCIR WINCKLER LANGER",
+        "numero": "25025",
+        "votos": 5
+      },
+      {
+        "nome": "MELISSA STABEL SOUZA SALES",
+        "numero": "70777",
+        "votos": 4
+      },
+      {
+        "nome": "PATRICK ALEXANDRE LESSA SILVA",
+        "numero": "22442",
+        "votos": 4
+      },
+      {
+        "nome": "MARIA IREMAR SALES GOMES",
+        "numero": "11200",
+        "votos": 4
+      },
+      {
+        "nome": "RENILSON FERREIRA DO NASCIMENTO",
+        "numero": "77131",
+        "votos": 4
+      },
+      {
+        "nome": "AGUINALDO DA SILVA BORBA",
+        "numero": "36555",
+        "votos": 4
+      },
+      {
+        "nome": "DENIS SIQUEIRA LINS",
+        "numero": "70124",
+        "votos": 4
+      },
+      {
+        "nome": "DEIVIDE DE OLIVEIRA CAMARGO",
+        "numero": "44120",
+        "votos": 3
+      },
+      {
+        "nome": "EDNA DE OLIVEIRA COSTA",
+        "numero": "25777",
+        "votos": 3
+      },
+      {
+        "nome": "FELIPE RODRIGUES MOTA",
+        "numero": "70100",
+        "votos": 3
+      },
+      {
+        "nome": "RAFAEL BATISTA PEREIRA",
+        "numero": "11000",
+        "votos": 3
+      },
+      {
+        "nome": "VILMA VEIGA",
+        "numero": "15555",
+        "votos": 3
+      },
+      {
+        "nome": "BENEDITO ANTONIO DOMINGUES",
+        "numero": "15611",
+        "votos": 3
+      },
+      {
+        "nome": "NIVALDO PEIXOTO DA SILVA",
+        "numero": "44444",
+        "votos": 3
+      },
+      {
+        "nome": "PROGRESSISTAS",
+        "numero": "11",
+        "votos": 3
+      },
+      {
+        "nome": "MOVIMENTO DEMOCRÁTICO BRASILEIRO",
+        "numero": "15",
+        "votos": 3
+      },
+      {
+        "nome": "BEATRIZ AMERICO DA SILVA",
+        "numero": "11112",
+        "votos": 2
+      },
+      {
+        "nome": "LIVIOMAR ALVES DA ROCHA",
+        "numero": "20220",
+        "votos": 2
+      },
+      {
+        "nome": "VALDEMIRO DIAS DE ALMEIDA",
+        "numero": "36777",
+        "votos": 2
+      },
+      {
+        "nome": "UNIÃO BRASIL",
+        "numero": "44",
+        "votos": 2
+      },
+      {
+        "nome": "FABIANA RIBEIRO DE ALMEIDA",
+        "numero": "25456",
+        "votos": 1
+      },
+      {
+        "nome": "ANTONIO AUGUSTO FARIAS DA SILVA",
+        "numero": "22000",
+        "votos": 1
+      },
+      {
+        "nome": "ALEXANDRE TADEU RIBEIRO",
+        "numero": "36123",
+        "votos": 1
+      },
+      {
+        "nome": "KETURA FREITAS DE SOUZA",
+        "numero": "25111",
+        "votos": 1
+      },
+      {
+        "nome": "LEVI SANCHES",
+        "numero": "11222",
+        "votos": 1
+      },
+      {
+        "nome": "LUIZ GONZAGA FUSCO",
+        "numero": "20111",
+        "votos": 1
+      },
+      {
+        "nome": "GERLANE DOS SANTOS BISPO",
+        "numero": "22400",
+        "votos": 1
+      },
+      {
+        "nome": "TANIA LUCIA GIROLDO",
+        "numero": "11255",
+        "votos": 1
+      },
+      {
+        "nome": "MARCELO EGGERT ZOPAZO",
+        "numero": "70181",
+        "votos": 1
+      },
+      {
+        "nome": "RITA DE CASSIA DOS SANTOS ROCKERT",
+        "numero": "36999",
+        "votos": 1
+      },
+      {
+        "nome": "LUIZ GUSTAVO DE PAULA MARTINS SILVA",
+        "numero": "44202",
+        "votos": 1
+      },
+      {
+        "nome": "ELIANA LOPES SILVA",
+        "numero": "70888",
+        "votos": 1
+      },
+      {
+        "nome": "LARISSA CAMPOS SANTOS",
+        "numero": "36360",
+        "votos": 1
+      },
+      {
+        "nome": "SIMONE DE SOUZA",
+        "numero": "11444",
+        "votos": 1
+      },
+      {
+        "nome": "EDVALDO ANDERSON DINIZ",
+        "numero": "20020",
+        "votos": 1
+      },
+      {
+        "nome": "JEFFERSON DOS SANTOS ALVES",
+        "numero": "36028",
+        "votos": 1
+      },
+      {
+        "nome": "OZIEL DE OLIVEIRA ALVES",
+        "numero": "15000",
+        "votos": 1
+      },
+      {
+        "nome": "EDSON BILIERI",
+        "numero": "25000",
+        "votos": 1
+      },
+      {
+        "nome": "AVANTE",
+        "numero": "70",
+        "votos": 1
+      },
+      {
+        "nome": "AGIR",
+        "numero": "36",
+        "votos": 1
+      }
+    ]
+  },
+  "PARQUE DO AGRESTE": {
+    "prefeito": [
+      {
+        "nome": "PITER APARECIDO DOS SANTOS",
+        "numero": "20",
+        "votos": 2086
+      },
+      {
+        "nome": "LARISSA MAGALHÃES CANAVEZ SANTOS",
+        "numero": "22",
+        "votos": 1173
+      },
+      {
+        "nome": "VOTO NULO",
+        "numero": "96",
+        "votos": 227
+      },
+      {
+        "nome": "VOTO BRANCO",
+        "numero": "95",
+        "votos": 196
+      },
+      {
+        "nome": "LEONARDO AUGUSTO ZAMPIERI",
+        "numero": "50",
+        "votos": 44
+      }
+    ],
+    "vereadores": [
+      {
+        "nome": "VALMARI PEREIRA DA SILVA",
+        "numero": "44777",
+        "votos": 609
+      },
+      {
+        "nome": "MARCELO TRAJANO DA SILVA",
+        "numero": "25123",
+        "votos": 391
+      },
+      {
+        "nome": "DILENA FERREIRA DE LIMA",
+        "numero": "15111",
+        "votos": 366
+      },
+      {
+        "nome": "JUSCELINO RALF PEREIRA MAGALHÃES",
+        "numero": "15456",
+        "votos": 271
+      },
+      {
+        "nome": "VOTO BRANCO",
+        "numero": "95",
+        "votos": 203
+      },
+      {
+        "nome": "VOTO NULO",
+        "numero": "96",
+        "votos": 188
+      },
+      {
+        "nome": "ROBERTA MACIEIRA DE OLIVEIRA",
+        "numero": "15888",
+        "votos": 141
+      },
+      {
+        "nome": "JOSE FRANCISCO TEIXEIRA",
+        "numero": "15123",
+        "votos": 126
+      },
+      {
+        "nome": "ADEMIR MARTINS SILVA",
+        "numero": "44123",
+        "votos": 78
+      },
+      {
+        "nome": "SAMUEL GONÇALVES DOS SANTOS",
+        "numero": "70000",
+        "votos": 76
+      },
+      {
+        "nome": "MARIA APARECIDA DE ANDRADE IROSKI",
+        "numero": "20321",
+        "votos": 73
+      },
+      {
+        "nome": "LUCIMAR MARQUES MOREIRA",
+        "numero": "22123",
+        "votos": 72
+      },
+      {
+        "nome": "ROSILANE PYRAMO",
+        "numero": "20222",
+        "votos": 62
+      },
+      {
+        "nome": "ANTONIO MAURO DE SOUZA FILHO",
+        "numero": "22630",
+        "votos": 57
+      },
+      {
+        "nome": "SUELENE GONÇALVES DANTAS ROSA DO NASCIMENTO",
+        "numero": "70444",
+        "votos": 57
+      },
+      {
+        "nome": "WILQUER VELCIR WINCKLER LANGER",
+        "numero": "25025",
+        "votos": 50
+      },
+      {
+        "nome": "SIDNEY DOS SANTOS",
+        "numero": "20655",
+        "votos": 47
+      },
+      {
+        "nome": "PARTIDO LIBERAL",
+        "numero": "22",
+        "votos": 46
+      },
+      {
+        "nome": "DJALMA LIMA DE OLIVEIRA",
+        "numero": "20000",
+        "votos": 46
+      },
+      {
+        "nome": "ERITON BEZERRA GOMES",
+        "numero": "20789",
+        "votos": 42
+      },
+      {
+        "nome": "PODEMOS",
+        "numero": "20",
+        "votos": 39
+      },
+      {
+        "nome": "MATHEUS VENTURINI LOPES DA SILVA",
+        "numero": "20123",
+        "votos": 38
+      },
+      {
+        "nome": "LUIZ GUSTAVO DE PAULA MARTINS SILVA",
+        "numero": "44202",
+        "votos": 36
+      },
+      {
+        "nome": "MARCELO LIMA COSTA",
+        "numero": "15789",
+        "votos": 35
+      },
+      {
+        "nome": "MARIA IREMAR SALES GOMES",
+        "numero": "11200",
+        "votos": 32
+      },
+      {
+        "nome": "ADEMIR JOSE DE SANTANA",
+        "numero": "11123",
+        "votos": 31
+      },
+      {
+        "nome": "EVANDRO LUIZ TEIXEIRA",
+        "numero": "22190",
+        "votos": 30
+      },
+      {
+        "nome": "LUCILENE DE FATIMA ALMEIDA HAVILLA",
+        "numero": "15777",
+        "votos": 30
+      },
+      {
+        "nome": "DEBORAH DE BRITO DIAS",
+        "numero": "22458",
+        "votos": 29
+      },
+      {
+        "nome": "LIVIOMAR ALVES DA ROCHA",
+        "numero": "20220",
+        "votos": 27
+      },
+      {
+        "nome": "WILLIAN SALVETTI NUNES",
+        "numero": "25555",
+        "votos": 24
+      },
+      {
+        "nome": "MILTON RIBEIRO",
+        "numero": "25700",
+        "votos": 23
+      },
+      {
+        "nome": "DEIVIDE DE OLIVEIRA CAMARGO",
+        "numero": "44120",
+        "votos": 22
+      },
+      {
+        "nome": "FERNANDO FERREIRA DA SILVA",
+        "numero": "44999",
+        "votos": 20
+      },
+      {
+        "nome": "DONIZETE APARECIDO DE JESUS JUNIOR",
+        "numero": "15333",
+        "votos": 18
+      },
+      {
+        "nome": "ANDRE DE MORAES CHACON",
+        "numero": "15015",
+        "votos": 17
+      },
+      {
+        "nome": "MOVIMENTO DEMOCRÁTICO BRASILEIRO",
+        "numero": "15",
+        "votos": 17
+      },
+      {
+        "nome": "RONALDO SILVA DE BRITO",
+        "numero": "25190",
+        "votos": 16
+      },
+      {
+        "nome": "EDERSON DOS SANTOS ALVES",
+        "numero": "11111",
+        "votos": 16
+      },
+      {
+        "nome": "OZIEL DE OLIVEIRA ALVES",
+        "numero": "15000",
+        "votos": 14
+      },
+      {
+        "nome": "CIBELLE ZINOBILE FRANCO",
+        "numero": "22022",
+        "votos": 12
+      },
+      {
+        "nome": "VAGUINER DOS SANTOS FARIAS",
+        "numero": "22222",
+        "votos": 12
+      },
+      {
+        "nome": "THAIS PIERROT MARTINS DOS SANTOS",
+        "numero": "50000",
+        "votos": 11
+      },
+      {
+        "nome": "CLERIO CEZAR BATISTA SENA",
+        "numero": "11100",
+        "votos": 11
+      },
+      {
+        "nome": "JORGE WILSON MIRANDA NICOLAU",
+        "numero": "15043",
+        "votos": 11
+      },
+      {
+        "nome": "RAFAEL BATISTA PEREIRA",
+        "numero": "11000",
+        "votos": 9
+      },
+      {
+        "nome": "VILMA VEIGA",
+        "numero": "15555",
+        "votos": 9
+      },
+      {
+        "nome": "ANA MARIA PASSARETTI LANG",
+        "numero": "44001",
+        "votos": 7
+      },
+      {
+        "nome": "CLEYTON VIEIRA DE MORAES",
+        "numero": "11011",
+        "votos": 7
+      },
+      {
+        "nome": "ANTONIO AUGUSTO FARIAS DA SILVA",
+        "numero": "22000",
+        "votos": 6
+      },
+      {
+        "nome": "RITA DE CASSIA DOS SANTOS ROCKERT",
+        "numero": "36999",
+        "votos": 6
+      },
+      {
+        "nome": "NIVALDO PEIXOTO DA SILVA",
+        "numero": "44444",
+        "votos": 6
+      },
+      {
+        "nome": "BENEDITO ANTONIO DOMINGUES",
+        "numero": "15611",
+        "votos": 6
+      },
+      {
+        "nome": "CLAUDIA FABIANA BOSCHETTI",
+        "numero": "44400",
+        "votos": 5
+      },
+      {
+        "nome": "EDSON BILIERI",
+        "numero": "25000",
+        "votos": 5
+      },
+      {
+        "nome": "NEWTON YOSHINOBU OIKAWA",
+        "numero": "70123",
+        "votos": 5
+      },
+      {
+        "nome": "ALEXANDRE AUGUSTO DE OLIVEIRA",
+        "numero": "77000",
+        "votos": 4
+      },
+      {
+        "nome": "PARTIDO SOCIALISMO E LIBERDADE",
+        "numero": "50",
+        "votos": 4
+      },
+      {
+        "nome": "ZENAIDE SILVA ARÃO FREITAS",
+        "numero": "44110",
+        "votos": 4
+      },
+      {
+        "nome": "ANGELITA CRISTINA DE OLIVEIRA",
+        "numero": "36000",
+        "votos": 4
+      },
+      {
+        "nome": "PROGRESSISTAS",
+        "numero": "11",
+        "votos": 4
+      },
+      {
+        "nome": "UNIÃO BRASIL",
+        "numero": "44",
+        "votos": 4
+      },
+      {
+        "nome": "PARTIDO RENOVAÇÃO DEMOCRÁTICA",
+        "numero": "25",
+        "votos": 4
+      },
+      {
+        "nome": "TATIANA VALE LAROCA",
+        "numero": "22330",
+        "votos": 3
+      },
+      {
+        "nome": "LARISSA CAMPOS SANTOS",
+        "numero": "36360",
+        "votos": 3
+      },
+      {
+        "nome": "AVANTE",
+        "numero": "70",
+        "votos": 3
+      },
+      {
+        "nome": "VALDEMIRO DIAS DE ALMEIDA",
+        "numero": "36777",
+        "votos": 3
+      },
+      {
+        "nome": "GERLANE DOS SANTOS BISPO",
+        "numero": "22400",
+        "votos": 3
+      },
+      {
+        "nome": "DENIS JOSE RODRIGUES DOS SANTOS",
+        "numero": "11777",
+        "votos": 3
+      },
+      {
+        "nome": "DEONATO AMARO DA SILVA",
+        "numero": "11234",
+        "votos": 2
+      },
+      {
+        "nome": "GENIVAL ALMEIDA DA SILVA",
+        "numero": "20234",
+        "votos": 2
+      },
+      {
+        "nome": "JOAO PAULO HENRIQUES DE ARRUDA",
+        "numero": "77422",
+        "votos": 2
+      },
+      {
+        "nome": "MARCELO EGGERT ZOPAZO",
+        "numero": "70181",
+        "votos": 2
+      },
+      {
+        "nome": "REDE SUSTENTABILIDADE",
+        "numero": "18",
+        "votos": 2
+      },
+      {
+        "nome": "EDER DE MORAES PIRES",
+        "numero": "44920",
+        "votos": 2
+      },
+      {
+        "nome": "RENILSON FERREIRA DO NASCIMENTO",
+        "numero": "77131",
+        "votos": 2
+      },
+      {
+        "nome": "LUIZ GONZAGA FUSCO",
+        "numero": "20111",
+        "votos": 2
+      },
+      {
+        "nome": "DANIELA ALMEIDA GUSMÃO ALVES",
+        "numero": "77777",
+        "votos": 2
+      },
+      {
+        "nome": "TATIANE TRIGO MOREIRA SANT ANA LEOCADIO",
+        "numero": "25763",
+        "votos": 2
+      },
+      {
+        "nome": "ADAIL JOSE SILVA",
+        "numero": "22173",
+        "votos": 2
+      },
+      {
+        "nome": "ZULEIDE NASCIMENTO PEREIRA",
+        "numero": "20200",
+        "votos": 2
+      },
+      {
+        "nome": "PATRICK ALEXANDRE LESSA SILVA",
+        "numero": "22442",
+        "votos": 1
+      },
+      {
+        "nome": "FABIANA RIBEIRO DE ALMEIDA",
+        "numero": "25456",
+        "votos": 1
+      },
+      {
+        "nome": "LINDALVA FERREIRA PONTES",
+        "numero": "44000",
+        "votos": 1
+      },
+      {
+        "nome": "LEVI SANCHES",
+        "numero": "11222",
+        "votos": 1
+      },
+      {
+        "nome": "EDVALDO ANDERSON DINIZ",
+        "numero": "20020",
+        "votos": 1
+      },
+      {
+        "nome": "FELIPE RODRIGUES MOTA",
+        "numero": "70100",
+        "votos": 1
+      },
+      {
+        "nome": "KETURA FREITAS DE SOUZA",
+        "numero": "25111",
+        "votos": 1
+      },
+      {
+        "nome": "AGUINALDO DA SILVA BORBA",
+        "numero": "36555",
+        "votos": 1
+      },
+      {
+        "nome": "VANESSA CRISTINA TIMOTHEO",
+        "numero": "36666",
+        "votos": 1
+      },
+      {
+        "nome": "BEATRIZ AMERICO DA SILVA",
+        "numero": "11112",
+        "votos": 1
+      },
+      {
+        "nome": "MARIA CELIA DOMINGUES",
+        "numero": "20120",
+        "votos": 1
+      },
+      {
+        "nome": "ANDRE CRISTIAM SOARES",
+        "numero": "77520",
+        "votos": 1
+      },
+      {
+        "nome": "RICARDO ROGGIERI",
+        "numero": "44222",
+        "votos": 1
+      }
+    ]
+  },
+  "PARQUE RUTH MARIA": {
+    "prefeito": [
+      {
+        "nome": "PITER APARECIDO DOS SANTOS",
+        "numero": "20",
+        "votos": 1177
+      },
+      {
+        "nome": "LARISSA MAGALHÃES CANAVEZ SANTOS",
+        "numero": "22",
+        "votos": 565
+      },
+      {
+        "nome": "VOTO BRANCO",
+        "numero": "95",
+        "votos": 77
+      },
+      {
+        "nome": "VOTO NULO",
+        "numero": "96",
+        "votos": 77
+      },
+      {
+        "nome": "LEONARDO AUGUSTO ZAMPIERI",
+        "numero": "50",
+        "votos": 17
+      }
+    ],
+    "vereadores": [
+      {
+        "nome": "ADEMIR MARTINS SILVA",
+        "numero": "44123",
+        "votos": 240
+      },
+      {
+        "nome": "ERITON BEZERRA GOMES",
+        "numero": "20789",
+        "votos": 220
+      },
+      {
+        "nome": "SIDNEY DOS SANTOS",
+        "numero": "20655",
+        "votos": 136
+      },
+      {
+        "nome": "VOTO BRANCO",
+        "numero": "95",
+        "votos": 89
+      },
+      {
+        "nome": "LUCIMAR MARQUES MOREIRA",
+        "numero": "22123",
+        "votos": 79
+      },
+      {
+        "nome": "VOTO NULO",
+        "numero": "96",
+        "votos": 73
+      },
+      {
+        "nome": "ROBERTA MACIEIRA DE OLIVEIRA",
+        "numero": "15888",
+        "votos": 70
+      },
+      {
+        "nome": "FERNANDO FERREIRA DA SILVA",
+        "numero": "44999",
+        "votos": 63
+      },
+      {
+        "nome": "BENEDITO ANTONIO DOMINGUES",
+        "numero": "15611",
+        "votos": 61
+      },
+      {
+        "nome": "ANTONIO MAURO DE SOUZA FILHO",
+        "numero": "22630",
+        "votos": 61
+      },
+      {
+        "nome": "MARCELO LIMA COSTA",
+        "numero": "15789",
+        "votos": 53
+      },
+      {
+        "nome": "ADEMIR JOSE DE SANTANA",
+        "numero": "11123",
+        "votos": 52
+      },
+      {
+        "nome": "JOSE FRANCISCO TEIXEIRA",
+        "numero": "15123",
+        "votos": 52
+      },
+      {
+        "nome": "EDERSON DOS SANTOS ALVES",
+        "numero": "11111",
+        "votos": 40
+      },
+      {
+        "nome": "PODEMOS",
+        "numero": "20",
+        "votos": 39
+      },
+      {
+        "nome": "VAGUINER DOS SANTOS FARIAS",
+        "numero": "22222",
+        "votos": 29
+      },
+      {
+        "nome": "OZIEL DE OLIVEIRA ALVES",
+        "numero": "15000",
+        "votos": 26
+      },
+      {
+        "nome": "DJALMA LIMA DE OLIVEIRA",
+        "numero": "20000",
+        "votos": 26
+      },
+      {
+        "nome": "ROSILANE PYRAMO",
+        "numero": "20222",
+        "votos": 24
+      },
+      {
+        "nome": "EDSON BILIERI",
+        "numero": "25000",
+        "votos": 23
+      },
+      {
+        "nome": "PARTIDO LIBERAL",
+        "numero": "22",
+        "votos": 19
+      },
+      {
+        "nome": "EVANDRO LUIZ TEIXEIRA",
+        "numero": "22190",
+        "votos": 17
+      },
+      {
+        "nome": "EDER DE MORAES PIRES",
+        "numero": "44920",
+        "votos": 16
+      },
+      {
+        "nome": "MARCELO TRAJANO DA SILVA",
+        "numero": "25123",
+        "votos": 16
+      },
+      {
+        "nome": "CLERIO CEZAR BATISTA SENA",
+        "numero": "11100",
+        "votos": 16
+      },
+      {
+        "nome": "LUCILENE DE FATIMA ALMEIDA HAVILLA",
+        "numero": "15777",
+        "votos": 15
+      },
+      {
+        "nome": "VALDEMIRO DIAS DE ALMEIDA",
+        "numero": "36777",
+        "votos": 14
+      },
+      {
+        "nome": "LUIZ GONZAGA FUSCO",
+        "numero": "20111",
+        "votos": 14
+      },
+      {
+        "nome": "JORGE WILSON MIRANDA NICOLAU",
+        "numero": "15043",
+        "votos": 14
+      },
+      {
+        "nome": "VALMARI PEREIRA DA SILVA",
+        "numero": "44777",
+        "votos": 14
+      },
+      {
+        "nome": "MATHEUS VENTURINI LOPES DA SILVA",
+        "numero": "20123",
+        "votos": 14
+      },
+      {
+        "nome": "EDVALDO ANDERSON DINIZ",
+        "numero": "20020",
+        "votos": 13
+      },
+      {
+        "nome": "MARIA APARECIDA DE ANDRADE IROSKI",
+        "numero": "20321",
+        "votos": 13
+      },
+      {
+        "nome": "WILLIAN SALVETTI NUNES",
+        "numero": "25555",
+        "votos": 13
+      },
+      {
+        "nome": "ANTONIO AUGUSTO FARIAS DA SILVA",
+        "numero": "22000",
+        "votos": 12
+      },
+      {
+        "nome": "VILMA VEIGA",
+        "numero": "15555",
+        "votos": 11
+      },
+      {
+        "nome": "CARLOS RIBEIRO DA SILVA",
+        "numero": "77123",
+        "votos": 11
+      },
+      {
+        "nome": "DENIS JOSE RODRIGUES DOS SANTOS",
+        "numero": "11777",
+        "votos": 10
+      },
+      {
+        "nome": "ZENAIDE SILVA ARÃO FREITAS",
+        "numero": "44110",
+        "votos": 9
+      },
+      {
+        "nome": "SAMUEL GONÇALVES DOS SANTOS",
+        "numero": "70000",
+        "votos": 9
+      },
+      {
+        "nome": "ANDRE DE MORAES CHACON",
+        "numero": "15015",
+        "votos": 9
+      },
+      {
+        "nome": "DEIVIDE DE OLIVEIRA CAMARGO",
+        "numero": "44120",
+        "votos": 9
+      },
+      {
+        "nome": "DONIZETE APARECIDO DE JESUS JUNIOR",
+        "numero": "15333",
+        "votos": 9
+      },
+      {
+        "nome": "RITA DE CASSIA DOS SANTOS ROCKERT",
+        "numero": "36999",
+        "votos": 9
+      },
+      {
+        "nome": "RAFAEL BATISTA PEREIRA",
+        "numero": "11000",
+        "votos": 8
+      },
+      {
+        "nome": "DEONATO AMARO DA SILVA",
+        "numero": "11234",
+        "votos": 8
+      },
+      {
+        "nome": "ANDRE CRISTIAM SOARES",
+        "numero": "77520",
+        "votos": 6
+      },
+      {
+        "nome": "RONALDO SILVA DE BRITO",
+        "numero": "25190",
+        "votos": 6
+      },
+      {
+        "nome": "ZULEIDE NASCIMENTO PEREIRA",
+        "numero": "20200",
+        "votos": 6
+      },
+      {
+        "nome": "THAIS PIERROT MARTINS DOS SANTOS",
+        "numero": "50000",
+        "votos": 6
+      },
+      {
+        "nome": "WILQUER VELCIR WINCKLER LANGER",
+        "numero": "25025",
+        "votos": 6
+      },
+      {
+        "nome": "MOVIMENTO DEMOCRÁTICO BRASILEIRO",
+        "numero": "15",
+        "votos": 6
+      },
+      {
+        "nome": "RENILSON FERREIRA DO NASCIMENTO",
+        "numero": "77131",
+        "votos": 5
+      },
+      {
+        "nome": "TATIANA VALE LAROCA",
+        "numero": "22330",
+        "votos": 5
+      },
+      {
+        "nome": "DANIELA ALMEIDA GUSMÃO ALVES",
+        "numero": "77777",
+        "votos": 5
+      },
+      {
+        "nome": "CÍCERO MARTINS",
+        "numero": "36036",
+        "votos": 4
+      },
+      {
+        "nome": "CIBELLE ZINOBILE FRANCO",
+        "numero": "22022",
+        "votos": 4
+      },
+      {
+        "nome": "RICARDO ROGGIERI",
+        "numero": "44222",
+        "votos": 4
+      },
+      {
+        "nome": "SIMONE DE SOUZA",
+        "numero": "11444",
+        "votos": 4
+      },
+      {
+        "nome": "ADAIL JOSE SILVA",
+        "numero": "22173",
+        "votos": 3
+      },
+      {
+        "nome": "EDNA DE OLIVEIRA COSTA",
+        "numero": "25777",
+        "votos": 3
+      },
+      {
+        "nome": "LUIZ GUSTAVO DE PAULA MARTINS SILVA",
+        "numero": "44202",
+        "votos": 3
+      },
+      {
+        "nome": "NEWTON YOSHINOBU OIKAWA",
+        "numero": "70123",
+        "votos": 3
+      },
+      {
+        "nome": "PATRICK ALEXANDRE LESSA SILVA",
+        "numero": "22442",
+        "votos": 3
+      },
+      {
+        "nome": "AGUINALDO DA SILVA BORBA",
+        "numero": "36555",
+        "votos": 3
+      },
+      {
+        "nome": "PARTIDO RENOVAÇÃO DEMOCRÁTICA",
+        "numero": "25",
+        "votos": 3
+      },
+      {
+        "nome": "UNIÃO BRASIL",
+        "numero": "44",
+        "votos": 3
+      },
+      {
+        "nome": "AILTON NASCIMENTO",
+        "numero": "70555",
+        "votos": 3
+      },
+      {
+        "nome": "DENIS SIQUEIRA LINS",
+        "numero": "70124",
+        "votos": 2
+      },
+      {
+        "nome": "GENIVAL ALMEIDA DA SILVA",
+        "numero": "20234",
+        "votos": 2
+      },
+      {
+        "nome": "CLEYTON VIEIRA DE MORAES",
+        "numero": "11011",
+        "votos": 2
+      },
+      {
+        "nome": "CLAUDIA FABIANA BOSCHETTI",
+        "numero": "44400",
+        "votos": 2
+      },
+      {
+        "nome": "LEVI SANCHES",
+        "numero": "11222",
+        "votos": 2
+      },
+      {
+        "nome": "GERLANE DOS SANTOS BISPO",
+        "numero": "22400",
+        "votos": 2
+      },
+      {
+        "nome": "TIAGO LAGES DA SILVA",
+        "numero": "36333",
+        "votos": 2
+      },
+      {
+        "nome": "JUSCELINO RALF PEREIRA MAGALHÃES",
+        "numero": "15456",
+        "votos": 2
+      },
+      {
+        "nome": "REDE SUSTENTABILIDADE",
+        "numero": "18",
+        "votos": 2
+      },
+      {
+        "nome": "PARTIDO SOCIALISMO E LIBERDADE",
+        "numero": "50",
+        "votos": 2
+      },
+      {
+        "nome": "PROGRESSISTAS",
+        "numero": "11",
+        "votos": 2
+      },
+      {
+        "nome": "DEBORAH DE BRITO DIAS",
+        "numero": "22458",
+        "votos": 1
+      },
+      {
+        "nome": "JORGE PIRES DA SILVA",
+        "numero": "70070",
+        "votos": 1
+      },
+      {
+        "nome": "MARIA IREMAR SALES GOMES",
+        "numero": "11200",
+        "votos": 1
+      },
+      {
+        "nome": "ELIANA LOPES SILVA",
+        "numero": "70888",
+        "votos": 1
+      },
+      {
+        "nome": "DILENA FERREIRA DE LIMA",
+        "numero": "15111",
+        "votos": 1
+      },
+      {
+        "nome": "LINDALVA FERREIRA PONTES",
+        "numero": "44000",
+        "votos": 1
+      },
+      {
+        "nome": "JOAO PAULO HENRIQUES DE ARRUDA",
+        "numero": "77422",
+        "votos": 1
+      },
+      {
+        "nome": "PRISCILA FREIRE MARTINS",
+        "numero": "70666",
+        "votos": 1
+      },
+      {
+        "nome": "MARIA CELIA DOMINGUES",
+        "numero": "20120",
+        "votos": 1
+      },
+      {
+        "nome": "LIVIOMAR ALVES DA ROCHA",
+        "numero": "20220",
+        "votos": 1
+      },
+      {
+        "nome": "SUELENE GONÇALVES DANTAS ROSA DO NASCIMENTO",
+        "numero": "70444",
+        "votos": 1
+      },
+      {
+        "nome": "ELVIS SODRE SOARES",
+        "numero": "22300",
+        "votos": 1
+      },
+      {
+        "nome": "ANA MARIA PASSARETTI LANG",
+        "numero": "44001",
+        "votos": 1
+      },
+      {
+        "nome": "AGIR",
+        "numero": "36",
+        "votos": 1
+      },
+      {
+        "nome": "ANGELITA CRISTINA DE OLIVEIRA",
+        "numero": "36000",
+        "votos": 1
+      },
+      {
+        "nome": "VANESSA CRISTINA TIMOTHEO",
+        "numero": "36666",
+        "votos": 1
+      },
+      {
+        "nome": "KETURA FREITAS DE SOUZA",
+        "numero": "25111",
+        "votos": 1
+      },
+      {
+        "nome": "CINTIA APARECIDA BIGARELLI DOS SANTOS",
+        "numero": "77321",
+        "votos": 1
+      },
+      {
+        "nome": "MILTON RIBEIRO",
+        "numero": "25700",
+        "votos": 1
+      }
+    ]
+  },
+  "PORTAO VERMELHO": {
+    "prefeito": [
+      {
+        "nome": "PITER APARECIDO DOS SANTOS",
+        "numero": "20",
+        "votos": 1686
+      },
+      {
+        "nome": "LARISSA MAGALHÃES CANAVEZ SANTOS",
+        "numero": "22",
+        "votos": 1042
+      },
+      {
+        "nome": "VOTO NULO",
+        "numero": "96",
+        "votos": 126
+      },
+      {
+        "nome": "VOTO BRANCO",
+        "numero": "95",
+        "votos": 82
+      },
+      {
+        "nome": "LEONARDO AUGUSTO ZAMPIERI",
+        "numero": "50",
+        "votos": 30
+      }
+    ],
+    "vereadores": [
+      {
+        "nome": "JORGE WILSON MIRANDA NICOLAU",
+        "numero": "15043",
+        "votos": 211
+      },
+      {
+        "nome": "FERNANDO FERREIRA DA SILVA",
+        "numero": "44999",
+        "votos": 160
+      },
+      {
+        "nome": "EDERSON DOS SANTOS ALVES",
+        "numero": "11111",
+        "votos": 160
+      },
+      {
+        "nome": "LUCIMAR MARQUES MOREIRA",
+        "numero": "22123",
+        "votos": 155
+      },
+      {
+        "nome": "ANTONIO MAURO DE SOUZA FILHO",
+        "numero": "22630",
+        "votos": 116
+      },
+      {
+        "nome": "VOTO NULO",
+        "numero": "96",
+        "votos": 114
+      },
+      {
+        "nome": "VOTO BRANCO",
+        "numero": "95",
+        "votos": 112
+      },
+      {
+        "nome": "ADEMIR MARTINS SILVA",
+        "numero": "44123",
+        "votos": 94
+      },
+      {
+        "nome": "DJALMA LIMA DE OLIVEIRA",
+        "numero": "20000",
+        "votos": 91
+      },
+      {
+        "nome": "MATHEUS VENTURINI LOPES DA SILVA",
+        "numero": "20123",
+        "votos": 88
+      },
+      {
+        "nome": "JOSE FRANCISCO TEIXEIRA",
+        "numero": "15123",
+        "votos": 86
+      },
+      {
+        "nome": "MARCELO LIMA COSTA",
+        "numero": "15789",
+        "votos": 86
+      },
+      {
+        "nome": "VAGUINER DOS SANTOS FARIAS",
+        "numero": "22222",
+        "votos": 84
+      },
+      {
+        "nome": "ADEMIR JOSE DE SANTANA",
+        "numero": "11123",
+        "votos": 74
+      },
+      {
+        "nome": "OZIEL DE OLIVEIRA ALVES",
+        "numero": "15000",
+        "votos": 60
+      },
+      {
+        "nome": "SIDNEY DOS SANTOS",
+        "numero": "20655",
+        "votos": 59
+      },
+      {
+        "nome": "ERITON BEZERRA GOMES",
+        "numero": "20789",
+        "votos": 56
+      },
+      {
+        "nome": "ROBERTA MACIEIRA DE OLIVEIRA",
+        "numero": "15888",
+        "votos": 54
+      },
+      {
+        "nome": "MARIA APARECIDA DE ANDRADE IROSKI",
+        "numero": "20321",
+        "votos": 52
+      },
+      {
+        "nome": "PARTIDO LIBERAL",
+        "numero": "22",
+        "votos": 51
+      },
+      {
+        "nome": "ANTONIO AUGUSTO FARIAS DA SILVA",
+        "numero": "22000",
+        "votos": 47
+      },
+      {
+        "nome": "LUIZ GONZAGA FUSCO",
+        "numero": "20111",
+        "votos": 46
+      },
+      {
+        "nome": "GERLANE DOS SANTOS BISPO",
+        "numero": "22400",
+        "votos": 44
+      },
+      {
+        "nome": "CLERIO CEZAR BATISTA SENA",
+        "numero": "11100",
+        "votos": 42
+      },
+      {
+        "nome": "MARCELO TRAJANO DA SILVA",
+        "numero": "25123",
+        "votos": 41
+      },
+      {
+        "nome": "PODEMOS",
+        "numero": "20",
+        "votos": 40
+      },
+      {
+        "nome": "BENEDITO ANTONIO DOMINGUES",
+        "numero": "15611",
+        "votos": 38
+      },
+      {
+        "nome": "EVANDRO LUIZ TEIXEIRA",
+        "numero": "22190",
+        "votos": 37
+      },
+      {
+        "nome": "DONIZETE APARECIDO DE JESUS JUNIOR",
+        "numero": "15333",
+        "votos": 36
+      },
+      {
+        "nome": "LUCILENE DE FATIMA ALMEIDA HAVILLA",
+        "numero": "15777",
+        "votos": 32
+      },
+      {
+        "nome": "ADAIL JOSE SILVA",
+        "numero": "22173",
+        "votos": 31
+      },
+      {
+        "nome": "ALEXANDRE DE CAMARGO",
+        "numero": "25120",
+        "votos": 30
+      },
+      {
+        "nome": "EDER DE MORAES PIRES",
+        "numero": "44920",
+        "votos": 27
+      },
+      {
+        "nome": "GENIVAL ALMEIDA DA SILVA",
+        "numero": "20234",
+        "votos": 26
+      },
+      {
+        "nome": "CIBELLE ZINOBILE FRANCO",
+        "numero": "22022",
+        "votos": 25
+      },
+      {
+        "nome": "WILQUER VELCIR WINCKLER LANGER",
+        "numero": "25025",
+        "votos": 22
+      },
+      {
+        "nome": "ROSILANE PYRAMO",
+        "numero": "20222",
+        "votos": 19
+      },
+      {
+        "nome": "CLEYTON VIEIRA DE MORAES",
+        "numero": "11011",
+        "votos": 18
+      },
+      {
+        "nome": "VALMARI PEREIRA DA SILVA",
+        "numero": "44777",
+        "votos": 18
+      },
+      {
+        "nome": "RITA DE CASSIA DOS SANTOS ROCKERT",
+        "numero": "36999",
+        "votos": 17
+      },
+      {
+        "nome": "JUSCELINO RALF PEREIRA MAGALHÃES",
+        "numero": "15456",
+        "votos": 16
+      },
+      {
+        "nome": "RICARDO ROGGIERI",
+        "numero": "44222",
+        "votos": 15
+      },
+      {
+        "nome": "VALDEMIRO DIAS DE ALMEIDA",
+        "numero": "36777",
+        "votos": 15
+      },
+      {
+        "nome": "MILTON RIBEIRO",
+        "numero": "25700",
+        "votos": 15
+      },
+      {
+        "nome": "WILLIAN SALVETTI NUNES",
+        "numero": "25555",
+        "votos": 14
+      },
+      {
+        "nome": "TATIANA VALE LAROCA",
+        "numero": "22330",
+        "votos": 14
+      },
+      {
+        "nome": "CLAUDIA FABIANA BOSCHETTI",
+        "numero": "44400",
+        "votos": 13
+      },
+      {
+        "nome": "MOVIMENTO DEMOCRÁTICO BRASILEIRO",
+        "numero": "15",
+        "votos": 13
+      },
+      {
+        "nome": "RONALDO SILVA DE BRITO",
+        "numero": "25190",
+        "votos": 11
+      },
+      {
+        "nome": "NIVALDO PEIXOTO DA SILVA",
+        "numero": "44444",
+        "votos": 11
+      },
+      {
+        "nome": "NEWTON YOSHINOBU OIKAWA",
+        "numero": "70123",
+        "votos": 11
+      },
+      {
+        "nome": "PATRICK ALEXANDRE LESSA SILVA",
+        "numero": "22442",
+        "votos": 10
+      },
+      {
+        "nome": "DEONATO AMARO DA SILVA",
+        "numero": "11234",
+        "votos": 9
+      },
+      {
+        "nome": "RAFAEL BATISTA PEREIRA",
+        "numero": "11000",
+        "votos": 9
+      },
+      {
+        "nome": "ANGELITA CRISTINA DE OLIVEIRA",
+        "numero": "36000",
+        "votos": 9
+      },
+      {
+        "nome": "THAIS PIERROT MARTINS DOS SANTOS",
+        "numero": "50000",
+        "votos": 9
+      },
+      {
+        "nome": "EDVALDO ANDERSON DINIZ",
+        "numero": "20020",
+        "votos": 9
+      },
+      {
+        "nome": "SAMUEL GONÇALVES DOS SANTOS",
+        "numero": "70000",
+        "votos": 8
+      },
+      {
+        "nome": "LUIZ GUSTAVO DE PAULA MARTINS SILVA",
+        "numero": "44202",
+        "votos": 8
+      },
+      {
+        "nome": "VILMA VEIGA",
+        "numero": "15555",
+        "votos": 8
+      },
+      {
+        "nome": "SIMONE DE SOUZA",
+        "numero": "11444",
+        "votos": 8
+      },
+      {
+        "nome": "EDNA DE OLIVEIRA COSTA",
+        "numero": "25777",
+        "votos": 7
+      },
+      {
+        "nome": "DEIVIDE DE OLIVEIRA CAMARGO",
+        "numero": "44120",
+        "votos": 7
+      },
+      {
+        "nome": "ANDRE DE MORAES CHACON",
+        "numero": "15015",
+        "votos": 6
+      },
+      {
+        "nome": "ZULEIDE NASCIMENTO PEREIRA",
+        "numero": "20200",
+        "votos": 6
+      },
+      {
+        "nome": "PARTIDO SOCIALISMO E LIBERDADE",
+        "numero": "50",
+        "votos": 6
+      },
+      {
+        "nome": "DENIS JOSE RODRIGUES DOS SANTOS",
+        "numero": "11777",
+        "votos": 5
+      },
+      {
+        "nome": "AGUINALDO DA SILVA BORBA",
+        "numero": "36555",
+        "votos": 5
+      },
+      {
+        "nome": "JOAO PAULO HENRIQUES DE ARRUDA",
+        "numero": "77422",
+        "votos": 5
+      },
+      {
+        "nome": "TATIANE TRIGO MOREIRA SANT ANA LEOCADIO",
+        "numero": "25763",
+        "votos": 5
+      },
+      {
+        "nome": "PROGRESSISTAS",
+        "numero": "11",
+        "votos": 5
+      },
+      {
+        "nome": "TIAGO LAGES DA SILVA",
+        "numero": "36333",
+        "votos": 4
+      },
+      {
+        "nome": "MARIA CELIA DOMINGUES",
+        "numero": "20120",
+        "votos": 4
+      },
+      {
+        "nome": "MARIA IREMAR SALES GOMES",
+        "numero": "11200",
+        "votos": 4
+      },
+      {
+        "nome": "ZENAIDE SILVA ARÃO FREITAS",
+        "numero": "44110",
+        "votos": 4
+      },
+      {
+        "nome": "SUELENE GONÇALVES DANTAS ROSA DO NASCIMENTO",
+        "numero": "70444",
+        "votos": 3
+      },
+      {
+        "nome": "AILTON NASCIMENTO",
+        "numero": "70555",
+        "votos": 3
+      },
+      {
+        "nome": "EDSON BILIERI",
+        "numero": "25000",
+        "votos": 3
+      },
+      {
+        "nome": "DANIELA ALMEIDA GUSMÃO ALVES",
+        "numero": "77777",
+        "votos": 3
+      },
+      {
+        "nome": "DENY ROCHA LIBERATO",
+        "numero": "70007",
+        "votos": 3
+      },
+      {
+        "nome": "KETURA FREITAS DE SOUZA",
+        "numero": "25111",
+        "votos": 3
+      },
+      {
+        "nome": "JEFFERSON DOS SANTOS ALVES",
+        "numero": "36028",
+        "votos": 3
+      },
+      {
+        "nome": "ANDRE CRISTIAM SOARES",
+        "numero": "77520",
+        "votos": 3
+      },
+      {
+        "nome": "UNIÃO BRASIL",
+        "numero": "44",
+        "votos": 3
+      },
+      {
+        "nome": "RENILSON FERREIRA DO NASCIMENTO",
+        "numero": "77131",
+        "votos": 3
+      },
+      {
+        "nome": "FELIPE RODRIGUES MOTA",
+        "numero": "70100",
+        "votos": 3
+      },
+      {
+        "nome": "LEVI SANCHES",
+        "numero": "11222",
+        "votos": 2
+      },
+      {
+        "nome": "MELISSA STABEL SOUZA SALES",
+        "numero": "70777",
+        "votos": 2
+      },
+      {
+        "nome": "LINDALVA FERREIRA PONTES",
+        "numero": "44000",
+        "votos": 2
+      },
+      {
+        "nome": "ANA MARIA PASSARETTI LANG",
+        "numero": "44001",
+        "votos": 2
+      },
+      {
+        "nome": "DILENA FERREIRA DE LIMA",
+        "numero": "15111",
+        "votos": 2
+      },
+      {
+        "nome": "LIVIOMAR ALVES DA ROCHA",
+        "numero": "20220",
+        "votos": 2
+      },
+      {
+        "nome": "AVANTE",
+        "numero": "70",
+        "votos": 2
+      },
+      {
+        "nome": "PRISCILA FREIRE MARTINS",
+        "numero": "70666",
+        "votos": 2
+      },
+      {
+        "nome": "VIVIANE CASSIA DE ALMEIDA",
+        "numero": "77011",
+        "votos": 1
+      },
+      {
+        "nome": "FABIANA RIBEIRO DE ALMEIDA",
+        "numero": "25456",
+        "votos": 1
+      },
+      {
+        "nome": "BEATRIZ AMERICO DA SILVA",
+        "numero": "11112",
+        "votos": 1
+      },
+      {
+        "nome": "LUIZ ESTEVÃO",
+        "numero": "36789",
+        "votos": 1
+      },
+      {
+        "nome": "CARLOS RIBEIRO DA SILVA",
+        "numero": "77123",
+        "votos": 1
+      },
+      {
+        "nome": "JORGE PIRES DA SILVA",
+        "numero": "70070",
+        "votos": 1
+      },
+      {
+        "nome": "DENIS SIQUEIRA LINS",
+        "numero": "70124",
+        "votos": 1
+      },
+      {
+        "nome": "ALEXANDRE TADEU RIBEIRO",
+        "numero": "36123",
+        "votos": 1
+      },
+      {
+        "nome": "ALEXANDRE AUGUSTO DE OLIVEIRA",
+        "numero": "77000",
+        "votos": 1
+      },
+      {
+        "nome": "AGIR",
+        "numero": "36",
+        "votos": 1
+      }
+    ]
+  },
+  "SÃO JUDAS TADEU": {
+    "prefeito": [
+      {
+        "nome": "PITER APARECIDO DOS SANTOS",
+        "numero": "20",
+        "votos": 1611
+      },
+      {
+        "nome": "LARISSA MAGALHÃES CANAVEZ SANTOS",
+        "numero": "22",
+        "votos": 1343
+      },
+      {
+        "nome": "VOTO NULO",
+        "numero": "96",
+        "votos": 138
+      },
+      {
+        "nome": "VOTO BRANCO",
+        "numero": "95",
+        "votos": 105
+      },
+      {
+        "nome": "LEONARDO AUGUSTO ZAMPIERI",
+        "numero": "50",
+        "votos": 64
+      }
+    ],
+    "vereadores": [
+      {
+        "nome": "DJALMA LIMA DE OLIVEIRA",
+        "numero": "20000",
+        "votos": 255
+      },
+      {
+        "nome": "EDERSON DOS SANTOS ALVES",
+        "numero": "11111",
+        "votos": 237
+      },
+      {
+        "nome": "ANTONIO MAURO DE SOUZA FILHO",
+        "numero": "22630",
+        "votos": 165
+      },
+      {
+        "nome": "VAGUINER DOS SANTOS FARIAS",
+        "numero": "22222",
+        "votos": 149
+      },
+      {
+        "nome": "FERNANDO FERREIRA DA SILVA",
+        "numero": "44999",
+        "votos": 131
+      },
+      {
+        "nome": "VOTO NULO",
+        "numero": "96",
+        "votos": 121
+      },
+      {
+        "nome": "MARCELO LIMA COSTA",
+        "numero": "15789",
+        "votos": 114
+      },
+      {
+        "nome": "JOSE FRANCISCO TEIXEIRA",
+        "numero": "15123",
+        "votos": 111
+      },
+      {
+        "nome": "VOTO BRANCO",
+        "numero": "95",
+        "votos": 111
+      },
+      {
+        "nome": "LUCIMAR MARQUES MOREIRA",
+        "numero": "22123",
+        "votos": 109
+      },
+      {
+        "nome": "ADEMIR JOSE DE SANTANA",
+        "numero": "11123",
+        "votos": 102
+      },
+      {
+        "nome": "MARCELO TRAJANO DA SILVA",
+        "numero": "25123",
+        "votos": 88
+      },
+      {
+        "nome": "EVANDRO LUIZ TEIXEIRA",
+        "numero": "22190",
+        "votos": 77
+      },
+      {
+        "nome": "SIDNEY DOS SANTOS",
+        "numero": "20655",
+        "votos": 76
+      },
+      {
+        "nome": "MARIA APARECIDA DE ANDRADE IROSKI",
+        "numero": "20321",
+        "votos": 64
+      },
+      {
+        "nome": "ADEMIR MARTINS SILVA",
+        "numero": "44123",
+        "votos": 63
+      },
+      {
+        "nome": "ERITON BEZERRA GOMES",
+        "numero": "20789",
+        "votos": 60
+      },
+      {
+        "nome": "LUCILENE DE FATIMA ALMEIDA HAVILLA",
+        "numero": "15777",
+        "votos": 57
+      },
+      {
+        "nome": "PARTIDO LIBERAL",
+        "numero": "22",
+        "votos": 53
+      },
+      {
+        "nome": "MATHEUS VENTURINI LOPES DA SILVA",
+        "numero": "20123",
+        "votos": 52
+      },
+      {
+        "nome": "JORGE WILSON MIRANDA NICOLAU",
+        "numero": "15043",
+        "votos": 48
+      },
+      {
+        "nome": "DONIZETE APARECIDO DE JESUS JUNIOR",
+        "numero": "15333",
+        "votos": 48
+      },
+      {
+        "nome": "PODEMOS",
+        "numero": "20",
+        "votos": 42
+      },
+      {
+        "nome": "GENIVAL ALMEIDA DA SILVA",
+        "numero": "20234",
+        "votos": 38
+      },
+      {
+        "nome": "OZIEL DE OLIVEIRA ALVES",
+        "numero": "15000",
+        "votos": 35
+      },
+      {
+        "nome": "LUIZ GONZAGA FUSCO",
+        "numero": "20111",
+        "votos": 33
+      },
+      {
+        "nome": "DEONATO AMARO DA SILVA",
+        "numero": "11234",
+        "votos": 31
+      },
+      {
+        "nome": "NIVALDO PEIXOTO DA SILVA",
+        "numero": "44444",
+        "votos": 31
+      },
+      {
+        "nome": "VALMARI PEREIRA DA SILVA",
+        "numero": "44777",
+        "votos": 29
+      },
+      {
+        "nome": "VALDEMIRO DIAS DE ALMEIDA",
+        "numero": "36777",
+        "votos": 29
+      },
+      {
+        "nome": "THAIS PIERROT MARTINS DOS SANTOS",
+        "numero": "50000",
+        "votos": 28
+      },
+      {
+        "nome": "VILMA VEIGA",
+        "numero": "15555",
+        "votos": 27
+      },
+      {
+        "nome": "ROBERTA MACIEIRA DE OLIVEIRA",
+        "numero": "15888",
+        "votos": 26
+      },
+      {
+        "nome": "CLERIO CEZAR BATISTA SENA",
+        "numero": "11100",
+        "votos": 24
+      },
+      {
+        "nome": "CIBELLE ZINOBILE FRANCO",
+        "numero": "22022",
+        "votos": 22
+      },
+      {
+        "nome": "RICARDO ROGGIERI",
+        "numero": "44222",
+        "votos": 22
+      },
+      {
+        "nome": "SIMONE DE SOUZA",
+        "numero": "11444",
+        "votos": 22
+      },
+      {
+        "nome": "WILLIAN SALVETTI NUNES",
+        "numero": "25555",
+        "votos": 22
+      },
+      {
+        "nome": "ANDRE CRISTIAM SOARES",
+        "numero": "77520",
+        "votos": 21
+      },
+      {
+        "nome": "ROSILANE PYRAMO",
+        "numero": "20222",
+        "votos": 21
+      },
+      {
+        "nome": "ZULEIDE NASCIMENTO PEREIRA",
+        "numero": "20200",
+        "votos": 21
+      },
+      {
+        "nome": "TATIANA VALE LAROCA",
+        "numero": "22330",
+        "votos": 20
+      },
+      {
+        "nome": "CLEYTON VIEIRA DE MORAES",
+        "numero": "11011",
+        "votos": 20
+      },
+      {
+        "nome": "JUSCELINO RALF PEREIRA MAGALHÃES",
+        "numero": "15456",
+        "votos": 20
+      },
+      {
+        "nome": "ANTONIO AUGUSTO FARIAS DA SILVA",
+        "numero": "22000",
+        "votos": 18
+      },
+      {
+        "nome": "BENEDITO ANTONIO DOMINGUES",
+        "numero": "15611",
+        "votos": 18
+      },
+      {
+        "nome": "RONALDO SILVA DE BRITO",
+        "numero": "25190",
+        "votos": 17
+      },
+      {
+        "nome": "ANA MARIA PASSARETTI LANG",
+        "numero": "44001",
+        "votos": 16
+      },
+      {
+        "nome": "NEWTON YOSHINOBU OIKAWA",
+        "numero": "70123",
+        "votos": 16
+      },
+      {
+        "nome": "EDER DE MORAES PIRES",
+        "numero": "44920",
+        "votos": 15
+      },
+      {
+        "nome": "RENILSON FERREIRA DO NASCIMENTO",
+        "numero": "77131",
+        "votos": 14
+      },
+      {
+        "nome": "DEIVIDE DE OLIVEIRA CAMARGO",
+        "numero": "44120",
+        "votos": 13
+      },
+      {
+        "nome": "PATRICK ALEXANDRE LESSA SILVA",
+        "numero": "22442",
+        "votos": 13
+      },
+      {
+        "nome": "DILENA FERREIRA DE LIMA",
+        "numero": "15111",
+        "votos": 13
+      },
+      {
+        "nome": "CÍCERO MARTINS",
+        "numero": "36036",
+        "votos": 12
+      },
+      {
+        "nome": "ADAIL JOSE SILVA",
+        "numero": "22173",
+        "votos": 12
+      },
+      {
+        "nome": "WILQUER VELCIR WINCKLER LANGER",
+        "numero": "25025",
+        "votos": 11
+      },
+      {
+        "nome": "RAFAEL BATISTA PEREIRA",
+        "numero": "11000",
+        "votos": 11
+      },
+      {
+        "nome": "RITA DE CASSIA DOS SANTOS ROCKERT",
+        "numero": "36999",
+        "votos": 10
+      },
+      {
+        "nome": "FELIPE RODRIGUES MOTA",
+        "numero": "70100",
+        "votos": 10
+      },
+      {
+        "nome": "DENIS SIQUEIRA LINS",
+        "numero": "70124",
+        "votos": 9
+      },
+      {
+        "nome": "PROGRESSISTAS",
+        "numero": "11",
+        "votos": 9
+      },
+      {
+        "nome": "CLAUDIA FABIANA BOSCHETTI",
+        "numero": "44400",
+        "votos": 8
+      },
+      {
+        "nome": "SAMUEL GONÇALVES DOS SANTOS",
+        "numero": "70000",
+        "votos": 7
+      },
+      {
+        "nome": "MELISSA STABEL SOUZA SALES",
+        "numero": "70777",
+        "votos": 7
+      },
+      {
+        "nome": "EDSON BILIERI",
+        "numero": "25000",
+        "votos": 7
+      },
+      {
+        "nome": "LIVIOMAR ALVES DA ROCHA",
+        "numero": "20220",
+        "votos": 6
+      },
+      {
+        "nome": "MOVIMENTO DEMOCRÁTICO BRASILEIRO",
+        "numero": "15",
+        "votos": 6
+      },
+      {
+        "nome": "GERLANE DOS SANTOS BISPO",
+        "numero": "22400",
+        "votos": 6
+      },
+      {
+        "nome": "DENIS JOSE RODRIGUES DOS SANTOS",
+        "numero": "11777",
+        "votos": 5
+      },
+      {
+        "nome": "JOAO PAULO HENRIQUES DE ARRUDA",
+        "numero": "77422",
+        "votos": 5
+      },
+      {
+        "nome": "LUIZ ESTEVÃO",
+        "numero": "36789",
+        "votos": 5
+      },
+      {
+        "nome": "PARTIDO SOCIALISMO E LIBERDADE",
+        "numero": "50",
+        "votos": 5
+      },
+      {
+        "nome": "MILTON RIBEIRO",
+        "numero": "25700",
+        "votos": 5
+      },
+      {
+        "nome": "AILTON NASCIMENTO",
+        "numero": "70555",
+        "votos": 5
+      },
+      {
+        "nome": "KETURA FREITAS DE SOUZA",
+        "numero": "25111",
+        "votos": 5
+      },
+      {
+        "nome": "EDVALDO ANDERSON DINIZ",
+        "numero": "20020",
+        "votos": 5
+      },
+      {
+        "nome": "ANDRE DE MORAES CHACON",
+        "numero": "15015",
+        "votos": 5
+      },
+      {
+        "nome": "UNIÃO BRASIL",
+        "numero": "44",
+        "votos": 4
+      },
+      {
+        "nome": "ANGELITA CRISTINA DE OLIVEIRA",
+        "numero": "36000",
+        "votos": 4
+      },
+      {
+        "nome": "LINDALVA FERREIRA PONTES",
+        "numero": "44000",
+        "votos": 4
+      },
+      {
+        "nome": "TATIANE TRIGO MOREIRA SANT ANA LEOCADIO",
+        "numero": "25763",
+        "votos": 4
+      },
+      {
+        "nome": "LEVI SANCHES",
+        "numero": "11222",
+        "votos": 4
+      },
+      {
+        "nome": "MARIA CELIA DOMINGUES",
+        "numero": "20120",
+        "votos": 3
+      },
+      {
+        "nome": "JEFFERSON DOS SANTOS ALVES",
+        "numero": "36028",
+        "votos": 3
+      },
+      {
+        "nome": "PRISCILA FREIRE MARTINS",
+        "numero": "70666",
+        "votos": 3
+      },
+      {
+        "nome": "TIAGO LAGES DA SILVA",
+        "numero": "36333",
+        "votos": 3
+      },
+      {
+        "nome": "ALEXANDRE AUGUSTO DE OLIVEIRA",
+        "numero": "77000",
+        "votos": 2
+      },
+      {
+        "nome": "EDNA DE OLIVEIRA COSTA",
+        "numero": "25777",
+        "votos": 2
+      },
+      {
+        "nome": "MARIA IREMAR SALES GOMES",
+        "numero": "11200",
+        "votos": 2
+      },
+      {
+        "nome": "FABIANA RIBEIRO DE ALMEIDA",
+        "numero": "25456",
+        "votos": 2
+      },
+      {
+        "nome": "LUIZ GUSTAVO DE PAULA MARTINS SILVA",
+        "numero": "44202",
+        "votos": 2
+      },
+      {
+        "nome": "ZENAIDE SILVA ARÃO FREITAS",
+        "numero": "44110",
+        "votos": 2
+      },
+      {
+        "nome": "AGUINALDO DA SILVA BORBA",
+        "numero": "36555",
+        "votos": 1
+      },
+      {
+        "nome": "LARISSA CAMPOS SANTOS",
+        "numero": "36360",
+        "votos": 1
+      },
+      {
+        "nome": "TANIA LUCIA GIROLDO",
+        "numero": "11255",
+        "votos": 1
+      },
+      {
+        "nome": "SOLIDARIEDADE",
+        "numero": "77",
+        "votos": 1
+      },
+      {
+        "nome": "SUELENE GONÇALVES DANTAS ROSA DO NASCIMENTO",
+        "numero": "70444",
+        "votos": 1
+      },
+      {
+        "nome": "DANIELA ALMEIDA GUSMÃO ALVES",
+        "numero": "77777",
+        "votos": 1
+      },
+      {
+        "nome": "PARTIDO RENOVAÇÃO DEMOCRÁTICA",
+        "numero": "25",
+        "votos": 1
+      },
+      {
+        "nome": "AGIR",
+        "numero": "36",
+        "votos": 1
+      },
+      {
+        "nome": "AVANTE",
+        "numero": "70",
+        "votos": 1
+      },
+      {
+        "nome": "JORGE PIRES DA SILVA",
+        "numero": "70070",
+        "votos": 1
+      },
+      {
+        "nome": "ELIANA LOPES SILVA",
+        "numero": "70888",
+        "votos": 1
+      },
+      {
+        "nome": "DENY ROCHA LIBERATO",
+        "numero": "70007",
+        "votos": 1
+      },
+      {
+        "nome": "MARCELO EGGERT ZOPAZO",
+        "numero": "70181",
+        "votos": 1
+      }
+    ]
+  },
+  "TIJUCO PRETO": {
+    "prefeito": [
+      {
+        "nome": "PITER APARECIDO DOS SANTOS",
+        "numero": "20",
+        "votos": 2011
+      },
+      {
+        "nome": "LARISSA MAGALHÃES CANAVEZ SANTOS",
+        "numero": "22",
+        "votos": 1533
+      },
+      {
+        "nome": "VOTO NULO",
+        "numero": "96",
+        "votos": 222
+      },
+      {
+        "nome": "VOTO BRANCO",
+        "numero": "95",
+        "votos": 212
+      },
+      {
+        "nome": "LEONARDO AUGUSTO ZAMPIERI",
+        "numero": "50",
+        "votos": 120
+      }
+    ],
+    "vereadores": [
+      {
+        "nome": "MARCELO TRAJANO DA SILVA",
+        "numero": "25123",
+        "votos": 889
+      },
+      {
+        "nome": "JUSCELINO RALF PEREIRA MAGALHÃES",
+        "numero": "15456",
+        "votos": 314
+      },
+      {
+        "nome": "LIVIOMAR ALVES DA ROCHA",
+        "numero": "20220",
+        "votos": 238
+      },
+      {
+        "nome": "VOTO BRANCO",
+        "numero": "95",
+        "votos": 233
+      },
+      {
+        "nome": "VOTO NULO",
+        "numero": "96",
+        "votos": 197
+      },
+      {
+        "nome": "LUIZ GUSTAVO DE PAULA MARTINS SILVA",
+        "numero": "44202",
+        "votos": 184
+      },
+      {
+        "nome": "VALMARI PEREIRA DA SILVA",
+        "numero": "44777",
+        "votos": 180
+      },
+      {
+        "nome": "MARIA APARECIDA DE ANDRADE IROSKI",
+        "numero": "20321",
+        "votos": 112
+      },
+      {
+        "nome": "ROSILANE PYRAMO",
+        "numero": "20222",
+        "votos": 112
+      },
+      {
+        "nome": "PARTIDO LIBERAL",
+        "numero": "22",
+        "votos": 111
+      },
+      {
+        "nome": "DEIVIDE DE OLIVEIRA CAMARGO",
+        "numero": "44120",
+        "votos": 101
+      },
+      {
+        "nome": "EDERSON DOS SANTOS ALVES",
+        "numero": "11111",
+        "votos": 86
+      },
+      {
+        "nome": "ADEMIR JOSE DE SANTANA",
+        "numero": "11123",
+        "votos": 70
+      },
+      {
+        "nome": "FERNANDO FERREIRA DA SILVA",
+        "numero": "44999",
+        "votos": 64
+      },
+      {
+        "nome": "LUCIMAR MARQUES MOREIRA",
+        "numero": "22123",
+        "votos": 64
+      },
+      {
+        "nome": "DJALMA LIMA DE OLIVEIRA",
+        "numero": "20000",
+        "votos": 63
+      },
+      {
+        "nome": "EVANDRO LUIZ TEIXEIRA",
+        "numero": "22190",
+        "votos": 59
+      },
+      {
+        "nome": "ROBERTA MACIEIRA DE OLIVEIRA",
+        "numero": "15888",
+        "votos": 58
+      },
+      {
+        "nome": "THAIS PIERROT MARTINS DOS SANTOS",
+        "numero": "50000",
+        "votos": 56
+      },
+      {
+        "nome": "ANTONIO MAURO DE SOUZA FILHO",
+        "numero": "22630",
+        "votos": 54
+      },
+      {
+        "nome": "MARCELO LIMA COSTA",
+        "numero": "15789",
+        "votos": 54
+      },
+      {
+        "nome": "MILTON RIBEIRO",
+        "numero": "25700",
+        "votos": 49
+      },
+      {
+        "nome": "ADEMIR MARTINS SILVA",
+        "numero": "44123",
+        "votos": 48
+      },
+      {
+        "nome": "PODEMOS",
+        "numero": "20",
+        "votos": 44
+      },
+      {
+        "nome": "DILENA FERREIRA DE LIMA",
+        "numero": "15111",
+        "votos": 44
+      },
+      {
+        "nome": "JOSE FRANCISCO TEIXEIRA",
+        "numero": "15123",
+        "votos": 42
+      },
+      {
+        "nome": "SAMUEL GONÇALVES DOS SANTOS",
+        "numero": "70000",
+        "votos": 38
+      },
+      {
+        "nome": "CIBELLE ZINOBILE FRANCO",
+        "numero": "22022",
+        "votos": 31
+      },
+      {
+        "nome": "SIDNEY DOS SANTOS",
+        "numero": "20655",
+        "votos": 31
+      },
+      {
+        "nome": "CLERIO CEZAR BATISTA SENA",
+        "numero": "11100",
+        "votos": 26
+      },
+      {
+        "nome": "LUCILENE DE FATIMA ALMEIDA HAVILLA",
+        "numero": "15777",
+        "votos": 23
+      },
+      {
+        "nome": "PARTIDO SOCIALISMO E LIBERDADE",
+        "numero": "50",
+        "votos": 23
+      },
+      {
+        "nome": "RONALDO SILVA DE BRITO",
+        "numero": "25190",
+        "votos": 23
+      },
+      {
+        "nome": "ERITON BEZERRA GOMES",
+        "numero": "20789",
+        "votos": 20
+      },
+      {
+        "nome": "ALEXANDRE AUGUSTO DE OLIVEIRA",
+        "numero": "77000",
+        "votos": 19
+      },
+      {
+        "nome": "RICARDO ROGGIERI",
+        "numero": "44222",
+        "votos": 19
+      },
+      {
+        "nome": "CLEYTON VIEIRA DE MORAES",
+        "numero": "11011",
+        "votos": 18
+      },
+      {
+        "nome": "CLAUDIA FABIANA BOSCHETTI",
+        "numero": "44400",
+        "votos": 18
+      },
+      {
+        "nome": "DONIZETE APARECIDO DE JESUS JUNIOR",
+        "numero": "15333",
+        "votos": 18
+      },
+      {
+        "nome": "EDER DE MORAES PIRES",
+        "numero": "44920",
+        "votos": 14
+      },
+      {
+        "nome": "MATHEUS VENTURINI LOPES DA SILVA",
+        "numero": "20123",
+        "votos": 14
+      },
+      {
+        "nome": "VAGUINER DOS SANTOS FARIAS",
+        "numero": "22222",
+        "votos": 13
+      },
+      {
+        "nome": "MARIA IREMAR SALES GOMES",
+        "numero": "11200",
+        "votos": 12
+      },
+      {
+        "nome": "EDSON BILIERI",
+        "numero": "25000",
+        "votos": 11
+      },
+      {
+        "nome": "JORGE WILSON MIRANDA NICOLAU",
+        "numero": "15043",
+        "votos": 10
+      },
+      {
+        "nome": "TATIANA VALE LAROCA",
+        "numero": "22330",
+        "votos": 10
+      },
+      {
+        "nome": "MOVIMENTO DEMOCRÁTICO BRASILEIRO",
+        "numero": "15",
+        "votos": 10
+      },
+      {
+        "nome": "PARTIDO RENOVAÇÃO DEMOCRÁTICA",
+        "numero": "25",
+        "votos": 8
+      },
+      {
+        "nome": "MARCELO EGGERT ZOPAZO",
+        "numero": "70181",
+        "votos": 8
+      },
+      {
+        "nome": "OZIEL DE OLIVEIRA ALVES",
+        "numero": "15000",
+        "votos": 8
+      },
+      {
+        "nome": "ANDRE DE MORAES CHACON",
+        "numero": "15015",
+        "votos": 7
+      },
+      {
+        "nome": "WILLIAN SALVETTI NUNES",
+        "numero": "25555",
+        "votos": 6
+      },
+      {
+        "nome": "ANTONIO AUGUSTO FARIAS DA SILVA",
+        "numero": "22000",
+        "votos": 6
+      },
+      {
+        "nome": "VALDEMIRO DIAS DE ALMEIDA",
+        "numero": "36777",
+        "votos": 6
+      },
+      {
+        "nome": "UNIÃO BRASIL",
+        "numero": "44",
+        "votos": 6
+      },
+      {
+        "nome": "AILTON NASCIMENTO",
+        "numero": "70555",
+        "votos": 6
+      },
+      {
+        "nome": "BENEDITO ANTONIO DOMINGUES",
+        "numero": "15611",
+        "votos": 6
+      },
+      {
+        "nome": "PROGRESSISTAS",
+        "numero": "11",
+        "votos": 5
+      },
+      {
+        "nome": "WILQUER VELCIR WINCKLER LANGER",
+        "numero": "25025",
+        "votos": 5
+      },
+      {
+        "nome": "RENILSON FERREIRA DO NASCIMENTO",
+        "numero": "77131",
+        "votos": 5
+      },
+      {
+        "nome": "EDVALDO ANDERSON DINIZ",
+        "numero": "20020",
+        "votos": 5
+      },
+      {
+        "nome": "DENIS JOSE RODRIGUES DOS SANTOS",
+        "numero": "11777",
+        "votos": 5
+      },
+      {
+        "nome": "ANGELITA CRISTINA DE OLIVEIRA",
+        "numero": "36000",
+        "votos": 4
+      },
+      {
+        "nome": "CÍCERO MARTINS",
+        "numero": "36036",
+        "votos": 4
+      },
+      {
+        "nome": "DENIS SIQUEIRA LINS",
+        "numero": "70124",
+        "votos": 4
+      },
+      {
+        "nome": "SUELENE GONÇALVES DANTAS ROSA DO NASCIMENTO",
+        "numero": "70444",
+        "votos": 4
+      },
+      {
+        "nome": "AVANTE",
+        "numero": "70",
+        "votos": 4
+      },
+      {
+        "nome": "DEBORAH DE BRITO DIAS",
+        "numero": "22458",
+        "votos": 4
+      },
+      {
+        "nome": "ZULEIDE NASCIMENTO PEREIRA",
+        "numero": "20200",
+        "votos": 4
+      },
+      {
+        "nome": "VILMA VEIGA",
+        "numero": "15555",
+        "votos": 4
+      },
+      {
+        "nome": "DEONATO AMARO DA SILVA",
+        "numero": "11234",
+        "votos": 3
+      },
+      {
+        "nome": "NIVALDO PEIXOTO DA SILVA",
+        "numero": "44444",
+        "votos": 3
+      },
+      {
+        "nome": "ANA MARIA PASSARETTI LANG",
+        "numero": "44001",
+        "votos": 3
+      },
+      {
+        "nome": "BEATRIZ AMERICO DA SILVA",
+        "numero": "11112",
+        "votos": 3
+      },
+      {
+        "nome": "RITA DE CASSIA DOS SANTOS ROCKERT",
+        "numero": "36999",
+        "votos": 3
+      },
+      {
+        "nome": "GENIVAL ALMEIDA DA SILVA",
+        "numero": "20234",
+        "votos": 3
+      },
+      {
+        "nome": "AGUINALDO DA SILVA BORBA",
+        "numero": "36555",
+        "votos": 3
+      },
+      {
+        "nome": "MELISSA STABEL SOUZA SALES",
+        "numero": "70777",
+        "votos": 2
+      },
+      {
+        "nome": "PRISCILA FREIRE MARTINS",
+        "numero": "70666",
+        "votos": 2
+      },
+      {
+        "nome": "NEWTON YOSHINOBU OIKAWA",
+        "numero": "70123",
+        "votos": 2
+      },
+      {
+        "nome": "LARISSA CAMPOS SANTOS",
+        "numero": "36360",
+        "votos": 2
+      },
+      {
+        "nome": "SOLIDARIEDADE",
+        "numero": "77",
+        "votos": 2
+      },
+      {
+        "nome": "PATRICK ALEXANDRE LESSA SILVA",
+        "numero": "22442",
+        "votos": 1
+      },
+      {
+        "nome": "VANESSA CRISTINA TIMOTHEO",
+        "numero": "36666",
+        "votos": 1
+      },
+      {
+        "nome": "VIVIANE CASSIA DE ALMEIDA",
+        "numero": "77011",
+        "votos": 1
+      },
+      {
+        "nome": "FABIANA RIBEIRO DE ALMEIDA",
+        "numero": "25456",
+        "votos": 1
+      },
+      {
+        "nome": "LUIZ ESTEVÃO",
+        "numero": "36789",
+        "votos": 1
+      },
+      {
+        "nome": "KETURA FREITAS DE SOUZA",
+        "numero": "25111",
+        "votos": 1
+      },
+      {
+        "nome": "ELVIS SODRE SOARES",
+        "numero": "22300",
+        "votos": 1
+      },
+      {
+        "nome": "AGIR",
+        "numero": "36",
+        "votos": 1
+      },
+      {
+        "nome": "DANIELA ALMEIDA GUSMÃO ALVES",
+        "numero": "77777",
+        "votos": 1
+      },
+      {
+        "nome": "LUIZ GONZAGA FUSCO",
+        "numero": "20111",
+        "votos": 1
+      },
+      {
+        "nome": "ANDRE CRISTIAM SOARES",
+        "numero": "77520",
+        "votos": 1
+      },
+      {
+        "nome": "SIMONE DE SOUZA",
+        "numero": "11444",
+        "votos": 1
+      },
+      {
+        "nome": "RAFAEL BATISTA PEREIRA",
+        "numero": "11000",
+        "votos": 1
+      },
+      {
+        "nome": "ADAIL JOSE SILVA",
+        "numero": "22173",
+        "votos": 1
+      },
+      {
+        "nome": "GERLANE DOS SANTOS BISPO",
+        "numero": "22400",
+        "votos": 1
+      },
+      {
+        "nome": "LINDALVA FERREIRA PONTES",
+        "numero": "44000",
+        "votos": 1
+      }
+    ]
+  }
+}

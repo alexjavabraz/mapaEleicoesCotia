@@ -1,0 +1,1716 @@
+{
+  "municipio": {
+    "nome": "VARGEM GRANDE PAULISTA",
+    "uf": "SP",
+    "ano_eleicao": 2024
+  },
+  "zonas": {
+    "286": {
+      "numero": "286",
+      "nome": "Zona 286",
+      "prefeito": {
+        "1": [
+          {
+            "numero": "20",
+            "nome": "PITER SANTOS",
+            "partido": "PODE",
+            "numero_partido": "20",
+            "situacao": "ELEITO",
+            "votos": 17908
+          },
+          {
+            "numero": "22",
+            "nome": "DRA. LARISSA",
+            "partido": "PL",
+            "numero_partido": "22",
+            "situacao": "NÃO ELEITO",
+            "votos": 12765
+          },
+          {
+            "numero": "50",
+            "nome": "LEONARDO ZAMPIERI",
+            "partido": "PSOL",
+            "numero_partido": "50",
+            "situacao": "NÃO ELEITO",
+            "votos": 0
+          }
+        ],
+        "2": []
+      },
+      "vereadores": {
+        "1": [
+          {
+            "numero": "25123",
+            "nome": "MARCELO LENHA",
+            "partido": "PRD",
+            "numero_partido": "25",
+            "situacao": "ELEITO POR QP",
+            "votos": 1762
+          },
+          {
+            "numero": "22123",
+            "nome": "LUCIMAR DO LUIA",
+            "partido": "PL",
+            "numero_partido": "22",
+            "situacao": "ELEITO POR QP",
+            "votos": 1572
+          },
+          {
+            "numero": "44123",
+            "nome": "ADEMIR MI",
+            "partido": "UNIÃO",
+            "numero_partido": "44",
+            "situacao": "ELEITO POR QP",
+            "votos": 1355
+          },
+          {
+            "numero": "11111",
+            "nome": "FERRUGEM DA PIZZARIA",
+            "partido": "PP",
+            "numero_partido": "11",
+            "situacao": "ELEITO POR QP",
+            "votos": 1353
+          },
+          {
+            "numero": "20655",
+            "nome": "NEY",
+            "partido": "PODE",
+            "numero_partido": "20",
+            "situacao": "ELEITO POR QP",
+            "votos": 1272
+          },
+          {
+            "numero": "22630",
+            "nome": "MAURINHO",
+            "partido": "PL",
+            "numero_partido": "22",
+            "situacao": "ELEITO POR MÉDIA",
+            "votos": 1184
+          },
+          {
+            "numero": "11123",
+            "nome": "CAFU",
+            "partido": "PP",
+            "numero_partido": "11",
+            "situacao": "SUPLENTE",
+            "votos": 1151
+          },
+          {
+            "numero": "15789",
+            "nome": "MARCELINHO DO CONSELHO",
+            "partido": "MDB",
+            "numero_partido": "15",
+            "situacao": "ELEITO POR QP",
+            "votos": 1132
+          },
+          {
+            "numero": "44999",
+            "nome": "FERNANDO BIXIGA",
+            "partido": "UNIÃO",
+            "numero_partido": "44",
+            "situacao": "ELEITO POR MÉDIA",
+            "votos": 1107
+          },
+          {
+            "numero": "44777",
+            "nome": "VAL",
+            "partido": "UNIÃO",
+            "numero_partido": "44",
+            "situacao": "SUPLENTE",
+            "votos": 962
+          },
+          {
+            "numero": "15123",
+            "nome": "ZEZINHO TAPECEIRO",
+            "partido": "MDB",
+            "numero_partido": "15",
+            "situacao": "ELEITO POR QP",
+            "votos": 897
+          },
+          {
+            "numero": "20789",
+            "nome": "TOM DO CONSELHO",
+            "partido": "PODE",
+            "numero_partido": "20",
+            "situacao": "ELEITO POR QP",
+            "votos": 896
+          },
+          {
+            "numero": "20000",
+            "nome": "DJALMA",
+            "partido": "PODE",
+            "numero_partido": "20",
+            "situacao": "SUPLENTE",
+            "votos": 797
+          },
+          {
+            "numero": "15456",
+            "nome": "JUSCELINO MAGALHÃES",
+            "partido": "MDB",
+            "numero_partido": "15",
+            "situacao": "ELEITO POR MÉDIA",
+            "votos": 698
+          },
+          {
+            "numero": "15888",
+            "nome": "ROBERTA MACIEIRA",
+            "partido": "MDB",
+            "numero_partido": "15",
+            "situacao": "SUPLENTE",
+            "votos": 697
+          },
+          {
+            "numero": "20321",
+            "nome": "PROF CIDA IROSKI",
+            "partido": "PODE",
+            "numero_partido": "20",
+            "situacao": "SUPLENTE",
+            "votos": 672
+          },
+          {
+            "numero": "22222",
+            "nome": "PROFESSOR VAGUINER",
+            "partido": "PL",
+            "numero_partido": "22",
+            "situacao": "SUPLENTE",
+            "votos": 611
+          },
+          {
+            "numero": "15043",
+            "nome": "JORGE DA OFICINA",
+            "partido": "MDB",
+            "numero_partido": "15",
+            "situacao": "SUPLENTE",
+            "votos": 515
+          },
+          {
+            "numero": "20222",
+            "nome": "LANE DO ROBERTÃO",
+            "partido": "PODE",
+            "numero_partido": "20",
+            "situacao": "SUPLENTE",
+            "votos": 496
+          },
+          {
+            "numero": "15777",
+            "nome": "LUCILENE HAVILLA",
+            "partido": "MDB",
+            "numero_partido": "15",
+            "situacao": "SUPLENTE",
+            "votos": 477
+          },
+          {
+            "numero": "15111",
+            "nome": "TIETA DO AGRESTE VGP",
+            "partido": "MDB",
+            "numero_partido": "15",
+            "situacao": "SUPLENTE",
+            "votos": 473
+          },
+          {
+            "numero": "22190",
+            "nome": "CAPITÃO EVANDRO",
+            "partido": "PL",
+            "numero_partido": "22",
+            "situacao": "SUPLENTE",
+            "votos": 457
+          },
+          {
+            "numero": "11100",
+            "nome": "CEZAR SENA",
+            "partido": "PP",
+            "numero_partido": "11",
+            "situacao": "SUPLENTE",
+            "votos": 440
+          },
+          {
+            "numero": "20123",
+            "nome": "MATHEUS VENTURINI",
+            "partido": "PODE",
+            "numero_partido": "20",
+            "situacao": "SUPLENTE",
+            "votos": 418
+          },
+          {
+            "numero": "15000",
+            "nome": "OZIEL ALVES",
+            "partido": "MDB",
+            "numero_partido": "15",
+            "situacao": "SUPLENTE",
+            "votos": 344
+          },
+          {
+            "numero": "15611",
+            "nome": "DITO DA COOPERATIVA",
+            "partido": "MDB",
+            "numero_partido": "15",
+            "situacao": "SUPLENTE",
+            "votos": 342
+          },
+          {
+            "numero": "20220",
+            "nome": "LINK ROCHA",
+            "partido": "PODE",
+            "numero_partido": "20",
+            "situacao": "SUPLENTE",
+            "votos": 328
+          },
+          {
+            "numero": "22022",
+            "nome": "CIBELLE BENVENUTO",
+            "partido": "PL",
+            "numero_partido": "22",
+            "situacao": "SUPLENTE",
+            "votos": 302
+          },
+          {
+            "numero": "15333",
+            "nome": "DONIZETE JUNIOR",
+            "partido": "MDB",
+            "numero_partido": "15",
+            "situacao": "SUPLENTE",
+            "votos": 288
+          },
+          {
+            "numero": "44202",
+            "nome": "GUSTAVO MANCHA",
+            "partido": "UNIÃO",
+            "numero_partido": "44",
+            "situacao": "SUPLENTE",
+            "votos": 256
+          },
+          {
+            "numero": "15555",
+            "nome": "VILMA VEIGA",
+            "partido": "MDB",
+            "numero_partido": "15",
+            "situacao": "SUPLENTE",
+            "votos": 253
+          },
+          {
+            "numero": "50000",
+            "nome": "THAIS PIERROT",
+            "partido": "PSOL",
+            "numero_partido": "50",
+            "situacao": "NÃO ELEITO",
+            "votos": 245
+          },
+          {
+            "numero": "25555",
+            "nome": "WILLIAN SALVETTI",
+            "partido": "PRD",
+            "numero_partido": "25",
+            "situacao": "SUPLENTE",
+            "votos": 234
+          },
+          {
+            "numero": "44920",
+            "nome": "EDER PIRES",
+            "partido": "UNIÃO",
+            "numero_partido": "44",
+            "situacao": "SUPLENTE",
+            "votos": 232
+          },
+          {
+            "numero": "44120",
+            "nome": "CAMARGO DA GUARDA",
+            "partido": "UNIÃO",
+            "numero_partido": "44",
+            "situacao": "SUPLENTE",
+            "votos": 227
+          },
+          {
+            "numero": "25190",
+            "nome": "RONALDO BRITTO",
+            "partido": "PRD",
+            "numero_partido": "25",
+            "situacao": "SUPLENTE",
+            "votos": 226
+          },
+          {
+            "numero": "25025",
+            "nome": "DR. WILKER HOLLYWOOD",
+            "partido": "PRD",
+            "numero_partido": "25",
+            "situacao": "SUPLENTE",
+            "votos": 204
+          },
+          {
+            "numero": "44400",
+            "nome": "PROFESSORA CLAUDIA",
+            "partido": "UNIÃO",
+            "numero_partido": "44",
+            "situacao": "SUPLENTE",
+            "votos": 195
+          },
+          {
+            "numero": "25700",
+            "nome": "MILTON DE OBRAS",
+            "partido": "PRD",
+            "numero_partido": "25",
+            "situacao": "SUPLENTE",
+            "votos": 186
+          },
+          {
+            "numero": "22000",
+            "nome": "GORDO DO QUARENTA E TRÊS",
+            "partido": "PL",
+            "numero_partido": "22",
+            "situacao": "SUPLENTE",
+            "votos": 186
+          },
+          {
+            "numero": "36036",
+            "nome": "CÍCERO DA BARBEARIA",
+            "partido": "AGIR",
+            "numero_partido": "36",
+            "situacao": "NÃO ELEITO",
+            "votos": 174
+          },
+          {
+            "numero": "70000",
+            "nome": "SAMUEL GONÇALVES",
+            "partido": "AVANTE",
+            "numero_partido": "70",
+            "situacao": "NÃO ELEITO",
+            "votos": 171
+          },
+          {
+            "numero": "20111",
+            "nome": "PALICÓ MECÂNICO",
+            "partido": "PODE",
+            "numero_partido": "20",
+            "situacao": "SUPLENTE",
+            "votos": 168
+          },
+          {
+            "numero": "70123",
+            "nome": "NEWTON ENGENHEIRO",
+            "partido": "AVANTE",
+            "numero_partido": "70",
+            "situacao": "NÃO ELEITO",
+            "votos": 161
+          },
+          {
+            "numero": "20234",
+            "nome": "VAL DO UBER",
+            "partido": "PODE",
+            "numero_partido": "20",
+            "situacao": "SUPLENTE",
+            "votos": 160
+          },
+          {
+            "numero": "11011",
+            "nome": "CLEYTON VIEIRA",
+            "partido": "PP",
+            "numero_partido": "11",
+            "situacao": "SUPLENTE",
+            "votos": 160
+          },
+          {
+            "numero": "15015",
+            "nome": "ANDRE CHACON",
+            "partido": "MDB",
+            "numero_partido": "15",
+            "situacao": "SUPLENTE",
+            "votos": 151
+          },
+          {
+            "numero": "11000",
+            "nome": "RAFAEL BATISTA",
+            "partido": "PP",
+            "numero_partido": "11",
+            "situacao": "SUPLENTE",
+            "votos": 145
+          },
+          {
+            "numero": "44444",
+            "nome": "NIVALDO PEIXOTO",
+            "partido": "UNIÃO",
+            "numero_partido": "44",
+            "situacao": "SUPLENTE",
+            "votos": 143
+          },
+          {
+            "numero": "22330",
+            "nome": "THATI DA SAÚDE",
+            "partido": "PL",
+            "numero_partido": "22",
+            "situacao": "SUPLENTE",
+            "votos": 134
+          },
+          {
+            "numero": "11777",
+            "nome": "DENIS CASTELO PISCINAS",
+            "partido": "PP",
+            "numero_partido": "11",
+            "situacao": "SUPLENTE",
+            "votos": 126
+          },
+          {
+            "numero": "36777",
+            "nome": "VALDEMIRO DIAS",
+            "partido": "AGIR",
+            "numero_partido": "36",
+            "situacao": "NÃO ELEITO",
+            "votos": 125
+          },
+          {
+            "numero": "44222",
+            "nome": "RICARDO ROGGIERI",
+            "partido": "UNIÃO",
+            "numero_partido": "44",
+            "situacao": "SUPLENTE",
+            "votos": 118
+          },
+          {
+            "numero": "20200",
+            "nome": "ZULEIDE",
+            "partido": "PODE",
+            "numero_partido": "20",
+            "situacao": "SUPLENTE",
+            "votos": 112
+          },
+          {
+            "numero": "36333",
+            "nome": "TIAGO LAGES",
+            "partido": "AGIR",
+            "numero_partido": "36",
+            "situacao": "NÃO ELEITO",
+            "votos": 106
+          },
+          {
+            "numero": "11234",
+            "nome": "MESTRE DEONATO",
+            "partido": "PP",
+            "numero_partido": "11",
+            "situacao": "SUPLENTE",
+            "votos": 105
+          },
+          {
+            "numero": "36999",
+            "nome": "RITA ROCKERT",
+            "partido": "AGIR",
+            "numero_partido": "36",
+            "situacao": "NÃO ELEITO",
+            "votos": 99
+          },
+          {
+            "numero": "20020",
+            "nome": "ANDERSON DINIZ",
+            "partido": "PODE",
+            "numero_partido": "20",
+            "situacao": "SUPLENTE",
+            "votos": 94
+          },
+          {
+            "numero": "22442",
+            "nome": "PATRICK LESSA",
+            "partido": "PL",
+            "numero_partido": "22",
+            "situacao": "SUPLENTE",
+            "votos": 91
+          },
+          {
+            "numero": "77131",
+            "nome": "RENILSON BARROCO",
+            "partido": "SOLIDARIEDADE",
+            "numero_partido": "77",
+            "situacao": "NÃO ELEITO",
+            "votos": 91
+          },
+          {
+            "numero": "22400",
+            "nome": "GERLANE",
+            "partido": "PL",
+            "numero_partido": "22",
+            "situacao": "SUPLENTE",
+            "votos": 89
+          },
+          {
+            "numero": "25000",
+            "nome": "EDSON BILIERI",
+            "partido": "PRD",
+            "numero_partido": "25",
+            "situacao": "SUPLENTE",
+            "votos": 85
+          },
+          {
+            "numero": "77000",
+            "nome": "ALEXANDRE BARROCO DO PAYSAGE",
+            "partido": "SOLIDARIEDADE",
+            "numero_partido": "77",
+            "situacao": "NÃO ELEITO",
+            "votos": 79
+          },
+          {
+            "numero": "44001",
+            "nome": "CONSELHEIRA ANA PASSARETTI",
+            "partido": "UNIÃO",
+            "numero_partido": "44",
+            "situacao": "SUPLENTE",
+            "votos": 77
+          },
+          {
+            "numero": "20120",
+            "nome": "CELIA DO ESPORTE",
+            "partido": "PODE",
+            "numero_partido": "20",
+            "situacao": "SUPLENTE",
+            "votos": 76
+          },
+          {
+            "numero": "44000",
+            "nome": "DAYA PONTES",
+            "partido": "UNIÃO",
+            "numero_partido": "44",
+            "situacao": "SUPLENTE",
+            "votos": 72
+          },
+          {
+            "numero": "44110",
+            "nome": "ZENAIDE ARÃO",
+            "partido": "UNIÃO",
+            "numero_partido": "44",
+            "situacao": "SUPLENTE",
+            "votos": 70
+          },
+          {
+            "numero": "70444",
+            "nome": "SUELENE GONÇALVES DANTAS",
+            "partido": "AVANTE",
+            "numero_partido": "70",
+            "situacao": "NÃO ELEITO",
+            "votos": 70
+          },
+          {
+            "numero": "70555",
+            "nome": "TATU A SEMENTE",
+            "partido": "AVANTE",
+            "numero_partido": "70",
+            "situacao": "NÃO ELEITO",
+            "votos": 67
+          },
+          {
+            "numero": "22173",
+            "nome": "ODAIR CORRETOR",
+            "partido": "PL",
+            "numero_partido": "22",
+            "situacao": "SUPLENTE",
+            "votos": 65
+          },
+          {
+            "numero": "11200",
+            "nome": "MARIA LOIRA",
+            "partido": "PP",
+            "numero_partido": "11",
+            "situacao": "SUPLENTE",
+            "votos": 64
+          },
+          {
+            "numero": "36000",
+            "nome": "ANGELITA PAPAGAIO",
+            "partido": "AGIR",
+            "numero_partido": "36",
+            "situacao": "NÃO ELEITO",
+            "votos": 64
+          },
+          {
+            "numero": "11444",
+            "nome": "SIMONE MANICURE",
+            "partido": "PP",
+            "numero_partido": "11",
+            "situacao": "SUPLENTE",
+            "votos": 62
+          },
+          {
+            "numero": "36555",
+            "nome": "AGUINALDO SILVA  BOMBEIRO CEGO",
+            "partido": "AGIR",
+            "numero_partido": "36",
+            "situacao": "NÃO ELEITO",
+            "votos": 60
+          },
+          {
+            "numero": "70124",
+            "nome": "DENIS HORTIFRUTI",
+            "partido": "AVANTE",
+            "numero_partido": "70",
+            "situacao": "NÃO ELEITO",
+            "votos": 56
+          },
+          {
+            "numero": "36789",
+            "nome": "LUIZÃO DO TAXI",
+            "partido": "AGIR",
+            "numero_partido": "36",
+            "situacao": "NÃO ELEITO",
+            "votos": 54
+          },
+          {
+            "numero": "77520",
+            "nome": "ANDRÉ DA RÁDIO",
+            "partido": "SOLIDARIEDADE",
+            "numero_partido": "77",
+            "situacao": "NÃO ELEITO",
+            "votos": 51
+          },
+          {
+            "numero": "25120",
+            "nome": "PEZÃO",
+            "partido": "PRD",
+            "numero_partido": "25",
+            "situacao": "SUPLENTE",
+            "votos": 44
+          },
+          {
+            "numero": "77422",
+            "nome": "JOÃO PAULO ARRUDA",
+            "partido": "SOLIDARIEDADE",
+            "numero_partido": "77",
+            "situacao": "NÃO ELEITO",
+            "votos": 42
+          },
+          {
+            "numero": "25777",
+            "nome": "EDNA CONSELHEIRA",
+            "partido": "PRD",
+            "numero_partido": "25",
+            "situacao": "SUPLENTE",
+            "votos": 40
+          },
+          {
+            "numero": "70777",
+            "nome": "MEL SALES",
+            "partido": "AVANTE",
+            "numero_partido": "70",
+            "situacao": "NÃO ELEITO",
+            "votos": 40
+          },
+          {
+            "numero": "36028",
+            "nome": "RISADINHA",
+            "partido": "AGIR",
+            "numero_partido": "36",
+            "situacao": "NÃO ELEITO",
+            "votos": 40
+          },
+          {
+            "numero": "22458",
+            "nome": "DEBORAH DIAS",
+            "partido": "PL",
+            "numero_partido": "22",
+            "situacao": "SUPLENTE",
+            "votos": 38
+          },
+          {
+            "numero": "11222",
+            "nome": "LEVI SANCHES",
+            "partido": "PP",
+            "numero_partido": "11",
+            "situacao": "SUPLENTE",
+            "votos": 33
+          },
+          {
+            "numero": "70100",
+            "nome": "FELIPE MOTA",
+            "partido": "AVANTE",
+            "numero_partido": "70",
+            "situacao": "NÃO ELEITO",
+            "votos": 31
+          },
+          {
+            "numero": "77123",
+            "nome": "CARLINHOS SILVA",
+            "partido": "SOLIDARIEDADE",
+            "numero_partido": "77",
+            "situacao": "NÃO ELEITO",
+            "votos": 30
+          },
+          {
+            "numero": "25111",
+            "nome": "KÉTI ABREU",
+            "partido": "PRD",
+            "numero_partido": "25",
+            "situacao": "SUPLENTE",
+            "votos": 29
+          },
+          {
+            "numero": "77777",
+            "nome": "DANIELA GUSMÃO",
+            "partido": "SOLIDARIEDADE",
+            "numero_partido": "77",
+            "situacao": "NÃO ELEITO",
+            "votos": 25
+          },
+          {
+            "numero": "70666",
+            "nome": "PRISCILA FREIRE",
+            "partido": "AVANTE",
+            "numero_partido": "70",
+            "situacao": "NÃO ELEITO",
+            "votos": 24
+          },
+          {
+            "numero": "36666",
+            "nome": "VANESSA TIMOTHEO",
+            "partido": "AGIR",
+            "numero_partido": "36",
+            "situacao": "NÃO ELEITO",
+            "votos": 23
+          },
+          {
+            "numero": "70070",
+            "nome": "JORGE DA LOCAÇÃO",
+            "partido": "AVANTE",
+            "numero_partido": "70",
+            "situacao": "NÃO ELEITO",
+            "votos": 22
+          },
+          {
+            "numero": "25763",
+            "nome": "TATIANE MENTA PIMENTA",
+            "partido": "PRD",
+            "numero_partido": "25",
+            "situacao": "SUPLENTE",
+            "votos": 20
+          },
+          {
+            "numero": "11112",
+            "nome": "BIA AMERICO",
+            "partido": "PP",
+            "numero_partido": "11",
+            "situacao": "SUPLENTE",
+            "votos": 18
+          },
+          {
+            "numero": "25456",
+            "nome": "FABIANA BIA",
+            "partido": "PRD",
+            "numero_partido": "25",
+            "situacao": "SUPLENTE",
+            "votos": 15
+          },
+          {
+            "numero": "70007",
+            "nome": "DENY LIBERATO",
+            "partido": "AVANTE",
+            "numero_partido": "70",
+            "situacao": "NÃO ELEITO",
+            "votos": 15
+          },
+          {
+            "numero": "36123",
+            "nome": "ALEXANDRE GAMM",
+            "partido": "AGIR",
+            "numero_partido": "36",
+            "situacao": "NÃO ELEITO",
+            "votos": 14
+          },
+          {
+            "numero": "36360",
+            "nome": "LARISSA CAMPOS",
+            "partido": "AGIR",
+            "numero_partido": "36",
+            "situacao": "NÃO ELEITO",
+            "votos": 13
+          },
+          {
+            "numero": "22300",
+            "nome": "TCHUNAY",
+            "partido": "PL",
+            "numero_partido": "22",
+            "situacao": "SUPLENTE",
+            "votos": 12
+          },
+          {
+            "numero": "77011",
+            "nome": "VIVIANE DO MARGARIDA",
+            "partido": "SOLIDARIEDADE",
+            "numero_partido": "77",
+            "situacao": "NÃO ELEITO",
+            "votos": 11
+          },
+          {
+            "numero": "11255",
+            "nome": "TANIA GIROLDO",
+            "partido": "PP",
+            "numero_partido": "11",
+            "situacao": "SUPLENTE",
+            "votos": 8
+          },
+          {
+            "numero": "70888",
+            "nome": "ELIANA LOPES",
+            "partido": "AVANTE",
+            "numero_partido": "70",
+            "situacao": "NÃO ELEITO",
+            "votos": 8
+          },
+          {
+            "numero": "70181",
+            "nome": "ZOPA DO PET",
+            "partido": "AVANTE",
+            "numero_partido": "70",
+            "situacao": "NÃO ELEITO",
+            "votos": 0
+          }
+        ],
+        "2": []
+      }
+    }
+  },
+  "totais": {
+    "prefeito": {
+      "1": [
+        {
+          "numero": "20",
+          "nome": "PITER SANTOS",
+          "partido": "PODE",
+          "numero_partido": "20",
+          "situacao": "ELEITO",
+          "votos": 17908
+        },
+        {
+          "numero": "22",
+          "nome": "DRA. LARISSA",
+          "partido": "PL",
+          "numero_partido": "22",
+          "situacao": "NÃO ELEITO",
+          "votos": 12765
+        },
+        {
+          "numero": "50",
+          "nome": "LEONARDO ZAMPIERI",
+          "partido": "PSOL",
+          "numero_partido": "50",
+          "situacao": "NÃO ELEITO",
+          "votos": 0
+        }
+      ]
+    },
+    "vereadores": {
+      "1": [
+        {
+          "numero": "25123",
+          "nome": "MARCELO LENHA",
+          "partido": "PRD",
+          "numero_partido": "25",
+          "situacao": "ELEITO POR QP",
+          "votos": 1762
+        },
+        {
+          "numero": "22123",
+          "nome": "LUCIMAR DO LUIA",
+          "partido": "PL",
+          "numero_partido": "22",
+          "situacao": "ELEITO POR QP",
+          "votos": 1572
+        },
+        {
+          "numero": "44123",
+          "nome": "ADEMIR MI",
+          "partido": "UNIÃO",
+          "numero_partido": "44",
+          "situacao": "ELEITO POR QP",
+          "votos": 1355
+        },
+        {
+          "numero": "11111",
+          "nome": "FERRUGEM DA PIZZARIA",
+          "partido": "PP",
+          "numero_partido": "11",
+          "situacao": "ELEITO POR QP",
+          "votos": 1353
+        },
+        {
+          "numero": "20655",
+          "nome": "NEY",
+          "partido": "PODE",
+          "numero_partido": "20",
+          "situacao": "ELEITO POR QP",
+          "votos": 1272
+        },
+        {
+          "numero": "22630",
+          "nome": "MAURINHO",
+          "partido": "PL",
+          "numero_partido": "22",
+          "situacao": "ELEITO POR MÉDIA",
+          "votos": 1184
+        },
+        {
+          "numero": "11123",
+          "nome": "CAFU",
+          "partido": "PP",
+          "numero_partido": "11",
+          "situacao": "SUPLENTE",
+          "votos": 1151
+        },
+        {
+          "numero": "15789",
+          "nome": "MARCELINHO DO CONSELHO",
+          "partido": "MDB",
+          "numero_partido": "15",
+          "situacao": "ELEITO POR QP",
+          "votos": 1132
+        },
+        {
+          "numero": "44999",
+          "nome": "FERNANDO BIXIGA",
+          "partido": "UNIÃO",
+          "numero_partido": "44",
+          "situacao": "ELEITO POR MÉDIA",
+          "votos": 1107
+        },
+        {
+          "numero": "44777",
+          "nome": "VAL",
+          "partido": "UNIÃO",
+          "numero_partido": "44",
+          "situacao": "SUPLENTE",
+          "votos": 962
+        },
+        {
+          "numero": "15123",
+          "nome": "ZEZINHO TAPECEIRO",
+          "partido": "MDB",
+          "numero_partido": "15",
+          "situacao": "ELEITO POR QP",
+          "votos": 897
+        },
+        {
+          "numero": "20789",
+          "nome": "TOM DO CONSELHO",
+          "partido": "PODE",
+          "numero_partido": "20",
+          "situacao": "ELEITO POR QP",
+          "votos": 896
+        },
+        {
+          "numero": "20000",
+          "nome": "DJALMA",
+          "partido": "PODE",
+          "numero_partido": "20",
+          "situacao": "SUPLENTE",
+          "votos": 797
+        },
+        {
+          "numero": "15456",
+          "nome": "JUSCELINO MAGALHÃES",
+          "partido": "MDB",
+          "numero_partido": "15",
+          "situacao": "ELEITO POR MÉDIA",
+          "votos": 698
+        },
+        {
+          "numero": "15888",
+          "nome": "ROBERTA MACIEIRA",
+          "partido": "MDB",
+          "numero_partido": "15",
+          "situacao": "SUPLENTE",
+          "votos": 697
+        },
+        {
+          "numero": "20321",
+          "nome": "PROF CIDA IROSKI",
+          "partido": "PODE",
+          "numero_partido": "20",
+          "situacao": "SUPLENTE",
+          "votos": 672
+        },
+        {
+          "numero": "22222",
+          "nome": "PROFESSOR VAGUINER",
+          "partido": "PL",
+          "numero_partido": "22",
+          "situacao": "SUPLENTE",
+          "votos": 611
+        },
+        {
+          "numero": "15043",
+          "nome": "JORGE DA OFICINA",
+          "partido": "MDB",
+          "numero_partido": "15",
+          "situacao": "SUPLENTE",
+          "votos": 515
+        },
+        {
+          "numero": "20222",
+          "nome": "LANE DO ROBERTÃO",
+          "partido": "PODE",
+          "numero_partido": "20",
+          "situacao": "SUPLENTE",
+          "votos": 496
+        },
+        {
+          "numero": "15777",
+          "nome": "LUCILENE HAVILLA",
+          "partido": "MDB",
+          "numero_partido": "15",
+          "situacao": "SUPLENTE",
+          "votos": 477
+        },
+        {
+          "numero": "15111",
+          "nome": "TIETA DO AGRESTE VGP",
+          "partido": "MDB",
+          "numero_partido": "15",
+          "situacao": "SUPLENTE",
+          "votos": 473
+        },
+        {
+          "numero": "22190",
+          "nome": "CAPITÃO EVANDRO",
+          "partido": "PL",
+          "numero_partido": "22",
+          "situacao": "SUPLENTE",
+          "votos": 457
+        },
+        {
+          "numero": "11100",
+          "nome": "CEZAR SENA",
+          "partido": "PP",
+          "numero_partido": "11",
+          "situacao": "SUPLENTE",
+          "votos": 440
+        },
+        {
+          "numero": "20123",
+          "nome": "MATHEUS VENTURINI",
+          "partido": "PODE",
+          "numero_partido": "20",
+          "situacao": "SUPLENTE",
+          "votos": 418
+        },
+        {
+          "numero": "15000",
+          "nome": "OZIEL ALVES",
+          "partido": "MDB",
+          "numero_partido": "15",
+          "situacao": "SUPLENTE",
+          "votos": 344
+        },
+        {
+          "numero": "15611",
+          "nome": "DITO DA COOPERATIVA",
+          "partido": "MDB",
+          "numero_partido": "15",
+          "situacao": "SUPLENTE",
+          "votos": 342
+        },
+        {
+          "numero": "20220",
+          "nome": "LINK ROCHA",
+          "partido": "PODE",
+          "numero_partido": "20",
+          "situacao": "SUPLENTE",
+          "votos": 328
+        },
+        {
+          "numero": "22022",
+          "nome": "CIBELLE BENVENUTO",
+          "partido": "PL",
+          "numero_partido": "22",
+          "situacao": "SUPLENTE",
+          "votos": 302
+        },
+        {
+          "numero": "15333",
+          "nome": "DONIZETE JUNIOR",
+          "partido": "MDB",
+          "numero_partido": "15",
+          "situacao": "SUPLENTE",
+          "votos": 288
+        },
+        {
+          "numero": "44202",
+          "nome": "GUSTAVO MANCHA",
+          "partido": "UNIÃO",
+          "numero_partido": "44",
+          "situacao": "SUPLENTE",
+          "votos": 256
+        },
+        {
+          "numero": "15555",
+          "nome": "VILMA VEIGA",
+          "partido": "MDB",
+          "numero_partido": "15",
+          "situacao": "SUPLENTE",
+          "votos": 253
+        },
+        {
+          "numero": "50000",
+          "nome": "THAIS PIERROT",
+          "partido": "PSOL",
+          "numero_partido": "50",
+          "situacao": "NÃO ELEITO",
+          "votos": 245
+        },
+        {
+          "numero": "25555",
+          "nome": "WILLIAN SALVETTI",
+          "partido": "PRD",
+          "numero_partido": "25",
+          "situacao": "SUPLENTE",
+          "votos": 234
+        },
+        {
+          "numero": "44920",
+          "nome": "EDER PIRES",
+          "partido": "UNIÃO",
+          "numero_partido": "44",
+          "situacao": "SUPLENTE",
+          "votos": 232
+        },
+        {
+          "numero": "44120",
+          "nome": "CAMARGO DA GUARDA",
+          "partido": "UNIÃO",
+          "numero_partido": "44",
+          "situacao": "SUPLENTE",
+          "votos": 227
+        },
+        {
+          "numero": "25190",
+          "nome": "RONALDO BRITTO",
+          "partido": "PRD",
+          "numero_partido": "25",
+          "situacao": "SUPLENTE",
+          "votos": 226
+        },
+        {
+          "numero": "25025",
+          "nome": "DR. WILKER HOLLYWOOD",
+          "partido": "PRD",
+          "numero_partido": "25",
+          "situacao": "SUPLENTE",
+          "votos": 204
+        },
+        {
+          "numero": "44400",
+          "nome": "PROFESSORA CLAUDIA",
+          "partido": "UNIÃO",
+          "numero_partido": "44",
+          "situacao": "SUPLENTE",
+          "votos": 195
+        },
+        {
+          "numero": "25700",
+          "nome": "MILTON DE OBRAS",
+          "partido": "PRD",
+          "numero_partido": "25",
+          "situacao": "SUPLENTE",
+          "votos": 186
+        },
+        {
+          "numero": "22000",
+          "nome": "GORDO DO QUARENTA E TRÊS",
+          "partido": "PL",
+          "numero_partido": "22",
+          "situacao": "SUPLENTE",
+          "votos": 186
+        },
+        {
+          "numero": "36036",
+          "nome": "CÍCERO DA BARBEARIA",
+          "partido": "AGIR",
+          "numero_partido": "36",
+          "situacao": "NÃO ELEITO",
+          "votos": 174
+        },
+        {
+          "numero": "70000",
+          "nome": "SAMUEL GONÇALVES",
+          "partido": "AVANTE",
+          "numero_partido": "70",
+          "situacao": "NÃO ELEITO",
+          "votos": 171
+        },
+        {
+          "numero": "20111",
+          "nome": "PALICÓ MECÂNICO",
+          "partido": "PODE",
+          "numero_partido": "20",
+          "situacao": "SUPLENTE",
+          "votos": 168
+        },
+        {
+          "numero": "70123",
+          "nome": "NEWTON ENGENHEIRO",
+          "partido": "AVANTE",
+          "numero_partido": "70",
+          "situacao": "NÃO ELEITO",
+          "votos": 161
+        },
+        {
+          "numero": "20234",
+          "nome": "VAL DO UBER",
+          "partido": "PODE",
+          "numero_partido": "20",
+          "situacao": "SUPLENTE",
+          "votos": 160
+        },
+        {
+          "numero": "11011",
+          "nome": "CLEYTON VIEIRA",
+          "partido": "PP",
+          "numero_partido": "11",
+          "situacao": "SUPLENTE",
+          "votos": 160
+        },
+        {
+          "numero": "15015",
+          "nome": "ANDRE CHACON",
+          "partido": "MDB",
+          "numero_partido": "15",
+          "situacao": "SUPLENTE",
+          "votos": 151
+        },
+        {
+          "numero": "11000",
+          "nome": "RAFAEL BATISTA",
+          "partido": "PP",
+          "numero_partido": "11",
+          "situacao": "SUPLENTE",
+          "votos": 145
+        },
+        {
+          "numero": "44444",
+          "nome": "NIVALDO PEIXOTO",
+          "partido": "UNIÃO",
+          "numero_partido": "44",
+          "situacao": "SUPLENTE",
+          "votos": 143
+        },
+        {
+          "numero": "22330",
+          "nome": "THATI DA SAÚDE",
+          "partido": "PL",
+          "numero_partido": "22",
+          "situacao": "SUPLENTE",
+          "votos": 134
+        },
+        {
+          "numero": "11777",
+          "nome": "DENIS CASTELO PISCINAS",
+          "partido": "PP",
+          "numero_partido": "11",
+          "situacao": "SUPLENTE",
+          "votos": 126
+        },
+        {
+          "numero": "36777",
+          "nome": "VALDEMIRO DIAS",
+          "partido": "AGIR",
+          "numero_partido": "36",
+          "situacao": "NÃO ELEITO",
+          "votos": 125
+        },
+        {
+          "numero": "44222",
+          "nome": "RICARDO ROGGIERI",
+          "partido": "UNIÃO",
+          "numero_partido": "44",
+          "situacao": "SUPLENTE",
+          "votos": 118
+        },
+        {
+          "numero": "20200",
+          "nome": "ZULEIDE",
+          "partido": "PODE",
+          "numero_partido": "20",
+          "situacao": "SUPLENTE",
+          "votos": 112
+        },
+        {
+          "numero": "36333",
+          "nome": "TIAGO LAGES",
+          "partido": "AGIR",
+          "numero_partido": "36",
+          "situacao": "NÃO ELEITO",
+          "votos": 106
+        },
+        {
+          "numero": "11234",
+          "nome": "MESTRE DEONATO",
+          "partido": "PP",
+          "numero_partido": "11",
+          "situacao": "SUPLENTE",
+          "votos": 105
+        },
+        {
+          "numero": "36999",
+          "nome": "RITA ROCKERT",
+          "partido": "AGIR",
+          "numero_partido": "36",
+          "situacao": "NÃO ELEITO",
+          "votos": 99
+        },
+        {
+          "numero": "20020",
+          "nome": "ANDERSON DINIZ",
+          "partido": "PODE",
+          "numero_partido": "20",
+          "situacao": "SUPLENTE",
+          "votos": 94
+        },
+        {
+          "numero": "22442",
+          "nome": "PATRICK LESSA",
+          "partido": "PL",
+          "numero_partido": "22",
+          "situacao": "SUPLENTE",
+          "votos": 91
+        },
+        {
+          "numero": "77131",
+          "nome": "RENILSON BARROCO",
+          "partido": "SOLIDARIEDADE",
+          "numero_partido": "77",
+          "situacao": "NÃO ELEITO",
+          "votos": 91
+        },
+        {
+          "numero": "22400",
+          "nome": "GERLANE",
+          "partido": "PL",
+          "numero_partido": "22",
+          "situacao": "SUPLENTE",
+          "votos": 89
+        },
+        {
+          "numero": "25000",
+          "nome": "EDSON BILIERI",
+          "partido": "PRD",
+          "numero_partido": "25",
+          "situacao": "SUPLENTE",
+          "votos": 85
+        },
+        {
+          "numero": "77000",
+          "nome": "ALEXANDRE BARROCO DO PAYSAGE",
+          "partido": "SOLIDARIEDADE",
+          "numero_partido": "77",
+          "situacao": "NÃO ELEITO",
+          "votos": 79
+        },
+        {
+          "numero": "44001",
+          "nome": "CONSELHEIRA ANA PASSARETTI",
+          "partido": "UNIÃO",
+          "numero_partido": "44",
+          "situacao": "SUPLENTE",
+          "votos": 77
+        },
+        {
+          "numero": "20120",
+          "nome": "CELIA DO ESPORTE",
+          "partido": "PODE",
+          "numero_partido": "20",
+          "situacao": "SUPLENTE",
+          "votos": 76
+        },
+        {
+          "numero": "44000",
+          "nome": "DAYA PONTES",
+          "partido": "UNIÃO",
+          "numero_partido": "44",
+          "situacao": "SUPLENTE",
+          "votos": 72
+        },
+        {
+          "numero": "44110",
+          "nome": "ZENAIDE ARÃO",
+          "partido": "UNIÃO",
+          "numero_partido": "44",
+          "situacao": "SUPLENTE",
+          "votos": 70
+        },
+        {
+          "numero": "70444",
+          "nome": "SUELENE GONÇALVES DANTAS",
+          "partido": "AVANTE",
+          "numero_partido": "70",
+          "situacao": "NÃO ELEITO",
+          "votos": 70
+        },
+        {
+          "numero": "70555",
+          "nome": "TATU A SEMENTE",
+          "partido": "AVANTE",
+          "numero_partido": "70",
+          "situacao": "NÃO ELEITO",
+          "votos": 67
+        },
+        {
+          "numero": "22173",
+          "nome": "ODAIR CORRETOR",
+          "partido": "PL",
+          "numero_partido": "22",
+          "situacao": "SUPLENTE",
+          "votos": 65
+        },
+        {
+          "numero": "11200",
+          "nome": "MARIA LOIRA",
+          "partido": "PP",
+          "numero_partido": "11",
+          "situacao": "SUPLENTE",
+          "votos": 64
+        },
+        {
+          "numero": "36000",
+          "nome": "ANGELITA PAPAGAIO",
+          "partido": "AGIR",
+          "numero_partido": "36",
+          "situacao": "NÃO ELEITO",
+          "votos": 64
+        },
+        {
+          "numero": "11444",
+          "nome": "SIMONE MANICURE",
+          "partido": "PP",
+          "numero_partido": "11",
+          "situacao": "SUPLENTE",
+          "votos": 62
+        },
+        {
+          "numero": "36555",
+          "nome": "AGUINALDO SILVA  BOMBEIRO CEGO",
+          "partido": "AGIR",
+          "numero_partido": "36",
+          "situacao": "NÃO ELEITO",
+          "votos": 60
+        },
+        {
+          "numero": "70124",
+          "nome": "DENIS HORTIFRUTI",
+          "partido": "AVANTE",
+          "numero_partido": "70",
+          "situacao": "NÃO ELEITO",
+          "votos": 56
+        },
+        {
+          "numero": "36789",
+          "nome": "LUIZÃO DO TAXI",
+          "partido": "AGIR",
+          "numero_partido": "36",
+          "situacao": "NÃO ELEITO",
+          "votos": 54
+        },
+        {
+          "numero": "77520",
+          "nome": "ANDRÉ DA RÁDIO",
+          "partido": "SOLIDARIEDADE",
+          "numero_partido": "77",
+          "situacao": "NÃO ELEITO",
+          "votos": 51
+        },
+        {
+          "numero": "25120",
+          "nome": "PEZÃO",
+          "partido": "PRD",
+          "numero_partido": "25",
+          "situacao": "SUPLENTE",
+          "votos": 44
+        },
+        {
+          "numero": "77422",
+          "nome": "JOÃO PAULO ARRUDA",
+          "partido": "SOLIDARIEDADE",
+          "numero_partido": "77",
+          "situacao": "NÃO ELEITO",
+          "votos": 42
+        },
+        {
+          "numero": "25777",
+          "nome": "EDNA CONSELHEIRA",
+          "partido": "PRD",
+          "numero_partido": "25",
+          "situacao": "SUPLENTE",
+          "votos": 40
+        },
+        {
+          "numero": "70777",
+          "nome": "MEL SALES",
+          "partido": "AVANTE",
+          "numero_partido": "70",
+          "situacao": "NÃO ELEITO",
+          "votos": 40
+        },
+        {
+          "numero": "36028",
+          "nome": "RISADINHA",
+          "partido": "AGIR",
+          "numero_partido": "36",
+          "situacao": "NÃO ELEITO",
+          "votos": 40
+        },
+        {
+          "numero": "22458",
+          "nome": "DEBORAH DIAS",
+          "partido": "PL",
+          "numero_partido": "22",
+          "situacao": "SUPLENTE",
+          "votos": 38
+        },
+        {
+          "numero": "11222",
+          "nome": "LEVI SANCHES",
+          "partido": "PP",
+          "numero_partido": "11",
+          "situacao": "SUPLENTE",
+          "votos": 33
+        },
+        {
+          "numero": "70100",
+          "nome": "FELIPE MOTA",
+          "partido": "AVANTE",
+          "numero_partido": "70",
+          "situacao": "NÃO ELEITO",
+          "votos": 31
+        },
+        {
+          "numero": "77123",
+          "nome": "CARLINHOS SILVA",
+          "partido": "SOLIDARIEDADE",
+          "numero_partido": "77",
+          "situacao": "NÃO ELEITO",
+          "votos": 30
+        },
+        {
+          "numero": "25111",
+          "nome": "KÉTI ABREU",
+          "partido": "PRD",
+          "numero_partido": "25",
+          "situacao": "SUPLENTE",
+          "votos": 29
+        },
+        {
+          "numero": "77777",
+          "nome": "DANIELA GUSMÃO",
+          "partido": "SOLIDARIEDADE",
+          "numero_partido": "77",
+          "situacao": "NÃO ELEITO",
+          "votos": 25
+        },
+        {
+          "numero": "70666",
+          "nome": "PRISCILA FREIRE",
+          "partido": "AVANTE",
+          "numero_partido": "70",
+          "situacao": "NÃO ELEITO",
+          "votos": 24
+        },
+        {
+          "numero": "36666",
+          "nome": "VANESSA TIMOTHEO",
+          "partido": "AGIR",
+          "numero_partido": "36",
+          "situacao": "NÃO ELEITO",
+          "votos": 23
+        },
+        {
+          "numero": "70070",
+          "nome": "JORGE DA LOCAÇÃO",
+          "partido": "AVANTE",
+          "numero_partido": "70",
+          "situacao": "NÃO ELEITO",
+          "votos": 22
+        },
+        {
+          "numero": "25763",
+          "nome": "TATIANE MENTA PIMENTA",
+          "partido": "PRD",
+          "numero_partido": "25",
+          "situacao": "SUPLENTE",
+          "votos": 20
+        },
+        {
+          "numero": "11112",
+          "nome": "BIA AMERICO",
+          "partido": "PP",
+          "numero_partido": "11",
+          "situacao": "SUPLENTE",
+          "votos": 18
+        },
+        {
+          "numero": "25456",
+          "nome": "FABIANA BIA",
+          "partido": "PRD",
+          "numero_partido": "25",
+          "situacao": "SUPLENTE",
+          "votos": 15
+        },
+        {
+          "numero": "70007",
+          "nome": "DENY LIBERATO",
+          "partido": "AVANTE",
+          "numero_partido": "70",
+          "situacao": "NÃO ELEITO",
+          "votos": 15
+        },
+        {
+          "numero": "36123",
+          "nome": "ALEXANDRE GAMM",
+          "partido": "AGIR",
+          "numero_partido": "36",
+          "situacao": "NÃO ELEITO",
+          "votos": 14
+        },
+        {
+          "numero": "36360",
+          "nome": "LARISSA CAMPOS",
+          "partido": "AGIR",
+          "numero_partido": "36",
+          "situacao": "NÃO ELEITO",
+          "votos": 13
+        },
+        {
+          "numero": "22300",
+          "nome": "TCHUNAY",
+          "partido": "PL",
+          "numero_partido": "22",
+          "situacao": "SUPLENTE",
+          "votos": 12
+        },
+        {
+          "numero": "77011",
+          "nome": "VIVIANE DO MARGARIDA",
+          "partido": "SOLIDARIEDADE",
+          "numero_partido": "77",
+          "situacao": "NÃO ELEITO",
+          "votos": 11
+        },
+        {
+          "numero": "11255",
+          "nome": "TANIA GIROLDO",
+          "partido": "PP",
+          "numero_partido": "11",
+          "situacao": "SUPLENTE",
+          "votos": 8
+        },
+        {
+          "numero": "70888",
+          "nome": "ELIANA LOPES",
+          "partido": "AVANTE",
+          "numero_partido": "70",
+          "situacao": "NÃO ELEITO",
+          "votos": 8
+        },
+        {
+          "numero": "70181",
+          "nome": "ZOPA DO PET",
+          "partido": "AVANTE",
+          "numero_partido": "70",
+          "situacao": "NÃO ELEITO",
+          "votos": 0
+        }
+      ]
+    }
+  },
+  "zonas_lista": [
+    "286"
+  ]
+}
