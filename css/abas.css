@@ -126,6 +126,10 @@
 #header .header-marca { display: flex; align-items: center; gap: 8px; color: inherit; text-decoration: none; border-radius: 6px; }
 #header .header-marca:hover .header-nome { text-decoration: underline; }
 #header .header-marca:focus-visible { outline: 2px solid var(--highlight); outline-offset: 3px; }
+/* Abas de cidade no início: bandeira à esquerda do nome */
+.segmentado--site .aba-cidade { display: inline-flex; align-items: center; gap: 6px; }
+.aba-bandeira { display: block; width: 18px; height: 18px; border-radius: 4px; flex-shrink: 0; }
+
 /* Páginas de cidade: [ícone] Dados Cívicos | [bandeira] Cidade */
 #header .header-nome--portal { font-weight: 600; }
 #header .header-sep { width: 1px; height: 22px; margin: 0 4px; background: rgba(var(--tinta), 0.2); }

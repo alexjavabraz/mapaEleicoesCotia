@@ -34,6 +34,8 @@ cidades, sem dados. Cotia → `/cotia/…` com a bandeira de Cotia; VGP →
 - Complemento (14:35 UTC, pedido do Alex): header das páginas de cidade =
   [ícone] Dados Cívicos | [bandeira] Cidade, tudo um link para o início.
   Até 1100px some o texto "Dados Cívicos"; no celular ficam só os 2 ícones.
+- Complemento (14:38 UTC): bandeira à esquerda de cada cidade nas abas
+  "Cotia | Vargem Grande Paulista" do início e da metodologia.
 - Conferido: todas as páginas sem erro de JS, dados carregando (com as libs
   de CDN servidas localmente no teste), nenhum link interno quebrado,
   redirecionamentos, claro/escuro, celular, EN.
