@@ -11,7 +11,7 @@
  *  Viagens da Câmara (montada por js/viagens.js).
  */
 
-const DATA_URL = "data/contas_cotia.json";
+const DATA_URL = urlSite("data/contas_cotia.json");
 const POR_PAGINA = 50;
 
 const fmtBRL = new Intl.NumberFormat(LOCALE, { style: "currency", currency: "BRL" });
@@ -419,7 +419,7 @@ const analitico = { ordem: "valor", limite: ANALITICO_PAGINA };
 
 function carregarDetalhe(i) {
   if (!detalhes.has(i)) {
-    detalhes.set(i, fetch(`data/contas_fornecedores/${i}.json`).then((r) => {
+    detalhes.set(i, fetch(urlSite(`data/contas_fornecedores/${i}.json`)).then((r) => {
       if (!r.ok) throw new Error(`HTTP ${r.status}`);
       return r.json();
     }));

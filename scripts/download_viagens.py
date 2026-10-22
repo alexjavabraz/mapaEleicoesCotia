@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 Baixa os relatórios de viagens da Câmara Municipal de Cotia e gera
-data/viagens_camara.json para a seção "Viagens da Câmara" de contas.html.
+data/viagens_camara.json para a seção "Viagens da Câmara" de cotia/contas.html.
 
 Uso:
     python download_viagens.py

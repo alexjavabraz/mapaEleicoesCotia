@@ -88,7 +88,7 @@ function resolveNomeFull(urnaName) {
  */
 async function loadTSEData() {
   try {
-    const response = await fetch("./data/tse_cotia_2024.json");
+    const response = await fetch(urlSite("data/tse_cotia_2024.json"));
     if (!response.ok) {
       if (response.status === 404) return { error: "not_found" };
       return { error: `http_${response.status}` };
@@ -109,7 +109,7 @@ async function loadTSEData() {
  * Retorna { ok, count } ou { error } sem quebrar o app se o arquivo não existir.
  */
 async function loadGastosCampanha() {
-  const r = await carregarIndiceCandidatos("./data/gastos_campanha_2024.json");
+  const r = await carregarIndiceCandidatos(urlSite("data/gastos_campanha_2024.json"));
   if (r.indice) gastosCampanha = r.indice;
   return r.resultado;
 }
@@ -119,7 +119,7 @@ async function loadGastosCampanha() {
  * Retorna { ok, count } ou { error } sem quebrar o app se o arquivo não existir.
  */
 async function loadPatrimonio() {
-  const r = await carregarIndiceCandidatos("./data/patrimonio_candidatos_2024.json");
+  const r = await carregarIndiceCandidatos(urlSite("data/patrimonio_candidatos_2024.json"));
   if (r.indice) patrimonioCandidatos = r.indice;
   return r.resultado;
 }
@@ -201,7 +201,7 @@ function htmlCustoVoto(candidato) {
  */
 async function loadVotosPorBairro() {
   try {
-    const r = await fetch("./data/cotia_votos_por_bairro.json");
+    const r = await fetch(urlSite("data/cotia_votos_por_bairro.json"));
     if (!r.ok) return { error: r.status === 404 ? "not_found" : `http_${r.status}` };
     votosPorBairro = await r.json();
     return { ok: true, count: Object.keys(votosPorBairro).length };
@@ -216,7 +216,7 @@ async function loadVotosPorBairro() {
  */
 async function loadLocaisVotacao() {
   try {
-    const r = await fetch("./data/cotia_locais_votacao.json");
+    const r = await fetch(urlSite("data/cotia_locais_votacao.json"));
     if (!r.ok) return { error: r.status === 404 ? "not_found" : `http_${r.status}` };
     const raw = await r.json();
 
@@ -280,7 +280,7 @@ function getEscolasSummary() {
  */
 async function loadVotosPorEscola() {
   try {
-    const r = await fetch("./data/cotia_votos_por_escola.json");
+    const r = await fetch(urlSite("data/cotia_votos_por_escola.json"));
     if (!r.ok) return { error: r.status === 404 ? "not_found" : `http_${r.status}` };
     votosPorEscola = await r.json();
 
@@ -304,7 +304,7 @@ async function loadVotosPorEscola() {
  */
 async function loadVotosPorEscolaDetalhe() {
   try {
-    const r = await fetch("./data/cotia_votos_por_escola_detalhe.json");
+    const r = await fetch(urlSite("data/cotia_votos_por_escola_detalhe.json"));
     if (!r.ok) return { error: r.status === 404 ? "not_found" : `http_${r.status}` };
     votosPorEscolaDetalhe = await r.json();
     return { ok: true, count: Object.keys(votosPorEscolaDetalhe.escolas || {}).length };

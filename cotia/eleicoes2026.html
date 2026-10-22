@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title data-i18n>Mapa Eleitoral — Cotia — Eleição Geral</title>
+
+  <!-- PWA -->
+  <link rel="manifest" href="../manifest.json" />
+  <meta name="theme-color" content="#16213e" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="Cotia Eleição Geral" />
+  <link rel="apple-touch-icon" href="../icons/apple-touch-icon.png" />
+  <link rel="icon" type="image/svg+xml" href="../icons/cotia-flag.svg" />
+  <link rel="icon" type="image/png" sizes="32x32" href="../icons/favicon-32.png" />
+
+  <!-- Idioma (PT/EN): carregado antes de tudo para os outros scripts usarem t() -->
+  <script src="../js/i18n.js"></script>
+  <!-- Tema claro/escuro: define data-theme no <html> antes do primeiro desenho -->
+  <script src="../js/tema.js"></script>
+
+  <!-- Leaflet CSS -->
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    crossorigin=""
+  />
+
+  <!-- App CSS (reaproveitado da página municipal) -->
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="../css/abas.css" />
+</head>
+<body>
+  <!-- ==============================
+       HEADER
+       ============================== -->
+  <header id="header">
+    <h1><a class="header-marca" href="../index.html" title="Trocar de cidade" data-i18n-title><img class="header-bandeira" src="../icons/cotia-flag.svg" alt="" width="28" height="28" /><span class="header-nome">Cotia</span></a></h1>
+
+    <!-- Seções do site em controle segmentado (css/abas.css, js/abas.js) -->
+    <nav class="segmentado segmentado--site" aria-label="Seções do site" data-i18n-aria-label>
+      <a class="segmentado__aba" href="./eleicoes2024.html"><span class="seg-longo" data-i18n>Eleições 2024</span><span class="seg-curto" data-i18n>2024</span></a>
+      <a class="segmentado__aba" href="./eleicoes2026.html" aria-current="page"><span class="seg-longo" data-i18n>Eleições 2026</span><span class="seg-curto" data-i18n>2026</span></a>
+      <a class="segmentado__aba" href="./contas.html"><span class="seg-longo" data-i18n>Contas Municipais</span><span class="seg-curto" data-i18n>Contas</span></a>
+    </nav>
+
+    <div id="controls">
+      <select id="year-select" onchange="changeYear(this.value)"
+              style="background:rgba(var(--tinta),0.07);color:var(--text);border:1px solid rgba(var(--tinta),0.15);
+                     border-radius:4px;padding:4px 8px;font-size:0.78rem">
+        <option value="2022">2022</option>
+        <option value="2026" data-i18n>2026 — 1º Turno</option>
+      </select>
+      <span class="header-descricao" style="font-size:0.72rem;color:var(--text-muted);margin-left:8px" data-i18n>
+        Presidente · Governador · Senador · Dep. Federal · Dep. Estadual — Cotia/SP
+      </span>
+    </div>
+  </header>
+
+  <!-- ==============================
+       ÁREA PRINCIPAL
+       ============================== -->
+  <div id="main">
+    <!-- MAPA -->
+    <div id="map-container">
+      <div id="map"></div>
+
+      <!-- Banner de aviso (sem dados / erro) -->
+      <div id="no-data-banner"></div>
+    </div>
+
+    <!-- SIDEBAR com dados eleitorais -->
+    <aside id="sidebar">
+      <div id="sidebar-header">
+        <h2 data-i18n>Selecione um bairro</h2>
+      </div>
+      <div id="sidebar-content">
+        <div class="placeholder">
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none"
+               stroke="currentColor" stroke-width="1.5">
+            <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/>
+            <circle cx="12" cy="9" r="2.5"/>
+          </svg>
+          <p data-i18n>Clique em um bairro no mapa para ver os resultados da zona eleitoral.</p>
+        </div>
+      </div>
+    </aside>
+  </div>
+
+  <!-- ==============================
+       LOADING OVERLAY
+       ============================== -->
+  <div id="loading" role="status" aria-live="polite">
+    <div class="carga">
+      <span id="loading-sr" class="sr-only" data-i18n>Carregando o mapa das eleições de 2026 em Cotia, por favor aguarde.</span>
+      <span class="carga-texto" aria-hidden="true"><span id="loading-status" data-i18n>Preparando o mapa</span><span class="carga-pontos"><span>.</span><span>.</span><span>.</span></span></span>
+      <div id="loading-acoes" class="carga-acoes" hidden>
+        <button type="button" data-i18n>Tentar novamente</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==============================
+       SCRIPTS
+       ============================== -->
+
+  <!-- Leaflet JS -->
+  <script
+    src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+    crossorigin=""
+  ></script>
+
+  <!-- osmtogeojson: converte resposta Overpass OSM → GeoJSON -->
+  <script src="https://unpkg.com/osmtogeojson@3.0.0-beta.4/osmtogeojson.js"></script>
+
+  <!-- turf.js: computação de polígonos Voronoi para bairros -->
+  <script src="https://cdn.jsdelivr.net/npm/@turf/turf@6.5.0/turf.min.js"></script>
+
+  <!-- Módulos da aplicação -->
+  <script src="../js/carregando.js"></script>
+  <script src="../js/abas.js"></script>
+  <script src="../js/fontes.js"></script>
+  <script src="../js/tse.js"></script>
+  <script src="../js/map.js"></script>
+  <script src="../js/renda.js"></script>
+  <script src="../js/geral-config.js"></script>
+  <script src="../js/geral.js"></script>
+
+  <!-- Service Worker (PWA) -->
+  <script>
+    if ("serviceWorker" in navigator) {
+      // Recarrega automaticamente quando um novo SW assume o controle —
+      // sem isso, quem já tem o app instalado fica preso na versão antiga
+      // até fechar e reabrir o navegador várias vezes.
+      let swRefreshing = false;
+      navigator.serviceWorker.addEventListener("controllerchange", () => {
+        if (swRefreshing) return;
+        swRefreshing = true;
+        window.location.reload();
+      });
+      window.addEventListener("load", () => {
+        navigator.serviceWorker.register("../sw.js")
+          .catch((err) => console.warn("SW registro falhou:", err));
+      });
+    }
+  </script>
+</body>
+</html>

@@ -7,13 +7,13 @@
  */
 
 const SOBRE_EN = {
-  "Sobre o projeto — Cotia": "About the project — Cotia",
+  "Portal de transparência de dados cívicos — Cotia e Vargem Grande Paulista": "Civic data transparency portal — Cotia and Vargem Grande Paulista",
   "Sobre o projeto": "About the project",
   "Portal de transparência de dados cívicos": "Civic data transparency portal",
-  "Cotia em dados públicos, no mapa": "Cotia's public data, on the map",
+  "Cotia e Vargem Grande Paulista em dados públicos": "Cotia and Vargem Grande Paulista in public data",
+  "Escolher a cidade": "Choose a city",
   "Resultados eleitorais por bairro e por escola, gastos de campanha e as contas da Prefeitura e da Câmara, reunidos em mapas e tabelas a partir de dados públicos oficiais.":
     "Election results by neighborhood and by school, campaign spending and the accounts of City Hall and the City Council, brought together in maps and tables from official public data.",
-  "Ver Eleições 2026": "See 2026 Elections",
   "Conhecer o portal": "Explore the portal",
   "Destaques": "Highlights",
   "áreas: eleições municipais, eleições gerais e contas públicas":
@@ -25,20 +25,32 @@ const SOBRE_EN = {
     "code and data published on GitHub, for anyone to check",
 
   "Escolha a cidade": "Choose a city",
+  "Eleições 2024 — Vargem Grande Paulista": "2024 Elections — Vargem Grande Paulista",
+  "Eleições 2026 — Vargem Grande Paulista": "2026 Elections — Vargem Grande Paulista",
+  "Contas Municipais — Vargem Grande Paulista": "Municipal Accounts — Vargem Grande Paulista",
+  "Prefeito e vereadores por bairro e por escola, com gastos de campanha e patrimônio declarado dos candidatos.":
+    "Mayor and City Council by neighborhood and by school, with candidates' campaign spending and declared assets.",
+  "Presidente, Governador, Senador e Deputados: quem venceu em cada bairro da cidade.":
+    "President, Governor, Senator and Representatives: who won in each neighborhood of the city.",
+  "Pagamentos da Prefeitura por ano e por fornecedor, segundo o TCE-SP.":
+    "City Hall payments by year and by supplier, according to TCE-SP.",
+  "Ver Cotia enquanto isso": "See Cotia in the meantime",
+  "Voltar ao início": "Back to home",
   "Eleições 2024 e 2026 por bairro e por escola, gastos de campanha e as contas da Prefeitura e da Câmara.":
     "2024 and 2026 elections by neighborhood and by school, campaign spending and the accounts of City Hall and the City Council.",
   "Ver os dados de Cotia →": "See Cotia's data →",
   "Em breve": "Coming soon",
+  "Ver a página de Vargem Grande Paulista →": "See the Vargem Grande Paulista page →",
   "Os dados de Vargem Grande Paulista estão sendo levantados e entram no portal assim que estiverem prontos.":
     "Vargem Grande Paulista's data is being gathered and will be added to the portal as soon as it is ready.",
 
   "O projeto": "The project",
-  "Os dados públicos de Cotia existem, mas estão espalhados em arquivos enormes, planilhas e PDFs de órgãos diferentes. Este portal baixa esses arquivos, organiza e mostra o que eles dizem sobre a cidade, bairro por bairro.":
-    "Cotia's public data exists, but it is scattered across huge files, spreadsheets and PDFs from different agencies. This portal downloads those files, organizes them and shows what they say about the city, neighborhood by neighborhood.",
-  "A ideia é simples: qualquer morador deve conseguir ver como Cotia votou, quanto custou cada campanha e para onde vai o dinheiro do município, sem precisar saber programar nem cruzar tabelas.":
-    "The idea is simple: any resident should be able to see how Cotia voted, how much each campaign cost and where the city's money goes, without having to code or cross-reference tables.",
+  "Os dados públicos de Cotia e de Vargem Grande Paulista existem, mas estão espalhados em arquivos enormes, planilhas e PDFs de órgãos diferentes. Este portal baixa esses arquivos, organiza e mostra o que eles dizem sobre cada cidade, bairro por bairro.":
+    "The public data of Cotia and Vargem Grande Paulista exists, but it is scattered across huge files, spreadsheets and PDFs from different agencies. This portal downloads those files, organizes them and shows what they say about each city, neighborhood by neighborhood.",
+  "A ideia é simples: qualquer morador deve conseguir ver como a sua cidade votou, quanto custou cada campanha e para onde vai o dinheiro do município, sem precisar saber programar nem cruzar tabelas.":
+    "The idea is simple: any resident should be able to see how their city voted, how much each campaign cost and where the city's money goes, without having to code or cross-reference tables.",
 
-  "O que você encontra": "What you will find",
+  "O que você encontra em Cotia": "What you will find in Cotia",
   "Prefeito e vereadores: votos por bairro, por escola e por seção, com gasto de campanha, custo por voto e patrimônio declarado de cada candidato.":
     "Mayor and City Council: votes by neighborhood, school and polling section, with each candidate's campaign spending, cost per vote and declared assets.",
   "Presidente, Governador, Senador e Deputados: quem venceu em cada bairro de Cotia, comparado com 2022 e com a renda do Censo do IBGE.":

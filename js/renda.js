@@ -39,7 +39,7 @@ let _camadaSetores = null;
 function carregarSetoresRenda() {
   if (_geoSetores) return Promise.resolve(_geoSetores);
   if (!_carregandoSetores) {
-    _carregandoSetores = fetch("data/censo_renda_setores.geojson")
+    _carregandoSetores = fetch(urlSite("data/censo_renda_setores.geojson"))
       .then((r) => (r.ok ? r.json() : null))
       .then((g) => (_geoSetores = g?.features?.length ? g : null))
       .catch(() => null);
@@ -73,7 +73,7 @@ function atualizarCamadaSetores() {
 
 async function loadRendaCenso() {
   try {
-    const resp = await fetch("data/censo_renda_setores.json");
+    const resp = await fetch(urlSite("data/censo_renda_setores.json"));
     if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
     rendaDados = await resp.json();
     return { ok: true, count: rendaDados.setores?.length || 0 };

@@ -242,7 +242,7 @@ def main():
         n_ver_t1 = len(zona["vereadores"].get("1", []))
         print(f"  Zona {zona_num}: {n_pref_t1} candidatos a prefeito, {n_ver_t1} candidatos a vereador")
 
-    print("\nAgora abra o index.html no seu navegador para visualizar o mapa.")
+    print("\nAgora abra o cotia/eleicoes2024.html no seu navegador para visualizar o mapa.")
     print("=" * 60)
 
 

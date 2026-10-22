@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <!-- Vargem Grande Paulista: contorno do município (malha do IBGE), no lugar
+       da bandeira enquanto não temos o arquivo oficial dela -->
+  <rect width="512" height="512" rx="96" fill="#16213e"/>
+  <path d="M333.6 96.0L327.1 145.9L354.1 160.5L357.1 178.2L381.8 174.3L353.2 198.9L364.6 284.2L350.9 328.4L366.0 358.2L361.3 399.4L337.8 416.0L335.4 383.8L309.0 389.0L282.8 366.4L266.3 369.4L245.9 324.7L212.8 322.2L181.2 297.8L175.8 279.4L130.2 268.5L138.1 241.6L145.7 228.6L162.6 234.1L185.9 209.0L201.8 163.9L221.9 127.8L220.9 105.7L250.2 105.9L257.1 117.7L275.7 99.9L333.6 96.0Z" fill="#2e7d32" stroke="#ffffff" stroke-width="14" stroke-linejoin="round"/>
+</svg>

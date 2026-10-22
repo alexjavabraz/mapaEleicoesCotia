@@ -1,7 +1,7 @@
 {
-  "name": "Mapa Eleitoral de Cotia 2024",
-  "short_name": "Cotia 2024",
-  "description": "Resultados das Eleições Municipais de Cotia/SP em 2024 — por bairro e vereador.",
+  "name": "Dados Cívicos — Cotia e Vargem Grande Paulista",
+  "short_name": "Dados Cívicos",
+  "description": "Portal de transparência de dados cívicos de Cotia e Vargem Grande Paulista: eleições por bairro e escola, gastos de campanha e contas municipais.",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
@@ -29,6 +29,9 @@
       "purpose": "any"
     }
   ],
-  "categories": ["government", "news"],
+  "categories": [
+    "government",
+    "news"
+  ],
   "screenshots": []
 }

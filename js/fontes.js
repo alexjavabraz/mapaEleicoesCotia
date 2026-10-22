@@ -194,7 +194,7 @@ const FONTES_SECOES = [
 
 // QR Code do PIX do Alex: lido da foto que ele enviou e gerado de novo, limpo
 // (mesmo conteúdo, conferido com um leitor). A chave não aparece em texto.
-const PIX_QRCODE = "./icons/pix-qrcode.png";
+const PIX_QRCODE = urlSite("icons/pix-qrcode.png");
 
 const ICONE_APOIO =
   '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" ' +
@@ -243,7 +243,7 @@ function montarModalFontes() {
   // Página completa (metodologia.html), com fórmulas e avisos legais
   if (!document.body.classList.contains("metodologia-page")) {
     const completa = fontesEl("a", "fontes-completa", t("Metodologia completa e avisos legais →"));
-    completa.href = "./metodologia.html";
+    completa.href = urlSite("metodologia.html");
     corpo.appendChild(fontesEl("p")).appendChild(completa);
   }
 
@@ -341,12 +341,12 @@ function montarRodape() {
     const sobre = fontesEl("a", "rodape-sobre");
     sobre.appendChild(fontesEl("span", "rotulo-longo", t("Sobre o projeto")));
     sobre.appendChild(fontesEl("span", "rotulo-curto", t("Sobre")));
-    sobre.href = "./sobre.html";
+    sobre.href = urlSite("index.html");
     footer.insertBefore(sobre, btn);
   }
   if (!classes.contains("metodologia-page")) {
     const metodologia = fontesEl("a", "rodape-sobre", t("Metodologia"));
-    metodologia.href = "./metodologia.html";
+    metodologia.href = urlSite("metodologia.html");
     footer.insertBefore(metodologia, btn);
   }
 

@@ -408,7 +408,7 @@ function renderMascaraExterna(municipioGeoJSON) {
  */
 async function fetchCotiaBairros(onStatus) {
   try {
-    const r = await fetch("./data/osm_bairros_cotia.json");
+    const r = await fetch(urlSite("data/osm_bairros_cotia.json"));
     if (r.ok) {
       // Lista vazia também vale: a Overpass não tem bairros de Cotia e o app
       // segue direto para o Voronoi, sem esperar a consulta ao vivo.
@@ -487,7 +487,7 @@ out skel qt;
 async function fetchCotiaMunicipio(onStatus) {
   if (onStatus) onStatus(t("Buscando contorno do município..."));
   try {
-    const r = await fetch("./data/cotia_municipio.geojson");
+    const r = await fetch(urlSite("data/cotia_municipio.geojson"));
     if (r.ok) {
       const geojson = await r.json();
       if (geojson?.features?.length) return geojson;

@@ -10,8 +10,17 @@ Aplicação web interativa com os resultados eleitorais de Cotia/SP, visualizado
 
 | Página | URL | Conteúdo |
 |--------|-----|----------|
-| Eleição Municipal | `/index.html` | Prefeito e Vereadores — Cotia 2024 |
-| Eleições Gerais | `/eleicao-geral.html` | Presidente, Governador, Senador, Dep. Federal, Dep. Estadual — 2022 e 2026 |
+| Início / Sobre o projeto | `/index.html` | Apresentação do portal e mapa clicável das cidades (sem dados) |
+| Eleição Municipal | `/cotia/eleicoes2024.html` | Prefeito e Vereadores — Cotia 2024 |
+| Eleições Gerais | `/cotia/eleicoes2026.html` | Presidente, Governador, Senador, Dep. Federal, Dep. Estadual — 2022 e 2026 |
+| Contas Municipais | `/cotia/contas.html` | Pagamentos da Prefeitura (TCE-SP) e viagens da Câmara |
+| Metodologia | `/metodologia.html` | Fontes, cálculos e avisos legais |
+| Vargem Grande Paulista | `/vgp/*.html` | Mesmas três páginas, "em breve" até os dados existirem |
+
+Os endereços antigos (`/eleicao-geral.html`, `/contas.html`, `/sobre.html`)
+redirecionam para os novos, mantendo `?lang=` e o `#fragmento`. As páginas das
+cidades ficam em subpastas, então dados e ícones são montados com
+`urlSite("data/…")` (definido em `js/i18n.js`), nunca com caminho relativo à página.
 
 ---
 
@@ -114,8 +123,12 @@ Acesse [http://localhost:8080](http://localhost:8080).
 ```
 mapaEleicoesCotia/
 │
-├── index.html                        # Eleição Municipal 2024
-├── eleicao-geral.html                # Eleições Gerais 2022/2026
+├── index.html                        # Início: sobre o projeto + mapa das cidades
+├── metodologia.html                  # Fontes, cálculos e avisos legais
+├── cotia/                            # eleicoes2024.html, eleicoes2026.html, contas.html
+├── vgp/                              # Vargem Grande Paulista (em breve)
+├── eleicao-geral.html, contas.html,
+│   sobre.html                        # Redirecionamentos dos endereços antigos
 │
 ├── css/
 │   └── style.css                     # Tema escuro, layout, componentes
@@ -258,18 +271,18 @@ que geram o JSON e fazem commit dele em `data/`.
 
 | Dado no site | Página | Fonte (link) | Script | Workflow | Arquivo gerado | Chave do município |
 |---|---|---|---|---|---|---|
-| Votação 2024 por zona (Prefeito, Vereador, 1º/2º turno) | index.html | TSE `votacao_candidato_munzona_2024.zip` ([resultados-2024](https://dadosabertos.tse.jus.br/dataset/resultados-2024)) | `download_tse.py` | (manual) | `tse_cotia_2024.json` | `NM_MUNICIPIO = COTIA` |
-| Votação 2024 por bairro e por escola | index.html | TSE `votacao_secao_2024_SP.zip` (~475 MB) | `download_secoes.py` | `secoes.yml` | `cotia_votos_por_bairro.json`, `cotia_votos_por_escola*.json` | `CD_MUNICIPIO = 63614` (código TSE) |
+| Votação 2024 por zona (Prefeito, Vereador, 1º/2º turno) | cotia/eleicoes2024.html | TSE `votacao_candidato_munzona_2024.zip` ([resultados-2024](https://dadosabertos.tse.jus.br/dataset/resultados-2024)) | `download_tse.py` | (manual) | `tse_cotia_2024.json` | `NM_MUNICIPIO = COTIA` |
+| Votação 2024 por bairro e por escola | cotia/eleicoes2024.html | TSE `votacao_secao_2024_SP.zip` (~475 MB) | `download_secoes.py` | `secoes.yml` | `cotia_votos_por_bairro.json`, `cotia_votos_por_escola*.json` | `CD_MUNICIPIO = 63614` (código TSE) |
 | Locais de votação (lat/lng, bairro de cada seção) | as duas páginas de mapa | TSE `eleitorado_local_votacao_2024_SP` | (manual) | — | `cotia_locais_votacao.json` (553 seções) | código TSE |
-| Eleições gerais 2022/2026 por zona | eleicao-geral.html | TSE `votacao_candidato_munzona_{ano}.zip` | `download_tse_geral.py` | (manual) | `tse_cotia_2022.json`, `tse_cotia_2026.json` | nome |
-| Eleições gerais 2026 por bairro | eleicao-geral.html | TSE `votacao_secao_2026_SP.zip` + `_BR.zip` | `download_secoes_geral.py` | (manual) | `cotia_votos_por_bairro_2026.json` | código TSE |
-| Custo por voto 2024 | index.html (card do candidato) | TSE `prestacao_de_contas_eleitorais_candidatos_2024.zip` ([prestacao-de-contas-eleitorais-2024](https://dadosabertos.tse.jus.br/dataset/prestacao-de-contas-eleitorais-2024)), despesas contratadas ÷ votos do 1º turno | `download_gastos_campanha.py` | `gastos-campanha.yml` | `gastos_campanha_2024.json` | `SG_UE = 63614` |
-| Patrimônio declarado 2024 + link DivulgaCandContas | index.html (card) | TSE `consulta_cand_2024.zip` + `bem_candidato_2024.zip` ([candidatos-2024](https://dadosabertos.tse.jus.br/dataset/candidatos-2024)); link usa eleição `2045202024` | `download_patrimonio.py` | `patrimonio.yml` | `patrimonio_candidatos_2024.json` | `SG_UE = 63614` |
+| Eleições gerais 2022/2026 por zona | cotia/eleicoes2026.html | TSE `votacao_candidato_munzona_{ano}.zip` | `download_tse_geral.py` | (manual) | `tse_cotia_2022.json`, `tse_cotia_2026.json` | nome |
+| Eleições gerais 2026 por bairro | cotia/eleicoes2026.html | TSE `votacao_secao_2026_SP.zip` + `_BR.zip` | `download_secoes_geral.py` | (manual) | `cotia_votos_por_bairro_2026.json` | código TSE |
+| Custo por voto 2024 | cotia/eleicoes2024.html (card do candidato) | TSE `prestacao_de_contas_eleitorais_candidatos_2024.zip` ([prestacao-de-contas-eleitorais-2024](https://dadosabertos.tse.jus.br/dataset/prestacao-de-contas-eleitorais-2024)), despesas contratadas ÷ votos do 1º turno | `download_gastos_campanha.py` | `gastos-campanha.yml` | `gastos_campanha_2024.json` | `SG_UE = 63614` |
+| Patrimônio declarado 2024 + link DivulgaCandContas | cotia/eleicoes2024.html (card) | TSE `consulta_cand_2024.zip` + `bem_candidato_2024.zip` ([candidatos-2024](https://dadosabertos.tse.jus.br/dataset/candidatos-2024)); link usa eleição `2045202024` | `download_patrimonio.py` | `patrimonio.yml` | `patrimonio_candidatos_2024.json` | `SG_UE = 63614` |
 | Bairros (polígonos) | mapas | OpenStreetMap/Overpass (Cotia não tem bairros no OSM: o mapa desenha os bairros por proximidade aos locais de votação, Voronoi) | `download_bairros_osm.py` | `bairros-osm.yml` | `osm_bairros_cotia.json` | nome/área OSM |
 | Contorno do município | mapas | Overpass (fallback salvo) | — | — | `cotia_municipio.geojson` | — |
 | Renda (Censo 2022) por setor censitário | os dois mapas, botão "Renda (Censo)" | IBGE FTP `Agregados_por_Setores_Censitarios_Rendimento_do_Responsavel/` (V06004 renda média, V06001 peso, V06006 mediana) + malha `SP_setores_CD2022.gpkg` (geoftp); fallback Censo 2010 V005/V001 | `download_censo.py` | `censo.yml` | `censo_renda_setores.json`, `censo_renda_setores.geojson` | `CD_MUN = 3513009` (IBGE) |
-| Despesas do município (empenhado/liquidado/pago por órgão, fornecedor, ano, mês) 2020+ | contas.html (Visão geral, Por fornecedor) | TCE-SP API `https://transparencia.tce.sp.gov.br/api/json/despesas/cotia/{ano}/{mes}` | `download_contas.py` | `contas.yml` (dia 10 de cada mês) | `contas_cotia.json`, `contas_fornecedores/*.json` | slug `cotia` |
-| Viagens da Câmara (passagens e hospedagem por vereador/servidor) | contas.html (aba Viagens) | `https://www.cotia.sp.leg.br/relatorio-de-viagens` (um PDF por viagem no Google Drive; OCR nos escaneados) | `download_viagens.py` | `contas.yml` | `viagens_camara.json` | — |
+| Despesas do município (empenhado/liquidado/pago por órgão, fornecedor, ano, mês) 2020+ | cotia/contas.html (Visão geral, Por fornecedor) | TCE-SP API `https://transparencia.tce.sp.gov.br/api/json/despesas/cotia/{ano}/{mes}` | `download_contas.py` | `contas.yml` (dia 10 de cada mês) | `contas_cotia.json`, `contas_fornecedores/*.json` | slug `cotia` |
+| Viagens da Câmara (passagens e hospedagem por vereador/servidor) | cotia/contas.html (aba Viagens) | `https://www.cotia.sp.leg.br/relatorio-de-viagens` (um PDF por viagem no Google Drive; OCR nos escaneados) | `download_viagens.py` | `contas.yml` | `viagens_camara.json` | — |
 | Ícones PWA | — | gerados | `gen_icons.py` | — | `icons/` | — |
 
 O que o site **ainda não** faz com esses dados: despesas por tipo
@@ -313,4 +326,4 @@ git push
   datasetUrl: "https://dadosabertos.tse.jus.br/dataset/resultados-2030",
 }
 ```
-3. Adicione `<option value="2030">2030</option>` no `<select>` de `eleicao-geral.html`
+3. Adicione `<option value="2030">2030</option>` no `<select>` de `cotia/eleicoes2026.html`

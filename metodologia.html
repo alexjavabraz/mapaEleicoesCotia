@@ -14,7 +14,7 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <meta name="apple-mobile-web-app-title" content="Cotia" />
   <link rel="apple-touch-icon" href="./icons/apple-touch-icon.png" />
-  <link rel="icon" type="image/svg+xml" href="./icons/cotia-flag.svg" />
+  <link rel="icon" type="image/svg+xml" href="./icons/portal.svg" />
   <link rel="icon" type="image/png" sizes="32x32" href="./icons/favicon-32.png" />
 
   <!-- Idioma (PT/EN): carregado antes de tudo para os outros scripts usarem t() -->
@@ -29,13 +29,12 @@
 </head>
 <body class="sobre-page metodologia-page">
   <header id="header">
-    <h1><img class="header-bandeira" src="./icons/cotia-flag.svg" alt="" width="28" height="28" /><span class="header-nome">Cotia</span></h1>
+    <h1><a class="header-marca" href="./index.html"><img class="header-bandeira" src="./icons/portal.svg" alt="" width="28" height="28" /><span class="header-nome" data-i18n>Dados Cívicos</span></a></h1>
 
     <!-- Seções do site em controle segmentado (css/abas.css, js/abas.js) -->
-    <nav class="segmentado segmentado--site" aria-label="Seções do site" data-i18n-aria-label>
-      <a class="segmentado__aba" href="./index.html"><span class="seg-longo" data-i18n>Eleições 2024</span><span class="seg-curto" data-i18n>2024</span></a>
-      <a class="segmentado__aba" href="./eleicao-geral.html"><span class="seg-longo" data-i18n>Eleições 2026</span><span class="seg-curto" data-i18n>2026</span></a>
-      <a class="segmentado__aba" href="./contas.html"><span class="seg-longo" data-i18n>Contas Municipais</span><span class="seg-curto" data-i18n>Contas</span></a>
+    <nav class="segmentado segmentado--site" aria-label="Cidades" data-i18n-aria-label>
+      <a class="segmentado__aba" href="./cotia/contas.html"><span class="seg-longo">Cotia</span><span class="seg-curto">Cotia</span></a>
+      <a class="segmentado__aba" href="./vgp/contas.html"><span class="seg-longo">Vargem Grande Paulista</span><span class="seg-curto">VGP</span></a>
     </nav>
   </header>
 
@@ -154,7 +153,7 @@
         </ul>
       </section>
 
-      <p class="metodologia-final"><a href="./sobre.html" data-i18n>← Sobre o projeto</a> · <a href="./index.html" data-i18n>Voltar ao mapa</a></p>
+      <p class="metodologia-final"><a href="./index.html" data-i18n>← Sobre o projeto</a> · <a href="./cotia/eleicoes2024.html" data-i18n>Voltar ao mapa</a></p>
     </div>
   </main>
 

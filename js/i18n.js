@@ -11,6 +11,12 @@
  * Nomes de candidatos, bairros, fornecedores e órgãos são dados e não mudam.
  */
 
+/** Raiz do site (a pasta acima de js/). As páginas das cidades ficam em
+ *  subpastas (/cotia/, /vgp/), então dados, ícones e links comuns são
+ *  montados com urlSite("data/…") em vez de caminhos relativos à página. */
+const SITE_RAIZ = new URL("../", (document.currentScript && document.currentScript.src) || location.href).href;
+function urlSite(caminho) { return SITE_RAIZ + caminho; }
+
 // false = sempre abre em português; o inglês aparece só pelo botão EN.
 const INGLES_AUTOMATICO = true;
 
@@ -47,6 +53,10 @@ const LOCALE = LANG === "en" ? "en-US" : "pt-BR";
 document.documentElement.lang = LANG === "en" ? "en" : "pt-BR";
 
 const I18N_EN = {
+  // Header: marca do portal, troca de cidade
+  "Dados Cívicos": "Civic Data",
+  "Cidades": "Cities",
+  "Trocar de cidade": "Switch city",
   // ---- Header / navegação / títulos ----
   "Mapa Eleitoral — Cotia 2024": "Election Map — Cotia 2024",
   "Mapa Eleitoral — Cotia — Eleição Geral": "Election Map — Cotia — General Election",

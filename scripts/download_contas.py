@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 Baixa as despesas do município de Cotia na API de transparência do TCE-SP
-e gera um JSON agregado para a página "Contas do Município" (contas.html).
+e gera um JSON agregado para a página "Contas do Município" (cotia/contas.html).
 
 Uso:
     pip install -r requirements.txt

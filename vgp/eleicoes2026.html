@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title data-i18n>Eleições 2026 — Vargem Grande Paulista</title>
+
+  <!-- PWA -->
+  <link rel="manifest" href="../manifest.json" />
+  <meta name="theme-color" content="#16213e" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="VGP" />
+  <link rel="apple-touch-icon" href="../icons/apple-touch-icon.png" />
+  <link rel="icon" type="image/svg+xml" href="../icons/vgp-icon.svg" />
+
+  <!-- Idioma (PT/EN): carregado antes de tudo para os outros scripts usarem t() -->
+  <script src="../js/i18n.js"></script>
+  <!-- Tema claro/escuro: define data-theme no <html> antes do primeiro desenho -->
+  <script src="../js/tema.js"></script>
+
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="../css/abas.css" />
+  <link rel="stylesheet" href="../css/sobre.css" />
+</head>
+<body class="breve-page">
+  <header id="header">
+    <h1><a class="header-marca" href="../index.html" title="Trocar de cidade" data-i18n-title><img class="header-bandeira" src="../icons/vgp-icon.svg" alt="" width="28" height="28" /><span class="header-nome">Vargem Grande Paulista</span></a></h1>
+
+    <!-- Seções da cidade em controle segmentado (css/abas.css, js/abas.js) -->
+    <nav class="segmentado segmentado--site" aria-label="Seções do site" data-i18n-aria-label>
+      <a class="segmentado__aba" href="./eleicoes2024.html"><span class="seg-longo" data-i18n>Eleições 2024</span><span class="seg-curto" data-i18n>2024</span></a>
+      <a class="segmentado__aba" href="./eleicoes2026.html" aria-current="page"><span class="seg-longo" data-i18n>Eleições 2026</span><span class="seg-curto" data-i18n>2026</span></a>
+      <a class="segmentado__aba" href="./contas.html"><span class="seg-longo" data-i18n>Contas Municipais</span><span class="seg-curto" data-i18n>Contas</span></a>
+    </nav>
+  </header>
+
+  <!-- Vargem Grande Paulista ainda sem dados: a página existe para a navegação
+       por cidade (/vgp/) e recebe o conteúdo quando os dados estiverem prontos. -->
+  <main id="sobre">
+    <section class="sobre-largura breve">
+      <p class="sobre-selo" data-i18n>Em breve</p>
+      <h2 class="sobre-titulo" data-i18n>Eleições 2026</h2>
+      <p class="sobre-lead" data-i18n>Presidente, Governador, Senador e Deputados: quem venceu em cada bairro da cidade.</p>
+      <p class="breve-aviso" data-i18n>Os dados de Vargem Grande Paulista estão sendo levantados e entram no portal assim que estiverem prontos.</p>
+      <div class="sobre-ctas">
+        <a class="sobre-btn sobre-btn--primario" href="../cotia/eleicoes2026.html" data-i18n>Ver Cotia enquanto isso</a>
+        <a class="sobre-btn" href="../index.html" data-i18n>Voltar ao início</a>
+      </div>
+    </section>
+  </main>
+
+  <script src="../js/abas.js"></script>
+  <script src="../js/fontes.js"></script>
+  <script src="../js/sobre.js"></script>
+
+  <script>
+    if ("serviceWorker" in navigator) {
+      let swRefreshing = false;
+      navigator.serviceWorker.addEventListener("controllerchange", () => {
+        if (swRefreshing) return;
+        swRefreshing = true;
+        window.location.reload();
+      });
+      window.addEventListener("load", () => {
+        navigator.serviceWorker.register("../sw.js")
+          .catch((err) => console.warn("SW registro falhou:", err));
+      });
+    }
+  </script>
+</body>
+</html>

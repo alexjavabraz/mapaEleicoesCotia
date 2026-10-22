@@ -1,3 +1,42 @@
+# Sessão — 2026-10-22 (2) · Site organizado por cidade (/cotia/, /vgp/)
+
+**Status:** iniciada 2026-10-22 14:18 UTC · finalizada 2026-10-22 14:50 UTC
+(commit direto no `main`).
+
+## Pedido
+
+O Sobre vira a página inicial (`/index.html`) com o mapa clicável das duas
+cidades, sem dados. Cotia → `/cotia/…` com a bandeira de Cotia; VGP →
+`/vgp/contas.html`, com Eleições 2024 / Eleições 2026 / Contas no menu.
+
+## O que foi feito
+
+- `git mv`: `index.html` → `cotia/eleicoes2024.html`, `eleicao-geral.html` →
+  `cotia/eleicoes2026.html`, `contas.html` → `cotia/contas.html`,
+  `sobre.html` → `index.html`. Nas páginas da cidade a bandeira + nome no
+  header é link para o início ("Trocar de cidade").
+- `vgp/eleicoes2024.html`, `vgp/eleicoes2026.html`, `vgp/contas.html`: mesma
+  navegação, conteúdo "Em breve" (body `breve-page`, estilos em
+  `css/sobre.css`). Ícone `icons/vgp-icon.svg` = contorno do município (não
+  deu para baixar a bandeira oficial da sessão). Marca do portal na raiz:
+  `icons/portal.svg` ("Dados Cívicos"), nav da raiz = Cotia | VGP.
+- Clique nos mapas leva a `cotia/contas.html` e `vgp/contas.html`, como o
+  Alex descreveu.
+- `js/i18n.js`: `SITE_RAIZ` / `urlSite()` (raiz calculada a partir do
+  próprio i18n.js). Todos os `fetch` de `data/`, o QR do PIX e os links do
+  rodapé usam `urlSite`, então funcionam em qualquer subpasta.
+- Redirecionamentos (GitHub Pages não tem redirect no servidor):
+  `eleicao-geral.html`, `contas.html` e `sobre.html` viraram páginas de
+  `location.replace` + meta refresh, mantendo `?lang=` e `#hash`. Quem tinha o
+  link antigo de `/` (mapa 2024) agora cai no início.
+- `sw.js` (v42, lista do shell com as páginas novas), `manifest.json`
+  (nome "Dados Cívicos"), README e mensagens dos scripts.
+- Conferido: todas as páginas sem erro de JS, dados carregando (com as libs
+  de CDN servidas localmente no teste), nenhum link interno quebrado,
+  redirecionamentos, claro/escuro, celular, EN.
+
+---
+
 # Sessão — 2026-10-22 · Página Sobre: mapas clicáveis de Cotia e Vargem Grande Paulista
 
 **Status:** iniciada 2026-10-22 14:15 UTC · finalizada 2026-10-22 14:30 UTC

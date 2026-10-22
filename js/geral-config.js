@@ -10,14 +10,14 @@
 const ELECTION_YEARS = {
   "2022": {
     label: "2022",
-    dataFile: "./data/tse_cotia_2022.json",
+    dataFile: urlSite("data/tse_cotia_2022.json"),
     bairroFile: null,  // dados por bairro não disponíveis para 2022
     datasetUrl: "https://dadosabertos.tse.jus.br/dataset/resultados-2022",
   },
   "2026": {
     label: t("2026 — 1º Turno"),
-    dataFile: "./data/tse_cotia_2026.json",
-    bairroFile: "./data/cotia_votos_por_bairro_2026.json",
+    dataFile: urlSite("data/tse_cotia_2026.json"),
+    bairroFile: urlSite("data/cotia_votos_por_bairro_2026.json"),
     datasetUrl: "https://dadosabertos.tse.jus.br/dataset/resultados-2026",
     aviso: t("Dados do 1º turno (04/10/2026). O 2º turno ocorre em 25/10/2026."),
   },

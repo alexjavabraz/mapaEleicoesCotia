@@ -243,7 +243,7 @@ def main():
         )
         print(f"  Zona {zona_num}: {resumo}")
 
-    print("\nAbra eleicao-geral.html no navegador (via servidor HTTP local) para visualizar.")
+    print("\nAbra cotia/eleicoes2026.html no navegador (via servidor HTTP local) para visualizar.")
     print("=" * 60)
 
 

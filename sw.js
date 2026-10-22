@@ -11,17 +11,20 @@
 // então uma mudança em js/css chega na hora, e o cache só serve offline.
 // Suba CACHE_NAME/DATA_CACHE apenas para descartar caches antigos de vez
 // (ex.: um arquivo removido do site ou um schema de dados incompatível).
-const CACHE_NAME   = "cotia-mapa-v41";
-const DATA_CACHE   = "cotia-data-v41";
+const CACHE_NAME   = "cotia-mapa-v42";
+const DATA_CACHE   = "cotia-data-v42";
 
 // Assets estáticos que formam o "shell" da aplicação
 const SHELL_ASSETS = [
   "./",
   "./index.html",
-  "./eleicao-geral.html",
-  "./contas.html",
-  "./sobre.html",
   "./metodologia.html",
+  "./cotia/eleicoes2024.html",
+  "./cotia/eleicoes2026.html",
+  "./cotia/contas.html",
+  "./vgp/eleicoes2024.html",
+  "./vgp/eleicoes2026.html",
+  "./vgp/contas.html",
   "./css/style.css",
   "./css/contas.css",
   "./css/abas.css",
@@ -44,6 +47,8 @@ const SHELL_ASSETS = [
   "./js/metodologia.js",
   "./manifest.json",
   "./icons/cotia-flag.svg",
+  "./icons/vgp-icon.svg",
+  "./icons/portal.svg",
   "./icons/pix-qrcode.png",
   "./icons/icon-192.png",
   "./icons/icon-512.png",

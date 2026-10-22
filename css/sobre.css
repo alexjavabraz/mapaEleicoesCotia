@@ -5,12 +5,29 @@
    ============================================= */
 
 html:has(body.sobre-page),
-body.sobre-page {
+html:has(body.breve-page),
+body.sobre-page,
+body.breve-page {
   overflow: auto;
   height: auto;
   min-height: 100%;
 }
-body.sobre-page #rodape { position: static; }
+body.sobre-page #rodape,
+body.breve-page #rodape { position: static; }
+
+/* Páginas de cidade ainda sem dados (vgp/*.html) */
+body.breve-page #sobre { min-height: calc(100dvh - var(--footer-height)); }
+.sobre-largura.breve { padding-top: 56px; padding-bottom: 24px; }
+.breve-aviso {
+  margin-top: 20px;
+  max-width: 60ch;
+  padding: 14px 16px;
+  border-radius: 10px;
+  border: 1px dashed rgba(var(--tinta), 0.25);
+  background: rgba(var(--tinta), 0.03);
+  color: var(--text);
+  line-height: 1.55;
+}
 
 #sobre {
   padding-top: var(--header-height);
@@ -45,7 +62,7 @@ body.sobre-page #rodape { position: static; }
 }
 .sobre-titulo {
   margin-top: 18px;
-  max-width: 16ch;
+  max-width: 20ch;
   font-size: clamp(2rem, 5vw, 3.4rem);
   line-height: 1.08;
   font-weight: 800;
