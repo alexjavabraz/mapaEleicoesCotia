@@ -5,50 +5,24 @@ on:
   push:
     branches: [claude/project-thread-3h6zh7]
     paths:
-      - scripts/sondar_vgp.py
-      - scripts/analisar_camara_vgp.py
+      - scripts/comprovantes_vgp.py
       - .github/workflows/sondar-vgp.yml
 
 permissions:
   contents: read
 
 jobs:
-  sondar:
-    if: github.event_name != 'push'
+  comprovantes:
     runs-on: ubuntu-latest
-    timeout-minutes: 90
+    timeout-minutes: 30
     strategy:
       fail-fast: false
       matrix:
-        alvo: [tse2024, tse2026, tce, censo, camara, cecam, leis]
+        alvo: [siscam, cecam, site]
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-      - run: pip install -r scripts/requirements.txt geopandas pyogrio && sudo apt-get install -y poppler-utils >/dev/null
-      - run: python -u scripts/sondar_vgp.py ${{ matrix.alvo }}
-        env:
-          VGP_CSV: /tmp/vgp_despesas.csv
-      - if: startsWith(matrix.alvo, 'tce')
-        uses: actions/upload-artifact@v4
-        with:
-          name: vgp-despesas-${{ matrix.alvo }}
-          path: /tmp/vgp_despesas.csv
-          if-no-files-found: ignore
-
-  analisar:
-    if: github.event_name == 'push'
-    runs-on: ubuntu-latest
-    permissions:
-      actions: read
-      contents: read
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/download-artifact@v4
-        with:
-          pattern: vgp-despesas-tce20*
-          path: /tmp/tce
-          run-id: 39805102698
-          github-token: ${{ github.token }}
-      - run: python3 -u scripts/analisar_camara_vgp.py /tmp/tce
+      - run: pip install requests && sudo apt-get install -y poppler-utils >/dev/null
+      - run: python -u scripts/comprovantes_vgp.py ${{ matrix.alvo }}
