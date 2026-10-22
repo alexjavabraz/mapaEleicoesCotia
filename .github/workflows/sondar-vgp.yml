@@ -5,7 +5,7 @@ on:
   push:
     branches: [claude/project-thread-3h6zh7]
     paths:
-      - scripts/comprovantes_vgp.py
+      - scripts/comprovantes_vgp2.py
       - .github/workflows/sondar-vgp.yml
 
 permissions:
@@ -15,14 +15,10 @@ jobs:
   comprovantes:
     runs-on: ubuntu-latest
     timeout-minutes: 30
-    strategy:
-      fail-fast: false
-      matrix:
-        alvo: [siscam, cecam, site]
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-      - run: pip install requests && sudo apt-get install -y poppler-utils >/dev/null
-      - run: python -u scripts/comprovantes_vgp.py ${{ matrix.alvo }}
+      - run: pip install requests && sudo apt-get install -y poppler-utils tesseract-ocr tesseract-ocr-por >/dev/null
+      - run: python -u scripts/comprovantes_vgp2.py
