@@ -24,6 +24,14 @@ const SOBRE_EN = {
   "código e dados publicados no GitHub, para qualquer pessoa conferir":
     "code and data published on GitHub, for anyone to check",
 
+  "Escolha a cidade": "Choose a city",
+  "Eleições 2024 e 2026 por bairro e por escola, gastos de campanha e as contas da Prefeitura e da Câmara.":
+    "2024 and 2026 elections by neighborhood and by school, campaign spending and the accounts of City Hall and the City Council.",
+  "Ver os dados de Cotia →": "See Cotia's data →",
+  "Em breve": "Coming soon",
+  "Os dados de Vargem Grande Paulista estão sendo levantados e entram no portal assim que estiverem prontos.":
+    "Vargem Grande Paulista's data is being gathered and will be added to the portal as soon as it is ready.",
+
   "O projeto": "The project",
   "Os dados públicos de Cotia existem, mas estão espalhados em arquivos enormes, planilhas e PDFs de órgãos diferentes. Este portal baixa esses arquivos, organiza e mostra o que eles dizem sobre a cidade, bairro por bairro.":
     "Cotia's public data exists, but it is scattered across huge files, spreadsheets and PDFs from different agencies. This portal downloads those files, organizes them and shows what they say about the city, neighborhood by neighborhood.",

@@ -1,3 +1,30 @@
+# Sessão — 2026-10-22 · Página Sobre: mapas clicáveis de Cotia e Vargem Grande Paulista
+
+**Status:** iniciada 2026-10-22 14:15 UTC · finalizada 2026-10-22 14:30 UTC
+(commit direto no `main`).
+
+## Pedido
+
+Na página Sobre o projeto, incluir Vargem Grande Paulista e dois mapas
+clicáveis para o usuário ver os dados de cada cidade.
+
+## O que foi feito
+
+- `sobre.html`: seção "Escolha a cidade" (`#cidades`) logo depois dos
+  destaques, com dois cartões. Cada um desenha as duas cidades no mesmo
+  enquadramento (SVG inline, sem chamada externa), com a cidade do cartão em
+  destaque. Contornos: malha municipal do IBGE via geodata-br
+  (`geojs-35-mun.json`, ids 3513009 e 3556453), simplificados; a API de
+  malhas do IBGE está bloqueada na sessão.
+- Cotia leva a `index.html`. Vargem Grande Paulista aparece como "Em breve"
+  (contorno tracejado, não clicável) até existirem dados e página dela —
+  quando existirem, trocar o `<div class="cidade-card cidade-card--breve">`
+  por `<a class="cidade-card" href="…">`.
+- `css/sobre.css` (só variáveis do tema) e textos EN em `js/sobre.js`.
+- Conferido claro/escuro, desktop/celular e EN.
+
+---
+
 # Sessão — 2026-10-22 (16) · Levantamento de dados de Vargem Grande Paulista
 
 **Status:** iniciada 2026-10-22 14:05 UTC (só pesquisa; nada implementado no
