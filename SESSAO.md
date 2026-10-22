@@ -74,8 +74,8 @@ clicáveis para o usuário ver os dados de cada cidade.
 
 # Sessão — 2026-10-22 (16) · Levantamento de dados de Vargem Grande Paulista
 
-**Status:** iniciada 2026-10-22 14:05 UTC (só pesquisa; nada implementado no
-site).
+**Status:** iniciada 2026-10-22 14:05 UTC · finalizada 2026-10-22 16:10 UTC
+(só pesquisa; nada implementado no site).
 
 ## Pedido
 
@@ -91,6 +91,17 @@ diárias ou verba de gabinete e onde isso é publicado; despesas por tipo).
   README ("Inventário completo: dados, fontes e como são gerados").
 - Sondagem das fontes de VGP por GitHub Actions (os hosts são bloqueados na
   sessão em nuvem), na branch `claude/project-thread-3h6zh7`, sem tocar no main.
+- Resultado e plano em `docs/vargem-grande-paulista.md`: tudo existe para
+  VGP (TSE 2024/2026, custo/voto, patrimônio, Censo 2022, TCE-SP API com
+  slug `vargem-grande-paulista`). Despesas por tipo vêm do CSV anual do TCE
+  (`ds_elemento`), não da API. Câmara de VGP: sem verba de gabinete; de 2020
+  a 2025, só subsídio, um caixa de adiantamento com um servidor e duas
+  diárias de R$ 1.200.
+
+## Pendente / para o Alex decidir
+
+- Quando implementar VGP: ordem sugerida no doc (contas → eleições → Censo).
+- Se o "por tipo de despesa" também deve entrar em Cotia (mesmo CSV).
 
 # Sessão — 2026-10-21 (15) · Página de metodologia
 
