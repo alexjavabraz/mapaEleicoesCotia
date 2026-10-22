@@ -489,3 +489,20 @@ td .barra {
   #t-viag-pivo td.zero { display: none; }
   #t-viag-pivo tfoot td { border-top: 0; }
 }
+
+/* Por tipo (js/contas-tipo.js) */
+#tipo-mais { margin-top: 10px; }
+#tipo .graficos > div { min-width: 0; }
+
+/* Câmara sem verba de gabinete (vgp/contas.html) */
+.camara-aviso {
+  margin: 8px 0 14px;
+  padding: 12px 14px;
+  border-left: 3px solid var(--highlight);
+  border-radius: 6px;
+  background: rgba(var(--tinta), 0.04);
+}
+.camara-aviso strong { display: block; margin-bottom: 4px; }
+.camara-aviso p { margin: 0; font-size: 0.85rem; line-height: 1.5; color: var(--text-muted); }
+.camara-detalhe { margin-top: 12px; }
+.camara-detalhe summary { cursor: pointer; font-size: 0.85rem; color: var(--highlight); margin-bottom: 8px; }

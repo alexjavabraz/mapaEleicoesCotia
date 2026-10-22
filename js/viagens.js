@@ -7,7 +7,7 @@
  */
 
 (() => {
-  const URL_DADOS = urlSite("data/viagens_camara.json");
+  const URL_DADOS = urlDados("viagens_camara.json");
 
   // Textos traduzíveis: usa t() de js/i18n.js quando a página tiver, e registra
   // as traduções desta seção no dicionário dele.

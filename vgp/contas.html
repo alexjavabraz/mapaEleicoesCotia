@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title data-i18n>Contas Municipais — Vargem Grande Paulista</title>
+  <title data-i18n>Contas do Município — Vargem Grande Paulista</title>
 
   <!-- PWA -->
   <link rel="manifest" href="../manifest.json" />
@@ -11,7 +11,7 @@
   <meta name="mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-  <meta name="apple-mobile-web-app-title" content="VGP" />
+  <meta name="apple-mobile-web-app-title" content="VGP Contas" />
   <link rel="apple-touch-icon" href="../icons/apple-touch-icon.png" />
   <link rel="icon" type="image/svg+xml" href="../icons/vgp-icon.svg" />
 
@@ -21,14 +21,14 @@
   <script src="../js/tema.js"></script>
 
   <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="../css/contas.css" />
   <link rel="stylesheet" href="../css/abas.css" />
-  <link rel="stylesheet" href="../css/sobre.css" />
 </head>
-<body class="breve-page">
+<body class="contas-page">
   <header id="header">
     <h1><a class="header-marca" href="../index.html" title="Trocar de cidade" data-i18n-title><img class="header-bandeira header-portal" src="../icons/portal.svg" alt="" width="28" height="28" /><span class="header-nome header-nome--portal" data-i18n>Dados Cívicos</span><span class="header-sep" aria-hidden="true"></span><img class="header-bandeira" src="../icons/vgp-icon.svg" alt="" width="28" height="28" /><span class="header-nome">Vargem Grande Paulista</span></a></h1>
 
-    <!-- Seções da cidade em controle segmentado (css/abas.css, js/abas.js) -->
+    <!-- Seções do site em controle segmentado (css/abas.css, js/abas.js) -->
     <nav class="segmentado segmentado--site" aria-label="Seções do site" data-i18n-aria-label>
       <a class="segmentado__aba" href="./eleicoes2024.html"><span class="seg-longo" data-i18n>Eleições 2024</span><span class="seg-curto" data-i18n>2024</span></a>
       <a class="segmentado__aba" href="./eleicoes2026.html"><span class="seg-longo" data-i18n>Eleições 2026</span><span class="seg-curto" data-i18n>2026</span></a>
@@ -36,24 +36,220 @@
     </nav>
   </header>
 
-  <!-- Vargem Grande Paulista ainda sem dados: a página existe para a navegação
-       por cidade (/vgp/) e recebe o conteúdo quando os dados estiverem prontos. -->
-  <main id="sobre">
-    <section class="sobre-largura breve">
-      <p class="sobre-selo" data-i18n>Em breve</p>
-      <h2 class="sobre-titulo" data-i18n>Contas Municipais</h2>
-      <p class="sobre-lead" data-i18n>Pagamentos da Prefeitura por ano e por fornecedor, segundo o TCE-SP.</p>
-      <p class="breve-aviso" data-i18n>Os dados de Vargem Grande Paulista estão sendo levantados e entram no portal assim que estiverem prontos.</p>
-      <div class="sobre-ctas">
-        <a class="sobre-btn sobre-btn--primario" href="../cotia/contas.html" data-i18n>Ver Cotia enquanto isso</a>
-        <a class="sobre-btn" href="../index.html" data-i18n>Voltar ao início</a>
-      </div>
-    </section>
+  <main id="contas">
+    <!-- Abas da página (controle segmentado): Pagamentos e Viagens; dentro de
+         Pagamentos, Visão geral, Por fornecedor e Por tipo. URL: #geral, #fornecedor, #tipo, #camara -->
+    <div class="segmentado abas-contas" role="tablist" aria-label="Seções da página" data-i18n-aria-label>
+      <button type="button" class="segmentado__aba" role="tab" id="tab-pagamentos" aria-controls="aba-pagamentos" data-aba="pagamentos" data-i18n>Pagamentos</button>
+      <button type="button" class="segmentado__aba" role="tab" id="tab-camara" aria-controls="aba-camara" data-aba="camara" data-i18n>Câmara</button>
+    </div>
+
+    <!-- Pagamentos da prefeitura -->
+    <div class="aba-painel" id="aba-pagamentos" role="tabpanel" aria-labelledby="tab-pagamentos">
+    <div class="segmentado abas-pagamentos" role="tablist" aria-label="Pagamentos" data-i18n-aria-label>
+      <button type="button" class="segmentado__aba" role="tab" id="tab-geral" aria-controls="aba-geral" data-aba="geral" data-i18n>Visão geral</button>
+      <button type="button" class="segmentado__aba" role="tab" id="tab-fornecedor" aria-controls="aba-fornecedor" data-aba="fornecedor" data-i18n>Por fornecedor</button>
+      <button type="button" class="segmentado__aba" role="tab" id="tab-tipo" aria-controls="aba-tipo" data-aba="tipo" data-i18n>Por tipo</button>
+    </div>
+
+    <!-- Pagamentos › Visão geral: valores pagos de todo o período, sem filtros -->
+    <div class="aba-painel" id="aba-geral" role="tabpanel" aria-labelledby="tab-geral">
+      <section class="kpis">
+        <div class="kpi"><span id="gk-total">—</span><small id="gk-total-lbl">Total</small></div>
+        <div class="kpi"><span id="gk-receb">—</span><small data-i18n>Recebedores</small></div>
+        <div class="kpi"><span id="gk-lanc">—</span><small data-i18n>Registros (todos os eventos)</small></div>
+        <div class="kpi"><span id="k-ultimo">—</span><small data-i18n>Último mês publicado</small></div>
+      </section>
+
+      <!-- Evolução anual dos pagamentos + top 10 de cada ano -->
+      <section class="cartao" id="evolucao">
+        <div class="evo-head">
+          <h3 data-i18n>Evolução dos pagamentos por ano</h3>
+          <label><span data-i18n>Órgão</span>
+            <select id="evo-orgao"></select>
+          </label>
+        </div>
+        <div class="evo-resumo" id="evo-resumo"></div>
+        <div class="canvas-box alto"><canvas id="g-evolucao"></canvas></div>
+        <p class="nota" id="evo-nota"></p>
+
+        <h3 class="evo-top-titulo" data-i18n>Top 10 pagamentos do ano</h3>
+        <div class="anos-pills" id="evo-anos" role="tablist"></div>
+        <div class="tabela-wrap"><table id="evo-top"></table></div>
+      </section>
+
+      <section class="graficos">
+        <div class="cartao">
+          <h3 id="g-ano-geral-titulo" data-i18n>Por ano</h3>
+          <div class="canvas-box"><canvas id="g-ano-geral"></canvas></div>
+        </div>
+        <div class="cartao">
+          <h3 id="g-mes-titulo" data-i18n>Por mês</h3>
+          <div class="canvas-box"><canvas id="g-mes"></canvas></div>
+        </div>
+        <div class="cartao">
+          <h3 data-i18n>Maiores recebedores</h3>
+          <div class="canvas-box alto"><canvas id="g-top"></canvas></div>
+        </div>
+        <div class="cartao">
+          <h3 data-i18n>Por órgão</h3>
+          <div class="canvas-box"><canvas id="g-orgao"></canvas></div>
+        </div>
+      </section>
+      <p class="nota" data-i18n>Clique num recebedor para ver os pagamentos dele na aba Por fornecedor.</p>
+    </div>
+
+    <!-- Pagamentos › Por fornecedor: escolha um fornecedor e os dados são atualizados -->
+    <div class="aba-painel" id="aba-fornecedor" role="tabpanel" aria-labelledby="tab-fornecedor" hidden>
+      <!-- Filtros -->
+      <section class="filtros">
+        <label><span data-i18n>Evento</span>
+          <select id="f-evento"></select>
+        </label>
+        <label><span data-i18n>Ano</span>
+          <select id="f-ano"></select>
+        </label>
+        <label class="busca"><span data-i18n>Fornecedor / recebedor</span>
+          <input id="f-busca" type="search" list="lista-fornecedores"
+                 placeholder="Digite o nome ou CNPJ…" data-i18n-placeholder autocomplete="off" />
+          <datalist id="lista-fornecedores"></datalist>
+        </label>
+        <button id="btn-limpar" type="button" class="btn sec" data-i18n>Limpar</button>
+        <button id="btn-top10" type="button" class="btn" data-i18n>Top 10 valores pagos</button>
+      </section>
+
+      <!-- Fornecedor selecionado -->
+      <section id="fornecedor-sel" class="cartao" hidden></section>
+
+      <section class="kpis">
+        <div class="kpi"><span id="k-total">—</span><small id="k-total-lbl">Total</small></div>
+        <div class="kpi"><span id="k-receb">—</span><small data-i18n>Recebedores</small></div>
+        <div class="kpi"><span id="k-lanc">—</span><small data-i18n>Registros (todos os eventos)</small></div>
+      </section>
+
+      <section class="cartao">
+        <h3 id="g-ano-titulo" data-i18n>Por ano</h3>
+        <div class="canvas-box"><canvas id="g-ano"></canvas></div>
+      </section>
+
+      <!-- Agrupamento por recebedor -->
+      <section class="cartao">
+        <h3 data-i18n>Agrupado por recebedor</h3>
+        <div class="tabela-wrap">
+          <table id="t-receb">
+            <thead>
+              <tr>
+                <th data-sort="nome" data-i18n>Recebedor</th>
+                <th data-sort="doc">CNPJ</th>
+                <th data-sort="n" class="num" data-i18n>Lançamentos</th>
+                <th data-sort="valor" class="num" data-i18n>Valor</th>
+                <th class="num" data-i18n>% do total</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+        <div class="paginacao">
+          <button id="p-ant" type="button" class="btn sec" data-i18n>‹ Anterior</button>
+          <span id="p-info"></span>
+          <button id="p-prox" type="button" class="btn sec" data-i18n>Próxima ›</button>
+        </div>
+      </section>
+    </div>
+
+    <!-- Pagamentos › Por tipo: elemento da despesa e função de governo, do CSV
+         anual do TCE-SP (js/contas-tipo.js) -->
+    <div class="aba-painel" id="aba-tipo" role="tabpanel" aria-labelledby="tab-tipo" hidden>
+      <section class="cartao" id="tipo" hidden>
+        <div class="evo-head">
+          <h3 data-i18n>Despesas pagas por tipo</h3>
+          <label><span data-i18n>Órgão</span>
+            <select id="tipo-orgao"></select>
+          </label>
+        </div>
+        <div class="anos-pills" id="tipo-anos" role="tablist"></div>
+        <div class="evo-resumo" id="tipo-resumo"></div>
+        <div class="graficos">
+          <div>
+            <h4 data-i18n>Por grupo de despesa</h4>
+            <div class="canvas-box"><canvas id="g-tipo-grupo"></canvas></div>
+          </div>
+          <div>
+            <h4 data-i18n>Por área de governo (função)</h4>
+            <div class="canvas-box alto"><canvas id="g-tipo-funcao"></canvas></div>
+          </div>
+        </div>
+        <h4 class="evo-top-titulo" data-i18n>Por elemento da despesa</h4>
+        <div class="tabela-wrap"><table id="tipo-tabela"></table></div>
+        <button id="tipo-mais" type="button" class="btn sec" hidden></button>
+        <p class="nota" id="tipo-nota"></p>
+      </section>
+      <p class="vazio" id="tipo-vazio" data-i18n>Carregando despesas por tipo…</p>
+    </div>
+
+    </div><!-- /aba-pagamentos -->
+
+    <!-- Câmara: Vargem Grande Paulista não tem verba de gabinete nem relatórios
+         de viagem; mostra o que a Câmara paga a pessoas físicas fora da folha
+         (diárias e adiantamentos), do CSV anual do TCE-SP (js/contas-tipo.js) -->
+    <div class="aba-painel" id="aba-camara" role="tabpanel" aria-labelledby="tab-camara" hidden>
+      <section class="cartao" id="camara" hidden>
+        <h3 data-i18n>Câmara: diárias e adiantamentos</h3>
+        <div class="camara-aviso">
+          <strong data-i18n>Sem verba de gabinete</strong>
+          <p data-i18n>A Câmara de Vargem Grande Paulista não tem verba de gabinete nem verba indenizatória para vereadores. Conferimos o arquivo de despesas do TCE-SP de 2020 a 2025, a legislação municipal (SISCAM) e a Lei Orgânica. Fora da folha, os pagamentos a pessoas físicas são diárias de viagem e o caixa de adiantamento de um servidor, listados abaixo.</p>
+        </div>
+        <div class="kpis kpis-viag">
+          <div class="kpi"><span id="ck-pago">—</span><small id="ck-pago-lbl"></small></div>
+          <div class="kpi"><span id="ck-folha">—</span><small data-i18n>Folha (pessoal e encargos)</small></div>
+          <div class="kpi"><span id="ck-diarias">—</span><small data-i18n>Diárias de viagem</small></div>
+          <div class="kpi"><span id="ck-adiant">—</span><small data-i18n>Adiantamentos (líquido)</small></div>
+        </div>
+        <h4 class="evo-top-titulo" data-i18n>Pagamentos a pessoas físicas fora da folha</h4>
+        <div class="tabela-wrap"><table id="camara-tabela"></table></div>
+        <details id="camara-detalhe" class="camara-detalhe" hidden>
+          <summary></summary>
+          <div class="tabela-wrap"><table id="camara-lanc"></table></div>
+        </details>
+        <p class="nota" data-i18n>Adiantamento é o caixa para despesas miúdas que um servidor recebe todo mês (regime de adiantamento, Lei municipal 619/2011); os valores negativos são o saldo devolvido no fim do mês. Diárias são pagas por viagem.</p>
+      </section>
+      <p class="vazio" id="camara-vazio" data-i18n>Carregando despesas por tipo…</p>
+    </div>
+
+    <p class="fonte" id="fonte"></p>
   </main>
 
+  <!-- Modal Top 10 -->
+  <dialog id="modal-top10">
+    <div class="modal-head">
+      <h3 id="m-titulo">Top 10</h3>
+      <div class="abas">
+        <button type="button" class="aba ativa" data-aba="lanc" data-i18n>Maiores pagamentos</button>
+        <button type="button" class="aba" data-aba="receb" data-i18n>Maiores recebedores</button>
+      </div>
+      <button type="button" class="fechar" aria-label="Fechar" data-i18n-aria-label>×</button>
+    </div>
+    <div class="tabela-wrap"><table id="m-tabela"></table></div>
+  </dialog>
+
+  <div id="loading" role="status" aria-live="polite">
+    <div class="carga">
+      <span id="loading-sr" class="sr-only" data-i18n>Consultando as contas do município de Vargem Grande Paulista no TCE-SP, por favor aguarde.</span>
+      <span class="carga-texto" aria-hidden="true"><span id="loading-status" data-i18n>Conectando ao TCE-SP</span><span class="carga-pontos"><span>.</span><span>.</span><span>.</span></span></span>
+      <p class="carga-sub" data-i18n>Despesas da Prefeitura e da Câmara de Vargem Grande Paulista (TCE-SP)</p>
+      <div class="carga-barra" aria-hidden="true"><span id="carga-progresso"></span></div>
+      <div id="loading-acoes" class="carga-acoes" hidden>
+        <button type="button" data-i18n>Tentar novamente</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+  <script src="../js/carregando.js"></script>
   <script src="../js/abas.js"></script>
   <script src="../js/fontes.js"></script>
-  <script src="../js/sobre.js"></script>
+  <script src="../js/contas.js"></script>
+  <script src="../js/contas-tipo.js"></script>
 
   <script>
     if ("serviceWorker" in navigator) {

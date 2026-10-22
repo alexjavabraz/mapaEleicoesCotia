@@ -3,8 +3,9 @@
  * Busca dados de bairros/distritos de Cotia via Overpass API (OpenStreetMap).
  */
 
-const COTIA_CENTER = [-23.6037, -46.8997];
-const COTIA_ZOOM = 12;
+// Centro e zoom iniciais da cidade da página (CIDADE_INFO em js/i18n.js)
+const COTIA_CENTER = CIDADE_INFO.centro;
+const COTIA_ZOOM = CIDADE_INFO.zoom;
 
 // ---- CONFIGURAÇÕES DE CAMADAS DE TILES ----
 // NOTA: CARTO (basemaps.cartocdn.com) passou a exigir API key para os estilos
@@ -408,7 +409,7 @@ function renderMascaraExterna(municipioGeoJSON) {
  */
 async function fetchCotiaBairros(onStatus) {
   try {
-    const r = await fetch(urlSite("data/osm_bairros_cotia.json"));
+    const r = await fetch(urlDados("osm_bairros_cotia.json"));
     if (r.ok) {
       // Lista vazia também vale: a Overpass não tem bairros de Cotia e o app
       // segue direto para o Voronoi, sem esperar a consulta ao vivo.
@@ -418,6 +419,9 @@ async function fetchCotiaBairros(onStatus) {
   } catch (err) {
     console.warn("Bairros locais indisponíveis, consultando Overpass:", err);
   }
+  // Nas outras cidades os bairros são sempre os dos locais de votação (Voronoi):
+  // os nomes do OSM não batem com os bairros do TSE, que trazem os votos.
+  if (CIDADE !== "cotia") return null;
   return fetchCotiaBairrosOverpass(onStatus);
 }
 
@@ -434,7 +438,7 @@ async function fetchCotiaBairrosOverpass(onStatus) {
   const query = `
 [out:json][timeout:90];
 (
-  relation["name"="Cotia"]["admin_level"="8"];
+  relation["name"="${CIDADE_INFO.osm}"]["admin_level"="8"];
 )->.municipio;
 area.municipio->.area_mun;
 (
@@ -487,7 +491,7 @@ out skel qt;
 async function fetchCotiaMunicipio(onStatus) {
   if (onStatus) onStatus(t("Buscando contorno do município..."));
   try {
-    const r = await fetch(urlSite("data/cotia_municipio.geojson"));
+    const r = await fetch(urlDados("cotia_municipio.geojson"));
     if (r.ok) {
       const geojson = await r.json();
       if (geojson?.features?.length) return geojson;
@@ -504,7 +508,7 @@ async function fetchCotiaMunicipio(onStatus) {
 async function fetchCotiaMunicipioOverpass(onStatus) {
   const query = `
 [out:json][timeout:30];
-relation["name"="Cotia"]["admin_level"="8"];
+relation["name"="${CIDADE_INFO.osm}"]["admin_level"="8"];
 out body;
 >;
 out skel qt;

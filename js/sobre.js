@@ -39,7 +39,10 @@ const SOBRE_EN = {
   "Eleições 2024 e 2026 por bairro e por escola, gastos de campanha e as contas da Prefeitura e da Câmara.":
     "2024 and 2026 elections by neighborhood and by school, campaign spending and the accounts of City Hall and the City Council.",
   "Ver os dados de Cotia →": "See Cotia's data →",
+  "Ver os dados de Vargem Grande Paulista →": "See Vargem Grande Paulista's data →",
   "Em breve": "Coming soon",
+  "Eleições 2024 e 2026 por bairro e por escola, gastos de campanha, as contas da Prefeitura e o que a Câmara paga fora da folha.":
+    "2024 and 2026 elections by neighborhood and polling place, campaign spending, City Hall accounts and what the City Council pays outside payroll.",
   "Ver a página de Vargem Grande Paulista →": "See the Vargem Grande Paulista page →",
   "Os dados de Vargem Grande Paulista estão sendo levantados e entram no portal assim que estiverem prontos.":
     "Vargem Grande Paulista's data is being gathered and will be added to the portal as soon as it is ready.",

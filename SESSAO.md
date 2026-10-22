@@ -1,6 +1,7 @@
 # Sessão — 2026-10-22 (17) · Vargem Grande Paulista: implementação
 
-**Status:** iniciada 2026-10-22 16:07 UTC · em andamento (commit direto no `main`).
+**Status:** iniciada 2026-10-22 16:07 UTC · finalizada 2026-10-22 16:37 UTC
+(commit direto no `main`).
 
 ## Pedido
 
@@ -8,12 +9,35 @@
 trocar as páginas "Em breve" de `/vgp/` pelos dados de Vargem Grande
 Paulista, seguindo `docs/vargem-grande-paulista.md`.
 
-## Plano
+## O que foi feito
 
-1. Scripts por cidade (`scripts/cidades.py`, variável `CIDADE`), saída de
-   VGP em `data/vgp/`; workflow `dados-cidades.yml` gera tudo no Actions.
-2. Despesas por tipo (CSV anual do TCE-SP) para as duas cidades.
-3. Front-end: `CIDADE` / `urlDados()` em `js/i18n.js`; páginas de VGP.
+- **Scripts por cidade**: `scripts/cidades.py` (TSE 72737, IBGE 3556453,
+  TCE `vargem-grande-paulista`) e a variável `CIDADE`; Cotia continua em
+  `data/`, VGP em `data/vgp/` (nome sem "cotia"). Novos:
+  `download_locais.py` (locais de votação do TSE) e
+  `download_despesas_tipo.py` (CSV anual do TCE-SP, por elemento e função,
+  para as duas cidades, + pagamentos da Câmara a pessoa física fora da folha).
+  `download_censo.py` grava também o contorno do município (união dos setores).
+- **Workflow** `dados-cidades.yml` (um job por ano para o CSV do TCE) gerou e
+  commitou os dados (3fd8f25). `contas.yml` agora atualiza VGP todo mês.
+- **Front-end**: `js/i18n.js` ganhou `CIDADE`, `CIDADE_INFO`, `urlDados()` e
+  `tc()` (troca "Cotia" pelo nome da cidade; a tradução EN das frases com
+  Cotia vale para VGP). Mapas de VGP usam sempre os bairros dos locais de
+  votação (Voronoi). Fontes do rodapé por cidade.
+- **Contas**: nova sub-aba **Por tipo** (Cotia e VGP: grupo de despesa,
+  função de governo, tabela por elemento com variação anual,
+  `js/contas-tipo.js`). Em VGP a aba **Câmara** substitui Viagens: aviso de
+  que não há verba de gabinete, totais (folha, diárias R$ 2.400, adiantamentos
+  líquidos) e a lista por favorecido/ano com os 135 lançamentos.
+- `vgp/eleicoes2024.html` e `vgp/eleicoes2026.html` (mesmo app de Cotia);
+  card de VGP no início deixou de ser "Em breve".
+- Testado com Playwright: Cotia sem regressão; VGP 2024/2026/contas em
+  escuro/claro, PT/EN e 390 px.
+
+## Pendências
+
+- Nomes de elementos vêm em minúsculas a partir do TCE ("inss").
+- O CSV de 2026 do TCE só sai em 2027; rodar `dados-cidades.yml` de novo.
 
 ---
 

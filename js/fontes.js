@@ -97,6 +97,20 @@ const FONTES_EN = {
   "O fundo do mapa é da Esri e do OpenStreetMap. Os scripts que baixam e montam cada arquivo estão no código aberto do site, no GitHub.":
     "Map tiles are from Esri and OpenStreetMap. The scripts that download and build each file are in the site's open source code on GitHub.",
   "Código do site (GitHub)": "Site source code (GitHub)",
+  // Despesas por tipo (CSV anual do TCE-SP) e cidades sem verba de gabinete
+  "Despesas por tipo": "Spending by type",
+  "O tipo de cada despesa (elemento: pessoal, material de consumo, serviços de terceiros, obras…) e a área de governo (função: saúde, educação…) vêm do arquivo anual de despesas que o TCE-SP publica em dados abertos, um por ano, com todos os municípios do estado.":
+    "The type of each expense (element: payroll, supplies, third-party services, construction…) and the government area (function: health, education…) come from the yearly spending file the TCE-SP publishes as open data, one per year, covering every city in the state.",
+  "O arquivo do ano corrente só sai depois do fechamento do exercício; o ano mais recente pode não aparecer ainda.":
+    "The current year's file is only published after the fiscal year closes; the latest year may not appear yet.",
+  "TCE-SP — Conjuntos de dados (despesas)": "TCE-SP — Open datasets (spending)",
+  "Câmara: diárias e adiantamentos": "City Council: per diems and cash advances",
+  "A Câmara de Vargem Grande Paulista não tem verba de gabinete nem verba indenizatória para vereadores. Conferimos o arquivo de despesas do TCE-SP de 2020 a 2025, a legislação municipal (SISCAM) e a Lei Orgânica. Fora da folha, os pagamentos a pessoas físicas são diárias de viagem e o caixa de adiantamento de um servidor; eles aparecem um a um na aba Câmara.":
+    "Vargem Grande Paulista City Council has no office allowance or expense allowance for council members. We checked the TCE-SP spending files from 2020 to 2025, municipal legislation (SISCAM) and the city's Organic Law. Outside payroll, payments to individuals are travel per diems and one staff member's petty-cash advance; they are listed one by one on the Council tab.",
+  "Câmara de Vargem Grande Paulista": "Vargem Grande Paulista City Council",
+  "Legislação municipal (SISCAM)": "Municipal legislation (SISCAM)",
+  "Não existe um mapa oficial de bairros de Vargem Grande Paulista em formato aberto: o IBGE não divulga bairros para a cidade. Por isso as áreas são desenhadas por proximidade: cada ponto do município fica com o bairro cujo centro (a média das coordenadas dos seus locais de votação, segundo o cadastro do TSE) está mais perto, recortado pelo contorno do município, que é a união dos setores censitários do IBGE.":
+    "There is no official open map of Vargem Grande Paulista's neighborhoods: IBGE does not publish neighborhoods for the city. So the areas are drawn by proximity: each point of the city is assigned the neighborhood whose center (the average coordinates of its polling places, per the TSE register) is closest, clipped by the city boundary, which is the union of IBGE census tracts.",
 };
 if (typeof I18N_EN === "object") Object.assign(I18N_EN, FONTES_EN);
 
@@ -192,6 +206,42 @@ const FONTES_SECOES = [
   },
 ];
 
+const FONTE_TIPO = {
+  titulo: "Despesas por tipo",
+  textos: [
+    "O tipo de cada despesa (elemento: pessoal, material de consumo, serviços de terceiros, obras…) e a área de governo (função: saúde, educação…) vêm do arquivo anual de despesas que o TCE-SP publica em dados abertos, um por ano, com todos os municípios do estado.",
+  ],
+  limite: "O arquivo do ano corrente só sai depois do fechamento do exercício; o ano mais recente pode não aparecer ainda.",
+  links: [
+    ["TCE-SP — Conjuntos de dados (despesas)", "https://transparencia.tce.sp.gov.br/conjunto-de-dados"],
+  ],
+};
+
+/** Seções do modal para a cidade da página (CIDADE em js/i18n.js). */
+function fontesDaCidade() {
+  const secoes = FONTES_SECOES.slice();
+  const i = secoes.findIndex((s) => s.titulo === "Contas do Município");
+  secoes.splice(i + 1, 0, FONTE_TIPO);
+  if (CIDADE !== "vgp") return secoes;
+  return secoes.map((s) => {
+    if (s.titulo === "Bairros do mapa") {
+      return { ...s, textos: ["Não existe um mapa oficial de bairros de Vargem Grande Paulista em formato aberto: o IBGE não divulga bairros para a cidade. Por isso as áreas são desenhadas por proximidade: cada ponto do município fica com o bairro cujo centro (a média das coordenadas dos seus locais de votação, segundo o cadastro do TSE) está mais perto, recortado pelo contorno do município, que é a união dos setores censitários do IBGE."],
+        links: [["IBGE — Malha de setores censitários", "https://www.ibge.gov.br/geociencias/organizacao-do-territorio/malhas-territoriais/26565-malhas-de-setores-censitarios-divisoes-intramunicipais.html"]] };
+    }
+    if (s.titulo === "Viagens da Câmara") {
+      return {
+        titulo: "Câmara: diárias e adiantamentos",
+        textos: ["A Câmara de Vargem Grande Paulista não tem verba de gabinete nem verba indenizatória para vereadores. Conferimos o arquivo de despesas do TCE-SP de 2020 a 2025, a legislação municipal (SISCAM) e a Lei Orgânica. Fora da folha, os pagamentos a pessoas físicas são diárias de viagem e o caixa de adiantamento de um servidor; eles aparecem um a um na aba Câmara."],
+        links: [
+          ["Câmara de Vargem Grande Paulista", "https://www.camaravgp.sp.gov.br/"],
+          ["Legislação municipal (SISCAM)", "https://vargemgrandepaulista.siscam.com.br/"],
+        ],
+      };
+    }
+    return s;
+  });
+}
+
 // QR Code do PIX do Alex: lido da foto que ele enviou e gerado de novo, limpo
 // (mesmo conteúdo, conferido com um leitor). A chave não aparece em texto.
 const PIX_QRCODE = urlSite("icons/pix-qrcode.png");
@@ -247,19 +297,20 @@ function montarModalFontes() {
     corpo.appendChild(fontesEl("p")).appendChild(completa);
   }
 
-  for (const s of FONTES_SECOES) {
+  for (const s of fontesDaCidade()) {
     const sec = fontesEl("section", "fontes-secao");
     sec.appendChild(fontesEl("h3", null, t(s.titulo)));
-    for (const p of s.textos) sec.appendChild(fontesEl("p", null, t(p)));
+    for (const p of s.textos) sec.appendChild(fontesEl("p", null, tc(p)));
     if (s.limite) {
       const lim = fontesEl("p", "fontes-limite");
       lim.appendChild(fontesEl("strong", null, t("Limitação:")));
-      lim.append(" " + t(s.limite));
+      lim.append(" " + tc(s.limite));
       sec.appendChild(lim);
     }
     const links = fontesEl("ul", "fontes-links");
     links.setAttribute("aria-label", t("Fontes:"));
     for (const [rotulo, url] of s.links) {
+      if (CIDADE !== "cotia" && /contorno de Cotia/.test(rotulo)) continue;
       const li = fontesEl("li");
       li.appendChild(fontesLink(rotulo, url));
       links.appendChild(li);
@@ -296,7 +347,7 @@ function montarModalApoio() {
 
   const corpo = fontesEl("div", "fontes-modal__corpo apoio-corpo");
   corpo.appendChild(fontesEl("p", null,
-    t("Este site é feito de forma independente, sem patrocínio de partido ou candidato. Se ele é útil para você, considere apoiar com um PIX de qualquer valor: isso ajuda a manter os dados atualizados e a trazer novas informações de Cotia.")));
+    tc("Este site é feito de forma independente, sem patrocínio de partido ou candidato. Se ele é útil para você, considere apoiar com um PIX de qualquer valor: isso ajuda a manter os dados atualizados e a trazer novas informações de Cotia.")));
   const img = document.createElement("img");
   img.className = "apoio-qrcode";
   img.src = PIX_QRCODE;
@@ -321,7 +372,7 @@ function montarRodape() {
 
   const fontes = fontesEl("p", "rodape-fontes");
   fontes.appendChild(fontesEl("span", "rodape-rotulo", t("Dados públicos:")));
-  fontes.append(" TSE · TCE-SP · IBGE · " + t("Câmara de Cotia"));
+  fontes.append(" TSE · TCE-SP · IBGE · " + tc("Câmara de Cotia"));
   footer.appendChild(fontes);
 
   const btn = fontesEl("button", "rodape-info");

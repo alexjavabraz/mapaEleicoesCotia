@@ -13,9 +13,9 @@ Aplicação web interativa com os resultados eleitorais de Cotia/SP, visualizado
 | Início / Sobre o projeto | `/index.html` | Apresentação do portal e mapa clicável das cidades (sem dados) |
 | Eleição Municipal | `/cotia/eleicoes2024.html` | Prefeito e Vereadores — Cotia 2024 |
 | Eleições Gerais | `/cotia/eleicoes2026.html` | Presidente, Governador, Senador, Dep. Federal, Dep. Estadual — 2022 e 2026 |
-| Contas Municipais | `/cotia/contas.html` | Pagamentos da Prefeitura (TCE-SP) e viagens da Câmara |
+| Contas Municipais | `/cotia/contas.html` | Pagamentos da Prefeitura (TCE-SP), despesas por tipo e viagens da Câmara |
 | Metodologia | `/metodologia.html` | Fontes, cálculos e avisos legais |
-| Vargem Grande Paulista | `/vgp/*.html` | Mesmas três páginas, "em breve" até os dados existirem |
+| Vargem Grande Paulista | `/vgp/*.html` | Mesmas três páginas; em Contas, a aba Câmara (sem verba de gabinete: diárias e adiantamentos) no lugar de Viagens |
 
 Os endereços antigos (`/eleicao-geral.html`, `/contas.html`, `/sobre.html`)
 redirecionam para os novos, mantendo `?lang=` e o `#fragmento`. As páginas das
@@ -126,7 +126,7 @@ mapaEleicoesCotia/
 ├── index.html                        # Início: sobre o projeto + mapa das cidades
 ├── metodologia.html                  # Fontes, cálculos e avisos legais
 ├── cotia/                            # eleicoes2024.html, eleicoes2026.html, contas.html
-├── vgp/                              # Vargem Grande Paulista (em breve)
+├── vgp/                              # Vargem Grande Paulista (mesmas páginas, dados em data/vgp/)
 ├── eleicao-geral.html, contas.html,
 │   sobre.html                        # Redirecionamentos dos endereços antigos
 │
@@ -283,17 +283,32 @@ que geram o JSON e fazem commit dele em `data/`.
 | Renda (Censo 2022) por setor censitário | os dois mapas, botão "Renda (Censo)" | IBGE FTP `Agregados_por_Setores_Censitarios_Rendimento_do_Responsavel/` (V06004 renda média, V06001 peso, V06006 mediana) + malha `SP_setores_CD2022.gpkg` (geoftp); fallback Censo 2010 V005/V001 | `download_censo.py` | `censo.yml` | `censo_renda_setores.json`, `censo_renda_setores.geojson` | `CD_MUN = 3513009` (IBGE) |
 | Despesas do município (empenhado/liquidado/pago por órgão, fornecedor, ano, mês) 2020+ | cotia/contas.html (Visão geral, Por fornecedor) | TCE-SP API `https://transparencia.tce.sp.gov.br/api/json/despesas/cotia/{ano}/{mes}` | `download_contas.py` | `contas.yml` (dia 10 de cada mês) | `contas_cotia.json`, `contas_fornecedores/*.json` | slug `cotia` |
 | Viagens da Câmara (passagens e hospedagem por vereador/servidor) | cotia/contas.html (aba Viagens) | `https://www.cotia.sp.leg.br/relatorio-de-viagens` (um PDF por viagem no Google Drive; OCR nos escaneados) | `download_viagens.py` | `contas.yml` | `viagens_camara.json` | — |
+| Despesas por tipo (elemento e função) e pagamentos da Câmara a pessoa física fora da folha | contas.html (Por tipo; em VGP também a aba Câmara) | TCE-SP CSV anual `https://transparencia.tce.sp.gov.br/sites/default/files/conjunto-dados/despesas-{ano}.zip` (~2 GB, estado todo; latin-1; download retomado com Range) | `download_despesas_tipo.py` (lê o ano uma vez para todas as cidades) | `dados-cidades.yml` (um job por ano) | `contas_tipo_cotia.json`, `vgp/contas_tipo.json` | `ds_municipio` |
 | Ícones PWA | — | gerados | `gen_icons.py` | — | `icons/` | — |
 
-O que o site **ainda não** faz com esses dados: despesas por tipo
-(elemento/categoria econômica) não existem em `contas_cotia.json`, porque a
-API JSON do TCE-SP usada hoje não traz o elemento da despesa (só órgão,
-evento, empenho, fornecedor, data e valor).
+A API JSON do TCE-SP não traz o elemento da despesa; por isso as despesas
+por tipo vêm do CSV anual (que só sai depois do fechamento do ano).
 
-Para levar o site para outra cidade, o que muda em cada fonte é a chave da
-última coluna (nome, código TSE `SG_UE`/`CD_MUNICIPIO`, código IBGE de 7
-dígitos, slug do TCE-SP) e o site da Câmara. O levantamento para Vargem
-Grande Paulista está em [`docs/vargem-grande-paulista.md`](docs/vargem-grande-paulista.md).
+### Várias cidades
+
+As chaves de cada cidade (nome no TSE, código TSE, código IBGE, slug do
+TCE-SP, nome no OSM) ficam em `scripts/cidades.py`. Os scripts escolhem a
+cidade pela variável `CIDADE` (padrão `cotia`):
+
+```bash
+CIDADE=vgp python scripts/download_contas.py   # grava data/vgp/contas.json
+```
+
+Cotia continua em `data/` com os nomes de sempre; as outras cidades ficam em
+`data/<cidade>/`, sem o "cotia" no nome (`tse_cotia_2024.json` →
+`data/vgp/tse_2024.json`). No site, `urlDados("tse_cotia_2024.json")`
+(`js/i18n.js`) aplica a mesma regra pela pasta da página (`/cotia/`, `/vgp/`),
+e `tc()` troca "Cotia" pelo nome da cidade nos textos. Os locais de votação
+de VGP vêm de `download_locais.py` e o contorno do município é a união dos
+setores do IBGE (`download_censo.py`). O workflow `dados-cidades.yml` roda
+tudo para VGP e as despesas por tipo das duas cidades; `contas.yml` atualiza
+as contas das duas todo mês. Levantamento de VGP:
+[`docs/vargem-grande-paulista.md`](docs/vargem-grande-paulista.md).
 
 ---
 

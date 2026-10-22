@@ -914,7 +914,7 @@ function displayZona(displayName, zonaNum) {
         <h2>${displayName}</h2>
         ${badgeHtml}
       </div>
-      <button class="ver-geral-btn" onclick="displayTotaisGerais()" title="${t("Ver resultado geral de Cotia")}">
+      <button class="ver-geral-btn" onclick="displayTotaisGerais()" title="${tc("Ver resultado geral de Cotia")}">
         ${t("Ver dados gerais")}
       </button>
     </div>`;
@@ -930,7 +930,7 @@ function displayTotaisGerais() {
   currentZona = null;
   currentBairroGeral = null;
   document.getElementById("sidebar-header").innerHTML = `
-    <h2>${t("Cotia — Total Geral")}</h2>
+    <h2>${tc("Cotia — Total Geral")}</h2>
     <span class="zona-badge" style="background:rgba(233,69,96,0.15);color:#e94560;border:1px solid rgba(233,69,96,0.3)">
       ${t("Todas as Zonas")}
     </span>`;
@@ -1255,7 +1255,7 @@ async function init() {
     buildZoneColors(getZonas());
   }
 
-  setLoadingStatus(t("Desenhando o contorno de Cotia"));
+  setLoadingStatus(tc("Desenhando o contorno de Cotia"));
   const municipioGeoJSON = await fetchCotiaMunicipio();
   if (municipioGeoJSON) {
     renderMascaraExterna(municipioGeoJSON);
@@ -1280,7 +1280,7 @@ async function init() {
   if (bairrosGeoJSON && bairrosGeoJSON.features.length > 0) {
     renderBairros(
       bairrosGeoJSON,
-      BAIRRO_ZONA_MAP,
+      CIDADE === "cotia" ? BAIRRO_ZONA_MAP : {}, // nas outras cidades a zona vem dos locais (Voronoi)
       (feature, zona) => {
         const name = feature.properties.name || feature.properties.nome || t("Bairro");
         displayZona(name, zona);

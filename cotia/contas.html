@@ -39,7 +39,7 @@
 
   <main id="contas">
     <!-- Abas da página (controle segmentado): Pagamentos e Viagens; dentro de
-         Pagamentos, Visão geral e Por fornecedor. URL: #geral, #fornecedor, #viagens -->
+         Pagamentos, Visão geral, Por fornecedor e Por tipo. URL: #geral, #fornecedor, #tipo, #viagens -->
     <div class="segmentado abas-contas" role="tablist" aria-label="Seções da página" data-i18n-aria-label>
       <button type="button" class="segmentado__aba" role="tab" id="tab-pagamentos" aria-controls="aba-pagamentos" data-aba="pagamentos" data-i18n>Pagamentos</button>
       <button type="button" class="segmentado__aba" role="tab" id="tab-viagens" aria-controls="aba-viagens" data-aba="viagens" data-i18n>Viagens da Câmara</button>
@@ -50,6 +50,7 @@
     <div class="segmentado abas-pagamentos" role="tablist" aria-label="Pagamentos" data-i18n-aria-label>
       <button type="button" class="segmentado__aba" role="tab" id="tab-geral" aria-controls="aba-geral" data-aba="geral" data-i18n>Visão geral</button>
       <button type="button" class="segmentado__aba" role="tab" id="tab-fornecedor" aria-controls="aba-fornecedor" data-aba="fornecedor" data-i18n>Por fornecedor</button>
+      <button type="button" class="segmentado__aba" role="tab" id="tab-tipo" aria-controls="aba-tipo" data-aba="tipo" data-i18n>Por tipo</button>
     </div>
 
     <!-- Pagamentos › Visão geral: valores pagos de todo o período, sem filtros -->
@@ -157,6 +158,36 @@
       </section>
     </div>
 
+    <!-- Pagamentos › Por tipo: elemento da despesa e função de governo, do CSV
+         anual do TCE-SP (js/contas-tipo.js) -->
+    <div class="aba-painel" id="aba-tipo" role="tabpanel" aria-labelledby="tab-tipo" hidden>
+      <section class="cartao" id="tipo" hidden>
+        <div class="evo-head">
+          <h3 data-i18n>Despesas pagas por tipo</h3>
+          <label><span data-i18n>Órgão</span>
+            <select id="tipo-orgao"></select>
+          </label>
+        </div>
+        <div class="anos-pills" id="tipo-anos" role="tablist"></div>
+        <div class="evo-resumo" id="tipo-resumo"></div>
+        <div class="graficos">
+          <div>
+            <h4 data-i18n>Por grupo de despesa</h4>
+            <div class="canvas-box"><canvas id="g-tipo-grupo"></canvas></div>
+          </div>
+          <div>
+            <h4 data-i18n>Por área de governo (função)</h4>
+            <div class="canvas-box alto"><canvas id="g-tipo-funcao"></canvas></div>
+          </div>
+        </div>
+        <h4 class="evo-top-titulo" data-i18n>Por elemento da despesa</h4>
+        <div class="tabela-wrap"><table id="tipo-tabela"></table></div>
+        <button id="tipo-mais" type="button" class="btn sec" hidden></button>
+        <p class="nota" id="tipo-nota"></p>
+      </section>
+      <p class="vazio" id="tipo-vazio" data-i18n>Carregando despesas por tipo…</p>
+    </div>
+
     </div><!-- /aba-pagamentos -->
 
     <!-- Viagens da Câmara: valores pagos em viagens -->
@@ -228,6 +259,7 @@
   <script src="../js/abas.js"></script>
   <script src="../js/fontes.js"></script>
   <script src="../js/contas.js"></script>
+  <script src="../js/contas-tipo.js"></script>
   <script src="../js/viagens.js"></script>
 
   <script>

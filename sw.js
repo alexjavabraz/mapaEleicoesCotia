@@ -41,6 +41,7 @@ const SHELL_ASSETS = [
   "./js/geral-config.js",
   "./js/geral.js",
   "./js/contas.js",
+  "./js/contas-tipo.js",
   "./js/viagens.js",
   "./js/fontes.js",
   "./js/sobre.js",

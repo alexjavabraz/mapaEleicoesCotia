@@ -8,10 +8,12 @@
  *    top 10 de cada ano, gráficos por ano/mês/órgão e maiores recebedores);
  *  - Por fornecedor: filtros, top 10, gráfico por ano do fornecedor escolhido
  *    e a tabela agrupada por recebedor;
- *  Viagens da Câmara (montada por js/viagens.js).
+ *  - Por tipo: despesas por elemento e função (js/contas-tipo.js);
+ *  Viagens da Câmara (js/viagens.js) ou, nas cidades sem verba de gabinete,
+ *  Câmara: diárias e adiantamentos (js/contas-tipo.js).
  */
 
-const DATA_URL = urlSite("data/contas_cotia.json");
+const DATA_URL = urlDados("contas_cotia.json");
 const POR_PAGINA = 50;
 
 const fmtBRL = new Intl.NumberFormat(LOCALE, { style: "currency", currency: "BRL" });
@@ -40,7 +42,12 @@ const estado = {
 };
 /** Estado fixo da aba Visão geral: valor pago, todos os anos, sem busca. */
 const FIXO = { evento: "Pago", ano: "", sel: null, busca: "" };
-const ABAS = ["geral", "fornecedor", "viagens"];
+// Abas que existem na página: as principais (.abas-contas) e as de Pagamentos
+// (.abas-pagamentos). Cotia tem Viagens; VGP tem Câmara; as duas têm Por tipo.
+const abasDe = (sel) => [...document.querySelectorAll(`${sel} button[data-aba]`)].map((b) => b.dataset.aba);
+const ABAS_PRINCIPAIS = abasDe(".abas-contas");
+const ABAS_PAGAMENTOS = abasDe(".abas-pagamentos");
+const ABAS = [...ABAS_PAGAMENTOS, ...ABAS_PRINCIPAIS.filter((a) => a !== "pagamentos")];
 const graficos = {};
 
 // -----------------------------------------------------------------------
@@ -231,11 +238,11 @@ function marcarAbas(grupo, ativaNome) {
 }
 
 function mostrarAba(nome) {
-  const principal = nome === "viagens" ? "viagens" : "pagamentos";
-  marcarAbas(["pagamentos", "viagens"], principal);
+  const principal = ABAS_PAGAMENTOS.includes(nome) ? "pagamentos" : nome;
+  marcarAbas(ABAS_PRINCIPAIS, principal);
   if (principal === "pagamentos") {
     ultimaPagamentos = nome;
-    marcarAbas(["geral", "fornecedor"], nome);
+    marcarAbas(ABAS_PAGAMENTOS, nome);
   }
 }
 
@@ -419,7 +426,7 @@ const analitico = { ordem: "valor", limite: ANALITICO_PAGINA };
 
 function carregarDetalhe(i) {
   if (!detalhes.has(i)) {
-    detalhes.set(i, fetch(urlSite(`data/contas_fornecedores/${i}.json`)).then((r) => {
+    detalhes.set(i, fetch(urlDados(`contas_fornecedores/${i}.json`)).then((r) => {
       if (!r.ok) throw new Error(`HTTP ${r.status}`);
       return r.json();
     }));

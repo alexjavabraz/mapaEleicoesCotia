@@ -17,6 +17,21 @@
 const SITE_RAIZ = new URL("../", (document.currentScript && document.currentScript.src) || location.href).href;
 function urlSite(caminho) { return SITE_RAIZ + caminho; }
 
+/** Cidade da página, pela pasta (/cotia/, /vgp/). Os dados de Cotia ficam em
+ *  data/ com os nomes de sempre; os das outras cidades em data/<cidade>/, sem
+ *  o "cotia" no nome (mesma regra de scripts/cidades.py):
+ *  urlDados("tse_cotia_2024.json") → data/vgp/tse_2024.json. */
+const CIDADES_INFO = {
+  cotia: { nome: "Cotia", centro: [-23.6037, -46.8997], zoom: 12, osm: "Cotia" },
+  vgp: { nome: "Vargem Grande Paulista", centro: [-23.6105, -47.0225], zoom: 13, osm: "Vargem Grande Paulista" },
+};
+const CIDADE = (location.pathname.match(/\/(cotia|vgp)\//) || [])[1] || "cotia";
+const CIDADE_INFO = CIDADES_INFO[CIDADE];
+function urlDados(nome) {
+  if (CIDADE === "cotia") return urlSite("data/" + nome);
+  return urlSite(`data/${CIDADE}/` + nome.replace(/_cotia|cotia_/, ""));
+}
+
 // false = sempre abre em português; o inglês aparece só pelo botão EN.
 const INGLES_AUTOMATICO = true;
 
@@ -76,6 +91,7 @@ const I18N_EN = {
   "Contas Municipais": "Municipal Spending",
   "Contas": "Spending",
   "Pagamentos": "Payments",
+  "Presidente · Governador · Senador · Dep. Federal · Dep. Estadual": "President · Governor · Senator · Federal Deputy · State Deputy",
   "Presidente · Governador · Senador · Dep. Federal · Dep. Estadual — Cotia/SP":
     "President · Governor · Senator · Federal Deputy · State Deputy — Cotia/SP",
 
@@ -381,9 +397,26 @@ const I18N_SITUACAO_EN = {
 
 /** Traduz um texto em português; {nome} é substituído por vars.nome. */
 function t(pt, vars) {
-  let s = LANG === "en" && I18N_EN[pt] != null ? I18N_EN[pt] : pt;
+  let s = LANG === "en" ? traduzEN(pt) : pt;
   if (vars) s = s.replace(/\{(\w+)\}/g, (m, k) => (k in vars ? vars[k] : m));
   return s;
+}
+
+/** Inglês de um texto; nas outras cidades usa a tradução da frase de Cotia
+ *  com o nome trocado ("Contas — Vargem Grande Paulista" → chave "Contas — Cotia"). */
+function traduzEN(pt) {
+  if (I18N_EN[pt] != null) return I18N_EN[pt];
+  if (CIDADE !== "cotia" && pt.includes(CIDADE_INFO.nome)) {
+    const en = I18N_EN[pt.split(CIDADE_INFO.nome).join("Cotia")];
+    if (en != null) return en.replace(/\bCotia\b/g, CIDADE_INFO.nome);
+  }
+  return pt;
+}
+
+/** t() para frases escritas com "Cotia": troca pelo nome da cidade da página. */
+function tc(pt, vars) {
+  const s = t(pt, vars);
+  return CIDADE === "cotia" ? s : s.replace(/\bCotia\b/g, CIDADE_INFO.nome);
 }
 
 /** "VOTO NULO"/"VOTO BRANCO" aparecem como candidatos nos dados do TSE. */
@@ -401,7 +434,8 @@ function applyI18n(root = document) {
   if (LANG !== "en") return;
   root.querySelectorAll("[data-i18n]").forEach((el) => {
     const chave = el.textContent.replace(/\s+/g, " ").trim();
-    if (I18N_EN[chave] != null) el.textContent = I18N_EN[chave];
+    const en = traduzEN(chave);
+    if (en !== chave) el.textContent = en;
   });
   for (const attr of ["placeholder", "title", "aria-label"]) {
     root.querySelectorAll(`[data-i18n-${attr}]`).forEach((el) => {

@@ -109,7 +109,8 @@ let currentBairroNome = null;    // chave de lookup em votosPorBairro
 let currentBairroDisplay = null; // nome exibido no header
 let currentTab = "prefeito";   // "prefeito" | "vereadores"
 let currentTurno = "1";
-let bairroZonaMap = { ...BAIRRO_ZONA_MAP_DEFAULT };
+// O mapa fixo bairro→zona é de Cotia; nas outras cidades vem só dos dados do TSE
+let bairroZonaMap = CIDADE === "cotia" ? { ...BAIRRO_ZONA_MAP_DEFAULT } : {};
 let currentVereadorFiltro = ""; // "" = todos
 let currentVereadorOrdem = "votos"; // "votos" | "nome"
 
@@ -725,7 +726,7 @@ function displayTotaisGerais() {
   currentEscola = null;
   marcarEscolaSelecionada(null);
   document.getElementById("sidebar-header").innerHTML = `
-    <h2>${t("Cotia — Total Geral")}</h2>
+    <h2>${tc("Cotia — Total Geral")}</h2>
     <span class="zona-badge" style="background:rgba(233,69,96,0.15);color:#e94560;border:1px solid rgba(233,69,96,0.3)">
       ${t("Todas as Zonas")}
     </span>`;
@@ -850,7 +851,7 @@ async function init() {
   }
 
   // 3. Busca contorno do município e aplica máscara branca fora de Cotia
-  setLoadingStatus(t("Desenhando o contorno de Cotia"));
+  setLoadingStatus(tc("Desenhando o contorno de Cotia"));
   const municipioGeoJSON = await municipioPromise;
   if (municipioGeoJSON) {
     renderMascaraExterna(municipioGeoJSON);  // máscara branca externa (abaixo)
