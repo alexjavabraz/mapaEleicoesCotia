@@ -31,6 +31,9 @@ cidades, sem dados. Cotia → `/cotia/…` com a bandeira de Cotia; VGP →
   link antigo de `/` (mapa 2024) agora cai no início.
 - `sw.js` (v42, lista do shell com as páginas novas), `manifest.json`
   (nome "Dados Cívicos"), README e mensagens dos scripts.
+- Complemento (14:35 UTC, pedido do Alex): header das páginas de cidade =
+  [ícone] Dados Cívicos | [bandeira] Cidade, tudo um link para o início.
+  Até 1100px some o texto "Dados Cívicos"; no celular ficam só os 2 ícones.
 - Conferido: todas as páginas sem erro de JS, dados carregando (com as libs
   de CDN servidas localmente no teste), nenhum link interno quebrado,
   redirecionamentos, claro/escuro, celular, EN.
