@@ -1,0 +1,28 @@
+name: Sondagem de fontes (Vargem Grande Paulista)
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [claude/project-thread-3h6zh7]
+    paths:
+      - scripts/sondar_vgp.py
+      - .github/workflows/sondar-vgp.yml
+
+permissions:
+  contents: read
+
+jobs:
+  sondar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    strategy:
+      fail-fast: false
+      matrix:
+        alvo: [tse2024, tse2026, tce, censo, camara]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -r scripts/requirements.txt geopandas pyogrio
+      - run: python -u scripts/sondar_vgp.py ${{ matrix.alvo }}
