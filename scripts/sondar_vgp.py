@@ -497,6 +497,65 @@ def cecam():
             print(f"\n  >> {rotulo!r} {href} HTTP {rr.status_code}\n     {texto[:2500]}")
 
 
+SISCAM = "https://vargemgrandepaulista.siscam.com.br"
+TERMOS = ["verba", "indenizat", "ressarc", "reembols", "diária", "diarias", "gabinete", "adiantamento"]
+
+
+def texto_limpo(h):
+    h = re.sub(r"<script.*?</script>|<style.*?</style>", " ", h, flags=re.S | re.I)
+    return re.sub(r"\s+", " ", html.unescape(re.sub(r"<[^>]+>", " ", h)))
+
+
+def leis():
+    """Procura na legislação da Câmara (SISCAM) e na Lei Orgânica alguma
+    verba indenizatória/de gabinete, diárias ou ressarcimento a vereadores."""
+    titulo("SISCAM: página inicial, formulários e links de documentos")
+    r = HTTP.get(SISCAM + "/", timeout=60)
+    print(f"  HTTP {r.status_code} {r.url}")
+    for form in re.findall(r"<form.*?</form>", r.text, re.S | re.I)[:5]:
+        print("  FORM:", re.sub(r"\s+", " ", form)[:1500])
+    for href, rot in sorted(set(links_de(r.url, r.text))):
+        if urlparse(href).netloc.endswith("siscam.com.br"):
+            print(f"   {rot!r:50} {href}")
+    titulo("SISCAM: buscas por termo")
+    padroes = ["/Documentos/Pesquisa?Pesquisa=Simples&Texto={t}",
+               "/Documentos/Pesquisa?TextoPesquisa={t}",
+               "/Documentos?Texto={t}", "/Normas?Texto={t}", "/Pesquisa?q={t}"]
+    for t in TERMOS:
+        for pad in padroes:
+            u = SISCAM + pad.format(t=requests.utils.quote(t))
+            try:
+                rr = HTTP.get(u, timeout=60)
+            except Exception as e:
+                print(f"  {u}: {type(e).__name__}")
+                continue
+            tx = texto_limpo(rr.text)
+            achados = [m.start() for m in re.finditer(t[:6], tx, re.I)]
+            print(f"  {u} -> HTTP {rr.status_code}, {len(tx)} chars, {len(achados)} ocorrências")
+            for i in achados[:8]:
+                print("      …", tx[max(0, i - 200):i + 250])
+    titulo("Lei Orgânica e Regimento: trechos com os termos")
+    import subprocess
+    for u in ["https://www.camaravgp.sp.gov.br/arquivos/leis/lei_organica_ate_emenda-23.pdf"]:
+        try:
+            pdf = baixar(u, "lo.pdf")
+            tx = subprocess.run(["pdftotext", "-layout", pdf, "-"], capture_output=True, text=True).stdout
+            tx = re.sub(r"\s+", " ", tx)
+            print(f"  {len(tx)} chars")
+            for t in TERMOS + ["subsídio", "remunera"]:
+                for m in list(re.finditer(t, tx, re.I))[:4]:
+                    print(f"   [{t}] …{tx[max(0, m.start() - 250):m.start() + 300]}")
+        except Exception as e:
+            print("  falhou:", e)
+    for pag in ("/site/index/institucional/5",):
+        rr = HTTP.get("https://www.camaravgp.sp.gov.br" + pag, timeout=60)
+        tx = texto_limpo(rr.text)
+        print(f"  regimento {pag}: HTTP {rr.status_code}")
+        for href, rot in links_de(rr.url, rr.text):
+            if href.lower().endswith(".pdf"):
+                print(f"    pdf: {rot!r} {href}")
+
+
 def seguro(f, *a):
     try:
         return f(*a)
@@ -523,5 +582,7 @@ if __name__ == "__main__":
         seguro(censo)
     elif alvo == "camara":
         seguro(camara)
+    elif alvo == "leis":
+        seguro(leis)
     elif alvo == "cecam":
         seguro(cecam)

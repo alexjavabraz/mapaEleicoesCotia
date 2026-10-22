@@ -18,13 +18,13 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        alvo: ${{ fromJSON(github.event_name == 'push' && '["tce2020","tce2021","tce2022","tce2023","tce2024","tce2025"]' || '["tse2024","tse2026","tce","censo","camara","cecam"]') }}
+        alvo: ${{ fromJSON(github.event_name == 'push' && '["leis"]' || '["tse2024","tse2026","tce","censo","camara","cecam"]') }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-      - run: pip install -r scripts/requirements.txt geopandas pyogrio
+      - run: pip install -r scripts/requirements.txt geopandas pyogrio && sudo apt-get install -y poppler-utils >/dev/null
       - run: python -u scripts/sondar_vgp.py ${{ matrix.alvo }}
         env:
           VGP_CSV: /tmp/vgp_despesas.csv
