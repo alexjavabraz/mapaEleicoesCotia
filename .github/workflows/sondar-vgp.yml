@@ -18,7 +18,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        alvo: [tse2024, tse2026, tce, censo, camara]
+        alvo: ${{ fromJSON(github.event_name == 'push' && '["cecam"]' || '["tse2024","tse2026","tce","censo","camara","cecam"]') }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5

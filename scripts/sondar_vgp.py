@@ -392,6 +392,44 @@ def camara():
             print(f"   {rotulo!r:60} {href}")
 
 
+CECAM = ["https://vargemgrande-cm.cecam.com.br/CECAM_SISTEMAS_PORT/",
+         "http://vargemgrande-camara.cecam.com.br/CECAM_SISTEMAS_PORT/",
+         "http://187.122.108.2/PortaldaTransparencia/"]
+OUTRAS = ["https://www.camaravgp.sp.gov.br/site/artigo/pesquisax/100",
+          "https://sistemas.vargemgrandepaulista.sp.gov.br/portal/transparencia"]
+
+
+def cecam():
+    """Lista todas as páginas dos portais de transparência da Câmara (CECAM)
+    e abre as que falam de diárias, viagens, adiantamentos, verbas."""
+    for base in CECAM + OUTRAS:
+        titulo(f"Portal {base}")
+        try:
+            r = HTTP.get(base, timeout=60)
+        except Exception as e:
+            print(f"  {type(e).__name__}: {e}")
+            continue
+        print(f"  HTTP {r.status_code} {r.url}  {len(r.text)} bytes")
+        todos = {}
+        for href, rotulo in links_de(r.url, r.text):
+            todos[href] = rotulo
+        for href, rotulo in sorted(todos.items()):
+            print(f"   {rotulo!r:60} {href}")
+        alvo = re.compile(r"di[aá]ria|viage|adiantament|verba|ressarc|reembols|indeniza|suprimento|passage", re.I)
+        for href, rotulo in todos.items():
+            if not alvo.search(href + " " + rotulo):
+                continue
+            try:
+                rr = HTTP.get(href, timeout=60)
+            except Exception as e:
+                print(f"\n  >> {href}: {type(e).__name__}")
+                continue
+            texto = re.sub(r"<script.*?</script>|<style.*?</style>", " ", rr.text, flags=re.S | re.I)
+            texto = re.sub(r"<[^>]+>", " ", html.unescape(texto))
+            texto = re.sub(r"\s+", " ", texto)
+            print(f"\n  >> {rotulo!r} {href} HTTP {rr.status_code}\n     {texto[:2500]}")
+
+
 def seguro(f, *a):
     try:
         return f(*a)
@@ -418,3 +456,5 @@ if __name__ == "__main__":
         seguro(censo)
     elif alvo == "camara":
         seguro(camara)
+    elif alvo == "cecam":
+        seguro(cecam)
