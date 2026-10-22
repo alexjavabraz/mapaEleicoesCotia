@@ -1,0 +1,143 @@
+name: Gera dados de Vargem Grande Paulista e despesas por tipo
+
+# Roda os mesmos scripts de Cotia com CIDADE=vgp (saída em data/vgp/) e o
+# script de despesas por tipo (CSV anual do TCE-SP, um ano por job), que
+# grava as duas cidades. Cada job guarda o que gerou num artefato; o último
+# junta tudo e faz um único commit.
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - .github/workflows/dados-cidades.yml
+
+permissions:
+  contents: write
+
+concurrency:
+  group: dados-cidades-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  CIDADE: vgp
+
+jobs:
+  eleicoes:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -r scripts/requirements.txt
+      - run: python scripts/download_locais.py
+      - run: python scripts/download_tse.py
+      - run: python scripts/download_tse_geral.py 2022
+      - run: python scripts/download_tse_geral.py 2026
+      - run: python scripts/download_secoes.py
+      - run: python scripts/download_secoes_geral.py 2026
+      - run: python scripts/download_gastos_campanha.py
+      - run: python scripts/download_patrimonio.py
+      - run: tar czf eleicoes.tgz data/vgp
+      - uses: actions/upload-artifact@v4
+        with:
+          name: dados-eleicoes
+          path: eleicoes.tgz
+
+  contas:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install requests
+      - run: python scripts/download_contas.py
+      - run: tar czf contas.tgz data/vgp
+      - uses: actions/upload-artifact@v4
+        with:
+          name: dados-contas
+          path: contas.tgz
+
+  censo:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -r scripts/requirements.txt geopandas pyogrio openpyxl
+      - run: python scripts/download_locais.py
+      - run: python scripts/download_censo.py
+      - name: Bairros do OSM (opcional; sem eles o mapa usa os locais de votação)
+        continue-on-error: true
+        run: python scripts/download_bairros_osm.py
+      - run: tar czf censo.tgz data/vgp/censo_renda_setores.json data/vgp/censo_renda_setores.geojson data/vgp/municipio.geojson $(ls data/vgp/osm_bairros.json 2>/dev/null)
+      - uses: actions/upload-artifact@v4
+        with:
+          name: dados-censo
+          path: censo.tgz
+
+  tipo:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    strategy:
+      fail-fast: false
+      matrix:
+        ano: [2020, 2021, 2022, 2023, 2024, 2025, 2026]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install requests
+      - run: python scripts/download_despesas_tipo.py ano ${{ matrix.ano }} parcial/${{ matrix.ano }}.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: tipo-${{ matrix.ano }}
+          path: parcial/
+          if-no-files-found: ignore
+
+  commit:
+    needs: [eleicoes, contas, censo, tipo]
+    if: always()
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install requests
+      - uses: actions/download-artifact@v4
+        with:
+          path: artefatos
+      - name: Junta os artefatos
+        run: |
+          ls -R artefatos | head -50
+          # Lista de fornecedores é regenerada inteira: some com os arquivos antigos
+          if [ -f artefatos/dados-contas/contas.tgz ]; then rm -rf data/vgp/contas_fornecedores; fi
+          for t in artefatos/dados-*/*.tgz; do tar xzf "$t"; done
+          if ls artefatos/tipo-*/*.json >/dev/null 2>&1; then
+            mkdir -p parcial && cp artefatos/tipo-*/*.json parcial/
+            python scripts/download_despesas_tipo.py juntar parcial
+          fi
+          ls -la data/vgp
+      - name: Commit
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/vgp data/contas_tipo_cotia.json 2>/dev/null || git add data/vgp
+          if git diff --cached --quiet; then
+            echo "Sem mudanças."
+            exit 0
+          fi
+          git commit -m "dados: Vargem Grande Paulista (TSE, TCE-SP, Censo) e despesas por tipo (TCE-SP)"
+          for i in 1 2 3 4; do
+            git pull --rebase origin main && git push origin HEAD:main && exit 0
+            sleep $((i * 5))
+          done
+          exit 1

@@ -34,7 +34,10 @@ except ImportError:
     print("Dependências faltando. Execute: pip install -r requirements.txt")
     sys.exit(1)
 
-MUNICIPIO_ALVO = "COTIA"
+
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from cidades import C, arq  # noqa: E402
+MUNICIPIO_ALVO = C["nome"]
 
 # DS_CARGO (texto exato do CSV do TSE, já em maiúsculas) -> chave usada no
 # JSON de saída. Conferir contra o leiame/layout oficial do TSE a cada ciclo
@@ -190,7 +193,7 @@ def main():
         "https://cdn.tse.jus.br/estatistica/sead/odsele/votacao_candidato_munzona/"
         f"votacao_candidato_munzona_{ano}.zip"
     )
-    output_file = os.path.join(os.path.dirname(__file__), "..", "data", f"tse_cotia_{ano}.json")
+    output_file = arq(f"tse_cotia_{ano}.json")
 
     print("=" * 60)
     print(f"DOWNLOADER DE DADOS — ELEIÇÃO GERAL {ano} — COTIA/SP")

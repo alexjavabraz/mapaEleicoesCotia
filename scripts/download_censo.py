@@ -52,7 +52,10 @@ except ImportError:
     print("Dependências faltando. Execute: pip install -r requirements.txt")
     sys.exit(1)
 
-CD_MUN_COTIA = "3513009"
+
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from cidades import C, CIDADE, arq  # noqa: E402
+CD_MUN_COTIA = C["ibge"]  # nome histórico; vale para a cidade de CIDADE
 
 # Salário mínimo de referência do Censo 2022 (agosto/2022)
 SALARIO_MINIMO = 1212.0
@@ -75,8 +78,8 @@ URL_MALHA = ("https://geoftp.ibge.gov.br/organizacao_do_territorio/malhas_territ
 
 SCRIPT_DIR  = os.path.dirname(os.path.abspath(__file__))
 DATA_DIR    = os.path.join(SCRIPT_DIR, "..", "data")
-LOCAIS_FILE = os.path.join(DATA_DIR, "cotia_locais_votacao.json")
-OUTPUT      = os.path.join(DATA_DIR, "censo_renda_setores.json")
+LOCAIS_FILE = arq("cotia_locais_votacao.json")
+OUTPUT      = arq("censo_renda_setores.json")
 
 HTTP = requests.Session()
 HTTP.headers["User-Agent"] = "mapaEleicoesCotia/1.0 (+https://github.com/alexjavabraz/mapaEleicoesCotia)"
@@ -303,6 +306,9 @@ def pontos_setores(tmp, url_base, padrao):
     simpl = gdf.geometry.simplify(0.0001, preserve_topology=True)
     for cd, g in zip(gdf[col_setor], simpl):
         SETOR_GEOM[str(cd)] = g
+    # Contorno do município = união dos setores (Cotia usa o do OSM, salvo à parte)
+    uniao = gdf.geometry.union_all() if hasattr(gdf.geometry, "union_all") else gdf.geometry.unary_union
+    MUNICIPIO_GEOM.append(uniao.simplify(0.0002, preserve_topology=True))
     # Bairro do próprio IBGE (vazio onde o município não tem bairros cadastrados)
     col_bairro = next((c for c in gdf.columns if c.upper() == "NM_BAIRRO"), None)
     nomes = gdf[col_bairro].fillna("").astype(str) if col_bairro else [""] * len(gdf)
@@ -465,7 +471,8 @@ def censo_2010(tmp):
 
 BAIRROS_IBGE = {}  # renda por bairro publicada pelo IBGE (só 2022)
 SETOR_GEOM = {}    # CD_SETOR -> geometria shapely simplificada (EPSG:4326)
-OUTPUT_GEOM = os.path.join(DATA_DIR, "censo_renda_setores.geojson")
+MUNICIPIO_GEOM = []  # [união dos setores do município]
+OUTPUT_GEOM = arq("censo_renda_setores.geojson")
 
 
 def arredonda(coords):
@@ -559,6 +566,22 @@ def main():
         json.dump(saida, f, ensure_ascii=False, separators=(",", ":"))
     print(f"\nGravado {OUTPUT} ({os.path.getsize(OUTPUT) / 1e3:.0f} KB)")
     grava_geojson(setores)
+    if CIDADE != "cotia" and MUNICIPIO_GEOM:
+        grava_municipio(MUNICIPIO_GEOM[0])
+
+
+def grava_municipio(geom):
+    """data/<cidade>/municipio.geojson: contorno do município (mesmo formato do de Cotia)."""
+    from shapely.geometry import mapping
+    geo = mapping(geom)
+    saida = arq("cotia_municipio.geojson")
+    with open(saida, "w", encoding="utf-8") as f:
+        json.dump({"type": "FeatureCollection", "features": [{
+            "type": "Feature",
+            "properties": {"name": C["titulo"], "source": "IBGE, malha de setores censitários 2022 (união)"},
+            "geometry": {"type": geo["type"], "coordinates": arredonda(geo["coordinates"])}}]},
+            f, ensure_ascii=False, separators=(",", ":"))
+    print(f"Gravado {saida}")
 
 
 if __name__ == "__main__":

@@ -35,12 +35,15 @@ ZIP_URL = "https://cdn.tse.jus.br/estatistica/sead/odsele/prestacao_contas/prest
 FONTE_URL = "https://dadosabertos.tse.jus.br/dataset/prestacao-de-contas-eleitorais-2024"
 
 BASE = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..")
-TSE_FILE = os.path.join(BASE, "data", "tse_cotia_2024.json")
-DETALHE_FILE = os.path.join(BASE, "data", "cotia_votos_por_escola_detalhe.json")
-OUTPUT_FILE = os.path.join(BASE, "data", "gastos_campanha_2024.json")
+
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from cidades import C, arq  # noqa: E402
+TSE_FILE = arq("tse_cotia_2024.json")
+DETALHE_FILE = arq("cotia_votos_por_escola_detalhe.json")
+OUTPUT_FILE = arq("gastos_campanha_2024.json")
 
 UF = "SP"
-MUNICIPIO = "COTIA"
+MUNICIPIO = C["nome"]
 CARGOS = {"PREFEITO": "prefeito", "VEREADOR": "vereadores"}
 
 csv.field_size_limit(10**9)

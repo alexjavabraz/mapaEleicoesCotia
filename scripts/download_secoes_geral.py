@@ -42,7 +42,10 @@ except ImportError:
     print("Dependências faltando. Execute: pip install -r requirements.txt")
     sys.exit(1)
 
-CD_MUNICIPIO_COTIA = "63614"
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from cidades import C, arq  # noqa: E402
+
+CD_MUNICIPIO_COTIA = C["tse"]  # nome histórico; vale para a cidade de CIDADE
 
 # CD_CARGO → chave interna usada no JSON de saída
 CARGOS_SP = {
@@ -60,7 +63,7 @@ VOTOS_ESPECIAIS = {"95", "96", "97", "98", "99"}
 
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 DATA_DIR   = os.path.join(SCRIPT_DIR, "..", "data")
-LOCAIS_FILE = os.path.join(DATA_DIR, "cotia_locais_votacao.json")
+LOCAIS_FILE = arq("cotia_locais_votacao.json")
 
 
 def build_secao_bairro_map():
@@ -215,7 +218,7 @@ def build_output(agr, ano: str):
 
     return {
         "ano": int(ano),
-        "municipio": "COTIA",
+        "municipio": C["nome"],
         "cargos": ORDEM_CARGOS,
         "bairros": bairros_out,
         "totais": totais_out,
@@ -228,7 +231,7 @@ def main():
         sys.exit(1)
 
     ano = sys.argv[1]
-    output_file = os.path.join(DATA_DIR, f"cotia_votos_por_bairro_{ano}.json")
+    output_file = arq(f"cotia_votos_por_bairro_{ano}.json")
 
     print("=" * 60)
     print(f"DOWNLOADER ELEIÇÃO GERAL {ano} — VOTOS POR BAIRRO — COTIA/SP")

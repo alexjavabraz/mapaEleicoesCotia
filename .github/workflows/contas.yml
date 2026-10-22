@@ -30,15 +30,18 @@ jobs:
       - run: pip install requests
       - run: sudo apt-get install -y poppler-utils tesseract-ocr tesseract-ocr-por >/dev/null
       - run: python scripts/download_contas.py
+      - run: python scripts/download_contas.py
+        env:
+          CIDADE: vgp
       - run: python scripts/download_viagens.py
       - name: Commit do JSON atualizado
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -A data/contas_cotia.json data/contas_fornecedores data/viagens_camara.json
+          git add -A data/contas_cotia.json data/contas_fornecedores data/viagens_camara.json data/vgp/contas.json data/vgp/contas_fornecedores
           if git diff --cached --quiet; then
             echo "Sem mudanças."
           else
-            git commit -m "dados: atualiza contas do município (TCE-SP) e viagens da Câmara"
+            git commit -m "dados: atualiza contas dos municípios (TCE-SP) e viagens da Câmara"
             git push
           fi

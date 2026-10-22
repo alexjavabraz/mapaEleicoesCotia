@@ -35,8 +35,11 @@ FONTE_URL = "https://dadosabertos.tse.jus.br/dataset/candidatos-2024"
 DIVULGA_URL = "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/SUDESTE/{uf}/2045202024/{sq}/2024/{ue}"
 
 BASE = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..")
-TSE_FILE = os.path.join(BASE, "data", "tse_cotia_2024.json")
-OUTPUT_FILE = os.path.join(BASE, "data", "patrimonio_candidatos_2024.json")
+
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from cidades import C, arq  # noqa: E402
+TSE_FILE = arq("tse_cotia_2024.json")
+OUTPUT_FILE = arq("patrimonio_candidatos_2024.json")
 
 
 def baixar(url: str, env: str) -> str:

@@ -29,8 +29,11 @@ TSE_URLS = {
     "votacao_munzona": "https://cdn.tse.jus.br/estatistica/sead/odsele/votacao_candidato_munzona/votacao_candidato_munzona_2024.zip",
 }
 
-OUTPUT_FILE = os.path.join(os.path.dirname(__file__), "..", "data", "tse_cotia_2024.json")
-MUNICIPIO_ALVO = "COTIA"
+
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from cidades import C, arq  # noqa: E402
+OUTPUT_FILE = arq("tse_cotia_2024.json")
+MUNICIPIO_ALVO = C["nome"]
 
 
 def download_file(url: str, desc: str) -> bytes:

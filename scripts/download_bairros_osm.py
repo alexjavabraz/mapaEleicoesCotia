@@ -20,10 +20,13 @@ import time
 
 import requests
 
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from cidades import C, arq  # noqa: E402
+
 QUERY = """
 [out:json][timeout:90];
 (
-  relation["name"="Cotia"]["admin_level"="8"];
+  relation["name"="{nome}"]["admin_level"="8"];
 )->.municipio;
 area.municipio->.area_mun;
 (
@@ -34,7 +37,7 @@ area.municipio->.area_mun;
 out body;
 >;
 out skel qt;
-""".strip()
+""".strip().replace("{nome}", C["osm"])
 
 ENDPOINTS = [
     "https://overpass-api.de/api/interpreter",
@@ -42,7 +45,7 @@ ENDPOINTS = [
     "https://overpass.private.coffee/api/interpreter",
 ]
 
-SAIDA = os.path.join(os.path.dirname(__file__), "..", "data", "osm_bairros_cotia.json")
+SAIDA = arq("osm_bairros_cotia.json")
 
 
 def baixar():

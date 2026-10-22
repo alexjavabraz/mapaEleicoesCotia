@@ -1,3 +1,22 @@
+# Sessão — 2026-10-22 (17) · Vargem Grande Paulista: implementação
+
+**Status:** iniciada 2026-10-22 16:07 UTC · em andamento (commit direto no `main`).
+
+## Pedido
+
+"comece a implementar, commite na main eu vou verificar depois do push":
+trocar as páginas "Em breve" de `/vgp/` pelos dados de Vargem Grande
+Paulista, seguindo `docs/vargem-grande-paulista.md`.
+
+## Plano
+
+1. Scripts por cidade (`scripts/cidades.py`, variável `CIDADE`), saída de
+   VGP em `data/vgp/`; workflow `dados-cidades.yml` gera tudo no Actions.
+2. Despesas por tipo (CSV anual do TCE-SP) para as duas cidades.
+3. Front-end: `CIDADE` / `urlDados()` em `js/i18n.js`; páginas de VGP.
+
+---
+
 # Sessão — 2026-10-22 (2) · Site organizado por cidade (/cotia/, /vgp/)
 
 **Status:** iniciada 2026-10-22 14:18 UTC · finalizada 2026-10-22 14:50 UTC

@@ -40,7 +40,10 @@ URL_SECAO = (
 )
 
 # Código do município de Cotia no TSE
-CD_MUNICIPIO_COTIA = "63614"
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from cidades import C, arq  # noqa: E402
+
+CD_MUNICIPIO_COTIA = C["tse"]  # nome histórico; vale para a cidade de CIDADE
 
 # Cargos de interesse
 CARGOS = {
@@ -50,10 +53,10 @@ CARGOS = {
 
 SCRIPT_DIR   = os.path.dirname(os.path.abspath(__file__))
 DATA_DIR     = os.path.join(SCRIPT_DIR, "..", "data")
-LOCAIS_FILE  = os.path.join(DATA_DIR, "cotia_locais_votacao.json")
-OUTPUT_BAIRRO = os.path.join(DATA_DIR, "cotia_votos_por_bairro.json")
-OUTPUT_ESCOLA = os.path.join(DATA_DIR, "cotia_votos_por_escola.json")
-OUTPUT_DETALHE = os.path.join(DATA_DIR, "cotia_votos_por_escola_detalhe.json")
+LOCAIS_FILE  = arq("cotia_locais_votacao.json")
+OUTPUT_BAIRRO = arq("cotia_votos_por_bairro.json")
+OUTPUT_ESCOLA = arq("cotia_votos_por_escola.json")
+OUTPUT_DETALHE = arq("cotia_votos_por_escola_detalhe.json")
 
 
 def build_maps():

@@ -32,12 +32,15 @@ except ImportError:
     print("Dependências faltando. Execute: pip install -r requirements.txt")
     sys.exit(1)
 
-API = "https://transparencia.tce.sp.gov.br/api/json/despesas/cotia/{ano}/{mes}"
+
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from cidades import C, arq  # noqa: E402
+API = "https://transparencia.tce.sp.gov.br/api/json/despesas/" + C["tce"] + "/{ano}/{mes}"
 ANO_INICIAL = 2020
-OUT = os.path.join(os.path.dirname(__file__), "..", "data", "contas_cotia.json")
+OUT = arq("contas_cotia.json")
 # Um arquivo por fornecedor com todos os lançamentos (o "analítico" da página),
 # baixado só quando o fornecedor é aberto: data/contas_fornecedores/{índice}.json
-OUT_DET = os.path.join(os.path.dirname(__file__), "..", "data", "contas_fornecedores")
+OUT_DET = arq("contas_fornecedores")
 # Opcional: pasta para guardar as respostas brutas da API e não baixar de novo
 CACHE = os.environ.get("CONTAS_CACHE")
 
