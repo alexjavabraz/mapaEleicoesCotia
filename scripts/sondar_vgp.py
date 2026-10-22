@@ -498,7 +498,8 @@ def cecam():
 
 
 SISCAM = "https://vargemgrandepaulista.siscam.com.br"
-TERMOS = ["verba", "indenizat", "ressarc", "reembols", "diária", "diarias", "gabinete", "adiantamento"]
+TERMOS = ["verba indenizatória", "verba de gabinete", "ressarcimento", "reembolso", "diárias",
+          "adiantamento", "viagem", "representação"]
 
 
 def texto_limpo(h):
@@ -518,9 +519,8 @@ def leis():
         if urlparse(href).netloc.endswith("siscam.com.br"):
             print(f"   {rot!r:50} {href}")
     titulo("SISCAM: buscas por termo")
-    padroes = ["/Documentos/Pesquisa?Pesquisa=Simples&Texto={t}",
-               "/Documentos/Pesquisa?TextoPesquisa={t}",
-               "/Documentos?Texto={t}", "/Normas?Texto={t}", "/Pesquisa?q={t}"]
+    padroes = ["/Home/Consulta?Pagina=1&Search={t}&NoTexto=false",
+               "/Home/Consulta?Pagina=1&Search=resolu%C3%A7%C3%B5es+{t}&NoTexto=true"]
     for t in TERMOS:
         for pad in padroes:
             u = SISCAM + pad.format(t=requests.utils.quote(t))
@@ -530,13 +530,13 @@ def leis():
                 print(f"  {u}: {type(e).__name__}")
                 continue
             tx = texto_limpo(rr.text)
-            achados = [m.start() for m in re.finditer(t[:6], tx, re.I)]
+            achados = [m.start() for m in re.finditer(t.split()[-1][:6], tx, re.I)]
             print(f"  {u} -> HTTP {rr.status_code}, {len(tx)} chars, {len(achados)} ocorrências")
-            for i in achados[:8]:
-                print("      …", tx[max(0, i - 200):i + 250])
+            for i in achados[:12]:
+                print("      …", tx[max(0, i - 250):i + 250])
     titulo("Lei Orgânica e Regimento: trechos com os termos")
     import subprocess
-    for u in ["https://www.camaravgp.sp.gov.br/arquivos/leis/lei_organica_ate_emenda-23.pdf"]:
+    for u in []:
         try:
             pdf = baixar(u, "lo.pdf")
             tx = subprocess.run(["pdftotext", "-layout", pdf, "-"], capture_output=True, text=True).stdout
