@@ -134,8 +134,8 @@ const METODOLOGIA_EN = {
   "canal público de issues do GitHub ↗": "public GitHub issues channel ↗",
   ".": ".",
   "Não publique dados pessoais sensíveis em issues públicas.": "Do not post sensitive personal data in public issues.",
-  "Para assuntos que envolvam informações privadas, peça na issue um contato reservado, sem incluir os dados.":
-    "For matters involving private information, ask for a private contact in the issue, without including the data.",
+  "Para assuntos que envolvam informações privadas, escreva para": "For matters involving private information, write to",
+  ", sem publicar os dados na issue.": ", without posting the data in the issue.",
   "Limites deste aviso:": "Limits of this notice:",
   "estas explicações não afastam obrigações legais, não limitam direitos assegurados por lei e não substituem orientação jurídica profissional. O uso e a republicação dos dados devem respeitar as condições e licenças das respectivas fontes.":
     "these explanations do not waive legal obligations, do not limit rights guaranteed by law and do not replace professional legal advice. Using and republishing the data must respect the terms and licenses of the respective sources.",

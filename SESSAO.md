@@ -39,8 +39,8 @@ console, sem rolagem horizontal em 320/360/390/1280 px, claro e escuro.
 
 ## Pendente / para o Alex decidir
 
-- Canal reservado para pedidos com dados pessoais: hoje o texto manda pedir
-  contato na issue. Se quiser um e-mail, é só trocar.
+- ~~Canal reservado para dados pessoais~~ 2026-10-22: Alex pediu o e-mail
+  admin@courthub.space, que agora aparece em "Correções e contestação".
 
 # Sessão — 2026-10-21 (14) · Fim do bump manual do cache do Service Worker
 
