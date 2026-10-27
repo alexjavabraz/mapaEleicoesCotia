@@ -1,6 +1,6 @@
 # Sessão — 2026-10-27 · Eleições 2026: 2º turno (Cotia e VGP) e comparação entre turnos
 
-**Status:** iniciada 2026-10-27 14:05 UTC · em andamento (commit direto no `main`).
+**Status:** iniciada 2026-10-27 14:05 UTC · 1º/2º turno no ar 14:20 UTC; visão da virada aguardando escolha do Alex.
 
 Pedido do Alex: dados consolidados das eleições 2026 com visão 1º turno e
 2º turno, em Cotia e VGP, mantendo renda do Censo e demais camadas; sugerir
@@ -10,7 +10,20 @@ uma visão para a "virada de votos" entre os turnos.
   turnos): 1º turno no nível de cima do JSON por bairro, 2º em `turnos."2"`;
   novo `cotia_votos_por_secao_2026.json` (Presidente/Governador por seção,
   dois turnos, brancos/nulos).
-- Workflow `segundo-turno-2026.yml` (Cotia + VGP) baixa do TSE via Actions.
+- Workflow `segundo-turno-2026.yml` (Cotia + VGP) baixa do TSE via Actions
+  (diário às 9h UTC até o arquivo por zona trazer o 2º turno). O
+  `votacao_candidato_munzona` ainda está só com o 1º turno: o
+  `completar_turno2.py` soma as seções e preenche o 2º turno do
+  `tse_*_2026.json` (situação ELEITO/NÃO ELEITO vazia até o TSE atualizar).
+  Aptos/comparecimento vêm do `detalhe_votacao_secao`.
+- Mapa 2026: abas 1º/2º Turno valem para mapa, tooltip, bairro, filtro de
+  candidato e ranking (`turnoEfetivo()`/`bairrosDoTurno()` em js/geral.js).
+  Governador foi decidido no 1º turno (Tarcísio). sw.js v43.
+- Resultado: Cotia virou (1º: Flávio 65.331 × Lula 59.084; 2º: Lula 76.363 ×
+  Flávio 72.794; 20 bairros mudaram de vencedor). VGP: Flávio 17.930 × Lula
+  15.032.
+- Virada: prévia com 2 opções (mapa da virada / Sankey estimado por
+  inferência ecológica) enviada ao Alex; aguardando escolha.
 
 ---
 
