@@ -1,3 +1,19 @@
+# Sessão — 2026-10-27 · Eleições 2026: 2º turno (Cotia e VGP) e comparação entre turnos
+
+**Status:** iniciada 2026-10-27 14:05 UTC · em andamento (commit direto no `main`).
+
+Pedido do Alex: dados consolidados das eleições 2026 com visão 1º turno e
+2º turno, em Cotia e VGP, mantendo renda do Censo e demais camadas; sugerir
+uma visão para a "virada de votos" entre os turnos.
+
+- `scripts/download_secoes_geral.py` separa por `NR_TURNO` (antes somava os
+  turnos): 1º turno no nível de cima do JSON por bairro, 2º em `turnos."2"`;
+  novo `cotia_votos_por_secao_2026.json` (Presidente/Governador por seção,
+  dois turnos, brancos/nulos).
+- Workflow `segundo-turno-2026.yml` (Cotia + VGP) baixa do TSE via Actions.
+
+---
+
 # Sessão — 2026-10-22 (22) · Mapa 2026: selo "2º TURNO" virou "VAI AO 2º TURNO"
 
 **Status:** iniciada 2026-10-22 19:20 UTC · finalizada 2026-10-22 19:30 UTC

@@ -1,0 +1,91 @@
+name: Eleições 2026 — 1º e 2º turno (Cotia e VGP)
+
+# Baixa do CDN do TSE (bloqueado nas sessões em nuvem) a votação por
+# município/zona e por seção de 2026 e regrava, para Cotia e Vargem Grande
+# Paulista, os totais (tse_*_2026.json), os votos por bairro com o 2º turno
+# em "turnos" e o arquivo por seção usado na comparação entre turnos.
+# Falha de propósito (EXIGIR_TURNO2) enquanto o TSE não publicar o 2º turno.
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - .github/workflows/segundo-turno-2026.yml
+      - scripts/download_secoes_geral.py
+      - scripts/download_tse_geral.py
+
+permissions:
+  contents: write
+
+concurrency:
+  group: segundo-turno-2026
+  cancel-in-progress: true
+
+jobs:
+  cidade:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    strategy:
+      fail-fast: false
+      matrix:
+        cidade: [cotia, vgp]
+    env:
+      CIDADE: ${{ matrix.cidade }}
+      EXIGIR_TURNO2: "1"
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -r scripts/requirements.txt
+      - run: python scripts/download_tse_geral.py 2026
+      - run: python scripts/download_secoes_geral.py 2026
+      - name: Guarda os arquivos gerados
+        run: |
+          mkdir -p saida
+          if [ "$CIDADE" = cotia ]; then
+            cp data/tse_cotia_2026.json data/cotia_votos_por_bairro_2026.json data/cotia_votos_por_secao_2026.json saida/
+          else
+            cp data/vgp/tse_2026.json data/vgp/votos_por_bairro_2026.json data/vgp/votos_por_secao_2026.json saida/
+          fi
+          python - <<'PY'
+          import json, glob
+          for f in glob.glob("saida/tse*_2026.json"):
+              d = json.load(open(f))
+              print(f, {k: {t: [(c["nome"], c["votos"]) for c in v[:3]] for t, v in tur.items()}
+                        for k, tur in d["totais"].items() if k in ("presidente", "governador")})
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: turnos-${{ matrix.cidade }}
+          path: saida/
+
+  commit:
+    needs: [cidade]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          path: artefatos
+      - name: Copia para data/
+        run: |
+          cp artefatos/turnos-cotia/* data/
+          cp artefatos/turnos-vgp/* data/vgp/
+      - name: Commit
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/tse_cotia_2026.json data/cotia_votos_por_bairro_2026.json data/cotia_votos_por_secao_2026.json \
+                  data/vgp/tse_2026.json data/vgp/votos_por_bairro_2026.json data/vgp/votos_por_secao_2026.json
+          if git diff --cached --quiet; then
+            echo "Sem mudanças."
+            exit 0
+          fi
+          git commit -m "dados: eleições 2026, 1º e 2º turno, Cotia e Vargem Grande Paulista (TSE)"
+          for i in 1 2 3 4; do
+            git pull --rebase origin main && git push origin HEAD:main && exit 0
+            sleep $((i * 5))
+          done
+          exit 1

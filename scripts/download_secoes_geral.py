@@ -21,6 +21,13 @@ Saída:
     — para cada bairro: votos por cargo (presidente, governador, senador,
       dep_federal, dep_estadual), ordenados por votos desc.
       Inclui apenas candidatos nominais (exclui brancos/nulos).
+      O nível de cima é o 1º turno (formato de sempre); o 2º turno, quando
+      existe, fica em "turnos": {"2": {"bairros": ..., "totais": ...}}.
+    ../data/cotia_votos_por_secao_<ano>.json
+    — Presidente e Governador seção a seção, nos dois turnos, com brancos,
+      nulos e (se o CSV trouxer) aptos e comparecimento. É a base da
+      comparação entre turnos: o voto é secreto, então o que dá para ver é a
+      mudança agregada em cada seção, nunca a troca de um eleitor.
 
 Requer:
     ../data/cotia_locais_votacao.json  (gerado por download_tse.py)
@@ -60,6 +67,10 @@ CARGOS_BR = {
 
 # NR_VOTAVEL especiais que devem ser ignorados
 VOTOS_ESPECIAIS = {"95", "96", "97", "98", "99"}
+# ...mas no arquivo por seção brancos e nulos entram (contam na comparação)
+ESPECIAIS_SECAO = {"95": "BRANCO", "96": "NULO"}
+# Cargos que podem ter 2º turno: só eles vão para o arquivo por seção
+CARGOS_SECAO = ("presidente", "governador")
 
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 DATA_DIR   = os.path.join(SCRIPT_DIR, "..", "data")
@@ -110,10 +121,13 @@ def download_zip(url: str, dest_path: str):
 def process_zip(zip_path: str, cargos_map: dict, secao_bairro: dict, ano: str):
     """
     Processa um ZIP de votação por seção, filtra Cotia e agrega por bairro.
-    Retorna: { bairro: { cargo_key: { nome_candidato: votos } } }
+    Retorna (agr, secoes):
+      agr    = { turno: { bairro: { cargo_key: { nome_candidato: votos } } } }
+      secoes = { (zona, secao): { "bairro", "local", turno: { cargo_key:
+                 { "votos": {nome: votos}, "aptos", "comparecimento" } } } }
     """
-    # { bairro: { cargo_key: { nome: votos } } }
-    agr = defaultdict(lambda: defaultdict(lambda: defaultdict(int)))
+    agr = defaultdict(lambda: defaultdict(lambda: defaultdict(lambda: defaultdict(int))))
+    secoes = {}
 
     with zipfile.ZipFile(zip_path, "r") as zf:
         csv_files = [n for n in zf.namelist() if n.lower().endswith(".csv")]
@@ -129,6 +143,8 @@ def process_zip(zip_path: str, cargos_map: dict, secao_bairro: dict, ano: str):
                     delimiter=";",
                 )
                 n_total = n_cotia = n_mapeadas = 0
+                print(f"    Colunas: {reader.fieldnames}")
+                turnos_vistos = defaultdict(int)
                 for row in reader:
                     n_total += 1
                     if n_total % 1_000_000 == 0:
@@ -144,30 +160,49 @@ def process_zip(zip_path: str, cargos_map: dict, secao_bairro: dict, ano: str):
                     if not cargo_key:
                         continue
 
+                    turno = row.get("NR_TURNO", "1").strip() or "1"
+                    turnos_vistos[turno] += 1
                     nr_votavel = row.get("NR_VOTAVEL", "").strip()
-                    if nr_votavel in VOTOS_ESPECIAIS:
-                        continue
-
                     zona  = row.get("NR_ZONA", "").strip()
                     secao = row.get("NR_SECAO", "").strip()
+                    nome = row.get("NM_VOTAVEL", "").strip()
+                    votos = int(row.get("QT_VOTOS", "0").strip() or 0)
+
+                    if cargo_key in CARGOS_SECAO and zona and secao and (
+                        nr_votavel not in VOTOS_ESPECIAIS or nr_votavel in ESPECIAIS_SECAO
+                    ):
+                        sec = secoes.setdefault((zona, secao), {
+                            "bairro": secao_bairro.get((zona, secao), ""),
+                            "local": row.get("NR_LOCAL_VOTACAO", "").strip(),
+                        })
+                        c = sec.setdefault(turno, {}).setdefault(
+                            cargo_key, {"votos": defaultdict(int)})
+                        rotulo = ESPECIAIS_SECAO.get(nr_votavel, nome)
+                        c["votos"][rotulo] += votos
+                        for col, k in (("QT_APTOS", "aptos"), ("QT_COMPARECIMENTO", "comparecimento")):
+                            v = (row.get(col) or "").strip()
+                            if v.isdigit():
+                                c[k] = max(c.get(k, 0), int(v))
+
+                    if nr_votavel in VOTOS_ESPECIAIS:
+                        continue
                     bairro = secao_bairro.get((zona, secao))
                     if not bairro:
                         continue
 
-                    nome = row.get("NM_VOTAVEL", "").strip()
-                    votos = int(row.get("QT_VOTOS", "0").strip() or 0)
                     if nome and votos > 0:
-                        agr[bairro][cargo_key][nome] += votos
+                        agr[turno][bairro][cargo_key][nome] += votos
                         n_mapeadas += 1
 
                 print(f"    Total: {n_total:,} | Cotia: {n_cotia:,} | "
-                      f"Mapeadas p/ bairro: {n_mapeadas:,}")
+                      f"Mapeadas p/ bairro: {n_mapeadas:,} | "
+                      f"linhas por turno: {dict(turnos_vistos)}")
 
-    return agr
+    return agr, secoes
 
 
 def merge(agr_sp, agr_br):
-    """Junta os dados do arquivo SP e BR num único dicionário."""
+    """Junta os dados do arquivo SP e BR (de um mesmo turno) num único dicionário."""
     resultado = dict(agr_sp)
     for bairro, cargos in agr_br.items():
         if bairro not in resultado:
@@ -178,6 +213,56 @@ def merge(agr_sp, agr_br):
             for nome, votos in candidatos.items():
                 resultado[bairro][cargo_key][nome] += votos
     return resultado
+
+
+def build_secoes(secoes: dict, ano: str):
+    """
+    Arquivo por seção, compacto: para cada cargo e turno, a lista de nomes
+    (candidatos, depois BRANCO e NULO) e, em cada seção, os votos na mesma
+    ordem. "ap"/"cp" = aptos/comparecimento quando o CSV traz as colunas.
+    """
+    turnos = sorted({t for s in secoes.values() for t in s if t in ("1", "2")})
+    nomes = {}
+    for cargo in CARGOS_SECAO:
+        nomes[cargo] = {}
+        for t in turnos:
+            tot = defaultdict(int)
+            for s in secoes.values():
+                for n, v in s.get(t, {}).get(cargo, {}).get("votos", {}).items():
+                    tot[n] += v
+            if not tot:
+                continue
+            esp = [n for n in ("BRANCO", "NULO") if n in tot]
+            nomes[cargo][t] = sorted((n for n in tot if n not in esp), key=lambda n: -tot[n]) + esp
+
+    lista = []
+    for (zona, secao) in sorted(secoes, key=lambda k: (int(k[0] or 0), int(k[1] or 0))):
+        s = secoes[(zona, secao)]
+        item = {"z": zona, "s": secao, "b": s["bairro"], "l": s["local"]}
+        for t in turnos:
+            por_cargo = {}
+            for cargo, ns in ((c, nomes[c].get(t)) for c in CARGOS_SECAO):
+                dados = s.get(t, {}).get(cargo)
+                if not ns or not dados:
+                    continue
+                d = {"v": [dados["votos"].get(n, 0) for n in ns]}
+                if dados.get("aptos"):
+                    d["ap"] = dados["aptos"]
+                if dados.get("comparecimento"):
+                    d["cp"] = dados["comparecimento"]
+                por_cargo[cargo] = d
+            if por_cargo:
+                item[t] = por_cargo
+        lista.append(item)
+
+    return {
+        "ano": int(ano),
+        "municipio": C["nome"],
+        "cargos": list(CARGOS_SECAO),
+        "turnos": turnos,
+        "nomes": nomes,
+        "secoes": lista,
+    }
 
 
 def build_output(agr, ano: str):
@@ -256,25 +341,46 @@ def main():
         # 2. Baixa e processa arquivo SP (Governador, Senador, Dep. Federal, Dep. Estadual)
         print(f"\n[1/2] Arquivo SP — cargos estaduais")
         download_zip(url_sp, tmp_sp)
-        agr_sp = process_zip(tmp_sp, CARGOS_SP, secao_bairro, ano)
+        agr_sp, sec_sp = process_zip(tmp_sp, CARGOS_SP, secao_bairro, ano)
 
         # 3. Baixa e processa arquivo BR (Presidente)
         print(f"\n[2/2] Arquivo BR — Presidente")
         download_zip(url_br, tmp_br)
-        agr_br = process_zip(tmp_br, CARGOS_BR, secao_bairro, ano)
+        agr_br, sec_br = process_zip(tmp_br, CARGOS_BR, secao_bairro, ano)
 
     finally:
         for p in (tmp_sp, tmp_br):
             if os.path.exists(p):
                 os.unlink(p)
 
-    # 4. Mescla e gera output
-    agr = merge(agr_sp, agr_br)
-    resultado = build_output(agr, ano)
+    # 4. Mescla e gera output (1º turno no nível de cima, como sempre)
+    resultado = build_output(merge(agr_sp.get("1", {}), agr_br.get("1", {})), ano)
+    for turno in sorted(set(agr_sp) | set(agr_br)):
+        if turno == "1":
+            continue
+        extra = build_output(merge(agr_sp.get(turno, {}), agr_br.get(turno, {})), ano)
+        resultado.setdefault("turnos", {})[turno] = {
+            "bairros": extra["bairros"], "totais": extra["totais"],
+        }
+    if os.environ.get("EXIGIR_TURNO2") and "2" not in resultado.get("turnos", {}):
+        print("ERRO: o arquivo do TSE ainda não tem o 2º turno (EXIGIR_TURNO2).")
+        sys.exit(2)
 
     os.makedirs(DATA_DIR, exist_ok=True)
     with open(output_file, "w", encoding="utf-8") as f:
         json.dump(resultado, f, ensure_ascii=False, indent=2)
+
+    # Seções de Presidente/Governador nos dois turnos (comparação entre turnos)
+    for chave, dados in sec_br.items():
+        alvo = sec_sp.setdefault(chave, {"bairro": dados["bairro"], "local": dados["local"]})
+        for t, cargos in dados.items():
+            if t in ("bairro", "local"):
+                continue
+            alvo.setdefault(t, {}).update(cargos)
+    secoes_file = arq(f"cotia_votos_por_secao_{ano}.json")
+    with open(secoes_file, "w", encoding="utf-8") as f:
+        json.dump(build_secoes(sec_sp, ano), f, ensure_ascii=False, separators=(",", ":"))
+    print(f"Salvo: {secoes_file}  ({os.path.getsize(secoes_file) / 1024:.0f} KB)")
 
     tamanho = os.path.getsize(output_file) / 1024
     print(f"\n{'=' * 60}")
