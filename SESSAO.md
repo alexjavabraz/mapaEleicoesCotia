@@ -1,3 +1,16 @@
+# Sessão — 2026-10-27 (3) · Mapa 2026: caixa "Votos por bairro" só com candidato escolhido
+
+**Status:** iniciada 2026-10-27 19:13 UTC · finalizada 2026-10-27 19:20 UTC
+(commit direto no `main`).
+
+Alex não lembrava para que servia a caixa "Votos por bairro" que aparecia com
+"Nenhum candidato selecionado" ao trocar de turno/cargo. Ela é o ranking de
+bairros do candidato escolhido em "Ver votos por bairro de um candidato".
+Agora, em `js/geral.js`, a caixa só aparece com um candidato escolhido
+(`fecharRankingBoxGeral()`); o mapa de 2024 não mudou. sw.js v45.
+
+---
+
 # Sessão — 2026-10-27 (2) · Eleições 2026: visão da virada entre turnos
 
 **Status:** iniciada 2026-10-27 17:25 UTC · finalizada 2026-10-27 18:00 UTC

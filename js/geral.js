@@ -650,10 +650,20 @@ function highlightCandidatoGeralOnMap(nome) {
   });
 }
 
+/** Remove a caixa "Votos por bairro" (rankingControl, de map.js). */
+function fecharRankingBoxGeral() {
+  if (typeof rankingControl !== "undefined" && rankingControl) {
+    rankingControl.remove();
+    rankingControl = null;
+  }
+}
+
 /** Ranking de bairros por votos do candidato selecionado no combobox. */
 function renderRankingBoxGeral(nome) {
   if (typeof renderRankingBoxItens !== "function") return; // guard: map.js ainda não carregou
-  if (!nome) { renderRankingBoxItens(null, null); return; }
+  // Sem candidato no combobox a caixa some (vazia, só dizia "Nenhum candidato
+  // selecionado" e parecia quebrada); ela volta ao escolher um candidato.
+  if (!nome) { fecharRankingBoxGeral(); return; }
 
   if (!votosPorBairroGeral) {
     renderRankingBoxItens(nome, null, t("Dados por bairro não disponíveis para {ano}.", { ano: currentYear }));
@@ -1237,7 +1247,7 @@ async function changeYear(year) {
   candidatoDestaque = null;
   currentCandidatoFiltro = "";
   desligarVirada();
-  renderRankingBoxItens(null, null);
+  fecharRankingBoxGeral();
   showLoading(true);
   setLoadingStatus(t("Carregando resultados do TSE de {ano}", { ano: year }));
 

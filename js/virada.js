@@ -238,7 +238,7 @@ function setVirada(ativa) {
   if (viradaAtiva) {
     candidatoDestaque = null;
     currentCandidatoFiltro = "";
-    if (rankingControl) { rankingControl.remove(); rankingControl = null; } // caixa "Votos por bairro" (map.js)
+    fecharRankingBoxGeral(); // caixa "Votos por bairro"
     if (currentCargo !== CARGO_VIRADA) currentCargo = CARGO_VIRADA;
   } else {
     limparLegendaVirada();
