@@ -201,6 +201,40 @@ def process_zip(zip_path: str, cargos_map: dict, secao_bairro: dict, ano: str):
     return agr, secoes
 
 
+def aplicar_detalhe(zip_path: str, secoes: dict):
+    """
+    detalhe_votacao_secao_<ano>.zip traz aptos, comparecimento e abstenções
+    por seção (o votacao_secao não traz). Preenche "aptos"/"comparecimento"
+    de Presidente/Governador em cada seção e turno já presentes em `secoes`.
+    """
+    cargos = {**CARGOS_SP, **CARGOS_BR}
+    n = 0
+    with zipfile.ZipFile(zip_path, "r") as zf:
+        nomes = [x for x in zf.namelist() if x.lower().endswith(".csv")
+                 and "BRASIL" not in x.upper() and (x.endswith("_SP.csv") or x.endswith("_BR.csv"))]
+        print(f"  Arquivos CSV (detalhe): {nomes}")
+        for csv_name in nomes:
+            with zf.open(csv_name) as raw:
+                reader = csv.DictReader(io.TextIOWrapper(raw, encoding="latin-1"), delimiter=";")
+                for row in reader:
+                    if row.get("CD_MUNICIPIO", "").strip() != CD_MUNICIPIO_COTIA:
+                        continue
+                    cargo = cargos.get(row.get("CD_CARGO", "").strip())
+                    if cargo not in CARGOS_SECAO:
+                        continue
+                    chave = (row.get("NR_ZONA", "").strip(), row.get("NR_SECAO", "").strip())
+                    turno = row.get("NR_TURNO", "1").strip() or "1"
+                    c = secoes.get(chave, {}).get(turno, {}).get(cargo)
+                    if c is None:
+                        continue
+                    for col, k in (("QT_APTOS", "aptos"), ("QT_COMPARECIMENTO", "comparecimento")):
+                        v = (row.get(col) or "").strip()
+                        if v.isdigit():
+                            c[k] = int(v)
+                    n += 1
+    print(f"  Seções com aptos/comparecimento: {n:,}")
+
+
 def merge(agr_sp, agr_br):
     """Junta os dados do arquivo SP e BR (de um mesmo turno) num único dicionário."""
     resultado = dict(agr_sp)
@@ -377,6 +411,21 @@ def main():
             if t in ("bairro", "local"):
                 continue
             alvo.setdefault(t, {}).update(cargos)
+    url_det = (
+        f"https://cdn.tse.jus.br/estatistica/sead/odsele/detalhe_votacao_secao/"
+        f"detalhe_votacao_secao_{ano}.zip"
+    )
+    tmp_det = tempfile.mktemp(suffix=f"_detalhe_{ano}.zip")
+    try:
+        print("\n[extra] Detalhe por seção — aptos e comparecimento")
+        download_zip(url_det, tmp_det)
+        aplicar_detalhe(tmp_det, sec_sp)
+    except Exception as e:  # sem o detalhe o arquivo sai só sem abstenção
+        print(f"  AVISO: detalhe por seção indisponível ({e})")
+    finally:
+        if os.path.exists(tmp_det):
+            os.unlink(tmp_det)
+
     secoes_file = arq(f"cotia_votos_por_secao_{ano}.json")
     with open(secoes_file, "w", encoding="utf-8") as f:
         json.dump(build_secoes(sec_sp, ano), f, ensure_ascii=False, separators=(",", ":"))

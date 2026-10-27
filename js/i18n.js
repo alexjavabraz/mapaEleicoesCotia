@@ -210,9 +210,9 @@ const I18N_EN = {
   "Você está aqui": "You are here",
 
   // ---- Eleição geral ----
-  "2026 — 1º Turno": "2026 — 1st round",
-  "Dados do 1º turno (04/10/2026). O 2º turno ocorre em 25/10/2026.":
-    "1st-round data (Oct 4, 2026). The runoff takes place on Oct 25, 2026.",
+  "2026 — 1º e 2º Turno": "2026 — 1st round and runoff",
+  "Dados do 1º turno (04/10/2026). O TSE ainda não publicou o 2º turno (25/10/2026).":
+    "1st-round data (Oct 4, 2026). The TSE has not yet published the runoff (Oct 25, 2026).",
   "Presidente": "President",
   "Governador": "Governor",
   "Senador": "Senator",
@@ -257,6 +257,7 @@ const I18N_EN = {
   "Dados por zona": "Zone data",
   "3 primeiros": "top 3",
   "cor = quem dos 3 venceu ali": "color = which of the 3 won there",
+  "cor = quem venceu ali": "color = who won there",
 
   // ---- Contas do Município ----
   "Evento": "Stage",

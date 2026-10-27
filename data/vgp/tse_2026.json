@@ -115,7 +115,24 @@
             "votos": 5
           }
         ],
-        "2": []
+        "2": [
+          {
+            "numero": "22",
+            "nome": "FLAVIO BOLSONARO",
+            "partido": "PL",
+            "numero_partido": "22",
+            "situacao": "",
+            "votos": 17930
+          },
+          {
+            "numero": "13",
+            "nome": "LULA",
+            "partido": "PT",
+            "numero_partido": "13",
+            "situacao": "",
+            "votos": 15032
+          }
+        ]
       },
       "governador": {
         "1": [
@@ -19510,6 +19527,24 @@
           "situacao": "NÃO ELEITO",
           "votos": 5
         }
+      ],
+      "2": [
+        {
+          "numero": "22",
+          "nome": "FLAVIO BOLSONARO",
+          "partido": "PL",
+          "numero_partido": "22",
+          "situacao": "",
+          "votos": 17930
+        },
+        {
+          "numero": "13",
+          "nome": "LULA",
+          "partido": "PT",
+          "numero_partido": "13",
+          "situacao": "",
+          "votos": 15032
+        }
       ]
     },
     "governador": {
@@ -38803,5 +38838,6 @@
   },
   "zonas_lista": [
     "286"
-  ]
+  ],
+  "turno2_das_secoes": true
 }

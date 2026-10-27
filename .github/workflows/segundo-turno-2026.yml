@@ -4,16 +4,23 @@ name: Eleições 2026 — 1º e 2º turno (Cotia e VGP)
 # município/zona e por seção de 2026 e regrava, para Cotia e Vargem Grande
 # Paulista, os totais (tse_*_2026.json), os votos por bairro com o 2º turno
 # em "turnos" e o arquivo por seção usado na comparação entre turnos.
-# Falha de propósito (EXIGIR_TURNO2) enquanto o TSE não publicar o 2º turno.
+# Falha de propósito (EXIGIR_TURNO2) enquanto o TSE não publicar o 2º turno
+# por seção; se só o arquivo por zona estiver atrasado, completar_turno2.py
+# preenche o 2º turno dele somando as seções.
 
 on:
   workflow_dispatch:
+  # Diário até o TSE pôr o 2º turno no arquivo por zona (traz a situação
+  # ELEITO/NÃO ELEITO); depois disso o commit sai "Sem mudanças".
+  schedule:
+    - cron: "0 9 * * *"
   push:
     branches: [main]
     paths:
       - .github/workflows/segundo-turno-2026.yml
       - scripts/download_secoes_geral.py
       - scripts/download_tse_geral.py
+      - scripts/completar_turno2.py
 
 permissions:
   contents: write
@@ -41,6 +48,7 @@ jobs:
       - run: pip install -r scripts/requirements.txt
       - run: python scripts/download_tse_geral.py 2026
       - run: python scripts/download_secoes_geral.py 2026
+      - run: python scripts/completar_turno2.py 2026
       - name: Guarda os arquivos gerados
         run: |
           mkdir -p saida

@@ -186,6 +186,37 @@ async function loadYearData(year) {
   }
 }
 
+/**
+ * Turno que vale para o cargo atual: "2" só quando o cargo tem 2º turno nos
+ * dados e o usuário escolheu a aba 2º Turno; em qualquer outro caso, "1".
+ */
+function turnoEfetivo(cargoKey = currentCargo) {
+  if (currentTurno !== "2" || !cargoCfg(cargoKey)?.turnos) return "1";
+  return (tseData?.totais?.[cargoKey]?.["2"] || []).length ? "2" : "1";
+}
+
+/** O ano tem 2º turno publicado (em algum cargo)? */
+function temSegundoTurno() {
+  return CARGOS_GERAL.some(c => c.turnos && (tseData?.totais?.[c.key]?.["2"] || []).length);
+}
+
+/** Aviso do ano (ex.: "só 1º turno"), escondido quando o 2º turno já está nos dados. */
+function avisoAno() {
+  const cfg = ELECTION_YEARS[currentYear];
+  if (!cfg?.aviso || temSegundoTurno()) return "";
+  return `<div class="turno-aviso">⚠️ ${cfg.aviso}</div>`;
+}
+
+/**
+ * Bairros do turno em uso: o 1º turno fica no nível de cima do JSON por
+ * bairro e o 2º em "turnos"."2" (scripts/download_secoes_geral.py).
+ */
+function bairrosDoTurno(turno = turnoEfetivo()) {
+  if (!votosPorBairroGeral) return {};
+  if (turno === "2") return votosPorBairroGeral.turnos?.["2"]?.bairros || {};
+  return votosPorBairroGeral.bairros || {};
+}
+
 /** Carrega cotia_votos_por_bairro_<ano>.json. Silencioso se o arquivo não existir. */
 async function loadVotosPorBairroGeral(year) {
   const cfg = ELECTION_YEARS[year];
@@ -215,9 +246,9 @@ function normBairro(s) {
  * dados por bairro. Converte para o formato { nome, votos, situacao, partido }
  * enriquecendo com partido/situação dos totais TSE por zona.
  */
-function getBairroCandidatosGeral(bairroKey, cargoKey) {
+function getBairroCandidatosGeral(bairroKey, cargoKey, turno = turnoEfetivo(cargoKey)) {
   if (!votosPorBairroGeral) return null;
-  const dadosBairro = votosPorBairroGeral.bairros[bairroKey];
+  const dadosBairro = bairrosDoTurno(turno)[bairroKey];
   if (!dadosBairro) return null;
   const lista = dadosBairro[cargoKey];
   if (!lista || !lista.length) return null;
@@ -228,7 +259,7 @@ function getBairroCandidatosGeral(bairroKey, cargoKey) {
   // de indexar, senão a busca falha e o card mostra partido "??".
   const metaMap = {};
   if (tseData) {
-    const totais = tseData.totais?.[cargoKey]?.["1"] || [];
+    const totais = tseData.totais?.[cargoKey]?.[turno] || [];
     for (const c of totais) {
       metaMap[normBairro(resolveNomeFullGeral(cargoKey, c.nome))] = c;
       metaMap[normBairro(c.nome)] = c; // mantém o nome de urna como chave também
@@ -425,8 +456,9 @@ function iniciarAbasCargo() {
 window.addEventListener("resize", atualizarSetasCargo);
 
 function switchCargo(key) {
+  // Presidente ↔ Governador mantém o turno escolhido; os outros cargos são de turno único
+  if (!cargoCfg(key)?.turnos || !cargoCfg(currentCargo)?.turnos) currentTurno = "1";
   currentCargo = key;
-  currentTurno = "1";
   candidatoDestaque = null; // limpa destaque ao trocar de cargo
   currentCandidatoFiltro = "";
   renderRankingBoxGeral("");
@@ -520,7 +552,7 @@ function escapeHtmlAttr(s) {
  * todos os cargos (Presidente, Governador, Senador, Dep. Federal, Dep. Estadual)
  * na visão geral do município. Ao selecionar um candidato, colore o mapa por
  * intensidade de votos em cada bairro e mostra o ranking de bairros.
- * @param {Array} lista - candidatos do cargo no 1º turno (sempre a lista completa)
+ * @param {Array} lista - candidatos do cargo no turno em exibição
  */
 function renderCandidatoSelect(lista) {
   if (!lista || !lista.length) return "";
@@ -578,7 +610,7 @@ function highlightCandidatoGeralOnMap(nome) {
     if (votosPorBairroGeral) {
       const bairroKey = resolveBairroKey(bairroFeat);
       if (bairroKey) {
-        const lista = votosPorBairroGeral.bairros[bairroKey]?.[currentCargo] || [];
+        const lista = bairrosDoTurno()[bairroKey]?.[currentCargo] || [];
         const c = lista.find(x => {
           const n = normBairro(x.nome);
           return n === normAlvoFull || n === normAlvoUrna;
@@ -587,7 +619,7 @@ function highlightCandidatoGeralOnMap(nome) {
       }
     }
     if (!votos && tseData && zona) {
-      const candidatos = tseData.zonas[zona]?.[currentCargo]?.["1"] || [];
+      const candidatos = tseData.zonas[zona]?.[currentCargo]?.[turnoEfetivo()] || [];
       const c = candidatos.find(x => normBairro(x.nome) === normAlvoUrna);
       votos = c?.votos || 0;
     }
@@ -629,7 +661,7 @@ function renderRankingBoxGeral(nome) {
   const normAlvoFull = normBairro(resolveNomeFullGeral(currentCargo, nome));
   const normAlvoUrna = normBairro(nome);
   const itens = [];
-  for (const [bairroKey, cargos] of Object.entries(votosPorBairroGeral.bairros)) {
+  for (const [bairroKey, cargos] of Object.entries(bairrosDoTurno())) {
     const lista = cargos[currentCargo] || [];
     const c = lista.find(x => {
       const n = normBairro(x.nome);
@@ -661,12 +693,12 @@ function aplicarHighlightCandidato() {
     if (votosPorBairroGeral) {
       const bairroKey = resolveBairroKey(nomeFeat);
       if (bairroKey) {
-        const lista = votosPorBairroGeral.bairros[bairroKey]?.[currentCargo];
+        const lista = bairrosDoTurno()[bairroKey]?.[currentCargo];
         if (lista && lista.length) vencedor = normBairro(lista[0].nome);
       }
     }
     if (!vencedor && tseData && zona) {
-      const lista = tseData.zonas[zona]?.[currentCargo]?.["1"] || [];
+      const lista = tseData.zonas[zona]?.[currentCargo]?.[turnoEfetivo()] || [];
       if (lista.length) vencedor = normBairro(lista[0].nome);
     }
 
@@ -763,14 +795,14 @@ function renderCargoSectionGeral(cargoData, label) {
   // Combobox "ver votos por bairro" — só faz sentido na visão geral do
   // município (compara um candidato contra todos os bairros de Cotia).
   const visaoGeral = !currentBairroGeral && !currentZona;
-  if (visaoGeral) html += renderCandidatoSelect(t1);
+  if (visaoGeral) html += renderCandidatoSelect(candidatos);
 
   let cardsHtml;
   if (visaoGeral && currentCandidatoFiltro) {
     // Filtro de candidato ativo: mostra só o card dele + botão de limpar
-    const candidato = t1.find(c => c.nome === currentCandidatoFiltro);
+    const candidato = candidatos.find(c => c.nome === currentCandidatoFiltro);
     cardsHtml = candidato
-      ? renderCandidateCard(candidato, Math.max(...t1.map(c => c.votos), 1))
+      ? renderCandidateCard(candidato, Math.max(...candidatos.map(c => c.votos), 1))
       : `<p style="color:var(--text-muted);padding:12px 0;font-size:.8rem">${t("Candidato sem dados neste cargo.")}</p>`;
     cardsHtml += `<button class="limpar-destaque-btn" onclick="filtrarCandidatoGeral('')">
       ✕ ${t("Limpar filtro")}
@@ -801,11 +833,7 @@ function renderSidebarForZona(zonaNum) {
   const cfg = cargoCfg(currentCargo);
   let html = renderCargoTabs();
 
-  // Aviso de dados parciais
-  const yearCfg = ELECTION_YEARS[currentYear];
-  if (yearCfg?.aviso) {
-    html += `<div class="turno-aviso">⚠️ ${yearCfg.aviso}</div>`;
-  }
+  html += avisoAno();
 
   if (!zonaData) {
     html += `<p style="color:var(--text-muted);padding:12px 0;font-size:.8rem">${t("Sem dados para esta zona.")}</p>`;
@@ -825,17 +853,17 @@ function renderSidebarBairro(displayName, bairroKey, zonaNum) {
   const cfg = cargoCfg(currentCargo);
   let html = renderCargoTabs();
 
-  const yearCfg = ELECTION_YEARS[currentYear];
-  if (yearCfg?.aviso) {
-    html += `<div class="turno-aviso">⚠️ ${yearCfg.aviso}</div>`;
-  }
+  html += avisoAno();
 
-  const candidatos = bairroKey ? getBairroCandidatosGeral(bairroKey, currentCargo) : null;
+  const yearCfg = ELECTION_YEARS[currentYear];
+  const candidatos = bairroKey ? getBairroCandidatosGeral(bairroKey, currentCargo, "1") : null;
 
   if (candidatos && candidatos.length) {
     // Dados reais por bairro — adapta para o formato esperado por renderCargoSection
-    // que recebe { "1": [...] }  (estrutura de turno)
+    // que recebe { "1": [...], "2": [...] }  (estrutura de turno)
     const cargoDataFake = { "1": candidatos };
+    const t2 = getBairroCandidatosGeral(bairroKey, currentCargo, "2");
+    if (t2 && t2.length) cargoDataFake["2"] = t2;
     html += renderCargoSectionGeral(cargoDataFake, `${cfg.label} — ${displayName}`);
     html += `<div class="fonte-info" style="margin-top:6px">
       <span style="color:var(--text-muted);font-size:0.68rem">${t("Dados reais por bairro")} · </span>
@@ -863,11 +891,7 @@ function renderSidebarTotais() {
   const cfg = cargoCfg(currentCargo);
   let html = renderCargoTabs();
 
-  // Aviso de dados parciais (ex: só 1º turno disponível)
-  const yearCfg = ELECTION_YEARS[currentYear];
-  if (yearCfg?.aviso) {
-    html += `<div class="turno-aviso">⚠️ ${yearCfg.aviso}</div>`;
-  }
+  html += avisoAno();
 
   if (!totais) {
     html += `<p style="color:var(--text-muted);padding:12px 0;font-size:.8rem">${t("Dados ainda não disponíveis.")}</p>`;
@@ -960,10 +984,10 @@ function getTooltipContentGeral(feature, zona) {
   if (votosPorBairroGeral) {
     const bairroKey = resolveBairroKey(name);
     if (bairroKey) {
-      const lista = votosPorBairroGeral.bairros[bairroKey]?.[currentCargo];
+      const lista = bairrosDoTurno()[bairroKey]?.[currentCargo];
       if (lista && lista.length) {
         const nomeVenc = normBairro(lista[0].nome);
-        const totais = tseData?.totais?.[currentCargo]?.["1"] || [];
+        const totais = tseData?.totais?.[currentCargo]?.[turnoEfetivo()] || [];
         const meta = totais.find(c => normBairro(resolveNomeFullGeral(currentCargo, c.nome)) === nomeVenc || normBairro(c.nome) === nomeVenc);
         top = { nome: lista[0].nome, votos: lista[0].votos, partido: meta?.partido || "" };
         fonte = "bairro";
@@ -973,7 +997,7 @@ function getTooltipContentGeral(feature, zona) {
 
   // Fallback para zona
   if (!top && tseData && zona) {
-    const candidatos = tseData.zonas[zona]?.[currentCargo]?.["1"] || [];
+    const candidatos = tseData.zonas[zona]?.[currentCargo]?.[turnoEfetivo()] || [];
     if (candidatos.length) {
       top = candidatos[0];
       fonte = "zona";
@@ -1092,7 +1116,7 @@ function getVotosCandidatoLocal(urnaNome, bairroNomeFeature, zona) {
   if (votosPorBairroGeral) {
     const bairroKey = resolveBairroKey(bairroNomeFeature);
     if (bairroKey) {
-      const lista = votosPorBairroGeral.bairros[bairroKey]?.[currentCargo] || [];
+      const lista = bairrosDoTurno()[bairroKey]?.[currentCargo] || [];
       const normFull = normBairro(resolveNomeFullGeral(currentCargo, urnaNome));
       const normUrna = normBairro(urnaNome);
       const c = lista.find(x => {
@@ -1103,7 +1127,7 @@ function getVotosCandidatoLocal(urnaNome, bairroNomeFeature, zona) {
     }
   }
   if (tseData && zona) {
-    const candidatos = tseData.zonas[zona]?.[currentCargo]?.["1"] || [];
+    const candidatos = tseData.zonas[zona]?.[currentCargo]?.[turnoEfetivo()] || [];
     const c = candidatos.find(x => normBairro(x.nome) === normBairro(urnaNome));
     if (c) return c.votos;
   }
@@ -1179,14 +1203,14 @@ function atualizarLegendaPartidos(top3, cores) {
     const div = L.DomUtil.create("div", "");
     div.id = "map-legend-partidos";
     div.innerHTML = `
-      <h4>${cargo} — ${t("3 primeiros")}</h4>
+      <h4>${cargo} — ${turnoEfetivo() === "2" ? t("2º Turno") : t("3 primeiros")}</h4>
       ${top3.map((c, idx) => `
         <div class="legend-item">
           <div class="legend-color" style="background:${cores[idx]};opacity:0.85"></div>
           <span>${c.nome}${c.partido ? ` (${c.partido})` : ""}</span>
         </div>`).join("")}
       <div style="font-size:0.62rem;color:var(--text-muted);margin-top:6px;border-top:1px solid rgba(255,255,255,0.1);padding-top:4px">
-        ${fonte} · ${t("cor = quem dos 3 venceu ali")}
+        ${fonte} · ${turnoEfetivo() === "2" ? t("cor = quem venceu ali") : t("cor = quem dos 3 venceu ali")}
       </div>
     `;
     return div;

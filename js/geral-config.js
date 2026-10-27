@@ -15,11 +15,12 @@ const ELECTION_YEARS = {
     datasetUrl: "https://dadosabertos.tse.jus.br/dataset/resultados-2022",
   },
   "2026": {
-    label: t("2026 — 1º Turno"),
+    label: t("2026 — 1º e 2º Turno"),
     dataFile: urlDados("tse_cotia_2026.json"),
     bairroFile: urlDados("cotia_votos_por_bairro_2026.json"),
     datasetUrl: "https://dadosabertos.tse.jus.br/dataset/resultados-2026",
-    aviso: t("Dados do 1º turno (04/10/2026). O 2º turno ocorre em 25/10/2026."),
+    // Some sozinho quando o 2º turno estiver nos dados (avisoAno() em geral.js)
+    aviso: t("Dados do 1º turno (04/10/2026). O TSE ainda não publicou o 2º turno (25/10/2026)."),
   },
 };
 
