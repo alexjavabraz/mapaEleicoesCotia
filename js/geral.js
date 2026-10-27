@@ -458,6 +458,7 @@ window.addEventListener("resize", atualizarSetasCargo);
 function switchCargo(key) {
   // Presidente ↔ Governador mantém o turno escolhido; os outros cargos são de turno único
   if (!cargoCfg(key)?.turnos || !cargoCfg(currentCargo)?.turnos) currentTurno = "1";
+  if (key !== CARGO_VIRADA) desligarVirada(); // a virada é só de Presidente
   currentCargo = key;
   candidatoDestaque = null; // limpa destaque ao trocar de cargo
   currentCandidatoFiltro = "";
@@ -576,6 +577,7 @@ function filtrarCandidatoGeral(nome) {
   if (nome) {
     candidatoDestaque = null; // mutuamente exclusivo com o destaque por ícone
     desligarRendaGeral();
+    desligarVirada();
     limparLegendaTop3();      // o ranking (mesmo canto, bottomleft) substitui a legenda
     highlightCandidatoGeralOnMap(nome);
   } else {
@@ -593,7 +595,7 @@ function filtrarCandidatoGeral(nome) {
 function highlightCandidatoGeralOnMap(nome) {
   if (!neighborhoodLayer) return;
   if (!nome) { colorirMapaPartidoVencedor(); return; }
-  if (rendaAtiva) { pintarBairrosGeral(); return; }
+  if (rendaAtiva || viradaAtiva) { pintarBairrosGeral(); return; }
 
   // Dados por bairro usam nome completo do candidato; tseData/totais usam o
   // nome de urna (combobox). Resolve antes de comparar — ver buildNomeMappingGeral().
@@ -678,7 +680,7 @@ function renderRankingBoxGeral(nome) {
  */
 function aplicarHighlightCandidato() {
   if (!neighborhoodLayer || !candidatoDestaque) return;
-  if (rendaAtiva) { pintarBairrosGeral(); return; }
+  if (rendaAtiva || viradaAtiva) { pintarBairrosGeral(); return; }
 
   const { nome, cor } = candidatoDestaque;
   const normNome = normBairro(nome);
@@ -864,6 +866,7 @@ function renderSidebarBairro(displayName, bairroKey, zonaNum) {
     const cargoDataFake = { "1": candidatos };
     const t2 = getBairroCandidatosGeral(bairroKey, currentCargo, "2");
     if (t2 && t2.length) cargoDataFake["2"] = t2;
+    html += painelViradaHtml(bairroKey, displayName);
     html += renderCargoSectionGeral(cargoDataFake, `${cfg.label} — ${displayName}`);
     html += `<div class="fonte-info" style="margin-top:6px">
       <span style="color:var(--text-muted);font-size:0.68rem">${t("Dados reais por bairro")} · </span>
@@ -896,6 +899,7 @@ function renderSidebarTotais() {
   if (!totais) {
     html += `<p style="color:var(--text-muted);padding:12px 0;font-size:.8rem">${t("Dados ainda não disponíveis.")}</p>`;
   } else {
+    html += painelViradaHtml(null);
     html += renderCargoSectionGeral(totais[currentCargo], `${cfg.label} — ${t("Total Geral")}`);
   }
   html += fonteInfo();
@@ -1015,6 +1019,7 @@ function getTooltipContentGeral(feature, zona) {
     </div>`;
   }
   html += tooltipRendaBairro(feature);
+  html += tooltipViradaBairro(feature);
   return html;
 }
 
@@ -1027,6 +1032,7 @@ function getTooltipContentGeral(feature, zona) {
  */
 function pintarBairrosGeral() {
   if (!neighborhoodLayer) return;
+  if (viradaAtiva) { pintarVirada(); return; } // js/virada.js (com a renda ligada, só o contorno)
   if (rendaAtiva) {
     limparLegendaTop3();
     resetBairrosStyle(); // getFeatureStyle devolve o estilo da renda
@@ -1052,8 +1058,11 @@ function desligarRendaGeral() {
 
 /** Botão Limpar: desliga a renda e volta às cores dos candidatos. */
 function limparRendaGeral() {
+  const comVirada = viradaAtiva;
+  desligarVirada();
   if (rendaAtiva) setRenda(false);
   else pintarBairrosGeral();
+  if (comVirada) renderSidebar();
 }
 
 // ---- COLORAÇÃO DO MAPA POR TOP-3 CANDIDATOS DO CARGO ----
@@ -1156,7 +1165,7 @@ function getCorVencedorBairro(bairroNomeFeature, zona, top3, cores) {
  */
 function colorirMapaPartidoVencedor() {
   if (!neighborhoodLayer) return;
-  if (rendaAtiva) { pintarBairrosGeral(); return; } // modo renda ignora as cores dos candidatos
+  if (rendaAtiva || viradaAtiva) { pintarBairrosGeral(); return; } // renda/virada ignoram as cores dos candidatos
   const top3 = getTop3CandidatosCargo();
   const cores = getCoresTop3(top3);
   neighborhoodLayer.eachLayer((layer) => {
@@ -1227,6 +1236,7 @@ async function changeYear(year) {
   currentTurno = "1";
   candidatoDestaque = null;
   currentCandidatoFiltro = "";
+  desligarVirada();
   renderRankingBoxItens(null, null);
   showLoading(true);
   setLoadingStatus(t("Carregando resultados do TSE de {ano}", { ano: year }));
@@ -1234,7 +1244,9 @@ async function changeYear(year) {
   const [result] = await Promise.all([
     loadYearData(year),
     loadVotosPorBairroGeral(year),
+    loadVirada(year),
   ]);
+  atualizarBotaoVirada();
 
   if (result.error) {
     tseData = null;
@@ -1267,6 +1279,7 @@ async function init() {
     loadYearData(currentYear),
     loadRendaCenso(),
     loadVotosPorBairroGeral(currentYear),
+    loadVirada(currentYear),
   ]);
   if (rendaResult.ok) {
     console.log(`Renda do Censo: ${rendaResult.count} setores`);
@@ -1274,6 +1287,7 @@ async function init() {
   } else {
     console.log("Renda do Censo não disponível:", rendaResult.error);
   }
+  atualizarBotaoVirada();
   if (result.ok) {
     buildNomeMappingGeral();
     buildZoneColors(getZonas());

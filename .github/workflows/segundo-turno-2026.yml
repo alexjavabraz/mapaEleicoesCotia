@@ -21,6 +21,7 @@ on:
       - scripts/download_secoes_geral.py
       - scripts/download_tse_geral.py
       - scripts/completar_turno2.py
+      - scripts/estimar_virada.py
 
 permissions:
   contents: write
@@ -45,17 +46,18 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-      - run: pip install -r scripts/requirements.txt
+      - run: pip install -r scripts/requirements.txt numpy
       - run: python scripts/download_tse_geral.py 2026
       - run: python scripts/download_secoes_geral.py 2026
       - run: python scripts/completar_turno2.py 2026
+      - run: python scripts/estimar_virada.py 2026
       - name: Guarda os arquivos gerados
         run: |
           mkdir -p saida
           if [ "$CIDADE" = cotia ]; then
-            cp data/tse_cotia_2026.json data/cotia_votos_por_bairro_2026.json data/cotia_votos_por_secao_2026.json saida/
+            cp data/tse_cotia_2026.json data/cotia_votos_por_bairro_2026.json data/cotia_votos_por_secao_2026.json data/cotia_virada_2026.json saida/
           else
-            cp data/vgp/tse_2026.json data/vgp/votos_por_bairro_2026.json data/vgp/votos_por_secao_2026.json saida/
+            cp data/vgp/tse_2026.json data/vgp/votos_por_bairro_2026.json data/vgp/votos_por_secao_2026.json data/vgp/virada_2026.json saida/
           fi
           python - <<'PY'
           import json, glob
@@ -85,8 +87,8 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/tse_cotia_2026.json data/cotia_votos_por_bairro_2026.json data/cotia_votos_por_secao_2026.json \
-                  data/vgp/tse_2026.json data/vgp/votos_por_bairro_2026.json data/vgp/votos_por_secao_2026.json
+          git add data/tse_cotia_2026.json data/cotia_votos_por_bairro_2026.json data/cotia_votos_por_secao_2026.json data/cotia_virada_2026.json \
+                  data/vgp/tse_2026.json data/vgp/votos_por_bairro_2026.json data/vgp/votos_por_secao_2026.json data/vgp/virada_2026.json
           if git diff --cached --quiet; then
             echo "Sem mudanças."
             exit 0

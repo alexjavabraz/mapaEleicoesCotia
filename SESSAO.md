@@ -1,3 +1,23 @@
+# Sessão — 2026-10-27 (2) · Eleições 2026: visão da virada entre turnos
+
+**Status:** iniciada 2026-10-27 17:25 UTC · finalizada 2026-10-27 18:00 UTC
+(commit direto no `main`).
+
+Alex escolheu as duas opções da prévia (mapa da virada + fluxo no painel).
+
+- Botão "Virada (1º → 2º turno)" no mapa de 2026 (Cotia e VGP), `js/virada.js`:
+  bairro pintado pela cor do finalista que avançou na margem (mais forte =
+  mudou mais) e contorno grosso onde o vencedor mudou; tooltip com % nos dois
+  turnos. Com Renda (Censo) ligada, fica só o contorno de quem virou.
+- Painel lateral "Para onde foram os votos" (Sankey) para a cidade ou o bairro
+  clicado, marcado como estimativa. `scripts/estimar_virada.py` (inferência
+  ecológica: regressão de Goodman com restrição, abstenção incluída; bairro
+  puxado para a matriz da cidade) gera `cotia_virada_2026.json` e
+  `data/vgp/virada_2026.json`; roda no workflow `segundo-turno-2026.yml`.
+- Metodologia (seção 2) explica as contas e a limitação. PT/EN. sw.js v44.
+
+---
+
 # Sessão — 2026-10-27 · Eleições 2026: 2º turno (Cotia e VGP) e comparação entre turnos
 
 **Status:** iniciada 2026-10-27 14:05 UTC · 1º/2º turno no ar 14:20 UTC; visão da virada aguardando escolha do Alex.

@@ -1005,6 +1005,41 @@ html, body {
 .map-action-btn.active { background: var(--highlight); border-color: var(--highlight); color: #fff; }
 .map-action-btn:active { transform: scale(0.95); }
 .map-action-btn:focus-visible { outline: 2px solid #ffd54f; outline-offset: 2px; }
+.map-action-btn[hidden] { display: none; }
+
+/* ---- VIRADA 1º → 2º TURNO (js/virada.js) ---- */
+.legenda-virada-grad {
+  background: linear-gradient(90deg, color-mix(in srgb, var(--cor) 20%, transparent), var(--cor));
+}
+.legenda-virada-contorno { background: transparent; border: 3px solid var(--text); box-sizing: border-box; }
+.legenda-virada-nota {
+  font-size: 0.62rem;
+  color: var(--text-muted);
+  margin-top: 6px;
+  border-top: 1px solid rgba(var(--tinta), 0.1);
+  padding-top: 4px;
+  max-width: 220px;
+}
+.virada-painel {
+  margin-bottom: 14px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(var(--tinta), 0.1);
+}
+.virada-cols {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.66rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin: 6px 0 2px;
+}
+.virada-sankey svg { display: block; width: 100%; height: auto; }
+.virada-rotulo { fill: var(--text); font-size: 10px; font-family: inherit; }
+.virada-num { fill: var(--text-muted); font-size: 9px; font-variant-numeric: tabular-nums; }
+.virada-nota { font-size: 0.68rem; color: var(--text-muted); line-height: 1.45; margin: 6px 0 0; }
+.virada-nota a { color: var(--highlight); }
 
 .secao-legenda {
   background: rgba(var(--painel-rgb), 0.93);

@@ -218,6 +218,29 @@ const I18N_EN = {
   "Senador": "Senator",
   "Dep. Federal": "Federal Deputy",
   "Dep. Estadual": "State Deputy",
+
+  // ---- Virada 1º → 2º turno (js/virada.js) ----
+  "Virada (1º → 2º turno)": "Swing (1st round → runoff)",
+  "Mostra onde a votação para Presidente mudou entre o 1º e o 2º turno":
+    "Shows where the presidential vote changed between the 1st round and the runoff",
+  "Presidente — virada do 1º para o 2º turno": "President — swing from 1st round to runoff",
+  "{nome} avançou ({n} bairros)": "{nome} gained ({n} neighborhoods)",
+  "Mudou de vencedor ({n} bairros)": "Winner changed ({n} neighborhoods)",
+  "Com a renda ligada, só o contorno de quem virou.": "With income on, only the outline of neighborhoods that flipped.",
+  "Cor mais forte = margem mudou mais (até {n} pontos). Margem = diferença entre os dois finalistas, em % dos votos válidos.":
+    "Stronger color = bigger change in margin (up to {n} points). Margin = gap between the two finalists, as % of valid votes.",
+  "1º turno → 2º turno (votos válidos)": "1st round → runoff (valid votes)",
+  "Virou: {a} → {b}": "Flipped: {a} → {b}",
+  "Para onde foram os votos": "Where the votes went",
+  "Sem estimativa para este bairro.": "No estimate for this neighborhood.",
+  "1º turno": "1st round",
+  "2º turno": "2nd round",
+  "Outros": "Others",
+  "Branco/nulo": "Blank/null",
+  "Fluxo estimado de eleitores do 1º para o 2º turno": "Estimated flow of voters from the 1st round to the runoff",
+  "Estimativa estatística a partir de {n} seções (urnas), não uma contagem. O voto é secreto: o diagrama mostra o padrão médio das urnas e não vê, por exemplo, quem trocou um finalista pelo outro.":
+    "Statistical estimate from {n} polling sections (ballot boxes), not a count. The vote is secret: the diagram shows the average pattern of the ballot boxes and cannot see, for example, who switched from one finalist to the other.",
+  "Como é calculado": "How it is calculated",
   "Cargos": "Offices",
   "Rolar abas para a esquerda": "Scroll tabs left",
   "Rolar abas para a direita": "Scroll tabs right",
